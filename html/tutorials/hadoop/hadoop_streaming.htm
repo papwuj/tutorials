@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Hadoop - Streaming - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Hadoop - Streaming - Hadoop streaming is a utility that comes with the Hadoop distribution. This utility allows you to create and run Map/Reduce jobs with any executable or script a"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/hadoop/hadoop_streaming.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#39b9fa;
+}
+a.demo {
+    background:#39b9fa;
+}
+li.heading {
+    background:#39b9fa;
+}
+.course-box{background:#39b9fa}
+.home-intro-sub p{color:#39b9fa}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/hadoop/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/hadoop/images/hadoop-mini-logo.jpg" alt="Hadoop Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Hadoop Tutorial</li>
+<li><a href="/hadoop/index.htm">Hadoop - Home</a></li>
+<li><a href="/hadoop/hadoop_big_data_overview.htm">Hadoop - Big Data Overview</a></li>
+<li><a href="/hadoop/hadoop_big_data_solutions.htm">Hadoop - Big Data Solutions</a></li>
+<li><a href="/hadoop/hadoop_introduction.htm">Hadoop - Introduction</a></li>
+<li><a href="/hadoop/hadoop_enviornment_setup.htm">Hadoop - Environment Setup</a></li>
+<li><a href="/hadoop/hadoop_hdfs_overview.htm">Hadoop - HDFS Overview</a></li>
+<li><a href="/hadoop/hadoop_hdfs_operations.htm">Hadoop - HDFS Operations</a></li>
+<li><a href="/hadoop/hadoop_command_reference.htm">Hadoop - Command Reference</a></li>
+<li><a href="/hadoop/hadoop_mapreduce.htm">Hadoop - MapReduce</a></li>
+<li><a href="/hadoop/hadoop_streaming.htm">Hadoop - Streaming</a></li>
+<li><a href="/hadoop/hadoop_multi_node_cluster.htm">Hadoop - Multi-Node Cluster</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Hadoop Useful Resources</li>
+<li><a  href="/hadoop/hadoop_questions_answers.htm">Hadoop - Questions and Answers</a></li>
+<li><a  href="/hadoop/hadoop_quick_guide.htm">Hadoop - Quick Guide</a></li>
+<li><a  href="/hadoop/hadoop_useful_resources.htm">Hadoop - Useful Resources</a></li>
+<li><a  href="/hadoop/hadoop_discussion.htm">Hadoop - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Hadoop - Streaming</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/hadoop/hadoop_mapreduce.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/hadoop/hadoop_multi_node_cluster.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Hadoop streaming is a utility that comes with the Hadoop distribution. This utility allows you to create and run Map/Reduce jobs with any executable or script as the mapper and/or the reducer.</p>
+<h2>Example Using Python</h2>
+<p>For Hadoop streaming, we are considering the word-count problem. Any job in Hadoop must have two phases: mapper and reducer. We have written codes for the mapper and the reducer in python script to run it under Hadoop. One can also write the same in Perl and Ruby.</p>
+<h3>Mapper Phase Code</h3>
+<pre class="result notranslate">
+!/usr/bin/python
+
+import sys
+
+# Input takes from standard input for myline in sys.stdin: 
+   # Remove whitespace either side 
+   myline = myline.strip() 
+
+   # Break the line into words 
+   words = myline.split() 
+
+   # Iterate the words list
+   for myword in words:
+      # Write the results to standard output 
+      print '%s\t%s' % (myword, 1)
+</pre>
+<p>Make sure this file has execution permission (chmod +x /home/ expert/hadoop-1.2.1/mapper.py).</p>
+<h3>Reducer Phase Code</h3>
+<pre class="result notranslate">
+#!/usr/bin/python
+
+from operator import itemgetter 
+import sys 
+
+current_word = ""
+current_count = 0 
+word = "" 
+
+# Input takes from standard input for myline in sys.stdin: 
+   # Remove whitespace either side 
+   myline = myline.strip() 
+
+   # Split the input we got from mapper.py word, 
+   count = myline.split('\t', 1) 
+
+   # Convert count variable to integer 
+   try: 
+      count = int(count) 
+
+   except ValueError: 
+      # Count was not a number, so silently ignore this line continue
+
+   if current_word == word: 
+   current_count += count 
+   else: 
+      if current_word: 
+         # Write result to standard output print '%s\t%s' % (current_word, current_count) 
+   
+      current_count = count
+      current_word = word
+
+# Do not forget to output the last word if needed! 
+if current_word == word: 
+   print '%s\t%s' % (current_word, current_count)
+</pre>
+<p>Save the mapper and reducer codes in mapper.py and reducer.py in Hadoop home directory. Make sure these files have execution permission (chmod +x mapper.py and chmod +x reducer.py). As python is indentation sensitive so the same code can be download from the below link.</p>
+<h2>Execution of WordCount Program</h2>
+<pre class="result notranslate">
+$ $HADOOP_HOME/bin/hadoop jar contrib/streaming/hadoop-streaming-1.
+2.1.jar \
+   -input input_dirs \ 
+   -output output_dir \ 
+   -mapper &lt;path/mapper.py \ 
+   -reducer &lt;path/reducer.py
+</pre>
+<p>Where "\" is used for line continuation for clear readability.</p>
+<h3>For Example,</h3>
+<pre class="result notranslate">
+./bin/hadoop jar contrib/streaming/hadoop-streaming-1.2.1.jar -input myinput -output myoutput -mapper /home/expert/hadoop-1.2.1/mapper.py -reducer /home/expert/hadoop-1.2.1/reducer.py
+</pre>
+<h2>How Streaming Works</h2>
+<p>In the above example, both the mapper and the reducer are python scripts that read the input from standard input and emit the output to standard output. The utility will create a Map/Reduce job, submit the job to an appropriate cluster, and monitor the progress of the job until it completes.</p>
+<p>When a script is specified for mappers, each mapper task will launch the script as a separate process when the mapper is initialized. As the mapper task runs, it converts its inputs into lines and feed the lines to the standard input (STDIN) of the process. In the meantime, the mapper collects the line-oriented outputs from the standard output (STDOUT) of the process and converts each line into a key/value pair, which is collected as the output of the mapper. By default, the prefix of a line up to the first tab character is the key and the rest of the line (excluding the tab character) will be the value. If there is no tab character in the line, then the entire line is considered as the key and the value is null. However, this can be customized, as per one need.</p>
+<p>When a script is specified for reducers, each reducer task will launch the script as a separate process, then the reducer is initialized. As the reducer task runs, it converts its input key/values pairs into lines and feeds the lines to the standard input (STDIN) of the process. In the meantime, the reducer collects the line-oriented outputs from the standard output (STDOUT) of the process, converts each line into a key/value pair, which is collected as the output of the reducer. By default, the prefix of a line up to the first tab character is the key and the rest of the line (excluding the tab character) is the value. However, this can be customized as per specific requirements.</p>
+<h2>Important Commands</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:30%">Parameters</th>
+<th style="text-align:center;">Options</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td>-input directory/file-name</td>
+<td style="vertical-align:middle;">Required</td>
+<td style="vertical-align:middle;">Input location for mapper.</td>
+</tr>
+<tr>
+<td>-output directory-name</td>
+<td style="vertical-align:middle;">Required</td>
+<td style="vertical-align:middle;">Output location for reducer.</td>
+</tr>
+<tr>
+<td>-mapper executable or script or JavaClassName</td>
+<td style="vertical-align:middle;">Required</td>
+<td style="vertical-align:middle;">Mapper executable.</td>
+</tr>
+<tr>
+<td>-reducer executable or script or JavaClassName</td>
+<td style="vertical-align:middle;">Required</td>
+<td style="vertical-align:middle;">Reducer executable.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">-file file-name</td>
+<td style="vertical-align:middle;">Optional</td>
+<td>Makes the mapper, reducer, or combiner executable available locally on the compute nodes.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">-inputformat JavaClassName</td>
+<td style="vertical-align:middle;">Optional</td>
+<td>Class you supply should return key/value pairs of Text class. If not specified, TextInputFormat is used as the default.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">-outputformat JavaClassName</td>
+<td style="vertical-align:middle;">Optional</td>
+<td>Class you supply should take key/value pairs of Text class. If not specified, TextOutputformat is used as the default.</td>
+</tr>
+<tr>
+<td>-partitioner JavaClassName</td>
+<td style="vertical-align:middle;">Optional</td>
+<td>Class that determines which reduce a key is sent to.</td>
+</tr>
+<tr>
+<td>-combiner streamingCommand or JavaClassName</td>
+<td style="vertical-align:middle;">Optional</td>
+<td style="vertical-align:middle;">Combiner executable for map output.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">-cmdenv name=value</td>
+<td style="vertical-align:middle;">Optional</td>
+<td>Passes the environment variable to streaming commands.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">-inputreader</td>
+<td style="vertical-align:middle;">Optional</td>
+<td>For backwards-compatibility: specifies a record reader class (instead of an input format class).</td>
+</tr>
+<tr>
+<td>-verbose</td>
+<td>Optional</td>
+<td>Verbose output.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">-lazyOutput</td>
+<td style="vertical-align:middle;">Optional</td>
+<td>Creates output lazily. For example, if the output format is based on FileOutputFormat, the output file is created only on the first call to output.collect (or Context.write).</td>
+</tr>
+<tr>
+<td>-numReduceTasks</td>
+<td>Optional</td>
+<td>Specifies the number of reducers.</td>
+</tr>
+<tr>
+<td>-mapdebug</td>
+<td>Optional</td>
+<td>Script to call when map task fails.</td>
+</tr>
+<tr>
+<td>-reducedebug</td>
+<td>Optional</td>
+<td>Script to call when reduce task fails.</td>
+</tr>
+</table>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/hadoop/hadoop_mapreduce.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/hadoop/hadoop_multi_node_cluster.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

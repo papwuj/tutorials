@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Hadoop - Multi-Node Cluster - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Hadoop - Multi-Node Cluster - This chapter explains the setup of the Hadoop Multi-Node cluster on a distributed environment."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/hadoop/hadoop_multi_node_cluster.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#39b9fa;
+}
+a.demo {
+    background:#39b9fa;
+}
+li.heading {
+    background:#39b9fa;
+}
+.course-box{background:#39b9fa}
+.home-intro-sub p{color:#39b9fa}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/hadoop/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/hadoop/images/hadoop-mini-logo.jpg" alt="Hadoop Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Hadoop Tutorial</li>
+<li><a href="/hadoop/index.htm">Hadoop - Home</a></li>
+<li><a href="/hadoop/hadoop_big_data_overview.htm">Hadoop - Big Data Overview</a></li>
+<li><a href="/hadoop/hadoop_big_data_solutions.htm">Hadoop - Big Data Solutions</a></li>
+<li><a href="/hadoop/hadoop_introduction.htm">Hadoop - Introduction</a></li>
+<li><a href="/hadoop/hadoop_enviornment_setup.htm">Hadoop - Environment Setup</a></li>
+<li><a href="/hadoop/hadoop_hdfs_overview.htm">Hadoop - HDFS Overview</a></li>
+<li><a href="/hadoop/hadoop_hdfs_operations.htm">Hadoop - HDFS Operations</a></li>
+<li><a href="/hadoop/hadoop_command_reference.htm">Hadoop - Command Reference</a></li>
+<li><a href="/hadoop/hadoop_mapreduce.htm">Hadoop - MapReduce</a></li>
+<li><a href="/hadoop/hadoop_streaming.htm">Hadoop - Streaming</a></li>
+<li><a href="/hadoop/hadoop_multi_node_cluster.htm">Hadoop - Multi-Node Cluster</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Hadoop Useful Resources</li>
+<li><a  href="/hadoop/hadoop_questions_answers.htm">Hadoop - Questions and Answers</a></li>
+<li><a  href="/hadoop/hadoop_quick_guide.htm">Hadoop - Quick Guide</a></li>
+<li><a  href="/hadoop/hadoop_useful_resources.htm">Hadoop - Useful Resources</a></li>
+<li><a  href="/hadoop/hadoop_discussion.htm">Hadoop - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Hadoop - Multi-Node Cluster</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/hadoop/hadoop_streaming.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/hadoop/hadoop_questions_answers.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>This chapter explains the setup of the Hadoop Multi-Node cluster on a distributed environment.</p>
+<p>As the whole cluster cannot be demonstrated, we are explaining the Hadoop cluster environment using three systems (one master and two slaves); given below are their IP addresses.</p>
+<ul class="list">
+<li>Hadoop Master: 192.168.1.15 (hadoop-master)</li>
+<li>Hadoop Slave: 192.168.1.16 (hadoop-slave-1)</li>
+<li>Hadoop Slave: 192.168.1.17 (hadoop-slave-2)</li>
+</ul>
+<p>Follow the steps given below to have Hadoop Multi-Node cluster setup.</p>
+<h2>Installing Java</h2>
+<p>Java is the main prerequisite for Hadoop. First of all, you should verify the existence of java in your system using “java -version”. The syntax of java version command is given below.</p>
+<pre class="result notranslate">
+$ java -version
+</pre>
+<p>If everything works fine it will give you the following output.</p>
+<pre class="result notranslate">
+java version "1.7.0_71" 
+Java(TM) SE Runtime Environment (build 1.7.0_71-b13) 
+Java HotSpot(TM) Client VM (build 25.0-b02, mixed mode)
+</pre>
+<p>If java is not installed in your system, then follow the given steps for installing java.</p>
+<h3>Step 1</h3>
+<p>Download java (JDK &lt;latest version&gt; - X64.tar.gz) by visiting the following link <a href=" https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html" rel="nofollow" target="_blank">www.oracle.com</a></p>
+<p>Then <b>jdk-7u71-linux-x64.tar.gz</b> will be downloaded into your system.</p>
+<h3>Step 2</h3>
+<p>Generally you will find the downloaded java file in Downloads folder. Verify it and extract the <b>jdk-7u71-linux-x64.gz</b> file using the following commands.</p>
+<pre class="result notranslate">
+$ cd Downloads/
+$ ls
+jdk-7u71-Linux-x64.gz
+
+$ tar zxf jdk-7u71-Linux-x64.gz
+$ ls
+jdk1.7.0_71 jdk-7u71-Linux-x64.gz
+</pre>
+<h3>Step 3</h3>
+<p>To make java available to all the users, you have to move it to the location “/usr/local/”. Open the root, and type the following commands.</p>
+<pre class="result notranslate">
+$ su
+password:
+# mv jdk1.7.0_71 /usr/local/
+# exit
+</pre>
+<h3>Step 4</h3>
+<p>For setting up <b>PATH</b> and <b>JAVA_HOME</b> variables, add the following commands to <b>~/.bashrc</b> file.</p>
+<pre class="result notranslate">
+export JAVA_HOME=/usr/local/jdk1.7.0_71
+export PATH=PATH:$JAVA_HOME/bin
+</pre>
+<p>Now verify the <b>java -version</b> command from the terminal as explained above. Follow the above process and install java in all your cluster nodes.</p>
+<h2>Creating User Account</h2>
+<p>Create a system user account on both master and slave systems to use the Hadoop installation.</p>
+<pre class="result notranslate">
+# useradd hadoop 
+# passwd hadoop
+</pre>
+<h2>Mapping the nodes</h2>
+<p>You have to edit <b>hosts</b> file in <b>/etc/</b> folder on all nodes, specify the IP address of each system followed by their host names.</p>
+<pre class="result notranslate">
+# vi /etc/hosts
+enter the following lines in the /etc/hosts file.
+
+192.168.1.109 hadoop-master 
+192.168.1.145 hadoop-slave-1 
+192.168.56.1 hadoop-slave-2
+</pre>
+<h2>Configuring Key Based Login</h2>
+<p>Setup ssh in every node such that they can communicate with one another without any prompt for password.</p>
+<pre class="result notranslate">
+# su hadoop 
+$ ssh-keygen -t rsa 
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub tutorialspoint@hadoop-master 
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop_tp1@hadoop-slave-1 
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop_tp2@hadoop-slave-2 
+$ chmod 0600 ~/.ssh/authorized_keys 
+$ exit
+</pre>
+<h2>Installing Hadoop</h2>
+<p>In the Master server, download and install Hadoop using the following commands.</p>
+<pre class="result notranslate">
+# mkdir /opt/hadoop 
+# cd /opt/hadoop/ 
+# wget http://apache.mesi.com.ar/hadoop/common/hadoop-1.2.1/hadoop-1.2.0.tar.gz 
+# tar -xzf hadoop-1.2.0.tar.gz 
+# mv hadoop-1.2.0 hadoop
+# chown -R hadoop /opt/hadoop 
+# cd /opt/hadoop/hadoop/
+</pre>
+<h2>Configuring Hadoop</h2>
+<p>You have to configure Hadoop server by making the following changes as given below.</p>
+<h3>core-site.xml</h3>
+<p>Open the <b>core-site.xml</b> file and edit it as shown below.</p>
+<pre class="result notranslate">
+&lt;configuration&gt;
+   &lt;property&gt; 
+      &lt;name&gt;fs.default.name&lt;/name&gt; 
+      &lt;value&gt;hdfs://hadoop-master:9000/&lt;/value&gt; 
+   &lt;/property&gt; 
+   &lt;property&gt; 
+      &lt;name&gt;dfs.permissions&lt;/name&gt; 
+      &lt;value&gt;false&lt;/value&gt; 
+   &lt;/property&gt; 
+&lt;/configuration&gt;
+</pre>
+<h3>hdfs-site.xml</h3>
+<p>Open the <b>hdfs-site.xml</b> file and edit it as shown below.</p>
+<pre class="result notranslate">
+&lt;configuration&gt;
+   &lt;property&gt; 
+      &lt;name&gt;dfs.data.dir&lt;/name&gt; 
+      &lt;value&gt;/opt/hadoop/hadoop/dfs/name/data&lt;/value&gt; 
+      &lt;final&gt;true&lt;/final&gt; 
+   &lt;/property&gt; 
+
+   &lt;property&gt; 
+      &lt;name&gt;dfs.name.dir&lt;/name&gt; 
+      &lt;value&gt;/opt/hadoop/hadoop/dfs/name&lt;/value&gt; 
+      &lt;final&gt;true&lt;/final&gt; 
+   &lt;/property&gt; 
+
+   &lt;property&gt; 
+      &lt;name&gt;dfs.replication&lt;/name&gt; 
+      &lt;value&gt;1&lt;/value&gt; 
+   &lt;/property&gt; 
+&lt;/configuration&gt;
+</pre>
+<h3>mapred-site.xml</h3>
+<p>Open the <b>mapred-site.xml</b> file and edit it as shown below.</p>
+<pre class="result notranslate">
+&lt;configuration&gt;
+   &lt;property&gt; 
+      &lt;name&gt;mapred.job.tracker&lt;/name&gt; 
+      &lt;value&gt;hadoop-master:9001&lt;/value&gt; 
+   &lt;/property&gt; 
+&lt;/configuration&gt;
+</pre>
+<h3>hadoop-env.sh</h3>
+<p>Open the <b>hadoop-env.sh</b> file and edit JAVA_HOME, HADOOP_CONF_DIR, and HADOOP_OPTS as shown below.</p>
+<p><b>Note</b> &minus; Set the JAVA_HOME as per your system configuration.</p>
+<pre class="result notranslate">
+export JAVA_HOME=/opt/jdk1.7.0_17
+export HADOOP_OPTS=-Djava.net.preferIPv4Stack=true
+export HADOOP_CONF_DIR=/opt/hadoop/hadoop/conf
+</pre>
+<h2>Installing Hadoop on Slave Servers</h2>
+<p>Install Hadoop on all the slave servers by following the given commands.</p>
+<pre class="result notranslate">
+# su hadoop 
+$ cd /opt/hadoop 
+$ scp -r hadoop hadoop-slave-1:/opt/hadoop 
+$ scp -r hadoop hadoop-slave-2:/opt/hadoop
+</pre>
+<h2>Configuring Hadoop on Master Server</h2>
+<p>Open the master server and configure it by following the given commands.</p>
+<pre class="result notranslate">
+# su hadoop 
+$ cd /opt/hadoop/hadoop
+</pre>
+<h3>Configuring Master Node</h3>
+<pre class="result notranslate">
+$ vi etc/hadoop/masters
+
+hadoop-master
+</pre>
+<h3>Configuring Slave Node</h3>
+<pre class="result notranslate">
+$ vi etc/hadoop/slaves
+
+hadoop-slave-1 
+hadoop-slave-2
+</pre>
+<h3>Format Name Node on Hadoop Master</h3>
+<pre class="result notranslate">
+# su hadoop 
+$ cd /opt/hadoop/hadoop 
+$ bin/hadoop namenode –format
+11/10/14 10:58:07 INFO namenode.NameNode: STARTUP_MSG:
+/************************************************************ 
+STARTUP_MSG: Starting NameNode 
+STARTUP_MSG: host = hadoop-master/192.168.1.109 
+STARTUP_MSG: args = [-format] 
+STARTUP_MSG: version = 1.2.0 
+STARTUP_MSG: build = https://svn.apache.org/repos/asf/hadoop/common/branches/branch-1.2 -r 1479473;
+compiled by 'hortonfo' on Mon May 6 06:59:37 UTC 2013 
+STARTUP_MSG: java = 1.7.0_71 
+
+************************************************************/
+11/10/14 10:58:08 INFO util.GSet: Computing capacity for map BlocksMap
+editlog=/opt/hadoop/hadoop/dfs/name/current/edits
+………………………………………………….
+………………………………………………….
+…………………………………………………. 
+11/10/14 10:58:08 INFO common.Storage: Storage directory 
+/opt/hadoop/hadoop/dfs/name has been successfully formatted.
+11/10/14 10:58:08 INFO namenode.NameNode: 
+SHUTDOWN_MSG:
+/************************************************************
+SHUTDOWN_MSG: Shutting down NameNode at hadoop-master/192.168.1.15
+************************************************************/
+</pre>
+<h2>Starting Hadoop Services</h2>
+<p>The following command is to start all the Hadoop services on the Hadoop-Master.</p>
+<pre class="result notranslate">
+$ cd $HADOOP_HOME/sbin
+$ start-all.sh
+</pre>
+<h2>Adding a New DataNode in the Hadoop Cluster</h2>
+<p>Given below are the steps to be followed for adding new nodes to a Hadoop cluster.</p>
+<h3>Networking</h3>
+<p>Add new nodes to an existing Hadoop cluster with some appropriate network configuration. Assume the following network configuration.</p>
+<p>For New node Configuration &minus;</p>
+<pre class="result notranslate">
+IP address : 192.168.1.103 
+netmask : 255.255.255.0
+hostname : slave3.in
+</pre>
+<h2>Adding User and SSH Access</h2>
+<h3>Add a User</h3>
+<p>On a new node, add "hadoop" user and set password of Hadoop user to "hadoop123" or anything you want by using the following commands.</p>
+<pre class="result notranslate">
+useradd hadoop
+passwd hadoop
+</pre>
+<p>Setup Password less connectivity from master to new slave.</p>
+<h3>Execute the following on the master</h3>
+<pre class="result notranslate">
+mkdir -p $HOME/.ssh 
+chmod 700 $HOME/.ssh 
+ssh-keygen -t rsa -P '' -f $HOME/.ssh/id_rsa 
+cat $HOME/.ssh/id_rsa.pub &gt;&gt; $HOME/.ssh/authorized_keys 
+chmod 644 $HOME/.ssh/authorized_keys
+Copy the public key to new slave node in hadoop user $HOME directory
+scp $HOME/.ssh/id_rsa.pub hadoop@192.168.1.103:/home/hadoop/
+</pre>
+<h3>Execute the following on the slaves</h3>
+<p>Login to hadoop. If not, login to hadoop user.</p>
+<pre class="result notranslate">
+su hadoop ssh -X hadoop@192.168.1.103
+</pre>
+<p>Copy the content of public key into file <b>"$HOME/.ssh/authorized_keys"</b> and then change the permission for the same by executing the following commands.</p>
+<pre class="result notranslate">
+cd $HOME
+mkdir -p $HOME/.ssh 
+chmod 700 $HOME/.ssh
+cat id_rsa.pub &gt;&gt;$HOME/.ssh/authorized_keys 
+chmod 644 $HOME/.ssh/authorized_keys
+</pre>
+<p>Check ssh login from the master machine. Now check if you can ssh to the new node without a password from the master.</p>
+<pre class="result notranslate">
+ssh hadoop@192.168.1.103 or hadoop@slave3
+</pre>
+<h2>Set Hostname of New Node</h2>
+<p>You can set hostname in file <b>/etc/sysconfig/network</b></p>
+<pre class="result notranslate">
+On new slave3 machine
+
+NETWORKING = yes 
+HOSTNAME = slave3.in
+</pre>
+<p>To make the changes effective, either restart the machine or run hostname command to a new machine with the respective hostname (restart is a good option).</p>
+<p>On slave3 node machine &minus;</p>
+<p>hostname slave3.in</p>
+<p>Update <b>/etc/hosts</b> on all machines of the cluster with the following lines &minus;</p>
+<pre class="result notranslate">
+192.168.1.102 slave3.in slave3
+</pre>
+<p>Now try to ping the machine with hostnames to check whether it is resolving to IP or not.</p>
+<p>On new node machine &minus;</p>
+<pre class="result notranslate">
+ping master.in
+</pre>
+<h2>Start the DataNode on New Node</h2>
+<p>Start the datanode daemon manually using <b>$HADOOP_HOME/bin/hadoop-daemon.sh script</b>. It will automatically contact the master (NameNode) and join the cluster. We should also add the new node to the conf/slaves file in the master server. The script-based commands will recognize the new node.</p>
+<h3>Login to new node</h3>
+<pre class="result notranslate">
+su hadoop or ssh -X hadoop@192.168.1.103
+</pre>
+<h3>Start HDFS on a newly added slave node by using the following command</h3>
+<pre class="result notranslate">
+./bin/hadoop-daemon.sh start datanode
+</pre>
+<h3>Check the output of jps command on a new node. It looks as follows.</h3>
+<pre class="result notranslate">
+$ jps
+7141 DataNode
+10312 Jps
+</pre>
+<h2>Removing a DataNode from the Hadoop Cluster</h2>
+<p>We can remove a node from a cluster on the fly, while it is running, without any data loss. HDFS provides a decommissioning feature, which ensures that removing a node is performed safely. To use it, follow the steps as given below &minus;</p>
+<h3>Step 1 &minus; Login to master</h3>
+<p>Login to master machine user where Hadoop is installed.</p>
+<pre class="result notranslate">
+$ su hadoop
+</pre>
+<h3>Step 2 &minus; Change cluster configuration</h3>
+<p>An exclude file must be configured before starting the cluster. Add a key named dfs.hosts.exclude to our <b>$HADOOP_HOME/etc/hadoop/hdfs-site.xml</b> file. The value associated with this key provides the full path to a file on the NameNode's local file system which contains a list of machines which are not permitted to connect to HDFS.</p>
+<p>For example, add these lines to <b>etc/hadoop/hdfs-site.xml</b> file.</p>
+<pre class="result notranslate">
+&lt;property&gt; 
+   &lt;name&gt;dfs.hosts.exclude&lt;/name&gt; 
+   &lt;value&gt;/home/hadoop/hadoop-1.2.1/hdfs_exclude.txt&lt;/value&gt; 
+   &lt;description&gt;DFS exclude&lt;/description&gt; 
+&lt;/property&gt;
+</pre>
+<h3>Step 3 &minus; Determine hosts to decommission</h3>
+<p>Each machine to be decommissioned should be added to the file identified by the hdfs_exclude.txt, one domain name per line. This will prevent them from connecting to the NameNode. Content of the <b>"/home/hadoop/hadoop-1.2.1/hdfs_exclude.txt"</b> file is shown below, if you want to remove DataNode2.</p>
+<pre class="result notranslate">
+slave2.in
+</pre>
+<h3>Step 4 &minus; Force configuration reload</h3>
+<p>Run the command <b>"$HADOOP_HOME/bin/hadoop dfsadmin -refreshNodes"</b> without the quotes.</p>
+<pre class="result notranslate">
+$ $HADOOP_HOME/bin/hadoop dfsadmin -refreshNodes
+</pre>
+<p>This will force the NameNode to re-read its configuration, including the newly updated ‘excludes’ file. It will decommission the nodes over a period of time, allowing time for each node's blocks to be replicated onto machines which are scheduled to remain active.</p>
+<p>On <b>slave2.in</b>, check the jps command output. After some time, you will see the DataNode process is shutdown automatically.</p>
+<h3>Step 5 &minus; Shutdown nodes</h3>
+<p>After the decommission process has been completed, the decommissioned hardware can be safely shut down for maintenance. Run the report command to dfsadmin to check the status of decommission. The following command will describe the status of the decommission node and the connected nodes to the cluster.</p>
+<pre class="result notranslate">
+$ $HADOOP_HOME/bin/hadoop dfsadmin -report
+</pre>
+<h3>Step 6 &minus; Edit excludes file again</h3>
+<p>Once the machines have been decommissioned, they can be removed from the ‘excludes’ file. Running <b>"$HADOOP_HOME/bin/hadoop dfsadmin -refreshNodes"</b> again will read the excludes file back into the NameNode; allowing the DataNodes to rejoin the cluster after the maintenance has been completed, or additional capacity is needed in the cluster again, etc.</p>
+<p><b>Special Note</b> &minus; If the above process is followed and the tasktracker process is still running on the node, it needs to be shut down. One way is to disconnect the machine as we did in the above steps. The Master will recognize the process automatically and will declare as dead. There is no need to follow the same process for removing the tasktracker because it is NOT much crucial as compared to the DataNode. DataNode contains the data that you want to remove safely without any loss of data.</p>
+<p>The tasktracker can be run/shutdown on the fly by the following command at any point of time.</p>
+<pre class="result notranslate">
+$ $HADOOP_HOME/bin/hadoop-daemon.sh stop tasktracker
+$HADOOP_HOME/bin/hadoop-daemon.sh start tasktracker
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/hadoop/hadoop_streaming.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/hadoop/hadoop_questions_answers.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

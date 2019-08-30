@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>MapReduce - Partitioner - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="MapReduce - Partitioner - A partitioner works like a condition in processing an input dataset. The partition phase takes place after the Map phase and before the Reduce phase."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/map_reduce/map_reduce_partitioner.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#ff9900;
+}
+a.demo {
+    background:#ff9900;
+}
+li.heading {
+    background:#ff9900;
+}
+.course-box{background:#ff9900}
+.home-intro-sub p{color:#ff9900}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/map_reduce/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/map_reduce/images/map-reduce-mini-logo.jpg" alt="MapReduce Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">MapReduce Tutorial</li>
+<li><a class="left" href="/map_reduce/index.htm">MapReduce - Home</a></li>
+<li><a class="left" href="/map_reduce/map_reduce_introduction.htm">MapReduce - Introduction</a></li>
+<li><a class="left" href="/map_reduce/map_reduce_algorithm.htm">MapReduce - Algorithm</a></li>
+<li><a class="left" href="/map_reduce/map_reduce_installation.htm">MapReduce - Installation</a></li>
+<li><a class="left" href="/map_reduce/map_reduce_api.htm">MapReduce - API</a></li>
+<!--   <li><a class="left" href="/map_reduce/implementation_in_hadoop.htm">Implementation In Hadoop</a></li>-->
+<li><a class="left" href="/map_reduce/implementation_in_hadoop.htm"><span style="font-size:.98em">MapReduce - Hadoop Implementation</span>
+</a></li>
+<li><a class="left"href="/map_reduce/map_reduce_partitioner.htm">MapReduce - Partitioner</a></li>
+<li><a class="left"href="/map_reduce/map_reduce_combiners.htm">MapReduce - Combiners</a></li>
+<li><a class="left"href="/map_reduce/map_reduce_hadoop_administration.htm">MapReduce - Hadoop Administration</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">MapReduce Resources</li>
+<li><a class="left"href="/map_reduce/map_reduce_quick_guide.htm" >MapReduce - Quick Guide</a></li>
+<li><a class="left"href="/map_reduce/map_reduce_useful_resources.htm" >MapReduce -  Useful Resources</a></li>
+<li><a class="left"href="/map_reduce/map_reduce_discussion.htm" >MapReduce - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>MapReduce - Partitioner</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/map_reduce/implementation_in_hadoop.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/map_reduce/map_reduce_combiners.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>A partitioner works like a condition in processing an input dataset. The partition phase takes place after the Map phase and before the Reduce phase.</p>
+<p>The number of partitioners is equal to the number of reducers. That means a partitioner will divide the data according to the number of reducers. Therefore, the data passed from a single partitioner is processed by a single Reducer.</p>
+<h2>Partitioner</h2>
+<p>A partitioner partitions the key-value pairs of intermediate Map-outputs. It partitions the data using a user-defined condition, which works like a hash function. The total number of partitions is same as the number of Reducer tasks for the job. Let us take an example to understand how the partitioner works.</p>
+<h2>MapReduce Partitioner Implementation</h2>
+<p>For the sake of convenience, let us assume we have a small table called Employee with the following data. We will use this sample data as our input dataset to demonstrate how the partitioner works.</p>
+<table class="table table-bordered">
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Age</th>
+<th>Gender</th>
+<th>Salary</th>
+</tr>
+<tr>
+<td>1201</td>
+<td>gopal</td>
+<td>45</td>
+<td>Male</td>
+<td>50,000</td>
+</tr>
+<tr>
+<td>1202</td>
+<td>manisha</td>
+<td>40</td>
+<td>Female</td>
+<td>50,000</td>
+</tr>
+<tr>
+<td>1203</td>
+<td>khalil</td>
+<td>34</td>
+<td>Male</td>
+<td>30,000</td>
+</tr>
+<tr>
+<td>1204</td>
+<td>prasanth</td>
+<td>30</td>
+<td>Male</td>
+<td>30,000</td>
+</tr>
+<tr>
+<td>1205</td>
+<td>kiran</td>
+<td>20</td>
+<td>Male</td>
+<td>40,000</td>
+</tr>
+<tr>
+<td>1206</td>
+<td>laxmi</td>
+<td>25</td>
+<td>Female</td>
+<td>35,000</td>
+</tr>
+<tr>
+<td>1207</td>
+<td>bhavya</td>
+<td>20</td>
+<td>Female</td>
+<td>15,000</td>
+</tr>
+<tr>
+<td>1208</td>
+<td>reshma</td>
+<td>19</td>
+<td>Female</td>
+<td>15,000</td>
+</tr>
+<tr>
+<td>1209</td>
+<td>kranthi</td>
+<td>22</td>
+<td>Male</td>
+<td>22,000</td>
+</tr>
+<tr>
+<td>1210</td>
+<td>Satish</td>
+<td>24</td>
+<td>Male</td>
+<td>25,000</td>
+</tr>
+<tr>
+<td>1211</td>
+<td>Krishna</td>
+<td>25</td>
+<td>Male</td>
+<td>25,000</td>
+</tr>
+<tr>
+<td>1212</td>
+<td>Arshad</td>
+<td>28</td>
+<td>Male</td>
+<td>20,000</td>
+</tr>
+<tr>
+<td>1213</td>
+<td>lavanya</td>
+<td>18</td>
+<td>Female</td>
+<td>8,000</td>
+</tr>
+</table>
+<p>We have to write an application to process the input dataset to find the highest salaried employee by gender in different age groups (for example, below 20, between 21 to 30, above 30).</p>
+<h3>Input Data</h3>
+<p>The above data is saved as <b>input.txt</b> in the “/home/hadoop/hadoopPartitioner” directory and given as input.</p>
+<table class="borderless table" style="border:1px solid black";>
+<tr>
+<td style="width:10%" class="td";>1201</td>
+<td style="width:13%" class="td";>gopal</td>
+<td style="width:10%" class="td";>45</td>
+<td style="width:10%" class="td";>Male</td>
+<td class="td";>50000</td>
+</tr>
+<tr>
+<td class="td";>1202</td>
+<td class="td";>manisha</td>
+<td class="td";>40</td>
+<td class="td";>Female</td>
+<td class="td";>51000</td>
+</tr>
+<tr>
+<td class="td";>1203</td>
+<td class="td";>khaleel</td>
+<td class="td";>34</td>
+<td class="td";>Male</td>
+<td class="td";>30000</td>
+</tr>
+<tr>
+<td class="td";>1204</td>
+<td class="td";>prasanth</td>
+<td class="td";>30</td>
+<td class="td";>Male</td>
+<td class="td";>31000</td>
+</tr>
+<tr>
+<td class="td";>1205</td>
+<td class="td";>kiran</td>
+<td class="td";>20</td>
+<td class="td";>Male</td>
+<td class="td";>40000</td>
+</tr>
+<tr>
+<td class="td";>1206</td>
+<td class="td";>laxmi</td>
+<td class="td";>25</td>
+<td class="td";>Female</td>
+<td class="td";>35000</td>
+</tr>
+<tr>
+<td class="td";>1207</td>
+<td class="td";>bhavya</td>
+<td class="td";>20</td>
+<td class="td";>Female</td>
+<td class="td";>15000</td>
+</tr>
+<tr>
+<td class="td";>1208</td>
+<td class="td";>reshma</td>
+<td class="td";>19</td>
+<td class="td";>Female</td>
+<td class="td";>14000</td>
+</tr>
+<tr>
+<td class="td";>1209</td>
+<td class="td";>kranthi</td>
+<td class="td";>22</td>
+<td class="td";>Male</td>
+<td class="td";>22000</td>
+</tr>
+<tr>
+<td class="td";>1210</td>
+<td class="td";>Satish</td>
+<td class="td";>24</td>
+<td class="td";>Male</td>
+<td class="td";>25000</td>
+</tr>
+<tr>
+<td class="td";>1211</td>
+<td class="td";>Krishna</td>
+<td class="td";>25</td>
+<td class="td";>Male</td>
+<td class="td";>26000</td>
+</tr>
+<tr>
+<td class="td";>1212</td>
+<td class="td";>Arshad</td>
+<td class="td";>28</td>
+<td class="td";>Male</td>
+<td class="td";>20000</td>
+</tr>
+<tr>
+<td class="td";>1213</td>
+<td class="td";>lavanya</td>
+<td class="td";>18</td>
+<td class="td";>Female</td>
+<td class="td";>8000</td>
+</tr>
+</table>
+<p>Based on the given input, following is the algorithmic explanation of the program.</p>
+<h3>Map Tasks</h3>
+<p>The map task accepts the key-value pairs as input while we have the text data in a text file. The input for this map task is as follows &minus;</p>
+<p><b>Input</b> &minus; The key would be a pattern such as “any special key &plus; filename &plus; line number” (example: key = @input1) and the value would be the data in that line (example: value = 1201 \t gopal \t 45 \t Male \t 50000).</p>
+<p><b>Method</b> &minus; The operation of this map task is as follows &minus;</p>
+<ul class="list">
+<li><p>Read the <b>value</b> (record data), which comes as input value from the argument list in a string.</p></li>
+<li><p>Using the split function, separate the gender and store in a string variable.</p></li>
+</ul>
+<pre class="result notranslate">
+String[] str = value.toString().split("\t", -3);
+String gender=str[3];
+</pre>
+<ul class="list">
+<li><p>Send the gender information and the record data <b>value</b> as output key-value pair from the map task to the <b>partition task</b>.</p></li>
+</ul>
+<pre class="result notranslate">
+context.write(new Text(gender), new Text(value));
+</pre>
+<ul class="list">
+<li><p>Repeat all the above steps for all the records in the text file.</p></li>
+</ul>
+<p><b>Output</b> &minus; You will get the gender data and the record data value as key-value pairs.</p>
+<h3>Partitioner Task</h3>
+<p>The partitioner task accepts the key-value pairs from the map task as its input. Partition implies dividing the data into segments. According to the given conditional criteria of partitions, the input key-value paired data can be divided into three parts based on the age criteria.</p>
+<p><b>Input</b> &minus; The whole data in a collection of key-value pairs.</p>
+<p style="padding-left:10%;">key = Gender field value in the record.</p>
+<p style="padding-left:10%;">value = Whole record data value of that gender.</p>
+<p><b>Method</b> &minus; The process of partition logic runs as follows.</p>
+<ul class="list">
+<li>Read the age field value from the input key-value pair.</li>
+</ul>
+<pre class="result notranslate">
+String[] str = value.toString().split("\t");
+int age = Integer.parseInt(str[2]);
+</pre>
+<ul class="list">
+<li><p>Check the age value with the following conditions.</p>
+<ul class="list">
+<li>Age less than or equal to 20</li>
+<li>Age Greater than 20 and Less than or equal to 30.</li>
+<li>Age Greater than 30.</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint notranslate">
+if(age&lt;=20)
+{
+   return 0;
+}
+else if(age&gt;20 && age&lt;=30)
+{
+   return 1 % numReduceTasks;
+}
+else
+{
+   return 2 % numReduceTasks;
+}
+</pre>
+<p><b>Output</b> &minus; The whole data of key-value pairs are segmented into three collections of key-value pairs. The Reducer works individually on each collection.</p>
+<h3>Reduce Tasks</h3>
+<p>The number of partitioner tasks is equal to the number of reducer tasks. Here we have three partitioner tasks and hence we have three Reducer tasks to be executed.</p>
+<p><b>Input</b> &minus; The Reducer will execute three times with different collection of key-value pairs.</p>
+<p style="padding-left:10%;">key = gender field value in the record.</p>
+<p style="padding-left:10%;">value = the whole record data of that gender.</p>
+<p><b>Method</b> &minus; The following logic will be applied on each collection.</p>
+<ul class="list">
+<li>Read the Salary field value of each record.</li>
+</ul>
+<pre class="result notranslate">
+String [] str = val.toString().split("\t", -3);
+Note: str[4] have the salary field value.
+</pre>
+<ul class="list">
+<li><p>Check the salary with the max variable. If str[4] is the max salary, then assign str[4] to max, otherwise skip the step.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+if(Integer.parseInt(str[4])>max)
+{
+   max=Integer.parseInt(str[4]);
+}
+</pre>
+<ul class="list">
+<li><p>Repeat Steps 1 and 2 for each key collection (Male &amp; Female are the key collections). After executing these three steps, you will find one max salary from the Male key collection and one max salary from the Female key collection.</p></li>
+</ul>
+<pre class="result notranslate">
+context.write(new Text(key), new IntWritable(max));
+</pre>
+<p><b>Output</b> &minus; Finally, you will get a set of key-value pair data in three collections of different age groups. It contains the max salary from the Male collection and the max salary from the Female collection in each age group respectively.</p>
+<p>After executing the Map, the Partitioner, and the Reduce tasks, the three collections of key-value pair data are stored in three different files as the output.</p>
+<p>All the three tasks are treated as MapReduce jobs. The following requirements and specifications of these jobs should be specified in the Configurations &minus;</p>
+<ul class="list">
+<li>Job name</li>
+<li>Input and Output formats of keys and values</li>
+<li>Individual classes for Map, Reduce, and Partitioner tasks</li>
+</ul>
+<pre class="result notranslate">
+Configuration conf = getConf();
+
+//Create Job
+Job job = new Job(conf, "topsal");
+job.setJarByClass(PartitionerExample.class);
+
+// File Input and Output paths
+FileInputFormat.setInputPaths(job, new Path(arg[0]));
+FileOutputFormat.setOutputPath(job,new Path(arg[1]));
+
+//Set Mapper class and Output format for key-value pair.
+job.setMapperClass(MapClass.class);
+job.setMapOutputKeyClass(Text.class);
+job.setMapOutputValueClass(Text.class);
+
+//set partitioner statement
+job.setPartitionerClass(CaderPartitioner.class);
+
+//Set Reducer class and Input/Output format for key-value pair.
+job.setReducerClass(ReduceClass.class);
+
+//Number of Reducer tasks.
+job.setNumReduceTasks(3);
+
+//Input and Output format for data
+job.setInputFormatClass(TextInputFormat.class);
+job.setOutputFormatClass(TextOutputFormat.class);
+job.setOutputKeyClass(Text.class);
+job.setOutputValueClass(Text.class);
+</pre>
+<h3>Example Program</h3>
+<p>The following program shows how to implement the partitioners for the given criteria in a MapReduce program.</p>
+<pre class="prettyprint notranslate">
+package partitionerexample;
+
+import java.io.*;
+
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.*;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.fs.*;
+
+import org.apache.hadoop.mapreduce.lib.input.*;
+import org.apache.hadoop.mapreduce.lib.output.*;
+
+import org.apache.hadoop.util.*;
+
+public class PartitionerExample extends Configured implements Tool
+{
+   //Map class
+	
+   public static class MapClass extends Mapper&lt;LongWritable,Text,Text,Text&gt;
+   {
+      public void map(LongWritable key, Text value, Context context)
+      {
+         try{
+            String[] str = value.toString().split("\t", -3);
+            String gender=str[3];
+            context.write(new Text(gender), new Text(value));
+         }
+         catch(Exception e)
+         {
+            System.out.println(e.getMessage());
+         }
+      }
+   }
+   
+   //Reducer class
+	
+   public static class ReduceClass extends Reducer&lt;Text,Text,Text,IntWritable&gt;
+   {
+      public int max = -1;
+      public void reduce(Text key, Iterable &lt;Text&gt; values, Context context) throws IOException, InterruptedException
+      {
+         max = -1;
+			
+         for (Text val : values)
+         {
+            String [] str = val.toString().split("\t", -3);
+            if(Integer.parseInt(str[4])>max)
+            max=Integer.parseInt(str[4]);
+         }
+			
+         context.write(new Text(key), new IntWritable(max));
+      }
+   }
+   
+   //Partitioner class
+	
+   public static class CaderPartitioner extends
+   Partitioner &lt; Text, Text &gt;
+   {
+      @Override
+      public int getPartition(Text key, Text value, int numReduceTasks)
+      {
+         String[] str = value.toString().split("\t");
+         int age = Integer.parseInt(str[2]);
+         
+         if(numReduceTasks == 0)
+         {
+            return 0;
+         }
+         
+         if(age&lt;=20)
+         {
+            return 0;
+         }
+         else if(age&gt;20 && age&lt;=30)
+         {
+            return 1 % numReduceTasks;
+         }
+         else
+         {
+            return 2 % numReduceTasks;
+         }
+      }
+   }
+   
+   @Override
+   public int run(String[] arg) throws Exception
+   {
+      Configuration conf = getConf();
+		
+      Job job = new Job(conf, "topsal");
+      job.setJarByClass(PartitionerExample.class);
+		
+      FileInputFormat.setInputPaths(job, new Path(arg[0]));
+      FileOutputFormat.setOutputPath(job,new Path(arg[1]));
+		
+      job.setMapperClass(MapClass.class);
+		
+      job.setMapOutputKeyClass(Text.class);
+      job.setMapOutputValueClass(Text.class);
+      
+      //set partitioner statement
+		
+      job.setPartitionerClass(CaderPartitioner.class);
+      job.setReducerClass(ReduceClass.class);
+      job.setNumReduceTasks(3);
+      job.setInputFormatClass(TextInputFormat.class);
+		
+      job.setOutputFormatClass(TextOutputFormat.class);
+      job.setOutputKeyClass(Text.class);
+      job.setOutputValueClass(Text.class);
+		
+      System.exit(job.waitForCompletion(true)? 0 : 1);
+      return 0;
+   }
+   
+   public static void main(String ar[]) throws Exception
+   {
+      int res = ToolRunner.run(new Configuration(), new PartitionerExample(),ar);
+      System.exit(0);
+   }
+}
+</pre>
+<p>Save the above code as <b>PartitionerExample.java</b> in “/home/hadoop/hadoopPartitioner”. The compilation and execution of the program is given below.</p>
+<h3>Compilation and Execution</h3>
+<p>Let us assume we are in the home directory of the Hadoop user (for example, /home/hadoop).</p>
+<p>Follow the steps given below to compile and execute the above program.</p>
+<p><b>Step 1</b> &minus; Download Hadoop-core-1.2.1.jar, which is used to compile and execute the MapReduce program. You can download the jar from <a rel="nofollow" target="_blank" href="http://mvnrepository.com/artifact/org.apache.hadoop/hadoop-core/1.2.1">mvnrepository.com</a>.</p>
+<p>Let us assume the downloaded folder is “/home/hadoop/hadoopPartitioner”</p>
+<p><b>Step 2</b> &minus; The following commands are used for compiling the program <b>PartitionerExample.java</b> and creating a jar for the program.</p>
+<pre class="result notranslate">
+$ javac -classpath hadoop-core-1.2.1.jar -d ProcessUnits.java
+$ jar -cvf PartitionerExample.jar -C .
+</pre>
+<p><b>Step 3</b> &minus; Use the following command to create an input directory in HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -mkdir input_dir
+</pre>
+<p><b>Step 4</b> &minus; Use the following command to copy the input file named <b>input.txt</b> in the input directory of HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -put /home/hadoop/hadoopPartitioner/input.txt input_dir
+</pre>
+<p><b>Step 5</b> &minus; Use the following command to verify the files in the input directory.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -ls input_dir/
+</pre>
+<p><b>Step 6</b> &minus; Use the following command to run the Top salary application by taking input files from the input directory.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop jar PartitionerExample.jar partitionerexample.PartitionerExample input_dir/input.txt output_dir
+</pre>
+<p>Wait for a while till the file gets executed. After execution, the output contains a number of input splits, map tasks, and Reducer tasks.</p>
+<pre class="result notranslate">
+15/02/04 15:19:51 INFO mapreduce.Job: Job job_1423027269044_0021 completed successfully
+15/02/04 15:19:52 INFO mapreduce.Job: Counters: 49
+
+File System Counters
+
+   FILE: Number of bytes read=467
+   FILE: Number of bytes written=426777
+   FILE: Number of read operations=0
+   FILE: Number of large read operations=0
+   FILE: Number of write operations=0
+	
+   HDFS: Number of bytes read=480
+   HDFS: Number of bytes written=72
+   HDFS: Number of read operations=12
+   HDFS: Number of large read operations=0
+   HDFS: Number of write operations=6
+	
+Job Counters
+
+   Launched map tasks=1
+   Launched reduce tasks=3
+	
+   Data-local map tasks=1
+	
+   Total time spent by all maps in occupied slots (ms)=8212
+   Total time spent by all reduces in occupied slots (ms)=59858
+   Total time spent by all map tasks (ms)=8212
+   Total time spent by all reduce tasks (ms)=59858
+	
+   Total vcore-seconds taken by all map tasks=8212
+   Total vcore-seconds taken by all reduce tasks=59858
+	
+   Total megabyte-seconds taken by all map tasks=8409088
+   Total megabyte-seconds taken by all reduce tasks=61294592
+	
+Map-Reduce Framework
+
+   Map input records=13
+   Map output records=13
+   Map output bytes=423
+   Map output materialized bytes=467
+	
+   Input split bytes=119
+	
+   Combine input records=0
+   Combine output records=0
+	
+   Reduce input groups=6
+   Reduce shuffle bytes=467
+   Reduce input records=13
+   Reduce output records=6
+	
+   Spilled Records=26
+   Shuffled Maps =3
+   Failed Shuffles=0
+   Merged Map outputs=3
+   GC time elapsed (ms)=224
+   CPU time spent (ms)=3690
+	
+   Physical memory (bytes) snapshot=553816064
+   Virtual memory (bytes) snapshot=3441266688
+	
+   Total committed heap usage (bytes)=334102528
+	
+Shuffle Errors
+
+   BAD_ID=0
+   CONNECTION=0
+   IO_ERROR=0
+	
+   WRONG_LENGTH=0
+   WRONG_MAP=0
+   WRONG_REDUCE=0
+	
+File Input Format Counters
+
+   Bytes Read=361
+	
+File Output Format Counters
+
+   Bytes Written=72
+</pre>
+<p><b>Step 7</b> &minus; Use the following command to verify the resultant files in the output folder.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -ls output_dir/
+</pre>
+<p>You will find the output in three files because you are using three partitioners and three Reducers in your program.</p>
+<p><b>Step 8</b> &minus; Use the following command to see the output in <b>Part-00000</b> file. This file is generated by HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -cat output_dir/part-00000
+</pre>
+<p><b>Output in Part-00000</b></p>
+<pre class="result notranslate">
+Female   15000
+Male     40000
+</pre>
+<p>Use the following command to see the output in <b>Part-00001</b> file.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -cat output_dir/part-00001
+</pre>
+<p><b>Output in Part-00001</b></p>
+<pre class="result notranslate">
+Female   35000
+Male    31000
+</pre>
+<p>Use the following command to see the output in <b>Part-00002</b> file.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -cat output_dir/part-00002
+</pre>
+<p><b>Output in Part-00002</b></p>
+<pre class="result notranslate">
+Female  51000
+Male   50000
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/map_reduce/implementation_in_hadoop.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/map_reduce/map_reduce_combiners.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

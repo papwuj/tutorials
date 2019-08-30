@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Swift - Closures - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Swift - Closures - Closures in Swift 4 are similar to that of self-contained functions organized as blocks and called anywhere like C and Objective C languages. Constants and vari"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/swift/swift_closures.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#f05c02;
+}
+a.demo {
+    background:#f05c02;
+}
+li.heading {
+    background:#f05c02;
+}
+.course-box{background:#f05c02}
+.home-intro-sub p{color:#f05c02}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/swift/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/swift/images/swift-mini-logo.jpg" alt="Swift Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Swift Tutorial</li>
+<li><a href="/swift/index.htm">Swift - Home</a></li>
+<li><a href="/swift/swift_overview.htm">Swift - Overview</a></li>
+<li><a href="/swift/swift_environment.htm">Swift - Environment</a></li>
+<li><a href="/swift/swift_basic_syntax.htm">Swift - Basic Syntax</a></li>
+<li><a href="/swift/swift_data_types.htm">Swift - Data Types</a></li>
+<li><a href="/swift/swift_variables.htm">Swift - Variables</a></li>
+<li><a href="/swift/swift_optionals.htm">Swift - Optionals</a></li>
+<li><a href="/swift/swift_tuples.htm">Swift - Tuples</a></li>
+<li><a href="/swift/swift_constants.htm">Swift - Constants</a></li>
+<li><a href="/swift/swift_literals.htm">Swift - Literals</a></li>
+<li><a href="/swift/swift_operators.htm">Swift - Operators</a></li>
+<li><a href="/swift/swift_decision_making.htm">Swift - Decision Making</a></li>
+<li><a href="/swift/swift_loops.htm">Swift - Loops</a></li>
+<li><a href="/swift/swift_strings.htm">Swift - Strings</a></li>
+<li><a href="/swift/swift_characters.htm">Swift - Characters</a></li>
+<li><a href="/swift/swift_arrays.htm">Swift - Arrays</a></li>
+<li><a href="/swift/swift_sets.htm">Swift - Sets</a></li>
+<li><a href="/swift/swift_dictionaries.htm">Swift - Dictionaries</a></li>
+<li><a href="/swift/swift_functions.htm">Swift - Functions</a></li>
+<li><a href="/swift/swift_closures.htm">Swift - Closures</a></li>
+<li><a href="/swift/swift_enumerations.htm">Swift - Enumerations</a></li>
+<li><a href="/swift/swift_structures.htm">Swift - Structures</a></li>
+<li><a href="/swift/swift_classes.htm">Swift - Classes</a></li>
+<li><a href="/swift/swift_properties.htm">Swift - Properties</a></li>
+<li><a href="/swift/swift_methods.htm">Swift - Methods</a></li>
+<li><a href="/swift/swift_subscripts.htm">Swift - Subscripts</a></li>
+<li><a href="/swift/swift_inheritance.htm">Swift - Inheritance</a></li>
+<li><a href="/swift/swift_initialization.htm">Swift - Initialization</a></li>
+<li><a href="/swift/swift_deinitialization.htm">Swift - Deinitialization</a></li>
+<li><a href="/swift/swift_arc_overview.htm">Swift - ARC Overview</a></li>
+<li><a href="/swift/swift_optional_chaining.htm">Swift - Optional Chaining</a></li>
+<li><a href="/swift/swift_type_casting.htm">Swift - Type Casting</a></li>
+<li><a href="/swift/swift_extensions.htm">Swift - Extensions</a></li>
+<li><a href="/swift/swift_protocols.htm">Swift - Protocols</a></li>
+<li><a href="/swift/swift_generics.htm">Swift - Generics</a></li>
+<li><a href="/swift/swift_access_control.htm">Swift - Access Control</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Swift Useful Resources</li>
+<li><a href="/swift/compile_swift_online.htm">Swift - Compile Online</a></li>
+<li><a href="/swift/swift_quick_guide.htm">Swift - Quick Guide</a></li>
+<li><a href="/swift/swift_useful_resources.htm">Swift - Useful Resources</a></li>
+<li><a href="/swift/swift_discussion.htm">Swift - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Swift - Closures</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/swift/swift_functions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/swift/swift_enumerations.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Closures in Swift 4 are similar to that of self-contained functions organized as blocks and called anywhere like C and Objective C languages. Constants and variable references defined inside the functions are captured and stored in closures. Functions are considered as special cases of closures and it takes the following three forms &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Global Functions</th>
+<th style="text-align:center;">Nested Functions</th>
+<th style="text-align:center;">Closure Expressions</th>
+</tr>
+<tr>
+<td>Have a name. Do not capture any values</td>
+<td>Have a name. Capture values from enclosing function</td>
+<td>Unnamed Closures capture values from the adjacent blocks</td>
+</tr>
+</table>
+<p>Closure expressions in Swift 4 language follow crisp, optimization, and lightweight syntax styles which includes.</p>
+<ul class="list">
+<li>Inferring parameter and return value types from context.</li>
+<li>Implicit returns from single-expression closures.</li>
+<li>Shorthand argument names and</li>
+<li>Trailing closure syntax</li>
+</ul>
+<h3>Syntax</h3>
+<p>Following is a generic syntax to define closure which accepts parameters and returns a data type &minus;</p>
+<pre class="result notranslate">
+{
+   (parameters) &minus;&gt; return type in
+   statements
+}
+</pre>
+<p>Following is a simple example &minus;</p>
+<div class="demo-view">
+<a href="http://tpcg.io/DuMfZt" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+let studname = { print("Welcome to Swift Closures") }
+studname()
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+Welcome to Swift Closures
+</pre>
+<p>The following closure accepts two parameters and returns a Bool value &minus;</p>
+<pre class="result notranslate">
+{     
+   (Int, Int) &minus;&gt; Bool in
+   Statement1
+   Statement 2
+   ---
+   Statement n
+}
+</pre>
+<p>Following is a simple example &minus;</p>
+<div class="demo-view">
+<a href="http://tpcg.io/YvXb02" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+let divide = {
+   (val1: Int, val2: Int) -&gt; Int in 
+   return val1 / val2 
+}
+
+let result = divide(200, 20)
+print (result)
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+10
+</pre>
+<h2>Expressions in Closures</h2>
+<p>Nested functions provide a convenient way of naming and defining blocks of code. Instead of representing the whole function declaration and name constructs are used to denote shorter functions. Representing the function in a clear brief statement with focused syntax is achieved through closure expressions.</p>
+<h3>Ascending Order Program</h3>
+<p>Sorting a string is achieved by the Swift 4s key reserved function "sorted" which is already available in the standard library. The function will sort the given strings in the ascending order and returns the elements in a new array with same size and data type mentioned in the old array. The old array remains the same.</p>
+<p>Two arguments are represented inside the sorted function &minus;</p>
+<ul class="list">
+<li><p>Values of Known type represented as arrays.</p></li>
+<li><p>Array contents (Int, Int) and returns a Boolean value (Bool) if the array is sorted properly it will return true value otherwise it will return false.</p></li>
+</ul>
+<p>A normal function with input string is written and passed to the sorted function to get the strings sorted to new array which is shown below &minus;</p>
+<div class="demo-view">
+<a href="http://tpcg.io/I5GJsx" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+func ascend(s1: String, s2: String) -&gt; Bool {
+   return s1 &gt; s2
+}
+
+let stringcmp = ascend(s1: "Swift 4", s2: "great")
+print (stringcmp)
+</pre>
+<p>When we run above program using playground, we get following result &minus;</p>
+<pre class="result notranslate">
+true
+</pre>
+<p>The initial array to be sorted for icecream is given as "Swift 4" and "great". Function to sort the array is declared as string datatype and its return type is mentioned as Boolean. Both the strings are compared and sorted in ascending order and stored in a new array. If the sorting is performed successful the function will return a true value else it will return false.</p>
+<p>Closure expression syntax uses &minus;</p>
+<ul class="list">
+<li>constant parameters,</li>
+<li>variable parameters, and</li>
+<li>inout parameters.</li>
+</ul>
+<p>Closure expression did not support default values. Variadic parameters and Tuples can also be used as parameter types and return types.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/qYObrX" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+let sum = {
+   (no1: Int, no2: Int) -&gt; Int in 
+   return no1 + no2 
+}
+
+let digits = sum(10, 20)
+print(digits)
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+30
+</pre>
+<p>The parameters and return type declarations mentioned in the function statement can also be represented by the inline closure expression function with 'in' keyword. Once declaring parameter and return types 'in' keyword is used to denote that the body of the closure.</p>
+<h2>Single Expression Implicit Returns</h2>
+<p>Here, the function type of the sorted function's second argument makes it clear that a Bool value must be returned by the closure. Because the closure's body contains a single expression (s1 &gt; s2) that returns a Bool value, there is no ambiguity, and the return keyword can be omitted.</p>
+<p>To return a Single expression statement in expression closures 'return' keyword is omitted in its declaration part.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/4b6in0" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+var count:[Int] = [5, 10, -6, 75, 20]
+let descending = count.sorted(by: { n1, n2 in n1 &gt; n2 })
+let ascending = count.sorted(by: { n1, n2 in n1 &lt; n2 })
+
+print(descending)
+print(ascending)
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+[75, 20, 10, 5, -6]
+[-6, 5, 10, 20, 75]
+</pre>
+<p>The statement itself clearly defines that when string1 is greater than string 2 return true otherwise false hence return statement is omitted here.</p>
+<h2>Known Type Closures</h2>
+<p>Consider the addition of two numbers. We know that addition will return the integer datatype. Hence known type closures are declared as &minus;</p>
+<div class="demo-view">
+<a href="http://tpcg.io/VgOve2" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+let sub = {
+   (no1: Int, no2: Int) -&gt; Int in 
+   return no1 - no2 
+}
+
+let digits = sub(10, 20)
+print(digits)
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+-10
+</pre>
+<h2>Declaring Shorthand Argument Names as Closures</h2>
+<p>Swift 4 automatically provides shorthand argument names to inline closures, which can be used to refer to the values of the closure's arguments by the names $0, $1, $2, and so on.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/uW5XF5" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+var shorthand: (String, String) -&gt; String
+shorthand = { $1 }
+print(shorthand("100", "200"))
+</pre>
+<p>Here, $0 and $1 refer to the closure's first and second String arguments.</p>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+200
+</pre>
+<p>Swift 4 facilitates the user to represent Inline closures as shorthand argument names by representing $0, $1, $2 --- $n.</p>
+<p>Closures argument list is omitted in definition section when we represent shorthand argument names inside closure expressions. Based on the function type the shorthand argument names will be derived. Since the shorthand argument is defined in expression body the 'in' keyword is omitted.</p>
+<h2>Closures as Operator Functions</h2>
+<p>Swift 4 provides an easy way to access the members by just providing operator functions as closures. In the previous examples keyword 'Bool' is used to return either 'true' when the strings are equal otherwise it returns 'false'.</p>
+<p>The expression is made even simpler by operator function in closure as &minus;</p>
+<pre class="prettyprint notranslate">
+let numb = [98, -20, -30, 42, 18, 35]
+var sortedNumbers = numb.sorted ({
+   (left: Int, right: Int) -&gt; Bool in
+   return left &lt; right
+})
+
+let asc = numb.sorted(&lt;)
+print(asc)
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+[-30, -20, 18, 35, 42, 98]
+</pre>
+<h2>Closures as Trailers</h2>
+<p>Passing the function's final argument to a closure expression is declared with the help of 'Trailing Closures'. It is written outside the function () with {}. Its usage is needed when it is not possible to write the function inline on a single line.</p>
+<pre class="result notranslate">
+reversed = sorted(names) { $0 &gt; $1}
+</pre>
+<p>where {$0 &gt; $1} are represented as trailing closures declared outside (names).</p>
+<pre class="prettyprint notranslate">
+import Foundation
+var letters = ["North", "East", "West", "South"]
+
+let twoletters = letters.map({ 
+   (state: String) -&gt; String in
+   return state.substringToIndex(advance(state.startIndex, 2)).uppercaseString
+})
+
+let stletters = letters.map() { 
+   $0.substringToIndex(advance($0.startIndex, 2)).uppercaseString 
+}
+print(stletters)
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+[NO, EA, WE, SO]
+</pre>
+<h2>Capturing Values and Reference Types</h2>
+<p>In Swift 4, capturing constants and variables values is done with the help of closures. It further refers and modify the values for those constants and variables inside the closure body even though the variables no longer exists.</p>
+<p>Capturing constant and variable values is achieved by using nested function by writing function with in the body of other function.</p>
+<p>A nested function captures &minus;</p>
+<ul class="list">
+<li>Outer function arguments.</li>
+<li>Capture constants and variables defined within the Outer function.</li>
+</ul>
+<p>In Swift 4, when a constant or a variable is declared inside a function, reference to that variables are also automatically created by the closure. It also provides the facility to refer more than two variables as the same closure as follows &minus;</p>
+<pre class="result notranslate">
+let decrem = calcDecrement(forDecrement: 18)
+decrem()
+</pre>
+<p>Here <b>oneDecrement</b> and Decrement variables will both point the same memory block as closure reference.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/vCst8N" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+func calcDecrement(forDecrement total: Int) -&gt; () -&gt; Int {
+   var overallDecrement = 100
+   func decrementer() -&gt; Int {
+      overallDecrement -= total
+      print(overallDecrement)
+      return overallDecrement
+   }
+   return decrementer
+}
+
+let decrem = calcDecrement(forDecrement: 18)
+decrem()
+decrem()
+decrem()
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+82
+64
+46
+</pre>
+<p>When each and every time the outer function calcDecrement is called it invokes the decrementer() function and decrements the value by 18 and returns the result with the help of outer function calcDecrement. Here calcDecrement acts as a closure.</p>
+<p>Even though the function decrementer() does not have any arguments closure by default refers to variables 'overallDecrement' and 'total' by capturing its existing values. The copy of the values for the specified variables are stored with the new decrementer() function. Swift 4 handles memory management functions by allocating and deallocating memory spaces when the variables are not in use.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/swift/swift_functions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/swift/swift_enumerations.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Android - Location Based Services - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Android - Location Based Services - Android location APIs make it easy for you to build location-aware applications, without needing to focus on the details of the underlying location technology."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/android/android_location_based_services.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#a5c63b;
+}
+a.demo {
+    background:#a5c63b;
+}
+li.heading {
+    background:#a5c63b;
+}
+.course-box{background:#a5c63b}
+.home-intro-sub p{color:#a5c63b}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/android/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/android/images/android-mini-logo.jpg" alt="Android Tutorial" />
+</div>
+<ul class="toc chapters">
+<li><a class="videolink" href="/android_online_training/index.asp" target="_blank"><img src="/android/images/android-video-tutorials.jpg" alt="Android Video Tutorials" /></a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Android Basics</li>
+<li><a target="_top" href="/android/index.htm">Android - Home</a></li>
+<li><a target="_top" href="/android/android_overview.htm">Android - Overview</a></li>
+<li><a target="_top" href="/android/android_environment_setup.htm">Android - Environment Setup</a></li>
+<li><a target="_top" href="/android/android_architecture.htm">Android - Architecture</a></li>
+<li><a target="_top" href="/android/android_application_components.htm">Android - Application Components</a></li>
+<li><a target="_top" href="/android/android_hello_world_example.htm">Android - Hello World Example</a></li>
+<li><a target="_top" href="/android/android_resources.htm">Android - Resources</a></li>
+<li><a target="_top" href="/android/android_acitivities.htm">Android - Activities</a></li>
+<li><a target="_top" href="/android/android_services.htm">Android - Services</a></li>
+<li><a target="_top" href="/android/android_broadcast_receivers.htm">Android - Broadcast Receivers</a></li>
+<li><a target="_top" href="/android/android_content_providers.htm">Android - Content Providers</a></li>
+<li><a target="_top" href="/android/android_fragments.htm">Android - Fragments</a></li>
+<li><a target="_top" href="/android/android_intents_filters.htm">Android - Intents/Filters</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Android - User Interface</li>
+<li><a target="_top" href="/android/android_user_interface_layouts.htm">Android - UI Layouts</a></li>
+<li><a target="_top" href="/android/android_user_interface_controls.htm">Android - UI Controls</a></li>
+<li><a target="_top" href="/android/android_event_handling.htm">Android - Event Handling</a></li>
+<li><a target="_top" href="/android/android_styles_and_themes.htm">Android - Styles and Themes</a></li>
+<li><a target="_top" href="/android/android_custom_components.htm">Android - Custom Components</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Android Advanced Concepts</li>
+<li><a target="_top" href="/android/android_drag_and_drop.htm">Android - Drag and Drop</a></li>
+<li><a target="_top" href="/android/android_notifications.htm">Android - Notifications</a></li>
+<li><a target="_top" href="/android/android_location_based_services.htm">Location Based Services</a></li>
+<li><a target="_top" href="/android/android_sending_email.htm">Android - Sending Email</a></li>
+<li><a target="_top" href="/android/android_sending_sms.htm">Android - Sending SMS</a></li>
+<li><a target="_top" href="/android/android_phone_calls.htm">Android - Phone Calls</a></li>
+<li><a target="_top" href="/android/android_publishing_application.htm">Publishing Android Application</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Android Useful Examples</li>
+<li><a target="_top" href="/android/android_alert_dialoges.htm">Android - Alert Dialoges</a>
+<li><a target="_top" href="/android/android_animations.htm">Android - Animations</a>
+<li><a target="_top" href="/android/android_audio_capture.htm">Android - Audio Capture</a>
+<li><a target="_top" href="/android/android_audiomanager.htm">Android - AudioManager</a>
+<li><a target="_top" href="/android/android_auto_complete.htm">Android - Auto Complete</a>
+<li><a target="_top" href="/android/android_best_practices.htm">Android - Best Practices</a>
+<li><a target="_top" href="/android/android_bluetooth.htm">Android - Bluetooth</a>
+<li><a target="_top" href="/android/android_camera.htm">Android - Camera</a>
+<li><a target="_top" href="/android/android_clipboard.htm">Android - Clipboard</a>
+<li><a target="_top" href="/android/android_custom_fonts.htm">Android - Custom Fonts</a>
+<li><a target="_top" href="/android/android_data_backup.htm">Android - Data Backup</a>
+<li><a target="_top" href="/android/android_developer_tools.htm">Android - Developer Tools</a>
+<li><a target="_top" href="/android/android_emulator.htm">Android - Emulator</a>
+<li><a target="_top" href="/android/android_facebook_integration.htm">Android - Facebook Integration</a>
+<li><a target="_top" href="/android/android_gestures.htm">Android - Gestures</a>
+<li><a target="_top" href="/android/android_google_maps.htm">Android - Google Maps</a>
+<li><a target="_top" href="/android/android_image_effects.htm">Android - Image Effects</a>
+<li><a target="_top" href="/android/android_imageswitcher.htm">Android - ImageSwitcher</a>
+<li><a target="_top" href="/android/android_internal_storage.htm">Android - Internal Storage</a>
+<li><a target="_top" href="/android/android_jetplayer.htm">Android - JetPlayer</a>
+<li><a target="_top" href="/android/android_json_parser.htm">Android - JSON Parser</a>
+<li><a target="_top" href="/android/android_linkedin_integration.htm">Android - Linkedin Integration</a>
+<li><a target="_top" href="/android/android_loading_spinner.htm">Android - Loading Spinner</a>
+<li><a target="_top" href="/android/android_localization.htm">Android - Localization</a>
+<li><a target="_top" href="/android/android_login_screen.htm">Android - Login Screen</a>
+<li><a target="_top" href="/android/android_mediaplayer.htm">Android - MediaPlayer</a>
+<li><a target="_top" href="/android/android_multitouch.htm">Android - Multitouch</a>
+<li><a target="_top" href="/android/android_navigation.htm">Android - Navigation</a>
+<li><a target="_top" href="/android/android_network_connection.htm">Android - Network Connection</a>
+<li><a target="_top" href="/android/android_nfc_guide.htm">Android - NFC Guide</a>
+<li><a target="_top" href="/android/android_php_mysql.htm">Android - PHP/MySQL</a>
+<li><a target="_top" href="/android/android_progress_circle.htm">Android - Progress Circle</a>
+<li><a target="_top" href="/android/android_progressbar.htm">Android - ProgressBar</a>
+<li><a target="_top" href="/android/android_push_notification.htm">Android - Push Notification</a>
+<li><a target="_top" href="/android/android_renderscript.htm">Android - RenderScript</a>
+<li><a target="_top" href="/android/android_rss_reader.htm">Android - RSS Reader</a>
+<li><a target="_top" href="/android/android_screen_cast.htm">Android - Screen Cast</a>
+<li><a target="_top" href="/android/android_sdk_manager.htm">Android - SDK Manager</a>
+<li><a target="_top" href="/android/android_sensors.htm">Android - Sensors</a>
+<li><a target="_top" href="/android/android_session_management.htm">Android - Session Management</a>
+<li><a target="_top" href="/android/android_shared_preferences.htm">Android - Shared Preferences</a>
+<li><a target="_top" href="/android/android_sip_protocol.htm">Android - SIP Protocol</a>
+<li><a target="_top" href="/android/android_spelling_checker.htm">Android - Spelling Checker</a>
+<li><a target="_top" href="/android/android_sqlite_database.htm">Android - SQLite Database</a>
+<li><a target="_top" href="/android/android_support_library.htm">Android - Support Library</a>
+<li><a target="_top" href="/android/android_testing.htm">Android - Testing</a>
+<li><a target="_top" href="/android/android_text_to_speech.htm">Android - Text to Speech</a>
+<li><a target="_top" href="/android/android_textureview.htm">Android - TextureView</a>
+<li><a target="_top" href="/android/android_twitter_integration.htm">Android - Twitter Integration</a>
+<li><a target="_top" href="/android/android_ui_design.htm">Android - UI Design</a>
+<li><a target="_top" href="/android/android_ui_patterns.htm">Android - UI Patterns</a>
+<li><a target="_top" href="/android/android_ui_testing.htm">Android - UI Testing</a>
+<li><a target="_top" href="/android/android_webview_layout.htm">Android - WebView Layout</a>
+<li><a target="_top" href="/android/android_wi_fi.htm">Android - Wi-Fi</a>
+<li><a target="_top" href="/android/android_widgets.htm">Android - Widgets</a>
+<li><a target="_top" href="/android/android_xml_parsers.htm">Android - XML Parsers</a>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Android Useful Resources</li>
+<li><a target="_top" href="/android/android_questions_answers.htm">Android - Questions and Answers</a></li>
+<!--<li><a target="_top" href="/android/android_quick_guide.htm">Android - Quick Guide</a></li>-->
+<li><a target="_top" href="/android/android_useful_resources.htm">Android - Useful Resources</a></li>
+<li><a target="_top" href="/android/android_discussion.htm">Android - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Android - Location Based Services</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/android/android_notifications.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/android/android_sending_email.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<blockquote><p>Android location APIs make it easy for you to build location-aware applications, without needing to focus on the details of the underlying location technology.</p></blockquote> 
+<p>This becomes possible with the help of <b>Google Play services</b>, which facilitates adding location awareness to your app with automated location tracking, geofencing, and activity recognition.</p>
+<p>This tutorial shows you how to use Location Services in your APP to get the current location, get periodic location updates, look up addresses etc.</p>
+<h2>The Location Object</h2>
+<p>The <b>Location</b> object represents a geographic location which can consist of a latitude, longitude, time stamp, and other information such as bearing, altitude and velocity. There are following important methods which you can use with Location object to get location specific information &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p><b>float distanceTo(Location dest)</b></p>
+<p>Returns the approximate distance in meters between this location and the given location.</p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p><b>float getAccuracy()</b></p>
+<p>Get the estimated accuracy of this location, in meters.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p><b>double getAltitude()</b></p>
+<p>Get the altitude if available, in meters above sea level.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p><b>float getBearing()</b></p>
+<p>Get the bearing, in degrees.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p><b>double getLatitude()</b></p>
+<p>Get the latitude, in degrees.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><p><b>double getLongitude()</b></p>
+<p>Get the longitude, in degrees.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><p><b>float getSpeed()</b></p>
+<p>Get the speed if it is available, in meters/second over ground.</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p><b>boolean hasAccuracy()</b></p>
+<p>True if this location has an accuracy.</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td>
+<p><b>boolean hasAltitude()</b></p>
+<p>True if this location has an altitude.</p></td>
+</tr>
+<tr>
+<td>10</td>
+<td>
+<p><b>boolean hasBearing()</b></p>
+<p>True if this location has a bearing.</p></td>
+</tr>
+<tr>
+<td>11</td>
+<td>
+<p><b>boolean hasSpeed()</b></p>
+<p>True if this location has a speed.</p></td>
+</tr>
+<tr>
+<td>12</td>
+<td>
+<p><b>void reset()</b></p>
+<p>Clears the contents of the location.</p></td>
+</tr>
+<tr>
+<td>13</td>
+<td>
+<p><b>void setAccuracy(float accuracy)</b></p>
+<p>Set the estimated accuracy of this location, meters.</p></td>
+</tr>
+<tr>
+<td>14</td>
+<td>
+<p><b>void setAltitude(double altitude)</b></p>
+<p>Set the altitude, in meters above sea level.</p></td>
+</tr>
+<tr>
+<td>15</td>
+<td>
+<p><b>void setBearing(float bearing)</b></p>
+<p>Set the bearing, in degrees.</p></td>
+</tr>
+<tr>
+<td>16</td>
+<td>
+<p><b>void setLatitude(double latitude)</b></p>
+<p>Set the latitude, in degrees.</p></td>
+</tr>
+<tr>
+<td>17</td>
+<td>
+<p><b>void setLongitude(double longitude)</b></p>
+<p>Set the longitude, in degrees.</p></td>
+</tr>
+<tr>
+<td>18</td>
+<td><p><b>void setSpeed(float speed)</b></p>
+<p>Set the speed, in meters/second over ground.</p></td>
+</tr>
+<tr>
+<td>19</td>
+<td>
+<p><b>String toString()</b></p>
+<p>Returns a string containing a concise, human-readable description of this object.</p></td>
+</tr>
+</table>
+<h2>Get the Current Location</h2>
+<p>To get the current location, create a location client which is <b>LocationClient</b> object, connect it to Location Services using <b>connect()</b> method, and then call its <b>getLastLocation()</b> method. This method returns the most recent location in the form of <b>Location</b> object that contains latitude and longitude coordinates and other information as explained above. To have location based functionality in your activity, you will have to implement two interfaces &minus;</p>
+<ul class="list">
+<li>GooglePlayServicesClient.ConnectionCallbacks</li>
+<li>GooglePlayServicesClient.OnConnectionFailedListener</li>
+</ul>
+<p>These interfaces provide following important callback methods, which you need to implement in your activity class &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th style="text-align:center;">Callback Methods &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p><b>abstract void onConnected(Bundle connectionHint)</b></p>
+<p>This callback method is called when location service is connected to the location client successfully. You will use <b>connect()</b> method to connect to the location client.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p><b>abstract void onDisconnected()</b></p>
+<p>This callback method is called when the client is disconnected. You will use <b>disconnect()</b> method to disconnect from the location client.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p><b>abstract void onConnectionFailed(ConnectionResult result)</b></p>
+<p>This callback method is called when there was an error connecting the client to the service.</p></td>
+</tr>
+</table>
+<blockquote>You should create the location client in <b>onCreate()</b> method of your activity class, then connect it in <b>onStart()</b>, so that Location Services maintains the current location while your activity is fully visible. You should disconnect the client in <b>onStop()</b> method, so that when your app is not visible, Location Services is not maintaining the current location. This helps in saving battery power up-to a large extent.</blockquote>
+<h2>Get the Updated Location</h2>
+<p>If you are willing to have location updates, then apart from above mentioned interfaces, you will need to implement <b>LocationListener</b> interface as well. This interface provide following callback method, which you need to implement in your activity class &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th style="text-align:center;">Callback Method &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p><b>abstract void onLocationChanged(Location location)</b></p>
+<p>This callback method is used for receiving notifications from the LocationClient when the location has changed.</p>
+</td>
+</tr>
+</table>
+<h2>Location Quality of Service</h2>
+<p>The <b>LocationRequest</b> object is used to request a quality of service (QoS) for location updates from the <b>LocationClient</b>. There are following useful setter methods which you can use to handle QoS. There are equivalent getter methods available which you can check in Android official documentation.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p><b>setExpirationDuration(long millis)</b></p>
+<p>Set the duration of this request, in milliseconds.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p><b>setExpirationTime(long millis)</b></p>
+<p>Set the request expiration time, in millisecond since boot.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p><b>setFastestInterval(long millis)</b></p>
+<p>Explicitly set the fastest interval for location updates, in milliseconds.</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p><b>setInterval(long millis)</b></p>
+<p>Set the desired interval for active location updates, in milliseconds.</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p><b>setNumUpdates(int numUpdates)</b></p>
+<p>Set the number of location updates.</p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p><b>setPriority(int priority)</b></p>
+<p>Set the priority of the request.</p>
+</td>
+</tr>
+</table>
+<p>Now for example, if your application wants high accuracy location it should create a location request with <b>setPriority(int)</b> set to PRIORITY_HIGH_ACCURACY and <b>setInterval(long)</b> to 5 seconds. You can also use bigger interval and/or other priorities like PRIORITY_LOW_POWER for to request "city" level accuracy or PRIORITY_BALANCED_POWER_ACCURACY for "block" level accuracy.</p>
+<blockquote>Activities should strongly consider removing all location request when entering the background (for example at onPause()), or at least swap the request to a larger interval and lower quality to save power consumption.</blockquote>
+<h2>Displaying a Location Address</h2>
+<p>Once you have <b>Location</b> object, you can use <b>Geocoder.getFromLocation()</b> method to get an address for a given latitude and longitude. This method is synchronous, and may take a long time to do its work, so you should call the method from the <b>doInBackground()</b> method of an <b>AsyncTask</b> class.</p>
+<p>The <b>AsyncTask</b> must be subclassed to be used and the subclass will override <b>doInBackground(Params...)</b> method to perform a task in the background and <b>onPostExecute(Result)</b> method is invoked on the UI thread after the background computation finishes and at the time to display the result. There is one more important method available in AyncTask which is <b>execute(Params... params)</b>, this method executes the task with the specified parameters.</p>
+<h2>Example</h2>
+<p>Following example shows you in practical how to to use Location Services in your app to get the current location and its equivalent addresses etc.</p>
+<blockquote>To experiment with this example, you will need actual Mobile device equipped with latest Android OS, otherwise you will have to struggle with emulator which may not work.</blockquote>
+<h3>Create Android Application</h3> 
+<table class="table table-bordered">
+<tr>
+<th class="fivepct">Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>You will use Android studio IDE to create an Android application and name it as <i>Tutorialspoint</i> under a package <i>com.example.tutorialspoint7.myapplication</i>.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>add <i>src/GPSTracker.java</i> file and add required code.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Modify <i>src/MainActivity.java</i> file and add required code as shown below to take care of getting current location and its equivalent address.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Modify layout XML file <i>res/layout/activity_main.xml</i> to add all GUI components which include three buttons and two text views to show location/address.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Modify <i>res/values/strings.xml</i> to define required constant values</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Modify <i>AndroidManifest.xml</i> as shown below</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Run the application to launch Android emulator and verify the result of the changes done in the application.</td>
+</tr>
+</table>
+<p>Following is the content of the modified main activity file <b>MainActivity.java</b>.</p>
+<pre class="prettyprint notranslate">
+package com.example.tutorialspoint7.myapplication;
+
+import android.Manifest;
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.test.mock.MockPackageManager;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+   Button btnShowLocation;
+   private static final int REQUEST_CODE_PERMISSION = 2;
+   String mPermission = Manifest.permission.ACCESS_FINE_LOCATION;
+
+   // GPSTracker class
+   GPSTracker gps;
+
+   @Override
+   public void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+		
+      try {
+         if (ActivityCompat.checkSelfPermission(this, mPermission)
+            != MockPackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{mPermission}, 
+               REQUEST_CODE_PERMISSION);
+
+            // If any permission above not allowed by user, this condition will
+               execute every time, else your else part will work
+         }
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+
+      btnShowLocation = (Button) findViewById(R.id.button);
+
+      // show location button click event
+      btnShowLocation.setOnClickListener(new View.OnClickListener() {
+
+         @Override
+         public void onClick(View arg0) {
+            // create class object
+            gps = new GPSTracker(MainActivity.this);
+
+            // check if GPS enabled
+            if(gps.canGetLocation()){
+
+               double latitude = gps.getLatitude();
+               double longitude = gps.getLongitude();
+
+               // \n is for new line
+               Toast.makeText(getApplicationContext(), "Your Location is - \nLat: "
+                  + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+            }else{
+               // can't get location
+               // GPS or Network is not enabled
+               // Ask user to enable GPS/network in settings
+               gps.showSettingsAlert();
+            }
+
+         }
+      });
+   }
+}
+</pre>
+<p>Following is the content of the modified main activity file <b>GPSTracker.java</b>.</p>
+<pre class="prettyprint notranslate">
+package com.example.tutorialspoint7.myapplication;
+
+import android.app.AlertDialog;
+import android.app.Service;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.provider.Settings;
+import android.util.Log;
+
+public class GPSTracker extends Service implements LocationListener {
+
+   private final Context mContext;
+
+   // flag for GPS status
+   boolean isGPSEnabled = false;
+
+   // flag for network status
+   boolean isNetworkEnabled = false;
+
+   // flag for GPS status
+   boolean canGetLocation = false;
+
+   Location location; // location
+   double latitude; // latitude
+   double longitude; // longitude
+
+   // The minimum distance to change Updates in meters
+   private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
+
+   // The minimum time between updates in milliseconds
+   private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+
+   // Declaring a Location Manager
+   protected LocationManager locationManager;
+
+   public GPSTracker(Context context) {
+      this.mContext = context;
+      getLocation();
+   }
+
+   public Location getLocation() {
+      try {
+         locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
+
+         // getting GPS status
+         isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+         // getting network status
+         isNetworkEnabled = locationManager
+            .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+         if (!isGPSEnabled && !isNetworkEnabled) {
+            // no network provider is enabled
+         } else {
+            this.canGetLocation = true;
+            // First get location from Network Provider
+            if (isNetworkEnabled) {
+               locationManager.requestLocationUpdates(
+                  LocationManager.NETWORK_PROVIDER,
+                  MIN_TIME_BW_UPDATES,
+                  MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+						
+               Log.d("Network", "Network");
+               if (locationManager != null) {
+                  location = locationManager
+                     .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+							
+                  if (location != null) {
+                     latitude = location.getLatitude();
+                     longitude = location.getLongitude();
+                  }
+               }
+            }
+				
+            // if GPS Enabled get lat/long using GPS Services
+            if (isGPSEnabled) {
+               if (location == null) {
+                  locationManager.requestLocationUpdates(
+                     LocationManager.GPS_PROVIDER,
+                     MIN_TIME_BW_UPDATES,
+                     MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+							
+                  Log.d("GPS Enabled", "GPS Enabled");
+                  if (locationManager != null) {
+                     location = locationManager
+                        .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+								
+                     if (location != null) {
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
+                     }
+                  }
+               }
+            }
+         }
+
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+
+      return location;
+   }
+
+   /**
+      * Stop using GPS listener
+      * Calling this function will stop using GPS in your app
+   * */
+	
+   public void stopUsingGPS(){
+      if(locationManager != null){
+         locationManager.removeUpdates(GPSTracker.this);
+      }
+   }
+
+   /**
+      * Function to get latitude
+   * */
+	
+   public double getLatitude(){
+      if(location != null){
+         latitude = location.getLatitude();
+      }
+
+      // return latitude
+      return latitude;
+   }
+
+   /**
+      * Function to get longitude
+   * */
+	
+   public double getLongitude(){
+      if(location != null){
+         longitude = location.getLongitude();
+      }
+
+      // return longitude
+      return longitude;
+   }
+
+   /**
+      * Function to check GPS/wifi enabled
+      * @return boolean
+   * */
+	
+   public boolean canGetLocation() {
+      return this.canGetLocation;
+   }
+
+   /**
+      * Function to show settings alert dialog
+      * On pressing Settings button will lauch Settings Options
+   * */
+	
+   public void showSettingsAlert(){
+      AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+
+      // Setting Dialog Title
+      alertDialog.setTitle("GPS is settings");
+
+      // Setting Dialog Message
+      alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
+
+      // On pressing Settings button
+      alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+         public void onClick(DialogInterface dialog,int which) {
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            mContext.startActivity(intent);
+         }
+      });
+
+      // on pressing cancel button
+      alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+         public void onClick(DialogInterface dialog, int which) {
+            dialog.cancel();
+         }
+      });
+
+      // Showing Alert Message
+      alertDialog.show();
+   }
+
+   @Override
+   public void onLocationChanged(Location location) {
+   }
+
+   @Override
+   public void onProviderDisabled(String provider) {
+   }
+
+   @Override
+   public void onProviderEnabled(String provider) {
+   }
+
+   @Override
+   public void onStatusChanged(String provider, int status, Bundle extras) {
+   }
+
+   @Override
+   public IBinder onBind(Intent arg0) {
+      return null;
+   }
+}
+</pre>
+<p>Following will be the content of <b>res/layout/activity_main.xml</b> file &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "utf-8"?&gt;
+&lt;LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+   android:layout_width = "fill_parent"
+   android:layout_height = "fill_parent"
+   android:orientation = "vertical" &gt;
+
+
+   &lt;Button
+      android:id = "@+id/button"
+      android:layout_width = "fill_parent"
+      android:layout_height = "wrap_content"
+      android:text = "getlocation"/&gt;
+
+&lt;/LinearLayout&gt;
+</pre>
+<p>Following will be the content of <b>res/values/strings.xml</b> to define two new constants &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "utf-8"?&gt;
+&lt;resources&gt;
+   &lt;string name = "app_name"&gt;Tutorialspoint&lt;/string&gt;
+&lt;/resources&gt;
+</pre>
+<p>Following is the default content of <b>AndroidManifest.xml</b> &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "utf-8"?&gt;
+&lt;manifest xmlns:android = "http://schemas.android.com/apk/res/android"
+   package = "com.example.tutorialspoint7.myapplication"&gt;
+   &lt;uses-permission android:name = "android.permission.ACCESS_FINE_LOCATION" /&gt;
+   &lt;uses-permission android:name = "android.permission.INTERNET" /&gt;
+   &lt;application
+      android:allowBackup = "true"
+      android:icon = "@mipmap/ic_launcher"
+      android:label = "@string/app_name"
+      android:supportsRtl = "true"
+      android:theme = "@style/AppTheme"&gt;
+		
+      &lt;activity android:name = ".MainActivity"&gt;
+         &lt;intent-filter&gt;
+            &lt;action android:name = "android.intent.action.MAIN" /&gt;
+
+            &lt;category android:name = "android.intent.category.LAUNCHER" /&gt;
+         &lt;/intent-filter&gt;
+      &lt;/activity&gt;
+   &lt;/application&gt;
+
+&lt;/manifest&gt;
+</pre>
+<p>Let's try to run your <b>Tutorialspoint</b> application. I assume that, you have connected your actual Android Mobile device with your computer. To run the app from Android Studio, open one of your project's activity files and click Run <img  class="inline" src="/android/images/eclipse_run.jpg" alt="Eclipse Run Icon"/> icon from the toolbar. Before starting your application, Android studio installer will display following window to select an option where you want to run your Android application.</p>
+<img src="/android/images/location3.jpg" alt="Android Mobile Device" />
+<p>Now to see location select Get Location Button which will display location information as follows &minus;</p>
+<img src="/android/images/location4.jpg" alt="Android Mobile Location Info" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/android/android_notifications.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/android/android_sending_email.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>jQuery Techniques - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="jQuery Techniques - In the previous chapters, we have understood how using JavaScript libraries adds good effects to websites. JavaScript, when coupled with jQuery, provides phenom"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_jquery_techniques.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#08929d;
+}
+a.demo {
+    background:#08929d;
+}
+li.heading {
+    background:#08929d;
+}
+.course-box{background:#08929d}
+.home-intro-sub p{color:#08929d}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/parallax_scrolling_in_web_design/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/parallax_scrolling_in_web_design/images/parallax-scrolling-in-web-design-mini-logo.jpg" alt="Parallax Scrolling in Web Design Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Parallax Scrolling in Web Design</li>
+<li><a href="/parallax_scrolling_in_web_design/index.htm">Home</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_background_and_introduction.htm">Background and Introduction</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_concepts.htm">Concepts</a></li>
+<li><a href="/parallax_scrolling_in_web_design/web_design_and_parallax_scroll.htm">Web Design and Parallax Scroll</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_css_techniques.htm">CSS Techniques</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_javascript_techniques.htm">JavaScript Techniques</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_jquery_techniques.htm">jQuery Techniques</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_bootstrap_technique.htm">Bootstrap Techniques</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_conclusion.htm">Conclusion</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Useful Resources</li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_quick_guide.htm" >Quick Guide</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_useful_resources.htm" >Useful Resources</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_discussion.htm">Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>jQuery Techniques</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_javascript_techniques.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_bootstrap_technique.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In the previous chapters, we have understood how using JavaScript libraries adds good effects to websites. JavaScript, when coupled with jQuery, provides phenomenal flexibility and ease to add parallax scrolling to your websites.</p>
+<p>In this chapter, we are going to look at three jQuery plugins to add the parallax scrolling effect. Just like how we referenced in the previous chapter for JavaScript, we are going to use jQuery references in our HTML code to create powerful jQuery parallax scrolling.</p>
+<p>An important point to note about jQuery plugins is that often the plugins are not updated, hence you would want to do some research before you start using any plugin for parallax scrolling.</p>
+<h2>Simple Parallax Scrolling using Parallax.js</h2>
+<p>Using Parallax.js jQuery plugin, we can create parallax scrolling effect without much hassles. Considering jQuery plugin requires a high-end inclusion of libraries such as bootstrap. Note that in this chapter will have HTML5 tags in the code.</p>
+<p>Let us look at the HTML file shown below &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;!DOCTYPE html&gt;  
+&lt;html lang = "en"&gt;  
+   &lt;head&gt;  
+      &lt;title&gt;Parallax.js | Simple Parallax Scrolling Effect with jQuery&lt;/title&gt;  
+      &lt;meta charset = "utf-8"&gt;  
+      &lt;meta http-equiv = "X-UA-Compatible" content = "IE = edge"&gt;  
+      &lt;meta name = "viewport" content = "width = device-width, initial-scale = 1"&gt; 
+      
+      &lt;link href = "css/bootstrap.min.css" rel = "stylesheet"&gt;  
+      &lt;link href = "css/style.css" rel = "stylesheet"&gt;  
+
+      &lt;script src = "https://code.jquery.com/jquery-1.12.4.min.js"&gt;&lt;/script&gt;
+      &lt;script src = "https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"&gt;&lt;/script&gt;
+   &lt;/head&gt;  
+
+   &lt;body&gt;   
+      &lt;section&gt;  
+         &lt;div class = "container"&gt;  
+            &lt;h1&gt;Example on Parallax.js&lt;/h1&gt;  
+            &lt;p data-pg-collapsed&gt;
+               This is an example of parallax scrolling using Parallax.js jQuery Plugin.
+            &lt;/p&gt;              
+            &lt;br/&gt;  
+         &lt;/div&gt;  
+      &lt;/section&gt;  
+      
+      &lt;div class = "parallax-container" data-parallax = "scroll" 
+         data-position = "top" data-bleed = "10" 
+         data-image-src = "https://pixabay.com/get/ea31b90a2af5093ed1534705fb0938c9bd22ffd41cb2114595f9c67dae/clematis-3485218_1920.jpg" 
+         data-natural-width = "1600" data-natural-height = "800" &gt;
+      &lt;/div&gt;  
+      &lt;section&gt;  
+         &lt;div class = "container"&gt;  
+            &lt;h2 id = "sampleLorem"&gt;Sample Text Here&lt;/h2&gt;  
+            &lt;p&gt;
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+               odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
+               quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
+               mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
+               Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad
+               litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.
+               &lt;br/&gt;
+               &lt;br/&gt;  
+               
+               Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean
+               quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis
+               tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus
+               risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis
+               quis ligula lacinia aliquet. Mauris ipsum.  
+               &lt;br/&gt;
+               &lt;br/&gt;  
+               
+               Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh.
+               Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad
+               litora torquent per conubia nostra, per inceptos himenaeos. Nam nec
+               ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing
+               diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla.
+               Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet.
+               Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu 
+               magna luctus suscipit.   
+               &lt;br/&gt;
+               &lt;br/&gt;  
+               
+               Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus
+               vitae pharetra auctor, sem massa mattis sem, at interdum magna augue
+               eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et
+               ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent
+               blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum.
+               Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc,
+               viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt
+               malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris.
+               Morbi in dui quis est pulvinar ullamcorper.   
+               &lt;br/&gt;
+               &lt;br/&gt;  
+               
+               Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed
+               aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis,
+               venenatis tristique, dignissim in, ultrices sit amet, augue. Proin
+               sodales libero eget ante. Nulla quam. Aenean laoreet. Vestibulum nisi
+               lectus, commodo ac, facilisis ac, ultricies eu, pede. Ut orci risus,
+               accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium 
+               blandit orci.   
+               &lt;br/&gt;
+               &lt;br/&gt;  
+               
+               Ut eu diam at pede suscipit sodales. Aenean lectus elit, fermentum non,
+               convallis id, sagittis at, neque. Nullam mauris orci, aliquet et,
+               iaculis et, viverra vitae, ligula. Nulla ut felis in purus aliquam
+               imperdiet. Maecenas aliquet mollis lectus. Vivamus consectetuer risus 
+               et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+               Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed
+               nisi. Nulla quis sem at nibh elementum imperdiet.   
+               &lt;br/&gt;
+               &lt;br/&gt;  
+            &lt;/p&gt;  
+         &lt;/div&gt;  
+      &lt;/section&gt;  
+      
+      &lt;div class = "parallax-container" data-parallax = "scroll" 
+         data-bleed = "10" data-speed = "0.2" 
+         data-image-src = "https://pixabay.com/get/ea31b90620f0063ed1534705fb0938c9bd22ffd41cb2114594f0c37cae/chamomile-3489847_1920.jpg" 
+         data-natural-width = "1600" data-natural-height = "801" 
+         data-pg-name = "PARALLAX IMAGE 002"&gt;
+      &lt;/div&gt;  
+   &lt;/body&gt;  
+&lt;/html&gt; 
+</pre> 
+<h3>Analysis of Code</h3>
+<p>The above code snippets show the code for a page with two images and a sample text between them.</p>
+<p>As you can see, the code starts with <b>&lt;!DOCTYPE html&gt;</b>, this is typical way of letting the browsers know that the code is HTML5 based.</p>
+<p>The <b>&lt;meta&gt;</b> tags from <b>line 4 to 6</b> shows the code which is for machine interpretation. You will not be able to see the impact of this code. Important thing to note here is – with <b>meta</b> tag, web developers get an enhanced control over the data being displayed.</p>
+<p>Also, on <b>line 8 and 9</b>, we have included the CSS stylesheets along with Bootstrap. For a specific font face and typography, Bootstrap is the widely used library.</p>
+<p><b>Lines 10 and 11</b> take care of the jQuery and Parallax.js libraries. It is important to include Parallax.js for having the control over parallax effect of images. You will be able to find <b>data-parallax</b> property with <b>div</b> on <b>line 21</b>, which is sufficient enough to call parallax.js library for the required parallax effect.</p>
+<p>Parallax effect can be seen in code on <b>lines 21</b> and <b>line 40</b>. Important properties which make this effect happen with parallax.js are – <i><b>data-parallax, data-image-src, data-natural-width, data-natural-height</b></i>.</p>
+<p>With the CSS file, we have only one property to provide. It is as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+.parallax-container {  
+   height: 500px;  
+   width: 100%;  
+}  
+</pre>
+<p>In the HTML code above, we have created a specific structure for CSS files. We will have a folder called <b>css,</b> which will have CSS files – <b>bootstrap.min.css</b> and <b>style.css</b>.</p>
+<p>Once everything is through with documents, you will be able to see the parallax effect as shown below &minus;</p>
+<img src="/parallax_scrolling_in_web_design/images/parallax_effect.jpg" alt="Parallax Effect" />
+<h2>Using Parallaxator jQuery Plugin</h2>
+<p>Parallaxator plugin provides best of jQuery parallax scrolling effects and is easy to use. You can download the Parallaxator plugin, its CSS and JS files from this link &minus; <a href="https://github.com/QODIO/parallaxator#example-on-usage" rel="nofollow" target="_blank">Parallaxator GitHub</a>.</p>
+<p>Once the CSS and JS files are downloaded, you can use the code shown below to create the HTML code.</p>
+<pre class="prettyprint notranslate">
+&lt;!DOCTYPE html&gt;  
+&lt;html&gt;  
+   &lt;head&gt;  
+      &lt;title&gt;Parallaxator Plugin&lt;/title&gt;  
+      &lt;meta http-equiv = "Content-Type" content = "text/html; charset = utf-8"&gt;  
+      &lt;link rel = "stylesheet" href = "fm.parallaxator.jquery.css"&gt;  
+
+      &lt;link rel = "stylesheet" href = "style.css"&gt;  
+      &lt;script src = "https://code.jquery.com/jquery-1.12.4.min.js"&gt;&lt;/script&gt;
+      &lt;script src = "fm.parallaxator.jquery.js"&gt;&lt;/script&gt;  
+   &lt;/head&gt;  
+   &lt;body&gt;  
+      &lt;div class = "section1 parallaxator"&gt;  
+         &lt;img class = "parallax_child" src = "img/landscape.jpg" width = "100%"&gt;  
+         &lt;h1 class = "mega_text parallax_child"&gt;Nature&lt;/h1&gt;  
+      &lt;/div&gt;  
+      
+      &lt;div class = "section2 parallaxator"&gt;  
+         &lt;img class = "parallax_child" src = "img/architecture.jpg" width = "100%"&gt;
+         &lt;h1 class = "mega_text parallax_child"&gt;
+            Architecture&lt;br&gt;
+         &lt;/h1&gt;  
+      &lt;/div&gt;  
+      
+      &lt;div class = "section3 parallaxator"&gt;  
+         &lt;img class = "parallax_child" src = "img/architecture1.jpg" width = "100%"&gt;
+         &lt;h1 class = "mega_text parallax_child" data-parallaxator-reverse = "true" data-parallaxator-velocity = "0.35"&gt;  
+            Architecture again!  
+         &lt;/h1&gt;  
+      &lt;/div&gt;  
+   &lt;/body&gt;
+   
+&lt;/html&gt; 
+</pre> 
+<h3>Analysis of Code</h3>
+<p>The parallax effect is provided by parallax_child class which is provided with each img tag. The parallax_child is hooked up with CSS and JS files which are provided below.</p>
+<p>For the parallaxator plugin to work, we have included fm.parallaxator.jquery.css and fm.parallaxator.jquery.js. These files are required to be available in the same directory as the HTML file.</p>
+<p>The code for CSS is as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+body {  
+   font-family: sans-serif;  
+   margin: 0;  
+   padding: 0;  
+} 
+ 
+.section1,.section2, .section3 {  
+   border-bottom: 32px solid #fff;  
+   padding-top: 40%;  
+}  
+
+.section1 {  
+   background-color: #fdb;  
+}  
+
+.section2 {  
+   background-color: #bdf;  
+}  
+
+.section3 {  
+   background-color: #fbd;  
+} 
+ 
+.mega_text {  
+   font-weight: bold;  
+   font-size: 100px;  
+   margin: 0;  
+   text-shadow: 0 10px 100px #fff, 0 0 15px #fff;  
+   padding: 64px;  
+   display: block;  
+}  
+</pre>
+<p>As a result of the above code, you will be able to see the parallax effect.</p>
+<img src="/parallax_scrolling_in_web_design/images/nature_parallax_effect.jpg" alt="Nature Parallax Effect" />
+<h2>Stellar.js jQuery Plugin for Parallax Scrolling</h2>
+<p>Stellar.js is another addition to the list of parallax jQuery plugins. Though it is no longer maintained, developer who have used its stable build, are able to use parallax scrolling effect with ease. It is compatible with latest versions of jQuery and easy to implement.</p>
+<p>You will need to download the latest jquery.stellar.js from the official website for <a href="https://github.com/markdalgleish/stellar.js" rel="nofollow" target="_blank">Stellar.js</a> plugin. Once downloaded, create this plugin file in the same folder as your HTML and CSS file.</p>
+<p>Let us have a look at HTML code.</p>
+<pre class="prettyprint notranslate">
+&lt;!doctype html&gt;  
+&lt;html&gt;  
+   &lt;head&gt;  
+      &lt;title&gt;Stellar.js Demo&lt;/title&gt;  
+      &lt;link href = "style.css" rel = "stylesheet"&gt;  
+      &lt;script src = "https://code.jquery.com/jquery-1.12.4.min.js"&gt;&lt;/script&gt;
+      &lt;script src = "jquery.stellar.js"&gt;&lt;/script&gt;  
+      
+      &lt;script&gt;  
+         $(function(){  
+            $.stellar({  
+               horizontalScrolling: false,  
+               verticalOffset: 40  
+            });  
+         });  
+      &lt;/script&gt;  
+   &lt;/head&gt;  
+   
+   &lt;body&gt;  
+      &lt;h1&gt;Demo Site&lt;/h1&gt;  
+      &lt;div class = "image architecture" data-stellar-background-ratio = "0.5"&gt;
+         &lt;span&gt;Architecture&lt;/span&gt;
+      &lt;/div&gt;  
+      
+      &lt;div class = "image abstract" data-stellar-background-ratio = "0.5"&gt;
+         &lt;span&gt;Abstract&lt;/span&gt;
+      &lt;/div&gt;  
+      
+      &lt;div class = "image landscape" data-stellar-background-ratio = "0.5"&gt;
+         &lt;span&gt;Landscape&lt;/span&gt;
+      &lt;/div&gt;  
+      
+      &lt;div class = "image window" data-stellar-background-ratio = "0.5"&gt;
+         &lt;span&gt;Window&lt;/span&gt;
+      &lt;/div&gt;  
+   &lt;/body&gt;
+   
+&lt;/html&gt;  
+</pre>
+<h3>Analysis of Code</h3>
+<p>For Stellar.js to work, we have included the jquery.stellar.js library right after the jQuery plugin is referenced on <b>line 6</b>.</p>
+<p>Function for Stellar parallax is called in the script tag from <b>line 8 to line 15</b>. With the property <b>data-stellar-background-ratio</b>, we are setting an offset for the images being displayed. This is done on <b>lines 19,20,21 and 22</b>.</p>
+<p>The CSS code is given below &minus;</p>
+<pre class="prettyprint notranslate">
+body {  
+   font-family: helvetica, arial;  
+   padding-top: 40px;  
+} 
+ 
+h1 {
+   background-color: black;  
+   color: white;  
+   height: 40px;  
+   font-size: 24px;  
+   font-weight: normal;  
+   left: 0;  
+   line-height: 40px;  
+   position: fixed;  
+   text-align: center;  
+   top: 0;  
+   width: 100%;  
+   z-index: 1;  
+} 
+ 
+h1 a {  
+   border-bottom: 1px solid white;  
+   color: white;  
+   display: inline-block;  
+   line-height: 30px;  
+   text-decoration: none;  
+}  
+
+.image {  
+   background-attachment: fixed;  
+   background-position: 50% 0;  
+   background-repeat: no-repeat;  
+   height: 450px;  
+   position: relative;  
+}  
+
+.image span {  
+   bottom: 0;  
+   color: white;  
+   display: block;  
+   left: 50%;  
+   margin-left: -640px;  
+   font-size: 38px;  
+   padding: 10px;  
+   position: absolute;  
+   text-shadow: 0 2px 0 black, 0 0 10px black;  
+   width: 1280px;  
+}  
+
+.architecture {  
+   background-image: url(img/architecture.jpg);  
+}  
+
+.abstract {  
+   background-image: url(img/ruin.jpg);  
+} 
+ 
+.landscape {  
+   background-image: url(img/landscape.jpg);  
+}  
+
+.window {  
+   background-image: url(img/window.jpg); 
+} 
+</pre>   
+<p>Once both the files are created and stellar.js plugin file is included in the same folder, you should be able to see the effect as shown in the screenshot given below &minus;</p>
+<img src="/parallax_scrolling_in_web_design/images/output_using_stellar_parallax_plugin.jpg" alt="Output Using Stellar Parallax Plugin" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_javascript_techniques.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_bootstrap_technique.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

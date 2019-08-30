@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Cassandra - Create Table - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Cassandra - Create Table - You can create a table using the command CREATE TABLE. Given below is the syntax for creating a table."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/cassandra/cassandra_create_table.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#1287b1;
+}
+a.demo {
+    background:#1287b1;
+}
+li.heading {
+    background:#1287b1;
+}
+.course-box{background:#1287b1}
+.home-intro-sub p{color:#1287b1}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/cassandra/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/cassandra/images/cassandra-mini-logo.jpg" alt="cassandra Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Cassandra Tutorial</li>
+<li><a href="/cassandra/index.htm">Cassandra - Home</a></li>
+<li><a href="/cassandra/cassandra_introduction.htm">Cassandra - Introduction</a></li>
+<li><a href="/cassandra/cassandra_architecture.htm">Cassandra - Architecture</a></li>
+<li><a href="/cassandra/cassandra_data_model.htm">Cassandra - Data Model</a></li>
+<li><a href="/cassandra/cassandra_installation.htm">Cassandra - Installation</a></li>
+<li><a href="/cassandra/cassandra_referenced_api.htm">Cassandra - Referenced Api</a></li>
+<li><a href="/cassandra/cassandra_cqlsh.htm">Cassandra - Cqlsh</a></li>
+<li><a href="/cassandra/cassandra_shell_commands.htm">Cassandra - Shell Commands</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Cassandra Keyspace Operations</li>
+<li><a href="/cassandra/cassandra_create_keyspace.htm">Cassandra - Create Keyspace</a></li>
+<li><a href="/cassandra/cassandra_alter_keyspace.htm">Cassandra - Alter Keyspace</a></li>
+<li><a href="/cassandra/cassandra_drop_keyspace.htm">Cassandra - Drop Keyspace</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Cassandra Table Operations</li>
+<li><a href="/cassandra/cassandra_create_table.htm">Cassandra - Create Table</a></li>
+<li><a href="/cassandra/cassandra_alter_table.htm">Cassandra - Alter Table</a></li>
+<li><a href="/cassandra/cassandra_drop_table.htm">Cassandra - Drop Table</a></li>
+<li><a href="/cassandra/cassandra_truncate_table.htm">Cassandra - Truncate Table</a></li>
+<li><a href="/cassandra/cassandra_create_index.htm">Cassandra - Create Index</a></li>
+<li><a href="/cassandra/cassandra_drop_index.htm">Cassandra - Drop Index</a></li>
+<li><a href="/cassandra/cassandra_batch.htm">Cassandra - Batch</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Cassandra CURD Operations</li>
+<li><a href="/cassandra/cassandra_create_data.htm">Cassandra - Create Data</a></li>
+<li><a href="/cassandra/cassandra_update_data.htm">Cassandra - Update Data</a></li>
+<li><a href="/cassandra/cassandra_read_data.htm">Cassandra - Read Data</a></li>
+<li><a href="/cassandra/cassandra_delete_data.htm">Cassandra - Delete Data</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Cassandra CQL Types</li>
+<li><a href="/cassandra/cassandra_cql_datatypes.htm">Cassandra - CQL Datatypes</a></li>
+<li><a href="/cassandra/cassandra_cql_collections.htm">Cassandra - CQL Collections</a></li>
+<li><a href="/cassandra/cassandra_cql_user_defined_datatypes.htm">CQL User Defined Datatypes</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Cassandra Useful Resources</li>
+<li><a href="/cassandra/cassandra_quick_guide.htm">Cassandra - Quick Guide</a></li>
+<li><a href="/cassandra/cassandra_resources.htm">Cassandra - Useful Resources</a></li>
+<li><a href="/cassandra/cassandra_discussion.htm">Cassandra - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Cassandra - Create Table</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/cassandra/cassandra_drop_keyspace.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/cassandra/cassandra_alter_table.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h2>Creating a Table</h2>
+<p>You can create a table using the command <b>CREATE TABLE</b>. Given below is the syntax for creating a table.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+CREATE (TABLE | COLUMNFAMILY) &lt;tablename&gt;
+('&lt;column-definition&gt;' , '&lt;column-definition&gt;')
+(WITH &lt;option&gt; AND &lt;option&gt;)
+</pre>
+<h2>Defining a Column</h2>
+<p>You can define a column as shown below.</p>
+<pre class="result notranslate">
+column name1 data type,
+column name2 data type,
+
+example:
+
+age int,
+name text
+</pre>
+<h2>Primary Key</h2>
+<p>The primary key is a column that is used to uniquely identify a row. Therefore,defining a primary key is mandatory while creating a table. A primary key is made of one or more columns of a table. You can define a primary key of a table as shown below.</p>
+<pre class="result notranslate">
+CREATE TABLE tablename(
+   column1 name datatype PRIMARYKEY,
+   column2 name data type,
+   column3 name data type.
+   )
+</pre>
+<p><b>or</b></p>
+<pre class="result notranslate">
+CREATE TABLE tablename(
+   column1 name datatype PRIMARYKEY,
+   column2 name data type,
+   column3 name data type,
+   <b>PRIMARY KEY (column1)</b>
+   )
+</pre>
+<h3>Example</h3>
+<p>Given below is an example to create a table in Cassandra using cqlsh. Here we are &minus;</p>
+<ul class="list">
+<li><p>Using the keyspace tutorialspoint</p></li>
+<li><p>Creating a table named <b>emp</b></p></li>
+</ul>
+<p>It will have details such as employee name, id, city, salary, and phone number.
+Employee id is the primary key.</p>
+<pre class="result notranslate">
+cqlsh&gt; USE tutorialspoint;
+cqlsh:tutorialspoint&gt;; CREATE TABLE emp(
+   emp_id int PRIMARY KEY,
+   emp_name text,
+   emp_city text,
+   emp_sal varint,
+   emp_phone varint
+   );
+</pre>
+<h3>Verification</h3>
+<p>The select statement will give you the schema. Verify the table using the select statement as shown below.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+
+ emp_id | emp_city | emp_name | emp_phone | emp_sal
+--------+----------+----------+-----------+---------
+
+(0 rows)
+</pre>
+<p>Here you can observe the table created with the given columns. Since we have deleted the keyspace tutorialspoint, you will not find it in the keyspaces list.</p>
+<h2>Creating a Table using Java API</h2>
+<p>You can create a table using the execute() method of Session class. Follow the steps given below to create a table using Java API.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>First of all, create an instance of the <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build a cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the <b>connect()</b> method of <b>Cluster</b> class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, you can set it to the existing one by passing the keyspace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ” );
+</pre>
+<p>Here we are using the keyspace named <b>tp</b>. Therefore, create the session object as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ tp” );
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the cqlsh.</p>
+<p>In the following example, we are creating a table named <b>emp.</b> You have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+//Query
+String query = "CREATE TABLE emp(emp_id int PRIMARY KEY, "
+   + "emp_name text, "
+   + "emp_city text, "
+   + "emp_sal varint, "
+   + "emp_phone varint );";
+session.execute(query);
+</pre>
+<p>Given below is the complete program to create and use a keyspace in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Create_Table {
+
+   public static void main(String args[]){
+
+      //Query
+      String query = "CREATE TABLE emp(emp_id int PRIMARY KEY, "
+         + "emp_name text, "
+         + "emp_city text, "
+         + "emp_sal varint, "
+         + "emp_phone varint );";
+		
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+   
+      //Creating Session object
+      Session session = cluster.connect("tp");
+ 
+      //Executing the query
+      session.execute(query);
+ 
+      System.out.println("Table created");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Create_Table.java
+$java Create_Table
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Table created
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/cassandra/cassandra_drop_keyspace.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/cassandra/cassandra_alter_table.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

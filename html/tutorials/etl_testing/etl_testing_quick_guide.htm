@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>ETL Testing - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="ETL Testing - Quick Guide - The data in a Data Warehouse system is loaded with an ETL (Extract, Transform, Load) tool. As the name suggests, it performs the following three operations −"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/etl_testing/etl_testing_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#02b5a9;
+}
+a.demo {
+    background:#02b5a9;
+}
+li.heading {
+    background:#02b5a9;
+}
+.course-box{background:#02b5a9}
+.home-intro-sub p{color:#02b5a9}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/etl_testing/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/etl_testing/images/etl-testing-mini-logo.jpg" alt="ETL Testing Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">ETL Testing Tutorial</li>
+<li><a href="/etl_testing/index.htm">ETL Testing - Home</a></li>
+<li><a href="/etl_testing/etl_testing_introduction.htm">ETL Testing - Introduction</a></li>
+<li><a href="/etl_testing/etl_testing_tasks.htm">ETL Testing - Tasks</a></li>
+<li><a href="/etl_testing/etl_vs_database_testing.htm">ETL vs Database Testing</a></li>
+<li><a href="/etl_testing/etl_testing_categories.htm">ETL Testing - Categories</a></li>
+<li><a href="/etl_testing/etl_testing_challenges.htm">ETL Testing - Challenges</a></li>
+<li><a href="/etl_testing/etl_testers_roles.htm">ETL - Tester's Roles</a></li>
+<li><a href="/etl_testing/etl_testing_techniques.htm">ETL Testing - Techniques</a></li>
+<li><a href="/etl_testing/etl_testing_process.htm">ETL Testing - Process</a></li>
+<li><a href="/etl_testing/etl_testing_scenarios.htm">ETL Testing - Scenarios(Test Cases)</a></li>
+<li><a href="/etl_testing/etl_testing_performance.htm">ETL Testing - Performance</a></li>
+<li><a href="/etl_testing/etl_testing_scalability.htm">ETL Testing - Scalability</a></li>
+<li><a href="/etl_testing/etl_testing_data_accuracy.htm">ETL Testing - Data Accuracy</a></li>
+<li><a href="/etl_testing/etl_testing_metadata.htm">ETL Testing - Metadata</a></li>
+<li><a href="/etl_testing/etl_testing_data_transformations.htm">ETL Testing - Data Transformations</a></li>
+<li><a href="/etl_testing/etl_testing_data_quality.htm">ETL Testing - Data Quality</a></li>
+<li><a href="/etl_testing/etl_testing_data_completeness.htm">ETL Testing - Data Completeness</a></li>
+<li><a href="/etl_testing/etl_testing_backup_recovery.htm">ETL Testing - Backup Recovery</a></li>
+<li><a href="/etl_testing/etl_testing_automation.htm">ETL Testing - Automation</a></li>
+<li><a href="/etl_testing/etl_testing_best_practices.htm">ETL Testing - Best Practices</a></li>
+<li><a href="/etl_testing/etl_testing_interview_questions.htm">ETL Testing - Interview Questions</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">ETL Testing Useful Resources</li>
+<li><a href="/etl_testing/etl_testing_quick_guide.htm">ETL Testing - Quick Guide</a></li>
+<li><a href="/etl_testing/etl_testing_useful_resources.htm">ETL Testing - Useful Resources</a></li>
+<li><a href="/etl_testing/etl_testing_discussion.htm">ETL Testing - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>ETL Testing - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/etl_testing/etl_testing_interview_questions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/etl_testing/etl_testing_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>ETL Testing – Introduction</h1>
+<p>The data in a Data Warehouse system is loaded with an ETL (Extract, Transform, Load) tool. As the name suggests, it performs the following three operations &minus;</p>
+<ul class="list">
+<li><p>Extracts the data from your transactional system which can be an Oracle, Microsoft, or any other relational database,</p></li>
+<li><p>Transforms the data by performing data cleansing operations, and then</p></li>
+<li><p>Loads the data into the OLAP data Warehouse.</p></li>
+</ul>
+<p>You can also extract data from flat files like spreadsheets and CSV files using an ETL tool and load it into an OLAP data warehouse for data analysis and reporting. Let us take an example to understand it better.</p>
+<h3>Example</h3>
+<p>Let us assume there is a manufacturing company having multiple departments such as sales, HR, Material Management, EWM, etc. All these departments have separate databases which they use to maintain information w.r.t. their work and each database has a different technology, landscape, table names, columns, etc. Now, if the company wants to analyze historical data and generate reports, all the data from these data sources should be extracted and loaded into a Data Warehouse to save it for analytical work.</p>
+<p>An ETL tool extracts the data from all these heterogeneous data sources, transforms the data (like applying calculations, joining fields, keys, removing incorrect data fields, etc.), and loads it into a Data Warehouse. Later, you can use various Business Intelligence (BI) tools to generate meaningful reports, dashboards, and visualizations using this data.</p>
+<h2>Difference between ETL and BI Tools</h2>
+<p>An ETL tool is used to extract data from different data sources, transform the data, and load it into a DW system; however a BI tool is used to generate interactive and ad-hoc reports for end-users, dashboard for senior management, data visualizations for monthly, quarterly, and annual board meetings.</p>
+<p>The most common ETL tools include &minus; SAP BO Data Services (BODS), Informatica – Power Center, Microsoft – SSIS, Oracle Data Integrator ODI, Talend Open Studio, Clover ETL Open source, etc.</p>
+<p>Some popular BI tools include &minus; SAP Business Objects, SAP Lumira, IBM Cognos, JasperSoft, Microsoft BI Platform, Tableau, Oracle Business Intelligence Enterprise Edition, etc.</p>
+<h2>ETL Process</h2>
+<p>Let us now discuss in a little more detail the key steps involved in an ETL procedure &minus;</p>
+<h3>Extracting the Data</h3>
+<p>It involves extracting the data from different heterogeneous data sources. Data extraction from a transactional system varies as per the requirement and the ETL tool in use. It is normally done by running scheduled jobs in off-business hours like running jobs at night or over the weekend.</p>
+<img src="/etl_testing/images/extracting_the_data.jpg" alt="Extracting Data" />
+<h3>Transforming the Data</h3>
+<p>It involves transforming the data into a suitable format that can be easily loaded into a DW system. Data transformation involves applying calculations, joins, and defining primary and foreign keys on the data. For example, if you want % of total revenue which is not in database, you will apply % formula in transformation and load the data. Similarly, if you have the first name and the last name of users in different columns, then you can apply a concatenate operation before loading the data. Some data doesn’t require any transformation; such data is known as <b>direct move</b> or <b>pass through data</b>.</p>
+<p>Data transformation also involves data correction and cleansing of data, removing incorrect data, incomplete data formation, and fixing data errors. It also includes data integrity and formatting incompatible data before loading it into a DW system.</p>
+<h3>Loading the Data into a DW System</h3>
+<p>It involves loading the data into a DW system for analytical reporting and information. The target system can be a simple delimited flat file or a data warehouse.</p>
+<h2>ETL Tool Function</h2>
+<p>A typical ETL tool-based data warehouse uses staging area, data integration, and access layers to perform its functions. It’s normally a 3-layer architecture.</p>
+<ul class="list">
+<li><p><b>Staging Layer</b> &minus; The staging layer or staging database is used to store the data extracted from different source data systems.</p></li>
+<li><p><b>Data Integration Layer</b> &minus; The integration layer transforms the data from the staging layer and moves the data to a database, where the data is arranged into hierarchical groups, often called <b>dimensions</b>, and into <b>facts</b> and <b>aggregate facts</b>. The combination of facts and dimensions tables in a DW system is called a <b>schema</b>.</p></li>
+<li><p><b>Access Layer</b> &minus; The access layer is used by end-users to retrieve the data for analytical reporting and information.</p></li>
+</ul>
+<p>The following illustration shows how the three layers interact with each other.</p>
+<img src="/etl_testing/images/etl_tool_function.jpg" alt="ETL Tool Functions" />
+<h1>ETL Testing - Tasks</h1>
+<p>ETL testing is done before data is moved into a production data warehouse system. It is sometimes also called as <b>table balancing</b> or <b>production reconciliation</b>. It is different from database testing in terms of its scope and the steps to be taken to complete this.</p>
+<p>The main objective of ETL testing is to identify and mitigate data defects and general errors that occur prior to processing of data for analytical reporting.</p>
+<h2>ETL Testing – Tasks to be Performed</h2>
+<p>Here is a list of the common tasks involved in ETL Testing &minus;</p>
+<ul class="list">
+<li>Understand the data to be used for reporting</li>
+<li>Review the Data Model</li>
+<li>Source to target mapping</li>
+<li>Data checks on source data</li>
+<li>Packages and schema validation</li>
+<li>Data verification in the target system</li>
+<li>Verification of data transformation calculations and aggregation rules</li>
+<li>Sample data comparison between the source and the target system</li>
+<li>Data integrity and quality checks in the target system</li>
+<li>Performance testing on data</li>
+</ul>
+<h1>ETL vs Database Testing</h1>
+<p>Both ETL testing and database testing involve data validation, but they are not the same. ETL testing is normally performed on data in a data warehouse system, whereas database testing is commonly performed on transactional systems where the data comes from different applications into the transactional database.</p>
+<p>Here, we have highlighted the major differences between ETL testing and Database testing.</p>
+<h2>ETL Testing</h2>
+<p>ETL testing involves the following operations &minus;</p>
+<ul class="list">
+<li><p>Validation of data movement from the source to the target system.</p></li>
+<li><p>Verification of data count in the source and the target system.</p></li>
+<li><p>Verifying data extraction, transformation as per requirement and expectation.</p></li>
+<li><p>Verifying if table relations &minus; joins and keys &minus; are preserved during the transformation.</p></li>
+</ul>
+<p>Common ETL testing tools include <b>QuerySurge, Informatica</b>, etc.</p>
+<h2>Database Testing</h2>
+<p>Database testing stresses more on data accuracy, correctness of data and valid values. It involves the following operations &minus;</p>
+<ul class="list">
+<li><p>Verifying if primary and foreign keys are maintained.</p></li>
+<li><p>Verifying if the columns in a table have valid data values.</p></li>
+<li><p>Verifying data accuracy in columns. <b>Example</b> &minus; Number of months column shouldn’t have a value greater than 12.</p></li>
+<li><p>Verifying missing data in columns. Check if there are null columns which actually should have a valid value.</p></li>
+</ul>
+<p>Common database testing tools include <b>Selenium, QTP</b>, etc.</p>
+<p>The following table captures the key features of Database and ETL testing and their comparison &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:25%;">Function</th>
+<th style="text-align:center;">Database Testing</th>
+<th style="text-align:center;">ETL Testing</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Primary Goal</td>
+<td>Data validation and Integration</td>
+<td>Data Extraction, Transform and Loading for BI Reporting</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Applicable System</td>
+<td style="vertical-align:middle;">Transactional system where business flow occurs</td>
+<td>System containing historical data and not in business flow environment</td>
+</tr>
+<tr>
+<td>Common tools</td>
+<td>QTP, Selenium, etc.</td>
+<td>QuerySurge, Informatica, etc.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Business Need</td>
+<td>It is used to integrate data from multiple applications, Severe impact.</td>
+<td>It is used for Analytical Reporting, information and forecasting.</td>
+</tr>
+<tr>
+<td>Modeling</td>
+<td>ER method</td>
+<td>Multidimensional</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Database Type</td>
+<td>It is normally used in OLTP systems</td>
+<td style="vertical-align:middle;">It is applied to OLAP systems</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Data Type</td>
+<td style="vertical-align:middle;">Normalized data with more joins</td>
+<td>De-normalized data with less joins, more indexes, and aggregations.</td>
+</tr>
+</table>
+<h1>ETL Testing – Categories</h1>
+<p>ETL Testing categorization is done based on objectives of testing and reporting. Testing categories vary as per the organization standards and it also depends on the client requirements. Generally, ETL testing is categorized based on the following points &minus;</p>
+<ul class="list">
+<li><p><b>Source to Target Count Testing</b> &minus; It involves matching of count of records in the source and the target systems.</p></li>
+<li><p><b>Source to Target Data Testing</b> &minus; It involves data validation between the source and the target systems. It also involves data integration and threshold value check and duplicate data check in the target system.</p></li>
+<li><p><b>Data Mapping or Transformation Testing</b> &minus; It confirms the mapping of objects in the source and the target systems. It also involves checking the functionality of data in the target system.</p></li>
+<li><p><b>End-User Testing</b> &minus; It involves generating reports for end-users to verify if the data in the reports are as per expectation. It involves finding deviation in reports and cross-check the data in the target system for report validation.</p></li>
+<li><p><b>Retesting</b> &minus; It involves fixing the bugs and defects in data in the target system and running the reports again for data validation.</p></li>
+<li><p><b>System Integration Testing</b> &minus; It involves testing all the individual systems, and later combine the results to find if there are any deviations. There are three approaches that can be used to perform this: top-down, bottom-up, and hybrid.</p></li>
+</ul>
+<p>Based on the structure of a Data Warehouse system, ETL testing (irrespective of the tool that is used) can be divided into the following categories &minus;</p>
+<h2>New DW System Testing</h2>
+<p>In this type of testing, there is a new DW system built and verified. Data inputs are taken from customers/end-users and also from different data sources and a new data warehouse is created. Later, the data is verified in the new system with help of ETL tools.</p>
+<h2>Migration Testing</h2>
+<p>In migration testing, customers have an existing Data Warehouse and ETL, but they look for a new ETL tool to improve the efficiency. It involves migration of data from the existing system using a new ETL tool.</p>
+<h2>Change Testing</h2>
+<p>In change testing, new data is added from different data sources to an existing system. Customers can also change the existing rules for ETL or a new rule can also be added.</p>
+<h2>Report Testing</h2>
+<p>Report testing involves creating reports for data validation. Reports are the final output of any DW system. Reports are tested based on their layout, data in the report, and calculated values.</p>
+<h1>ETL Testing – Challenges</h1>
+<p>ETL testing is different from database testing or any other conventional testing. One may have to face different types of challenges while performing ETL testing. Here we listed a few common challenges &minus;</p>
+<ul class="list">
+<li><p>Data loss during the ETL process.</p></li>
+<li><p>Incorrect, incomplete or duplicate data.</p></li>
+<li><p>DW system contains historical data, so the data volume is too large and extremely complex to perform ETL testing in the target system.</p></li>
+<li><p>ETL testers are normally not provided with access to see job schedules in the ETL tool. They hardly have access to BI Reporting tools to see the final layout of reports and data inside the reports.</p></li>
+<li><p>Tough to generate and build test cases, as data volume is too high and complex.</p></li>
+<li><p>ETL testers normally don’t have an idea of end-user report requirements and business flow of the information.</p></li>
+<li><p>ETL testing involves various complex SQL concepts for data validation in the target system.</p></li>
+<li><p>Sometimes the testers are not provided with the source-to-target mapping information.</p></li>
+<li><p>Unstable testing environment delay the development and testing of a process.</p></li>
+</ul>
+<h1>ETL – Tester's Roles</h1>
+<p>An ETL tester is primarily responsible for validating the data sources, extraction of data, applying transformation logic, and loading the data in the target tables.</p>
+<p>The key responsibilities of an ETL tester are listed below.</p>
+<h2>Verify the Tables in the Source System</h2>
+<p>It involves the following operations &minus;</p>
+<ul class="list">
+<li>Count check</li>
+<li>Reconcile records with the source data</li>
+<li>Data type check</li>
+<li>Ensure no spam data loaded</li>
+<li>Remove duplicate data</li>
+<li>Check all the keys are in place</li>
+</ul>
+<h2>Apply Transformation Logic</h2>
+<p>Transformation logic is applied before loading the data. It involves the following operations &minus;</p>
+<ul class="list">
+<li><p>Data threshold validation check, for example, age value shouldn’t be more than 100.</p></li>
+<li><p>Record count check, before and after the transformation logic applied.</p></li>
+<li><p>Data flow validation from the staging area to the intermediate tables.</p></li>
+<li><p>Surrogate key check.</p></li>
+</ul>
+<h2>Data Loading</h2>
+<p>Data is loaded from the staging area to the target system. It involves the following operations &minus;</p>
+<ul class="list">
+<li><p>Record count check from the intermediate table to the target system.</p></li>
+<li><p>Ensure the key field data is not missing or Null.</p></li>
+<li><p>Check if the aggregate values and calculated measures are loaded in the fact tables.</p></li>
+<li><p>Check modeling views based on the target tables.</p></li>
+<li><p>Check if CDC has been applied on the incremental load table.</p></li>
+<li><p>Data check in dimension table and history table check.</p></li>
+<li><p>Check the BI reports based on the loaded fact and dimension table and as per the expected results.</p></li>
+</ul>
+<h2>Testing the ETL Tools</h2>
+<p>ETL testers are required to test the tools and the test-cases as well. It involves the following operations &minus;</p>
+<ul class="list">
+<li>Test the ETL tool and its functions</li>
+<li>Test the ETL Data Warehouse system</li>
+<li>Create, design, and execute the test plans and test cases.</li>
+<li>Test the flat file data transfers.</li>
+</ul>
+<h1>ETL Testing – Techniques</h1>
+<p>It is important that you define the correct ETL Testing technique before starting the testing process. You should take an acceptance from all the stakeholders and ensure that a correct technique is selected to perform ETL testing. This technique should be well known to the testing team and they should be aware of the steps involved in the testing process.</p>
+<p>There are various types of testing techniques that can be used. In this chapter, we will discuss the testing techniques in brief.</p>
+<h2>Production Validation Testing</h2>
+<p>To perform Analytical Reporting and Analysis, the data in your production should be correct. This testing is done on the data that is moved to the production system. It involves data validation in the production system and comparing it the with the source data.</p>
+<h2>Source-to-target Count Testing</h2>
+<p>This type of testing is done when the tester has less time to perform the testing operation. It involves checking the count of data in the source and the target systems. It doesn’t involve checking the values of data in the target system. It also doesn’t involve if the data is in ascending or descending order after mapping of data.</p>
+<h2>Source-to-target Data Testing</h2>
+<p>In this type of testing, a tester validates data values from the source to the target system. It checks the data values in the source system and the corresponding values in the target system after transformation. This type of testing is time-consuming and is normally performed in financial and banking projects.</p>
+<h2>Data Integration / Threshold Value Validation Testing</h2>
+<p>In this type of testing, a tester validates the range of data. All the threshold values in the target system are checked if they are as per the expected result. It also involves integration of data in the target system from multiple source systems after transformation and loading.</p>
+<p><b>Example</b> &minus; Age attribute shouldn’t have a value greater than 100. In the date column DD/MM/YY, the month field shouldn’t have a value greater than 12.</p>
+<h2>Application Migration Testing</h2>
+<p>Application migration testing is normally performed automatically when you move from an old application to a new application system. This testing saves a lot of time. It checks if the data extracted from an old application is same as per the data in the new application system.</p>
+<h2>Data Check and Constraint Testing</h2>
+<p>It includes performing various checks such as data type check, data length check, and index check. Here a Test Engineer performs the following scenarios &minus; Primary Key, Foreign Key, NOT NULL, NULL, and UNIQUE.</p>
+<h2>Duplicate Data Check Testing</h2>
+<p>This testing involves checking for duplicate data in the target system. When there is a huge amount of data in the target system, it is possible that there is duplicate data in the production system that may result in incorrect data in Analytical Reports.</p>
+<p>Duplicate values can be checked with SQL statement like &minus;</p>
+<pre class="result notranslate">
+Select Cust_Id, Cust_NAME, Quantity, COUNT (*) 
+FROM Customer
+GROUP BY Cust_Id, Cust_NAME, Quantity HAVING COUNT (*) &gt;1;
+</pre>
+<p>Duplicate data appears in the target system due to the following reasons &minus;</p>
+<ul class="list">
+<li>If no primary key is defined, then duplicate values may come.</li>
+<li>Due to incorrect mapping or environmental issues.</li>
+<li>Manual errors while transferring data from the source to the target system.</li>
+</ul>
+<h2>Data Transformation Testing</h2>
+<p>Data transformation testing is not performed by running a single SQL statement. It is time-consuming and involves running multiple SQL queries for each row to verify the transformation rules. The tester needs to run SQL queries for each row and then compare the output with the target data.</p>
+<h2>Data Quality Testing</h2>
+<p>Data quality testing involves performing number check, date check, null check, precision check, etc. A tester performs <b>Syntax Test</b> to report invalid characters, incorrect upper/lower case order, etc. and <b>Reference Tests</b> to check if the data is according to the data model.</p>
+<h2>Incremental Testing</h2>
+<p>Incremental testing is performed to verify if Insert and Update statements are executed as per the expected result. This testing is performed step-by-step with old and new data.</p>
+<h2>Regression Testing</h2>
+<p>When we make changes to data transformation and aggregation rules to add new functionality which also helps the tester to find new errors, it is called Regression Testing. The bugs in data that that comes in regression testing are called Regression.</p>
+<h2>Retesting</h2>
+<p>When you run the tests after fixing the codes, it is called retesting.</p>
+<h2>System Integration Testing</h2>
+<p>System integration testing involves testing the components of a system individually and later integrating the modules. There are three ways a system integration can be done: top-down, bottom-up, and hybrid.</p>
+<h2>Navigation Testing</h2>
+<p>Navigation testing is also known as testing the front-end of the system. It involves enduser  point of view testing  by checking all the aspects of the front-end report &minus; includes data in various fields, calculation and aggregates, etc.</p>
+<h1>ETL Testing – Process</h1>
+<p>ETL testing covers all the steps involved in an ETL lifecycle. It starts with understanding the business requirements till the generation of a summary report.</p>
+<p>The common steps under ETL Testing lifecycle are listed below &minus;</p>
+<ul class="list">
+<li><p>Understanding the business requirement.</p></li>
+<li><p>Validation of the business requirement.</p></li>
+<li><p>Test Estimation is used to provide the estimated time to run test-cases and to complete the summary report.</p></li>
+<li><p>Test Planning involves finding the Testing technique based on the inputs as per business requirement.</p></li>
+<li><p>Creating test scenarios and test cases.</p></li>
+<li><p>Once the test-cases are ready and approved, the next step is to perform pre-execution check.</p></li>
+<li><p>Execute all the test-cases.</p></li>
+<li><p>The last step is to generate a complete summary report and file a closure process.</p></li>
+</ul>
+<h1>ETL Testing – Scenarios</h1>
+<p>ETL Test Scenarios are used to validate an ETL Testing Process. The following table explains some of the most common scenarios and test-cases that are used by ETL testers.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:22%;">Test Scenarios</th>
+<th style="text-align:center">Test-Cases</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Structure Validation</p></td>
+<td><p>It involves validating the source and the target table structure as per the mapping document.</p>
+<p>Data type should be validated in the source and the target systems.</p>
+<p>The length of data types in the source and the target system should be same.</p>
+<p>Data field types and their format should be same in the source and the target system.</p>
+<p>Validating the column names in the target system.</p></td>
+</tr>
+<tr>
+<td><p>Validating Mapping document</p></td>
+<td><p>It involves validating the mapping document to ensure all the information has been provided. The mapping document should have change log, maintain data types, length, transformation rules, etc.</p></td>
+</tr>
+<tr>
+<td><p>Validate Constraints</p></td>
+<td><p>It involves validating the constraints and ensuring that they are applied on the expected tables.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Data Consistency check</p></td>
+<td><p>It involves checking the misuse of integrity constraints like Foreign Key.</p>
+<p>The length and data type of an attribute may vary in different tables, though their definition remains same at the semantic layer.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Data Completeness Validation</p></td>
+<td><p>It involves checking if all the data is loaded to the target system from the source system.</p>
+<p>Counting the number of records in the source and the target systems.</p>
+<p>Boundary value analysis.</p>
+<p>Validating the unique values of primary keys.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Data Correctness Validation</p></td>
+<td><p>It involves validating the values of data in the target system.</p> 
+<p>Misspelled or inaccurate data is found in table.</p> 
+<p>Null, Not Unique data is stored when you disable integrity constraint at the time of import.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Data Transform validation</p></td>
+<td><p>It involves creating a spreadsheet of scenarios for input values and expected results and then validating with end-users.</p> 
+<p>Validating parent-child relationship in the data by creating scenarios.</p> 
+<p>Using data profiling to compare the range of values in each field.</p> 
+<p>Validating if the data types in the warehouse are same as mentioned in the data model.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Data Quality Validation</p></td>
+<td><p>It involves performing number check, date check, precision check, data check, Null check, etc.</p> 
+<p><b>Example</b> &minus; Date format should be same for all the values.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Null Validation</p></td>
+<td><p>It involves checking the Null values where Not Null is mentioned for that field.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Duplicate Validation</p></td>
+<td><p>It involves validating duplicate values in the target system when data is coming from multiple columns from the source system.</p> 
+<p>Validating primary keys and other columns if there is any duplicate values as per the business requirement.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Date Validation check</p></td>
+<td><p>Validating date field for various actions performed in ETL process.</p>
+<p>Common test-cases to perform Date validation &minus;</p>
+<ul class="list">
+<li><p>From_Date should not greater than To_Date</p></li>
+<li><p>Format of date values should be proper.</p></li>
+<li><p>Date values should not have any junk values or null values</p></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Full Data Validation Minus Query</p></td>
+<td><p>It involves validating full data set in the source and the target tables by using minus query.</p>
+<ul class="list">
+<li><p>You need to perform both <b>source minus target</b> and <b>target minus source</b>.</p></li>
+<li><p>If the minus query returns a value, that should be considered as mismatching rows.</p></li>
+<li><p>You need to match the rows in source and target using the <b>Intersect</b> statement.</p></li>
+<li><p>The count returned by Intersect should match with the individual counts of source and target tables.</p></li>
+<li><p>If the minus query returns no rows and the count intersect is less than the source count or the target table count, then the table holds duplicate rows.</p></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Other Test Scenarios</p></td>
+<td><p>Other Test scenarios can be to verify that the extraction process did not extract duplicate data from the source system.</p> 
+<p>The testing team will maintain a list of SQL statements that are run to validate that no duplicate data have been extracted from the source systems.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;"><p>Data Cleaning</p></td>
+<td><p>Unwanted data should be removed before loading the data to the staging area.</p></td>
+</tr>
+</table>
+<h1>ETL Testing – Performance</h1>
+<p>ETL performance tuning is used to ensure if an ETL system can handle an expected load of multiple users and transactions. Performance tuning typically involves server-side workload on the ETL system. It is used to test the server response in multiuser environment and to find bottlenecks. These can be found in source and target systems, mapping of systems, configuration like session management properties, etc.</p>
+<img src="/etl_testing/images/etl_testing_performance.jpg" alt="ETL Performance" />
+<h2>How to Perform ETL Testing Performance Tuning?</h2>
+<p>Follow the steps given below to perform ETL testing performance tuning &minus;</p>
+<ul class="list">
+<li><p><b>Step 1</b> &minus; Find the load that is being transformed in production.</p></li>
+<li><p><b>Step 2</b> &minus; Create new data of that same load or move from Production data to your local performance server.</p></li>
+<li><p><b>Step 3</b> &minus; Disable the ETL until you generate the load required.</p></li>
+<li><p><b>Step 4</b> &minus; Take the count of the needed data from the tables of the database.</p></li>
+<li><p><b>Step 5</b> &minus; Note down the last run of ETL and enable the ETL, so that it will get enough stress to transform the entire load created. Run it</p></li>
+<li><p><b>Step 6</b> &minus; After the ETL completes its run, take the count of the data created.</p></li>
+</ul>
+<h2>Key Performance Indicators</h2>
+<ul class="list">
+<li>Find out the total time it took to transform the load.</li>
+<li>Find out whether performance time has improved or dropped.</li>
+<li>Check that the entire expected load got extracted and transferred.</li>
+</ul>
+<h1>ETL Testing – Scalability</h1>
+<p>The goal of ETL testing is to achieve credible data. Data credibility can be attained by making the testing cycle more effective.</p>
+<p>A comprehensive test strategy is the setting up of an effective test cycle. The testing strategy should cover test planning for each stage of ETL process, every time the data moves and state the responsibilities of each stakeholder, e.g., business analysts, infrastructure team, QA team, DBA’s, Developers and Business Users.</p>
+<p>To ensure testing readiness from all aspects, the key areas a test strategy should focus on are &minus;</p>
+<ul class="list">
+<li><p>Scope of testing &minus; Describe testing techniques and types to be used.</p></li>
+<li><p>Setting up the test environment.</p></li>
+<li><p>Test data availability &minus; It is recommended to have production like data covering all/critical business requirement.</p></li>
+<li><p>Data quality and performance acceptance criteria.</p></li>
+</ul>
+<h1>ETL Testing – Data Accuracy</h1>
+<p>In ETL testing, data accuracy is used to ensure if data is accurately loaded to the target system as per the expectation. The key steps in performing data accuracy are as follows &minus;</p>
+<h2>Value Comparison</h2>
+<p>Value comparison  involves comparing the data in source and target system with minimum or no transformation. It can be done using various ETL Testing tools, for example, Source Qualifier Transformation in Informatica.</p>
+<p>Some expression transformations can also be performed in data accuracy testing. Various set operators can be used in SQL statements to check data accuracy in the source and the target systems. Common operators are Minus and Intersect operators.  The results of these operators can be considered as deviation in value in the target and the source system.</p>
+<h2>Check Critical Data Columns</h2>
+<p>Critical data columns can be checked by comparing distinct values in the source and the target systems. Here is a sample query that can be used to check critical data columns &minus;</p>
+<pre class="result notranslate">
+SELECT cust_name, Order_Id, city, count(*) FROM customer 
+GROUP BY cust_name, Order_Id, city;
+</pre>
+<h1>ETL Testing – Metadata</h1>
+<p>Checking the metadata involves validating the source and the target table structure w.r.t. the mapping document. The mapping document has details of the source and target columns, data transformations rules and the data types, all the fields that define the structure of tables in the source and the target systems.</p>
+<h2>Data Length Check</h2>
+<p>The length of target column data type should be equal to or greater than the source column data type. Let us take an example. Suppose you have the first names and the last names in the source table and the data length for each is defined as 50 characters. Then, the target data length for full name column in the target system should be a minimum of 100 or more.</p>
+<h2>Data Type Check</h2>
+<p>Data type checking involves verifying the source and the target data type and ensuring that they are same. There is a possibility that the target data type is different from the source data after a transformation. Hence there is a need to check the transformation rules as well.</p>
+<h2>Constraint / Index Check</h2>
+<p>Constraint checking involves verifying the index values and constraints as per the design specification document. All the columns that cannot have Null values should have Not Null constraint. Primary keys columns are indexed as per the design document.</p>
+<h1>ETL Testing – Data Transformations</h1>
+<p>Performing data transformations is a bit complex, as it cannot be achieved by writing a single SQL query and then comparing the output with the target. For ETL Testing Data Transformation, you may have to write multiple SQL queries for each row to verify the transformation rules.</p>
+<p>To start with, make sure the source data is sufficient to test all the transformation rules. The key to perform a successful ETL testing for data transformations is to pick the correct and sufficient sample data from the source system to apply the transformation rules.</p>
+<p>The key steps for ETL Testing Data Transformation are listed below &minus;</p>
+<ul class="list">
+<li><p>The first step is to create a list of scenarios of input data and the expected results and validate these with the business customer. This is a good approach for requirements gathering during design and could also be used as a part of testing.</p></li>
+<li><p>The next step is to create the test data that contains all the scenarios. Utilize an ETL developer to automate the entire process of populating the datasets with the scenario spreadsheet to permit versatility and mobility for the reason that the scenarios are likely to change.</p></li>
+<li><p>Next, utilize data profiling results to compare the range and submission of values in each field between the target and source data.</p></li>
+<li><p>Validate the accurate processing of ETL generated fields, e.g., surrogate keys.</p></li>
+<li><p>Validating the data types within the warehouse are the same as was specified in the data model or design.</p></li>
+<li><p>Create data scenarios between tables that test referential integrity.</p></li>
+<li><p>Validate the parent-to-child relationships in the data.</p></li>
+<li><p>The final step is to perform <b>lookup transformation</b>. Your lookup query should be straight without any aggregation and expected to return only one value per the source table. You can directly join the lookup table in the source qualifier as in the previous test. If this is not the case, write a query joining the lookup table with the main table in the source and compare the data in the corresponding columns in the target.</p></li>
+</ul>
+<h1>ETL Testing – Data Quality</h1>
+<p>Checking data quality during ETL testing involves performing quality checks on data that is loaded in the target system. It includes the following tests &minus;</p>
+<h2>Number check</h2>
+<p>The Number format should be same across the target system. For example, in the source system, the format of numbering the columns is <b>x.30</b>, but if the target is only <b>30</b>, then it has to load not prefixing <b>x.</b> in target column number.</p>
+<h2>Date Check</h2>
+<p>The Date format should be consistent in both the source and the target systems. For example, it should be same across all the records. The Standard format is: yyyy-mm-dd.</p>
+<h2>Precision Check</h2>
+<p>Precision value should display as expected in the target table. For example, in the source table, the value is 15.2323422, but in the target table, it should display as 15.23 or round of 15.</p>
+<h2>Data Check</h2>
+<p>It involves checking the data as per the business requirement. The records that don’t meet certain criteria should be filtered out.</p>
+<p><b>Example</b> &minus; Only those records whose date_id &gt;=2015 and Account_Id != ‘001’ should load in the target table.</p>
+<h2>Null Check</h2>
+<p>Some columns should have Null as per the requirement and possible values for that field.</p>
+<p><b>Example</b> &minus; Termination Date column should display Null unless and until its Active status Column is “T” or “Deceased”.</p>
+<h2>Other Checks</h2>
+<p>Common checks like From_Date should not greater than To_Date can be done.</p>
+<h1>ETL Testing – Data Completeness</h1>
+<p>Checking Data Completeness is done to verify that the data in the target system is as per expectation after loading.</p>
+<p>The common tests that can be performed for this are as follows &minus;</p>
+<ul class="list">
+<li><p>Checking Aggregate functions (sum, max, min, count),</p></li>
+<li><p>Checking and validating the counts and the actual data between the source and the target for columns without transformations or with simple transformations.</p></li>
+</ul>
+<h2>Count Validation</h2>
+<p>Compare the count of number of records in the source and the target tables. It can be done by writing the following queries &minus;</p>
+<pre class="result notranslate">
+SELECT count (1) FROM employee; 
+SELECT count (1) FROM emp_dim; 
+</pre>
+<h2>Data Profile Validation</h2>
+<p>It involves checking the aggregate functions such as count, sum, and max in the source and target tables (fact or dimension).</p>
+<h2>Column Data Profile Validation</h2>
+<p>It involves comparing the distinct values and the count of rows for each distinct value.</p>
+<pre class="result notranslate">
+SELECT city, count(*) FROM employee GROUP BY city; 
+SELECT city_id, count(*) FROM emp_dim GROUP BY city_id;
+</pre>
+<h2>Duplicate Data Validation</h2>
+<p>It involves validating the primary key and the unique key in a column or in combination of columns that should be unique as per the business requirements. You can use the following query to perform duplicate data validation &minus;</p>
+<pre class="result notranslate">
+SELECT first_name, last_name, date_of_joining, count (1) FROM employee
+GROUP BY first_name, last_name HAVING count(1)&gt;1;
+</pre>
+<h1>ETL Testing – Backup Recovery</h1>
+<p>Backup recovery for a system is planned to ensure that system is restored as soon as possible from a failure and operations are resumed as early as possible without losing any important data.</p>
+<p>ETL Backup recovery testing is used to ensure that the Data Warehouse system recovers successfully from hardware, software, or from a network failure with losing any data.</p>
+<p>A proper backup plan must be prepared to ensure maximum system availability. Backup systems should be able to restore with ease and should take over the failed system without any data loss.</p>
+<p>ETL Testing Backup recovery involves exposing the application or the DW system to extreme conditions for any hardware component, software crash, etc. The next step is to ensure that recovery process is initiated, system verification is done, and data recovery is achieved.</p>
+<h1>ETL Testing – Automation</h1>
+<p>ETL testing is mostly done using SQL scripts and gathering the data in spreadsheets. This approach to perform ETL testing is very slow and time-consuming, error-prone, and is performed on sample data.</p>
+<h2>Technical Challenge in Manual ETL Testing</h2>
+<p>Your ETL test team writes SQL queries to test data in a warehouse system and they need to execute them manually using a SQL editor and then put the data into an Excel spreadsheet and compare them manually. This process is time-consuming, resourceintensive, and inefficient.</p>
+<p>There are various tools available in the market to automate this process. The most common ETL Testing tools are QuerySurge and Informatica Data Validation.</p>
+<h2>QuerySurge</h2>
+<p>QuerySurge is a data testing solution designed for testing Big Data, Data Warehouses, and the ETL process. It can automate the entire process for you and fit nicely into your DevOps strategy.</p>
+<p>The key features of QuerySurge are as follows &minus;</p>
+<ul class="list">
+<li><p>It has Query Wizards to create test QueryPairs fast and easily without the user having to write any SQL.</p></li>
+<li><p>It has a Design Library with reusable Query Snippets. You can create custom QueryPairs as well.</p></li>
+<li><p>It can compare data from source files and data stores to the target Data Warehouse or Big Data store.</p></li>
+<li><p>It can compare millions of rows and columns of data in minutes.</p></li>
+<li><p>It allows the user to schedule tests to run (1) immediately, (2) any date/time, or (3) automatically after an event ends.</p></li>
+<li><p>It can produce informative reports, view updates, and auto-email results to your team.</p></li>
+</ul>
+<p>To automate the entire process, your ETL tool should start QuerySurge through command line API after the ETL software completes its load process.</p>
+<p>QuerySurge will run automatically and unattended, executing all tests and then emailing everyone on the team with results.</p>
+<p>Just like QuerySurge, Informatica Data Validation provides an ETL testing tool that helps you to accelerate and automate the ETL testing process in the development and production environment. It allows you to deliver complete, repeatable, and auditable test coverage in less time. It requires no programming skills!</p>
+<h1>ETL Testing - Best Practices</h1>
+<p>To test a data warehouse system or a BI application, one needs to have a data-centric approach. ETL Testing best practices help to minimize the cost and time to perform the testing. It improves the quality of data to be loaded to the target system which generates high quality dashboards and reports for end-users.</p>
+<p>We have listed here a few best practices that can be followed for ETL Testing &minus;</p>
+<h2>Analyze the Data</h2>
+<p>It is extremely important to analyze the data to understand requirements in order to set up a correct data model. Spending time to understand the requirements and having a correct data model for the target system can reduce the ETL challenges. It is also important to study the source systems, data quality, and build correct data validation rules for ETL modules. An ETL strategy should be formulated based on the data structure of the source and the target systems.</p>
+<h2>Fix Bad Data in the Source System</h2>
+<p>End-users are normally aware of data issues, but they have no idea on how to fix them. It is important to find these errors and correct them before they reach the ETL system. A common way to resolve this is at the ETL execution time, but the best practice is to find the errors in the source system and take steps to rectify them at the source system level.</p>
+<h2>Find a Compatible ETL Tool</h2>
+<p>One of the common ETL best practices is to select a tool that is most compatible with the source and the target systems. The ETL tool’s capability to generate SQL scripts for the source and the target systems can reduce the processing time and resources. It allows one to process transformation anywhere within the environment that is most appropriate.</p>
+<h2>Monitor ETL Jobs</h2>
+<p>Another best practice during ETL implementation is scheduling, auditing, and monitoring of ETL jobs to ensure that the loads are performed as per expectation.</p>
+<h2>Integrate Incremental Data</h2>
+<p>Sometimes, data warehouse tables are larger in size and it is not possible to refresh them during every ETL cycle. Incremental loads ensure that only records changed since the last update are brought into the ETL process and it puts a huge impact on the scalability and the time taken to refresh the system.</p>
+<p>Normally the source systems don’t have timestamps or a primary key to identify the changes easily. Such problems can be very costly, if identified at the later stages of the project. One of the ETL best practices is to cover such aspects in the initial source system study. This knowledge helps the ETL team to identify changed data capture problems and determine the most appropriate strategy.</p>
+<h2>Scalability</h2>
+<p>It is best practice to make sure the offered ETL solution is scalable. At the time of implementation, one needs to ensure that ETL solution is scalable with the business requirement and its potential growth in future.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/etl_testing/etl_testing_interview_questions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/etl_testing/etl_testing_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

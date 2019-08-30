@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Techniques - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="JavaScript Techniques - To create Parallax effect, the most popular method is using JavaScript. From this chapter onwards we will discuss the concepts of JavaScript and some of the lib"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_javascript_techniques.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#08929d;
+}
+a.demo {
+    background:#08929d;
+}
+li.heading {
+    background:#08929d;
+}
+.course-box{background:#08929d}
+.home-intro-sub p{color:#08929d}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/parallax_scrolling_in_web_design/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/parallax_scrolling_in_web_design/images/parallax-scrolling-in-web-design-mini-logo.jpg" alt="Parallax Scrolling in Web Design Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Parallax Scrolling in Web Design</li>
+<li><a href="/parallax_scrolling_in_web_design/index.htm">Home</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_background_and_introduction.htm">Background and Introduction</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_concepts.htm">Concepts</a></li>
+<li><a href="/parallax_scrolling_in_web_design/web_design_and_parallax_scroll.htm">Web Design and Parallax Scroll</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_css_techniques.htm">CSS Techniques</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_javascript_techniques.htm">JavaScript Techniques</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_jquery_techniques.htm">jQuery Techniques</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_bootstrap_technique.htm">Bootstrap Techniques</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_conclusion.htm">Conclusion</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Useful Resources</li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_quick_guide.htm" >Quick Guide</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_useful_resources.htm" >Useful Resources</a></li>
+<li><a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_discussion.htm">Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>JavaScript Techniques</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_css_techniques.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_jquery_techniques.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>To create Parallax effect, the most popular method is using JavaScript. From this chapter onwards we will discuss the concepts of JavaScript and some of the libraries used to achieve Parallax scrolling.</p>
+<p>Utilizing pure JavaScript makes sense to keep the website performance optimal. There are many other advantages of using libraries from an aspect of performance. However, to understand the code organization better, we will start with pure JavaScript parallax implementation. Fun fact, sometimes pure JavaScript is also called <b>vanilla</b> JavaScript.</p>
+<h2>Parallax Scrolling using Pure JavaScript</h2>
+<p>First, create main HTML file with code shown below. The HTML page will just consist of four heading text.</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;  
+   &lt;head&gt;  
+      &lt;link rel = "stylesheet" href = "styles.css"&gt;  
+      &lt;script src = "myscripts.js"&gt;&lt;/script&gt;  
+   &lt;/head&gt;  
+   
+   &lt;body&gt;  
+      &lt;section class = "parallax"&gt;  
+         &lt;h1&gt;The First Scroll&lt;/h1&gt;
+      &lt;/section&gt;       
+      
+      &lt;section class = "parallax"&gt;  
+         &lt;h1&gt;The Second One&lt;/h1&gt;
+      &lt;/section&gt;       
+      
+      &lt;section class = "parallax"&gt;  
+         &lt;h1&gt;GoingOn !!&lt;/h1&gt;
+      &lt;/section&gt;       
+      
+      &lt;section class = "parallax"&gt;  
+         &lt;h1&gt;And we've reached the bottom!!&lt;/h1&gt;
+      &lt;/section&gt;  
+   &lt;/body&gt;
+   
+&lt;/html&gt;  
+</pre>
+<p>Observe that in line number 4, for this example, we are using <b>myscripts.js</b> file which will be stored in the same folder as the HTML file and CSS file.</p>
+<p>Now, let us prepare our CSS file as shown below.</p>
+<pre class="prettyprint notranslate">
+header {  
+   height: 4em;  
+   background: #845;  
+}  
+
+.parallax {  
+   background-repeat: no-repeat;  
+   background-size: cover;  
+}
+  
+.parallax h1 {  
+   text-align: center;  
+   margin: 0;  
+   font-size: 2.5em;  
+   letter-spacing: .2em;  
+   color: red;    
+   padding: 10rem 0;  
+   mix-blend-mode: exclusion;  
+} 
+ 
+.parallax:nth-of-type(1) {  
+   background: url(https://pixabay.com/get/ea35b10621f0083ed1534705fb0938c9bd22ffd41cb2114296f0c679a4/background-3009949_1920.jpg);  
+}  
+
+.parallax:nth-of-type(1) h1 {  
+   padding: 15rem 0;  
+}  
+
+.parallax:nth-of-type(2) {  
+   background: url(https://pixabay.com/get/ea35b10621f0083ed1534705fb0938c9bd22ffd41cb2114296f0c679a4/background-3009949_1920.jpg);  
+} 
+ 
+.parallax:nth-of-type(2) h1 {  
+   padding: 12rem 0;  
+} 
+ 
+.parallax:nth-of-type(3) {  
+   background: url(https://pixabay.com/get/ea35b10621f0083ed1534705fb0938c9bd22ffd41cb2114296f0c679a4/background-3009949_1920.jpg);  
+}  
+
+.parallax:nth-of-type(4) {  
+   background: url(https://pixabay.com/get/ea35b10621f0083ed1534705fb0938c9bd22ffd41cb2114296f0c679a4/background-3009949_1920.jpg);  
+}  
+</pre>
+<p>Now comes the JavaScript part, create a file in notepad and save it as <i>myscripts.js</i>.</p>
+<pre class="prettyprint notranslate">
+function $$(selector, context) {  
+   context = context || document;  
+   var elements = context.querySelectorAll(selector);  
+   return Array.prototype.slice.call(elements);  
+}   
+window.addEventListener("scroll", function() {  
+   var scrolledHeight= window.pageYOffset;  
+   
+   $$(".parallax").forEach(function(el,index,array) {   
+      var limit = el.offsetTop+ el.offsetHeight;  
+      
+      if(scrolledHeight &gt; el.offsetTop && scrolledHeight &l;= limit) {  
+         el.style.backgroundPositionY=  (scrolledHeight - el.offsetTop) /1.5+ "px";  
+      } else {  
+         el.style.backgroundPositionY=  "0";  
+      }  
+   });  
+});  
+</pre>
+<h3>Analysis of Code</h3>
+<p>Let us analyze the JavaScript code.</p>
+<p>Code from <b>line number 1 to 4</b> represents the helper function.</p>
+<p>In line 6, we select our parallax element and add <b>scroll</b> event to the window. To determine how much area is scrolled, we are using <b>scrolledHeight</b> property. As the screen scrolls down, <b>backgroundPositionY</b> is updated for the parallax element.</p>
+<p>To slow down the parallax effect, we divided by 1.5, this number can be changed to any number you want.</p>
+<p>Now, you will be able to see the page scrolling down as provided in below screenshot.</p>
+<img src="/parallax_scrolling_in_web_design/images/page_scrolling_down.jpg" alt="Page Scrolling Down" />
+<h2>Using ScrollMagic JavaScript Library</h2>
+<p>As discussed in the previous section, while we can use pure JavaScript to create parallax effect, there are some powerful JavaScript libraries which will enhance the user experience. ScrollMagic is one such library for creating parallax scroll interactions.</p>
+<p>Let us discuss more about this with the help of an example as given below &minus;</p>
+<p><b>Note</b> &minus; In this example, to keep it simple, we will have the CSS stored in HTML file. Also, the JavaScript code will be present in the same document. In a nutshell, we will create only one HTML file and it will have ScrollMagic libraries referenced along with the required CSS.</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;  
+   &lt;head&gt;  
+      &lt;script src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"&gt;&lt;/script&gt;  
+      &lt;script src = "http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.js"&gt;&lt;/script&gt;
+      &lt;script src = "http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"&gt;&lt;/script&gt;  
+      &lt;script src = "http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.js"&gt;&lt;/script&gt;  
+   &lt;/head&gt;  
+   
+   &lt;body&gt;   
+      &lt;style type = "text/css"&gt;  
+         .parallaxParent {  
+            height: 100vh;  
+            overflow: hidden;  
+         }  
+         .parallaxParent &gt; * {  
+            height: 200%;  
+            position: relative;  
+            top: -100%;  
+         }  
+      &lt;/style&gt;  
+      &lt;div class = "spacing0"&gt;&lt;/div&gt;  
+      
+      &lt;div id = "parallax1" class = "parallaxParent"&gt;  
+         &lt;div style = "background-image: url(https://cdn.pixabay.com/photo/2015/05/16/19/13/stones-770264_640.jpg);"&gt;&lt;/div&gt;  
+      &lt;/div&gt;  
+      
+      &lt;div class = "spacing1"&gt;  
+         &lt;div style = "background-color:cyan"&gt;  
+         &lt;p&gt;These are bricks&lt;/p&gt;  
+         &lt;/div&gt;  
+      &lt;/div&gt;
+      
+      &lt;div class = "spacing0"&gt;&lt;/div&gt;  
+      &lt;div id="parallax2" class = "parallaxParent"&gt;  
+         &lt;div style = "background-image: url(https://cdn.pixabay.com/photo/2015/05/16/19/13/stones-770264_640.jpg);"&gt;&lt;/div&gt;  
+      &lt;/div&gt;  
+      
+      &lt;div class = "spacing1"&gt;  
+         &lt;div style = "background-color:yellow"&gt;  
+            &lt;p&gt;Some More Bricks&lt;/p&gt;  
+         &lt;/div&gt;  
+      &lt;/div&gt;  
+      
+      &lt;div class = "spacing0"&gt;&lt;/div&gt;  
+      &lt;div id = "parallax3" class = "parallaxParent"&gt;  
+         &lt;div style = "background-image: url(https://cdn.pixabay.com/photo/2015/05/16/19/13/stones-770264_640.jpg);"&gt;&lt;/div&gt;  
+      &lt;/div&gt;  
+      &lt;div class = "spacing2"&gt;&lt;/div&gt;  
+      
+      &lt;script&gt;  
+         // init controller  
+         var controller = new ScrollMagic.Controller({
+            globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});  
+
+         // build scenes  
+         new ScrollMagic.Scene({triggerElement: "#parallax1"})  
+            .setTween("#parallax1 &gt; div", {y: "80%", ease: Linear.easeNone})  
+            .addIndicators()  
+            .addTo(controller);  
+
+         new ScrollMagic.Scene({triggerElement: "#parallax2"})  
+            .setTween("#parallax2 &gt; div", {y: "80%", ease: Linear.easeNone})  
+            .addIndicators()  
+            .addTo(controller);  
+
+         new ScrollMagic.Scene({triggerElement: "#parallax3"})  
+            .setTween("#parallax3 &gt; div", {y: "80%", ease: Linear.easeNone})  
+            .addIndicators()  
+            .addTo(controller);  
+      &lt;/script&gt;  
+   &lt;/body&gt;
+   
+&lt;/html&gt; 
+</pre> 
+<p>As shown in the above code, we have required JavaScript libraries references from <b>line 3 to 6</b>. The CSS code is specified from line 9 to 19.</p>
+<h2>Content Delivery Network</h2>
+<p>Script references from line 3 to 6 point to ScrollMagic Content Delivery Network (CDN) URLs. Using a CDN makes sense in modern website development, as you get to load the required libraries without slowing down your website.</p>
+<p>If there are customizations required in the libraries, one would have to host the libraries on their respective server to utilize these effects. If you are using basic functionalities from a library, it is efficient to use the CDN URL.</p>
+<p>The HTML code above shows an image separated by 2 divisions. First division appears with a heading – <b>These are bricks</b> and second division appears with – <b>Some More Bricks</b>.</p> 
+<p>Notice that in the CSS code from line 9 to 19, we are only specifying the position and style for the respective parallax div.</p>
+<p>The work of creating this soft parallax <b>scene</b> is done by ScrollMagic library. If you refer to script code from line 43 to 62, ScrollMagic <b>controller</b> is invoked and a <b>scene</b> is created.</p>
+<p>The scenes guide the DOM to create parallax effect when 80% of the screen is occupied. JavaScript is used to understand the scroll trigger. As a result, what you get is a floating experience on this page.</p>
+<img src="/parallax_scrolling_in_web_design/images/bricks_wall.jpg" alt="Bricks Wall" />
+<p><b>Note</b> &minus; Considering above image as a GIF image, you will not get to observe the smooth effect of the text divisions.</p>
+<h2>Trigger Animations</h2>
+<p>The possibilities of creating varied user experience are endless with ScrollMagic Library. Observe the code snippets given below to trigger animations on scroll.</p>
+<p>Note that for this you need two files *minus; one HTML file and one CSS file.</p>
+<p>Create HTML file with the code shown below &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;  
+   &lt;head&gt;  
+      &lt;link rel = "stylesheet" href = "style.css"&gt;  
+   
+      &lt;script src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"&gt;&lt;/script&gt;  
+      &lt;script src = "http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.js"&gt;&lt;/script&gt;  
+      &lt;script src = "http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"&gt;&lt;/script&gt;  
+      &lt;script src = "http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.js"&gt;&lt;/script&gt;  
+   &lt;/head&gt;  
+   
+   &lt;body&gt;   
+      &lt;div class = "spacing0"&gt;&lt;/div&gt;  
+      &lt;div id = "parallax1" class = "parallaxParent"&gt;  
+         &lt;div style = "background-image: url(https://cdn.pixabay.com/photo/2015/05/16/19/13/stones-770264_640.jpg);"&gt;&lt;/div&gt;  
+      &lt;/div&gt;  
+      
+      &lt;div style = "height:450px;"&gt;&lt;/div&gt;  
+      &lt;div id = "square" class = "square"&gt;This is it!&lt;/div&gt;  
+      &lt;div style = "height:450px;"&gt;&lt;/div&gt;  
+      
+      &lt;script&gt;  
+         var controller = new ScrollMagic.Controller();  
+         var scene = new ScrollMagic.Scene({triggerElement: "#parallax1"})  
+            .setTween("#parallax1 &gt; div", {y: "40%", ease: Linear.easeNone})  
+            .addTo(controller);   
+         
+         var scene = new ScrollMagic.Scene({triggerElement: '.square'})  
+            .setClassToggle('.square', 'show')  
+            .addTo(controller);  
+      &lt;/script&gt;  
+   &lt;/body&gt;
+   
+&lt;/html&gt;  
+</pre>
+<p>Now, create a CSS file with the following code in it.</p>
+<pre class="prettyprint notranslate">
+.square {  
+   background: aqua;  
+   margin: 0 auto;  
+   display: block;  
+   padding: 40px 0;  
+   text-align: center;  
+   color: #000;  
+   font-size: 40px;  
+   font-weight: bold;  
+   opacity: 0;  
+   transition: .3s;  
+   width: 0%;  
+}  
+.square.show{  
+   opacity: 1;  
+   width: 100%;  
+}  
+.parallaxParent {  
+   height: 100vh;  
+   overflow: hidden;  
+}  
+.parallaxParent &gt; * {  
+   height: 200%;  
+   position: relative;  
+   top: -100%;  
+}  
+</pre>
+<h3>Analysis of Code</h3>
+<p>Referring to HTML code, the ScrollMagic code starts from <b>line 17</b> and continues till <b>line 25</b>. In this section, we are creating two ScrollMagic scenes. First scene is for the brick image and the other is for the banner animation.</p>
+<p>As specified in <b>setTween</b> function on <b>line 20</b>, when the scroll action happens at 40% of screen size, the next scene starts which shows up the banner This is it!</p>
+<p>The opacity of the div with id - <b>square</b> is controlled in the CSS file on <b>line 10</b> and <b>line 15</b>.</p>
+<p>As a result, you will get to see below animation on the page.</p>
+<img src="/parallax_scrolling_in_web_design/images/brick_wall_with_animation.jpg" alt="Brick Wall with Animation" />
+<h2>Horizontal Scrolling</h2>
+<p>We can also apply parallax scrolling and achieve a horizontal scroll. The library ScrollMagic can be used to create a horizontal effect of scrolling. See the code below.</p>
+<p>Although the code is straight forward to create horizontal scrolling effect, we will need jquery reference for achieving the horizontal movement of screens. Details of jQuery are provided in next chapter, for now, just follow the code as given below.</p>
+<p>We will create three separate files – HTML file for the main code, CSS file for styles and JS file for ScrollMagic function calls.</p>
+<p>Here is the code for HTML document.</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;  
+   &lt;head&gt;  
+      &lt;link rel = "stylesheet" href = "style.css"&gt;  
+   &lt;/head&gt;  
+   
+   &lt;script src = 'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'&gt;&lt;/script&gt;  
+   &lt;script src = 'http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js'&gt;&lt;/script&gt;  
+   &lt;script src = 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/ScrollMagic.min.js'&gt;&lt;/script&gt; 
+   &lt;script src = 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/plugins/animation.gsap.js'&gt;&lt;/script&gt; 
+   &lt;script src = 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/plugins/debug.addIndicators.min.js'&gt;&lt;/script&gt;  
+   &lt;script src = "animation.js"&gt;&lt;/script&gt;  
+   
+   &lt;body&gt;  
+      &lt;div class = "wrapper" id = "js-wrapper"&gt;  
+         &lt;div class = "sections" id = "js-slideContainer"&gt;  
+            &lt;section class = "section"&gt;  
+               &lt;span class = "section__title" id = "title1"&gt;Scroll Once&lt;/span&gt;  
+               &lt;span id = "trigger--title1"&gt;&lt;/span&gt;  
+            &lt;/section&gt;  
+            
+            &lt;section class = "section"&gt;  
+               &lt;span class = "section__title" id = "title2"&gt;Do It Again&lt;/span&gt;  
+               &lt;span id = "trigger--title2"&gt;&lt;/span&gt;  
+            &lt;/section&gt;  
+            
+            &lt;section class = "section"&gt;  
+            &lt;span class = "section__title" id = "title3"&gt;Thank You!&lt;/span&gt;  
+            &lt;span id = "trigger--title3"&gt;&lt;/span&gt;  
+         &lt;/div&gt;  
+      &lt;/div&gt;  
+   &lt;/body&gt; 
+   
+&lt;/html&gt; 
+</pre> 
+<p>Observe that we have three sections, which will appear after scrolling. The three sections are denoted by ids title1, title2 and title3 on lines 15,19 and 23 respectively.</p>
+<p>The code for CSS document is given below &minus;</p>
+<pre class="prettyprint notranslate">
+body {  
+   font-family: serif;  
+}  
+
+body, html {  
+   height: 100%;  
+} 
+ 
+.wrapper {  
+   width: 100%;  
+   height: 100%; 
+   overflow: hidden;  
+}  
+
+.section {  
+   height: 100%;  
+   width: calc( 100% / 5 );  
+   float: left;  
+   position: relative;  
+}  
+
+.section:nth-child(1) {  
+   background: green;  
+}  
+
+.section:nth-child(2) {  
+   background: orange;  
+}  
+
+.section:nth-child(3) {  
+   background: red;  
+}  
+
+.sections {  
+   width: 500%;  
+   height: 100%;  
+}  
+
+.section__title {  
+   position: absolute;  
+   top: 50%;  
+   left: 50%;  
+   font-size: 30px;  
+   color: #fff;  
+}  
+</pre>
+<h3>Analysis of Code</h3>
+<p>The background colors for the three screens (or sections) are provided on <b>lines 10, 22</b> and <b>25</b>.</p>
+<p>We are calculating the relative width of each screen in the code beginning on <b>line 13</b>.</p>
+<p>The JavaScript code for the ScrollMagic is given below &minus;</p>
+<pre class="prettyprint notranslate">
+$(function () {   
+   var controller = new ScrollMagic.Controller();  
+   var horizontalSlide = new TimelineMax()  
+      .to("#js-slideContainer", 1,   {x: "-20%"})     
+      .to("#js-slideContainer", 1,   {x: "-40%"})  
+   
+   new ScrollMagic.Scene({  
+      triggerElement: "#js-wrapper",  
+      triggerHook: "onLeave",  
+      duration: "400%"  
+   })  
+   .setPin("#js-wrapper")  
+   .setTween(horizontalSlide)  
+   .addTo(controller);    
+});  
+</pre>
+<p>Notice the <b>triggerHook</b> property on line 8. This property is responsible for providing the scroll effect as the user reaches the completion of scroll event. The function <b>TimelineMax</b> is responsible for providing the horizontal scroll effect to our screens.</p>
+<p>Once created the respective files, you will be able to see the horizontal scroll animation as shown below.</p>
+<img src="/parallax_scrolling_in_web_design/images/horizontal_scroll_animation.jpg" alt="Horizontal Scroll Animation" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_css_techniques.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/parallax_scrolling_in_web_design/parallax_scrolling_in_web_design_jquery_techniques.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

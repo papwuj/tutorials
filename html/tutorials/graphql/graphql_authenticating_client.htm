@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>GraphQL - Authenticating Client - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="GraphQL - Authenticating Client - Authentication is the process or action of verifying the identity of a user or a process. It is important that an application authenticates a user to ensure tha"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/graphql/graphql_authenticating_client.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#e535ab;
+}
+a.demo {
+    background:#e535ab;
+}
+li.heading {
+    background:#e535ab;
+}
+.course-box{background:#e535ab}
+.home-intro-sub p{color:#e535ab}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/graphql/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/graphql/images/graphql-mini-logo.jpg" alt="GraphQL Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">GraphQL Tutorial</li>
+<li><a href="/graphql/index.htm">GraphQL - Home</a></li>
+<li><a href="/graphql/graphql_introduction.htm">GraphQL - Introduction</a></li>
+<li><a href="/graphql/graphql_environment_setup.htm">GraphQL - Environment Setup</a></li>
+<li><a href="/graphql/graphql_architecture.htm">GraphQL - Architecture</a></li>
+<li><a href="/graphql/graphql_application_components.htm">GraphQL - Application Components</a></li>
+<li><a href="/graphql/graphql_example.htm">GraphQL - Example</a></li>
+<li><a href="/graphql/graphql_type_system.htm">GraphQL - Type System</a></li>
+<li><a href="/graphql/graphql_schema.htm">GraphQL - Schema</a></li>
+<li><a href="/graphql/graphql_resolver.htm">GraphQL - Resolver</a></li>
+<li><a href="/graphql/graphql_query.htm">GraphQL - Query</a></li>
+<li><a href="/graphql/graphql_mutation.htm">GraphQL - Mutation</a></li>
+<li><a href="/graphql/graphql_validation.htm">GraphQL - Validation</a></li>
+<li><a href="/graphql/graphql_jquery_integration.htm">GraphQL - JQuery Integration</a></li>
+<li><a href="/graphql/graphql_react_integration.htm">GraphQL - React Integration</a></li>
+<li><a href="/graphql/graphql_apollo_client.htm">GraphQL - Apollo Client</a></li>
+<li><a href="/graphql/graphql_authenticating_client.htm">GraphQL - Authenticating Client</a></li>
+<li><a href="/graphql/graphql_caching.htm">GraphQL - Caching</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">GraphQL Useful Resources</li>
+<li><a href="/graphql/graphql_quick_guide.htm">GraphQL - Quick Guide</a></li>
+<li><a href="/graphql/graphql_useful_resources.htm">GraphQL - Useful Resources</a></li>
+<li><a href="/graphql/graphql_discussion.htm">GraphQL - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>GraphQL - Authenticating Client</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/graphql/graphql_apollo_client.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/graphql/graphql_caching.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Authentication is the process or action of verifying the identity of a user or a process. It is important that an application authenticates a user to ensure that the data is not available to an anonymous user. In this section, we will learn how to authenticate a GraphQL client.</p>
+<h2>Express JWT</h2>
+<p>In this example, we will use jQuery to create a client application. To authenticate requests, we will use <b>express-jwt</b> module on the server-side.</p>
+<p>The express-jwt module is a middleware that lets you authenticate HTTP requests using JWT tokens. JSON Web Token (JWT) is a long string that identifies the logged in user.</p>
+<p>Once the user logs in successfully, the server generates a JWT token. This token distinctly identifies a log. In other words, the token is a representation of user's identity. So next time, when the client comes to the server, it has to present this token to get the required resources. The client can be either a mobile application or a web application.</p>
+<img src="/graphql/images/express_jwt_module.jpg" alt="Express JWT Module" />
+<h2>Illustration</h2>
+<p>We will follow a step-wise procedure to understand this illustration.</p>
+<h2>Setting up the Server</h2>
+<p>Following are the steps for setting up the server &minus;</p>
+<h3>Step 1 &minus; Download and Install Required Dependencies for the Project</h3>
+<p>Create a folder <b>auth-server-app</b>. Change your directory to <b>auth-server-app</b> from the terminal. Follow steps 3 to 5 explained in the Environment Setup chapter.</p>
+<h2>Step 2 &minus; Create a Schema<p></h2>
+Add <b>schema.graphql</b> file in the project folder <b>auth-server-app</b> and add the following code &minus;</p>
+<pre class="prettyprint notranslate">
+type Query
+{
+   greetingWithAuth:String
+}
+</pre>
+<h3>Step 3 &minus; Add Resolvers</h3>
+<p>Create a file <b>resolvers.js</b> in the project folder and add the following code &minus;</p>
+<p>The resolver will verify if an authenticated user object is available in the context object of GraphQL. It will raise an exception if an authenticated user is not available.</p>
+<pre class="prettyprint notranslate">
+const db = require('./db')
+
+const Query = {
+   greetingWithAuth:(root,args,context,info) =&gt; {
+
+      //check if the context.user is null
+      if (!context.user) {
+         throw new Error('Unauthorized');
+      }
+      return "Hello from TutorialsPoint, welcome back : "+context.user.firstName;
+   }
+}
+
+module.exports = {Query}
+</pre>
+<h3>Step 4 &minus; Create Server.js File</h3>
+<p>The authentication middleware authenticates callers using a JSON Web Token. The URL for authentication is <b>http://localhost:9000/login</b>.</p>
+<p>This is a post operation. The user has to submit his email and password which will be validated from the backend. If a valid token is generated using jwt.sign method, the client will have to send this in header for subsequent requests.</p> 
+<p>If the token is valid, req.user will be set with the JSON object decoded to be used by later middleware for authorization and access control.</p>
+<p>The following code uses two modules &minus; jsonwebtoken and express-jwt to authenticate requests &minus;</p>
+<ul class="list">
+<li><p>When the user clicks on the <b>greet</b> button, a request for the /graphql route is issued. If the user is not authenticated, he will be prompted to authenticate himself.</p></li>
+<li><p>The user is presented with a form that accepts email id and password. In our example, the /login route is responsible for authenticating the user.</p></li>
+<li><p>The /login route verifies if a match is found in the database for credentials provided by the user.</p></li>
+<li><p>If the credentials are invalid, a HTTP 401 exception is returned to the user.</p></li>
+<li><p>If the credentials are valid, a token is generated by the server. This token is sent as a part of response to the user. This is done by the jwt.sign function.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+const expressJwt = require('express-jwt');
+const jwt = require('jsonwebtoken');
+
+//private key
+const jwtSecret = Buffer.from('Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt', 'base64');
+
+app.post('/login', (req, res) =&gt; {
+   const {email, password} = req.body;
+   
+   //check database
+   const user = db.students.list().find((user) =&gt;  user.email === email);
+   if (!(user &amp;&amp; user.password === password)) {
+      res.sendStatus(401);
+      return;
+   }
+   
+   //generate a token based on private key, token doesn't have an expiry
+   const token = jwt.sign({sub: user.id}, jwtSecret);
+   res.send({token});
+});
+</pre>
+<p>For every request, the app.use() function will be called. This in turn will invoke the expressJWT middleware. This middleware will decode the JSON Web Token. The user id stored in the token will be retrieved and stored as a property user in the request object.</p>
+<pre class="prettyprint notranslate">
+//decodes the JWT and stores in request object
+app.use(expressJwt({
+   secret: jwtSecret,
+   credentialsRequired: false
+}));
+</pre>
+<p>To make available the user property within GraphQL context, this property is assigned to the <b>context</b> object as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+//Make req.user available to GraphQL context
+app.use('/graphql', graphqlExpress((req) =&gt; ({
+   schema,
+   context: {user: req.user &amp;&apm; db.students.get(req.user.sub)}
+})));
+</pre>
+<p>Create <b>server.js</b> in current folder path. The complete server.js file is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const express = require('express');
+const expressJwt = require('express-jwt'); //auth
+const jwt = require('jsonwebtoken'); //auth
+const db = require('./db');
+
+var port = process.env.PORT || 9000
+const jwtSecret = Buffer.from('Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt', 'base64');
+const app = express();
+
+const fs = require('fs')
+const typeDefs = fs.readFileSync('./schema.graphql',{encoding:'utf-8'})
+const resolvers = require('./resolvers')
+const {makeExecutableSchema} = require('graphql-tools')
+
+const schema = makeExecutableSchema({typeDefs, resolvers})
+
+app.use(cors(), bodyParser.json(), expressJwt({
+   secret: jwtSecret,
+   credentialsRequired: false
+}));
+
+const  {graphiqlExpress,graphqlExpress} = require('apollo-server-express')
+
+app.use('/graphql', graphqlExpress((req) =&gt; ({
+   schema,
+   context: {user: req.user &amp;&amp; db.students.get(req.user.sub)}
+})));
+app.use('/graphiql',graphiqlExpress({endpointURL:'/graphql'}))
+
+//authenticate students
+app.post('/login', (req, res) =&gt; {
+   const email = req.body.email;
+   const password = req.body.password;
+
+   const user = db.students.list().find((user) =&gt;  user.email === email);
+   if (!(user &amp;&amp; user.password === password)) {
+      res.sendStatus(401);
+      return;
+   }
+   const token = jwt.sign({sub: user.id}, jwtSecret);
+   res.send({token});
+});
+
+app.listen(port, () =&gt; console.info(`Server started on port ${port}`));
+</pre>
+<h3>Step 5 &minus; Run the Application</h3>
+<p>Execute the command <i>npm</i> start in the terminal. The server will be up and running on 9000 port. Here, we use GraphiQL as a client to test the application.</p>
+<p>Open browser and type the URL <b>http://localhost:9000/graphiql</b>. Type the following query in the editor &minus;</p>
+<pre class="prettyprint notranslate">
+{
+   greetingWithAuth
+}
+</pre>
+<p>In the below response, we got an error as we are not authenticated user.</p>
+<pre class="prettyprint notranslate">
+{
+   "data": {
+      "greetingWithAuth": null
+   },
+   "errors": [
+      {
+         "message": "Unauthorized",
+         "locations": [
+            {
+               "line": 2,
+               "column": 3
+            }
+         ],
+         "path": [
+            "greetingWithAuth"
+         ]
+      }
+   ]
+}
+</pre>
+<p>In the next section, let us create a client application to authenticate.</p>
+<h2>Setting up the JQuery Client</h2>
+<p>In the client application, a greet button is provided which will invoke the schema <b>greetingWithAuth</b>. If you click the button without login, it will give you the error message as below &minus;</p>
+<img src="/graphql/images/client_application_authentication.jpg" alt="Client Application Authentication" />
+<p>Once you log in with a user available in database, the following screen will appear &minus;</p>
+<img src="/graphql/images/client_application_authentication_successful.jpg" alt="Client Application Authentication Successful" />
+<p>To access <b>greeting</b>, we need to first access the URL <b>http://localhost:9000/login</b> route as below.</p>
+<p>The response will contain the token generated from the server.</p>
+<pre class="prettyprint notranslate">
+$.ajax({
+   url:"http://localhost:9000/login",
+   contentType:"application/json",
+   type:"POST",
+   data:JSON.stringify({email,password}),
+   success:function(response) {
+      loginToken = response.token;
+      $('#authStatus')
+      .html("authenticated successfully")
+      .css({"color":"green",'font-weight':'bold'});
+      $("#greetingDiv").html('').css({'color':''});
+   },
+   error:(xhr,err) =&gt;  alert('error')
+})
+</pre>
+<p>After a successful login, we can access <i>greetingWithAuth</i> schema as given below. There should be an Authorizationheader for all the subsequent requests with bearer token.</p>
+<pre class="prettyprint notranslate">
+{ 
+   url: "http://localhost:9000/graphql",
+   contentType: "application/json",
+   headers: {"Authorization": 'bearer '+loginToken},  type:'POST',
+   data: JSON.stringify({
+   query:`{greetingWithAuth}`
+}
+</pre>
+<p>The following is the code for index.html &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;
+      &lt;script&gt;
+         $(document).ready(function() {
+            let loginToken = "";
+            $("#btnGreet").click(function() {
+                  $.ajax({url: "http://localhost:9000/graphql",
+                  contentType: "application/json",
+                  headers: {"Authorization": 'bearer '+loginToken},
+                  type:'POST',
+                  data: JSON.stringify({
+                  query:`{greetingWithAuth}` }),
+                  success: function(result) {
+                  $("#greetingDiv").html("&lt;h1&gt;"+result.data.greetingWithAuth+"&lt;/h1&gt;")
+                  },
+                  error:function(jQxhr,error) {
+                     if(jQxhr.status == 401) {
+                        $("#greetingDiv").html('please authenticate first!!')
+                        .css({"color":"red",'font-weight':'bold'})
+                        return;
+                     }
+                     $("#greetingDiv").html('error').css("color","red");
+                  }
+               });
+            });
+            $('#btnAuthenticate').click(function() {
+               var email =  $("#txtEmail").val();
+               var password =  $("#txtPwd").val();
+               if(email &amp;&amp; password) {
+                  $.ajax({
+                     url:"http://localhost:9000/login",
+                     contentType:"application/json",
+                     type:"POST",
+                     data:JSON.stringify({email,password}),
+                     success:function(response) {
+                        loginToken =  response.token;
+                        $('#authStatus')
+                        .html("authenticated successfully")
+                        .css({"color":"green",'font-weight':'bold'});
+                        $("#greetingDiv").html('').css({'color':''});
+                     },
+                     error:(xhr,err) =&gt;  alert('error')
+                  })
+               }else alert("email and pwd empty")
+            })
+         });
+      &lt;/script&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;h1&gt; GraphQL Authentication &lt;/h1&gt;
+      &lt;hr/&gt;
+      &lt;section&gt;
+         &lt;button id = "btnGreet"&gt;Greet&lt;/button&gt;
+         &lt;br/&gt; &lt;br/&gt;
+         &lt;div id = "greetingDiv"&gt;&lt;/div&gt;
+      &lt;/section&gt;
+      &lt;br/&gt; &lt;br/&gt; &lt;br/&gt;
+      &lt;hr/&gt;
+      
+      &lt;section id = "LoginSection"&gt;
+         &lt;header&gt;
+            &lt;h2&gt;*Login first to  access greeting &lt;/h2&gt;
+         &lt;/header&gt;
+         &lt;input type = "text" value = "mohtashim.mohammad@tutorialpoint.org" placeholder = "enter email" id = "txtEmail"/&gt;
+         &lt;br/&gt;
+         
+         &lt;input type = "password" value = "pass123" placeholder = "enter password" id = "txtPwd"/&gt;
+         &lt;br/&gt;
+         
+         &lt;input type = "button" id = "btnAuthenticate"  value = "Login"/&gt;
+         &lt;p id = "authStatus"&gt;&lt;/p&gt;
+      &lt;/section&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/graphql/graphql_apollo_client.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/graphql/graphql_caching.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

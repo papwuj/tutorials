@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>MapReduce - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="MapReduce - Quick Guide - MapReduce is a programming model for writing applications that can process Big Data in parallel on multiple nodes. MapReduce provides analytical capabilities fo"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/map_reduce/map_reduce_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#ff9900;
+}
+a.demo {
+    background:#ff9900;
+}
+li.heading {
+    background:#ff9900;
+}
+.course-box{background:#ff9900}
+.home-intro-sub p{color:#ff9900}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/map_reduce/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/map_reduce/images/map-reduce-mini-logo.jpg" alt="MapReduce Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">MapReduce Tutorial</li>
+<li><a class="left" href="/map_reduce/index.htm">MapReduce - Home</a></li>
+<li><a class="left" href="/map_reduce/map_reduce_introduction.htm">MapReduce - Introduction</a></li>
+<li><a class="left" href="/map_reduce/map_reduce_algorithm.htm">MapReduce - Algorithm</a></li>
+<li><a class="left" href="/map_reduce/map_reduce_installation.htm">MapReduce - Installation</a></li>
+<li><a class="left" href="/map_reduce/map_reduce_api.htm">MapReduce - API</a></li>
+<!--   <li><a class="left" href="/map_reduce/implementation_in_hadoop.htm">Implementation In Hadoop</a></li>-->
+<li><a class="left" href="/map_reduce/implementation_in_hadoop.htm"><span style="font-size:.98em">MapReduce - Hadoop Implementation</span>
+</a></li>
+<li><a class="left"href="/map_reduce/map_reduce_partitioner.htm">MapReduce - Partitioner</a></li>
+<li><a class="left"href="/map_reduce/map_reduce_combiners.htm">MapReduce - Combiners</a></li>
+<li><a class="left"href="/map_reduce/map_reduce_hadoop_administration.htm">MapReduce - Hadoop Administration</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">MapReduce Resources</li>
+<li><a class="left"href="/map_reduce/map_reduce_quick_guide.htm" >MapReduce - Quick Guide</a></li>
+<li><a class="left"href="/map_reduce/map_reduce_useful_resources.htm" >MapReduce -  Useful Resources</a></li>
+<li><a class="left"href="/map_reduce/map_reduce_discussion.htm" >MapReduce - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>MapReduce - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/map_reduce/map_reduce_hadoop_administration.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/map_reduce/map_reduce_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>MapReduce - Introduction</h1>
+<p>MapReduce is a programming model for writing applications that can process Big Data in parallel on multiple nodes. MapReduce provides analytical capabilities for analyzing huge volumes of complex data.</p>
+<h2>What is Big Data?</h2>
+<p>Big Data is a collection of large datasets that cannot be processed using traditional computing techniques. For example, the volume of data Facebook or Youtube need require it to collect and manage on a daily basis, can fall under the category of Big Data. However, Big Data is not only about scale and volume, it also involves one or more of the following aspects &minus; Velocity, Variety, Volume, and Complexity.</p>
+<h2>Why MapReduce?</h2>
+<p>Traditional Enterprise Systems normally have a centralized server to store and process data. The following illustration depicts a schematic view of a traditional enterprise system. Traditional model is certainly not suitable to process huge volumes of scalable data and cannot be accommodated by standard database servers. Moreover, the centralized system creates too much of a bottleneck while processing multiple files simultaneously.</p>
+<img src="/map_reduce/images/traditional_enterprise_system_view.jpg" alt="Traditional Enterprise System View" />
+<p>Google solved this bottleneck issue using an algorithm called MapReduce. MapReduce divides a task into small parts and assigns them to many computers. Later, the results are collected at one place and integrated to form the result dataset.</p>
+<img src="/map_reduce/images/centralized_system.jpg" alt="Centralized System" />
+<h2>How MapReduce Works?</h2>
+<p>The MapReduce algorithm contains two important tasks, namely Map and Reduce.</p>
+<ul class="list">
+<li><p>The Map task takes a set of data and converts it into another set of data, where individual elements are broken down into tuples (key-value pairs).</p></li>
+<li><p>The Reduce task takes the output from the Map as an input and combines those data tuples (key-value pairs) into a smaller set of tuples.</p></li>
+</ul>
+<p>The reduce task is always performed after the map job.</p>
+<p>Let us now take a close look at each of the phases and try to understand their significance.</p>
+<img src="/map_reduce/images/phases.jpg" alt="Phases" />
+<ul class="list">
+<li><p><b>Input Phase</b> &minus; Here we have a Record Reader that translates each record in an input file and sends the parsed data to the mapper in the form of key-value pairs.</p></li>
+<li><p><b>Map</b> &minus; Map is a user-defined function, which takes a series of key-value pairs and processes each one of them to generate zero or more key-value pairs.</p></li>
+<li><p><b>Intermediate Keys</b> &minus; They key-value pairs generated by the mapper are known as intermediate keys.</p></li>
+<li><p><b>Combiner</b> &minus; A combiner is a type of local Reducer that groups similar data from the map phase into identifiable sets. It takes the intermediate keys from the mapper as input and applies a user-defined code to aggregate the values in a small scope of one mapper. It is not a part of the main MapReduce algorithm; it is optional.</p></li>
+<li><p><b>Shuffle and Sort</b> &minus; The Reducer task starts with the Shuffle and Sort step. It downloads the grouped key-value pairs onto the local machine, where the Reducer is running. The individual key-value pairs are sorted by key into a larger data list. The data list groups the equivalent keys together so that their values can be iterated easily in the Reducer task.</p></li>
+<li><p><b>Reducer</b> &minus; The Reducer takes the grouped key-value paired data as input and runs a Reducer function on each one of them. Here, the data can be aggregated, filtered, and combined in a number of ways, and it requires a wide range of processing. Once the execution is over, it gives zero or more key-value pairs to the final step.</p></li>
+<li><p><b>Output Phase</b> &minus; In the output phase, we have an output formatter that translates the final key-value pairs from the Reducer function and writes them onto a file using a record writer.</p></li>
+</ul>
+<p>Let us try to understand the two tasks Map &amp;f Reduce with the help of a small diagram &minus;</p>
+<img src="/map_reduce/images/mapreduce_work.jpg" alt="MapReduce Work" />
+<h2>MapReduce-Example</h2>
+<p>Let us take a real-world example to comprehend the power of MapReduce. Twitter receives around 500 million tweets per day, which is nearly 3000 tweets per second. The following illustration shows how Tweeter manages its tweets with the help of MapReduce.</p>
+<img src="/map_reduce/images/mapreduce_example.jpg" alt="MapReduce Example" />
+<p>As shown in the illustration, the MapReduce algorithm performs the following actions &minus;</p>
+<ul class="list">
+<li><p><b>Tokenize</b> &minus; Tokenizes the tweets into maps of tokens and writes them as key-value pairs.</p></li>
+<li><p><b>Filter</b> &minus; Filters unwanted words from the maps of tokens and writes the filtered maps as key-value pairs.</p></li>
+<li><p><b>Count</b> &minus; Generates a token counter per word.</p></li>
+<li><p><b>Aggregate Counters</b> &minus; Prepares an aggregate of similar counter values into small manageable units.</p></li>
+</ul>
+<h1>MapReduce - Algorithm</h1>
+<p>The MapReduce algorithm contains two important tasks, namely Map and Reduce.</p>
+<ul class="list">
+<li>The map task is done by means of Mapper Class</li>
+<li>The reduce task is done by means of Reducer Class.</li>
+</ul>
+<p>Mapper class takes the input, tokenizes it, maps and sorts it.  The output of Mapper class is used as input by Reducer class, which in turn searches matching pairs and reduces them.</p>
+<img src="/map_reduce/images/mapper_reducer_class.jpg" alt="Mapper Reducer Class" />
+<p>MapReduce implements various mathematical algorithms to divide a task into small parts and assign them to multiple systems. In technical terms, MapReduce algorithm helps in sending the Map &amp; Reduce tasks to appropriate servers in a cluster.</p>
+<p>These mathematical algorithms may include the following &minus;</p>
+<ul class="list">
+<li>Sorting</li>
+<li>Searching</li>
+<li>Indexing</li>
+<li>TF-IDF</li>
+</ul>
+<h2>Sorting</h2>
+<p>Sorting is one of the basic MapReduce algorithms to process and analyze data. MapReduce implements sorting algorithm to automatically sort the output key-value pairs from the mapper by their keys.</p>
+<ul class="list">
+<li><p>Sorting methods are implemented in the mapper class itself.</p></li>
+<li><p>In the Shuffle and Sort phase, after tokenizing the values in the mapper class, the <b>Context</b> class (user-defined class) collects the matching valued keys as a collection.</p></li>
+<li><p>To collect similar key-value pairs (intermediate keys), the Mapper class takes the help of <b>RawComparator</b> class to sort the key-value pairs.</p></li>
+<li><p>The set of intermediate key-value pairs for a given Reducer is automatically sorted by Hadoop to form key-values (K2, {V2, V2, …}) before they are presented to the Reducer.</p></li>
+</ul>
+<h2>Searching</h2>
+<p>Searching plays an important role in MapReduce algorithm. It helps in the combiner phase (optional) and in the Reducer phase. Let us try to understand how Searching works with the help of an example.</p>
+<h3>Example</h3>
+<p>The following example shows how MapReduce employs Searching algorithm to find out the details of the employee who draws the highest salary in a given employee dataset.</p>
+<ul class="list">
+<li><p>Let us assume we have employee data in four different files &minus; A, B, C, and D. Let us also assume there are duplicate employee records in all four files because of importing the employee data from all database tables repeatedly. See the following illustration.</p></li>
+</ul>
+<img src="/map_reduce/images/map_reduce_illustration.jpg" alt="Map Reduce Illustration" />
+<ul class="list">
+<li><p><b>The Map phase</b> processes each input file and provides the employee data in key-value pairs (&lt;k, v&gt; : &lt;emp name, salary&gt;). See the following illustration.</p></li>
+</ul>
+<img src="/map_reduce/images/map_reduce_illustration_2.jpg" alt="Map Reduce Illustration"/>
+<ul class="list">
+<li><p><b>The combiner phase</b> (searching technique) will accept the input from the Map phase as a key-value pair with employee name and salary. Using searching technique, the combiner will check all the employee salary to find the highest salaried employee in each file. See the following snippet.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;k: employee name, v: salary&gt;
+Max= the salary of an first employee. Treated as max salary
+
+if(v(second employee).salary > Max){
+   Max = v(salary);
+}
+
+else{
+   Continue checking;
+}
+</pre>
+<p>The expected result is as follows &minus;</p>
+<table class="table table-bordered">
+<tr>
+<td>
+<table width="590px" border="0" cellspacing="0" cellpadding="2" align="center" height="80">
+<tr valign="top"> 
+<td bgcolor="#ddd" width="120"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3" height="80">
+<tr bgcolor="#FFFFFF" valign="bottom" > 
+<td><p style="text-align:center;">&lt;satish, 26000&gt;</p>
+</td>
+</tr>
+</table>
+</td>
+<td width="12"></td>
+<td bgcolor="#ddd" width="120"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3" height="80">
+<tr bgcolor="#FFFFFF" valign="bottom"> 
+<td> 
+<p style="text-align:center;">&lt;gopal, 50000&gt;</p></td>
+</tr>
+</table>
+</td>
+<td width="12"></td>
+<td bgcolor="#ddd" width="120"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3" height="80">
+<tr bgcolor="#FFFFFF" valign="bottom"> 
+<td> 
+<p style="text-align:center;">&lt;kiran, 45000&gt;</p></td>
+</tr>
+</table>
+</td>
+<td width="12"></td>
+<td bgcolor="#ddd" width="120"> 
+<table border="0" cellspacing="0" cellpadding="3" height="80">
+<tr bgcolor="#FFFFFF" valign="bottom"> 
+<td> 
+<p style="text-align:center;">&lt;manisha, 45000&gt;</p></td>
+</tr>
+</table>
+</td>
+<td width="12"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<ul class="list">
+<li><p><b>Reducer phase</b> &minus; Form each file, you will find the highest salaried employee. To avoid redundancy, check all the &lt;k, v&gt; pairs and eliminate duplicate entries, if any. The same algorithm is used in between the four &lt;k, v&gt; pairs, which are coming from four input files. The final output should be as follows &minus;</p></li>
+</ul>
+<pre class="result notranslate">
+&lt;gopal, 50000&gt;
+</pre>
+<h2>Indexing</h2>
+<p>Normally indexing is used to point to a particular data and its address. It performs batch indexing on the input files for a particular Mapper.</p>
+<p>The indexing technique that is normally used in MapReduce is known as <b>inverted index.</b> Search engines like Google and Bing use inverted indexing technique. Let us try to understand how Indexing works with the help of a simple example.</p>
+<h3>Example</h3>
+<p>The following text is the input for inverted indexing. Here T[0], T[1], and t[2] are the file names and their content are in double quotes.</p>
+<pre class="result notranslate">
+T[0] = "it is what it is"
+T[1] = "what is it"
+T[2] = "it is a banana"
+</pre>
+<p>After applying the Indexing algorithm, we get the following output &minus;</p>
+<pre class="result notranslate">
+"a": {2}
+"banana": {2}
+"is": {0, 1, 2}
+"it": {0, 1, 2}
+"what": {0, 1}
+</pre>
+<p>Here "a": {2} implies the term "a" appears in the T[2] file. Similarly, "is": {0, 1, 2} implies the term "is" appears in the files T[0], T[1], and T[2].</p>
+<h2>TF-IDF</h2>
+<p>TF-IDF is a text processing algorithm which is short for Term Frequency &minus; Inverse Document Frequency. It is one of the common web analysis algorithms. Here, the term 'frequency' refers to the number of times a term appears in a document.</p>
+<h3>Term Frequency (TF)</h3>
+<p>It measures how frequently a particular term occurs in a document. It is calculated by the number of times a word appears in a document divided by the total number of words in that document.</p>
+<pre class="result notranslate">
+TF(the) = (Number of times term the ‘the’ appears in a document) / (Total number of terms in the document)
+</pre>
+<h3>Inverse Document Frequency (IDF)</h3>
+<p>It measures the importance of a term. It is calculated by the number of documents in the text database divided by the number of documents where a specific term appears.</p>
+<p>While computing TF, all the terms are considered equally important. That means, TF counts the term frequency for normal words like “is”, “a”, “what”, etc. Thus we need to know the frequent terms while scaling up the rare ones, by computing the following &minus;</p>
+<pre class="result notranslate">
+IDF(the) = log_e(Total number of documents / Number of documents with term ‘the’ in it).
+</pre>
+<p>The algorithm is explained below with the help of a small example.</p>
+<h3>Example</h3>
+<p>Consider a document containing 1000 words, wherein the word <b>hive</b> appears 50 times. The TF for <b>hive</b> is then (50 / 1000) = 0.05.</p>
+<p>Now, assume we have 10 million documents and the word <b>hive</b> appears in 1000 of these. Then, the IDF is calculated as log(10,000,000 / 1,000) = 4.</p>
+<p>The TF-IDF weight is the product of these quantities &minus; 0.05 × 4 = 0.20.</p>
+<h1>MapReduce - Installation</h1>
+<p>MapReduce works only on Linux flavored operating systems and it comes inbuilt with a Hadoop Framework. We need to perform the following steps in order to install Hadoop framework.</p>
+<h2>Verifying JAVA Installation</h2>
+<p>Java must be installed on your system before installing Hadoop. Use the following command to check whether you have Java installed on your system.</p>
+<pre class="result notranslate">
+$ java –version
+</pre>
+<p>If Java is already installed on your system, you get to see the following response &minus;</p>
+<pre class="result notranslate">
+java version "1.7.0_71"
+Java(TM) SE Runtime Environment (build 1.7.0_71-b13)
+Java HotSpot(TM) Client VM (build 25.0-b02, mixed mode)
+</pre>
+<p>In case you don’t have Java installed on your system, then follow the steps given below.</p>
+<h2>Installing Java</h2>
+<h3>Step 1</h3>
+<p>Download the latest version of Java from the following link &minus; 
+<a rel="nofollow" target="_blank" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">this link</a>.</p>
+<p>After downloading, you can locate the file <b>jdk-7u71-linux-x64.tar.gz</b> in your Downloads folder.</p>
+<h3>Step 2</h3>
+<p>Use the following commands to extract the contents of jdk-7u71-linux-x64.gz.</p>
+<pre class="result notranslate">
+$ cd Downloads/
+$ ls
+jdk-7u71-linux-x64.gz
+$ tar zxf jdk-7u71-linux-x64.gz
+$ ls
+jdk1.7.0_71 jdk-7u71-linux-x64.gz
+</pre>
+<h3>Step 3</h3>
+<p>To make Java available to all the users, you have to move it to the location “/usr/local/”. Go to root and type the following commands &minus;</p>
+<pre class="result notranslate">
+$ su
+password:
+# mv jdk1.7.0_71 /usr/local/java
+# exit
+</pre>
+<h3>Step 4</h3>
+<p>For setting up PATH and JAVA_HOME variables, add the following commands to ~/.bashrc file.</p>
+<pre class="result notranslate">
+export JAVA_HOME=/usr/local/java
+export PATH=$PATH:$JAVA_HOME/bin
+</pre>
+<p>Apply all the changes to the current running system.</p>
+<pre class="result notranslate">
+$ source ~/.bashrc
+</pre>
+<h3>Step 5</h3>
+<p>Use the following commands to configure Java alternatives &minus;</p>
+<pre class="result notranslate">
+# alternatives --install /usr/bin/java java usr/local/java/bin/java 2
+
+# alternatives --install /usr/bin/javac javac usr/local/java/bin/javac 2
+
+# alternatives --install /usr/bin/jar jar usr/local/java/bin/jar 2
+
+# alternatives --set java usr/local/java/bin/java
+
+# alternatives --set javac usr/local/java/bin/javac
+
+# alternatives --set jar usr/local/java/bin/jar
+</pre>
+<p>Now verify the installation using the command <b>java -version</b> from the terminal.</p>
+<h2>Verifying Hadoop Installation</h2>
+<p>Hadoop must be installed on your system before installing MapReduce. Let us verify the Hadoop installation using the following command &minus;</p>
+<pre class="result notranslate">
+$ hadoop version
+</pre>
+<p>If Hadoop is already installed on your system, then you will get the following response &minus;</p>
+<pre class="result notranslate">
+Hadoop 2.4.1
+--
+Subversion https://svn.apache.org/repos/asf/hadoop/common -r 1529768
+Compiled by hortonmu on 2013-10-07T06:28Z
+Compiled with protoc 2.5.0
+From source with checksum 79e53ce7994d1628b240f09af91e1af4
+</pre>
+<p>If Hadoop is not installed on your system, then proceed with the following steps.</p>
+<h2>Downloading Hadoop</h2>
+<p>Download Hadoop 2.4.1 from Apache Software Foundation and extract its contents using the following commands.</p>
+<pre class="result notranslate">
+$ su
+password:
+# cd /usr/local
+# wget http://apache.claz.org/hadoop/common/hadoop-2.4.1/
+hadoop-2.4.1.tar.gz
+# tar xzf hadoop-2.4.1.tar.gz
+# mv hadoop-2.4.1/* to hadoop/
+# exit
+</pre>
+<h2>Installing Hadoop in Pseudo Distributed mode</h2>
+<p>The following steps are used to install Hadoop 2.4.1 in pseudo distributed mode.</p>
+<h3>Step 1 &minus; Setting up Hadoop</h3>
+<p>You can set Hadoop environment variables by appending the following commands to ~/.bashrc file.</p>
+<pre class="result notranslate">
+export HADOOP_HOME=/usr/local/hadoop
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+</pre>
+<p>Apply all the changes to the current running system.</p>
+<pre class="result notranslate">
+$ source ~/.bashrc
+</pre>
+<h3>Step 2 &minus; Hadoop Configuration</h3>
+<p>You can find all the Hadoop configuration files in the location “$HADOOP_HOME/etc/hadoop”. You need to make suitable changes in those configuration files according to your Hadoop infrastructure.</p>
+<pre class="result notranslate">
+$ cd $HADOOP_HOME/etc/hadoop
+</pre>
+<p>In order to develop Hadoop programs using Java, you have to reset the Java environment variables in <b>hadoop-env.sh</b> file by replacing JAVA_HOME value with the location of Java in your system.</p>
+<pre class="result notranslate">
+export JAVA_HOME=/usr/local/java
+</pre>
+<p>You have to edit the following files to configure Hadoop &minus;</p>
+<ul class="list">
+<li>core-site.xml</li>
+<li>hdfs-site.xml</li>
+<li>yarn-site.xml</li>
+<li>mapred-site.xml</li>
+</ul>
+<h3>core-site.xml</h3>
+<p>core-site.xml contains the following information&minus;</p>
+<ul class="list">
+<li>Port number used for Hadoop instance</li>
+<li>Memory allocated for the file system</li>
+<li>Memory limit for storing the data</li>
+<li>Size of Read/Write buffers</li>
+</ul>
+<p>Open the core-site.xml and add the following properties in between the &lt;configuration&gt; and &lt;/configuration&gt; tags.</p>
+<pre class="prettyprint notranslate">
+&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;fs.default.name&lt;/name&gt;
+      &lt;value&gt;hdfs://localhost:9000 &lt;/value&gt;
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+<h3>hdfs-site.xml</h3>
+<p>hdfs-site.xml contains the following information &minus;</p>
+<ul class="list">
+<li>Value of replication data</li>
+<li>The namenode path</li>
+<li>The datanode path of your local file systems (the place where you want to store the Hadoop infra)</li>
+</ul>
+<p>Let us assume the following data.</p>
+<pre class="result notranslate">
+dfs.replication (data replication value) = 1
+
+(In the following path /hadoop/ is the user name.
+hadoopinfra/hdfs/namenode is the directory created by hdfs file system.)
+namenode path = //home/hadoop/hadoopinfra/hdfs/namenode
+
+(hadoopinfra/hdfs/datanode is the directory created by hdfs file system.)
+datanode path = //home/hadoop/hadoopinfra/hdfs/datanode
+</pre>
+<p>Open this file and add the following properties in between the &lt;configuration&gt;, &lt;/configuration&gt; tags.</p>
+<pre class="prettyprint notranslate">
+&lt;configuration&gt;
+
+   &lt;property&gt;
+      &lt;name&gt;dfs.replication&lt;/name&gt;
+      &lt;value&gt;1&lt;/value&gt;
+   &lt;/property&gt;
+   
+   &lt;property&gt;
+      &lt;name&gt;dfs.name.dir&lt;/name&gt;
+      &lt;value&gt;file:///home/hadoop/hadoopinfra/hdfs/namenode&lt;/value&gt;
+   &lt;/property&gt;
+   
+   &lt;property&gt;
+      &lt;name&gt;dfs.data.dir&lt;/name&gt;
+      &lt;value&gt;file:///home/hadoop/hadoopinfra/hdfs/datanode &lt;/value&gt;
+   &lt;/property&gt;
+   
+&lt;/configuration&gt;
+</pre>
+<p><b>Note</b> &minus; In the above file, all the property values are user-defined and you can make changes according to your Hadoop infrastructure.</p>
+<h3>yarn-site.xml</h3>
+<p>This file is used to configure yarn into Hadoop. Open the yarn-site.xml file and add the following properties in between the &lt;configuration&gt;, &lt;/configuration&gt; tags.</p>
+<pre class="prettyprint notranslate">
+&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+      &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+<h3>mapred-site.xml</h3>
+<p>This file is used to specify the MapReduce framework we are using. By default, Hadoop contains a template of yarn-site.xml. First of all, you need to copy the file from mapred-site.xml.template to mapred-site.xml file using the following command.</p>
+<pre class="result notranslate">
+$ cp mapred-site.xml.template mapred-site.xml
+</pre>
+<p>Open mapred-site.xml file and add the following properties in between the &lt;configuration&gt;, &lt;/configuration&gt; tags.</p>
+<pre class="prettyprint notranslate">
+&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+      &lt;value&gt;yarn&lt;/value&gt;
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+<h2>Verifying Hadoop Installation</h2>
+<p>The following steps are used to verify the Hadoop installation.</p>
+<h3>Step 1 &minus; Name Node Setup</h3>
+<p>Set up the namenode using the command “hdfs namenode -format” as follows &minus;</p>
+<pre class="result notranslate">
+$ cd ~
+$ hdfs namenode -format
+</pre>
+<p>The expected result is as follows &minus;</p>
+<pre class="result notranslate">
+10/24/14 21:30:55 INFO namenode.NameNode: STARTUP_MSG:
+/************************************************************
+STARTUP_MSG: Starting NameNode
+STARTUP_MSG: host = localhost/192.168.1.11
+STARTUP_MSG: args = [-format]
+STARTUP_MSG: version = 2.4.1
+...
+...
+10/24/14 21:30:56 INFO common.Storage: Storage directory
+/home/hadoop/hadoopinfra/hdfs/namenode has been successfully formatted.
+10/24/14 21:30:56 INFO namenode.NNStorageRetentionManager: Going to
+retain 1 images with txid >= 0
+10/24/14 21:30:56 INFO util.ExitUtil: Exiting with status 0
+10/24/14 21:30:56 INFO namenode.NameNode: SHUTDOWN_MSG:
+
+/************************************************************
+SHUTDOWN_MSG: Shutting down NameNode at localhost/192.168.1.11
+************************************************************/
+</pre>
+<h3>Step 2 &minus; Verifying Hadoop dfs</h3>
+<p>Execute the following command to start your Hadoop file system.</p>
+<pre class="result notranslate">
+$ start-dfs.sh
+</pre>
+<p>The expected output is as follows &minus;</p>
+<pre class="result notranslate">
+10/24/14 21:37:56
+Starting namenodes on [localhost]
+localhost: starting namenode, logging to /home/hadoop/hadoop-
+2.4.1/logs/hadoop-hadoop-namenode-localhost.out
+localhost: starting datanode, logging to /home/hadoop/hadoop-
+2.4.1/logs/hadoop-hadoop-datanode-localhost.out
+Starting secondary namenodes [0.0.0.0]
+</pre>
+<h3>Step 3 &minus; Verifying Yarn Script</h3>
+<p>The following command is used to start the yarn script. Executing this command will start your yarn daemons.</p>
+<pre class="result notranslate">
+$ start-yarn.sh
+</pre>
+<p>The expected output is as follows &minus;</p>
+<pre class="result notranslate">
+starting yarn daemons
+starting resourcemanager, logging to /home/hadoop/hadoop-
+2.4.1/logs/yarn-hadoop-resourcemanager-localhost.out
+localhost: starting node manager, logging to /home/hadoop/hadoop-
+2.4.1/logs/yarn-hadoop-nodemanager-localhost.out
+</pre>
+<h3>Step 4 &minus; Accessing Hadoop on Browser</h3>
+<p>The default port number to access Hadoop is 50070. Use the following URL to get Hadoop services on your browser.</p>
+<pre class="result notranslate">
+http://localhost:50070/
+</pre>
+<p>The following screenshot shows the Hadoop browser.</p>
+<img src="/map_reduce/images/hadoop_browser.jpg" alt="Hadoop Browser" />
+<h3>Step 5 &minus; Verify all Applications of a Cluster</h3>
+<p>The default port number to access all the applications of a cluster is 8088. Use the following URL to use this service.</p>
+<pre class="result notranslate">
+http://localhost:8088/
+</pre>
+<p>The following screenshot shows a Hadoop cluster browser.</p>
+<img src="/map_reduce/images/hadoop_cluster_browser.jpg" alt="Hadoop Cluster Browser" />
+<h1>MapReduce - API</h1>
+<p>In this chapter, we will take a close look at the classes and their methods that are involved in the operations of MapReduce programming. We will primarily keep our focus on the following &minus;</p>
+<ul class="list">
+<li>JobContext Interface</li>
+<li>Job Class</li>
+<li>Mapper Class</li>
+<li>Reducer Class</li>
+</ul>
+<h2>JobContext Interface</h2>
+<p>The JobContext interface is the super interface for all the classes, which defines different jobs in MapReduce. It gives you a read-only view of the job that is provided to the tasks while they are running.</p>
+<p>The following are the sub-interfaces of JobContext interface.</p>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Subinterface Description</th>
+</tr>
+<tr>
+<td>1.</td>
+<td><b>MapContext&lt;KEYIN, VALUEIN, KEYOUT, VALUEOUT&gt;</b>
+<p>Defines the context that is given to the Mapper.</p></td>
+</tr>
+<tr>
+<td>2.</td>
+<td><b>ReduceContext&lt;KEYIN, VALUEIN, KEYOUT, VALUEOUT&gt;</b>
+<p>Defines the context that is passed to the Reducer.</p></td>
+</tr>
+</table>
+<p>Job class is the main class that implements the JobContext interface.</p>
+<h2>Job Class</h2>
+<p>The Job class is the most important class in the MapReduce API. It allows the user to configure the job, submit it, control its execution, and query the state. The set methods only work until the job is submitted, afterwards they will throw an IllegalStateException.</p>
+<p>Normally, the user creates the application, describes the various facets of the job, and then submits the job and monitors its progress.</p>
+<p>Here is an example of how to submit a job &minus;</p>
+<pre class="result notranslate">
+// Create a new Job
+Job job = new Job(new Configuration());
+job.setJarByClass(MyJob.class);
+
+// Specify various job-specific parameters
+job.setJobName("myjob");
+job.setInputPath(new Path("in"));
+job.setOutputPath(new Path("out"));
+
+job.setMapperClass(MyJob.MyMapper.class);
+job.setReducerClass(MyJob.MyReducer.class);
+
+// Submit the job, then poll for progress until the job is complete
+job.waitForCompletion(true);
+</pre> 
+<h3>Constructors</h3>
+<p>Following are the constructor summary of Job class.</p>
+<table class="table table-bordered">
+<tr>
+<th>S.No</th>
+<th>Constructor Summary</th>
+</tr>
+<tr>
+<td>1</td>
+<td><b>Job</b>()</td>
+</tr>
+<tr>
+<td>2</td>
+<td><b>Job</b>(Configuration conf)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><b>Job</b>(Configuration conf, String jobName)</td>
+</tr>
+</table>
+<h3>Methods</h3>
+<p>Some of the important methods of Job class are as follows &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>S.No</th>
+<th>Method Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><b>getJobName()</b>
+<p>User-specified job name.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><b>getJobState()</b><p>Returns the current state of the Job.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><b>isComplete()</b><p>Checks if the job is finished or not.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><b>setInputFormatClass()</b><p>Sets the InputFormat for the job.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><b>setJobName(String name)</b><p>Sets the user-specified job name.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><b>setOutputFormatClass()</b><p>Sets the Output Format for the job.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><b>setMapperClass(Class)</b><p>Sets the Mapper for the job.</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td><b>setReducerClass(Class)</b><p>Sets the Reducer for the job.</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td><b>setPartitionerClass(Class)</b><p>Sets the Partitioner for the job.</p></td>
+</tr>
+<tr>
+<td>10</td>
+<td><b>setCombinerClass(Class)</b><p>Sets the Combiner for the job.</p></td>
+</tr>
+</table>
+<h2>Mapper Class</h2>
+<p>The Mapper class defines the Map job. Maps input key-value pairs to a set of intermediate key-value pairs. Maps are the individual tasks that transform the input records into intermediate records. The transformed intermediate records need not be of the same type as the input records. A given input pair may map to zero or many output pairs.</p>
+<h3>Method</h3>
+<p><b>map</b> is the most prominent method of the Mapper class.  The syntax is defined below &minus;</p>
+<pre class="prettyprint notranslate">
+map(KEYIN key, VALUEIN value, org.apache.hadoop.mapreduce.Mapper.Context context)
+</pre>
+<p>This method is called once for each key-value pair in the input split.</p>
+<h2>Reducer Class</h2>
+<p>The Reducer class defines the Reduce job in MapReduce. It reduces a set of intermediate values that share a key to a smaller set of values. Reducer implementations can access the Configuration for a job via the JobContext.getConfiguration() method. A Reducer has three primary phases &minus; Shuffle, Sort, and Reduce.</p>
+<ul class="list">
+<li><p><b>Shuffle</b> &minus; The Reducer copies the sorted output from each Mapper using HTTP across the network.</p></li>
+<li><p><b>Sort</b> &minus; The framework merge-sorts the Reducer inputs by keys (since different Mappers may have output the same key). The shuffle and sort phases occur simultaneously, i.e., while outputs are being fetched, they are merged.</p></li>
+<li><p><b>Reduce</b> &minus; In this phase the reduce (Object, Iterable, Context) method is called for each &lt;key, (collection of values)&gt; in the sorted inputs.</p></li>
+</ul>
+<h3>Method</h3>
+<p><b>reduce</b> is the most prominent method of the Reducer class. The syntax is defined below &minus; </p>
+<pre class="prettyprint notranslate">
+<b>reduce</b>(KEYIN key, Iterable&lt;VALUEIN&gt; values, org.apache.hadoop.mapreduce.Reducer.Context context)
+</pre>
+<p>This method is called once for each key on the collection of key-value pairs.</p>
+<h1>MapReduce - Hadoop Implementation</h1>
+<p>MapReduce is a framework that is used for writing applications to process huge volumes of data on large clusters of commodity hardware in a reliable manner. This chapter takes you through the operation of MapReduce in Hadoop framework using Java.</p>
+<h2>MapReduce Algorithm</h2>
+<p>Generally MapReduce paradigm is based on sending map-reduce programs to computers where the actual data resides.</p>
+<ul class="list">
+<li><p>During a MapReduce job, Hadoop sends Map and Reduce tasks to appropriate servers in the cluster.</p></li> 
+<li><p>The framework manages all the details of data-passing like issuing tasks, verifying task completion, and copying data around the cluster between the nodes.</p></li> 
+<li><p>Most of the computing takes place on the nodes with data on local disks that reduces the network traffic.</p></li> 
+<li><p>After completing a given task, the cluster collects and reduces the data to form an appropriate result, and sends it back to the Hadoop server.</p></li>
+</ul>
+<img src="/map_reduce/images/map_reduce_algorithm.jpg" alt="MapReduce Algorithm" />
+<h2>Inputs and Outputs (Java Perspective)</h2>
+<p>The MapReduce framework operates on key-value pairs, that is, the framework views the input to the job as a set of key-value pairs and produces a set of key-value pair as the output of the job, conceivably of different types.</p>
+<p>The key and value classes have to be serializable by the framework and hence, it is required to implement the Writable interface. Additionally, the key classes have to implement the WritableComparable interface to facilitate sorting by the framework.</p>
+<p>Both the input and output format of a MapReduce job are in the form of key-value pairs &minus;</p>
+<p style="padding-left:205;">(Input) &lt;k1, v1&gt; -&gt; map -&gt; &lt;k2, v2&gt;-&gt; reduce -&gt; &lt;k3, v3&gt; (Output).</p>
+<table class="table table-bordered">
+<tr>
+<th></th>
+<th>Input</th>
+<th>Output</th>
+</tr>
+<tr>
+<th>Map</th>
+<td>&lt;k1, v1&gt;</td>
+<td>list (&lt;k2, v2&gt;)</td>
+</tr>
+<tr>
+<th>Reduce</th>
+<td>&lt;k2, list(v2)&gt;</td>
+<td>list (&lt;k3, v3&gt;)</td>
+</tr>
+</table>
+<h2>MapReduce Implementation</h2>
+<p>The following table shows the data regarding the electrical consumption of an organization. The table includes the monthly electrical consumption and the annual average for five consecutive years.</p>
+<table class="table table-bordered">
+<tr>
+<th></th>
+<th>Jan</th>
+<th>Feb</th>
+<th>Mar</th>
+<th>Apr</th>
+<th>May</th>
+<th>Jun</th>
+<th>Jul</th>
+<th>Aug</th>
+<th>Sep</th>
+<th>Oct</th>
+<th>Nov</th>
+<th>Dec</th>
+<th>Avg</th>
+</tr>
+<tr>
+<td>1979</td>
+<td>23</td>
+<td>23</td>
+<td>2</td>
+<td>43</td>
+<td>24</td>
+<td>25</td>
+<td>26</td>
+<td>26</td>
+<td>26</td>
+<td>26</td>
+<td>25</td>
+<td>26</td>
+<td>25</td>
+</tr>
+<tr>
+<td>1980</td>
+<td>26</td>
+<td>27</td>
+<td>28</td>
+<td>28</td>
+<td>28</td>
+<td>30</td>
+<td>31</td>
+<td>31</td>
+<td>31</td>
+<td>30</td>
+<td>30</td>
+<td>30</td>
+<td>29</td>
+</tr>
+<tr>
+<td>1981</td>
+<td>31</td>
+<td>32</td>
+<td>32</td>
+<td>32</td>
+<td>33</td>
+<td>34</td>
+<td>35</td>
+<td>36</td>
+<td>36</td>
+<td>34</td>
+<td>34</td>
+<td>34</td>
+<td>34</td>
+</tr>
+<tr>
+<td>1984</td>
+<td>39</td>
+<td>38</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>41</td>
+<td>42</td>
+<td>43</td>
+<td>40</td>
+<td>39</td>
+<td>38</td>
+<td>38</td>
+<td>40</td>
+</tr>
+<tr>
+<td>1985</td>
+<td>38</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>39</td>
+<td>41</td>
+<td>41</td>
+<td>41</td>
+<td>00</td>
+<td>40</td>
+<td>39</td>
+<td>39</td>
+<td>45</td>
+</tr>
+</table>
+<p>We need to write applications to process the input data in the given table to find the year of maximum usage, the year of minimum usage, and so on. This task is easy for programmers with finite amount of records, as they will simply write the logic to produce the required output, and pass the data to the written application.</p>
+<p>Let us now raise the scale of the input data. Assume we have to analyze the electrical consumption of all the large-scale industries of a particular state. When we write applications to process such bulk data,</p>
+<ul class="list">
+<li><p>They will take a lot of time to execute.</p></li>
+<li><p>There will be heavy network traffic when we move data from the source to the network server.</p></li>
+</ul>
+<p>To solve these problems, we have the MapReduce framework.</p>
+<h3>Input Data</h3>
+<p>The above data is saved as <b>sample.txt</b> and given as input. The input file looks as shown below.</p>
+<table class="borderless table" style="border:1px solid black";>
+<tr >
+<td class="td";><span style="font-weight:bold;">1979</span></td>
+<td class="td";>23</td>
+<td class="td";>23</td>
+<td class="td";>2</td>
+<td class="td";>43</td>
+<td class="td";>24</td>
+<td class="td";>25</td>
+<td class="td";>26</td>
+<td class="td";>26</td>
+<td class="td";>26</td>
+<td class="td";>26</td>
+<td class="td";>25</td>
+<td class="td";>26</td>
+<td class="td";><span style="font-weight:bold;">25</span></td>
+</tr>
+<tr>
+<td class="td";><span style="font-weight:bold;">1980</span></td>
+<td class="td";>26</td>
+<td class="td";>27</td>
+<td class="td";>28</td>
+<td class="td";>28</td>
+<td class="td";>28</td>
+<td class="td";>30</td>
+<td class="td";>31</td>
+<td class="td";>31</td>
+<td class="td";>31</td>
+<td class="td";>30</td>
+<td class="td";>30</td>
+<td class="td";>30</td>
+<td class="td";><span style="font-weight:bold;">29</span></td>
+</tr>
+<tr>
+<td class="td";><span style="font-weight:bold;">1981</span></td>
+<td class="td";>31</td>
+<td class="td";>32</td>
+<td class="td";>32</td>
+<td class="td";>32</td>
+<td class="td";>33</td>
+<td class="td";>34</td>
+<td class="td";>35</td>
+<td class="td";>36</td>
+<td class="td";>36</td>
+<td class="td";>34</td>
+<td class="td";>34</td>
+<td class="td";>34</td>
+<td class="td";><span style="font-weight:bold;">34</span></td>
+</tr>
+<tr>
+<td class="td";><span style="font-weight:bold;">1984</span></td>
+<td class="td";>39</td>
+<td class="td";>38</td>
+<td class="td";>39</td>
+<td class="td";>39</td>
+<td class="td";>39</td>
+<td class="td";>41</td>
+<td class="td";>42</td>
+<td class="td";>43</td>
+<td class="td";>40</td>
+<td class="td";>39</td>
+<td class="td";>38</td>
+<td class="td";>38</td>
+<td class="td";><span style="font-weight:bold;">40</span></td>
+</tr>
+<tr>
+<td class="td";><span style="font-weight:bold;">1985</span></td>
+<td class="td";>38</td>
+<td class="td";>39</td>
+<td class="td";>39</td>
+<td class="td";>39</td>
+<td class="td";>39</td>
+<td class="td";>41</td>
+<td class="td";>41</td>
+<td class="td";>41</td>
+<td class="td";>00</td>
+<td class="td";>40</td>
+<td class="td";>39</td>
+<td class="td";>39</td>
+<td class="td";><span style="font-weight:bold;">45</span></td>
+</tr>
+</table>
+<h3>Example Program</h3>
+<p>The following program for the sample data uses MapReduce framework.</p>
+<pre class="prettyprint notranslate">
+package hadoop;
+
+import java.util.*;
+import java.io.IOException;
+import java.io.IOException;
+
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapred.*;
+import org.apache.hadoop.util.*;
+
+public class ProcessUnits
+{
+   //Mapper class
+   public static class E_EMapper extends MapReduceBase implements
+   Mapper&lt;LongWritable,  /*Input key Type */
+   Text,                   /*Input value Type*/
+   Text,                   /*Output key Type*/
+   IntWritable&gt;            /*Output value Type*/
+   {
+      //Map function
+      public void map(LongWritable key, Text value, OutputCollector&lt;Text, IntWritable&gt; output, Reporter reporter) throws IOException
+      {
+         String line = value.toString();
+         String lasttoken = null;
+         StringTokenizer s = new StringTokenizer(line,"\t");
+         String year = s.nextToken();
+         
+         while(s.hasMoreTokens()){
+            lasttoken=s.nextToken();
+         }
+         
+         int avgprice = Integer.parseInt(lasttoken);
+         output.collect(new Text(year), new IntWritable(avgprice));
+      }
+   }
+   
+   //Reducer class
+	
+   public static class E_EReduce extends MapReduceBase implements
+   Reducer&lt; Text, IntWritable, Text, IntWritable &gt;
+   {
+      //Reduce function
+      public void reduce(Text key, Iterator &lt;IntWritable&gt; values, OutputCollector&gt;Text, IntWritable&gt; output, Reporter reporter) throws IOException
+      {
+         int maxavg=30;
+         int val=Integer.MIN_VALUE;
+         while (values.hasNext())
+         {
+            if((val=values.next().get())>maxavg)
+            {
+               output.collect(key, new IntWritable(val));
+            }
+         }
+      }
+   }
+	
+   //Main function
+	
+   public static void main(String args[])throws Exception
+   {
+      JobConf conf = new JobConf(Eleunits.class);
+		
+      conf.setJobName("max_eletricityunits");
+		
+      conf.setOutputKeyClass(Text.class);
+      conf.setOutputValueClass(IntWritable.class);
+		
+      conf.setMapperClass(E_EMapper.class);
+      conf.setCombinerClass(E_EReduce.class);
+      conf.setReducerClass(E_EReduce.class);
+		
+      conf.setInputFormat(TextInputFormat.class);
+      conf.setOutputFormat(TextOutputFormat.class);
+		
+      FileInputFormat.setInputPaths(conf, new Path(args[0]));
+      FileOutputFormat.setOutputPath(conf, new Path(args[1]));
+		
+      JobClient.runJob(conf);
+   }
+}
+</pre>
+<p>Save the above program into <b>ProcessUnits.java</b>. The compilation and execution of the program is given below.</p>
+<h3>Compilation and Execution of ProcessUnits Program</h3>
+<p>Let us assume we are in the home directory of Hadoop user (e.g. /home/hadoop).</p>
+<p>Follow the steps given below to compile and execute the above program.</p>
+<p><b>Step 1</b> &minus; Use the following command to create a directory to store the compiled java classes.</p>
+<pre class="result notranslate">
+$ mkdir units
+</pre>
+<p><b>Step 2</b> &minus; Download Hadoop-core-1.2.1.jar, which is used to compile and execute the MapReduce program. Download the jar from <a rel="nofollow" target="_blank" href="http://mvnrepository.com/artifact/org.apache.hadoop/hadoop-core/1.2.1">mvnrepository.com</a>. Let us assume the download folder is /home/hadoop/.</p>
+<p><b>Step 3</b> &minus; The following commands are used to compile the <b>ProcessUnits.java</b> program and to create a jar for the program.</p>
+<pre class="result notranslate">
+$ javac -classpath hadoop-core-1.2.1.jar -d units ProcessUnits.java
+$ jar -cvf units.jar -C units/ .
+</pre>
+<p><b>Step 4</b> &minus; The following command is used to create an input directory in HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -mkdir input_dir
+</pre>
+<p><b>Step 5</b> &minus; The following command is used to copy the input file named <b>sample.txt</b> in the input directory of HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -put /home/hadoop/sample.txt input_dir
+</pre>
+<p><b>Step 6</b> &minus; The following command is used to verify the files in the input directory</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -ls input_dir/
+</pre>
+<p><b>Step 7</b> &minus; The following command is used to run the Eleunit_max application by taking input files from the input directory.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop jar units.jar hadoop.ProcessUnits input_dir output_dir
+</pre>
+<p>Wait for a while till the file gets executed. After execution, the output contains a number of input splits, Map tasks, Reducer tasks, etc.</p>
+<pre class="result notranslate">
+INFO mapreduce.Job: Job job_1414748220717_0002
+completed successfully
+14/10/31 06:02:52
+INFO mapreduce.Job: Counters: 49
+
+File System Counters
+   
+   FILE: Number of bytes read=61
+   FILE: Number of bytes written=279400
+   FILE: Number of read operations=0
+   FILE: Number of large read operations=0
+   FILE: Number of write operations=0
+
+   HDFS: Number of bytes read=546
+   HDFS: Number of bytes written=40
+   HDFS: Number of read operations=9
+   HDFS: Number of large read operations=0
+   HDFS: Number of write operations=2 Job Counters
+   
+   Launched map tasks=2
+   Launched reduce tasks=1
+   Data-local map tasks=2
+	
+   Total time spent by all maps in occupied slots (ms)=146137
+   Total time spent by all reduces in occupied slots (ms)=441
+   Total time spent by all map tasks (ms)=14613
+   Total time spent by all reduce tasks (ms)=44120
+	
+   Total vcore-seconds taken by all map tasks=146137
+   Total vcore-seconds taken by all reduce tasks=44120
+	
+   Total megabyte-seconds taken by all map tasks=149644288
+   Total megabyte-seconds taken by all reduce tasks=45178880
+
+Map-Reduce Framework
+   
+   Map input records=5
+	
+   Map output records=5
+   Map output bytes=45
+   Map output materialized bytes=67
+	
+   Input split bytes=208
+   Combine input records=5
+   Combine output records=5
+	
+   Reduce input groups=5
+   Reduce shuffle bytes=6
+   Reduce input records=5
+   Reduce output records=5
+	
+   Spilled Records=10
+   Shuffled Maps =2
+   Failed Shuffles=0
+   Merged Map outputs=2
+	
+   GC time elapsed (ms)=948
+   CPU time spent (ms)=5160
+	
+   Physical memory (bytes) snapshot=47749120
+   Virtual memory (bytes) snapshot=2899349504
+	
+   Total committed heap usage (bytes)=277684224
+
+File Output Format Counters
+
+   Bytes Written=40
+</pre>
+<p><b>Step 8</b> &minus; The following command is used to verify the resultant files in the output folder.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -ls output_dir/
+</pre>
+<p><b>Step 9</b> &minus; The following command is used to see the output in <b>Part-00000</b> file. This file is generated by HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -cat output_dir/part-00000
+</pre>
+<p>Following is the output generated by the MapReduce program &minus;</p>
+<table class="borderless table" style="border:1px solid black";>
+<tr>
+<td style="width:15%"; class="td";>1981</td>
+<td class="td";>34</td>
+</tr>
+<tr>
+<td class="td";>1984</td>
+<td class="td";>40</td>
+</tr>
+<tr>
+<td class="td";>1985</td>
+<td class="td";>45</td>
+</tr>
+</table>
+<p><b>Step 10</b> &minus; The following command is used to copy the output folder from HDFS to the local file system.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -cat output_dir/part-00000/bin/hadoop dfs -get output_dir /home/hadoop
+</pre>
+<h1>MapReduce - Partitioner</h1>
+<p>A partitioner works like a condition in processing an input dataset. The partition phase takes place after the Map phase and before the Reduce phase.</p>
+<p>The number of partitioners is equal to the number of reducers. That means a partitioner will divide the data according to the number of reducers. Therefore, the data passed from a single partitioner is processed by a single Reducer.</p>
+<h2>Partitioner</h2>
+<p>A partitioner partitions the key-value pairs of intermediate Map-outputs. It partitions the data using a user-defined condition, which works like a hash function. The total number of partitions is same as the number of Reducer tasks for the job. Let us take an example to understand how the partitioner works.</p>
+<h2>MapReduce Partitioner Implementation</h2>
+<p>For the sake of convenience, let us assume we have a small table called Employee with the following data. We will use this sample data as our input dataset to demonstrate how the partitioner works.</p>
+<table class="table table-bordered">
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Age</th>
+<th>Gender</th>
+<th>Salary</th>
+</tr>
+<tr>
+<td>1201</td>
+<td>gopal</td>
+<td>45</td>
+<td>Male</td>
+<td>50,000</td>
+</tr>
+<tr>
+<td>1202</td>
+<td>manisha</td>
+<td>40</td>
+<td>Female</td>
+<td>50,000</td>
+</tr>
+<tr>
+<td>1203</td>
+<td>khalil</td>
+<td>34</td>
+<td>Male</td>
+<td>30,000</td>
+</tr>
+<tr>
+<td>1204</td>
+<td>prasanth</td>
+<td>30</td>
+<td>Male</td>
+<td>30,000</td>
+</tr>
+<tr>
+<td>1205</td>
+<td>kiran</td>
+<td>20</td>
+<td>Male</td>
+<td>40,000</td>
+</tr>
+<tr>
+<td>1206</td>
+<td>laxmi</td>
+<td>25</td>
+<td>Female</td>
+<td>35,000</td>
+</tr>
+<tr>
+<td>1207</td>
+<td>bhavya</td>
+<td>20</td>
+<td>Female</td>
+<td>15,000</td>
+</tr>
+<tr>
+<td>1208</td>
+<td>reshma</td>
+<td>19</td>
+<td>Female</td>
+<td>15,000</td>
+</tr>
+<tr>
+<td>1209</td>
+<td>kranthi</td>
+<td>22</td>
+<td>Male</td>
+<td>22,000</td>
+</tr>
+<tr>
+<td>1210</td>
+<td>Satish</td>
+<td>24</td>
+<td>Male</td>
+<td>25,000</td>
+</tr>
+<tr>
+<td>1211</td>
+<td>Krishna</td>
+<td>25</td>
+<td>Male</td>
+<td>25,000</td>
+</tr>
+<tr>
+<td>1212</td>
+<td>Arshad</td>
+<td>28</td>
+<td>Male</td>
+<td>20,000</td>
+</tr>
+<tr>
+<td>1213</td>
+<td>lavanya</td>
+<td>18</td>
+<td>Female</td>
+<td>8,000</td>
+</tr>
+</table>
+<p>We have to write an application to process the input dataset to find the highest salaried employee by gender in different age groups (for example, below 20, between 21 to 30, above 30).</p>
+<h3>Input Data</h3>
+<p>The above data is saved as <b>input.txt</b> in the “/home/hadoop/hadoopPartitioner” directory and given as input.</p>
+<table class="borderless table" style="border:1px solid black";>
+<tr>
+<td style="width:10%" class="td";>1201</td>
+<td style="width:13%" class="td";>gopal</td>
+<td style="width:10%" class="td";>45</td>
+<td style="width:10%" class="td";>Male</td>
+<td class="td";>50000</td>
+</tr>
+<tr>
+<td class="td";>1202</td>
+<td class="td";>manisha</td>
+<td class="td";>40</td>
+<td class="td";>Female</td>
+<td class="td";>51000</td>
+</tr>
+<tr>
+<td class="td";>1203</td>
+<td class="td";>khaleel</td>
+<td class="td";>34</td>
+<td class="td";>Male</td>
+<td class="td";>30000</td>
+</tr>
+<tr>
+<td class="td";>1204</td>
+<td class="td";>prasanth</td>
+<td class="td";>30</td>
+<td class="td";>Male</td>
+<td class="td";>31000</td>
+</tr>
+<tr>
+<td class="td";>1205</td>
+<td class="td";>kiran</td>
+<td class="td";>20</td>
+<td class="td";>Male</td>
+<td class="td";>40000</td>
+</tr>
+<tr>
+<td class="td";>1206</td>
+<td class="td";>laxmi</td>
+<td class="td";>25</td>
+<td class="td";>Female</td>
+<td class="td";>35000</td>
+</tr>
+<tr>
+<td class="td";>1207</td>
+<td class="td";>bhavya</td>
+<td class="td";>20</td>
+<td class="td";>Female</td>
+<td class="td";>15000</td>
+</tr>
+<tr>
+<td class="td";>1208</td>
+<td class="td";>reshma</td>
+<td class="td";>19</td>
+<td class="td";>Female</td>
+<td class="td";>14000</td>
+</tr>
+<tr>
+<td class="td";>1209</td>
+<td class="td";>kranthi</td>
+<td class="td";>22</td>
+<td class="td";>Male</td>
+<td class="td";>22000</td>
+</tr>
+<tr>
+<td class="td";>1210</td>
+<td class="td";>Satish</td>
+<td class="td";>24</td>
+<td class="td";>Male</td>
+<td class="td";>25000</td>
+</tr>
+<tr>
+<td class="td";>1211</td>
+<td class="td";>Krishna</td>
+<td class="td";>25</td>
+<td class="td";>Male</td>
+<td class="td";>26000</td>
+</tr>
+<tr>
+<td class="td";>1212</td>
+<td class="td";>Arshad</td>
+<td class="td";>28</td>
+<td class="td";>Male</td>
+<td class="td";>20000</td>
+</tr>
+<tr>
+<td class="td";>1213</td>
+<td class="td";>lavanya</td>
+<td class="td";>18</td>
+<td class="td";>Female</td>
+<td class="td";>8000</td>
+</tr>
+</table>
+<p>Based on the given input, following is the algorithmic explanation of the program.</p>
+<h3>Map Tasks</h3>
+<p>The map task accepts the key-value pairs as input while we have the text data in a text file. The input for this map task is as follows &minus;</p>
+<p><b>Input</b> &minus; The key would be a pattern such as “any special key &plus; filename &plus; line number” (example: key = @input1) and the value would be the data in that line (example: value = 1201 \t gopal \t 45 \t Male \t 50000).</p>
+<p><b>Method</b> &minus; The operation of this map task is as follows &minus;</p>
+<ul class="list">
+<li><p>Read the <b>value</b> (record data), which comes as input value from the argument list in a string.</p></li>
+<li><p>Using the split function, separate the gender and store in a string variable.</p></li>
+</ul>
+<pre class="result notranslate">
+String[] str = value.toString().split("\t", -3);
+String gender=str[3];
+</pre>
+<ul class="list">
+<li><p>Send the gender information and the record data <b>value</b> as output key-value pair from the map task to the <b>partition task</b>.</p></li>
+</ul>
+<pre class="result notranslate">
+context.write(new Text(gender), new Text(value));
+</pre>
+<ul class="list">
+<li><p>Repeat all the above steps for all the records in the text file.</p></li>
+</ul>
+<p><b>Output</b> &minus; You will get the gender data and the record data value as key-value pairs.</p>
+<h3>Partitioner Task</h3>
+<p>The partitioner task accepts the key-value pairs from the map task as its input. Partition implies dividing the data into segments. According to the given conditional criteria of partitions, the input key-value paired data can be divided into three parts based on the age criteria.</p>
+<p><b>Input</b> &minus; The whole data in a collection of key-value pairs.</p>
+<p style="padding-left:10%;">key = Gender field value in the record.</p>
+<p style="padding-left:10%;">value = Whole record data value of that gender.</p>
+<p><b>Method</b> &minus; The process of partition logic runs as follows.</p>
+<ul class="list">
+<li>Read the age field value from the input key-value pair.</li>
+</ul>
+<pre class="result notranslate">
+String[] str = value.toString().split("\t");
+int age = Integer.parseInt(str[2]);
+</pre>
+<ul class="list">
+<li><p>Check the age value with the following conditions.</p>
+<ul class="list">
+<li>Age less than or equal to 20</li>
+<li>Age Greater than 20 and Less than or equal to 30.</li>
+<li>Age Greater than 30.</li>
+</ul>
+</li>
+</ul>
+<pre class="prettyprint notranslate">
+if(age&lt;=20)
+{
+   return 0;
+}
+else if(age&gt;20 && age&lt;=30)
+{
+   return 1 % numReduceTasks;
+}
+else
+{
+   return 2 % numReduceTasks;
+}
+</pre>
+<p><b>Output</b> &minus; The whole data of key-value pairs are segmented into three collections of key-value pairs. The Reducer works individually on each collection.</p>
+<h3>Reduce Tasks</h3>
+<p>The number of partitioner tasks is equal to the number of reducer tasks. Here we have three partitioner tasks and hence we have three Reducer tasks to be executed.</p>
+<p><b>Input</b> &minus; The Reducer will execute three times with different collection of key-value pairs.</p>
+<p style="padding-left:10%;">key = gender field value in the record.</p>
+<p style="padding-left:10%;">value = the whole record data of that gender.</p>
+<p><b>Method</b> &minus; The following logic will be applied on each collection.</p>
+<ul class="list">
+<li>Read the Salary field value of each record.</li>
+</ul>
+<pre class="result notranslate">
+String [] str = val.toString().split("\t", -3);
+Note: str[4] have the salary field value.
+</pre>
+<ul class="list">
+<li><p>Check the salary with the max variable. If str[4] is the max salary, then assign str[4] to max, otherwise skip the step.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+if(Integer.parseInt(str[4])>max)
+{
+   max=Integer.parseInt(str[4]);
+}
+</pre>
+<ul class="list">
+<li><p>Repeat Steps 1 and 2 for each key collection (Male &amp; Female are the key collections). After executing these three steps, you will find one max salary from the Male key collection and one max salary from the Female key collection.</p></li>
+</ul>
+<pre class="result notranslate">
+context.write(new Text(key), new IntWritable(max));
+</pre>
+<p><b>Output</b> &minus; Finally, you will get a set of key-value pair data in three collections of different age groups. It contains the max salary from the Male collection and the max salary from the Female collection in each age group respectively.</p>
+<p>After executing the Map, the Partitioner, and the Reduce tasks, the three collections of key-value pair data are stored in three different files as the output.</p>
+<p>All the three tasks are treated as MapReduce jobs. The following requirements and specifications of these jobs should be specified in the Configurations &minus;</p>
+<ul class="list">
+<li>Job name</li>
+<li>Input and Output formats of keys and values</li>
+<li>Individual classes for Map, Reduce, and Partitioner tasks</li>
+</ul>
+<pre class="result notranslate">
+Configuration conf = getConf();
+
+//Create Job
+Job job = new Job(conf, "topsal");
+job.setJarByClass(PartitionerExample.class);
+
+// File Input and Output paths
+FileInputFormat.setInputPaths(job, new Path(arg[0]));
+FileOutputFormat.setOutputPath(job,new Path(arg[1]));
+
+//Set Mapper class and Output format for key-value pair.
+job.setMapperClass(MapClass.class);
+job.setMapOutputKeyClass(Text.class);
+job.setMapOutputValueClass(Text.class);
+
+//set partitioner statement
+job.setPartitionerClass(CaderPartitioner.class);
+
+//Set Reducer class and Input/Output format for key-value pair.
+job.setReducerClass(ReduceClass.class);
+
+//Number of Reducer tasks.
+job.setNumReduceTasks(3);
+
+//Input and Output format for data
+job.setInputFormatClass(TextInputFormat.class);
+job.setOutputFormatClass(TextOutputFormat.class);
+job.setOutputKeyClass(Text.class);
+job.setOutputValueClass(Text.class);
+</pre>
+<h3>Example Program</h3>
+<p>The following program shows how to implement the partitioners for the given criteria in a MapReduce program.</p>
+<pre class="prettyprint notranslate">
+package partitionerexample;
+
+import java.io.*;
+
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.*;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.fs.*;
+
+import org.apache.hadoop.mapreduce.lib.input.*;
+import org.apache.hadoop.mapreduce.lib.output.*;
+
+import org.apache.hadoop.util.*;
+
+public class PartitionerExample extends Configured implements Tool
+{
+   //Map class
+	
+   public static class MapClass extends Mapper&lt;LongWritable,Text,Text,Text&gt;
+   {
+      public void map(LongWritable key, Text value, Context context)
+      {
+         try{
+            String[] str = value.toString().split("\t", -3);
+            String gender=str[3];
+            context.write(new Text(gender), new Text(value));
+         }
+         catch(Exception e)
+         {
+            System.out.println(e.getMessage());
+         }
+      }
+   }
+   
+   //Reducer class
+	
+   public static class ReduceClass extends Reducer&lt;Text,Text,Text,IntWritable&gt;
+   {
+      public int max = -1;
+      public void reduce(Text key, Iterable &lt;Text&gt; values, Context context) throws IOException, InterruptedException
+      {
+         max = -1;
+			
+         for (Text val : values)
+         {
+            String [] str = val.toString().split("\t", -3);
+            if(Integer.parseInt(str[4])>max)
+            max=Integer.parseInt(str[4]);
+         }
+			
+         context.write(new Text(key), new IntWritable(max));
+      }
+   }
+   
+   //Partitioner class
+	
+   public static class CaderPartitioner extends
+   Partitioner &lt; Text, Text &gt;
+   {
+      @Override
+      public int getPartition(Text key, Text value, int numReduceTasks)
+      {
+         String[] str = value.toString().split("\t");
+         int age = Integer.parseInt(str[2]);
+         
+         if(numReduceTasks == 0)
+         {
+            return 0;
+         }
+         
+         if(age&lt;=20)
+         {
+            return 0;
+         }
+         else if(age&gt;20 && age&lt;=30)
+         {
+            return 1 % numReduceTasks;
+         }
+         else
+         {
+            return 2 % numReduceTasks;
+         }
+      }
+   }
+   
+   @Override
+   public int run(String[] arg) throws Exception
+   {
+      Configuration conf = getConf();
+		
+      Job job = new Job(conf, "topsal");
+      job.setJarByClass(PartitionerExample.class);
+		
+      FileInputFormat.setInputPaths(job, new Path(arg[0]));
+      FileOutputFormat.setOutputPath(job,new Path(arg[1]));
+		
+      job.setMapperClass(MapClass.class);
+		
+      job.setMapOutputKeyClass(Text.class);
+      job.setMapOutputValueClass(Text.class);
+      
+      //set partitioner statement
+		
+      job.setPartitionerClass(CaderPartitioner.class);
+      job.setReducerClass(ReduceClass.class);
+      job.setNumReduceTasks(3);
+      job.setInputFormatClass(TextInputFormat.class);
+		
+      job.setOutputFormatClass(TextOutputFormat.class);
+      job.setOutputKeyClass(Text.class);
+      job.setOutputValueClass(Text.class);
+		
+      System.exit(job.waitForCompletion(true)? 0 : 1);
+      return 0;
+   }
+   
+   public static void main(String ar[]) throws Exception
+   {
+      int res = ToolRunner.run(new Configuration(), new PartitionerExample(),ar);
+      System.exit(0);
+   }
+}
+</pre>
+<p>Save the above code as <b>PartitionerExample.java</b> in “/home/hadoop/hadoopPartitioner”. The compilation and execution of the program is given below.</p>
+<h3>Compilation and Execution</h3>
+<p>Let us assume we are in the home directory of the Hadoop user (for example, /home/hadoop).</p>
+<p>Follow the steps given below to compile and execute the above program.</p>
+<p><b>Step 1</b> &minus; Download Hadoop-core-1.2.1.jar, which is used to compile and execute the MapReduce program. You can download the jar from <a rel="nofollow" target="_blank" href="http://mvnrepository.com/artifact/org.apache.hadoop/hadoop-core/1.2.1">mvnrepository.com</a>.</p>
+<p>Let us assume the downloaded folder is “/home/hadoop/hadoopPartitioner”</p>
+<p><b>Step 2</b> &minus; The following commands are used for compiling the program <b>PartitionerExample.java</b> and creating a jar for the program.</p>
+<pre class="result notranslate">
+$ javac -classpath hadoop-core-1.2.1.jar -d ProcessUnits.java
+$ jar -cvf PartitionerExample.jar -C .
+</pre>
+<p><b>Step 3</b> &minus; Use the following command to create an input directory in HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -mkdir input_dir
+</pre>
+<p><b>Step 4</b> &minus; Use the following command to copy the input file named <b>input.txt</b> in the input directory of HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -put /home/hadoop/hadoopPartitioner/input.txt input_dir
+</pre>
+<p><b>Step 5</b> &minus; Use the following command to verify the files in the input directory.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -ls input_dir/
+</pre>
+<p><b>Step 6</b> &minus; Use the following command to run the Top salary application by taking input files from the input directory.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop jar PartitionerExample.jar partitionerexample.PartitionerExample input_dir/input.txt output_dir
+</pre>
+<p>Wait for a while till the file gets executed. After execution, the output contains a number of input splits, map tasks, and Reducer tasks.</p>
+<pre class="result notranslate">
+15/02/04 15:19:51 INFO mapreduce.Job: Job job_1423027269044_0021 completed successfully
+15/02/04 15:19:52 INFO mapreduce.Job: Counters: 49
+
+File System Counters
+
+   FILE: Number of bytes read=467
+   FILE: Number of bytes written=426777
+   FILE: Number of read operations=0
+   FILE: Number of large read operations=0
+   FILE: Number of write operations=0
+	
+   HDFS: Number of bytes read=480
+   HDFS: Number of bytes written=72
+   HDFS: Number of read operations=12
+   HDFS: Number of large read operations=0
+   HDFS: Number of write operations=6
+	
+Job Counters
+
+   Launched map tasks=1
+   Launched reduce tasks=3
+	
+   Data-local map tasks=1
+	
+   Total time spent by all maps in occupied slots (ms)=8212
+   Total time spent by all reduces in occupied slots (ms)=59858
+   Total time spent by all map tasks (ms)=8212
+   Total time spent by all reduce tasks (ms)=59858
+	
+   Total vcore-seconds taken by all map tasks=8212
+   Total vcore-seconds taken by all reduce tasks=59858
+	
+   Total megabyte-seconds taken by all map tasks=8409088
+   Total megabyte-seconds taken by all reduce tasks=61294592
+	
+Map-Reduce Framework
+
+   Map input records=13
+   Map output records=13
+   Map output bytes=423
+   Map output materialized bytes=467
+	
+   Input split bytes=119
+	
+   Combine input records=0
+   Combine output records=0
+	
+   Reduce input groups=6
+   Reduce shuffle bytes=467
+   Reduce input records=13
+   Reduce output records=6
+	
+   Spilled Records=26
+   Shuffled Maps =3
+   Failed Shuffles=0
+   Merged Map outputs=3
+   GC time elapsed (ms)=224
+   CPU time spent (ms)=3690
+	
+   Physical memory (bytes) snapshot=553816064
+   Virtual memory (bytes) snapshot=3441266688
+	
+   Total committed heap usage (bytes)=334102528
+	
+Shuffle Errors
+
+   BAD_ID=0
+   CONNECTION=0
+   IO_ERROR=0
+	
+   WRONG_LENGTH=0
+   WRONG_MAP=0
+   WRONG_REDUCE=0
+	
+File Input Format Counters
+
+   Bytes Read=361
+	
+File Output Format Counters
+
+   Bytes Written=72
+</pre>
+<p><b>Step 7</b> &minus; Use the following command to verify the resultant files in the output folder.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -ls output_dir/
+</pre>
+<p>You will find the output in three files because you are using three partitioners and three Reducers in your program.</p>
+<p><b>Step 8</b> &minus; Use the following command to see the output in <b>Part-00000</b> file. This file is generated by HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -cat output_dir/part-00000
+</pre>
+<p><b>Output in Part-00000</b></p>
+<pre class="result notranslate">
+Female   15000
+Male     40000
+</pre>
+<p>Use the following command to see the output in <b>Part-00001</b> file.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -cat output_dir/part-00001
+</pre>
+<p><b>Output in Part-00001</b></p>
+<pre class="result notranslate">
+Female   35000
+Male    31000
+</pre>
+<p>Use the following command to see the output in <b>Part-00002</b> file.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -cat output_dir/part-00002
+</pre>
+<p><b>Output in Part-00002</b></p>
+<pre class="result notranslate">
+Female  51000
+Male   50000
+</pre>
+<h1>MapReduce - Combiners</h1>
+<p>A Combiner, also known as a <b>semi-reducer,</b> is an optional class that operates by accepting the inputs from the Map class and thereafter passing the output key-value pairs to the Reducer class.</p>
+<p>The main function of a Combiner is to summarize the map output records with the same key. The output (key-value collection) of the combiner will be sent over the network to the actual Reducer task as input.</p>
+<h2>Combiner</h2>
+<p>The Combiner class is used in between the Map class and the Reduce class to reduce the volume of data transfer between Map and Reduce. Usually, the output of the map task is large and the data transferred to the reduce task is high.</p>
+<p>The following MapReduce task diagram shows the COMBINER PHASE.</p>
+<img src="/map_reduce/images/combiner.jpg" alt="Combiner" />
+<h2>How Combiner Works?</h2>
+<p>Here is a brief summary on how MapReduce Combiner works &minus;</p>
+<ul class="list">
+<li><p>A combiner does not have a predefined interface and it must implement the Reducer interface’s reduce() method.</p></li>
+<li><p>A combiner operates on each map output key. It must have the same output key-value types as the Reducer class.</p></li>
+<li><p>A combiner can produce summary information from a large dataset because it replaces the original Map output.</p></li>
+</ul>
+<p>Although, Combiner is optional yet it helps segregating data into multiple groups for Reduce phase, which makes it easier to process.</p>
+<h2>MapReduce Combiner Implementation</h2>
+<p>The following example provides a theoretical idea about combiners. Let us assume we have the following input text file named <b>input.txt</b> for MapReduce.</p>
+<pre class="result notranslate">
+What do you mean by Object
+What do you know about Java
+What is Java Virtual Machine
+How Java enabled High Performance
+</pre>
+<p>The important phases of the MapReduce program with Combiner are discussed below.</p>
+<h3>Record Reader</h3>
+<p>This is the first phase of MapReduce where the Record Reader reads every line from the input text file as text and yields output as key-value pairs.</p>
+<p><b>Input</b> &minus; Line by line text from the input file.</p>
+<p><b>Output</b> &minus; Forms the key-value pairs. The following is the set of expected key-value pairs.</p>
+<pre class="result notranslate">
+&lt;1, What do you mean by Object&gt;
+&lt;2, What do you know about Java&gt;
+&lt;3, What is Java Virtual Machine&gt;
+&lt;4, How Java enabled High Performance&gt;
+</pre>
+<h3>Map Phase</h3>
+<p>The Map phase takes input from the Record Reader, processes it, and produces the output as another set of key-value pairs.</p>
+<p><b>Input</b> &minus; The following key-value pair is the input taken from the Record Reader.</p>
+<pre class="result notranslate">
+&lt;1, What do you mean by Object&gt;
+&lt;2, What do you know about Java&gt;
+&lt;3, What is Java Virtual Machine&gt;
+&lt;4, How Java enabled High Performance&gt;
+</pre>
+<p>The Map phase reads each key-value pair, divides each word from the value using StringTokenizer, treats each word as key and the count of that word as value. The following code snippet shows the Mapper class and the map function.</p>
+<pre class="prettyprint notranslate">
+public static class TokenizerMapper extends Mapper&lt;Object, Text, Text, IntWritable&gt;
+{
+   private final static IntWritable one = new IntWritable(1);
+   private Text word = new Text();
+   
+   public void map(Object key, Text value, Context context) throws IOException, InterruptedException 
+   {
+      StringTokenizer itr = new StringTokenizer(value.toString());
+      while (itr.hasMoreTokens()) 
+      {
+         word.set(itr.nextToken());
+         context.write(word, one);
+      }
+   }
+}
+</pre>
+<p><b>Output</b> &minus; The expected output is as follows &minus;</p>
+<pre class="result notranslate">
+&lt;What,1&gt; &lt;do,1&gt; &lt;you,1&gt; &lt;mean,1&gt; &lt;by,1&gt; &lt;Object,1&gt;
+&lt;What,1&gt; &lt;do,1&gt; &lt;you,1&gt; &lt;know,1&gt; &lt;about,1&gt; &lt;Java,1&gt;
+&lt;What,1&gt; &lt;is,1&gt; &lt;Java,1&gt; &lt;Virtual,1&gt; &lt;Machine,1&gt;
+&lt;How,1&gt; &lt;Java,1&gt; &lt;enabled,1&gt; &lt;High,1&gt; &lt;Performance,1&gt;
+</pre>
+<h3>Combiner Phase</h3>
+<p>The Combiner phase takes each key-value pair from the Map phase, processes it, and produces the output as <b>key-value collection</b> pairs.</p>
+<p><b>Input</b> &minus; The following key-value pair is the input taken from the Map phase.</p>
+<pre class="result notranslate">
+&lt;What,1&gt; &lt;do,1&gt; &lt;you,1&gt; &lt;mean,1&gt; &lt;by,1&gt; &lt;Object,1&gt;
+&lt;What,1&gt; &lt;do,1&gt; &lt;you,1&gt; &lt;know,1&gt; &lt;about,1&gt; &lt;Java,1&gt;
+&lt;What,1&gt; &lt;is,1&gt; &lt;Java,1&gt; &lt;Virtual,1&gt; &lt;Machine,1&gt;
+&lt;How,1&gt; &lt;Java,1&gt; &lt;enabled,1&gt; &lt;High,1&gt; &lt;Performance,1&gt;
+</pre>
+<p>The Combiner phase reads each key-value pair, combines the common words as key and values as collection. Usually, the code and operation for a Combiner is similar to that of a Reducer. Following is the code snippet for Mapper, Combiner and Reducer class declaration.</p>
+<pre class="result notranslate">
+job.setMapperClass(TokenizerMapper.class);
+job.setCombinerClass(IntSumReducer.class);
+job.setReducerClass(IntSumReducer.class);
+</pre>
+<p><b>Output</b> &minus; The expected output is as follows &minus;</p>
+<pre class="result notranslate">
+&lt;What,1,1,1&gt; &lt;do,1,1&gt; &lt;you,1,1&gt; &lt;mean,1&gt; &lt;by,1&gt; &lt;Object,1>
+&lt;know,1&gt; &lt;about,1&gt; &lt;Java,1,1,1&gt;
+&lt;is,1&gt; &lt;Virtual,1&gt; &lt;Machine,1&gt;
+&lt;How,1&gt; &lt;enabled,1&gt; &lt;High,1&gt; &lt;Performance,1&gt;
+</pre>
+<h3>Reducer Phase</h3>
+<p>The Reducer phase takes each key-value collection pair from the Combiner phase, processes it, and passes the output as key-value pairs. Note that the Combiner functionality is same as the Reducer.</p>
+<p><b>Input</b> &minus; The following key-value pair is the input taken from the Combiner phase.</p>
+<pre class="result notranslate">
+&lt;What,1,1,1&gt; &lt;do,1,1&gt; &lt;you,1,1&gt; &lt;mean,1&gt; &lt;by,1&gt; &lt;Object,1>
+&lt;know,1&gt; &lt;about,1&gt; &lt;Java,1,1,1&gt;
+&lt;is,1&gt; &lt;Virtual,1&gt; &lt;Machine,1&gt;
+&lt;How,1&gt; &lt;enabled,1&gt; &lt;High,1&gt; &lt;Performance,1&gt;
+</pre>
+<p>The Reducer phase reads each key-value pair. Following is the code snippet for the Combiner.</p>
+<pre class="prettyprint notranslate">
+public static class IntSumReducer extends Reducer&lt;Text,IntWritable,Text,IntWritable&gt; 
+{
+   private IntWritable result = new IntWritable();
+   
+   public void reduce(Text key, Iterable&lt;IntWritable&gt; values,Context context) throws IOException, InterruptedException 
+   {
+      int sum = 0;
+      for (IntWritable val : values) 
+      {
+         sum += val.get();
+      }
+      result.set(sum);
+      context.write(key, result);
+   }
+}
+</pre>
+<p><b>Output</b> &minus; The expected output from the Reducer phase is as follows &minus;</p>
+<pre class="result notranslate">
+&lt;What,3&gt; &lt;do,2&gt; &lt;you,2&gt; &lt;mean,1&gt; &lt;by,1&gt; &lt;Object,1&gt;
+&lt;know,1&gt; &lt;about,1&gt; &lt;Java,3&gt;
+&lt;is,1&gt; &lt;Virtual,1&gt; &lt;Machine,1&gt;
+&lt;How,1&gt; &lt;enabled,1&gt; &lt;High,1&gt; &lt;Performance,1&gt;
+</pre>
+<h3>Record Writer</h3>
+<p>This is the last phase of MapReduce where the Record Writer writes every key-value pair from the Reducer phase and sends the output as text.</p>
+<p><b>Input</b> &minus; Each key-value pair from the Reducer phase along with the Output format.</p>
+<p><b>Output</b> &minus; It gives you the key-value pairs in text format. Following is the expected output.</p>
+<pre class="result notranslate">
+What           3
+do             2
+you            2
+mean           1
+by             1
+Object         1
+know           1
+about          1
+Java           3
+is             1
+Virtual        1
+Machine        1
+How            1
+enabled        1
+High           1
+Performance    1
+</pre>
+<h3>Example Program</h3>
+<p>The following code block counts the number of words in a program.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+public class WordCount {
+   public static class TokenizerMapper extends Mapper&lt;Object, Text, Text, IntWritable&gt;
+   {
+      private final static IntWritable one = new IntWritable(1);
+      private Text word = new Text();
+      
+      public void map(Object key, Text value, Context context) throws IOException, InterruptedException 
+      {
+         StringTokenizer itr = new StringTokenizer(value.toString());
+         while (itr.hasMoreTokens()) 
+         {
+            word.set(itr.nextToken());
+            context.write(word, one);
+         }
+      }
+   }
+   
+   public static class IntSumReducer extends Reducer&lt;Text,IntWritable,Text,IntWritable&gt; 
+   {
+      private IntWritable result = new IntWritable();
+      public void reduce(Text key, Iterable&lt;IntWritable&gt; values, Context context) throws IOException, InterruptedException 
+      {
+         int sum = 0;
+         for (IntWritable val : values) 
+         {
+            sum += val.get();
+         }
+         result.set(sum);
+         context.write(key, result);
+      }
+   }
+   
+   public static void main(String[] args) throws Exception 
+   {
+      Configuration conf = new Configuration();
+      Job job = Job.getInstance(conf, "word count");
+		
+      job.setJarByClass(WordCount.class);
+      job.setMapperClass(TokenizerMapper.class);
+      job.setCombinerClass(IntSumReducer.class);
+      job.setReducerClass(IntSumReducer.class);
+		
+      job.setOutputKeyClass(Text.class);
+      job.setOutputValueClass(IntWritable.class);
+		
+      FileInputFormat.addInputPath(job, new Path(args[0]));
+      FileOutputFormat.setOutputPath(job, new Path(args[1]));
+		
+      System.exit(job.waitForCompletion(true) ? 0 : 1);
+   }
+}
+</pre>
+<p>Save the above program as <b>WordCount.java</b>. The compilation and execution of the program is given below.</p>
+<h2>Compilation and Execution</h2>
+<p>Let us assume we are in the home directory of Hadoop user (for example, /home/hadoop).</p>
+<p>Follow the steps given below to compile and execute the above program.</p>
+<p><b>Step 1</b> &minus; Use the following command to create a directory to store the compiled java classes.</p>
+<pre class="result notranslate">
+$ mkdir units
+</pre>
+<p><b>Step 2</b> &minus; Download Hadoop-core-1.2.1.jar, which is used to compile and execute the MapReduce program. You can download the jar from <a rel="nofollow" target="_blank" href="http://mvnrepository.com/artifact/org.apache.hadoop/hadoop-core/1.2.1" >mvnrepository.com</a>.</p>
+<p>Let us assume the downloaded folder is /home/hadoop/.</p>
+<p><b>Step 3</b> &minus; Use the following commands to compile the <b>WordCount.java</b> program and to create a jar for the program.</p>
+<pre class="result notranslate">
+$ javac -classpath hadoop-core-1.2.1.jar -d units WordCount.java
+$ jar -cvf units.jar -C units/ .
+</pre>
+<p><b>Step 4</b> &minus; Use the following command to create an input directory in HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -mkdir input_dir
+</pre>
+<p><b>Step 5</b> &minus; Use the following command to copy the input file named <b>input.txt</b> in the input directory of HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -put /home/hadoop/input.txt input_dir
+</pre>
+<p><b>Step 6</b> &minus; Use the following command to verify the files in the input directory.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -ls input_dir/
+</pre>
+<p><b>Step 7</b> &minus; Use the following command to run the Word count application by taking input files from the input directory.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop jar units.jar hadoop.ProcessUnits input_dir output_dir
+</pre>
+<p>Wait for a while till the file gets executed. After execution, the output contains a number of input splits, Map tasks, and Reducer tasks.</p>
+<p><b>Step 8</b> &minus; Use the following command to verify the resultant files in the output folder.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -ls output_dir/
+</pre>
+<p><b>Step 9</b> &minus; Use the following command to see the output in <b>Part-00000</b> file. This file is generated by HDFS.</p>
+<pre class="result notranslate">
+$HADOOP_HOME/bin/hadoop fs -cat output_dir/part-00000
+</pre>
+<p>Following is the output generated by the MapReduce program.</p>
+<pre class="result notranslate">
+What           3
+do             2
+you            2
+mean           1
+by             1
+Object         1
+know           1
+about          1
+Java           3
+is             1
+Virtual        1
+Machine        1
+How            1
+enabled        1
+High           1
+Performance    1
+</pre>
+<h1>MapReduce - Hadoop Administration</h1>
+<p>This chapter explains Hadoop administration which includes both HDFS and MapReduce administration.</p>
+<ul class="list">
+<li><p>HDFS administration includes monitoring the HDFS file structure, locations, and the updated files.</p></li>
+<li><p>MapReduce administration includes monitoring the list of applications, configuration of nodes, application status, etc.</p></li>
+</ul>
+<h2>HDFS Monitoring</h2>
+<p>HDFS (Hadoop Distributed File System) contains the user directories, input files, and output files. Use the MapReduce commands, <b>put</b> and <b>get,</b> for storing and retrieving.</p>
+<p>After starting the Hadoop framework (daemons) by passing the command “start-all.sh” on “/$HADOOP_HOME/sbin”, pass the following URL to the browser “http://localhost:50070”. You should see the following screen on your browser.</p>
+<p>The following screenshot shows how to browse the browse HDFS.</p>
+<img  src="/map_reduce/images/hdfs_monitoring.jpg" alt="HDFS Monitoring" />
+<p>The following screenshot show the file structure of HDFS. It shows the files in the “/user/hadoop” directory.</p>
+<img src="/map_reduce/images/files_in_hdfs.jpg" alt="HDFS Files" />
+<p>The following screenshot shows the Datanode information in a cluster. Here you can find one node with its configurations and capacities.</p>
+<img src="/map_reduce/images/datanode_info.jpg" alt="Datanoda Information" />
+<h2>MapReduce Job Monitoring</h2>
+<p>A MapReduce application is a collection of jobs (Map job, Combiner, Partitioner, and Reduce job). It is mandatory to monitor and maintain the following &minus;</p>
+<ul class="list">
+<li>Configuration of datanode where the application is suitable.</li>
+<li>The number of datanodes and resources used per application.</li>
+</ul>
+<p>To monitor all these things, it is imperative that we should have a user interface. After starting the Hadoop framework by passing the command “start-all.sh” on “/$HADOOP_HOME/sbin”, pass the following URL to the browser “http://localhost:8080”. You should see the following screen on your browser.</p>
+<img src="/map_reduce/images/job_monitoring.jpg" alt="Job Monitoring" />
+<p>In the above screenshot, the hand pointer is on the application ID. Just click on it to find the following screen on your browser. It describes the following &minus;</p>
+<ul class="list">
+<li><p>On which user the current application is running</p></li>
+<li><p>The application name</p></li>
+<li><p>Type of that application</p></li>
+<li><p>Current status, Final status</p></li>
+<li><p>Application started time, elapsed (completed time), if it is complete at the time of monitoring</p></li>
+<li><p>The history of this application, i.e., log information</p></li>
+<li><p>And finally, the node information, i.e., the nodes that participated in running the application.</p></li>
+</ul>
+<p>The following screenshot shows the details of a particular application &minus;</p>
+<img src="/map_reduce/images/application_id.jpg" alt="Application ID" />
+<p>The following screenshot describes the currently running nodes information. Here, the screenshot contains only one node. A hand pointer shows the localhost address of the running node.</p>
+<img src="/map_reduce/images/all_nodes.jpg" alt="All Nodes" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/map_reduce/map_reduce_hadoop_administration.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/map_reduce/map_reduce_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

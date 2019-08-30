@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Swift - Optional Chaining - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Swift - Optional Chaining - The process of querying, calling properties, subscripts and methods on an optional that may be 'nil' is defined as optional chaining. Optional chaining return t"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/swift/swift_optional_chaining.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#f05c02;
+}
+a.demo {
+    background:#f05c02;
+}
+li.heading {
+    background:#f05c02;
+}
+.course-box{background:#f05c02}
+.home-intro-sub p{color:#f05c02}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/swift/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/swift/images/swift-mini-logo.jpg" alt="Swift Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Swift Tutorial</li>
+<li><a href="/swift/index.htm">Swift - Home</a></li>
+<li><a href="/swift/swift_overview.htm">Swift - Overview</a></li>
+<li><a href="/swift/swift_environment.htm">Swift - Environment</a></li>
+<li><a href="/swift/swift_basic_syntax.htm">Swift - Basic Syntax</a></li>
+<li><a href="/swift/swift_data_types.htm">Swift - Data Types</a></li>
+<li><a href="/swift/swift_variables.htm">Swift - Variables</a></li>
+<li><a href="/swift/swift_optionals.htm">Swift - Optionals</a></li>
+<li><a href="/swift/swift_tuples.htm">Swift - Tuples</a></li>
+<li><a href="/swift/swift_constants.htm">Swift - Constants</a></li>
+<li><a href="/swift/swift_literals.htm">Swift - Literals</a></li>
+<li><a href="/swift/swift_operators.htm">Swift - Operators</a></li>
+<li><a href="/swift/swift_decision_making.htm">Swift - Decision Making</a></li>
+<li><a href="/swift/swift_loops.htm">Swift - Loops</a></li>
+<li><a href="/swift/swift_strings.htm">Swift - Strings</a></li>
+<li><a href="/swift/swift_characters.htm">Swift - Characters</a></li>
+<li><a href="/swift/swift_arrays.htm">Swift - Arrays</a></li>
+<li><a href="/swift/swift_sets.htm">Swift - Sets</a></li>
+<li><a href="/swift/swift_dictionaries.htm">Swift - Dictionaries</a></li>
+<li><a href="/swift/swift_functions.htm">Swift - Functions</a></li>
+<li><a href="/swift/swift_closures.htm">Swift - Closures</a></li>
+<li><a href="/swift/swift_enumerations.htm">Swift - Enumerations</a></li>
+<li><a href="/swift/swift_structures.htm">Swift - Structures</a></li>
+<li><a href="/swift/swift_classes.htm">Swift - Classes</a></li>
+<li><a href="/swift/swift_properties.htm">Swift - Properties</a></li>
+<li><a href="/swift/swift_methods.htm">Swift - Methods</a></li>
+<li><a href="/swift/swift_subscripts.htm">Swift - Subscripts</a></li>
+<li><a href="/swift/swift_inheritance.htm">Swift - Inheritance</a></li>
+<li><a href="/swift/swift_initialization.htm">Swift - Initialization</a></li>
+<li><a href="/swift/swift_deinitialization.htm">Swift - Deinitialization</a></li>
+<li><a href="/swift/swift_arc_overview.htm">Swift - ARC Overview</a></li>
+<li><a href="/swift/swift_optional_chaining.htm">Swift - Optional Chaining</a></li>
+<li><a href="/swift/swift_type_casting.htm">Swift - Type Casting</a></li>
+<li><a href="/swift/swift_extensions.htm">Swift - Extensions</a></li>
+<li><a href="/swift/swift_protocols.htm">Swift - Protocols</a></li>
+<li><a href="/swift/swift_generics.htm">Swift - Generics</a></li>
+<li><a href="/swift/swift_access_control.htm">Swift - Access Control</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Swift Useful Resources</li>
+<li><a href="/swift/compile_swift_online.htm">Swift - Compile Online</a></li>
+<li><a href="/swift/swift_quick_guide.htm">Swift - Quick Guide</a></li>
+<li><a href="/swift/swift_useful_resources.htm">Swift - Useful Resources</a></li>
+<li><a href="/swift/swift_discussion.htm">Swift - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Swift - Optional Chaining</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/swift/swift_arc_overview.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/swift/swift_type_casting.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>The process of querying, calling properties, subscripts and methods on an optional that may be 'nil' is defined as optional chaining. Optional chaining return two values &minus;</p>
+<ul class="list">
+<li><p>if the optional contains a 'value' then calling its related property, methods and subscripts returns values</p></li>
+<li><p>if the optional contains a 'nil' value all its its related property, methods and subscripts returns nil</p></li>
+</ul>
+<p>Since multiple queries to methods, properties and subscripts are grouped together failure to one chain will affect the entire chain and results in 'nil' value.</p>
+<h2>Optional Chaining as an Alternative to Forced Unwrapping</h2>
+<p>Optional chaining is specified after the optional value with '?' to call a property, method or subscript when the optional value returns some values.</p>
+<table class="table table-bordered">
+<tr>
+<td>Optional Chaining '?'</td>
+<td>Access to methods,properties and subscriptsOptional Chaining '!' to force Unwrapping</td>
+</tr>
+<tr>
+<td>? is placed after the optional value to call property, method or subscript</td>
+<td>! is placed after the optional value to call property, method or subscript to force unwrapping of value</td>
+</tr>
+<tr>
+<td>Fails gracefully when the optional is 'nil'</td>
+<td>Forced unwrapping triggers a run time error when the optional is 'nil'</td>
+</tr>
+</table>
+<h3>Program for Optional Chaining with '!'</h3>
+<pre class="prettyprint notranslate">
+class ElectionPoll {
+   var candidate: Pollbooth?
+}
+
+lass Pollbooth {
+   var name = "MP"
+}
+
+let cand = ElectionPoll()
+let candname = cand.candidate!.name
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+fatal error: unexpectedly found nil while unwrapping an Optional value
+0 Swift 4 0x0000000103410b68
+llvm::sys::PrintStackTrace(__sFILE*) + 40
+1 Swift 4 0x0000000103411054 SignalHandler(int) + 452
+2 libsystem_platform.dylib 0x00007fff9176af1a _sigtramp + 26
+3 libsystem_platform.dylib 0x000000000000000b _sigtramp + 1854492939
+4 libsystem_platform.dylib 0x00000001074a0214 _sigtramp + 1976783636
+5 Swift 4 0x0000000102a85c39
+llvm::JIT::runFunction(llvm::Function*, std::__1::vector &gt; const&amp;) + 329
+6 Swift 4 0x0000000102d320b3
+llvm::ExecutionEngine::runFunctionAsMain(llvm::Function*,
+std::__1::vector&lt;std::__1::basic_string, std::__1::allocator &gt;,
+std::__1::allocator&lt;std::__1::basic_string, std::__1::allocator &gt; &gt; &gt; const&amp;,
+char const* const*) + 1523
+7 Swift 4 0x000000010296e6ba Swift 4::RunImmediately(Swift
+4::CompilerInstance&, std::__1::vector&lt;std::__1::basic_string,
+std::__1::allocator &gt;, std::__1::allocator&lt;std::__1::basic_string,
+std::__1::allocator &gt; &gt; &gt; const&amp;, Swift 4::IRGenOptions&, Swift 4::SILOptions
+const&amp;) + 1066
+8 Swift 4 0x000000010275764b frontend_main(llvm::ArrayRef,
+char const*, void*) + 5275
+9 Swift 4 0x0000000102754a6d main + 1677
+10 libdyld.dylib 0x00007fff8bb9e5c9 start + 1
+11 libdyld.dylib 0x000000000000000c start + 1950751300
+Stack dump:
+0. Program arguments:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/
+usr/bin/Swift 4 -frontend -interpret - -target x86_64-apple-darwin14.0.0 -
+target-cpu core2 -sdk
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
+SDKs/MacOSX10.10.sdk -module-name main
+/bin/sh: line 47: 15672 Done cat &lt;&lt;'SWIFT 4'
+import Foundation
+&lt;/std::__1::basic_string&lt;/std::__1::basic_string&lt;/std::__1::basic_string&lt;/std::
+__1::basic_string
+</pre>
+<p>The above program declares 'election poll' as class name and contains 'candidate' as membership function. The subclass is declared as 'poll booth' and 'name' as its membership function which is initialized as 'MP'. The call to the super class is initialized by creating an instance 'cand' with optional '!'. Since the values are not declared in its base class, 'nil' value is stored thereby returning a fatal error by the force unwrapping procedure.</p>
+<h3>Program for Optional Chaining with '?'</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/7a0pK5" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+class ElectionPoll {
+   var candidate: Pollbooth?
+}
+
+class Pollbooth {
+   var name = "MP"
+}
+let cand = ElectionPoll()
+
+if let candname = cand.candidate?.name {
+   print("Candidate name is \(candname)")
+} else {
+   print("Candidate name cannot be retreived")
+}
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+Candidate name cannot be retreived
+</pre>
+<p>The program above declares 'election poll' as class name and contains 'candidate' as membership function. The subclass is declared as 'poll booth' and 'name' as its membership function which is initialized as 'MP'. The call to the super class is initialized by creating an instance 'cand' with optional '?'. Since the values are not declared in its base class 'nil' value is stored and printed in the console by the else handler block.</p>
+<h2>Defining Model Classes for Optional Chaining &amp; Accessing Properties</h2>
+<p>Swift 4 language also provides the concept of optional chaining, to declare more than one subclasses as model classes. This concept will be very useful to define complex models and to access the properties, methods and subscripts sub properties.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/NsL74O" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+class rectangle {
+   var print: circle?
+}
+
+class circle {
+   var area = [radius]()
+   var cprint: Int {
+      return area.count
+   }
+   subscript(i: Int) -&gt; radius {
+      get {
+         return area[i]
+      }
+      set {
+         area[i] = newValue
+      }
+   }
+   func circleprint() {
+      print("The number of rooms is \(cprint)")
+   }
+   var rectarea: circumference?
+}
+
+class radius {
+   let radiusname: String
+   init(radiusname: String) { self.radiusname = radiusname }
+}
+
+class circumference {
+   var circumName: String?
+   var circumNumber: String?
+   var street: String?
+
+   func buildingIdentifier() -> String? {
+      if circumName != nil {
+         return circumName
+      } else if circumNumber != nil {
+         return circumNumber
+      } else {
+         return nil
+      }
+   }
+}
+
+let rectname = rectangle()
+if let rectarea = rectname.print?.cprint {
+   print("Area of rectangle is \(rectarea)")
+} else {
+   print("Rectangle Area is not specified")
+}
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+Rectangle Area is not specified
+</pre>
+<h2>Calling Methods Through Optional Chaining</h2>
+<div class="demo-view">
+<a href="http://tpcg.io/7Oz1bR" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+class rectangle {
+   var print: circle?
+}
+
+class circle {
+   var area = [radius]()
+   var cprint: Int {
+      return area.count
+   }
+   subscript(i: Int) -> radius {
+      get {
+         return area[i]
+      }
+      set {
+         area[i] = newValue
+      }
+   }
+
+   func circleprint() {
+      print("Area of Circle is: \(cprint)")
+   }
+   var rectarea: circumference?
+}
+
+class radius {
+   let radiusname: String
+   init(radiusname: String) { self.radiusname = radiusname }
+}
+
+class circumference {
+   var circumName: String?
+   var circumNumber: String?
+   var circumarea: String?
+   
+   func buildingIdentifier() -> String? {
+      if circumName != nil {
+         return circumName
+      } else if circumNumber != nil {
+         return circumNumber
+      } else {
+         return nil
+      }
+   }
+}
+
+let circname = rectangle()
+
+if circname.print?.circleprint() != nil {
+   print("Area of circle is specified)")
+} else {
+   print("Area of circle is not specified")
+}
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+Area of circle is not specified
+</pre>
+<p>The function circleprint() declared inside the circle() sub class is called by creating an instance named 'circname'. The function will return a value if it contains some value otherwise it will return some user defined print message by checking the statement 'if circname.print?.circleprint() != nil'.</p>
+<h2>Accessing Subscripts through Optional Chaining</h2>
+<p>Optional chaining is used to set and retrieve a subscript value to validate whether call to that subscript returns a value. '?' is placed before the subscript braces to access the optional value on the particular subscript.</p>
+<h3>Program 1</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/GNLRhc" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+class rectangle {
+   var print: circle?
+}
+
+class circle {
+   var area = [radius]()
+   var cprint: Int {
+      return area.count
+   }
+   subscript(i: Int) -&gt; radius {
+      get {
+         return area[i]
+      }
+      set {
+         area[i] = newValue
+      }
+   }
+   func circleprint() {
+      print("The number of rooms is \(cprint)")
+   }
+   var rectarea: circumference?
+}
+
+class radius {
+   let radiusname: String
+   init(radiusname: String) { self.radiusname =  radiusname }
+}
+
+class circumference {
+   var circumName: String?
+   var circumNumber: String?
+   var circumarea: String?
+   
+   func buildingIdentifier() -> String? {
+      if circumName != nil {
+         return circumName
+      } else if circumNumber != nil {
+         return circumNumber
+      } else {
+         return nil
+      }
+   }
+}
+
+let circname = rectangle()
+
+if let radiusName = circname.print?[0].radiusname {
+   print("The first room name is \(radiusName).")
+} else {
+   print("Radius is not specified.")
+}
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+Radius is not specified.
+</pre>
+<p>In the above program the instance values for the membership function 'radiusName' is not specified. Hence program call to the function will return only else part whereas to return the values we have to define the values for the particular membership function.</p>
+<h3>Program 2</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/17WZuu" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+class rectangle {
+   var print: circle?
+}
+
+class circle {
+   var area = [radius]()
+   var cprint: Int {
+      return area.count
+   }
+   subscript(i: Int) -&gt; radius {
+      get {
+         return area[i]
+      }
+      set {
+         area[i] = newValue
+      }
+   }
+   func circleprint() {
+      print("The number of rooms is \(cprint)")
+   }
+   var rectarea: circumference?
+}
+
+class radius {
+   let radiusname: String
+   init(radiusname: String) { self.radiusname = radiusname }
+}
+
+class circumference {
+   var circumName: String?
+   var circumNumber: String?
+   var circumarea: String?
+   
+   func buildingIdentifier() -&gt; String? {
+      if circumName != nil {
+         return circumName
+      } else if circumNumber != nil {
+         return circumNumber
+      } else {
+         return nil
+      }
+   }
+}
+
+let circname = rectangle()
+circname.print?[0] = radius(radiusname: "Diameter")
+let printing = circle()
+
+printing.area.append(radius(radiusname: "Units"))
+printing.area.append(radius(radiusname: "Meter"))
+circname.print = printing
+
+if let radiusName = circname.print?[0].radiusname {
+   print("Radius is measured in \(radiusName).")
+} else {
+   print("Radius is not specified.")
+}
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+Radius is measured in Units.
+</pre>
+<p>In the above program, the instance values for the membership function 'radiusName' is specified. Hence program call to the function will now return values.</p>
+<h2>Accessing Subscripts of Optional Type</h2>
+<pre class="prettyprint notranslate">
+class rectangle {
+   var print: circle?
+}
+
+class circle {
+   var area = [radius]()
+   var cprint: Int {
+      return area.count
+   }
+
+   subscript(i: Int) -&gt; radius {
+      get {
+         return area[i]
+      }
+      set {
+         area[i] = newValue
+      }
+   }
+   func circleprint() {
+      print("The number of rooms is \(cprint)")
+   }
+   var rectarea: circumference?
+}
+
+class radius {
+   let radiusname: String
+   init(radiusname: String) { self.radiusname = radiusname }
+}
+
+class circumference {
+   var circumName: String?
+   var circumNumber: String?
+   var circumarea: String?
+   
+   func buildingIdentifier() -&gt; String? {
+      if circumName != nil {
+         return circumName
+      } else if circumNumber != nil {
+         return circumNumber
+      } else {
+         return nil
+      }
+   }
+}
+
+let circname = rectangle()
+circname.print?[0] = radius(radiusname: "Diameter")
+
+let printing = circle()
+printing.area.append(radius(radiusname: "Units"))
+printing.area.append(radius(radiusname: "Meter"))
+circname.print = printing
+
+var area = ["Radius": [35, 45, 78, 101], "Circle": [90, 45, 56]]
+area["Radius"]?[1] = 78
+area["Circle"]?[1]--
+
+print(area["Radius"]?[0])
+print(area["Radius"]?[1])
+print(area["Radius"]?[2])
+print(area["Radius"]?[3])
+
+print(area["Circle"]?[0])
+print(area["Circle"]?[1])
+print(area["Circle"]?[2])
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+Optional(35)
+Optional(78)
+Optional(78)
+Optional(101)
+Optional(90)
+Optional(44)
+Optional(56)
+</pre>
+<p>The optional values for subscripts can be accessed by referring their subscript values. It can be accessed as subscript[0], subscript[1] etc. The default subscript values for 'radius' are first assigned as [35, 45, 78, 101] and for 'Circle' [90, 45, 56]]. Then the subscript values are changed as Radius[0] to 78 and Circle[1] to 45.</p>
+<h2>Linking Multiple Levels of Chaining</h2>
+<p>Multiple sub classes can also be linked with its super class methods, properties and subscripts by optional chaining.</p>
+<p>Multiple chaining of optional can be linked &minus;</p>
+<p>If retrieving type is not optional, optional chaining will return an optional value. For example if String through optional chaining it will return String? Value</p>
+<div class="demo-view">
+<a href="http://tpcg.io/NJBdPX" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+class rectangle {
+   var print: circle?
+}
+
+class circle {
+   var area = [radius]()
+   var cprint: Int {
+      return area.count
+   }
+   subscript(i: Int) -&gt; radius {
+      get {
+         return area[i]
+      }
+      set {
+         area[i] = newValue
+      }
+   }
+   func circleprint() {
+      print("The number of rooms is \(cprint)")
+   }
+   var rectarea: circumference?
+}
+
+class radius {
+   let radiusname: String
+   init(radiusname: String) { self.radiusname = radiusname }
+}
+
+class circumference {
+   var circumName: String?
+   var circumNumber: String?
+   var circumarea: String?
+
+   func buildingIdentifier() -&gt; String? {
+      if circumName != nil {
+         return circumName
+      } else if circumNumber != nil {
+         return circumNumber
+      } else {
+         return nil
+      }
+   }
+}
+
+let circname = rectangle()
+
+if let radiusName = circname.print?[0].radiusname {
+   print("The first room name is \(radiusName).")
+} else {
+   print("Radius is not specified.")
+}
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+Radius is not specified.
+</pre>
+<p>In the above program, the instance values for the membership function 'radiusName' is not specified. Hence, the program call to the function will return only else part whereas to return the values we have to define the values for the particular membership function.</p>
+<p>If the retrieving type is already optional, then optional chaining will also return an optional value. For example if String? Is accessed through optional chaining it will return String? Value..</p>
+<div class="demo-view">
+<a href="http://tpcg.io/eQEWbI" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+class rectangle {
+   var print: circle?
+}
+
+class circle {
+   var area = [radius]()
+   var cprint: Int {
+      return area.count
+   }
+   subscript(i: Int) -&gt; radius {
+      get {
+         return area[i]
+      }
+      set {
+         area[i] = newValue
+      }
+   }
+   func circleprint() {
+      print("The number of rooms is \(cprint)")
+   }
+   var rectarea: circumference?
+}
+
+class radius {
+   let radiusname: String
+   init(radiusname: String) { self.radiusname = radiusname }
+}
+
+class circumference {
+   var circumName: String?
+   var circumNumber: String?
+   var circumarea: String?
+   
+   func buildingIdentifier() -&gt; String? {
+      if circumName != nil {
+         return circumName
+      } else if circumNumber != nil {
+         return circumNumber
+      } else {
+         return nil
+      }
+   }
+}
+
+let circname = rectangle()
+circname.print?[0] = radius(radiusname: "Diameter")
+let printing = circle()
+
+printing.area.append(radius(radiusname: "Units"))
+printing.area.append(radius(radiusname: "Meter"))
+circname.print = printing
+
+if let radiusName = circname.print?[0].radiusname {
+   print("Radius is measured in \(radiusName).")
+} else {
+   print("Radius is not specified.")
+}
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+Radius is measured in Units.
+</pre>
+<p>In the above program, the instance values for the membership function 'radiusName' is specified. Hence, the program call to the function will now return values.</p>
+<h2>Chaining on Methods with Optional Return Values</h2>
+<p>Optional chaining is used to access subclasses defined methods too.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/E5DouI" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+class rectangle {
+   var print: circle?
+}
+
+class circle {
+   var area = [radius]()
+   var cprint: Int {
+      return area.count
+   }
+   subscript(i: Int) -&gt; radius {
+      get {
+         return area[i]
+      }
+      set {
+         area[i] = newValue
+      }
+   }
+   func circleprint() {
+      print("Area of Circle is: \(cprint)")
+   }
+   var rectarea: circumference?
+}
+
+class radius {
+   let radiusname: String
+   init(radiusname: String) { self.radiusname = radiusname }
+}
+
+class circumference {
+   var circumName: String?
+   var circumNumber: String?
+   var circumarea: String?
+   
+   func buildingIdentifier() -&gt; String? {
+      if circumName != nil {
+         return circumName
+      } else if circumNumber != nil {
+         return circumNumber
+      } else {
+         return nil
+      }
+   }
+}
+
+let circname = rectangle()
+
+if circname.print?.circleprint() != nil {
+   print("Area of circle is specified)")
+} else {
+   print("Area of circle is not specified")
+}
+</pre>
+<p>When we run the above program using playground, we get the following result &minus;</p>
+<pre class="result notranslate">
+Area of circle is not specified
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/swift/swift_arc_overview.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/swift/swift_type_casting.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

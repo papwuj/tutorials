@@ -1,0 +1,3620 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Cassandra - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Cassandra - Quick Guide - Apache Cassandra is a highly scalable, high-performance distributed database designed to handle large amounts of data across many commodity servers, providing h"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/cassandra/cassandra_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#1287b1;
+}
+a.demo {
+    background:#1287b1;
+}
+li.heading {
+    background:#1287b1;
+}
+.course-box{background:#1287b1}
+.home-intro-sub p{color:#1287b1}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/cassandra/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/cassandra/images/cassandra-mini-logo.jpg" alt="cassandra Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Cassandra Tutorial</li>
+<li><a href="/cassandra/index.htm">Cassandra - Home</a></li>
+<li><a href="/cassandra/cassandra_introduction.htm">Cassandra - Introduction</a></li>
+<li><a href="/cassandra/cassandra_architecture.htm">Cassandra - Architecture</a></li>
+<li><a href="/cassandra/cassandra_data_model.htm">Cassandra - Data Model</a></li>
+<li><a href="/cassandra/cassandra_installation.htm">Cassandra - Installation</a></li>
+<li><a href="/cassandra/cassandra_referenced_api.htm">Cassandra - Referenced Api</a></li>
+<li><a href="/cassandra/cassandra_cqlsh.htm">Cassandra - Cqlsh</a></li>
+<li><a href="/cassandra/cassandra_shell_commands.htm">Cassandra - Shell Commands</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Cassandra Keyspace Operations</li>
+<li><a href="/cassandra/cassandra_create_keyspace.htm">Cassandra - Create Keyspace</a></li>
+<li><a href="/cassandra/cassandra_alter_keyspace.htm">Cassandra - Alter Keyspace</a></li>
+<li><a href="/cassandra/cassandra_drop_keyspace.htm">Cassandra - Drop Keyspace</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Cassandra Table Operations</li>
+<li><a href="/cassandra/cassandra_create_table.htm">Cassandra - Create Table</a></li>
+<li><a href="/cassandra/cassandra_alter_table.htm">Cassandra - Alter Table</a></li>
+<li><a href="/cassandra/cassandra_drop_table.htm">Cassandra - Drop Table</a></li>
+<li><a href="/cassandra/cassandra_truncate_table.htm">Cassandra - Truncate Table</a></li>
+<li><a href="/cassandra/cassandra_create_index.htm">Cassandra - Create Index</a></li>
+<li><a href="/cassandra/cassandra_drop_index.htm">Cassandra - Drop Index</a></li>
+<li><a href="/cassandra/cassandra_batch.htm">Cassandra - Batch</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Cassandra CURD Operations</li>
+<li><a href="/cassandra/cassandra_create_data.htm">Cassandra - Create Data</a></li>
+<li><a href="/cassandra/cassandra_update_data.htm">Cassandra - Update Data</a></li>
+<li><a href="/cassandra/cassandra_read_data.htm">Cassandra - Read Data</a></li>
+<li><a href="/cassandra/cassandra_delete_data.htm">Cassandra - Delete Data</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Cassandra CQL Types</li>
+<li><a href="/cassandra/cassandra_cql_datatypes.htm">Cassandra - CQL Datatypes</a></li>
+<li><a href="/cassandra/cassandra_cql_collections.htm">Cassandra - CQL Collections</a></li>
+<li><a href="/cassandra/cassandra_cql_user_defined_datatypes.htm">CQL User Defined Datatypes</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Cassandra Useful Resources</li>
+<li><a href="/cassandra/cassandra_quick_guide.htm">Cassandra - Quick Guide</a></li>
+<li><a href="/cassandra/cassandra_resources.htm">Cassandra - Useful Resources</a></li>
+<li><a href="/cassandra/cassandra_discussion.htm">Cassandra - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Cassandra - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/cassandra/cassandra_cql_user_defined_datatypes.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/cassandra/cassandra_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>Cassandra - Introduction</h1>
+<p>Apache Cassandra is a highly scalable, high-performance distributed database designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure. It is a type of NoSQL database. Let us first understand what a NoSQL database does.</p>
+<h2>NoSQLDatabase</h2>
+<p>A NoSQL database (sometimes called as Not Only SQL) is a database that provides a mechanism to store and retrieve data other than the tabular relations used in relational databases. These databases are schema-free, support easy replication, have simple API, eventually consistent, and can handle huge amounts of data.</p>
+<p>The primary objective of a NoSQL database is to have</p>
+<ul class="list">
+<li>simplicity of design,</li>
+<li>horizontal scaling, and</li>
+<li>finer control over availability.</li>
+</ul>
+<p>NoSql databases use different data structures compared to relational databases. It makes some operations faster in NoSQL. The suitability of a given NoSQL database depends on the problem it must solve.</p>
+<h2>NoSQL vs. Relational Database</h2>
+<p>The following table lists the points that differentiate a relational database from a NoSQL database.</p>
+<table class="table table-bordered">
+<tr>
+<th>Relational Database</th>
+<th>NoSql Database</th>
+</tr>
+<tr>
+<td>Supports powerful query language.</td>
+<td>Supports very simple query language.</td>
+</tr>
+<tr>
+<td>It has a fixed schema.</td>
+<td>No fixed schema.</td>
+</tr>
+<tr>
+<td>Follows ACID (Atomicity, Consistency, Isolation, and Durability).</td>
+<td>It is only “eventually consistent”.</td>
+</tr>
+<tr>
+<td>Supports transactions.</td>
+<td>Does not support transactions.</td>
+</tr>
+</table>
+<p>Besides Cassandra, we have the following NoSQL databases that are quite popular &minus;</p>
+<ul class="list">
+<li><p><b>Apache HBase</b> &minus; HBase is an open source, non-relational, distributed database modeled after Google’s BigTable and is written in Java. It is developed as a part of Apache Hadoop project and runs on top of HDFS, providing BigTable-like capabilities for Hadoop.</p></li>
+<li><p><b>MongoDB</b> &minus; MongoDB is a cross-platform document-oriented database system that avoids using the traditional table-based relational database structure in favor of JSON-like documents with dynamic schemas making the integration of data in certain types of applications easier and faster.</p></li>
+</ul>
+<h2>What is Apache Cassandra?</h2>
+<p>Apache Cassandra is an open source, distributed and decentralized/distributed storage system (database), for managing very large amounts of structured data spread out across the world. It provides highly available service with no single point of failure.</p>
+<p>Listed below are some of the notable points of Apache Cassandra &minus;</p>
+<ul class="list">
+<li><p>It is scalable, fault-tolerant, and consistent.</p></li>
+<li><p>It is a column-oriented database.</p></li>
+<li><p>Its distribution design is based on Amazon’s Dynamo and its data model on Google’s Bigtable.</p></li>
+<li><p>Created at Facebook, it differs sharply from relational database management systems.</p></li>
+<li><p>Cassandra implements a Dynamo-style replication model with no single point of failure, but adds a more powerful “column family” data model.</p></li>
+<li><p>Cassandra is being used by some of the biggest companies such as Facebook, Twitter, Cisco, Rackspace, ebay, Twitter, Netflix, and more.</p></li>
+</ul>
+<h2>Features of Cassandra</h2>
+<p>Cassandra has become so popular because of its outstanding technical features.
+Given below are some of the features of Cassandra:</p>
+<ul class="list">
+<li><p><b>Elastic scalability</b> &minus; Cassandra is highly scalable; it allows to add more hardware to accommodate more customers and more data as per
+requirement.</p></li>
+<li><p><b>Always on architecture</b> &minus; Cassandra has no single point of failure and it is continuously available for business-critical applications that cannot afford a failure.</p></li>
+<li><p><b>Fast linear-scale performance</b> &minus; Cassandra is linearly scalable, i.e., it increases your throughput as you increase the number of nodes in the cluster. Therefore it maintains a quick response time.</p></li> 
+<li><p><b>Flexible data storage</b> &minus; Cassandra accommodates all possible data formats including: structured, semi-structured, and unstructured. It can dynamically accommodate changes to your data structures according to your need.</p></li>
+<li><p><b>Easy data distribution</b> &minus; Cassandra provides the flexibility to distribute data where you need by replicating data across multiple data centers.</p></li>
+<li><p><b>Transaction support</b> &minus; Cassandra supports properties like Atomicity, Consistency, Isolation, and Durability (ACID).</p></li>
+<li><p><b>Fast writes</b> &minus; Cassandra was designed to run on cheap commodity hardware. It performs blazingly fast writes and can store hundreds of terabytes of data, without sacrificing the read efficiency.</p></li>
+</ul>
+<h2>History of Cassandra</h2>
+<ul class="list">
+<li>Cassandra was developed at Facebook for inbox search.</li>
+<li>It was open-sourced by Facebook in July 2008.</li>
+<li>Cassandra was accepted into Apache Incubator in March 2009.</li>
+<li>It was made an Apache top-level project since February 2010.</li>
+</ul>
+<h1>Cassandra - Architecture</h1>
+<p>The design goal of Cassandra is to handle big data workloads across multiple nodes without any single point of failure. Cassandra has peer-to-peer distributed system across its nodes, and data is distributed among all the nodes in a cluster.</p>
+<ul class="list">
+<li><p>All the nodes in a cluster play the same role. Each node is independent and at the same time interconnected to other nodes.</p></li>
+<li><p>Each node in a cluster can accept read and write requests, regardless of where the data is actually located in the cluster.</p></li>
+<li><p>When a node goes down, read/write requests can be served from other nodes in the network.</p></li>
+</ul>
+<h2>Data Replication in Cassandra</h2>
+<p>In Cassandra, one or more of the nodes in a cluster act as replicas for a given piece of data. If it is detected that some of the nodes responded with an out-of-date value, Cassandra will return the most recent value to the client. After returning the most recent value, Cassandra performs a <b>read repair</b> in the background to update the stale values.</p>
+<p>The following figure shows a schematic view of how Cassandra uses data replication among the nodes in a cluster to ensure no single point of failure.</p>
+<img src="/cassandra/images/data_replication.jpg" alt="Data Replication" />
+<p><b>Note</b> &minus; Cassandra uses the <b>Gossip Protocol</b> in the background to allow the nodes to communicate with each other and detect any faulty nodes in the cluster.</p>
+<h2>Components of Cassandra</h2>
+<p>The key components of Cassandra are as follows &minus;</p>
+<ul class="list">
+<li><p><b>Node</b> &minus; It is the place where data is stored.</p></li>
+<li><p><b>Data center</b> &minus; It is a collection of related nodes.</p></li>
+<li><p><b>Cluster</b> &minus; A cluster is a component that contains one or more data centers.</p></li>
+<li><p><b>Commit log</b> &minus; The commit log is a crash-recovery mechanism in Cassandra. Every write operation is written to the commit log.</p></li>
+<li><p><b>Mem-table</b> &minus; A mem-table is a memory-resident data structure. After commit log, the data will be written to the mem-table. Sometimes, for a single-column family, there will be multiple mem-tables.</p></li>
+<li><p><b>SSTable</b> &minus; It is a disk file to which the data is flushed from the mem-table when its contents reach a threshold value.</p></li>
+<li><p><b>Bloom filter</b> &minus; These are nothing but quick, nondeterministic, algorithms for testing whether an element is a member of a set. It is a special kind of cache. Bloom filters are accessed after every query.</p></li>
+</ul>
+<h2>Cassandra Query Language</h2>
+<p>Users can access Cassandra through its nodes using Cassandra Query Language (CQL). CQL treats the database <b>(Keyspace)</b> as a container of tables. Programmers use <b>cqlsh:</b> a prompt to work with CQL or separate application language drivers.</p>
+<p>Clients approach any of the nodes for their read-write operations. That node (coordinator) plays a proxy between the client and the nodes holding the data.</p>
+<h3>Write Operations</h3>
+<p>Every write activity of nodes is captured by the <b>commit logs</b> written in the nodes. Later the data will be captured and stored in the <b>mem-table.</b> Whenever the mem-table is full, data will be written into the <b>SStable</b> data file. All writes are automatically partitioned and replicated throughout the cluster. Cassandra periodically consolidates the SSTables, discarding unnecessary data.</p>
+<h3>Read Operations</h3>
+<p>During read operations, Cassandra gets values from the mem-table and checks the bloom filter to find the appropriate SSTable that holds the required data.</p>
+<h1>Cassandra - Data Model</h1>
+<p>The data model of Cassandra is significantly different from what we normally see in an RDBMS. This chapter provides an overview of how Cassandra stores its data.</p>
+<h2>Cluster</h2>
+<p>Cassandra database is distributed over several machines that operate together. The outermost container is known as the Cluster. For failure handling, every node contains a replica, and in case of a failure, the replica takes charge. Cassandra arranges the nodes in a cluster, in a ring format, and assigns data to them.</p>
+<h3>Keyspace</h3>
+<p>Keyspace is the outermost container for data in Cassandra. The basic attributes of a Keyspace in Cassandra are &minus;</p>
+<ul class="list">
+<li><p><b>Replication factor</b> &minus; It is the number of machines in the cluster that will receive copies of the same data.</p></li>
+<li><p><b>Replica placement strategy</b> &minus; It is nothing but the strategy to place replicas in the ring. We have strategies such as <b>simple strategy</b> (rack-aware strategy), <b>old network topology strategy</b> (rack-aware strategy), and <b>network topology strategy</b> (datacenter-shared strategy).</p></li>
+<li><p><b>Column families</b> &minus; Keyspace is a container for a list of one or more column families. A column family, in turn, is a container of a collection of rows. Each row contains ordered columns. Column families represent the structure of your data. Each keyspace has at least one and often many column families.</p></li>
+</ul>
+<p>The syntax of creating a Keyspace is as follows &minus;</p>
+<pre class="result notranslate">
+CREATE KEYSPACE Keyspace name
+WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 3};
+</pre>
+<p>The following illustration shows a schematic view of a Keyspace.</p>
+<img src="/cassandra/images/keyspace.jpg" alt="Keyspace" />
+<h3>Column Family</h3>
+<p>A column family is a container for an ordered collection of rows. Each row, in turn, is an ordered collection of columns. The following table lists the points that differentiate a column family from a table of relational databases.</p>
+<table class="table table-bordered">
+<tr>
+<th>Relational Table</th>
+<th>Cassandra column Family</th>
+</tr>
+<tr>
+<td>A schema in a relational model is fixed. Once we define certain columns for a table, while inserting data, in every row all the columns must be filled at least with a null value.</td>
+<td>In Cassandra, although the column families are defined, the columns are not. You can freely add any column to any column family at any time.</td>
+</tr>
+<tr>
+<td>Relational tables define only columns and the user fills in the table with values.</td>
+<td>In Cassandra, a table contains columns, or can be defined as a super column family.</td>
+</tr>
+</table>
+<p>A Cassandra column family has the following attributes &minus;</p>
+<ul class="list">
+<li><p><b>keys_cached</b> &minus; It represents the number of locations to keep cached per SSTable.</p></li> 
+<li><p><b>rows_cached</b> &minus; It represents the number of rows whose entire contents will be cached in memory.</p></li>
+<li><p><b>preload_row_cache</b> &minus; It specifies whether you want to pre-populate the row cache.</p></li>
+</ul>
+<p><b>Note &minus;</b> Unlike relational tables where a column family’s schema is not fixed, Cassandra does not force individual rows to have all the columns.</p>
+<p>The following figure shows an example of a Cassandra column family.</p>
+<img src="/cassandra/images/cassandra_column_family.jpg" alt="Cassandra Column Family" />
+<h3>Column</h3>
+<p>A column is the basic data structure of Cassandra with three values, namely key
+or column name, value, and a time stamp. Given below is the structure of a column.</p>
+<img src="/cassandra/images/cassandra_structure_of_column.jpg" alt="Cassandra Structure Of Column" />
+<h3>SuperColumn</h3>
+<p>A super column is a special column, therefore, it is also a key-value pair. But a super column stores a map of sub-columns.</p>
+<p>Generally column families are stored on disk in individual files. Therefore, to optimize performance, it is important to keep columns that you are likely to query together in the same column family, and a super column can be helpful here.Given below is the structure of a super column.</p>
+<img src="/cassandra/images/cassandra_super_column.jpg" alt="Cassandra Super Column" />
+<h2>Data Models of Cassandra and RDBMS</h2>
+<p>The following table lists down the points that differentiate the data model of Cassandra from that of an RDBMS.</p>
+<table class="table table-bordered">
+<tr>
+<th>RDBMS</th>
+<th>Cassandra</th>
+</tr>
+<tr>
+<td>RDBMS deals with structured data.</td>
+<td>Cassandra deals with unstructured data.</td>
+</tr>
+<tr>
+<td>It has a fixed schema.</td>
+<td>Cassandra has a flexible schema.</td>
+</tr>
+<tr>
+<td>In RDBMS, a table is an array of arrays. (ROW x COLUMN)</td>
+<td>In Cassandra, a table is a list of “nested key-value pairs”. (ROW x COLUMN key x COLUMN value)</td>
+</tr>
+<tr>
+<td>Database is the outermost container that contains data corresponding to an application.</td>
+<td>Keyspace is the outermost container that contains data corresponding to an application.</td>
+</tr>
+<tr>
+<td>Tables are the entities of a database.</td>
+<td>Tables or column families are the entity of a keyspace.</td>
+</tr>
+<tr>
+<td>Row is an individual record in RDBMS.</td>
+<td>Row is a unit of replication in Cassandra.</td>
+</tr>
+<tr>
+<td>Column represents the attributes of a relation.</td>
+<td>Column is a unit of storage in Cassandra.</td>
+</tr>
+<tr>
+<td>RDBMS supports the concepts of foreign keys, joins.</td>
+<td>Relationships are represented using collections.</td>
+</tr>
+</table>
+<h1>Cassandra - Installation</h1>
+<p>Cassandra can be accessed using cqlsh as well as drivers of different languages. This chapter explains how to set up both cqlsh and java environments to work with Cassandra.</p>
+<h2>Pre-Installation Setup</h2>
+<p>Before installing Cassandra in Linux environment, we require to set up Linux using <b>ssh</b> (Secure Shell). Follow the steps given below for setting up Linux environment.</p>
+<h3>Create a User</h3>
+<p>At the beginning, it is recommended to create a separate user for Hadoop to isolate Hadoop file system from Unix file system. Follow the steps given below to create a user.</p>
+<ul class="list">
+<li><p>Open root using the command <b>“su”</b>.</p></li>
+<li><p>Create a user from the root account using the command <b>“useradd username”</b>.</p></li>
+<li><p>Now you can open an existing user account using the command <b>“su username”</b>.</p></li>
+</ul>
+<p>Open the Linux terminal and type the following commands to create a user.</p>
+<pre class="result notranslate">
+$ su
+password:
+# useradd hadoop
+# passwd hadoop
+New passwd:
+Retype new passwd
+</pre>
+<h3>SSH Setup and Key Generation</h3>
+<p>SSH setup is required to perform different operations on a cluster such as starting, stopping, and distributed daemon shell operations. To authenticate different users of Hadoop, it is required to provide public/private key pair for a Hadoop user and share it with different users.</p>
+<p>The following commands are used for generating a key value pair using SSH &minus;</p>
+<ul class="list">
+<li>copy the public keys form id_rsa.pub to authorized_keys,</li>
+<li>and provide owner,</li>
+<li>read and write permissions to authorized_keys file respectively.</li>
+</ul>
+<pre class="result notranslate">
+$ ssh-keygen -t rsa
+$ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+$ chmod 0600 ~/.ssh/authorized_keys
+</pre>
+<ul class="list">
+<li>Verify ssh:</li>
+</ul>
+<pre class="result notranslate">
+ssh localhost
+</pre>
+<h2>Installing Java</h2>
+<p>Java is the main prerequisite for Cassandra. First of all, you should verify the
+existence of Java in your system using the following command &minus;</p>
+<pre class="result notranslate">
+$ java -version
+</pre>
+<p>If everything works fine it will give you the following output.</p>
+<pre class="result notranslate">
+java version "1.7.0_71"
+Java(TM) SE Runtime Environment (build 1.7.0_71-b13)
+Java HotSpot(TM) Client VM (build 25.0-b02, mixed mode)
+</pre>
+<p>If you don’t have Java in your system, then follow the steps given below for installing Java.</p>
+<h3>Step 1</h3>
+<p>Download java (JDK &lt;latest version&gt; - X64.tar.gz) from the following <a rel="nofollow" target="_blank" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-
+1880260.html">link:</a></p>
+<p><b>Then jdk-7u71-linux-x64.tar.gz will be downloaded onto your system.</b></p>
+<h3>Step 2</h3>
+<p>Generally you will find the downloaded java file in the Downloads folder. Verify it and extract the <b>jdk-7u71-linux-x64.gz</b> file using the following commands.</p>
+<pre class="result notranslate">
+$ cd Downloads/
+$ ls
+jdk-7u71-linux-x64.gz
+$ tar zxf jdk-7u71-linux-x64.gz
+$ ls
+jdk1.7.0_71 jdk-7u71-linux-x64.gz
+</pre>
+<h3>Step 3</h3>
+<p>To make Java available to all users, you have to move it to the location “/usr/local/”. Open root, and type the following commands.</p>
+<pre class="result notranslate">
+$ su
+password:
+# mv jdk1.7.0_71 /usr/local/
+# exit
+</pre>
+<h3>Step 4</h3>
+<p>For setting up <b>PATH</b> and <b>JAVA_HOME</b> variables, add the following commands to <b>~/.bashrc</b> file.</p>
+<pre class="result notranslate">
+export JAVA_HOME = /usr/local/jdk1.7.0_71
+export PATH = $PATH:$JAVA_HOME/bin
+</pre>
+<p>Now apply all the changes into the current running system.</p>
+<pre class="result notranslate">
+$ source ~/.bashrc
+</pre>
+<h3>Step 5</h3>
+<p>Use the following commands to configure java alternatives.</p>
+<pre class="result notranslate">
+# alternatives --install /usr/bin/java java usr/local/java/bin/java 2
+# alternatives --install /usr/bin/javac javac usr/local/java/bin/javac 2
+# alternatives --install /usr/bin/jar jar usr/local/java/bin/jar 2
+
+# alternatives --set java usr/local/java/bin/java
+# alternatives --set javac usr/local/java/bin/javac
+# alternatives --set jar usr/local/java/bin/jar
+</pre>
+<p>Now use the <b>java -version</b> command from the terminal as explained above.</p>
+<h3>Setting the Path</h3>
+<p>Set the path of Cassandra path in “/.bashrc” as shown below.</p>
+<pre class="result notranslate">
+[hadoop@linux ~]$ gedit ~/.bashrc
+
+export CASSANDRA_HOME = ~/cassandra
+export PATH = $PATH:$CASSANDRA_HOME/bin
+</pre>
+<h2>Download Cassandra</h2>
+<p>Apache Cassandra is available at <a rel="nofollow" target="_blank" href="http://cassandra.apache.org/download/.">Download Link</a> Cassandra using the following command.</p>
+<pre class="result notranslate">
+$ wget http://supergsego.com/apache/cassandra/2.1.2/apache-cassandra-2.1.2-bin.tar.gz
+</pre>
+<p>Unzip Cassandra using the command <b>zxvf</b> as shown below.</p>
+<pre class="result notranslate">
+$ tar zxvf apache-cassandra-2.1.2-bin.tar.gz.
+</pre>
+<p>Create a new directory named cassandra and move the contents of the downloaded file to it as shown below.</p>
+<pre class="result notranslate">
+$ mkdir Cassandra
+$ mv apache-cassandra-2.1.2/* cassandra.
+</pre>
+<h2>Configure Cassandra</h2>
+<p>Open the <b>cassandra.yaml:</b> file, which will be available in the <b>bin</b> directory of Cassandra.</p>
+<pre class="result notranslate">
+$ gedit cassandra.yaml
+</pre>
+<p><b>Note</b> &minus; If you have installed Cassandra from a deb or rpm package, the configuration files will be located in <b>/etc/cassandra</b> directory of Cassandra.</p>
+<p>The above command opens the <b>cassandra.yaml</b> file. Verify the following configurations. By default, these values will be set to the specified directories.</p>
+<ul class="list">
+<li><p>data_file_directories <b>“/var/lib/cassandra/data”</b></p></li>
+<li><p>commitlog_directory <b>“/var/lib/cassandra/commitlog”</b></p></li>
+<li><p>saved_caches_directory <b>“/var/lib/cassandra/saved_caches”</b></p></li>
+</ul>
+<p>Make sure these directories exist and can be written to, as shown below.</p>
+<h3>Create Directories</h3>
+<p>As super-user, create the two directories <b>/var/lib/cassandra</b> and
+<b>/var./log/cassandra</b> into which Cassandra writes its data.</p>
+<pre class="result notranslate">
+[root@linux cassandra]# mkdir /var/lib/cassandra
+[root@linux cassandra]# mkdir /var/log/cassandra
+</pre>
+<h3>Give Permissions to Folders</h3>
+<p>Give read-write permissions to the newly created folders as shown below.</p>
+<pre class="result notranslate">
+[root@linux /]# chmod 777 /var/lib/cassandra
+[root@linux /]# chmod 777 /var/log/cassandra
+</pre>
+<h2>Start Cassandra</h2>
+<p>To start Cassandra, open the terminal window, navigate to Cassandra home directory/home, where you unpacked Cassandra, and run the following command to start your Cassandra server.</p>
+<pre class="result notranslate">
+$ cd $CASSANDRA_HOME
+$./bin/cassandra -f 
+</pre>
+<p>Using the –f option tells Cassandra to stay in the foreground instead of running as a background process. If everything goes fine, you can see the Cassandra server starting.</p>
+<h2>Programming Environment</h2>
+<p>To set up Cassandra programmatically, download the following jar files &minus;</p>
+<ul class="list">
+<li>slf4j-api-1.7.5.jar</li>
+<li>cassandra-driver-core-2.0.2.jar</li>
+<li>guava-16.0.1.jar</li>
+<li>metrics-core-3.0.2.jar</li>
+<li>netty-3.9.0.Final.jar</li>
+</ul>
+<p>Place them in a separate folder. For example, we are downloading these jars to a folder named <b>“Cassandra_jars”</b>.</p>
+<p>Set the classpath for this folder in <b>“.bashrc”</b>file as shown below.</p>
+<pre class="result notranslate">
+[hadoop@linux ~]$ gedit ~/.bashrc
+
+//Set the following class path in the .bashrc file.
+
+export CLASSPATH = $CLASSPATH:/home/hadoop/Cassandra_jars/*
+</pre>
+<h2>Eclipse Environment</h2>
+<p>Open Eclipse and create a new project called Cassandra _Examples.</p>
+<p>Right click on the project, select <b>Build Path&#8594;Configure Build Path</b> as shown below.</p>
+<img src="/cassandra/images/cassandra_build_path.jpg" alt="Cassandra Build Path" />
+<p>It will open the properties window. Under Libraries tab, select <b>Add External JARs</b>. Navigate to the directory where you saved your jar files. Select all the five jar files and click OK as shown below.</p>
+<img src="/cassandra/images/cassandra_external_jars.jpg" alt="Cassandra External JARs" />
+<p>Under Referenced Libraries, you can see all the required jars added as shown below &minus;</p>
+<img src="/cassandra/images/Eclipse3.jpg" alt="Eclipse3" />
+<h2>Maven Dependencies</h2>
+<p>Given below is the pom.xml for building a Cassandra project using maven.</p>
+<pre class="prettyprint notranslate">
+&lt;project xmlns = "http://maven.apache.org/POM/4.0.0" 
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"  
+   xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+   &lt;build&gt;
+      &lt;sourceDirectory&gt;src&lt;/sourceDirectory&gt;
+      &lt;plugins&gt;
+         &lt;plugin&gt;
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+            &lt;version&gt;3.1&lt;/version&gt;
+				
+               &lt;configuration&gt;
+                  &lt;source&gt;1.7&lt;/source&gt;
+                  &lt;target&gt;1.7&lt;/target&gt;
+               &lt;/configuration&gt;
+					
+         &lt;/plugin&gt;
+      &lt;/plugins&gt;
+   &lt;/build&gt; 
+
+   &lt;dependencies&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+         &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+         &lt;version&gt;1.7.5&lt;/version&gt;
+      &lt;/dependency&gt;
+ 
+      &lt;dependency&gt;
+         &lt;groupId&gt;com.datastax.cassandra&lt;/groupId&gt;
+         &lt;artifactId&gt;cassandra-driver-core&lt;/artifactId&gt;
+         &lt;version&gt;2.0.2&lt;/version&gt;
+      &lt;/dependency&gt;
+ 
+      &lt;dependency&gt;
+         &lt;groupId&gt;com.google.guava&lt;/groupId&gt;
+         &lt;artifactId&gt;guava&lt;/artifactId&gt;
+         &lt;version&gt;16.0.1&lt;/version&gt;
+      &lt;/dependency&gt;
+ 
+      &lt;dependency&gt;
+         &lt;groupId&gt;com.codahale.metrics&lt;/groupId&gt;
+         &lt;artifactId&gt;metrics-core&lt;/artifactId&gt;
+         &lt;version&gt;3.0.2&lt;/version&gt;
+      &lt;/dependency&gt;
+ 
+      &lt;dependency&gt;
+         &lt;groupId&gt;io.netty&lt;/groupId&gt;
+         &lt;artifactId&gt;netty&lt;/artifactId&gt;
+         &lt;version&gt;3.9.0.Final&lt;/version&gt;
+      &lt;/dependency&gt;
+   &lt;/dependencies&gt;
+
+&lt;/project&gt;
+</pre>
+<h1>Cassandra - Referenced Api</h1>
+<p>This chapter covers all the important classes in Cassandra.</p>
+<h2>Cluster</h2>
+<p>This class is the main entry point of the driver. It belongs to <b>com.datastax.driver.core</b> package.</p>
+<h3>Methods</h3>
+<table class="table table-bordered">
+<tr>
+<th>S. No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td><b>1</b></td>
+<td><p><b>Session connect()</b></p>
+<p>It creates a new session on the current cluster and initializes it.</p></td>
+</tr>
+<tr>
+<td><b>2</b></td>
+<td><p><b>void close()</b></p>
+<p>It is used to close the cluster instance.</p></td>
+</tr>
+<tr>
+<td><b>3</b></td>
+<td><p><b>static Cluster.Builder builder()</b></p>
+<p>It is used to create a new Cluster.Builder instance.</p></td>
+</tr>
+</table>
+<h2>Cluster.Builder</h2>
+<p>This class is used to instantiate the <b>Cluster.Builder</b> class.</p>
+<h3>Methods</h3>
+<table class="table table-bordered">
+<tr>
+<th>S. No</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td><b>1</b></td>
+<td><p><b>Cluster.Builder addContactPoint(String address)</b></p>
+<p>This method adds a contact point to cluster.</p></td>
+</tr>
+<tr>
+<td><b>2</b></td>
+<td><p><b>Cluster build()</b></p>
+<p>This method builds the cluster with the given contact points.</p></td>
+</tr>
+</table>
+<h2>Session</h2>
+<p>This interface holds the connections to Cassandra cluster. Using this interface, you can execute <b>CQL</b> queries. It belongs to <b>com.datastax.driver.core</b> package.</p>
+<h3>Methods</h3>
+<table class="table table-bordered">
+<tr>
+<th style="width:10%;">S. No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td><b>1</b></td>
+<td><p><b>void close()</b></p>
+<p>This method is used to close the current session instance.</p></td>
+</tr>
+<tr>
+<td><b>2</b></td>
+<td><p><b>ResultSet execute(Statement statement)</b></p>
+<p>This method is used to execute a query. It requires a statement object.</p></td>
+</tr>
+<tr>
+<td><b>3</b></td>
+<td><p><b>ResultSet execute(String query)</b></p>
+<p>This method is used to execute a query. It requires a query in the form of a String object.</p></td>
+</tr>
+<tr>
+<td><b>4</b></td>
+<td><p><b>PreparedStatement prepare(RegularStatement statement)</b></p>
+<p>This method prepares the provided query. The query is to be provided in the form of a Statement.</p></td>
+</tr>
+<tr>
+<td><b>5<b/></td>
+<td><p><b>PreparedStatement prepare(String query)</b></p>
+<p>This method prepares the provided query. The query is to be provided in
+the form of a String.</p></td>
+</tr>
+</table>
+<h1>Cassandra - Cqlsh</h1>
+<p>This chapter introduces the Cassandra query language shell and explains how to use its commands.</p>
+<p>By default, Cassandra provides a prompt Cassandra query language shell <b>(cqlsh)</b> that allows users to communicate with it. Using this shell, you can execute <b>Cassandra Query Language (CQL)</b>.</p>
+<p>Using cqlsh, you can</p>
+<ul class="list">
+<li>define a schema,</li>
+<li>insert data, and</li>
+<li>execute a query.</li>
+</ul>
+<h2>Starting cqlsh</h2>
+<p>Start cqlsh using the command <b>cqlsh</b> as shown below. It gives the Cassandra cqlsh prompt as output.</p>
+<pre class="result notranslate">
+[hadoop@linux bin]$ cqlsh
+Connected to Test Cluster at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 2.1.2 | CQL spec 3.2.0 | Native protocol v3]
+Use HELP for help.
+cqlsh&gt;
+</pre>
+<p><b>Cqlsh</b> &minus; As discussed above, this command is used to start the cqlsh prompt. In addition, it supports a few more options as well. The following table explains all the options of <b>cqlsh</b> and their usage.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:30%;">Options</th>
+<th>Usage</th>
+</tr>
+<tr>
+<td>cqlsh --help</td>
+<td>Shows help topics about the options of <b>cqlsh</b> commands.</td>
+</tr>
+<tr>
+<td>cqlsh --version</td>
+<td>Provides the version of the cqlsh you are using.</td>
+</tr>
+<tr>
+<td>cqlsh --color</td>
+<td>Directs the shell to use colored output.</td>
+</tr>
+<tr>
+<td>cqlsh --debug</td>
+<td>Shows additional debugging information.</td>
+</tr>
+<tr>
+<td>
+<p>cqlsh --execute</p>
+<p>cql_statement</p>
+</td>
+<td>Directs the shell to accept and execute a CQL command.</td>
+</tr>
+<tr>
+<td>cqlsh --file= <b>“file name”</b></td>
+<td>If you use this option, Cassandra executes the command in the given file and exits.</td>
+</tr>
+<tr>
+<td>cqlsh --no-color</td>
+<td>Directs Cassandra not to use colored output.</td>
+</tr>
+<tr>
+<td>cqlsh -u <b>“user name”</b></td>
+<td>Using this option, you can authenticate a user. The default user name is: cassandra.</td>
+</tr>
+<tr>
+<td>cqlsh-p <b>“pass word”</b></td>
+<td>Using this option, you can authenticate a user with a password. The default password is: cassandra.</td>
+</tr>
+</table>
+<h2>Cqlsh Commands</h2>
+<p>Cqlsh has a few commands that allow users to interact with it. The commands are
+listed below.</p>
+<h2>Documented Shell Commands</h2>
+<p>Given below are the Cqlsh documented shell commands. These are the commands used to perform tasks such as displaying help topics, exit from cqlsh, describe,etc.</p>
+<ul class="list">
+<li><p><b>HELP</b> &minus; Displays help topics for all cqlsh commands.</p></li>
+<li><p><b>CAPTURE</b> &minus; Captures the output of a command and adds it to a file.</p></li>
+<li><p><b>CONSISTENCY</b> &minus; Shows the current consistency level, or sets a new consistency level.</p></li>
+<li><p><b>COPY</b> &minus; Copies data to and from Cassandra.</p></li>
+<li><p><b>DESCRIBE</b> &minus; Describes the current cluster of Cassandra and its objects.</p></li>
+<li><p><b>EXPAND</b> &minus; Expands the output of a query vertically.</p></li>
+<li><p><b>EXIT</b> &minus; Using this command, you can terminate cqlsh.</p></li>
+<li><p><b>PAGING</b> &minus; Enables or disables query paging.</p></li>
+<li><p><b>SHOW</b> &minus; Displays the details of current cqlsh session such as Cassandra version, host, or data type assumptions.</p></li>
+<li><p><b>SOURCE</b> &minus; Executes a file that contains CQL statements.</p></li>
+<li><p><b>TRACING</b> &minus; Enables or disables request tracing.</p></li>
+</ul>
+<h2>CQL Data Definition Commands</h2>
+<ul class="list">
+<li><p><b>CREATE KEYSPACE</b> &minus; Creates a KeySpace in Cassandra.</p></li>
+<li><p><b>USE</b> &minus; Connects to a created KeySpace.</p></li>
+<li><p><b>ALTER KEYSPACE</b> &minus; Changes the properties of a KeySpace.</p></li>
+<li><p><b>DROP KEYSPACE</b> &minus; Removes a KeySpace</p></li>
+<li><p><b>CREATE TABLE</b> &minus; Creates a table in a KeySpace.</p></li>
+<li><p><b>ALTER TABLE</b> &minus; Modifies the column properties of a table.</p></li>
+<li><p><b>DROP TABLE</b> &minus; Removes a table.</p></li>
+<li><p><b>TRUNCATE</b> &minus; Removes all the data from a table.</p></li>
+<li><p><b>CREATE INDEX</b> &minus; Defines a new index on a single column of a table.</p></li>
+<li><p><b>DROP INDEX</b> &minus; Deletes a named index.</p></li>
+</ul>
+<h2>CQL Data Manipulation Commands</h2>
+<ul class="list">
+<li><p><b>INSERT</b> &minus; Adds columns for a row in a table.</p></li>
+<li><p><b>UPDATE</b> &minus; Updates a column of a row.</p></li>
+<li><p><b>DELETE</b> &minus; Deletes data from a table.</p></li>
+<li><p><b>BATCH</b> &minus; Executes multiple DML statements at once.</p></li>
+</ul>
+<h2>CQL Clauses</h2>
+<ul class="list">
+<li><p><b>SELECT</b> &minus; This clause reads data from a table</p></li>
+<li><p><b>WHERE</b> &minus; The where clause is used along with select to read a specific data.</p></li>
+<li><p><b>ORDERBY</b> &minus; The orderby clause is used along with select to read a specific data in a specific order.</p></li>
+</ul>
+<h1>Cassandra - Shell Commands</h1>
+<p>Cassandra provides documented shell commands in addition to CQL commands. Given below are the Cassandra documented shell commands.</p>
+<h2>Help</h2>
+<p>The HELP command displays a synopsis and a brief description of all cqlsh commands. Given below is the usage of help command.</p>
+<pre class="result notranslate">
+cqlsh&gt; help
+
+Documented shell commands:
+===========================
+CAPTURE COPY DESCRIBE EXPAND PAGING SOURCE
+CONSISTENCY DESC EXIT HELP SHOW TRACING.
+
+CQL help topics:
+================
+ALTER           CREATE_TABLE_OPTIONS       SELECT
+ALTER_ADD       CREATE_TABLE_TYPES         SELECT_COLUMNFAMILY
+ALTER_ALTER     CREATE_USER                SELECT_EXPR
+ALTER_DROP      DELETE                     SELECT_LIMIT
+ALTER_RENAME    DELETE_COLUMNS             SELECT_TABLE 
+</pre>
+<h2>Capture</h2>
+<p>This command captures the output of a command and adds it to a file. For example, take a look at the following code that captures the output to a file named <b>Outputfile</b>.</p>
+<pre class="result notranslate">
+cqlsh&gt; CAPTURE '/home/hadoop/CassandraProgs/Outputfile'
+</pre>
+<p>When we type any command in the terminal, the output will be captured by the
+file given. Given below is the command used and the snapshot of the output file.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+</pre>
+<img src="/cassandra/images/file.jpg" alt="File" />
+<p>You can turn capturing off using the following command.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; capture off;
+</pre>
+<h2>Consistency</h2>
+<p>This command shows the current consistency level, or sets a new consistency level.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; CONSISTENCY
+Current consistency level is 1.
+</pre>
+<h2>Copy</h2>
+<p>This command copies data to and from Cassandra to a file. Given below is an example to copy the table named <b>emp</b> to the file <b>myfile</b>.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; COPY emp (emp_id, emp_city, emp_name, emp_phone,emp_sal) TO ‘myfile’;
+4 rows exported in 0.034 seconds.
+</pre>
+<p>If you open and verify the file given, you can find the copied data as shown below.</p>
+<img src="/cassandra/images/file2.jpg" alt="File2" />
+<h2>Describe</h2>
+<p>This command describes the current cluster of Cassandra and its objects. The variants of this command are explained below.</p>
+<p><b>Describe cluster</b> &minus; This command provides information about the cluster.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; describe cluster;
+
+Cluster: Test Cluster
+Partitioner: Murmur3Partitioner
+
+Range ownership:
+                  -658380912249644557 [127.0.0.1]
+                  -2833890865268921414 [127.0.0.1]
+                  -6792159006375935836 [127.0.0.1] 
+</pre>
+<p><b>Describe Keyspaces</b> &minus; This command lists all the keyspaces in a cluster. Given below is the usage of this command.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; describe keyspaces;
+
+system_traces system tp tutorialspoint
+</pre>
+<p><b>Describe tables</b> &minus; This command lists all the tables in a keyspace. Given below is the usage of this command.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; describe tables;
+emp
+</pre>
+<p><b>Describe table</b> &minus; This command provides the description of a table. Given below is the usage of this command.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; describe table emp;
+
+CREATE TABLE tutorialspoint.emp (
+   emp_id int PRIMARY KEY,
+   emp_city text,
+   emp_name text,
+   emp_phone varint,
+   emp_sal varint
+) WITH bloom_filter_fp_chance = 0.01
+   AND caching = '{"keys":"ALL", "rows_per_partition":"NONE"}'
+   AND comment = ''
+   AND compaction = {'min_threshold': '4', 'class':
+   'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy',
+   'max_threshold': '32'}
+	
+   AND compression = {'sstable_compression':
+   'org.apache.cassandra.io.compress.LZ4Compressor'}
+	
+   AND dclocal_read_repair_chance = 0.1
+   AND default_time_to_live = 0
+   AND gc_grace_seconds = 864000
+   AND max_index_interval = 2048
+   AND memtable_flush_period_in_ms = 0
+   AND min_index_interval = 128
+   AND read_repair_chance = 0.0
+   AND speculative_retry = '99.0PERCENTILE';
+CREATE INDEX emp_emp_sal_idx ON tutorialspoint.emp (emp_sal);
+</pre>
+<h2>Describe Type</h2>
+<p>This command is used to describe a user-defined data type. Given below is the
+usage of this command.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; describe type card_details;
+
+CREATE TYPE tutorialspoint.card_details (
+   num int,
+   pin int,
+   name text,
+   cvv int,
+   phone set&lt;int&gt;,
+   mail text
+);
+</pre>
+<h2>Describe Types</h2>
+<p>This command lists all the user-defined data types. Given below is the usage of this command. Assume there are two user-defined data types: <b>card</b> and <b>card_details</b>.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; DESCRIBE TYPES;
+
+card_details card
+</pre>
+<h2>Expand</h2>
+<p>This command is used to expand the output. Before using this command, you have to turn the expand command on. Given below is the usage of this command.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; expand on;
+cqlsh:tutorialspoint&gt; select * from emp;
+
+@ Row 1
+-----------+------------
+    emp_id | 1
+  emp_city | Hyderabad
+  emp_name | ram
+ emp_phone | 9848022338
+   emp_sal | 50000
+  
+@ Row 2
+-----------+------------
+    emp_id | 2
+  emp_city | Delhi
+  emp_name | robin
+ emp_phone | 9848022339
+   emp_sal | 50000
+  
+@ Row 3
+-----------+------------
+    emp_id | 4
+  emp_city | Pune
+  emp_name | rajeev
+ emp_phone | 9848022331
+   emp_sal | 30000
+  
+@ Row 4
+-----------+------------
+    emp_id | 3
+  emp_city | Chennai
+  emp_name | rahman
+ emp_phone | 9848022330
+   emp_sal | 50000
+(4 rows)
+</pre>
+<p><b>Note</b> &minus; You can turn the expand option off using the following command.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; expand off;
+Disabled Expanded output.
+</pre>
+<h2>Exit</h2>
+<p>This command is used to terminate the cql shell.</p>
+<h2>Show</h2>
+<p>This command displays the details of current cqlsh session such as Cassandra version, host, or data type assumptions. Given below is the usage of this command.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; show host;
+Connected to Test Cluster at 127.0.0.1:9042.
+
+cqlsh:tutorialspoint&gt; show version;
+[cqlsh 5.0.1 | Cassandra 2.1.2 | CQL spec 3.2.0 | Native protocol v3]
+</pre>
+<h2>Source</h2>
+<p>Using this command, you can execute the commands in a file. Suppose our input file is as follows &minus;</p>
+<img src="/cassandra/images/source1.jpg" alt="Source1" />
+<p>Then you can execute the file containing the commands as shown below.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; source '/home/hadoop/CassandraProgs/inputfile';
+
+ emp_id |  emp_city | emp_name |  emp_phone | emp_sal
+--------+-----------+----------+------------+---------
+      1 | Hyderabad |   ram    | 9848022338 | 50000
+      2 | Delhi     |   robin  | 9848022339 | 50000
+      3 | Pune      |   rajeev | 9848022331 | 30000
+      4 | Chennai   |   rahman | 9848022330 | 50000
+(4 rows)
+</pre>
+<h1>Cassandra - Create Keyspace</h1>
+<h2>Creating a Keyspace using Cqlsh</h2>
+<p>A keyspace in Cassandra is a namespace that defines data replication on nodes. A cluster contains one keyspace per node. Given below is the syntax for creating a keyspace using the statement <b>CREATE KEYSPACE</b>.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+CREATE KEYSPACE &lt;identifier&gt; WITH &lt;properties&gt;
+</pre>
+<p>i.e.</p>
+<pre class="result notranslate">
+CREATE KEYSPACE “KeySpace Name”
+WITH replication = {'class': ‘Strategy name’, 'replication_factor' : ‘No.Of   replicas’};
+
+CREATE KEYSPACE “KeySpace Name”
+WITH replication = {'class': ‘Strategy name’, 'replication_factor' : ‘No.Of  replicas’}
+
+AND durable_writes = ‘Boolean value’;
+</pre>
+<p>The CREATE KEYSPACE statement has two properties: <b>replication</b> and <b> durable_writes</b>.</p>
+<h2>Replication</h2>
+<p>The replication option is to specify the <b>Replica Placement strategy</b> and the number of replicas wanted. The following table lists all the replica placement strategies.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:40%;">Strategy name</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><b>Simple Strategy'</b></td>
+<td>Specifies a simple replication factor for the cluster.</td>
+</tr>
+<tr>
+<td><b>Network Topology Strategy</b></td>
+<td>Using this option, you can set the replication factor for each data-center independently.</td>
+</tr>
+<tr>
+<td><b>Old Network Topology Strategy</b></td>
+<td>This is a legacy replication strategy.</td>
+</tr>
+</table>
+<p>Using this option, you can instruct Cassandra whether to use <b>commitlog</b> for updates on the current KeySpace. This option is not mandatory and by default, it is set to true.</p>
+<h3>Example</h3>
+<p>Given below is an example of creating a KeySpace.</p>
+<ul class="list">
+<li><p>Here we are creating a KeySpace named <b>TutorialsPoint</b>.</p></li>
+<li><p>We are using the first replica placement strategy, i.e.., <b>Simple Strategy</b>.</p></li>
+<li><p>And we are choosing the replication factor to <b>1 replica</b>.</p></li>
+</ul>
+<pre class="result notranslate">
+cqlsh.&gt; CREATE KEYSPACE tutorialspoint
+WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+</pre>
+<h3>Verification</h3>
+<p>You can verify whether the table is created or not using the command <b>Describe</b>. If you use this command over keyspaces, it will display all the keyspaces created as shown below.</p>
+<pre class="result notranslate">
+cqlsh&gt; DESCRIBE keyspaces;
+
+tutorialspoint system system_traces 
+</pre>
+<p>Here you can observe the newly created KeySpace <b>tutorialspoint.</b></p>
+<h2>Durable_writes</h2>
+<p>By default, the durable_writes properties of a table is set to <b>true,</b> however it can be set to false. You cannot set this property to <b>simplex strategy.</b></p>
+<h3>Example</h3>
+<p>Given below is the example demonstrating the usage of durable writes property.</p>
+<pre class="result notranslate">
+cqlsh&gt; CREATE KEYSPACE test
+... WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : 3 }
+... AND DURABLE_WRITES = false;
+</pre>
+<h3>Verification</h3>
+<p>You can verify whether the durable_writes property of test KeySpace was set to false by querying the System Keyspace. This query gives you all the KeySpaces along with their properties.</p>
+<pre class="result notranslate">
+cqlsh&gt; SELECT * FROM system.schema_keyspaces;
+
+  keyspace_name | durable_writes |                                       strategy_class | strategy_options
+----------------+----------------+------------------------------------------------------+----------------------------
+
+           test |          False | org.apache.cassandra.locator.NetworkTopologyStrategy | {"datacenter1" : "3"}
+
+ tutorialspoint |           True |          org.apache.cassandra.locator.SimpleStrategy | {"replication_factor" : "4"}
+
+         system |           True |           org.apache.cassandra.locator.LocalStrategy | { }
+
+  system_traces |           True |          org.apache.cassandra.locator.SimpleStrategy | {"replication_factor" : "2"}
+
+(4 rows)
+</pre>
+<p>Here you can observe the durable_writes property of test KeySpace was set to false.</p>
+<h2>Using a Keyspace</h2>
+<p>You can use a created KeySpace using the keyword <b>USE</b>. Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+Syntax:USE &lt;identifier&gt;
+</pre>
+<h3>Example</h3>
+<p>In the following example, we are using the KeySpace <b>tutorialspoint.</b></p>
+<pre class="result notranslate">
+cqlsh&gt; USE tutorialspoint;
+cqlsh:tutorialspoint&gt;
+</pre>
+<h2>Creating a Keyspace using Java API</h2>
+<p>You can create a Keyspace using the <b>execute()</b> method of <b>Session</b> class. Follow the steps given below to create a keyspace using Java API.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>First of all, create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build a cluster object in a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of <b>Session</b> object using the <b>connect()</b> method of <b>Cluster</b> class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, you can set it to the existing one by passing the keyspace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ” );
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute <b>CQL</b> queries using the <b>execute()</b> method of <b>Session</b> class. Pass the query either in string format or as a <b>Statement</b> class object to the <b>execute()</b> method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In this example, we are creating a KeySpace named <b>tp.</b> We are using the first replica placement strategy, i.e., Simple Strategy, and we are choosing the replication factor to 1 replica.</p>
+<p>You have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+String query = "CREATE KEYSPACE tp WITH replication "
+   + "= {'class':'SimpleStrategy', 'replication_factor':1}; ";
+session.execute(query);
+</pre>
+<h3>Step4 : Use the KeySpace</h3>
+<p>You can use a created KeySpace using the execute() method as shown below.</p>
+<pre class="result notranslate">
+execute(“ USE tp ” );
+</pre>
+<p>Given below is the complete program to create and use a keyspace in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Create_KeySpace {
+
+   public static void main(String args[]){
+
+      //Query
+      String query = "CREATE KEYSPACE tp WITH replication "
+         + "= {'class':'SimpleStrategy', 'replication_factor':1};";
+                    
+      //creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+    
+      //Creating Session object
+      Session session = cluster.connect();
+     
+      //Executing the query
+      session.execute(query);
+     
+      //using the KeySpace
+      session.execute("USE tp");
+      System.out.println("Keyspace created"); 
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Create_KeySpace.java
+$java Create_KeySpace
+</pre>
+<p>Under normal conditions, it will produce the following output &minus;</p>
+<pre class="result notranslate">
+Keyspace created
+</pre>
+<h1>Cassandra - Alter Keyspace</h1>
+<h2>Altering a KeySpace</h2>
+<p>ALTER KEYSPACE can be used to alter properties such as the number of replicas and the durable_writes of a KeySpace. Given below is the syntax of this command.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+ALTER KEYSPACE &lt;identifier&gt; WITH &lt;properties&gt;
+</pre>
+<p>i.e.</p>
+<pre class="result notranslate">
+ALTER KEYSPACE “KeySpace Name”
+WITH replication = {'class': ‘Strategy name’, 'replication_factor' : ‘No.Of  replicas’};
+</pre>
+<p>The properties of <b>ALTER KEYSPACE</b> are same as CREATE KEYSPACE. It has two properties: <b>replication</b> and <b>durable_writes</b>.</p>
+<h2>Replication</h2>
+<p>The replication option specifies the replica placement strategy and the number of replicas wanted.</p>
+<h2>Durable_writes</h2>
+<p>Using this option, you can instruct Cassandra whether to use commitlog for updates on the current KeySpace. This option is not mandatory and by default, it is set to true.</p>
+<h3>Example</h3>
+<p>Given below is an example of altering a KeySpace.</p>
+<ul class="list">
+<li><p>Here we are altering a KeySpace named <b>TutorialsPoint</b>.</p></li>
+<li><p>We are changing the replication factor from 1 to 3.</p></li>
+</ul>
+<pre class="result notranslate">
+cqlsh.&gt; ALTER KEYSPACE tutorialspoint
+WITH replication = {'class':'NetworkTopologyStrategy', 'replication_factor' : 3};
+</pre>
+<h3>Altering Durable_writes</h3>
+<p>You can also alter the durable_writes property of a KeySpace. Given below is the
+durable_writes property of the <b>test</b> KeySpace.</p>
+<pre class="result notranslate">
+SELECT * FROM system.schema_keyspaces;
+
+  keyspace_name | durable_writes |                                       strategy_class | strategy_options
+----------------+----------------+------------------------------------------------------+----------------------------
+           test |          False | org.apache.cassandra.locator.NetworkTopologyStrategy | {"datacenter1":"3"}
+
+ tutorialspoint |           True |          org.apache.cassandra.locator.SimpleStrategy | {"replication_factor":"4"}
+
+         system |           True |           org.apache.cassandra.locator.LocalStrategy | { }
+
+  system_traces |           True |          org.apache.cassandra.locator.SimpleStrategy | {"replication_factor":"2"}
+(4 rows)
+</pre>
+<p></p>
+<pre class="result notranslate">
+ALTER KEYSPACE test
+WITH REPLICATION = {'class' : 'NetworkTopologyStrategy', 'datacenter1' : 3}
+AND DURABLE_WRITES = true;
+</pre>
+<p>Once again, if you verify the properties of KeySpaces, it will produce the following output.</p>
+<pre class="result notranslate">
+SELECT * FROM system.schema_keyspaces;
+  keyspace_name | durable_writes |                                       strategy_class | strategy_options
+----------------+----------------+------------------------------------------------------+----------------------------
+           test |           True | org.apache.cassandra.locator.NetworkTopologyStrategy | {"datacenter1":"3"}
+
+ tutorialspoint |           True |          org.apache.cassandra.locator.SimpleStrategy | {"replication_factor":"4"}
+
+         system |           True |           org.apache.cassandra.locator.LocalStrategy | { }
+
+  system_traces |           True |          org.apache.cassandra.locator.SimpleStrategy | {"replication_factor":"2"}
+
+(4 rows)
+</pre>
+<h2>Altering a Keyspace using Java API</h2>
+<p>You can alter a keyspace using the <b>execute()</b> method of <b>Session</b> class. Follow the steps given below to alter a keyspace using Java API</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>First of all, create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class ="result notranslate">
+//Building a cluster
+
+Cluster cluster = builder.build();
+</pre>
+<p>You can build the cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of <b>Session</b> object using the <b>connect()</b> method of <b>Cluster</b>class as shown below.</p>
+<pre class ="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, you can set it to the existing one by passing the keyspace name in string format to this method as shown below.</p>
+<pre class ="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ” );
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a <b>Statement</b> class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In this example,</p>
+<ul class="list">
+<li><p>We are altering a keyspace named <b>tp</b>. We are altering the replication option from Simple Strategy to Network Topology Strategy.</p></li>
+<li><p>We are altering the <b>durable_writes</b> to false</p></li>
+</ul>
+<p>You have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+//Query
+String query = "ALTER KEYSPACE tp WITH replication " + "=   {'class':'NetworkTopologyStrategy', 'datacenter1':3}" +" AND DURABLE_WRITES = false;";
+session.execute(query);
+</pre>
+<p>Given below is the complete program to create and use a keyspace in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Alter_KeySpace {
+   public static void main(String args[]){
+
+      //Query
+      String query = "ALTER KEYSPACE tp WITH replication " + "= {'class':'NetworkTopologyStrategy', 'datacenter1':3}"
+         + "AND DURABLE_WRITES = false;";
+
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+   
+      //Creating Session object
+      Session session = cluster.connect();
+ 
+      //Executing the query
+      session.execute(query);
+ 
+      System.out.println("Keyspace altered");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Alter_KeySpace.java
+$java Alter_KeySpace
+</pre>
+<p>Under normal conditions, it produces the following output &minus;</p>
+<pre class="result notranslate">
+Keyspace Altered
+</pre>
+<h1>Cassandra - Drop Keyspace</h1>
+<h2>Dropping a Keyspace</h2>
+<p>You can drop a KeySpace using the command <b>DROP KEYSPACE</b>. Given below is the syntax for dropping a KeySpace.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+DROP KEYSPACE &lt;identifier&gt;
+</pre>
+<p>i.e.</p>
+<pre class="result notranslate">
+DROP KEYSPACE “KeySpace name”
+</pre>
+<h3>Example</h3>
+<p>The following code deletes the keyspace <b>tutorialspoint</b>.</p>
+<pre class="result notranslate">
+cqlsh&gt; DROP KEYSPACE tutorialspoint;
+</pre>
+<h3>Verification</h3>
+<p>Verify the keyspaces using the command <b>Describe</b> and check whether the table is dropped as shown below.</p>
+<pre class="result notranslate">
+cqlsh&gt; DESCRIBE keyspaces;
+
+system system_traces
+</pre>
+<p>Since we have deleted the keyspace tutorialspoint, you will not find it in the keyspaces list.</p>
+<h2>Dropping a Keyspace using Java API</h2>
+<p>You can create a keyspace using the execute() method of Session class. Follow the steps given below to drop a keyspace using Java API.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>First of all, create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object 
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build a cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, you can set it to the existing one by passing the keyspace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name”);
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the cqlsh.</p>
+<p>In the following example, we are deleting a keyspace named <b>tp</b>. You have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+String query = "DROP KEYSPACE tp; ";
+
+session.execute(query);
+</pre>
+<p>Given below is the complete program to create and use a keyspace in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Drop_KeySpace {
+
+   public static void main(String args[]){
+
+      //Query
+      String query = "Drop KEYSPACE tp";
+
+      //creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+    
+      //Creating Session object
+      Session session = cluster.connect();
+    
+      //Executing the query
+      session.execute(query);
+      System.out.println("Keyspace deleted");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Delete_KeySpace.java
+$java Delete_KeySpace
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class ="result notranslate">
+Keyspace deleted
+</pre>
+<h1>Cassandra - Create Table</h1>
+<h2>Creating a Table</h2>
+<p>You can create a table using the command <b>CREATE TABLE</b>. Given below is the syntax for creating a table.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+CREATE (TABLE | COLUMNFAMILY) &lt;tablename&gt;
+('&lt;column-definition&gt;' , '&lt;column-definition&gt;')
+(WITH &lt;option&gt; AND &lt;option&gt;)
+</pre>
+<h2>Defining a Column</h2>
+<p>You can define a column as shown below.</p>
+<pre class="result notranslate">
+column name1 data type,
+column name2 data type,
+
+example:
+
+age int,
+name text
+</pre>
+<h2>Primary Key</h2>
+<p>The primary key is a column that is used to uniquely identify a row. Therefore,defining a primary key is mandatory while creating a table. A primary key is made of one or more columns of a table. You can define a primary key of a table as shown below.</p>
+<pre class="result notranslate">
+CREATE TABLE tablename(
+   column1 name datatype PRIMARYKEY,
+   column2 name data type,
+   column3 name data type.
+   )
+</pre>
+<p><b>or</b></p>
+<pre class="result notranslate">
+CREATE TABLE tablename(
+   column1 name datatype PRIMARYKEY,
+   column2 name data type,
+   column3 name data type,
+   <b>PRIMARY KEY (column1)</b>
+   )
+</pre>
+<h3>Example</h3>
+<p>Given below is an example to create a table in Cassandra using cqlsh. Here we are &minus;</p>
+<ul class="list">
+<li><p>Using the keyspace tutorialspoint</p></li>
+<li><p>Creating a table named <b>emp</b></p></li>
+</ul>
+<p>It will have details such as employee name, id, city, salary, and phone number.
+Employee id is the primary key.</p>
+<pre class="result notranslate">
+cqlsh&gt; USE tutorialspoint;
+cqlsh:tutorialspoint&gt;; CREATE TABLE emp(
+   emp_id int PRIMARY KEY,
+   emp_name text,
+   emp_city text,
+   emp_sal varint,
+   emp_phone varint
+   );
+</pre>
+<h3>Verification</h3>
+<p>The select statement will give you the schema. Verify the table using the select statement as shown below.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+
+ emp_id | emp_city | emp_name | emp_phone | emp_sal
+--------+----------+----------+-----------+---------
+
+(0 rows)
+</pre>
+<p>Here you can observe the table created with the given columns. Since we have deleted the keyspace tutorialspoint, you will not find it in the keyspaces list.</p>
+<h2>Creating a Table using Java API</h2>
+<p>You can create a table using the execute() method of Session class. Follow the steps given below to create a table using Java API.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>First of all, create an instance of the <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build a cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the <b>connect()</b> method of <b>Cluster</b> class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, you can set it to the existing one by passing the keyspace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ” );
+</pre>
+<p>Here we are using the keyspace named <b>tp</b>. Therefore, create the session object as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ tp” );
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the cqlsh.</p>
+<p>In the following example, we are creating a table named <b>emp.</b> You have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+//Query
+String query = "CREATE TABLE emp(emp_id int PRIMARY KEY, "
+   + "emp_name text, "
+   + "emp_city text, "
+   + "emp_sal varint, "
+   + "emp_phone varint );";
+session.execute(query);
+</pre>
+<p>Given below is the complete program to create and use a keyspace in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Create_Table {
+
+   public static void main(String args[]){
+
+      //Query
+      String query = "CREATE TABLE emp(emp_id int PRIMARY KEY, "
+         + "emp_name text, "
+         + "emp_city text, "
+         + "emp_sal varint, "
+         + "emp_phone varint );";
+		
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+   
+      //Creating Session object
+      Session session = cluster.connect("tp");
+ 
+      //Executing the query
+      session.execute(query);
+ 
+      System.out.println("Table created");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Create_Table.java
+$java Create_Table
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Table created
+</pre>
+<h1>Cassandra - Alter Table</h1>
+<h2>Altering a Table</h2>
+<p>You can alter a table using the command <b>ALTER TABLE</b>. Given below is the syntax for creating a table.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+ALTER (TABLE | COLUMNFAMILY) &lt;tablename&gt; &lt;instruction&gt;
+</pre>
+<p>Using ALTER command, you can perform the following operations &minus;</p>
+<ul class="list">
+<li><p>Add a column</p></li>
+<li><p>Drop a column</p></li>
+</ul>
+<h2>Adding a Column</h2>
+<p>Using ALTER command, you can add a column to a table. While adding columns, you have to take care that the column name is not conflicting with the existing column names and that the table is not defined with compact storage option. Given below is the syntax to add a column to a table.</p>
+<pre class="result notranslate">
+ALTER TABLE table name
+ADD  new column datatype;
+</pre>
+<p><b>Example</b></p>
+<p>Given below is an example to add a column to an existing table. Here we are adding a column called <b>emp_email</b> of text datatype to the table named <b>emp</b>.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; ALTER TABLE emp
+   ... ADD emp_email text;
+</pre>
+<p><b>Verification</b></p> 
+<p>Use the SELECT statement to verify whether the column is added or not. Here you
+can observe the newly added column emp_email.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+
+ emp_id | emp_city | emp_email | emp_name | emp_phone | emp_sal
+--------+----------+-----------+----------+-----------+---------
+</pre>
+<h2>Dropping a Column</h2>
+<p>Using ALTER command, you can delete a column from a table. Before dropping a column from a table, check that the table is not defined with compact storage option. Given below is the syntax to delete a column from a table using ALTER command.</p>
+<pre class="result notranslate">
+ALTER table name
+DROP column name;
+</pre>
+<p><b>Example</b></p>
+<p>Given below is an example to drop a column from a table. Here we are deleting
+the column named <b>emp_email</b>.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; ALTER TABLE emp DROP emp_email;
+</pre>
+<p><b>Verification</b></p>
+<p>Verify whether the column is deleted using the <b>select</b> statement, as shown below.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+
+ emp_id | emp_city | emp_name | emp_phone | emp_sal
+--------+----------+----------+-----------+---------
+(0 rows)
+</pre>
+<p>Since <b>emp_email</b> column has been deleted, you cannot find it anymore.</p>
+<h2>Altering a Table using Java API</h2>
+<p>You can create a table using the execute() method of Session class. Follow the steps given below to alter a table using Java API.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>First of all, create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build a cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class
+as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ” );
+Session session = cluster.connect(“ tp” );
+</pre>
+<p>Here we are using the KeySpace named tp. Therefore, create the session object
+as shown below.</p>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In the following example, we are adding a column to a table named <b>emp.</b> To do so, you have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+//Query
+String query1 = "ALTER TABLE emp ADD emp_email text";
+session.execute(query);
+</pre>
+<p>Given below is the complete program to add a column to an existing table.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Add_column {
+
+   public static void main(String args[]){
+
+      //Query
+      String query = "ALTER TABLE emp ADD emp_email text";
+
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+     
+      //Creating Session object
+      Session session = cluster.connect("tp");
+    
+      //Executing the query
+      session.execute(query);
+  
+      System.out.println("Column added");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Add_Column.java
+$java Add_Column
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Column added
+</pre>
+<h2>Deleting a Column</h2>
+<p>Given below is the complete program to delete a column from an existing table.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Delete_Column {
+
+   public static void main(String args[]){
+
+      //Query
+      String query = "ALTER TABLE emp DROP emp_email;";
+
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+ 
+      //Creating Session object
+      Session session = cluster.connect("tp");
+ 
+      //executing the query
+      session.execute(query);
+    
+      System.out.println("Column deleted");
+   }
+ }
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Delete_Column.java
+$java Delete_Column
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Column deleted
+</pre>
+<h1>Cassandra - Drop Table</h1>
+<h2>Dropping a Table</h2>
+<p>You can drop a table using the command <b>Drop Table</b>. Its syntax is as follows &minus;</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+DROP TABLE &lt;tablename&gt;
+</pre>
+<h3>Example</h3>
+<p>The following code drops an existing table from a KeySpace.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; DROP TABLE emp;
+</pre>
+<h3>Verification</h3>
+<p>Use the Describe command to verify whether the table is deleted or not. Since the emp table has been deleted, you will not find it in the column families list.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; DESCRIBE COLUMNFAMILIES;
+employee
+</pre>
+<h2>Deleting a Table using Java API</h2>
+<p>You can delete a table using the execute() method of Session class. Follow the steps given below to delete a table using Java API.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>First of all, create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below &minus;</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build a cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class
+as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“Your keyspace name”);
+</pre>
+<p>Here we are using the keyspace named <b>tp</b>. Therefore, create the session object as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“tp”);
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In the following example, we are deleting a table named <b>emp</b>. You have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+// Query
+
+String query = "DROP TABLE emp1;”;
+session.execute(query);
+</pre>
+<p>Given below is the complete program to drop a table in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+ 
+public class Drop_Table {
+
+   public static void main(String args[]){
+
+      //Query
+      String query = "DROP TABLE emp1;";
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+    
+      //Creating Session object
+      Session session = cluster.connect("tp");
+   
+      //Executing the query
+      session.execute(query);
+    
+      System.out.println("Table dropped");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Drop_Table.java
+$java Drop_Table
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Table dropped
+</pre>
+<h1>Cassandra - Truncate Table</h1>
+<h2>Truncating a Table</h2>
+<p>You can truncate a table using the TRUNCATE command. When you truncate a table, all the rows of the table are deleted permanently. Given below is the syntax of this command.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+TRUNCATE &lt;tablename&gt;
+</pre>
+<h3>Example</h3>
+<p>Let us assume there is a table called <b>student</b> with the following data.</p>
+<table class="table table-bordered">
+<tr>
+<th>s_id</th>
+<th>s_name</th>
+<th>s_branch</th>
+<th>s_aggregate</th>
+</tr>
+<tr>
+<td>1</td>
+<td>ram</td>
+<td>IT</td>
+<td>70</td>
+</tr>
+<tr>
+<td>2</td>
+<td>rahman</td>
+<td>EEE</td>
+<td>75</td>
+</tr>
+<tr>
+<td>3</td>
+<td>robbin</td>
+<td>Mech</td>
+<td>72</td>
+</tr>
+</table>
+<p>When you execute the select statement to get the table <b>student,</b> it will give you the following output.</p>
+<pre class="result notranslate">
+cqlsh:tp&gt; select * from student;
+
+ s_id | s_aggregate | s_branch | s_name
+------+-------------+----------+--------
+    1 |          70 |       IT | ram
+    2 |          75 |      EEE | rahman
+    3 |          72 |     MECH | robbin
+
+(3 rows)
+</pre>
+<p>Now truncate the table using the TRUNCATE command.</p>
+<pre class="result notranslate">
+cqlsh:tp&gt; TRUNCATE student;
+</pre>
+<h3>Verification</h3>
+<p>Verify whether the table is truncated by executing the <b>select</b> statement. Given below is the output of the select statement on the student table after truncating.</p>
+<pre class="result notranslate">
+cqlsh:tp&gt; select * from student;
+
+ s_id | s_aggregate | s_branch | s_name
+------+-------------+----------+--------
+
+(0 rows)
+</pre>
+<h2>Truncating a Table using Java API</h2>
+<p>You can truncate a table using the execute() method of Session class. Follow the steps given below to truncate a table.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>First of all, create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build a cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Creating a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, then you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ” );
+Session session = cluster.connect(“ tp” );
+</pre>
+<p>Here we are using the keyspace named tp. Therefore, create the session object as shown below.</p>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In the following example, we are truncating a table named <b>emp</b>. You have to store the query in a string variable and pass it to the <b>execute()</b> method as shown below.</p>
+<pre class="result notranslate">
+//Query
+String query = "TRUNCATE emp;;”;
+session.execute(query);
+</pre>
+<p>Given below is the complete program to truncate a table in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Truncate_Table {
+
+   public static void main(String args[]){
+   
+      //Query
+      String query = "Truncate student;";
+   
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+   
+      //Creating Session object
+      Session session = cluster.connect("tp");
+   
+      //Executing the query
+      session.execute(query);
+      System.out.println("Table truncated");
+   }
+} 
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Truncate_Table.java
+$java Truncate_Table
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Table truncated
+</pre>
+<h1>Cassandra - Create Index</h1>
+<h2>Creating an Index using Cqlsh</h2>
+<p>You can create an index in Cassandra using the command <b>CREATE INDEX.</b> Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+CREATE INDEX &lt;identifier&gt; ON &lt;tablename&gt;
+</pre>
+<p>Given below is an example to create an index to a column. Here we are creating an index to a column ‘emp_name’ in a table named emp.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; CREATE INDEX name ON emp1 (emp_name);
+</pre>
+<h2>Creating an Index using Java API</h2>
+<p>You can create an index to a column of a table using the execute() method of Session class. Follow the steps given below to create an index to a column in a table.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>First of all, create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build the cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of <b>Cluster</b> class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, then you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ” );
+</pre>
+<p>Here we are using the KeySpace called <b>tp.</b> Therefore, create the session object as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ tp” );
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In the following example, we are creating an index to a column called emp_name, in a table named <b>emp.</b> You have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+//Query
+String query = "CREATE INDEX name ON emp1 (emp_name);";
+session.execute(query);
+</pre>
+<p>Given below is the complete program to create an index of a column in a table in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Create_Index {
+ 
+   public static void main(String args[]){
+
+      //Query
+      String query = "CREATE INDEX name ON emp1 (emp_name);";
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+       
+      //Creating Session object
+      Session session = cluster.connect("tp");
+ 
+      //Executing the query
+      session.execute(query);
+      System.out.println("Index created");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Create_Index.java
+$java Create_Index
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Index created
+</pre>
+<h1>Cassandra - Drop Index</h1>
+<h2>Dropping an Index</h2>
+<p>You can drop an index using the command <b>DROP INDEX</b>. Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+DROP INDEX &lt;identifier&gt;
+</pre>
+<p>Given below is an example to drop an index of a column in a table. Here we are dropping the index of the column name in the table emp.</p>
+<pre class="result notranslate">
+cqlsh:tp&gt; drop index name;
+</pre>
+<h2>Dropping an Index using Java API</h2>
+<p>You can drop an index of a table using the execute() method of Session class. Follow the steps given below to drop an index from a table.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>Create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder object</b>. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build a cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class
+as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, then you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ” );
+</pre>
+<p>Here we are using the KeySpace named <b>tp.</b> Therefore, create the session object as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ tp” );
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a <b>Statement</b> class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In the following example, we are dropping an index “name” of <b>emp</b> table. You have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+//Query
+String query = "DROP INDEX user_name;";
+session.execute(query);
+</pre>
+<p>Given below is the complete program to drop an index in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Drop_Index {
+
+   public static void main(String args[]){
+     
+      //Query
+      String query = "DROP INDEX user_name;";
+ 
+      //Creating cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();.
+ 
+      //Creating Session object
+      Session session = cluster.connect("tp"); 
+ 
+      //Executing the query
+      session.execute(query);
+      
+      System.out.println("Index dropped");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Drop_index.java
+$java Drop_index
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Index dropped
+</pre>
+<h1>Cassandra - Batch Statements</h1>
+<h2>Using Batch Statements</h2>
+<p>Using <b>BATCH,</b> you can execute multiple modification statements (insert, update, delete) simultaneiously. Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+BEGIN BATCH
+&lt;insert-stmt&gt;/ &lt;update-stmt&gt;/ &lt;delete-stmt&gt;
+APPLY BATCH
+</pre>
+<h3>Example</h3>
+<p>Assume there is a table in Cassandra called emp having the following data &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>emp_id</th>
+<th>emp_name</th>
+<th>emp_city</th>
+<th>emp_phone</th>
+<th>emp_sal</th>
+</tr>
+<tr>
+<td>1</td>
+<td>ram</td>
+<td>Hyderabad</td>
+<td>9848022338</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>robin</td>
+<td>Delhi</td>
+<td>9848022339</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>rahman</td>
+<td>Chennai</td>
+<td>9848022330</td>
+<td>45000</td>
+</tr>
+</table>
+<p>In this example, we will perform the following operations &minus;</p>
+<ul class="list">
+<li>Insert a new row with the following details (4, rajeev, pune, 9848022331, 30000).</li>
+<li>Update the salary of employee with row id 3 to 50000.</li>
+<li>Delete city of the employee with row id 2.</li>
+</ul>
+<p>To perform the above operations in one go, use the following BATCH command &minus;</p>
+<pre class="prettyprint notranslate">
+cqlsh:tutorialspoint&gt; BEGIN BATCH
+... INSERT INTO emp (emp_id, emp_city, emp_name, emp_phone, emp_sal) values(  4,'Pune','rajeev',9848022331, 30000);
+... UPDATE emp SET emp_sal = 50000 WHERE emp_id =3;
+... DELETE emp_city FROM emp WHERE emp_id = 2;
+... APPLY BATCH;
+</pre>
+<h3>Verification</h3>
+<p>After making changes, verify the table using the SELECT statement. It should produce the following output &minus;</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+
+ emp_id |  emp_city | emp_name |  emp_phone | emp_sal
+--------+-----------+----------+------------+---------
+      1 | Hyderabad | ram      | 9848022338 | 50000
+      2 | null      | robin    | 9848022339 | 50000
+      3 | Chennai   | rahman   | 9848022330 | 50000
+      4 | Pune      | rajeev   | 9848022331 | 30000
+    
+(4 rows)
+</pre>
+<p>Here you can observe the table with modified data.</p>
+<h2>Batch Statements using Java API</h2>
+<p>Batch statements can be written programmatically in a table using the execute() method of Session class. Follow the steps given below to execute multiple statements using batch statement with the help of Java API.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>Create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. Use the following code to create the cluster object &minus;</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build the cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, then you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ”);
+</pre>
+<p>Here we are using the KeySpace named <b>tp</b>. Therefore, create the session object as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“tp”);
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In this example, we will perform the following operations &minus;</p>
+<ul class="list">
+<li>Insert a new row with the following details (4, rajeev, pune, 9848022331, 30000).</li>
+<li>Update the salary of employee with row id 3 to 50000.</li>
+<li>Delete the city of the employee with row id 2.</li>
+</ul>
+<p>You have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+String query1 = ” BEGIN BATCH INSERT INTO emp (emp_id, emp_city, emp_name,   emp_phone, emp_sal) values( 4,'Pune','rajeev',9848022331, 30000);
+UPDATE emp SET emp_sal = 50000 WHERE emp_id =3;
+DELETE emp_city FROM emp WHERE emp_id = 2;
+APPLY BATCH;”;
+</pre>
+<p>Given below is the complete program to execute multiple statements simultaneously on a table in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Batch {
+
+   public static void main(String args[]){
+    
+      //query
+      String query =" BEGIN BATCH INSERT INTO emp (emp_id, emp_city,
+         emp_name, emp_phone, emp_sal) values( 4,'Pune','rajeev',9848022331, 30000);"
+    
+         + "UPDATE emp SET emp_sal = 50000 WHERE emp_id =3;"
+         + "DELETE emp_city FROM emp WHERE emp_id = 2;"
+         + "APPLY BATCH;";
+
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+ 
+      //Creating Session object
+      Session session = cluster.connect("tp");
+ 
+      //Executing the query
+      session.execute(query);
+
+      System.out.println("Changes done");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Batch.java
+$java Batch
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Changes done
+</pre>
+<h1>Cassandra - Create Data</h1>
+<h2>Creating Data in a Table</h2>
+<p>You can insert data into the columns of a row in a table using the command <b>INSERT</b>. Given below is the syntax for creating data in a table.</p>
+<pre class="result notranslate">
+INSERT INTO &lt;tablename&gt;
+(&lt;column1 name&gt;, &lt;column2 name&gt;....)
+VALUES (&lt;value1&gt;, &lt;value2&gt;....)
+USING &lt;option&gt;
+</pre>
+<h3>Example</h3>
+<p>Let us assume there is a table called <b>emp</b> with columns (emp_id, emp_name, emp_city, emp_phone, emp_sal) and you have to insert the following data into the <b>emp</b> table.</p>
+<table class="table table-bordered">
+<tr>
+<th>emp_id</th>
+<th>emp_name</th>
+<th>emp_city</th>
+<th>emp_phone</th>
+<th>emp_sal</th>
+</tr>
+<tr>
+<td>1</td>
+<td>ram</td>
+<td>Hyderabad</td>
+<td>9848022338</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>robin</td>
+<td>Hyderabad</td>
+<td>9848022339</td>
+<td>40000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>rahman</td>
+<td>Chennai</td>
+<td>9848022330</td>
+<td>45000</td>
+</tr>
+</table>
+<p>Use the commands given below to fill the table with required data.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; INSERT INTO emp (emp_id, emp_name, emp_city,
+   emp_phone, emp_sal) VALUES(1,'ram', 'Hyderabad', 9848022338, 50000);
+
+cqlsh:tutorialspoint&gt; INSERT INTO emp (emp_id, emp_name, emp_city,
+   emp_phone, emp_sal) VALUES(2,'robin', 'Hyderabad', 9848022339, 40000);
+
+cqlsh:tutorialspoint&gt; INSERT INTO emp (emp_id, emp_name, emp_city,
+   emp_phone, emp_sal) VALUES(3,'rahman', 'Chennai', 9848022330, 45000);
+</pre>
+<h3>Verification</h3>
+<p>After inserting data, use SELECT statement to verify whether the data has been inserted or not. If you verify the emp table using SELECT statement, it will give you the following output.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; SELECT * FROM emp;
+
+ emp_id |  emp_city | emp_name |  emp_phone | emp_sal
+--------+-----------+----------+------------+---------
+      1 | Hyderabad |      ram | 9848022338 | 50000
+      2 | Hyderabad |    robin | 9848022339 | 40000
+      3 |   Chennai |   rahman | 9848022330 | 45000
+ 
+(3 rows)
+</pre>
+<p>Here you can observe the table has populated with the data we inserted.</p>
+<h2>Creating Data using Java API</h2>
+<p>You can create data in a table using the execute() method of Session class. Follow the steps given below to create data in a table using java API.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>Create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint("127.0.0.1");
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. The following code shows how to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build a cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, then you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ” );
+</pre>
+<p>Here we are using the KeySpace called <b>tp</b>. Therefore, create the session object as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ tp” );
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a <b>Statement</b> class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In the following example, we are inserting data in a table called <b>emp</b>. You have to store the query in a string variable and pass it to the execute() method as shown below.</p>
+<pre class="result notranslate">
+String query1 = “INSERT INTO emp (emp_id, emp_name, emp_city, emp_phone, emp_sal)
+   VALUES(1,'ram', 'Hyderabad', 9848022338, 50000);” ;
+ 
+String query2 = “INSERT INTO emp (emp_id, emp_name, emp_city, emp_phone, emp_sal)
+   VALUES(2,'robin', 'Hyderabad', 9848022339, 40000);” ;
+ 
+String query3 = “INSERT INTO emp (emp_id, emp_name, emp_city, emp_phone, emp_sal)
+   VALUES(3,'rahman', 'Chennai', 9848022330, 45000);” ;
+ 
+session.execute(query1);
+session.execute(query2);
+session.execute(query3); 
+</pre>
+<p>Given below is the complete program to insert data into a table in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Create_Data {
+
+   public static void main(String args[]){
+
+      //queries
+      String query1 = "INSERT INTO emp (emp_id, emp_name, emp_city, emp_phone,  emp_sal)"
+		
+         + " VALUES(1,'ram', 'Hyderabad', 9848022338, 50000);" ;
+                             
+      String query2 = "INSERT INTO emp (emp_id, emp_name, emp_city,
+         emp_phone, emp_sal)"
+      
+         + " VALUES(2,'robin', 'Hyderabad', 9848022339, 40000);" ;
+                             
+      String query3 = "INSERT INTO emp (emp_id, emp_name, emp_city, emp_phone, emp_sal)"
+       
+         + " VALUES(3,'rahman', 'Chennai', 9848022330, 45000);" ;
+
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+ 
+      //Creating Session object
+      Session session = cluster.connect("tp");
+       
+      //Executing the query
+      session.execute(query1);
+        
+      session.execute(query2);
+        
+      session.execute(query3);
+        
+      System.out.println("Data created");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Create_Data.java
+$java Create_Data
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Data created
+</pre>
+<h1>Cassandra - Update Data</h1>
+<h2>Updating Data in a Table</h2>
+<p><b>UPDATE</b> is the command used to update data in a table. The following keywords are used while updating data in a table &minus;</p>
+<ul class="list">
+<li><p><b>Where</b> &minus; This clause is used to select the row to be updated.</p></li>
+<li><p><b>Set</b> &minus; Set the value using this keyword.</p></li>
+<li><p><b>Must</b> &minus; Includes all the columns composing the primary key.</p></li>
+</ul>
+<p>While updating rows, if a given row is unavailable, then UPDATE creates a fresh row. Given below is the syntax of UPDATE command &minus;</p>
+<pre class="result notranslate">
+UPDATE &lt;tablename&gt;
+SET &lt;column name&gt; = &lt;new value&gt;
+&lt;column name&gt; = &lt;value&gt;....
+WHERE &lt;condition&gt;
+</pre>
+<h3>Example</h3>
+<p>Assume there is a table named <b>emp</b>. This table stores the details of employees of a certain company, and it has the following details &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>emp_id</th>
+<th>emp_name</th>
+<th>emp_city</th>
+<th>emp_phone</th>
+<th>emp_sal</th>
+</tr>
+<tr>
+<td>1</td>
+<td>ram</td>
+<td>Hyderabad</td>
+<td>9848022338</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>robin</td>
+<td>Hyderabad</td>
+<td>9848022339</td>
+<td>40000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>rahman</td>
+<td>Chennai</td>
+<td>9848022330</td>
+<td>45000</td>
+</tr>
+</table>
+<p>Let us now update emp_city of robin to Delhi, and his salary to 50000. Given below is the query to perform the required updates.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; UPDATE emp SET emp_city='Delhi',emp_sal=50000
+   WHERE emp_id=2;
+</pre>
+<h3>Verification</h3>
+<p>Use SELECT statement to verify whether the data has been updated or not. If you verify the emp table using SELECT statement, it will produce the following output.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+
+ emp_id |  emp_city | emp_name |  emp_phone | emp_sal
+--------+-----------+----------+------------+---------
+      1 | Hyderabad |      ram | 9848022338 | 50000
+      2 |     Delhi |    robin | 9848022339 | 50000
+      3 |   Chennai |   rahman | 9848022330 | 45000
+      
+(3 rows)
+</pre>
+<p>Here you can observe the table data has got updated.</p>
+<h2>Updating Data using Java API</h2>
+<p>You can update data in a table using the execute() method of Session class. Follow the steps given below to update data in a table using Java API.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>Create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint("127.0.0.1");
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. Use the following code to create the cluster object.</p>
+<pre class ="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build the cluster object using a single line of code as shown below.</p>
+<pre class ="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class as shown below.</p>
+<pre class ="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, then you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name”);
+</pre> 
+<p>Here we are using the KeySpace named <b>tp</b>. Therefore, create the session object as shown below.</p>
+<pre class ="result notranslate">
+Session session = cluster.connect(“tp”);
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In the following example, we are updating the emp table. You have to store the query in a string variable and pass it to the execute() method as shown below:</p>
+<pre class ="result notranslate">
+String query = “ UPDATE emp SET emp_city='Delhi',emp_sal=50000
+WHERE emp_id = 2;” ;
+</pre>
+<p>Given below is the complete program to update data in a table using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Update_Data {
+  
+   public static void main(String args[]){
+      
+      //query
+      String query = " UPDATE emp SET emp_city='Delhi',emp_sal=50000"
+          
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+         
+      //Creating Session object
+      Session session = cluster.connect("tp");
+         
+      //Executing the query
+      session.execute(query);
+
+      System.out.println("Data updated");
+   }
+ }
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Update_Data.java
+$java Update_Data
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Data updated
+</pre>
+<h1>Cassandra - Read Data</h1>
+<h2>Reading Data using Select Clause</h2>
+<p>SELECT clause is used to read data from a table in Cassandra. Using this clause, you can read a whole table, a single column, or a particular cell. Given below is the syntax of SELECT clause.</p>
+<pre class="result notranslate">
+SELECT FROM &lt;tablename&gt;
+</pre>
+<h3>Example</h3>
+<p>Assume there is a table in the keyspace named <b>emp</b> with the following details &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>emp_id</th>
+<th>emp_name</th>
+<th>emp_city</th>
+<th>emp_phone</th>
+<th>emp_sal</th>
+</tr>
+<tr>
+<td>1</td>
+<td>ram</td>
+<td>Hyderabad</td>
+<td>9848022338</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>robin</td>
+<td>null</td>
+<td>9848022339</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>rahman</td>
+<td>Chennai</td>
+<td>9848022330</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rajeev</td>
+<td>Pune</td>
+<td>9848022331</td>
+<td>30000</td>
+</tr>
+</table>
+<p>The following example shows how to read a whole table using SELECT clause. Here we are reading a table called <b>emp</b>.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+
+ emp_id |  emp_city | emp_name |  emp_phone | emp_sal
+--------+-----------+----------+------------+---------
+      1 | Hyderabad |   ram    | 9848022338 | 50000
+      2 | null      |   robin  | 9848022339 | 50000
+      3 | Chennai   |   rahman | 9848022330 | 50000
+      4 | Pune      |   rajeev | 9848022331 | 30000
+		
+(4 rows)
+</pre>
+<h2>Reading Required Columns</h2>
+<p>The following example shows how to read a particular column in a table.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; SELECT emp_name, emp_sal from emp;
+
+ emp_name | emp_sal
+----------+---------
+      ram | 50000
+    robin | 50000
+   rajeev | 30000
+   rahman | 50000 
+	
+(4 rows)
+</pre>
+<h2>Where Clause</h2>
+<p>Using WHERE clause, you can put a constraint on the required columns. Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+SELECT FROM &lt;table name&gt; WHERE &lt;condition&gt;;
+</pre>
+<p><b>Note</b> &minus; A WHERE clause can be used only on the columns that are a part of primary key or have a secondary index on them.</p>
+<p>In the following example, we are reading the details of an employee whose salary is 50000. First of all, set secondary index to the column emp_sal.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; CREATE INDEX ON emp(emp_sal);
+cqlsh:tutorialspoint&gt; SELECT * FROM emp WHERE emp_sal=50000;
+
+ emp_id |  emp_city | emp_name |  emp_phone | emp_sal
+--------+-----------+----------+------------+---------
+      1 | Hyderabad |      ram | 9848022338 | 50000
+      2 |      null |    robin | 9848022339 | 50000
+      3 |   Chennai |   rahman | 9848022330 | 50000
+</pre>
+<h2>Reading Data using Java API</h2>
+<p>You can read data from a table using the execute() method of Session class. Follow the steps given below to execute multiple statements using batch statement with the help of Java API.</p>
+<h3>Step1:Create a Cluster Object</h3>
+<p>Create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. Use the following code to create the cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build the cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, then you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“Your keyspace name”);
+</pre>
+<p>Here we are using the KeySpace called <b>tp</b>. Therefore, create the session object as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“tp”);
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In this example, we are retrieving the data from <b>emp</b> table. Store the query in a string and pass it to the execute() method of session class as shown below.</p>
+<pre class="result notranslate">
+String query = ”SELECT 8 FROM emp”;
+session.execute(query);
+</pre>
+<p>Execute the query using the execute() method of Session class.</p>
+<h3>Step 4: Get the ResultSet Object</h3>
+<p>The select queries will return the result in the form of a <b>ResultSet</b> object, therefore store the result in the object of <b>RESULTSET</b> class as shown below.</p>
+<pre class="result notranslate">
+ResultSet result = session.execute( );
+</pre>
+<p>Given below is the complete program to read data from a table.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.ResultSet;
+import com.datastax.driver.core.Session;
+
+public class Read_Data {
+
+   public static void main(String args[])throws Exception{
+    
+      //queries
+      String query = "SELECT * FROM emp";
+
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+    
+      //Creating Session object
+      Session session = cluster.connect("tutorialspoint");
+    
+      //Getting the ResultSet
+      ResultSet result = session.execute(query);
+    
+      System.out.println(result.all());
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Read_Data.java
+$java Read_Data
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+[Row[1, Hyderabad, ram, 9848022338, 50000], Row[2, Delhi, robin,
+9848022339, 50000], Row[4, Pune, rajeev, 9848022331, 30000], Row[3,
+Chennai, rahman, 9848022330, 50000]]
+</pre>
+<h1>Cassandra - Read Data</h1>
+<h2>Reading Data using Select Clause</h2>
+<p>SELECT clause is used to read data from a table in Cassandra. Using this clause, you can read a whole table, a single column, or a particular cell. Given below is the syntax of SELECT clause.</p>
+<pre class="result notranslate">
+SELECT FROM &lt;tablename&gt;
+</pre>
+<h3>Example</h3>
+<p>Assume there is a table in the keyspace named <b>emp</b> with the following details &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>emp_id</th>
+<th>emp_name</th>
+<th>emp_city</th>
+<th>emp_phone</th>
+<th>emp_sal</th>
+</tr>
+<tr>
+<td>1</td>
+<td>ram</td>
+<td>Hyderabad</td>
+<td>9848022338</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>robin</td>
+<td>null</td>
+<td>9848022339</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>rahman</td>
+<td>Chennai</td>
+<td>9848022330</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rajeev</td>
+<td>Pune</td>
+<td>9848022331</td>
+<td>30000</td>
+</tr>
+</table>
+<p>The following example shows how to read a whole table using SELECT clause. Here we are reading a table called <b>emp</b>.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+
+ emp_id |  emp_city | emp_name |  emp_phone | emp_sal
+--------+-----------+----------+------------+---------
+      1 | Hyderabad |   ram    | 9848022338 | 50000
+      2 | null      |   robin  | 9848022339 | 50000
+      3 | Chennai   |   rahman | 9848022330 | 50000
+      4 | Pune      |   rajeev | 9848022331 | 30000
+		
+(4 rows)
+</pre>
+<h2>Reading Required Columns</h2>
+<p>The following example shows how to read a particular column in a table.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; SELECT emp_name, emp_sal from emp;
+
+ emp_name | emp_sal
+----------+---------
+      ram | 50000
+    robin | 50000
+   rajeev | 30000
+   rahman | 50000 
+	
+(4 rows)
+</pre>
+<h2>Where Clause</h2>
+<p>Using WHERE clause, you can put a constraint on the required columns. Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+SELECT FROM &lt;table name&gt; WHERE &lt;condition&gt;;
+</pre>
+<p><b>Note</b> &minus; A WHERE clause can be used only on the columns that are a part of primary key or have a secondary index on them.</p>
+<p>In the following example, we are reading the details of an employee whose salary is 50000. First of all, set secondary index to the column emp_sal.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; CREATE INDEX ON emp(emp_sal);
+cqlsh:tutorialspoint&gt; SELECT * FROM emp WHERE emp_sal=50000;
+
+ emp_id |  emp_city | emp_name |  emp_phone | emp_sal
+--------+-----------+----------+------------+---------
+      1 | Hyderabad |      ram | 9848022338 | 50000
+      2 |      null |    robin | 9848022339 | 50000
+      3 |   Chennai |   rahman | 9848022330 | 50000
+</pre>
+<h2>Reading Data using Java API</h2>
+<p>You can read data from a table using the execute() method of Session class. Follow the steps given below to execute multiple statements using batch statement with the help of Java API.</p>
+<h3>Step1:Create a Cluster Object</h3>
+<p>Create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. Use the following code to create the cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build the cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect( );
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, then you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“Your keyspace name”);
+</pre>
+<p>Here we are using the KeySpace called <b>tp</b>. Therefore, create the session object as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“tp”);
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In this example, we are retrieving the data from <b>emp</b> table. Store the query in a string and pass it to the execute() method of session class as shown below.</p>
+<pre class="result notranslate">
+String query = ”SELECT 8 FROM emp”;
+session.execute(query);
+</pre>
+<p>Execute the query using the execute() method of Session class.</p>
+<h3>Step 4: Get the ResultSet Object</h3>
+<p>The select queries will return the result in the form of a <b>ResultSet</b> object, therefore store the result in the object of <b>RESULTSET</b> class as shown below.</p>
+<pre class="result notranslate">
+ResultSet result = session.execute( );
+</pre>
+<p>Given below is the complete program to read data from a table.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.ResultSet;
+import com.datastax.driver.core.Session;
+
+public class Read_Data {
+
+   public static void main(String args[])throws Exception{
+    
+      //queries
+      String query = "SELECT * FROM emp";
+
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+    
+      //Creating Session object
+      Session session = cluster.connect("tutorialspoint");
+    
+      //Getting the ResultSet
+      ResultSet result = session.execute(query);
+    
+      System.out.println(result.all());
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Read_Data.java
+$java Read_Data
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+[Row[1, Hyderabad, ram, 9848022338, 50000], Row[2, Delhi, robin,
+9848022339, 50000], Row[4, Pune, rajeev, 9848022331, 30000], Row[3,
+Chennai, rahman, 9848022330, 50000]]
+</pre>
+<h1>Cassandra - Delete Data</h1>
+<h2>Deleting Datafrom a Table</h2>
+<p>You can delete data from a table using the command <b>DELETE</b>. Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+DELETE FROM &lt;identifier&gt; WHERE &lt;condition&gt;;
+</pre>
+<h3>Example</h3>
+<p>Let us assume there is a table in Cassandra called <b>emp</b> having the following data &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>emp_id</th>
+<th>emp_name</th>
+<th>emp_city</th>
+<th>emp_phone</th>
+<th>emp_sal</th>
+</tr>
+<tr>
+<td>1</td>
+<td>ram</td>
+<td>Hyderabad</td>
+<td>9848022338</td>
+<td>50000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>robin</td>
+<td>Hyderabad</td>
+<td>9848022339</td>
+<td>40000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>rahman</td>
+<td>Chennai</td>
+<td>9848022330</td>
+<td>45000</td>
+</tr>
+</table>
+<p>The following statement deletes the emp_sal column of last row &minus;</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; DELETE emp_sal FROM emp WHERE emp_id=3;
+</pre>
+<h3>Verification</h3>
+<p>Use SELECT statement to verify whether the data has been deleted or not. If you verify the emp table using SELECT, it will produce the following output &minus;</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+
+ emp_id |  emp_city | emp_name |  emp_phone | emp_sal
+--------+-----------+----------+------------+---------
+      1 | Hyderabad |      ram | 9848022338 | 50000
+      2 |     Delhi |    robin | 9848022339 | 50000
+      3 |   Chennai |   rahman | 9848022330 | null
+(3 rows)
+</pre>
+<p>Since we have deleted the salary of Rahman, you will observe a null value in place of salary.</p>
+<h2>Deleting an Entire Row</h2>
+<p>The following command deletes an entire row from a table.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; DELETE FROM emp WHERE emp_id=3;
+</pre>
+<h3>Verification</h3>
+<p>Use SELECT statement to verify whether the data has been deleted or not. If you verify the emp table using SELECT, it will produce the following output &minus;</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from emp;
+
+ emp_id |  emp_city | emp_name |  emp_phone | emp_sal
+--------+-----------+----------+------------+---------
+      1 | Hyderabad |      ram | 9848022338 | 50000
+      2 |     Delhi |    robin | 9848022339 | 50000
+ 
+(2 rows)
+</pre>
+<p>Since we have deleted the last row, there are only two rows left in the table.</p>
+<h2>Deleting Data using Java API</h2>
+<p>You can delete data in a table using the execute() method of Session class. Follow the steps given below to delete data from a table using java API.</p>
+<h3>Step1: Create a Cluster Object</h3>
+<p>Create an instance of <b>Cluster.builder</b> class of <b>com.datastax.driver.core</b> package as shown below.</p>
+<pre class="result notranslate">
+//Creating Cluster.Builder object
+Cluster.Builder builder1 = Cluster.builder();
+</pre>
+<p>Add a contact point (IP address of the node) using the <b>addContactPoint()</b> method of <b>Cluster.Builder</b> object. This method returns <b>Cluster.Builder</b>.</p>
+<pre class="result notranslate">
+//Adding contact point to the Cluster.Builder object
+Cluster.Builder builder2 = build.addContactPoint( "127.0.0.1" );
+</pre>
+<p>Using the new builder object, create a cluster object. To do so, you have a method called <b>build()</b> in the <b>Cluster.Builder</b> class. Use the following code to create a cluster object.</p>
+<pre class="result notranslate">
+//Building a cluster
+Cluster cluster = builder.build();
+</pre>
+<p>You can build the cluster object using a single line of code as shown below.</p>
+<pre class="result notranslate">
+Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+</pre>
+<h3>Step 2: Create a Session Object</h3>
+<p>Create an instance of Session object using the connect() method of Cluster class as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect();
+</pre>
+<p>This method creates a new session and initializes it. If you already have a keyspace, then you can set it to the existing one by passing the KeySpace name in string format to this method as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“ Your keyspace name ”);
+</pre>
+<p>Here we are using the KeySpace called <b>tp</b>. Therefore, create the session object as shown below.</p>
+<pre class="result notranslate">
+Session session = cluster.connect(“tp”);
+</pre>
+<h3>Step 3: Execute Query</h3>
+<p>You can execute CQL queries using the execute() method of Session class. Pass the query either in string format or as a Statement class object to the execute() method. Whatever you pass to this method in string format will be executed on the <b>cqlsh</b>.</p>
+<p>In the following example, we are deleting data from a table named <b>emp.</b> You have to store the query in a string variable and pass it to the <b>execute()</b> method as shown below.</p>
+<pre class="result notranslate">
+String query1 = ”DELETE FROM emp WHERE emp_id=3; ”;
+session.execute(query);
+</pre>
+<p>Given below is the complete program to delete data from a table in Cassandra using Java API.</p>
+<pre class="prettyprint notranslate">
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+public class Delete_Data {
+
+   public static void main(String args[]){
+   
+      //query
+      String query = "DELETE FROM emp WHERE emp_id=3;";
+
+      //Creating Cluster object
+      Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+       
+      //Creating Session object
+      Session session = cluster.connect("tp");
+       
+      //Executing the query
+      session.execute(query);
+       
+      System.out.println("Data deleted");
+   }
+}
+</pre>
+<p>Save the above program with the class name followed by .java, browse to the location where it is saved. Compile and execute the program as shown below.</p>
+<pre class="result notranslate">
+$javac Delete_Data.java
+$java Delete_Data
+</pre>
+<p>Under normal conditions, it should produce the following output &minus;</p>
+<pre class="result notranslate">
+Data deleted
+</pre>
+<h1>Cassandra - CQL Datatypes</h1>
+<p>CQL provides a rich set of built-in data types, including collection types. Along with these data types, users can also create their own custom data types. The following table provides a list of built-in data types available in CQL.</p>
+<table class="table table-bordered">
+<tr>
+<th>Data Type</th>
+<th>Constants</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>ascii</td>
+<td>strings</td>
+<td>Represents ASCII character string</td>
+</tr>
+<tr>
+<td>bigint</td>
+<td>bigint</td>
+<td>Represents 64-bit signed long</td>
+</tr>
+<tr>
+<td><b>blob</b></td>
+<td>blobs</td>
+<td>Represents arbitrary bytes</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>booleans</td>
+<td>Represents true or false</td>
+</tr>
+<tr>
+<td><b>counter</b></td>
+<td>integers</td>
+<td>Represents counter column</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>integers, floats</td>
+<td>Represents variable-precision decimal</td>
+</tr>
+<tr>
+<td>double</td>
+<td>integers</td>
+<td>Represents 64-bit IEEE-754 floating point</td>
+</tr>
+<tr>
+<td>float</td>
+<td>integers, floats</td>
+<td>Represents 32-bit IEEE-754 floating point</td>
+</tr>
+<tr>
+<td>inet</td>
+<td>strings</td>
+<td>Represents an IP address, IPv4 or IPv6</td>
+</tr>
+<tr>
+<td>int</td>
+<td>integers</td>
+<td>Represents 32-bit signed int</td>
+</tr>
+<tr>
+<td>text</td>
+<td>strings</td>
+<td>Represents UTF8 encoded string</td>
+</tr>
+<tr>
+<td><b>timestamp</b></td>
+<td>integers, strings</td>
+<td>Represents a timestamp</td>
+</tr>
+<tr>
+<td><b>timeuuid</b></td>
+<td>uuids</td>
+<td>Represents type 1 UUID</td>
+</tr>
+<tr>
+<td><b>uuid</b></td>
+<td>uuids</td>
+<td>Represents type 1 or type 4</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>UUID</td>
+</tr>
+<tr>
+<td>varchar</td>
+<td>strings</td>
+<td>Represents uTF8 encoded string</td>
+</tr>
+<tr>
+<td>varint</td>
+<td>integers</td>
+<td>Represents arbitrary-precision integer</td>
+</tr>
+</table>
+<h2>Collection Types</h2>
+<p>Cassandra Query Language also provides a collection data types. The following table provides a list of Collections available in CQL.</p>
+<table class="table table-bordered">
+<tr>
+<th>Collection</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>list</td>
+<td>A list is a collection of one or more ordered elements.</td>
+</tr>
+<tr>
+<td>map</td>
+<td>A map is a collection of key-value pairs.</td>
+</tr>
+<tr>
+<td>set</td>
+<td>A set is a collection of one or more elements.</td>
+</tr>
+</table>
+<h2>User-defined datatypes</h2>
+<p>Cqlsh provides users a facility of creating their own data types. Given below are the commands used while dealing with user defined datatypes.</p>
+<ul class="list">
+<li><p><b>CREATE TYPE</b> &minus; Creates a user-defined datatype.</p></li>
+<li><p><b>ALTER TYPE</b> &minus; Modifies a user-defined datatype.</p></li>
+<li><p><b>DROP TYPE</b> &minus; Drops a user-defined datatype.</p></li>
+<li><p><b>DESCRIBE TYPE</b> &minus; Describes a user-defined datatype.</p></li>
+<li><p><b>DESCRIBE TYPES</b> &minus; Describes user-defined datatypes.</p></li>
+</ul>
+<h1>Cassandra - CQL Collections</h1>
+<p>CQL provides the facility of using Collection data types. Using these Collection types, you can store multiple values in a single variable. This chapter explains how to use Collections in Cassandra.</p>
+<h2>List</h2>
+<p>List is used in the cases where</p>
+<ul class="list">
+<li>the order of the elements is to be maintained, and</li>
+<li>a value is to be stored multiple times.</li>
+</ul>
+<p>You can get the values of a list data type using the index of the elements in the list.</p>
+<h3>Creating a Table with List</h3>
+<p>Given below is an example to create a sample table with two columns, name and email. To store multiple emails, we are using list.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; CREATE TABLE data(name text PRIMARY KEY, email list&lt;text&gt;);
+</pre>
+<h3>Inserting Data into a List</h3>
+<p>While inserting data into the elements in a list, enter all the values separated by comma within square braces [ ] as shown below.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; INSERT INTO data(name, email) VALUES ('ramu',
+['abc@gmail.com','cba@yahoo.com'])
+</pre>
+<h3>Updating a List</h3>
+<p>Given below is an example to update the list data type in a table called <b>data</b>. Here we are adding another email to the list.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; UPDATE data
+... SET email = email &plus;['xyz@tutorialspoint.com']
+... where name = 'ramu';
+</pre>
+<h3>Verification</h3>
+<p>If you verify the table using SELECT statement, you will get the following result &minus;</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; SELECT * FROM data;
+
+ name | email
+------+--------------------------------------------------------------
+ ramu | ['abc@gmail.com', 'cba@yahoo.com', 'xyz@tutorialspoint.com']
+
+(1 rows)
+</pre>
+<h2>SET</h2>
+<p>Set is a data type that is used to store a group of elements. The elements of a set will be returned in a sorted order.</p>
+<h3>Creating a Table with Set</h3>
+<p>The following example creates a sample table with two columns, name and phone. For storing multiple phone numbers, we are using set.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; CREATE TABLE data2 (name text PRIMARY KEY, phone set&lt;varint&gt;);
+</pre>
+<h3>Inserting Data into a Set</h3>
+<p>While inserting data into the elements in a set, enter all the values separated by comma within curly braces { } as shown below.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; INSERT INTO data2(name, phone)VALUES ('rahman',    {9848022338,9848022339});
+</pre>
+<h3>Updating a Set</h3>
+<p>The following code shows how to update a set in a table named data2. Here we are adding another phone number to the set.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; UPDATE data2
+   ... SET phone = phone + {9848022330}
+   ... where name = 'rahman';
+</pre>
+<h3>Verification</h3>
+<p>If you verify the table using SELECT statement, you will get the following result &minus;</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; SELECT * FROM data2;
+
+   name | phone
+--------+--------------------------------------
+ rahman | {9848022330, 9848022338, 9848022339}
+
+(1 rows)
+</pre>
+<h2>MAP</h2>
+<p>Map is a data type that is used to store a key-value pair of elements.</p>
+<h3>Creating a Table with Map</h3>
+<p>The following example shows how to create a sample table with two columns, name and address. For storing multiple address values, we are using map.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; CREATE TABLE data3 (name text PRIMARY KEY, address
+map&lt;timestamp, text&gt;);
+</pre>
+<h3>Inserting Data into a Map</h3>
+<p>While inserting data into the elements in a map, enter all the <b>key : value</b> pairs separated by comma within curly braces { } as shown below.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; INSERT INTO data3 (name, address)
+   VALUES ('robin', {'home' : 'hyderabad' , 'office' : 'Delhi' } );
+</pre>
+<h3>Updating a Set</h3>
+<p>The following code shows how to update the map data type in a table named data3. Here we are changing the value of the key office, that is, we are changing the office address of a person named robin.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; UPDATE data3
+   ... SET address = address+{'office':'mumbai'}
+   ... WHERE name = 'robin';
+</pre>
+<h3>Verification</h3>
+<p>If you verify the table using SELECT statement, you will get the following result &minus;</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; select * from data3;
+
+  name | address
+-------+-------------------------------------------
+ robin | {'home': 'hyderabad', 'office': 'mumbai'}
+
+(1 rows)
+</pre>
+<h1>Cassandra - CQL User Defined Datatypes</h1>
+<p>CQL provides the facility of creating and using user-defined data types. You can create a data type to handle multiple fields. This chapter explains how to create, alter, and delete a user-defined data type.</p>
+<h2>Creating a User-defined Data Type</h2>
+<p>The command <b>CREATE TYPE</b> is used to create a user-defined data type. Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+CREATE TYPE &lt;keyspace name&gt;. &lt;data typename&gt;
+( variable1, variable2).
+</pre>
+<h3>Example</h3>
+<p>Given below is an example for creating a user-defined data type. In this example, we are creating a <b>card_details</b> data type containing the following details.</p>
+<table class="table table-bordered">
+<tr>
+<th>Field</th>
+<th>Field name</th>
+<th>Data type</th>
+</tr>
+<tr>
+<td>credit card no</td>
+<td>num</td>
+<td>int</td>
+</tr>
+<tr>
+<td>credit card pin</td>
+<td>pin</td>
+<td>int</td>
+</tr>
+<tr>
+<td>name on credit card</td>
+<td>name</td>
+<td>text</td>
+</tr>
+<tr>
+<td>cvv</td>
+<td>cvv</td>
+<td>int</td>
+</tr>
+<tr>
+<td>Contact details of card holder</td>
+<td>phone</td>
+<td>set</td>
+</tr>
+</table>
+<pre class="result notranslate">
+cqlsh:tutorialspoint> CREATE TYPE card_details (
+   ... num int,
+   ... pin int,
+   ... name text,
+   ... cvv int,
+   ... phone set&lt;int&gt;
+... );
+</pre>
+<p><b>Note</b> &minus; The name used for user-defined data type should not coincide with reserved type names.</p>
+<h3>Verification</h3>
+<p>Use the <b>DESCRIBE</b> command to verify whether the type created has been created or not.</p>
+<pre class="result notranslate">
+CREATE TYPE tutorialspoint.card_details (
+   num int,
+   pin int,
+   name text,
+   cvv int,
+   phone set&lt;int&gt;
+   );
+</pre>
+<h2>Altering a User-defined Data Type</h2>
+<p><b>ALTER TYPE</b> &minus; command is used to alter an existing data type. Using ALTER, you can add a new field or rename an existing field.</p>
+<h3>Adding a Field to a Type</h3>
+<p>Use the following syntax to add a new field to an existing user-defined data type.</p>
+<pre class="result notranslate">
+ALTER TYPE typename
+ADD field_name field_type; 
+</pre>
+<p>The following code adds a new field to the <b>Card_details</b> data type. Here we are adding a new field called email.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; ALTER TYPE card_details ADD email text;
+</pre>
+<h3>Verification</h3>
+<p>Use the <b>DESCRIBE</b> command to verify whether the new field is added or not.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; describe type card_details;
+CREATE TYPE tutorialspoint.card_details (
+   num int,
+   pin int,
+   name text,
+   cvv int,
+   phone set&lt;int&gt;,
+   );
+</pre>
+<h3>Renaming a Field in a Type</h3>
+<p>Use the following syntax to rename an existing user-defined data type.</p>
+<pre class="result notranslate">
+ALTER TYPE typename
+RENAME existing_name TO new_name;
+</pre>
+<p>The following code changes the name of the field in a type. Here we are renaming the field email to mail.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; ALTER TYPE card_details RENAME email TO mail;
+</pre>
+<h3>Verification</h3>
+<p>Use the <b>DESCRIBE</b> command to verify whether the type name changed or not.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; describe type card_details;
+CREATE TYPE tutorialspoint.card_details (
+   num int,
+   pin int,
+   name text,
+   cvv int,
+   phone set&lt;int&gt;,
+   mail text
+   );
+</pre>
+<h2>Deleting a User-defined Data Type</h2>
+<p><b>DROP TYPE</b> is the command used to delete a user-defined data type. Given below is an example to delete a user-defined data type.</p>
+<h3>Example</h3>
+<p>Before deleting, verify the list of all user-defined data types using <b>DESCRIBE_TYPES</b> command as shown below.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; DESCRIBE TYPES;
+card_details card
+</pre>
+<p>From the two types, delete the type named <b>card</b> as shown below.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; drop type card;
+</pre>
+<p>Use the <b>DESCRIBE</b> command to verify whether the data type dropped or not.</p>
+<pre class="result notranslate">
+cqlsh:tutorialspoint&gt; describe types;
+
+card_details
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/cassandra/cassandra_cql_user_defined_datatypes.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/cassandra/cassandra_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>
