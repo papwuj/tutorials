@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>TIKA - Metadata Extraction - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="TIKA - Metadata Extraction - Besides content, Tika also extracts the metadata from a file. Metadata is nothing but the additional information supplied with a file. If we consider an audio f"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/tika/tika_metadata_extraction.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#270e9d;
+}
+a.demo {
+    background:#270e9d;
+}
+li.heading {
+    background:#270e9d;
+}
+.course-box{background:#270e9d}
+.home-intro-sub p{color:#270e9d}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/tika/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/tika/images/apache-tika-mini-logo.jpg" alt="APACHE TIKA Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">TIKA Tutorial</li>
+<li><a href="/tika/index.htm">TIKA - Home</a></li>
+<li><a href="/tika/tika_overview.htm">TIKA - Overview</a></li>
+<li><a href="/tika/tika_architecture.htm">TIKA - Architecture</a></li>
+<li><a href="/tika/tika_environment.htm">TIKA - Environment</a></li>
+<li><a href="/tika/tika_referenced_api.htm">TIKA - Referenced API</a></li>
+<li><a href="/tika/tika_file_formats.htm">TIKA - File Formats</a></li>
+<li><a href="/tika/tika_document_type_detection.htm">TIKA - Document Type Detection</a></li>
+<li><a href="/tika/tika_content_extraction.htm">TIKA - Content Extraction</a></li>
+<li><a href="/tika/tika_metadata_extraction.htm">TIKA - Metadata Extraction</a></li>
+<li><a href="/tika/tika_language_detection.htm">TIKA - Language Detection</a></li>
+<li><a href="/tika/tika_gui.htm">TIKA - GUI</a></li>
+</ul>
+<ul  class="nav nav-list primary left-menu" > 
+<li class="heading">TIKA Examples</li>
+<li><a href="/tika/tika_extracting_pdf.htm">TIKA - Extracting PDF</a></li>
+<li><a href="/tika/tika_extracting_odf.htm">TIKA - Extracting ODF</a></li>
+<li><a href="/tika/tika_extracting_ms_office_files.htm">TIKA - Extracting MS-Office Files</a></li>
+<li><a href="/tika/tika_extracting_text_document.htm">TIKA - Extracting Text Document</a></li>
+<li><a href="/tika/tika_extracting_html_document.htm">TIKA - Extracting HTML Document</a></li>
+<li><a href="/tika/tika_extracting_xml_document.htm">TIKA - Extracting XML Document</a></li>
+<li><a href="/tika/tika_extracting_class_file.htm">TIKA - Extracting .class File</a></li>
+<li><a href="/tika/tika_extracting_jar_file.htm">TIKA - Extracting JAR File</a></li>
+<li><a href="/tika/tika_extracting_image_file.htm">TIKA - Extracting Image File</a></li>
+<li><a href="/tika/tika_extracting_mp4_files.htm">TIKA - Extracting mp4 Files</a></li>
+<li><a href="/tika/tika_extracting_mp3_files.htm">TIKA - Extracting mp3 Files</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">TIKA Useful Resources</li>
+<li><a href="/tika/tika_quick_guide.htm">TIKA - Quick Guide</a></li>
+<li><a href="/tika/tika_useful_resources.htm">TIKA - Useful Resources</a></li>
+<li><a href="/tika/tika_discussion.htm">TIKA - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>TIKA - Metadata Extraction</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/tika/tika_content_extraction.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/tika/tika_language_detection.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Besides content, Tika also extracts the metadata from a file. Metadata is nothing but the additional information supplied with a file. If we consider an audio file, the artist name, album name, title comes under metadata.</p> 
+<h2>XMP Standards</h2>
+<p>The Extensible Metadata Platform (XMP) is a standard for processing and storing information related to the content of a file. It was created by <a href="https://en.wikipedia.org/wiki/Adobe_Systems" rel="nofollow" target="_blank">Adobe Systems Inc</a>. XMP provides standards for defining, creating, and processing of <a href="https://en.wikipedia.org/wiki/Metadata" rel="nofollow" target="_blank">metadata</a>. You can embed this standard into several file formats such as <a href="https://en.wikipedia.org/wiki/Portable_Document_Format" rel="nofollow" target="_blank">PDF</a>, <a href="https://en.wikipedia.org/wiki/JPEG" rel="nofollow" target="_blank">JPEG</a>, <a href="https://en.wikipedia.org/wiki/JPEG_2000" rel="nofollow" target="_blank">JPEG</a>, <a href="https://en.wikipedia.org/wiki/Graphics_Interchange_Format" rel="nofollow" target="_blank">GIF</a>, <a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics"rel="nofollow" target="_blank">jpg</a>, <a href="https://en.wikipedia.org/wiki/HTML" rel="nofollow" target="_blank">HTML</a> etc.</p>
+<h2>Property Class</h2>
+<p>Tika uses the Property class to follow XMP property definition. It provides the <a href="https://tika.apache.org/1.6/api/org/apache/tika/metadata/Property.PropertyType.html" rel="nofollow" target="_blank">PropertyType</a> and <a href="https://tika.apache.org/1.6/api/org/apache/tika/metadata/Property.ValueType.html" rel="nofollow" target="_blank">ValueType</a> enums to capture the name and value of a metadata.</p>
+<h2>Metadata Class</h2>
+<p>This class implements various interfaces such as <a href="https://tika.apache.org/1.6/api/org/apache/tika/metadata/ClimateForcast.html" rel="nofollow" target="_blank">ClimateForcast</a>, CativeCommons, <a href="https://tika.apache.org/1.6/api/org/apache/tika/metadata/Geographic.html" rel="nofollow" target="_blank">Geographic</a>, TIFF etc. to provide support for various metadata models. In addition, this class provides various methods to extract the content from a file.</p>
+<h2>Metadata Names</h2>
+<p>We can extract the list of all metadata names of a file from its metadata object using the method <a href="https://tika.apache.org/1.6/api/org/apache/tika/metadata/Metadata.html" rel="nofollow" target="_blank">names()</a>. It returns all the names as a string array. Using the name of the metadata, we can get the value using the <b>get()</b> method. It takes a metadata name and returns a value associated with it.</p>
+<pre class="result notranslate">
+String[] metadaNames = metadata.names();
+
+String value = metadata.get(name);
+</pre>
+<h2>Extracting Metadata using Parse Method</h2>
+<p>Whenever we parse a file using parse(), we pass an empty metadata object as one of the parameters. This method extracts the metadata of the given file (if that file contains any), and places them in the metadata object. Therefore, after parsing the file using parse(), we can extract the metadata from that object.</p>
+<pre class="result notranslate">
+Parser parser = new AutoDetectParser();
+BodyContentHandler handler = new BodyContentHandler();
+Metadata metadata = new Metadata();   //empty metadata object 
+FileInputStream inputstream = new FileInputStream(file);
+ParseContext context = new ParseContext();
+parser.parse(inputstream, handler, metadata, context);
+
+// now this metadata object contains the extracted metadata of the given file.
+metadata.metadata.names();
+</pre>
+<p>Given below is the complete program to extract metadata from a text file.</p>
+<pre class="prettyprint notranslate">
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.AutoDetectParser;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.Parser;
+import org.apache.tika.sax.BodyContentHandler;
+
+import org.xml.sax.SAXException;
+
+public class GetMetadata {
+	
+   public static void main(final String[] args) throws IOException, TikaException {
+	
+      //Assume that boy.jpg is in your current directory
+      File file = new File("boy.jpg");
+
+      //Parser method parameters
+      Parser parser = new AutoDetectParser();
+      BodyContentHandler handler = new BodyContentHandler();
+      Metadata metadata = new Metadata();
+      FileInputStream inputstream = new FileInputStream(file);
+      ParseContext context = new ParseContext();
+      
+      parser.parse(inputstream, handler, metadata, context);
+      System.out.println(handler.toString());
+
+      //getting the list of all meta data elements 
+      String[] metadataNames = metadata.names();
+
+      for(String name : metadataNames) {		        
+         System.out.println(name + ": " + metadata.get(name));
+      }
+   }
+}
+</pre>
+<p>Save the above code as GetMetadata.java and run it from the command prompt using the following commands &minus;</p>
+<pre class="result notranslate">
+javac  GetMetadata .java
+java  GetMetadata
+</pre>
+<p>Given below is the snapshot of boy.jpg</p>
+<img src="/tika/images/boy.jpg" alt="jpg" />
+<p>If you execute the above program, it will give you the following output &minus;</p>
+<pre class="result notranslate">
+X-Parsed-By: org.apache.tika.parser.DefaultParser
+Resolution Units: inch
+Compression Type: Baseline
+Data Precision: 8 bits
+Number of Components: 3
+tiff:ImageLength: 3000
+Component 2: Cb component: Quantization table 1, Sampling factors 1 horiz/1 vert
+Component 1: Y component: Quantization table 0, Sampling factors 2 horiz/2 vert
+Image Height: 3000 pixels
+X Resolution: 300 dots
+Original Transmission Reference:
+   53616c7465645f5f2368da84ca932841b336ac1a49edb1a93fae938b8db2cb3ec9cc4dc28d7383f1
+Image Width: 4000 pixels
+IPTC-NAA record: 92 bytes binary data
+Component 3: Cr component: Quantization table 1, Sampling factors 1 horiz/1 vert
+tiff:BitsPerSample: 8
+Application Record Version: 4
+tiff:ImageWidth: 4000
+Content-Type: image/jpeg
+Y Resolution: 300 dots
+</pre>
+<p>We can also get our desired metadata values.</p>
+<h2>Adding New Metadata Values</h2>
+<p>We can add new metadata values using the add() method of the metadata class. Given below is the syntax of this method. Here we are adding the author name.</p>
+<pre class="result notranslate">
+metadata.add(“author”,”Tutorials point”); 
+</pre>
+<p>The Metadata class has predefined properties including the properties inherited from classes like <a href="https://tika.apache.org/1.6/api/org/apache/tika/metadata/ClimateForcast.html" rel="nofollow" target="_blank">ClimateForcast</a>, CativeCommons, <a href="https://tika.apache.org/1.6/api/org/apache/tika/metadata/Geographic.html" rel="nofollow" target="_blank">Geographic</a>, etc., to support various data models. Shown below is the usage of the SOFTWARE data type inherited from the TIFF interface implemented by Tika to follow XMP metadata standards for TIFF image formats.</p>
+<pre class="result notranslate">
+metadata.add(Metadata.SOFTWARE,"ms paint");
+</pre>
+<p>Given below is the complete program that demonstrates how to add metadata values to a given file. Here the list of the metadata elements is displayed in the output so that you can observe the change in the list after adding new values.</p>
+<pre class="prettyprint notranslate">
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Arrays;
+
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.AutoDetectParser;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.Parser;
+import org.apache.tika.sax.BodyContentHandler;
+
+import org.xml.sax.SAXException;
+
+public class AddMetadata {
+
+   public static void main(final String[] args) throws IOException, SAXException, TikaException {
+
+      //create a file object and assume sample.txt is in your current directory
+      File file = new File("Example.txt");
+
+      //Parser method parameters
+      Parser parser = new AutoDetectParser();
+      BodyContentHandler handler = new BodyContentHandler();
+      Metadata metadata = new Metadata();
+      FileInputStream inputstream = new FileInputStream(file);
+      ParseContext context = new ParseContext();
+
+      //parsing the document
+      parser.parse(inputstream, handler, metadata, context);
+
+      //list of meta data elements before adding new elements
+      System.out.println( " metadata elements :"  +Arrays.toString(metadata.names()));
+
+      //adding new meta data name value pair
+      metadata.add("Author","Tutorials Point");
+      System.out.println(" metadata name value pair is successfully added");
+      
+      //printing all the meta data elements after adding new elements
+      System.out.println("Here is the list of all the metadata 
+         elements after adding new elements");
+      System.out.println( Arrays.toString(metadata.names()));
+   }
+}
+</pre>		    		    	       
+<p>Save the above code as AddMetadata.java class and run it from the command prompt &minus;</p>
+<pre class="result notranslate">
+javac  AddMetadata .java 
+java  AddMetadata
+</pre>
+<p>Given below is the content of Example.txt</p>
+<pre class="result notranslate">
+Hi students welcome to tutorialspoint
+</pre>
+<p>If you execute the above program, it will give you the following output &minus;</p>
+<pre class="result notranslate">
+metadata elements of the given file :
+[Content-Encoding, Content-Type] 
+enter the number of metadata name value pairs to be added 1
+enter metadata1name: 
+Author enter metadata1value: 
+Tutorials point metadata name value pair is successfully added
+Here is the list of all the metadata elements  after adding new elements
+[Content-Encoding, Author, Content-Type]  
+</pre>
+<h2>Setting Values to Existing Metadata Elements</h2>
+<p>You can set values to the existing metadata elements using the set() method. The syntax of setting the date property using the set() method is as follows &minus;</p>
+<pre class="result notranslate">
+metadata.set(Metadata.DATE, new Date());
+</pre>
+<p>You can also set multiple values to the properties using the set() method. The syntax of setting multiple values to the Author property using the set() method is as follows &minus;</p>
+<pre class="result notranslate">
+metadata.set(Metadata.AUTHOR, "ram ,raheem ,robin ");
+</pre>
+<p>Given below is the complete program demonstrating the set() method.</p>
+<pre class="prettyprint notranslate">
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import java.util.Date;
+
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.AutoDetectParser;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.Parser;
+import org.apache.tika.sax.BodyContentHandler;
+
+import org.xml.sax.SAXException;
+
+public class SetMetadata {
+
+   public static void main(final String[] args) throws IOException,SAXException, TikaException {
+   
+      //Create a file object and assume example.txt is in your current directory
+      File file = new File("example.txt");
+      
+      //parameters of parse() method
+      Parser parser = new AutoDetectParser();
+      BodyContentHandler handler = new BodyContentHandler();
+      Metadata metadata = new Metadata();
+      FileInputStream inputstream = new FileInputStream(file);
+      ParseContext context = new ParseContext();
+      
+      //Parsing the given file
+      parser.parse(inputstream, handler, metadata, context);
+     
+      //list of meta data elements elements
+      System.out.println( " metadata elements and values of the given file :");
+      String[] metadataNamesb4 = metadata.names();
+      
+      for(String name : metadataNamesb4) {
+    	  System.out.println(name + ": " + metadata.get(name));
+      }
+      
+      //setting date meta data 
+      metadata.set(Metadata.DATE, new Date());
+      
+      //setting multiple values to author property
+      metadata.set(Metadata.AUTHOR, "ram ,raheem ,robin ");
+      
+      //printing all the meta data elements with new elements
+      System.out.println("List of all the metadata elements  after adding new elements ");
+      String[] metadataNamesafter = metadata.names();
+      
+      for(String name : metadataNamesafter) {
+         System.out.println(name + ": " + metadata.get(name));
+      }
+   }
+}		    		
+</pre>
+<p>Save the above code as SetMetadata.java and run it from the command prompt &minus;</p>
+<pre class="result notranslate">
+javac  SetMetadata.java 
+java  SetMetadata
+</pre>
+<p>Given below is the content of example.txt.</p>
+<pre class="result notranslate">
+Hi students welcome to tutorialspoint
+</pre>
+<p>If you execute the above program it will give you the following output. In the output, you can observe the newly added metadata elements.</p>
+<pre class="result notranslate">
+metadata elements and values of the given file :
+Content-Encoding: ISO-8859-1
+Content-Type: text/plain; charset = ISO-8859-1
+Here is the list of all the metadata elements  after adding new elements 
+date: 2014-09-24T07:01:32Z
+Content-Encoding: ISO-8859-1
+Author: ram, raheem, robin 
+Content-Type: text/plain; charset = ISO-8859-1
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/tika/tika_content_extraction.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/tika/tika_language_detection.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

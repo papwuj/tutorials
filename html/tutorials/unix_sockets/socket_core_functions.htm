@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Unix Socket - Core Functions - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Unix Socket - Core Functions - This chapter describes the core socket functions required to write a complete TCP client and server."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/unix_sockets/socket_core_functions.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#28aa8a;
+}
+a.demo {
+    background:#28aa8a;
+}
+li.heading {
+    background:#28aa8a;
+}
+.course-box{background:#28aa8a}
+.home-intro-sub p{color:#28aa8a}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/unix_sockets/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/unix_sockets/images/unix-socket-mini-logo.jpg" alt="Unix Sockets Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Unix Socket Tutorial</li>
+<li><a href="/unix_sockets/index.htm">Unix Socket - Home</a></li>
+<li><a href="/unix_sockets/what_is_socket.htm">Unix Socket - What is a Socket?</a></li>
+<li><a href="/unix_sockets/network_addresses.htm">Unix Socket - Network Addresses</a></li> 
+<li><a href="/unix_sockets/network_host_names.htm">Unix Socket - Network Host Names</a></li>
+<li><a href="/unix_sockets/client_server_model.htm">Unix Socket - Client Server Model</a></li>
+<li><a href="/unix_sockets/socket_structures.htm">Unix Socket - Structures</a></li>
+<li><a href="/unix_sockets/ports_and_services.htm">Unix Socket - Ports and Services</a></li>
+<li><a href="/unix_sockets/network_byte_orders.htm">Unix Socket - Network Byte Orders</a></li>
+<li><a href="/unix_sockets/ip_address_functions.htm">Unix Socket - IP Address Functions</a></li>
+<li><a href="/unix_sockets/socket_core_functions.htm">Unix Socket - Core Functions</a></li>
+<li><a href="/unix_sockets/socket_helper_functions.htm">Unix Socket - Helper Functions</a></li>
+<li><a href="/unix_sockets/socket_server_example.htm">Unix Socket - Server Example</a></li>
+<li><a href="/unix_sockets/socket_client_example.htm">Unix Socket - Client Example</a></li>
+<li><a href="/unix_sockets/socket_summary.htm">Unix Socket - Summary</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Unix Socket Useful Resources</li>
+<li><a href="/unix_sockets/socket_quick_guide.htm">Unix Socket - Quick Guide</a></li>
+<li><a href="/unix_sockets/socket_useful_resources.htm">Unix Socket - Useful Resources</a></li>
+<li><a href="/unix_sockets/unix_sockets_discussion.htm">Unix Socket - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Unix Socket - Core Functions</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/unix_sockets/ip_address_functions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/unix_sockets/socket_helper_functions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>This chapter describes the core socket functions required to write a complete TCP client and server.</p>
+<p>The following diagram shows the complete Client and Server interaction &minus;</p>
+<img src="/unix_sockets/images/socket_client_server.gif" alt="Socket Client Server" />
+<h2>The socket Function</h2>
+<p>To perform network I/O, the first thing a process must do is, call the socket function, specifying the type of communication protocol desired and protocol family, etc.</p>
+<pre class="prettyprint notranslate">
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int socket (int family, int type, int protocol);
+</pre> 
+<p>This call returns a socket descriptor that you can use in later system calls or -1 on error.</p>
+<h3>Parameters</h3>
+<p><b>family</b> &minus; It specifies the protocol family and is one of the constants shown below &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Family</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>AF_INET</td>
+<td>IPv4 protocols</td>
+</tr>
+<tr>
+<td>AF_INET6</td>
+<td>IPv6 protocols</td>
+</tr>
+<tr>
+<td>AF_LOCAL</td>
+<td>Unix domain protocols</td>
+</tr>
+<tr>
+<td>AF_ROUTE</td>
+<td>Routing Sockets</td>
+</tr>
+<tr>
+<td>AF_KEY</td>
+<td>Ket socket</td>
+</tr>
+</table>
+<p>This chapter does not cover other protocols except IPv4.</p>
+<p><b>type</b> &minus; It specifies the kind of socket you want. It can take one of the following values &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>SOCK_STREAM</td>
+<td>Stream socket</td>
+</tr>
+<tr>
+<td>SOCK_DGRAM</td>
+<td>Datagram socket</td>
+</tr>
+<tr>
+<td>SOCK_SEQPACKET</td>
+<td>Sequenced packet socket</td>
+</tr>
+<tr>
+<td>SOCK_RAW</td>
+<td>Raw socket</td>
+</tr>
+</table>
+<p><b>protocol</b> &minus; The argument should be set to the specific protocol type given below, or 0 to select the system's default for the given combination of family and type &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Protocol</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>IPPROTO_TCP</td>
+<td>TCP transport protocol</td>
+</tr>
+<tr>
+<td>IPPROTO_UDP</td>
+<td>UDP transport protocol</td>
+</tr>
+<tr>
+<td>IPPROTO_SCTP</td>
+<td>SCTP transport protocol</td>
+</tr>
+</table>
+<h2>The <i>connect</i> Function</h2>
+<p>The <i>connect</i> function is used by a TCP client to establish a connection with a TCP server.</p>
+<pre class="prettyprint notranslate">
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int connect(int sockfd, struct sockaddr *serv_addr, int addrlen);
+</pre> 
+<p>This call returns 0 if it successfully connects to the server, otherwise it returns -1 on error.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>sockfd</b> &minus; It is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>serv_addr</b> &minus; It is a pointer to struct sockaddr that contains destination IP address and port.</p></li>
+<li><p><b>addrlen</b> &minus; Set it to sizeof(struct sockaddr).</p></li>
+</ul>
+<h2>The <i>bind</i> Function</h2>
+<p>The <i>bind</i> function assigns a local protocol address to a socket. With the Internet protocols, the protocol address is the combination of either a 32-bit IPv4 address or a 128-bit IPv6 address, along with a 16-bit TCP or UDP port number. This function is called by TCP server only.</p>
+<pre class="prettyprint notranslate">
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int bind(int sockfd, struct sockaddr *my_addr,int addrlen);
+</pre> 
+<p>This call returns 0 if it successfully binds to the address, otherwise it returns -1 on error.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>sockfd</b> &minus; It is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>my_addr</b> &minus; It is a pointer to struct sockaddr that contains the local IP address and port.</p></li>
+<li><p><b>addrlen</b> &minus; Set it to sizeof(struct sockaddr).</p></li>
+</ul>
+<p>You can put your IP address and your port automatically</p>
+<p>A 0 value for port number means that the system will choose a random port, and <i>INADDR_ANY</i> value for IP address means the server's IP address will be assigned automatically.</p>
+<pre class="result notranslate">
+server.sin_port = 0;  		     
+server.sin_addr.s_addr = INADDR_ANY;
+</pre> 
+<p><b>NOTE</b> &minus; All ports below 1024 are reserved. You can set a port above 1024 and below 65535 unless they are the ones being used by other programs.</p>
+<h2>The <i>listen</i> Function</h2>
+<p>The <i>listen</i> function is called only by a TCP server and it performs two actions &minus;</p>
+<ul class="list">
+<li><p>The listen function converts an unconnected socket into a passive socket, indicating that the kernel should accept incoming connection requests directed to this socket.</p></li>
+<li><p>The second argument to this function specifies the maximum number of connections the kernel should queue for this socket.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int listen(int sockfd,int backlog);
+</pre> 
+<p>This call returns 0 on success, otherwise it returns -1 on error.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>sockfd</b> &minus; It is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>backlog</b> &minus; It is the number of allowed connections.</p></li>
+</ul>
+<h2>The <i>accept</i> Function</h2>
+<p>The <i>accept</i> function is called by a TCP server to return the next completed connection from the front of the completed connection queue. The signature of the call is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int accept (int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
+</pre> 
+<p>This call returns a non-negative descriptor on success, otherwise it returns -1 on error. The returned descriptor is assumed to be a client socket descriptor and all read-write operations will be done on this descriptor to communicate with the client.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>sockfd</b> &minus; It is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>cliaddr</b> &minus; It is a pointer to struct sockaddr that contains client IP address and port.</p></li>
+<li><p><b>addrlen</b> &minus; Set it to sizeof(struct sockaddr).</p></li>
+</ul>
+<h2>The <i>send</i> Function</h2>
+<p>The <i>send</i> function is used to send data over stream sockets or CONNECTED datagram sockets. If you want to send data over UNCONNECTED datagram sockets, you must use sendto() function.</p>
+<p>You can use <i>write()</i> system call to send data. Its signature is as follows &minus;</p>
+<pre class="result notranslate">
+int send(int sockfd, const void *msg, int len, int flags);
+</pre> 
+<p>This call returns the number of bytes sent out, otherwise it will return -1 on error.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>sockfd</b> &minus; It is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>msg</b> &minus; It is a pointer to the data you want to send.</p></li>
+<li><p><b>len</b> &minus; It is the length of the data you want to send (in bytes).</p></li>
+<li><p><b>flags</b> &minus; It is set to 0.</p></li>
+</ul>
+<h2>The <i>recv</i> Function</h2>
+<p>The <i>recv</i> function is used to receive data over stream sockets or CONNECTED datagram sockets. If you want to receive data over UNCONNECTED datagram sockets you must use recvfrom().</p>
+<p>You can use <i>read()</i> system call to read the data. This call is explained in helper functions chapter.</p>
+<pre class="result notranslate">
+int recv(int sockfd, void *buf, int len, unsigned int flags);
+</pre> 
+<p>This call returns the number of bytes read into the buffer, otherwise it will return -1 on error.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>sockfd</b> &minus; It is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>buf</b> &minus; It is the buffer to read the information into.</p></li>
+<li><p><b>len</b> &minus; It is the maximum length of the buffer.</p></li>
+<li><p><b>flags</b> &minus; It is set to 0.</p></li>
+</ul>
+<h2>The <i>sendto</i> Function</h2>
+<p>The <i>sendto</i> function is used to send data over UNCONNECTED datagram sockets. Its signature is as follows &minus;</p>
+<pre class="result notranslate">
+int sendto(int sockfd, const void *msg, int len, unsigned int flags, const struct sockaddr *to, int tolen);
+</pre> 
+<p>This call returns the number of bytes sent, otherwise it returns -1 on error.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>sockfd</b> &minus; It is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>msg</b> &minus; It is a pointer to the data you want to send.</p></li>
+<li><p><b>len</b> &minus; It is the length of the data you want to send (in bytes).</p></li>
+<li><p><b>flags</b> &minus; It is set to 0.</p></li>
+<li><p><b>to</b> &minus; It is a pointer to struct sockaddr for the host where data has to be sent.</p></li>
+<li><p><b>tolen</b> &minus; It is set it to sizeof(struct sockaddr).</p></li>
+</ul>
+<h2>The <i>recvfrom</i> Function</h2>
+<p>The <i>recvfrom</i> function is used to receive data from UNCONNECTED datagram sockets.</p>
+<pre class="result notranslate">
+int recvfrom(int sockfd, void *buf, int len, unsigned int flags struct sockaddr *from, int *fromlen);
+</pre> 
+<p>This call returns the number of bytes read into the buffer, otherwise it returns -1 on error.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>sockfd</b> &minus; It is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>buf</b> &minus; It is the buffer to read the information into.</p></li>
+<li><p><b>len</b> &minus; It is the maximum length of the buffer.</p></li>
+<li><p><b>flags</b> &minus; It is set to 0.</p></li>
+<li><p><b>from</b> &minus; It is a pointer to struct sockaddr for the host where data has to be read.</p></li>
+<li><p><b>fromlen</b> &minus; It is set it to sizeof(struct sockaddr).</p></li>
+</ul>
+<h2>The <i>close</i> Function</h2>
+<p>The <i>close</i> function is used to close the communication between the client and the server. Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+int close( int sockfd );
+</pre> 
+<p>This call returns 0 on success, otherwise it returns -1 on error.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>sockfd</b> &minus; It is a socket descriptor returned by the socket function.</p></li>
+</ul>
+<h2>The <i>shutdown</i> Function</h2>
+<p>The <i>shutdown</i> function is used to gracefully close the communication between the client and the server. This function gives more control in comparison to the <i>close</i> function. Given below is the syntax of <i>shutdown</i> &minus;</p>
+<pre class="result notranslate">
+int shutdown(int sockfd, int how);
+</pre> 
+<p>This call returns 0 on success, otherwise it returns -1 on error.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>sockfd</b> &minus; It is a socket descriptor returned by the socket function.</p></li>
+<li><p><b>how</b> &minus; Put one of the numbers &minus;</p>
+<ul class="list">
+<li><p><b>0</b> &minus; indicates that receiving is not allowed,</p></li>
+<li><p><b>1</b> &minus; indicates that sending is not allowed, and</p></li>
+<li><p><b>2</b> &minus; indicates that both sending and receiving are not allowed. When <i>how</i> is set to 2, it's the same thing as close().</p></li>
+</ul>
+</li>
+</ul>
+<h2>The <i>select</i> Function</h2>
+<p>The <i>select</i> function indicates which of the specified file descriptors is ready for reading, ready for writing, or has an error condition pending.</p>
+<p>When an application calls <i>recv or recvfrom</i>, it is blocked until data arrives for that socket. An application could be doing other useful processing while the incoming data stream is empty. Another situation is when an application receives data from multiple sockets.</p>
+<p>Calling <i>recv or recvfrom</i> on a socket that has no data in its input queue prevents immediate reception of data from other sockets. The select function call solves this problem by allowing the program to poll all the socket handles to see if they are available for non-blocking reading and writing operations.</p>
+<p>Given below is the syntax of <i>select</i> &minus;</p>
+<pre class="result notranslate">
+int select(int  nfds, fd_set  *readfds, fd_set  *writefds, fd_set *errorfds, struct timeval *timeout);
+</pre> 
+<p>This call returns 0 on success, otherwise it returns -1 on error.</p>
+<h3>Parameters</h3>
+<ul class="list">
+<li><p><b>nfds</b> &minus; It specifies the range of file descriptors to be tested. The select() function tests file descriptors in the range of 0 to nfds-1</p></li>
+<li><p><b>readfds</b> &minus; It points to an object of type <i>fd_set</i> that on input, specifies the file descriptors to be checked for being ready to read, and on output, indicates which file descriptors are ready to read. It can be NULL to indicate an empty set.</p></li>
+<li><p><b>writefds</b> &minus; It points to an object of type <i>fd_set</i> that on input, specifies the file descriptors to be checked for being ready to write, and on output, indicates which file descriptors are ready to write. It can be NULL to indicate an empty set.</p></li>
+<li><p><b>exceptfds</b> &minus; It points to an object of type <i>fd_set</i> that on input, specifies the file descriptors to be checked for error conditions pending, and  on output indicates, which file descriptors have error conditions pending. It can be NULL to indicate an empty set.</p></li>
+<li><p><b>timeout</b> &minus; It points to a timeval struct that specifies how long the select call should poll the descriptors for an available I/O operation. If the timeout value is 0, then select will return immediately. If the timeout argument is NULL, then select will block until at least one file/socket handle is ready for an available I/O operation. Otherwise <i>select</i> will return after the amount of time in the timeout has elapsed OR when at least one file/socket descriptor is ready for an I/O operation.</p></li>
+</ul>
+<p>The return value from select is the number of handles specified in the file descriptor sets that are ready for I/O. If the time limit specified by the timeout field is reached, select return 0. The following macros exist for manipulating a file descriptor set &minus;</p>
+<ul class="list">
+<li><p><b>FD_CLR(fd, &amp;fdset)</b> &minus; Clears the bit for the file descriptor fd in the file descriptor set <i>fdset.</i></p></li>
+<li><p><b>FD_ISSET(fd, &amp;fdset)</b> &minus; Returns a non-zero value if the bit for the file descriptor <i>fd</i> is set in the file descriptor set pointed to by <i>fdset</i>, and 0 otherwise.</p></li>
+<li><p><b>FD_SET(fd, &amp;fdset)</b> &minus; Sets the bit for the file descriptor fd in the file descriptor set fdset.</p></li>
+<li><p><b>FD_ZERO(&amp;fdset)</b> &minus; Initializes the file descriptor set fdset to have zero bits for all file descriptors.</p></li>
+</ul>
+<p>The behavior of these macros is undefined if the fd argument is less than 0 or greater than or equal to FD_SETSIZE.</p>
+<h2>Example</h2>
+<pre class="prettyprint notranslate">
+fd_set fds;
+
+struct timeval tv;
+
+/* do socket initialization etc.
+tv.tv_sec = 1;
+tv.tv_usec = 500000;
+
+/* tv now represents 1.5 seconds */
+FD_ZERO(&amp;fds);
+
+/* adds sock to the file descriptor set */
+FD_SET(sock, &amp;fds); 
+
+/* wait 1.5 seconds for any data to be read from any single socket */
+select(sock+1, &amp;fds, NULL, NULL, &amp;tv);
+
+if (FD_ISSET(sock, &amp;fds)) {
+   recvfrom(s, buffer, buffer_len, 0, &amp;sa, &amp;sa_len);
+   /* do something */
+}
+else {
+   /* do something else */
+}
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/unix_sockets/ip_address_functions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/unix_sockets/socket_helper_functions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>
