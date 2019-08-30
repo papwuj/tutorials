@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>log4j - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="log4j - Quick Guide - log4j is a reliable, fast and flexible logging framework (APIs) written in Java, which is distributed under the Apache Software License."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/log4j/log4j_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#62ca20;
+}
+a.demo {
+    background:#62ca20;
+}
+li.heading {
+    background:#62ca20;
+}
+.course-box{background:#62ca20}
+.home-intro-sub p{color:#62ca20}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/log4j/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/log4j/images/log4j-mini-logo.jpg" alt="log4j Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">log4j Tutorial</li>
+<li><a target="_top" href="/log4j/index.htm">log4j - Home</a></li>
+<li><a target="_top" href="/log4j/log4j_overview.htm">log4j - Overview</a></li>
+<li><a target="_top" href="/log4j/log4j_installation.htm">log4j - Installation</a></li>
+<li><a target="_top" href="/log4j/log4j_architecture.htm">log4j - Architecture</a></li>
+<li><a target="_top" href="/log4j/log4j_configuration.htm">log4j - Configuration</a></li>
+<li><a target="_top" href="/log4j/log4j_sample_program.htm">log4j - Sample Program</a></li>
+<li><a target="_top" href="/log4j/log4j_logging_methods.htm">log4j - Logging Methods</a></li>
+<li><a target="_top" href="/log4j/log4j_logging_levels.htm">log4j - Logging Levels</a></li>
+<li><a target="_top" href="/log4j/log4j_log_formatting.htm">log4j - Log Formatting</a></li>
+<li><a target="_top" href="/log4j/log4j_logging_files.htm">log4j - Logging in Files</a></li>
+<li><a target="_top" href="/log4j/log4j_logging_database.htm">log4j - Logging in Database</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">log4j Useful Resources</li>
+<li><a href="/log4j/log4j_questions_answers.htm">log4j - Questions and Answers</a></li>
+<li><a href="/log4j/log4j_quick_guide.htm">log4j - Quick Guide</a></li>
+<li><a href="/log4j/log4j_useful_resources.htm">log4j - Useful Resources</a></li>
+<li><a href="/log4j/log4j_discussion.htm">log4j - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>log4j - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/log4j/log4j_questions_answers.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/log4j/log4j_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>log4j - Overview</h1>
+<p>log4j is a reliable, fast and flexible logging framework (APIs) written in Java, which is distributed under the Apache Software License.</p>
+<p>log4j has been ported to the C, C++, C#, Perl, Python, Ruby, and Eiffel languages.</p>
+<p>log4j is highly configurable through external configuration files at runtime. It views the logging process in terms of levels of priorities and offers mechanisms to direct logging information to a great variety of destinations, such as a database, file, console, UNIX Syslog, etc.</p>
+<p>log4j has three main components:</p>
+<ul class="list">
+<li><p><b>loggers</b>: Responsible for capturing logging information.</p></li>
+<li><p><b>appenders</b>: Responsible for publishing logging information to various preferred destinations.</p></li>
+<li><p><b>layouts</b>: Responsible for formatting logging information in different styles.</p></li>
+</ul>
+<h2>History of log4j</h2>
+<ul class="list">
+<li><p>Started in early 1996 as tracing API for the E.U. SEMPER (Secure Electronic Marketplace for Europe) project.</p></li>
+<li><p>After countless enhancements and several incarnations, the initial API has evolved to become log4j, a popular logging package for Java.</p></li>
+<li><p>The package is distributed under the Apache Software License, a full-fledged open source license certified by the open source initiative.</p></li>
+<li><p>The latest log4j version, including its full-source code, class files, and documentation can be found at <a href="http://logging.apache.org/log4j/" target="_blank">http://logging.apache.org/log4j/</a>.</p></li>
+</ul>
+<h2>log4j Features</h2>
+<ul class="list">
+<li><p>It is thread-safe.</p></li>
+<li><p>It is optimized for speed.</p></li>
+<li><p>It is based on a named logger hierarchy.</p></li>
+<li><p>It supports multiple output appenders per logger. </p></li>
+<li><p>It supports internationalization.</p></li>
+<li><p>It is not restricted to a predefined set of facilities.</p></li>
+<li><p>Logging behavior can be set at runtime using a configuration file. </p></li>
+<li><p>It is designed to handle Java Exceptions from the start.</p></li>
+<li><p>It uses multiple levels, namely ALL, TRACE, DEBUG, INFO, WARN, ERROR and FATAL. </p></li>
+<li><p>The format of the log output can be easily changed by extending the <i>Layout</i> class.</p></li>
+<li><p>The target of the log output as well as the writing strategy can be altered by implementations of the Appender interface.</p></li>
+<li><p>It is fail-stop. However, although it certainly strives to ensure delivery, log4j does not guarantee that each log statement will be delivered to its destination.</p></li>
+</ul>
+<h2>Pros and Cons of Logging</h2>
+<p>Logging is an important component of the software development. A well-written logging code offers quick debugging, easy maintenance, and structured storage of an application's runtime information.</p>
+<p>Logging does have its drawbacks also. It can slow down an application. If too verbose, it can cause scrolling blindness. To alleviate these concerns, log4j is designed to be reliable, fast and extensible.</p>
+<p>Since logging is rarely the main focus of an application, the log4j API strives to be simple to understand and to use.</p>
+<h1>log4j - Installation</h1>
+<p>log4j API package is distributed under the Apache Software License, a full-fledged open source license certified by the open source initiative.</p>
+<p>The latest log4j version, including full-source code, class files and documentation can be found at <a href="http://logging.apache.org/log4j/" target="_blank">http://logging.apache.org/log4j/</a>.</p>
+<p>To install log4j on your system, download apache-log4j-x.x.x.tar.gz from the specified URL and follow the steps give below.</p>
+<h2>Step 1</h2>
+<p>Unzip and untar the downloaded file in /usr/local/ directory as follows:</p>
+<pre class="prettyprint notranslate">
+$ gunzip apache-log4j-1.2.15.tar.gz
+$ tar -xvf apache-log4j-1.2.15.tar
+apache-log4j-1.2.15/tests/input/
+apache-log4j-1.2.15/tests/input/xml/
+apache-log4j-1.2.15/tests/src/
+apache-log4j-1.2.15/tests/src/java/
+apache-log4j-1.2.15/tests/src/java/org/
+.......................................
+</pre>
+<p>While untarring, it would create a directory hierarchy with a name  apache-log4j-x.x.x as follows:</p>
+<pre class="prettyprint notranslate">
+-rw-r--r--  1 root root   3565 2007-08-25 00:09 BUILD-INFO.txt
+-rw-r--r--  1 root root   2607 2007-08-25 00:09 build.properties.sample
+-rw-r--r--  1 root root  32619 2007-08-25 00:09 build.xml
+drwxr-xr-x 14 root root   4096 2010-02-04 14:09 contribs
+drwxr-xr-x  5 root root   4096 2010-02-04 14:09 examples
+-rw-r--r--  1 root root   2752 2007-08-25 00:09 INSTALL
+-rw-r--r--  1 root root   4787 2007-08-25 00:09 KEYS
+-rw-r--r--  1 root root  11366 2007-08-25 00:09 LICENSE
+-rw-r--r--  1 root root 391834 2007-08-25 00:29 log4j-1.2.15.jar
+-rw-r--r--  1 root root    160 2007-08-25 00:09 NOTICE
+-rwxr-xr-x  1 root root  10240 2007-08-25 00:27 NTEventLogAppender.dll
+-rw-r--r--  1 root root  17780 2007-08-25 00:09 pom.xml
+drwxr-xr-x  7 root root   4096 2007-08-25 00:13 site
+drwxr-xr-x  8 root root   4096 2010-02-04 14:08 src
+drwxr-xr-x  6 root root   4096 2010-02-04 14:09 tests
+</pre>
+<h2>Step 2</h2>
+<p>This step is optional and depends on what features you are going to use from log4j framework. If you already have following packages installed on your machine then it is fine, otherwise you need to install them to make log4j work.</p>
+<ul class="list">
+<li><p><b>JavaMail API:</b> The e-mail based logging feature in log4j requires the Java Mail API (mail.jar) to be installed on your machine from <a rel="nofollow" href="https://glassfish.dev.java.net/javaee5/mail/" target="_blank">glassfish.dev</a>.</p></li>
+<li><p><b>JavaBeans Activation Framework:</b> The Java Mail API will also require that the JavaBeans Activation Framework (activation.jar) be installed on your machine from <a href="http://java.sun.com/products/javabeans/jaf/index.jsp" rel="nofollow" target="_blank">http://java.sun.com/products/javabeans/jaf/index.jsp</a>.</p></li>
+<li><p><b>Java Message Service:</b> The JMS-compatible features of log4j will require that both JMS and Java Naming and Directory Interface JNDI be installed on your machine from <a href="http://java.sun.com/products/jms" rel="nofollow" target="_blank">http://java.sun.com/products/jms</a>.</p></li>
+<li><p><b>XML Parser:</b> You need a JAXP-compatible XML parser to use log4j. Make sure you have Xerces.jar installed on your machine from <a href="http://xerces.apache.org/xerces-j/install.html" rel="nofollow" target="_blank">http://xerces.apache.org/xerces-j/install.html</a>.</p></li>
+</ul>
+<h2>Step 3</h2>
+<p>Now you need to set up the <b>CLASSPATH</b> and <b>PATH</b> variables appropriately. Here we are going to set it just for the log4j.x.x.x.jar file.</p>
+<pre class="prettyprint notranslate">
+$ pwd
+/usr/local/apache-log4j-1.2.15
+$ export CLASSPATH= \
+      $CLASSPATH:/usr/local/apache-log4j-1.2.15/log4j-1.2.15.jar
+$ export PATH=$PATH:/usr/local/apache-log4j-1.2.15/
+</pre>
+<h1>log4j - Architecture</h1>
+<p>log4j API follows a layered architecture where each layer provides different objects to perform different tasks. This layered architecture makes the design flexible and easy to extend in future.</p>
+<p>There are two types of objects available with log4j framework.</p>
+<ul class="list">
+<li><p><b>Core Objects:</b> These are mandatory objects of the framework. They are required to use the framework.</p></li>
+<li><p><b>Support Objects:</b> These are optional objects of the framework. They support core objects to perform additional but important tasks.</p></li>
+</ul>
+<h2>Core Objects</h2>
+<p>Core objects include the following types of objects:</p>
+<h3>Logger Object</h3>
+<p>The top-level layer is the Logger which provides the Logger object. The Logger object is responsible for capturing logging information and they are stored in a namespace hierarchy.</p>
+<h3>Layout Object</h3>
+<p>The layout layer provides objects which are used to format logging information in different styles. It provides support to appender objects before publishing logging information.</p>
+<p>Layout objects play an important role in publishing logging information in a way that is human-readable and reusable.</p>
+<h3>Appender Object</h3>
+<p>This is a lower-level layer which provides Appender objects. The Appender object is responsible for publishing logging information to various preferred destinations such as a database, file, console, UNIX Syslog, etc.</p>
+<p>The following virtual diagram shows the components of a log4J framework:</p>
+<img src="/log4j/images/log4j-arch.jpg" alt="log4j Architecture" />
+<h2>Support Objects</h2>
+<p>There are other important objects in the log4j framework that play a vital role in the logging framework:</p>
+<h3>Level Object</h3>
+<p>The Level object defines the granularity and priority of any logging information. There are seven levels of logging defined within the API: OFF, DEBUG, INFO, ERROR, WARN, FATAL, and ALL.</p>
+<h3>Filter Object</h3>
+<p>The Filter object is used to analyze logging information and make further decisions on whether that information should be logged or not.</p>
+<p>An Appender objects can have several Filter objects associated with them. If logging information is passed to a particular Appender object, all the Filter objects associated with that Appender need to approve the logging information before it can be published to the attached destination.</p>
+<h3>ObjectRenderer</h3>
+<p>The ObjectRenderer object is specialized in providing a String representation of different objects passed to the logging framework. This object is used by Layout objects to prepare the final logging information.</p>
+<h3>LogManager</h3>
+<p>The LogManager object manages the logging framework. It is responsible for reading the initial configuration parameters from a system-wide configuration file or a configuration class.</p>
+<h1>log4j - Configuration</h1>
+<p>The previous chapter explained the core components of log4j. This chapter explains how you can configure the core components using a configuration file. Configuring log4j involves assigning the Level, defining Appender, and specifying Layout objects in a configuration file.</p>
+<p>The <i>log4j.properties</i> file is a log4j configuration file which keeps properties in key-value pairs. By default, the LogManager looks for a file named <i>log4j.properties</i> in the <b>CLASSPATH</b>.</p>
+<ul class="list">
+<li><p>The level of the root logger is defined as DEBUG. The DEBUG attaches the appender named X to it.</p></li>
+<li><p>Set the appender named X to be a valid appender.</p></li>
+<li><p>Set the layout for the appender X.</p></li>
+</ul>
+<h2>log4j.properties Syntax:</h2>
+<p>Following is the syntax of <i>log4j.properties</i> file for an appender X:</p>
+<pre class="prettyprint notranslate">
+# Define the root logger with appender X
+log4j.rootLogger = DEBUG, X
+
+# Set the appender named X to be a File appender
+log4j.appender.X=org.apache.log4j.FileAppender
+
+# Define the layout for X appender
+log4j.appender.X.layout=org.apache.log4j.PatternLayout
+log4j.appender.X.layout.conversionPattern=%m%n
+</pre>
+<h2>log4j.properties Example</h2>
+<p>Using the above syntax, we define the following in <i>log4j.properties</i> file:</p>
+<ul class="list">
+<li><p>The level of the root logger is defined as DEBUG, The DEBUG appender named FILE to it.</p></li>
+<li><p>The appender FILE is defined as <i>org.apache.log4j.FileAppender</i>. It writes to a file named "log.out" located in the <b>log</b> directory.</p></li>
+<li><p>The layout pattern defined is <i>&#37;m&#37;n</i>, which means the printed logging message will be followed by a newline character.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+# Define the root logger with appender file
+log4j.rootLogger = DEBUG, FILE
+
+# Define the file appender
+log4j.appender.FILE=org.apache.log4j.FileAppender
+log4j.appender.FILE.File=${log}/log.out
+
+# Define the layout for file appender
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.conversionPattern=%m%n
+</pre>
+<p>It is important to note that log4j supports UNIX-style variable substitution such as ${variableName}.</p>
+<h2>Debug Level</h2>
+<p>We have used DEBUG with both the appenders. All the possible options are:</p>
+<ul class="list">
+<li>TRACE</li>
+<li>DEBUG</li>
+<li>INFO</li>
+<li>WARN</li>
+<li>ERROR</li>
+<li>FATAL</li>
+<li>ALL</li>
+</ul>
+<p>These levels would be explained in <a href="/log4j/log4j_logging_levels.htm">log4j Logging Levels</a>.</p>
+<h2>Appenders</h2>
+<p>Apache log4j provides Appender objects which are primarily responsible for printing logging messages to different destinations such as consoles, files, sockets, NT event logs, etc.</p>
+<p>Each Appender object has different properties associated with it, and these properties indicate the behavior of that object.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:25%">Property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>layout</td>
+<td>Appender uses the Layout objects and the conversion pattern associated with them to format the logging information.</td>
+</tr>
+<tr>
+<td>target</td>
+<td>The target may be a console, a file, or another item depending on the appender.</td>
+</tr>
+<tr>
+<td>level</td>
+<td>The level is required to control the filtration of the log messages.</td>
+</tr>
+<tr>
+<td>threshold</td>
+<td>Appender can have a threshold level associated with it independent of the logger level. The Appender ignores any logging messages that have a level lower than the threshold level.</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>The Filter objects can analyze logging information beyond level matching and decide whether logging requests should be handled by a particular Appender or ignored.</td>
+</tr>
+</table>
+<p>We can add an Appender object to a Logger by including the following setting in the configuration file with the following method:</p>
+<pre class="prettyprint notranslate">
+log4j.logger.[logger-name]=level, appender1,appender..n
+</pre>
+<p>You can write same configuration in XML format as follows:</p>
+<pre class="prettyprint notranslate">
+&lt;logger name="com.apress.logging.log4j" additivity="false"&gt;
+   &lt;appender-ref ref="appender1"/&gt;
+   &lt;appender-ref ref="appender2"/&gt;
+&lt;/logger&gt;
+</pre>
+<p>If you are willing to add Appender object inside your program then you can use following method:</p>
+<pre class="prettyprint notranslate">
+public void addAppender(Appender appender);
+</pre>
+<p>The addAppender() method adds an Appender to the Logger object. As the example configuration demonstrates, it is possible to add many Appender objects to a logger in a comma-separated list, each printing logging information to separate destinations.</p>
+<p>We have used only one appender <i>FileAppender</i> in our example above. All the possible appender options are:</p>
+<ul class="list">
+<li>AppenderSkeleton</li>
+<li>AsyncAppender</li>
+<li>ConsoleAppender</li>
+<li>DailyRollingFileAppender</li>
+<li>ExternallyRolledFileAppender</li>
+<li>FileAppender</li>
+<li>JDBCAppender</li>
+<li>JMSAppender</li>
+<li>LF5Appender</li>
+<li>NTEventLogAppender</li>
+<li>NullAppender</li>
+<li>RollingFileAppender</li>
+<li>SMTPAppender</li>
+<li>SocketAppender</li>
+<li>SocketHubAppender</li>
+<li>SyslogAppender</li>
+<li>TelnetAppender</li>
+<li>WriterAppender</li>
+</ul>
+<p>We would cover FileAppender in <a href="/log4j/log4j_logging_files.htm">Logging in Files</a> and JDBC Appender would be covered in <a href="/log4j/log4j_logging_database.htm">Logging in Database</a>.</p>
+<h2>Layout</h2>
+<p>We have used PatternLayout with our appender. All the possible options are:</p>
+<ul class="list">
+<li>DateLayout</li>
+<li>HTMLLayout</li>
+<li>PatternLayout</li>
+<li>SimpleLayout</li>
+<li>XMLLayout</li>
+</ul>
+<p>Using HTMLLayout and XMLLayout, you can generate log in HTML and in XML format as well.</p>
+<h2>Layout Formatting</h2>
+<p>You would learn how to format a log message in chapter:<a href="/log4j/log4j_log_formatting.htm">Log Formatting</a>.</p>
+<h1>log4j - Sample Program</h1>
+<p>We have seen how to create a configuration file. This chapter describe how to generate debug messages and log them in a simple text file.</p>
+<p>Following is a simple configuration file created for our example. Let us revise it once again:</p>
+<ul class="list">
+<li><p>The level of the root logger is defined as DEBUG and attaches appender named FILE to it.</p></li>
+<li><p>The appender FILE is defined as org.apache.log4j.FileAppender and writes to a file named "log.out" located in the <b>log</b> directory.</p></li>
+<li><p>The layout pattern defined is &#37;m&#37;n, which means the printed logging message will be followed by a newline character.</p></li>
+</ul>
+<p>The contents of <i>log4j.properties</i> file are as follows:</p>
+<pre class="prettyprint notranslate">
+# Define the root logger with appender file
+log = /usr/home/log4j
+log4j.rootLogger = DEBUG, FILE
+
+# Define the file appender
+log4j.appender.FILE=org.apache.log4j.FileAppender
+log4j.appender.FILE.File=${log}/log.out
+
+# Define the layout for file appender
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.conversionPattern=%m%n
+</pre>
+<h2>Using log4j in Java Program</h2>
+<p>The following Java class is a very simple example that initializes, and then uses, the Log4J logging library for Java applications.</p>
+<pre class="prettyprint notranslate">
+import org.apache.log4j.Logger;
+
+import java.io.*;
+import java.sql.SQLException;
+import java.util.*;
+
+public class log4jExample{
+   /* Get actual class name to be printed on */
+   static Logger log = Logger.getLogger(log4jExample.class.getName());
+   
+   public static void main(String[] args)throws IOException,SQLException{
+      log.debug("Hello this is a debug message");
+      log.info("Hello this is an info message");
+   }
+}
+</pre>
+<h2>Compile and Execute</h2>
+<p>Here are the steps to compile and run the above-mentioned program. Make sure you have set <b>PATH</b> and <b>CLASSPATH</b> appropriately before proceeding for the compilation and execution.</p>
+<p>All the libraries should be available in <b>CLASSPATH</b> and your <i>log4j.properties</i> file should be available in PATH. Follow the steps give below:</p>
+<ul class="list">
+<li><p>Create log4j.properties as shown above.</p></li>
+<li><p>Create log4jExample.java as shown above and compile it.</p></li>
+<li><p>Execute log4jExample binary to run the program.</p></li>
+</ul>
+<p>You would get the following result inside /usr/home/log4j/log.out file:</p>
+<pre class="result notranslate">
+Hello this is a debug message
+Hello this is an info message
+</pre>
+<h1>log4j - Logging Methods</h1>
+<p>Logger class provides a variety of methods to handle logging activities. The Logger class does not allow us to instantiate a new Logger instance but it provides two static methods for obtaining a Logger object:</p>
+<ul class="list">
+<li><b>public static Logger getRootLogger();</b></li>
+<li><b>public static Logger getLogger(String name);</b></li>
+</ul>
+<p>The first of the two methods returns the application instance's root logger and it does not have a name.</p>
+<p>Any other named Logger object instance is obtained through the second method by passing the name of the logger. The name of the logger can be any string you can pass, usually a class or a package name as we have used in the last chapter and it is mentioned below:</p>
+<pre class="prettyprint notranslate">
+static Logger log = Logger.getLogger(log4jExample.class.getName());
+</pre>
+<h2>Logging Methods</h2>
+<p>Once we obtain an instance of a named logger, we can use several methods of the logger to log messages. The Logger class has the following methods for printing the logging information.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><b>public void debug(Object message)</b>
+<p>It prints messages with the level Level.DEBUG.</p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td><b>public void error(Object message)</b>
+<p>It prints messages with the level Level.ERROR.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td><b>public void fatal(Object message);</b>
+<p>It prints messages with the level Level.FATAL.</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td><b>public void info(Object message);</b>
+<p>It prints messages with the level Level.INFO.</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td><b>public void warn(Object message);</b>
+<p>It prints messages with the level Level.WARN.</p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<b>public void trace(Object message);</b>
+<p>It prints messages with the level Level.TRACE.</p>
+</td>
+</tr>
+</table>
+<p>All the levels are defined in the org.apache.log4j.Level class and any of the above-mentioned methods can be called as follows:</p>
+<pre class="prettyprint notranslate">
+import org.apache.log4j.Logger;
+
+public class LogClass {
+   private static org.apache.log4j.Logger log = Logger.getLogger(LogClass.class);
+   
+   public static void main(String[] args) {
+      log.trace("Trace Message!");
+      log.debug("Debug Message!");
+      log.info("Info Message!");
+      log.warn("Warn Message!");
+      log.error("Error Message!");
+      log.fatal("Fatal Message!");
+   }
+}
+</pre>
+<p>When you compile and run LogClass program, it would generate the following result:</p>
+<pre class="result notranslate">
+Debug Message!
+Info Message!
+Warn Message!
+Error Message!
+Fatal Message!
+</pre>
+<p>All the debug messages make more sense when they are used in combination with levels. We will cover levels in  the next chapter and then, you would have a good understanding of how to use these methods in combination with different levels of debugging.</p>
+<h1>log4j - Logging Levels</h1>
+<p>The org.apache.log4j.Level class provides the following levels. You can also define your custom levels by sub-classing the Level class.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:25%">Level</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>ALL</td>
+<td>All levels including custom levels.</td>
+</tr>
+<tr>
+<td>DEBUG</td>
+<td>Designates fine-grained informational events that are most useful to debug an application.</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>Designates informational messages that highlight the progress of the application at coarse-grained level.</td>
+</tr>
+<tr>
+<td>WARN</td>
+<td>Designates potentially harmful situations.</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>Designates error events that might still allow the application to continue running.</td>
+</tr>
+<tr>
+<td>FATAL</td>
+<td>Designates very severe error events that will presumably lead the application to abort.</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>The highest possible rank and is intended to turn off logging.</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>Designates finer-grained informational events than the DEBUG.</td>
+</tr>
+</table>
+<h2>How do Levels Works?</h2>
+<p>A log request of level <b>p</b> in a logger with level <b>q</b> is enabled if p &gt;= q. This rule is at the heart of log4j. It assumes that levels are ordered. For the standard levels, we have ALL &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL &lt; OFF.</p>
+<p>The Following example shows how we can filter all our DEBUG and INFO messages. This program uses of logger method setLevel(Level.X) to set a desired logging level:</p>
+<p>This example would print all the messages except Debug and Info:</p>
+<pre class="prettyprint notranslate">
+import org.apache.log4j.*;
+
+public class LogClass {
+   private static org.apache.log4j.Logger log = Logger.getLogger(LogClass.class);
+   
+   public static void main(String[] args) {
+      log.setLevel(Level.WARN);
+
+      log.trace("Trace Message!");
+      log.debug("Debug Message!");
+      log.info("Info Message!");
+      log.warn("Warn Message!");
+      log.error("Error Message!");
+      log.fatal("Fatal Message!");
+   }
+}
+</pre>
+<p>When you compile and run the LogClass program, it would generate the following result:</p>
+<pre class="result notranslate">
+Warn Message!
+Error Message!
+Fatal Message!
+</pre>
+<h2>Setting Levels using Configuration File</h2>
+<p>log4j provides you configuration file based level setting which sets you free from changing the source code when you want to change the debugging level.</p>
+<p>Following is an example configuration file which would perform the same task as we did using the <i>log.setLevel(Level.WARN)</i> method in the above example.</p>
+<pre class="prettyprint notranslate">
+# Define the root logger with appender file
+log = /usr/home/log4j
+log4j.rootLogger = WARN, FILE
+
+# Define the file appender
+log4j.appender.FILE=org.apache.log4j.FileAppender
+log4j.appender.FILE.File=${log}/log.out
+
+# Define the layout for file appender
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.conversionPattern=%m%n
+</pre>
+<p>Let us now use our following program:</p>
+<pre class="prettyprint notranslate">
+import org.apache.log4j.*;
+
+public class LogClass {
+   private static org.apache.log4j.Logger log = Logger.getLogger(LogClass.class);
+   public static void main(String[] args) {
+      log.trace("Trace Message!");
+      log.debug("Debug Message!");
+      log.info("Info Message!");
+      log.warn("Warn Message!");
+      log.error("Error Message!");
+      log.fatal("Fatal Message!");
+   }
+}
+</pre>
+<p>Now compile and run the above program and you would get following result in /usr/home/log4j/log.out file:</p>
+<pre class="result notranslate">
+Warn Message!
+Error Message!
+Fatal Message!
+</pre>
+<h1>log4j - Log Formatting</h1>
+<p>Apache log4j provides various Layout objects, each of which can format logging data according to various layouts. It is also possible to create a Layout object that formats logging data in an application-specific way.</p>
+<p>All Layout objects receive a LoggingEvent object from the Appender objects. The Layout objects then retrieve the message argument from the LoggingEvent and apply the appropriate ObjectRenderer to obtain the String representation of the message.</p>
+<h2>The Layout Types</h2>
+<p>The top-level class in the hierarchy is the abstract class org.apache.log4j.Layout. This is the base class for all other Layout classes in the log4j API.</p>
+<p>The Layout class is defined as abstract within an application, we never use this class directly; instead, we work with its subclasses which are as follows:</p>
+<ul class="list">
+<li><p>DateLayout</p></li>
+<li><p><a href="/log4j/log4j_htmllayout.htm">HTMLLayout</a></p></li>
+<li><p><a href="/log4j/log4j_patternlayout.htm">PatternLayout.</a></p></li>
+<li><p>SimpleLayout</p></li>
+<li><p>XMLLayout</p></li>
+</ul>
+<h2>The Layout Methods</h2>
+<p>This class provides a skeleton implementation of all the common operations across all other Layout objects and declares two abstract methods.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th>Methods &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><b>public abstract boolean ignoresThrowable()</b>
+<p>It indicates whether the logging information handles any java.lang.Throwable object passed to it as a part of the logging event. If the Layout object handles the Throwable object, then the Layout object does not ignore it, and returns false.</p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<b>public abstract String format(LoggingEvent event)</b>
+<p>Individual layout subclasses implement this method for layout specific formatting.</p>
+</td>
+</tr>
+</table>
+<p>Apart from these abstract methods, the Layout class provides concrete implementation for the methods listed below:</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th>Methods &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<b>public String getContentType()</b>
+<p>It returns the content type used by the Layout objects. The base class returns text/plain as the default content type.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<b>public String getFooter()</b>
+<p>It specifies the footer information of the logging message.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<b>public String getHeader()</b>
+<p>It specifies the header information of the logging message.</p></td>
+</tr>
+</table>
+<p>Each subclass can return class-specific information by overriding the concrete implementation of these methods.</p>
+<h1>log4j - Logging in Files</h1>
+<p>To write your logging information into a file, you would have to use <i>org.apache.log4j.FileAppender</i>.</p>
+<h2>FileAppender Configuration</h2>
+<p>FileAppender has the following configurable parameters:</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:25%">Property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>immediateFlush</td>
+<td>This flag is by default set to true, which means the output stream to the file being flushed with each append operation.</td>
+</tr>
+<tr>
+<td>encoding</td>
+<td>It is possible to use any character-encoding. By default, it is the platform-specific encoding scheme.</td>
+</tr>
+<tr>
+<td>threshold </td>
+<td>The threshold level for this appender.</td>
+</tr>
+<tr>
+<td>Filename</td>
+<td>The name of the log file.</td>
+</tr>
+<tr>
+<td>fileAppend</td>
+<td>This is by default set to true, which means the logging information being appended to the end of the same file.</td>
+</tr>
+<tr>
+<td>bufferedIO</td>
+<td>This flag indicates whether we need buffered writing enabled. By default, it is set to false.</td>
+</tr>
+<tr>
+<td>bufferSize</td>
+<td>If buffered I/O is enabled, it indicates the buffer size. By default, it is set to 8kb.</td>
+</tr>
+</table>
+<p>Following is a sample configuration file <i>log4j.properties</i> for FileAppender.</p>
+<pre class="prettyprint notranslate">
+# Define the root logger with appender file
+log4j.rootLogger = DEBUG, FILE
+
+# Define the file appender
+log4j.appender.FILE=org.apache.log4j.FileAppender
+
+# Set the name of the file
+log4j.appender.FILE.File=${log}/log.out
+
+# Set the immediate flush to true (default)
+log4j.appender.FILE.ImmediateFlush=true
+
+# Set the threshold to debug mode
+log4j.appender.FILE.Threshold=debug
+
+# Set the append to false, overwrite
+log4j.appender.FILE.Append=false
+
+# Define the layout for file appender
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.conversionPattern=%m%n
+</pre>
+<p>If you wish to have an XML configuration file equivalent to the above <i>log4j.properties</i> file, then here is the content:</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE log4j:configuration SYSTEM "log4j.dtd"&gt;
+&lt;log4j:configuration&gt;
+
+&lt;appender name="FILE" class="org.apache.log4j.FileAppender"&gt;
+   &lt;param name="file" value="${log}/log.out"/&gt;
+   &lt;param name="immediateFlush" value="true"/&gt;
+   &lt;param name="threshold" value="debug"/&gt;
+   &lt;param name="append" value="false"/&gt;
+   &lt;layout class="org.apache.log4j.PatternLayout"&gt;
+      &lt;param name="conversionPattern" value="%m%n"/&gt;
+   &lt;/layout&gt;
+&lt;/appender&gt;
+
+&lt;logger name="log4j.rootLogger" additivity="false"&gt;
+   &lt;level value="DEBUG"/&gt;
+   &lt;appender-ref ref="FILE"/&gt;
+&lt;/logger&gt;
+
+&lt;/log4j:configuration&gt;
+</pre>
+<p>You can try <a href="http://www.tutorialspoint.com/log4j/log4j_sample_program.htm" title="log4j - Sample Program">log4j - Sample Program</a> with the above configuration.</p>
+<h2>Logging in Multiple Files</h2>
+<p>You may want to write your log messages into multiple files for certain reasons, for example, if the file size reached to a certain threshold.</p>
+<p>To write your logging information into multiple files, you would have to use <i>org.apache.log4j.RollingFileAppender</i> class which extends the <i>FileAppender</i> class and inherits all its properties.</p>
+<p>We have the following configurable parameters in addition to the ones mentioned above for FileAppender:</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:25%">Property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>maxFileSize</td>
+<td>This is the critical size of the file above which the file will be rolled. Default value is 10 MB.</td>
+</tr>
+<tr>
+<td>maxBackupIndex</td>
+<td>This property denotes the number of backup files to be created. Default value is 1.</td>
+</tr>
+</table>
+<p>Following is a sample configuration file <i>log4j.properties</i> for RollingFileAppender.</p>
+<pre class="prettyprint notranslate">
+# Define the root logger with appender file
+log4j.rootLogger = DEBUG, FILE
+
+# Define the file appender
+log4j.appender.FILE=org.apache.log4j.RollingFileAppender
+
+# Set the name of the file
+log4j.appender.FILE.File=${log}/log.out
+
+# Set the immediate flush to true (default)
+log4j.appender.FILE.ImmediateFlush=true
+
+# Set the threshold to debug mode
+log4j.appender.FILE.Threshold=debug
+
+# Set the append to false, should not overwrite
+log4j.appender.FILE.Append=true
+
+# Set the maximum file size before rollover
+log4j.appender.FILE.MaxFileSize=5KB
+
+# Set the the backup index
+log4j.appender.FILE.MaxBackupIndex=2
+
+# Define the layout for file appender
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.conversionPattern=%m%n
+</pre>
+<p>If you wish to have an XML configuration file, you can generate the same as mentioned in the initial section and add only additional parameters related to <i>RollingFileAppender</i>.</p>
+<p>This example configuration demonstrates that the maximum permissible size of each log file is 5 MB. Upon exceeding the maximum size, a new log file will be created. Since <i>maxBackupIndex</i> is defined as 2, once the second log file reaches the maximum size, the first log file will be erased and thereafter, all the logging information will be rolled back to the first log file.</p>
+<p>You can try <a href="http://www.tutorialspoint.com/log4j/log4j_sample_program.htm" title="log4j - Sample Program">log4j - Sample Program</a> with the above configuration.</p>
+<h2>Daily Log File Generation</h2>
+<p>There may be a requirement to generate your log files on a daily basis to keep a clean record of your logging information.</p>
+<p>To write your logging information into files on a daily basis, you would have to use <i>org.apache.log4j.DailyRollingFileAppender</i> class which extends the <i>FileAppender</i> class and inherits all its properties.</p>
+<p>There is only one important configurable parameter in addition to the ones mentioned above for FileAppender:</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:25%">Property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>DatePattern</td>
+<td>This indicates when to roll over the file and the naming convention to be followed. By default, roll over is performed at midnight each day.</td>
+</tr>
+</table>
+<p>DatePattern controls the rollover schedule using one of the following patterns:</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:35%">DatePattern</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>'.' yyyy-MM</td>
+<td>Roll over at the end of each month and at the beginning of the next month.</td>
+</tr>
+<tr>
+<td>'.' yyyy-MM-dd</td>
+<td>Roll over at midnight each day. This is the default value.</td>
+</tr>
+<tr>
+<td>'.' yyyy-MM-dd-a</td>
+<td>Roll over at midday and midnight of each day.</td>
+</tr>
+<tr>
+<td>'.' yyyy-MM-dd-HH</td>
+<td>Roll over at the top of every hour.</td>
+</tr>
+<tr>
+<td>'.' yyyy-MM-dd-HH-mm</td>
+<td>Roll over every minute.</td>
+</tr>
+<tr>
+<td>'.' yyyy-ww</td>
+<td>Roll over on the first day of each week depending upon the locale.</td>
+</tr>
+</table>
+<p>Following is a sample configuration file <i>log4j.properties</i> to generate log files rolling over at midday and midnight of each day.</p>
+<pre class="prettyprint notranslate">
+# Define the root logger with appender file
+log4j.rootLogger = DEBUG, FILE
+
+# Define the file appender
+log4j.appender.FILE=org.apache.log4j.DailyRollingFileAppender
+
+# Set the name of the file
+log4j.appender.FILE.File=${log}/log.out
+
+# Set the immediate flush to true (default)
+log4j.appender.FILE.ImmediateFlush=true
+
+# Set the threshold to debug mode
+log4j.appender.FILE.Threshold=debug
+
+# Set the append to false, should not overwrite
+log4j.appender.FILE.Append=true
+
+# Set the DatePattern
+log4j.appender.FILE.DatePattern='.' yyyy-MM-dd-a
+
+# Define the layout for file appender
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.conversionPattern=%m%n
+</pre>
+<p>If you wish to have an XML configuration file, you can generate the same as mentioned in the initial section and add only additional parameters related to <i>DailyRollingFileAppender</i>.</p>
+<p>You can try <a href="http://www.tutorialspoint.com/log4j/log4j_sample_program.htm" title="log4j - Sample Program">log4j - Sample Program</a> with the above configuration.</p>
+<h1>log4j - Logging in Database</h1>
+<p>The log4j API provides the <i>org.apache.log4j.jdbc.JDBCAppender</i> object, which can put logging information in a specified database.</p>
+<h2>JDBCAppender Configuration</h2>
+<table class="table table-bordered">
+<tr>
+<th style="width:25%">Property</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>bufferSize</td>
+<td>Sets the buffer size. Default size is 1.</td>
+</tr>
+<tr>
+<td>driver</td>
+<td>Sets the driver class to the specified string. If no driver class is specified, it defaults to sun.jdbc.odbc.JdbcOdbcDriver.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>Sets the layout to be used. Default layout is org.apache.log4j.PatternLayout.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Sets the database password.</td>
+</tr>
+<tr>
+<td>sql</td>
+<td>Specifies the SQL statement to be executed every time a logging event occurs. This could be INSERT, UPDATE, or DELETE.</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>Sets the JDBC URL.</td>
+</tr>
+<tr>
+<td>user</td>
+<td>Sets the database user name.</td>
+</tr>
+</table>
+<h2>Log Table Configuration</h2>
+<p>Before you start using JDBC based logging, you should create a table to maintain all the log information. Following is the SQL Statement for creating the LOGS table:</p>
+<pre class="prettyprint notranslate">
+CREATE TABLE LOGS
+   (USER_ID VARCHAR(20) NOT NULL,
+    DATED   DATE NOT NULL,
+    LOGGER  VARCHAR(50) NOT NULL,
+    LEVEL   VARCHAR(10) NOT NULL,
+    MESSAGE VARCHAR(1000) NOT NULL
+   );
+</pre>
+<h2>Sample Configuration File</h2>
+<p>Following is a sample configuration file <i>log4j.properties</i> for JDBCAppender which will is be used to log messages to a LOGS table.</p>
+<pre class="prettyprint notranslate">
+# Define the root logger with appender file
+log4j.rootLogger = DEBUG, DB
+
+# Define the DB appender
+log4j.appender.DB=org.apache.log4j.jdbc.JDBCAppender
+
+# Set JDBC URL
+log4j.appender.DB.URL=jdbc:mysql://localhost/DBNAME
+
+# Set Database Driver
+log4j.appender.DB.driver=com.mysql.jdbc.Driver
+
+# Set database user name and password
+log4j.appender.DB.user=user_name
+log4j.appender.DB.password=password
+
+# Set the SQL statement to be executed.
+log4j.appender.DB.sql=INSERT INTO LOGS VALUES('%x','%d','%C','%p','%m')
+
+# Define the layout for file appender
+log4j.appender.DB.layout=org.apache.log4j.PatternLayout
+</pre>
+<p>For MySQL database, you would have to use the actual DBNAME, user ID and password, where you have created LOGS table. The SQL statement is to execute an INSERT statement with the table name LOGS and the values to be entered into the table.</p>
+<p>JDBCAppender does not need a layout to be defined explicitly. Instead, the SQL statement passed to it uses a PatternLayout.</p>
+<p>If you wish to have an XML configuration file equivalent to the above <i>log4j.properties</i> file, then here is the content:</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE log4j:configuration SYSTEM "log4j.dtd"&gt;
+&lt;log4j:configuration&gt;
+
+&lt;appender name="DB" class="org.apache.log4j.jdbc.JDBCAppender"&gt;
+   &lt;param name="url" value="jdbc:mysql://localhost/DBNAME"/&gt;
+   &lt;param name="driver" value="com.mysql.jdbc.Driver"/&gt;
+   &lt;param name="user" value="user_id"/&gt;
+   &lt;param name="password" value="password"/&gt;
+   &lt;param name="sql" value="INSERT INTO LOGS VALUES('%x','%d','%C','%p','%m')"/&gt;
+   &lt;layout class="org.apache.log4j.PatternLayout"&gt;
+   &lt;/layout&gt;
+&lt;/appender&gt;
+
+&lt;logger name="log4j.rootLogger" additivity="false"&gt;
+   &lt;level value="DEBUG"/&gt;
+   &lt;appender-ref ref="DB"/&gt;
+&lt;/logger&gt;
+
+&lt;/log4j:configuration&gt;
+</pre>
+<h2>Sample Program</h2>
+<p>The following Java class is a very simple example that initializes and then uses the Log4J logging library for Java applications.</p>
+<pre class="prettyprint notranslate">
+import org.apache.log4j.Logger;
+import java.sql.*;
+import java.io.*;
+import java.util.*;
+
+public class log4jExample{
+   /* Get actual class name to be printed on */
+   static Logger log = Logger.getLogger(log4jExample.class.getName());
+   
+   public static void main(String[] args)throws IOException,SQLException{
+      log.debug("Debug");
+      log.info("Info");
+   }
+}
+</pre>
+<h2>Compile and Execute</h2>
+<p>Here are the steps to compile and run the above-mentioned program. Make sure you have set <b>PATH</b> and <b>CLASSPATH</b> appropriately before proceeding for compilation and execution.</p>
+<p>All the libraries should be available in <b>CLASSPATH</b> and your <i>log4j.properties</i> file should be available in PATH. Follow the given steps:</p>
+<ul class="list">
+<li>Create log4j.properties as shown above.</li>
+<li>Create log4jExample.java as shown above and compile it.</li>
+<li>Execute log4jExample binary to run the program.</li>
+</ul>
+<p>Now check your LOGS table inside DBNAME database and you would find the following entries:</p>
+<pre class="result notranslate">
+mysql &gt;  select * from LOGS;
++---------+------------+--------------+-------+---------+
+| USER_ID | DATED      | LOGGER       | LEVEL | MESSAGE |
++---------+------------+--------------+-------+---------+
+|         | 2010-05-13 | log4jExample | DEBUG | Debug   |
+|         | 2010-05-13 | log4jExample | INFO  | Info    |
++---------+------------+--------------+-------+---------+
+2 rows in set (0.00 sec)
+</pre>
+<p><b>Note:</b> Here x is used to output the Nested diagnostic Context (NDC) associated with the thread that generated the logging event. We use NDC to distinguish clients in server-side components handling multiple clients. Check Log4J Manual for more information on this.</p>
+
+
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/log4j/log4j_questions_answers.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/log4j/log4j_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Install Apache Web Server CentOS 7</title>
+<meta charset="utf-8">
+<meta name="description" content="Install Apache Web Server CentOS 7 - In this chapter, we will learn a little about the background of how Apache HTTP Server came into existence and then install the most current stable version on C"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/linux_admin/linux_admin_install_apache_web_server_centos_7.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#dfa018;
+}
+a.demo {
+    background:#dfa018;
+}
+li.heading {
+    background:#dfa018;
+}
+.course-box{background:#dfa018}
+.home-intro-sub p{color:#dfa018}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/linux_admin/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/linux_admin/images/linux-admin-mini-logo.jpg" alt="Linux Admin Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Tutorial</li>
+<li><a href="/linux_admin/index.htm">Linux Admin - Home</a></li>
+<li><a href="/linux_admin/linux_admin_centos_overview.htm">CentOS Overview</a></li>
+<li><a href="/linux_admin/basic_centos_linux_commands.htm">Basic CentOS Linux Commands</a></li>
+<li><a href="/linux_admin/linux_admin_file_folder_management.htm">File / Folder Management</a></li>
+<li><a href="/linux_admin/linux_admin_user_management.htm">User Management</a></li>
+<li><a href="/linux_admin/linux_admin_quota_management.htm">Quota Management</a></li>
+<li><a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Systemd Services Start and Stop</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Resource Mgmt with systemctl</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Resource Mgmt with crgoups</a></li>
+<li><a href="/linux_admin/linux_admin_process_management.htm">Process Management</a></li>
+<li><a href="/linux_admin/linux_admin_firewall_setup.htm">Firewall Setup</a></li>
+<li><a href="/linux_admin/configure_php_in_centos_linux.htm">Configure PHP in CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_python_with_centos_linux.htm">Set Up Python with CentOS Linux</a></li>
+<li><a href="/linux_admin/configure_ruby_on_centos_linux.htm">Configure Ruby on CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_perl_for_centos_linux.htm">Set Up Perl for CentOS Linux</a></li>
+<li><a href="/linux_admin/install_and_configure_open_ldap.htm">Install and Configure Open LDAP</a></li>
+<li><a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Create SSL Certificates</a></li>
+<li><a href="/linux_admin/linux_admin_install_apache_web_server_centos_7.htm">Install Apache Web Server CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">MySQL Setup On CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_set_up_postfix_mta_and_imap_pop3.htm">Set Up Postfix MTA and IMAP/POP3</a></li>
+<li><a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Install Anonymous FTP</a></li>
+<li><a href="/linux_admin/linux_admin_remote_management.htm">Remote Management</a></li>
+<li><a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm">Traffic Monitoring in CentOS</a></li>
+<li><a href="/linux_admin/linux_admin_log_management.htm">Log Management</a></li>
+<li><a href="/linux_admin/linux_admin_backup_and_recovery.htm">Backup and Recovery</a></li>
+<li><a href="/linux_admin/linux_admin_system_updates.htm">System Updates</a></li>
+<li><a href="/linux_admin/linux_admin_shell_scripting.htm">Shell Scripting</a></li>
+<li><a href="/linux_admin/linux_admin_package_management.htm">Package Management</a></li>
+<li><a href="/linux_admin/linux_admin_volume_management.htm">Volume Management</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Useful Resources</li>
+<li><a href="/linux_admin/linux_admin_quick_guide.htm">Linux Admin - Quick Guide</a></li>
+<li><a href="/linux_admin/linux_admin_useful_resources.htm">Linux Admin - Useful Resources</a></li>
+<li><a href="/linux_admin/linux_admin_discussion.htm">Linux Admin - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Install Apache Web Server CentOS 7</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_create_ssl_certificates.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, we will learn a little about the background of how Apache HTTP Server came into existence and then install the most current stable version on CentOS Linux 7.</p>
+<h2>Brief History on Apache WebServer</h2>
+<p>Apache is a web server that has been around for a long time. In fact, almost as long as the existence of http itself!</p>
+<p>Apache started out as a rather small project at the National Center for Supercomputing Applications also known as NCSA. In the mid-90's "httpd", as it was called, was by far the most popular web-server platform on the Internet, having about 90% or more of the market share.</p>
+<p>At this time, it was a simple project. Skilled I.T. staff known as webmaster were responsible for: maintaining web server platforms and web server software as well as both front-end and back-end site development. At the core of httpd was its ability to use custom modules known as plugins or extensions. A webmaster was also skilled enough to write patches to core server software.</p>
+<p>Sometime in the late-mid-90's, the senior developer and project manager for httpd left NCSA to do other things. This left the most popular web-daemon in a state of stagnation.</p>
+<p>Since the use of httpd was so widespread a group of seasoned httpd webmasters called for a summit reqarding the future of httpd. It was decided to coordinate and apply the best extensions and patches into a current stable release. Then, the current grand-daddy of http servers was born and christened Apache HTTP Server.</p>
+<p><b>Little Known Historical Fact</b> &minus; Apache was not named after a Native American Tribe of warriors. It was in fact coined and named with a twist: being made from many fixes (or patches) from many talented Computer Scientists: a <b>patchy</b> or <b>Apache</b>.</p>
+<h2>Install Current Stable Version on CentOS Linux 7</h2>
+<p><b>Step 1</b> &minus; Install httpd via yum.</p>
+<pre class="result notranslate">
+yum -y install httpd
+</pre>
+<p>At this point Apache HTTP Server will install via yum.</p>
+<p><b>Step 2</b> &minus; Edit httpd.conf file specific to your httpd needs.</p>
+<p>With a default Apache install, the configuration file for Apache is named <i>httpd.conf</i> and is located in <i>/etc/httpd/</i>. So, let's open it in <i>vim</i>.</p>
+<p>The first few lines of <i>httpd.conf</i> opened in <i>vim</i> &minus;</p>
+<pre class="result notranslate">
+# 
+# This is the main Apache HTTP server configuration file.  It contains the 
+# configuration directives that give the server its instructions.
+# See &lt;URL:http://httpd.apache.org/docs/2.4/&gt; for detailed information. 
+# In particular, see  
+# &lt;URL:http://httpd.apache.org/docs/2.4/mod/directives.html&gt; 
+# for a discussion of each configuration directive.
+</pre>
+<p>We will make the following changes to allow our CentOS install to serve http requests from http port 80.</p>
+<h3>Listening host and port</h3>
+<pre class="result notranslate">
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports, instead of the default. See also the &lt;VirtualHost&gt;
+# directive.
+#
+# Change this to Listen on specific IP addresses as shown below to
+# prevent Apache from glomming onto all bound IP addresses.
+#
+#Listen 12.34.56.78:80
+Listen 80
+</pre>
+<p>From here, we change Apache to listen on a certain port or IP Address. For example, if we want to run httpd services on an alternative port such as 8080. Or if we have our web-server configured with multiple interfaces with separate IP addresses.</p>
+<h3>Listen</h3>
+<p>Keeps Apache from attaching to every listening daemon onto every IP Address. This is useful to stop specifying only IPv6 or IPv4 traffic. Or even binding to all network interfaces on a multi-homed host.</p>
+<pre class="result notranslate">
+#
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports, instead of the default. See also the &lt;VirtualHost&gt;
+# directive.
+#
+# Change this to Listen on specific IP addresses as shown below to
+# prevent Apache from glomming onto all bound IP addresses.
+#
+Listen 10.0.0.25:80
+#Listen 80
+</pre>
+<h3>DocumentRoot</h3>
+<p>The "document root" is the default directory where Apache will look for an index file to serve for requests upon visiting your sever: <a target="_blank" rel="nofollow" href="http://ww38.yoursite.com/">http://www.yoursite.com/</a> will retrieve and serve the index file from your document root.</p>
+<pre class="result notranslate">
+#
+# DocumentRoot: The directory out of which you will serve your
+# documents. By default, all requests are taken from this directory, but
+# symbolic links and aliases may be used to point to other locations.
+#
+DocumentRoot "/var/www/html"
+</pre>
+<p><b>Step 3</b> &minus; Start and Enable the httpd Service.</p>
+<pre class="result notranslate">
+[root@centos rdc]# systemctl start httpd && systemctl reload httpd 
+[root@centos rdc]#
+</pre>
+<p><b>Step 4</b> &minus; Configure firewall to allow access to port 80 requests.</p>
+<pre class="result notranslate">
+[root@centos]# firewall-cmd --add-service=http --permanent
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_create_ssl_certificates.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

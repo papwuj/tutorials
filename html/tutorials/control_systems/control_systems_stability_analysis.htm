@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Control Systems - Stability Analysis</title>
+<meta charset="utf-8">
+<meta name="description" content="Control Systems - Stability Analysis - In this chapter, let us discuss the stability analysis in the âsâ domain using the RouthHurwitz stability criterion. In this criterion, we require the"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/control_systems/control_systems_stability_analysis.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#31776b;
+}
+a.demo {
+    background:#31776b;
+}
+li.heading {
+    background:#31776b;
+}
+.course-box{background:#31776b}
+.home-intro-sub p{color:#31776b}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/control_systems/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+"HTML-CSS": {
+linebreaks: { automatic: true, width: "container" }
+}
+});
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+<div class="mini-logo">
+<img src="/control_systems/images/control-systems-mini-logo.jpg" alt="Control Systems Tutorial" />
+</div>
+<ul class="toc chapters">
+<li><a class="videolink" href="/control_system/index.asp" target="_blank"><img src="/control_systems/images/control-system-video-tutorials.jpg" alt="Control Systems Video Tutorials" /></a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Control Systems Tutorial</li>
+<li><a href="/control_systems/index.htm">Control Systems - Home</a></li>
+<li><a href="/control_systems/control_systems_introduction.htm">Control Systems - Introduction</a></li>
+<li><a href="/control_systems/control_systems_feedback.htm">Control Systems - Feedback</a></li>
+<li><a href="/control_systems/control_systems_mathematical_models.htm">Mathematical Models</a></li>
+<li><a href="/control_systems/control_systems_modelling_mechanical.htm">Modelling of Mechanical Systems</a></li>
+<li><a href="/control_systems/control_systems_electrical_analogies_mechanical.htm">Electrical Analogies of Mechanical Systems</a></li>
+<li><a href="/control_systems/control_systems_block_diagrams.htm">Control Systems - Block Diagrams</a></li>
+<li><a href="/control_systems/control_systems_block_diagram_algebra.htm">Block Diagram Algebra</a></li>
+<li><a href="/control_systems/control_systems_block_diagram_reduction.htm">Block Diagram Reduction</a></li>
+<li><a href="/control_systems/control_systems_signal_flow_graphs.htm">Signal Flow Graphs</a></li>
+<li><a href="/control_systems/control_systems_masons_gain_formula.htm">Mason's Gain Formula</a></li>
+<li><a href="/control_systems/control_systems_time_response_analysis.htm">Time Response Analysis</a></li>
+<li><a href="/control_systems/control_systems_response_first_order.htm">Response of the First Order System</a></li>
+<li><a href="/control_systems/control_systems_response_second_order.htm">Response of Second Order System</a></li>
+<li><a href="/control_systems/control_systems_time_domain_specifications.htm">Time Domain Specifications</a></li>
+<li><a href="/control_systems/control_systems_steady_state_errors.htm">Steady State Errors</a></li>
+<li><a href="/control_systems/control_systems_stability.htm">Control Systems - Stability</a></li>
+<li><a href="/control_systems/control_systems_stability_analysis.htm">Control Systems - Stability Analysis</a></li>
+<li><a href="/control_systems/control_systems_root_locus.htm">Control Systems - Root Locus</a></li>
+<li><a href="/control_systems/control_systems_construction_root_locus.htm">Construction of Root Locus</a></li>
+<li><a href="/control_systems/control_systems_frequency_response_analysis.htm">Frequency Response Analysis</a></li>
+<li><a href="/control_systems/control_systems_bode_plots.htm">Control Systems - Bode Plots</a></li>
+<li><a href="/control_systems/control_systems_construction_bode_plots.htm">Construction of Bode Plots</a></li>
+<li><a href="/control_systems/control_systems_polar_plots.htm">Control Systems - Polar Plots</a></li>
+<li><a href="/control_systems/control_systems_nyquist_plots.htm">Control Systems - Nyquist Plots</a></li>
+<li><a href="/control_systems/control_systems_compensators.htm">Control Systems - Compensators</a></li>
+<li><a href="/control_systems/control_systems_controllers.htm">Control Systems - Controllers</a></li>
+<li><a href="/control_systems/control_systems_state_space_model.htm">Control Systems - State Space Model</a></li>
+<li><a href="/control_systems/control_systems_state_space_analysis.htm">State Space Analysis</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Control Systems Useful Resources</li>
+<li><a href="/control_systems/control_systems_quick_guide.htm">Control Systems - Quick Guide</a></li>
+<li><a href="/control_systems/control_systems_useful_resources.htm">Control Systems - Useful Resources</a></li>
+<li><a href="/control_systems/control_systems_discussion.htm">Control Systems - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Control Systems - Stability Analysis</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/control_systems/control_systems_stability.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/control_systems/control_systems_root_locus.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, let us discuss the stability analysis in the <b>‘s’</b> domain using the RouthHurwitz stability criterion. In this criterion, we require the characteristic equation to find the stability of the closed loop control systems.</p>
+<h2>Routh-Hurwitz Stability Criterion</h2>
+<p>Routh-Hurwitz stability criterion is having one necessary condition and one sufficient condition for stability. If any control system doesn’t satisfy the necessary condition, then we can say that the control system is unstable. But, if the control system satisfies the necessary condition, then it may or may not be stable. So, the sufficient condition is helpful for knowing whether the control system is stable or not.</p>
+<h3>Necessary Condition for Routh-Hurwitz Stability</h3>
+<p>The necessary condition is that the coefficients of the characteristic polynomial should be positive. This implies that all the roots of the characteristic equation should have negative real parts.</p>
+<p>Consider the characteristic equation of the order ‘n’ is -</p>
+<p>$$a_0s^n+a_1s^{n-1}+a_2s^{n-2}+...+a_{n-1}s^1+a_ns^0=0$$</p>
+<p>Note that, there should not be any term missing in the <b>n<sup>th</sup></b> order characteristic equation. This means that the <b>n<sup>th</sup></b> order characteristic equation should not have any coefficient that is of zero value.</p>
+<h3>Sufficient Condition for Routh-Hurwitz Stability</h3>
+<p>The sufficient condition is that all the elements of the first column of the Routh array should have the same sign. This means that all the elements of the first column of the Routh array should be either positive or negative.</p>
+<h2>Routh Array Method</h2>
+<p>If all the roots of the characteristic equation exist to the left half of the ‘s’ plane, then the control system is stable. If at least one root of the characteristic equation exists to the right half of the ‘s’ plane, then the control system is unstable. So, we have to find the roots of the characteristic equation to know whether the control system is stable or unstable. But, it is difficult to find the roots of the characteristic equation as order increases.</p>
+<p>So, to overcome this problem there we have the <b>Routh array method</b>. In this method, there is no need to calculate the roots of the characteristic equation. First formulate the Routh table and find the number of the sign changes in the first column of the Routh table. The number of sign changes in the first column of the Routh table gives the number of roots of characteristic equation that exist in the right half of the ‘s’ plane and the control system is unstable.</p>
+<p>Follow this procedure for forming the Routh table.</p>
+<ul class="list">
+<li><p>Fill the first two rows of the Routh array with the coefficients of the characteristic polynomial as mentioned in the table below. Start with the coefficient of $s^n$ and continue up to the coefficient of $s^0$.</p></li>
+<li><p>Fill the remaining rows of the Routh array with the elements as mentioned in the table below. Continue this process till you get the first column element of <b>row $s^0$</b> is $a_n$. Here, $a_n$ is the coefficient of $s^0$ in the characteristic polynomial.</p></li>
+</ul>
+<p><b>Note</b> &minus; If any row elements of the Routh table have some common factor, then you can divide the row elements with that factor for the simplification will be easy.</p>
+<p>The following table shows the Routh array of the n<sup>th</sup> order characteristic polynomial.</p>
+<p>$$a_0s^n+a_1s^{n-1}+a_2s^{n-2}+...+a_{n-1}s^1+a_ns^0$$</p>
+<table class="table table-bordered">
+<tr>
+<td><p>$s^n$</p></td>
+<td><p>$a_0$</p></td>
+<td><p>$a_2$</p></td>
+<td><p>$a_4$</p></td>
+<td><p>$a_6$</p></td>
+<td><p>...</p></td>
+<td><p>...</p></td>
+</tr>
+<tr>
+<td><p>$s^{n-1}$</p></td>
+<td><p>$a_1$</p></td>
+<td><p>$a_3$</p></td>
+<td><p>$a_5$</p></td>
+<td><p>$a_7$</p></td>
+<td><p>...</p></td>
+<td><p>...</p></td>
+</tr>
+<tr>
+<td><p>$s^{n-2}$</p></td>
+<td><p>$b_1=\frac{a_1a_2-a_3a_0}{a_1}$</p></td>
+<td><p>$b_2=\frac{a_1a_4-a_5a_0}{a_1}$</p></td>
+<td><p>$b_3=\frac{a_1a_6-a_7a_0}{a_1}$</p></td>
+<td><p>...</p></td>
+<td><p>...</p></td>
+<td><p>...</p></td>
+</tr>
+<tr>
+<td><p>$s^{n-3}$</p></td>
+<td><p>$c_1=\frac{b_1a_3-b_2a_1}{b_1}$</p></td>
+<td><p>$c_2=\frac{b_1a_55-b_3a_1}{b_1}$</p></td>
+<td><p>$\vdots$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p>$\vdots $</p></td>
+<td><p>$\vdots$</p></td>
+<td><p>$\vdots$</p></td>
+<td><p>$\vdots$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p>$s^1$</p></td>
+<td><p>$\vdots$</p></td>
+<td><p>$\vdots$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p>$s^0$</p></td>
+<td><p>$a_n$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</table>
+<p><b>Example</b></p>
+<p>Let us find the stability of the control system having characteristic equation,</p>
+<p>$$s^4+3s^3+3s^2+2s+1=0$$</p>
+<p><b>Step 1</b> &minus; Verify the necessary condition for the Routh-Hurwitz stability.</p>
+<p>All the coefficients of the characteristic polynomial, $s^4+3s^3+3s^2+2s+1$ are positive. So, the control system satisfies the necessary condition.</p>
+<p><b>Step 2</b> &minus; Form the Routh array for the given characteristic polynomial.</p>
+<table class="table table-bordered">
+<tr>
+<td><p style="text-align:center">$s^4$</p></td>
+<td><p style="text-align:center">$1$</p></td>
+<td><p style="text-align:center">$3$</p></td>
+<td><p style="text-align:center">$1$</p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^3$</p></td>
+<td><p style="text-align:center">$3$</p></td>
+<td><p style="text-align:center">$2$</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^2$</p></td>
+<td><p style="text-align:center">$\frac{(3 \times 3)-(2 \times 1)}{3}=\frac{7}{3}$</p></td>
+<td><p style="text-align:center">$\frac{(3 \times 1)-(0 \times 1)}{3}=\frac{3}{3}=1$</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^1$</p></td>
+<td><p style="text-align:center">$\frac{\left ( \frac{7}{3}\times 2 \right )-(1 \times 3)}{\frac{7}{3}}=\frac{5}{7}$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^0$</p></td>
+<td><p style="text-align:center">$1$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</table>
+<p><b>Step 3</b> &minus; Verify the sufficient condition for the Routh-Hurwitz stability.</p>
+<p>All the elements of the first column of the Routh array are positive. There is no sign change in the first column of the Routh array. So, the control system is stable.</p>
+<h2>Special Cases of Routh Array</h2>
+<p>We may come across two types of situations, while forming the Routh table. It is difficult to complete the Routh table from these two situations.</p>
+<p>The two special cases are &minus;</p>
+<ul class="list">
+<li>The first element of any row of the Routh array is zero.</li>
+<li>All the elements of any row of the Routh array are zero.</li>
+</ul>
+<p>Let us now discuss how to overcome the difficulty in these two cases, one by one.</p>
+<h3>First Element of any row of the Routh array is zero</h3>
+<p>If any row of the Routh array contains only the first element as zero and at least one of the remaining elements have non-zero value, then replace the first element with a small positive integer, $\epsilon$. And then continue the process of completing the Routh table. Now, find the number of sign changes in the first column of the Routh table by substituting $\epsilon$ tends to zero.</p>
+<p><b>Example</b></p>
+<p>Let us find the stability of the control system having characteristic equation,</p>
+<p>$$s^4+2s^3+s^2+2s+1=0$$</p>
+<p><b>Step 1</b> &minus; Verify the necessary condition for the Routh-Hurwitz stability.</p>
+<p>All the coefficients of the characteristic polynomial, $s^4+2s^3+s^2+2s+1$ are positive. So, the control system satisfied the necessary condition.</p>
+<p><b>Step 2</b> &minus; Form the Routh array for the given characteristic polynomial.</p>
+<table class="table table-bordered">
+<tr>
+<td><p style="text-align:center">$s^4$</p></td>
+<td><p style="text-align:center">$1$</p></td>
+<td><p style="text-align:center">$1$</p></td>
+<td><p style="text-align:center">$1$</p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^3$</p></td>
+<td><p style="text-align:center"><strike>2</strike> 1</p></td>
+<td><p style="text-align:center"><strike>2</strike> 1</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^2$</p></td>
+<td><p style="text-align:center">$\frac{(1 \times 1)-(1 \times 1)}{1}=0$</p></td>
+<td><p style="text-align:center">$\frac{(1 \times 1)-(0 \times 1)}{1}=1$</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^1$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^0$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</table>
+<p>The row $s^3$ elements have 2 as the common factor. So, all these elements are divided by 2.</p>
+<p><b>Special case (i)</b> &minus; Only the first element of row $s^2$ is zero. So, replace it by $\epsilon$ and continue the process of completing the Routh table.</p>
+<table class="table table-bordered">
+<tr>
+<td><p style="text-align:center">$s^4$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^3$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^2$</p></td>
+<td><p style="text-align:center">$\epsilon$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^1$</p></td>
+<td><p style="text-align:center">$\frac{\left ( \epsilon \times 1 \right )-\left ( 1 \times 1 \right )}{\epsilon}=\frac{\epsilon-1}{\epsilon}$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^0$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</table>
+<p><b>Step 3</b> &minus; Verify the sufficient condition for the Routh-Hurwitz stability.</p>
+<p>As $\epsilon$ tends to zero, the Routh table becomes like this.</p>
+<table class="table table-bordered">
+<tr>
+<td><p style="text-align:center">$s^4$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^3$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^2$</p></td>
+<td><p style="text-align:center">0</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^1$</p></td>
+<td><p style="text-align:center">-&infin;</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^0$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</table>
+<p>There are two sign changes in the first column of Routh table. Hence, the control system is unstable.</p>
+<h3>All the Elements of any row of the Routh array are zero</h3>
+<p>In this case, follow these two steps &minus;</p>
+<ul class="list">
+<li><p>Write the auxilary equation, A(s) of the row, which is just above the row of zeros.</p></li>
+<li><p>Differentiate the auxiliary equation, A(s) with respect to s. Fill the row of zeros with these coefficients.</p></li>
+</ul>
+<p><b>Example</b></p>
+<p>Let us find the stability of the control system having characteristic equation,</p>
+<p>$$s^5+3s^4+s^3+3s^2+s+3=0$$</p>
+<p><b>Step 1</b> &minus; Verify the necessary condition for the Routh-Hurwitz stability.</p>
+<p>All the coefficients of the given characteristic polynomial are positive. So, the control system satisfied the necessary condition.</p>
+<p><b>Step 2</b> &minus; Form the Routh array for the given characteristic polynomial.</p>
+<table class="table table-bordered">
+<tr>
+<td><p style="text-align:center">$s^5$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^4$</p></td>
+<td><p style="text-align:center"><strike>3</strike> 1</p></td>
+<td><p style="text-align:center"><strike>3</strike> 1</p></td>
+<td><p style="text-align:center"><strike>3</strike> 1</p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^3$</p></td>
+<td><p style="text-align:center">$\frac{(1 \times 1)-(1 \times 1)}{1}=0$</p></td>
+<td><p style="text-align:center">$\frac{(1 \times 1)-(1 \times 1)}{1}=0$</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^2$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^1$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^0$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</table>
+<p>The row $s^4$ elements have the common factor of 3. So, all these elements are divided by 3.</p>
+<p><b>Special case (ii)</b> &minus; All the elements of row $s^3$ are zero. So, write the auxiliary equation, A(s) of the row $s^4$.</p>
+<p>$$A(s)=s^4+s^2+1$$</p>
+<p>Differentiate the above equation with respect to s.</p>
+<p>$$\frac{\text{d}A(s)}{\text{d}s}=4s^3+2s$$</p>
+<p>Place these coefficients in row $s^3$.</p>
+<table class="table table-bordered">
+<tr>
+<td><p style="text-align:center">$s^5$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^4$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p style="text-align:center">1</p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^3$</p></td>
+<td><p style="text-align:center"><strike>4</strike> 2</p></td>
+<td><p style="text-align:center"><strike>2</strike> 1</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^2$</p></td>
+<td><p style="text-align:center">$\frac{(2 \times 1)-(1 \times 1)}{2}=0.5$</p></td>
+<td><p style="text-align:center">$\frac{(2 \times 1)-(0 \times 1)}{2}=1$</p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^1$</p></td>
+<td><p style="text-align:center">$\frac{(0.5 \times 1)-(1 \times 2)}{0.5}=\frac{-1.5}{0.5}=-3$</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr>
+<td><p style="text-align:center">$s^0$</p></td>
+<td><p style="text-align:center">1</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</table>
+<p><b>Step 3</b> &minus; Verify the sufficient condition for the Routh-Hurwitz stability.</p>
+<p>There are two sign changes in the first column of Routh table. Hence, the control system is unstable.</p>
+<p>In the Routh-Hurwitz stability criterion, we can know whether the closed loop poles are in on left half of the ‘s’ plane or on the right half of the ‘s’ plane or on an imaginary axis. So, we can’t find the nature of the control system. To overcome this limitation, there is a technique known as the root locus. We will discuss this technique in the next two chapters.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/control_systems/control_systems_stability.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/control_systems/control_systems_root_locus.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

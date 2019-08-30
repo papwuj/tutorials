@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Puppet - Facter & Facts</title>
+<meta charset="utf-8">
+<meta name="description" content="Puppet - Facter & Facts - Puppet supports holding multiple values as an environment variable. This feature is supported in Puppet by using facter. In Puppet, facter is a standalone tool "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/puppet/puppet_facter_facts.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#FFAD1B;
+}
+a.demo {
+    background:#FFAD1B;
+}
+li.heading {
+    background:#FFAD1B;
+}
+.course-box{background:#FFAD1B}
+.home-intro-sub p{color:#FFAD1B}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/puppet/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/puppet/images/puppet-mini-logo.jpg" alt="Puppet Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Puppet Tutorial</li>
+<li><a href="/puppet/index.htm">Puppet - Home</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Basic Puppet</li>
+<li><a href="/puppet/puppet_overview.htm">Puppet - Overview</a></li>
+<li><a href="/puppet/puppet_architecture.htm">Puppet - Architecture</a></li>
+<li><a href="/puppet/puppet_installation.htm">Puppet - Installation</a></li>
+<li><a href="/puppet/puppet_configuration.htm">Puppet - Configuration</a></li>
+<li><a href="/puppet/puppet_environment_conf.htm">Puppet - Environment Conf</a></li>
+<li><a href="/puppet/puppet_master.htm">Puppet - Master</a></li>
+<li><a href="/puppet/puppet_agent_setup.htm">Puppet - Agent Setup</a></li>
+<li><a href="/puppet/puppet_ssl_sign_certificate_setup.htm">Puppet - SSL Sign Certificate Setup</a></li>
+<li><a href="/puppet/puppet_installing_configuring_r10k.htm">Installing &amp; Configuring r10K</a></li>
+<li><a href="/puppet/puppet_validating_setup.htm">Puppet - Validating Setup</a></li>
+<li><a href="/puppet/puppet_coding_style.htm">Puppet - Coding Style</a></li>
+<li><a href="/puppet/puppet_manifest_files.htm">Puppet - Manifest Files</a></li>
+<li><a href="/puppet/puppet_module.htm">Puppet - Module</a></li>
+<li><a href="/puppet/puppet_file_server.htm">Puppet - File Server</a></li>
+<li><a href="/puppet/puppet_facter_facts.htm">Puppet - Facter &amp; Facts</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Advanced Puppet</li>
+<li><a href="/puppet/puppet_resource.htm">Puppet - Resource</a></li>
+<li><a href="/puppet/puppet_resource_abstraction_layer.htm">Puppet - Resource Abstraction Layer</a></li>
+<li><a href="/puppet/puppet_template.htm">Puppet - Template</a></li>
+<li><a href="/puppet/puppet_classes.htm">Puppet - Classes</a></li>
+<li><a href="/puppet/puppet_function.htm">Puppet - Function</a></li>
+<li><a href="/puppet/puppet_custom_functions.htm">Puppet - Custom Functions</a></li>
+<li><a href="/puppet/puppet_environment.htm">Puppet - Environment</a></li>
+<li><a href="/puppet/puppet_type_provider.htm">Puppet - Type &amp; Provider</a></li>
+<li><a href="/puppet/puppet_restful_api.htm">Puppet - RESTful API</a></li>
+<li><a href="/puppet/puppet_live_project.htm">Puppet - Live Project</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Puppet Useful Resources</li>
+<li><a href="/puppet/puppet_quick_guide.htm">Puppet - Quick Guide</a></li>
+<li><a href="/puppet/puppet_useful_resources.htm">Puppet - Useful Resources</a></li>
+<li><a href="/puppet/puppet_discussion.htm">Puppet - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Puppet - Facter &amp; Facts</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/puppet/puppet_file_server.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/puppet/puppet_resource.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Puppet supports holding multiple values as an environment variable. This feature is supported in Puppet by using <b>facter</b>. In Puppet, facter is a standalone tool that holds the environment level variable. In can be considered similar to env variable of Bash or Linux. Sometimes there can be an overlap between the information stored in facts and environment variable of the machine. In Puppet, the key-value pair is known as “fact”. Each resource has its own facts and in Puppet the user has the leverage to build their own custom facts.</p>
+<pre class="result notranslate">
+# facter 
+</pre>
+<p><b>Facter command</b> can be used to list all the different environment variables and its associated values. These collection of facts comes with facter out-of-the-box and are referred to as core facts. One can add custom facts to the collection.</p>
+<p>If one wants to view only one variable. It can be done using the following command.</p>
+<pre class="result notranslate">
+# facter {Variable Name}  
+
+Example 
+[root@puppetmaster ~]# facter virtual 
+virtualbox 
+</pre>
+<p>The reason why facter is important for Puppet is that facter and facts are available throughout Puppet code as <b>“global variable”</b>, which means it can be used in the code at any point of time without any other reference.</p>
+<h3>Example to Test</h3>
+<pre class="prettyprint notranslate">
+[root@puppetmaster modules]# tree brcle_account 
+brcle_account 
+└── manifests  └── init.pp [root@puppetmaster modules]# cat brcle_account/manifests/init.pp  
+class brcle_account {  
+   user { 'G01063908': 
+      ensure =&gt; 'present', 
+      uid =&gt; '121', 
+      shell =&gt; '/bin/bash', 
+      home =&gt; '/home/G01063908', 
+   }  
+   
+   file {'/tmp/userfile.txt': 
+      ensure =&gt; file, 
+      content =&gt; "the value for the 'OperatingSystem' fact is: $OperatingSystem \n", 
+   } 
+} 
+</pre>
+<h3>Testing It</h3>
+<pre class="prettyprint notranslate">
+[root@puppetmaster modules]# puppet agent --test 
+Notice: /Stage[main]/Activemq::Service/Service[activemq]/ensure: 
+ensure changed 'stopped' to 'running' 
+Info: /Stage[main]/Activemq::Service/Service[activemq]: 
+Unscheduling refresh on Service[activemq] 
+
+Notice: Finished catalog run in 4.09 seconds  
+[root@puppetmaster modules]# cat /tmp/testfile.txt  
+the value for the 'OperatingSystem' fact is: Linux   
+
+[root@puppetmaster modules]# facter OperatingSystem 
+Linux
+</pre>
+<p>As we can notice in the above code snippet, we haven’t defined the <b>OperatingSystem</b>. We have just replaced the value with soft coded value <b>$OperatingSystem</b> as normal variable.</p>
+<p>In Puppet, there are three types of fact that can be used and defined &minus;</p>
+<ul class="list">
+<li>Core Facts</li>
+<li>Custom Facts</li>
+<li>External Facts</li>
+</ul>
+<p>Core facts are defined at the top level and accessible to all at any point in the code.</p>
+<h2>Puppet Facts</h2>
+<p>Just before an agent requests for a catalog from the master, the agent first compiles a complete list of information available in itself in the form of a key value pair. The information on the agent is gathered by a tool called facter and each key-value pair is referred as a fact. Following is a common output of facts on an agent.</p>
+<pre class="result notranslate">
+<b>[root@puppetagent1 ~]# facter</b>
+architecture =&gt; x86_64 
+augeasversion =&gt; 1.0.0 
+bios_release_date =&gt; 13/09/2012 
+bios_vendor =&gt; innotek GmbH 
+bios_version =&gt; VirtualBox 
+blockdevice_sda_model =&gt; VBOX HARDDISK 
+blockdevice_sda_size =&gt; 22020587520 
+blockdevice_sda_vendor =&gt; ATA 
+blockdevice_sr0_model =&gt; CD-ROM 
+blockdevice_sr0_size =&gt; 1073741312 
+blockdevice_sr0_vendor =&gt; VBOX 
+blockdevices =&gt; sda,sr0 
+boardmanufacturer =&gt; Oracle Corporation 
+boardproductname =&gt; VirtualBox 
+boardserialnumber =&gt; 0 
+
+domain =&gt; codingbee.dyndns.org  
+facterversion =&gt; 2.1.0 
+filesystems =&gt; ext4,iso9660 
+fqdn =&gt; puppetagent1.codingbee.dyndns.org 
+hardwareisa =&gt; x86_64 
+hardwaremodel =&gt; x86_64 
+hostname =&gt; puppetagent1 
+id =&gt; root 
+interfaces =&gt; eth0,lo 
+ipaddress =&gt; 172.228.24.01 
+ipaddress_eth0 =&gt; 172.228.24.01 
+ipaddress_lo =&gt; 127.0.0.1 
+is_virtual =&gt; true 
+kernel =&gt; Linux 
+kernelmajversion =&gt; 2.6 
+kernelrelease =&gt; 2.6.32-431.23.3.el6.x86_64 
+kernelversion =&gt; 2.6.32 
+lsbdistcodename =&gt; Final 
+lsbdistdescription =&gt; CentOS release 6.5 (Final) 
+lsbdistid =&gt; CentOS 
+lsbdistrelease =&gt; 6.5 
+lsbmajdistrelease =&gt; 6 
+lsbrelease =&gt; :base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0noarch:graphics-4.0-amd64:
+graphics-4.0-noarch:printing-4.0-amd64:printing-4.0noarch 
+macaddress =&gt; 05:00:22:47:H9:77 
+macaddress_eth0 =&gt; 05:00:22:47:H9:77 
+manufacturer =&gt; innotek GmbH 
+memoryfree =&gt; 125.86 GB 
+memoryfree_mb =&gt; 805.86 
+memorysize =&gt; 500 GB 
+memorysize_mb =&gt; 996.14 
+mtu_eth0 =&gt; 1500 
+mtu_lo =&gt; 16436 
+netmask =&gt; 255.255.255.0 
+netmask_eth0 =&gt; 255.255.255.0  
+
+network_lo =&gt; 127.0.0.0 
+operatingsystem =&gt; CentOS 
+operatingsystemmajrelease =&gt; 6 
+operatingsystemrelease =&gt; 6.5 
+osfamily =&gt; RedHat 
+partitions =&gt; {"sda1"=&gt;{
+"uuid"=&gt;"d74a4fa8-0883-4873-8db0-b09d91e2ee8d", "size" =&gt;"1024000", 
+"mount" =&gt; "/boot", "filesystem" =&gt; "ext4"}, "sda2"=&gt;{"size" =&gt; "41981952", 
+"filesystem" =&gt; "LVM2_member"}
+} 
+path =&gt; /usr/lib64/qt3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin 
+physicalprocessorcount =&gt; 1 
+processor0 =&gt; Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz 
+processor1 =&gt; Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz 
+processor2 =&gt; Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz 
+processorcount =&gt; 3 
+productname =&gt; VirtualBox 
+ps =&gt; ps -ef 
+puppetversion =&gt; 3.6.2 
+rubysitedir =&gt; /usr/lib/ruby/site_ruby/1.8 
+rubyversion =&gt; 1.8.7
+selinux =&gt; true 
+selinux_config_mode =&gt; enforcing 
+selinux_config_policy =&gt; targeted 
+selinux_current_mode =&gt; enforcing 
+selinux_enforced =&gt; true 
+selinux_policyversion =&gt; 24 
+serialnumber =&gt; 0 
+sshdsakey =&gt; AAAAB3NzaC1kc3MAAACBAK5fYwRM3UtOs8zBCtRTjuHLw56p94X/E0UZBZwFR3q7
+WH0x5+MNsjfmdCxKvpY/WlIIUcFJzvlfjXm4qDaTYalbzSZJMT266njNbw5WwLJcJ74KdW92ds76pjgm
+CsjAh+R9YnyKCEE35GsYjGH7whw0gl/rZVrjvWYKQDOmJA2dAAAAFQCoYABgjpv3EkTWgjLIMnxA0Gfud
+QAAAIBM4U6/nerfn6Qvt43FC2iybvwVo8ufixJl5YSEhs92uzsW6jiw68aaZ32q095/gEqYzeF7a2knr
+OpASgO9xXqStYKg8ExWQVaVGFTR1NwqhZvz0oRSbrN3h3tHgknoKETRAg/imZQ2P6tppAoQZ8wpuLrXU
+CyhgJGZ04Phv8hinAAAAIBN4xaycuK0mdH/YdcgcLiSn8cjgtiETVzDYa+jF 
+swapfree =&gt; 3.55 GB 
+swapfree_mb =&gt; 2015.99 
+swapsize =&gt; 3.55 GB 
+swapsize_mb =&gt; 2015.99 
+timezone =&gt; GMT 
+type =&gt; Other 
+uniqueid =&gt; a8c0af01 
+uptime =&gt; 45:012 hours 
+uptime_days =&gt; 0 
+uptime_hours =&gt; 6 
+uptime_seconds =&gt; 21865 
+uuid =&gt; BD8B9D85-1BFD-4015-A633-BF71D9A6A741 
+virtual =&gt; virtualbox 
+</pre>
+<p>In the above code, we can see some of the data overlap with few of the information available in bash “env” variable. Puppet directly does not use the data, instead it makes use of facter data, Facter data is treated as global variable.</p>
+<p>The facts are then available as top level variable and the Puppet master can use them to compile the Puppet catalog for the requesting agent. Facters are called in manifest as normal variable with $ prefix.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+if ($OperatingSystem == "Linux") { 
+   $message = "This machine OS is of the type $OperatingSystem \n" 
+} else { 
+   $message = "This machine is unknown \n" 
+} 
+
+file { "/tmp/machineOperatingSystem.txt": 
+   ensure =&gt; file, 
+   content =&gt; "$message" 
+}
+</pre>
+<p>The above manifest file only bothers about a single file called <b>machineOperatingSystem.txt</b>, where the content of this file is deducted by the fact called <b>OperatingSystem</b>.</p>
+<pre class="prettyprint notranslate">
+[root@puppetagent1 /]# facter OperatingSystem 
+Linux  
+
+[root@puppetagent1 /]# puppet apply /tmp/ostype.pp 
+Notice: Compiled catalog for puppetagent1.codingbee.dyndns.org 
+in environment production in 0.07 seconds 
+Notice: /Stage[main]/Main/File[/tmp/machineOperatingSystem.txt]/ensure: 
+defined content as '{md5}f59dc5797d5402b1122c28c6da54d073' 
+Notice: Finished catalog run in 0.04 seconds  
+
+[root@puppetagent1 /]# cat /tmp/machinetype.txt 
+This machine OS is of the type Linux
+</pre>
+<h2>Custom Facts</h2>
+<p>All the above facts that we have seen are the core facts of the machine. One can add this custom facts to the node in the following ways &minus;</p>
+<ul class="list">
+<li>Using the “export FACTER … Syntax”</li>
+<li>Using the $LOAD_PATH settings</li>
+<li>FACTERLIB</li>
+<li>Pluginsync</li>
+</ul>
+<h3>Using the “export FACTER” Syntax</h3>
+<p>One can manually add the facts using the export FACTER_{fact’s name} syntax.</p>
+<h3>Example</h3>
+<pre class="result notranslate">
+[root@puppetagent1 facter]# export FACTER_tallest_mountain="Everest" 
+[root@puppetagent1 facter]# facter tallest_mountain Everest
+</pre>
+<h3>Using the $LOAD_PATH Settings</h3>
+<p>In Ruby, $LOAD_PATH is equivalent to Bash special parameter. Although it is similar to bash $PATH variable, in real facts $LOAD_PATH is not an environment variable, instead it is a pre-defined variable.</p>
+<p>$LOAD_PATH has a synonym “$:”. This variable is an array to search and load the values.</p>
+<pre class="result notranslate">
+[root@puppetagent1 ~]# ruby -e 'puts $LOAD_PATH'            
+# note you have to use single quotes.  
+/usr/lib/ruby/site_ruby/1.6 
+/usr/lib64/ruby/site_ruby/1.6 
+/usr/lib64/ruby/site_ruby/1.6/x86_64-linux 
+/usr/lib/ruby/site_ruby 
+/usr/lib64/ruby/site_ruby 
+/usr/lib64/site_ruby/1.6 
+/usr/lib64/site_ruby/1.6/x86_64-linux 
+/usr/lib64/site_ruby 
+/usr/lib/ruby/1.6 
+/usr/lib64/ruby/1.6 
+/usr/lib64/ruby/1.6/x86_64-linux 
+</pre>
+<p>Let’s take an example of creating a directory facter and adding a <b>.pp</b> file and appending a content to it.</p>
+<pre class="result notranslate">
+[root@puppetagent1 ~]# cd /usr/lib/ruby/site_ruby/ 
+[root@puppetagent1 site_ruby]# mkdir facter 
+[root@puppetagent1 site_ruby]# cd facter/ 
+[root@puppetagent1 facter]# ls 
+[root@puppetagent1 facter]# touch newadded_facts.rb 
+</pre>
+<p>Add the following content to the custom_facts.rb file.</p>
+<pre class="result notranslate">
+[root@puppetagent1 facter]# cat newadded_facts.rb 
+Facter.add('tallest_mountain') do 
+   setcode "echo Everest" 
+end 
+</pre>
+<p>Facter works in the method of scanning through all the folder listed in $LOAD_PATH, and looks for a director called facter. Once it finds that particular folder, it will load them anywhere in the folder structure. If it finds this folder then it looks for any Ruby file in that facter folder and loads all the defined facts about any particular configuration in the memory.</p>
+<h2>Using FACTERLIB</h2>
+<p>In Puppet, FACTERLIB works very much similar to $LOAD_PATH but with only one key difference that, it is a OS level environment parameter rather than a Ruby special variable. By default, the environment variable may not be set.</p>
+<pre class="result notranslate">
+[root@puppetagent1 facter]# env | grep "FACTERLIB" 
+[root@puppetagent1 facter]# 
+</pre>
+<p>To test FACTERLIB, we need to perform the following steps.</p>
+<p>Create a folder called test_facts in the following structure.</p>
+<pre class="result notranslate">
+[root@puppetagent1 tmp]# tree /tmp/test_facts/ 
+/tmp/some_facts/ 
+├── vipin 
+│   └── longest_river.rb 
+└── testing 
+   └── longest_wall.rb 
+</pre>
+<p>Add the following contents to the .rb files.</p>
+<pre class="prettyprint notranslate">
+[root@puppetagent1 vipin]# cat longest_river.rb 
+Facter.add('longest_river') do 
+   setcode "echo Nile" 
+end 
+
+[root@puppetagent1 testing]# cat longest_wall.rb 
+Facter.add('longest_wall') do 
+   setcode "echo 'China Wall'" 
+end 
+</pre>
+<p>Use the export statement.</p>
+<pre class="result notranslate">
+[root@puppetagent1 /]# export 
+FACTERLIB = "/tmp/some_facts/river:/tmp/some_facts/wall" 
+[root@puppetagent1 /]# env | grep "FACTERLIB" 
+FACTERLIB = /tmp/some_facts/river:/tmp/some_facts/wall 
+</pre>
+<p>Test the new facter.</p>
+<pre class="result notranslate">
+[root@puppetagent1 /]# facter longest_river 
+Nile 
+[root@puppetagent1 /]# facter longest_wall 
+China Wall 
+</pre>
+<h2>External Facts</h2>
+<p>External facts are very useful when the user wishes to apply some new facts created at the provisioning time. External facts are one of the key ways of applying metadata to a VM at its provisioning stage (e.g. using vSphere, OpenStack, AWS, etc.)</p>
+<p>All the metadata and its details created can be used by Puppet to determine what details should be present in the catalog, which is going to be applied.</p>
+<h3>Creating an External Fact</h3>
+<p>On the agent machine, we need to create a directory as mentioned below.</p>
+<pre class="result notranslate">
+$ mkdir -p /etc/facter/facts.d
+</pre>
+<p>Create a Shell script in the directory with the following content.</p>
+<pre class="result notranslate">
+$ ls -l /etc/facter/facts.d 
+total 4 
+-rwxrwxrwx. 1 root root 65 Sep 18 13:11 external-factstest.sh 
+$ cat /etc/facter/facts.d/external-factstest.sh 
+#!/bin/bash 
+echo "hostgroup = dev" 
+echo "environment = development"
+</pre>
+<p>Change the permission of the script file.</p>
+<pre class="result notranslate">
+$ chmod u+x /etc/facter/facts.d/external-facts.sh
+</pre>
+<p>Once done, we can now see the variable present with the key/value pair.</p>
+<pre class="result notranslate">
+$ facter hostgroup 
+dev 
+$ facter environment 
+development 
+</pre>
+<p>One can write custom facts in Puppet. As a reference, use the following link from the Puppet site.</p>
+<p><a rel="nofollow" target="_blank" href="https://docs.puppet.com/facter/latest/fact_overview.html#writing-structured-facts" target="_blank" rel="nofollow">https://docs.puppet.com/facter/latest/fact_overview.html#writing-structured-facts</a></p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/puppet/puppet_file_server.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/puppet/puppet_resource.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

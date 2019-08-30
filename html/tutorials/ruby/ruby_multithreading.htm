@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Ruby - Multithreading</title>
+<meta charset="utf-8">
+<meta name="description" content="Ruby - Multithreading - Traditional programs have a single thread of execution the statements or instructions that comprise the program are executed sequentially until the program term"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/ruby/ruby_multithreading.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#891204;
+}
+a.demo {
+    background:#891204;
+}
+li.heading {
+    background:#891204;
+}
+.course-box{background:#891204}
+.home-intro-sub p{color:#891204}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/ruby/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/ruby/images/ruby-mini-logo.jpg" alt="Ruby Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Ruby Basics</li>
+<li><a href="/ruby/index.htm">Ruby - Home</a></li>
+<li><a href="/ruby/ruby_overview.htm">Ruby - Overview</a></li>
+<li><a href="/ruby/ruby_environment.htm">Ruby - Environment Setup</a></li>
+<li><a href="/ruby/ruby_syntax.htm">Ruby - Syntax</a></li>
+<li><a href="/ruby/ruby_classes.htm">Ruby - Classes and Objects</a></li>
+<li><a href="/ruby/ruby_variables.htm">Ruby - Variables</a></li>
+<li><a href="/ruby/ruby_operators.htm">Ruby - Operators</a></li>
+<li><a href="/ruby/ruby_comments.htm">Ruby - Comments</a></li>
+<li><a href="/ruby/ruby_if_else.htm">Ruby - IF...ELSE</a></li>
+<li><a href="/ruby/ruby_loops.htm">Ruby - Loops</a></li>
+<li><a href="/ruby/ruby_methods.htm">Ruby - Methods</a></li>
+<li><a href="/ruby/ruby_blocks.htm">Ruby - Blocks</a></li>
+<li><a href="/ruby/ruby_modules.htm">Ruby - Modules</a></li>
+<li><a href="/ruby/ruby_strings.htm">Ruby - Strings</a></li>
+<li><a href="/ruby/ruby_arrays.htm">Ruby - Arrays</a></li>
+<li><a href="/ruby/ruby_hashes.htm">Ruby - Hashes</a></li>
+<li><a href="/ruby/ruby_date_time.htm">Ruby - Date &amp; Time</a></li>
+<li><a href="/ruby/ruby_ranges.htm">Ruby - Ranges</a></li>
+<li><a href="/ruby/ruby_iterators.htm">Ruby - Iterators</a></li>
+<li><a href="/ruby/ruby_input_output.htm">Ruby - File I/O</a></li>
+<li><a href="/ruby/ruby_exceptions.htm">Ruby - Exceptions</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Ruby Advanced</li>
+<li><a href="/ruby/ruby_object_oriented.htm">Ruby - Object Oriented</a></li>
+<li><a href="/ruby/ruby_regular_expressions.htm">Ruby - Regular Expressions</a></li>
+<li><a href="/ruby/ruby_database_access.htm">Ruby - Database Access</a></li>
+<li><a href="/ruby/ruby_web_applications.htm">Ruby - Web Applications</a></li>
+<li><a href="/ruby/ruby_sending_email.htm">Ruby - Sending Email</a></li>
+<li><a href="/ruby/ruby_socket_programming.htm">Ruby - Socket Programming</a></li>
+<li><a href="/ruby/ruby_xml_xslt.htm">Ruby - Ruby/XML, XSLT</a></li>
+<li><a href="/ruby/ruby_web_services.htm">Ruby - Web Services</a></li>
+<li><a href="/ruby/ruby_tk_guide.htm">Ruby - Tk Guide</a></li>
+<li><a href="/ruby/ruby_ldap.htm">Ruby - Ruby/LDAP Tutorial</a></li>
+<li><a href="/ruby/ruby_multithreading.htm">Ruby - Multithreading</a></li>
+<li><a href="/ruby/ruby_builtin_functions.htm">Ruby - Built-in Functions</a></li>
+<li><a href="/ruby/ruby_predefined_variables.htm">Ruby - Predefined Variables</a></li>
+<li><a href="/ruby/ruby_predefined_constants.htm">Ruby - Predefined Constants</a></li>
+<li><a href="/ruby/ruby_associated_tools.htm">Ruby - Associated Tools</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Ruby Useful Resources</li>
+<li><a href="/ruby/ruby_quick_guide.htm">Ruby - Quick Guide</a></li>
+<li><a href="/ruby/ruby_resources.htm">Ruby - Useful Resources</a></li>
+<li><a href="/ruby/ruby_discussion.htm">Ruby - Discussion</a></li>
+<li><a href="/ruby-on-rails/index.htm">Ruby - Ruby on Rails Tutorial</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Ruby - Multithreading</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/ruby/ruby_ldap.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/ruby/ruby_builtin_functions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Traditional programs have a single <i>thread of execution</i> the statements or instructions that comprise the program are executed sequentially until the program terminates.</p>
+<p>A multithreaded program has more than one thread of execution. Within each thread, statements are executed sequentially, but the threads themselves may be executed in parallel on a multicore CPU, for example. Often on a single CPU machine, multiple threads are not actually executed in parallel, but parallelism is simulated by interleaving the execution of the threads.</p>
+<p>Ruby makes it easy to write multi-threaded programs with the <i>Thread</i> class. Ruby threads are a lightweight and efficient way to achieve concurrency in your code.</p>
+<h2>Creating Ruby Threads</h2>
+<p>To start a new thread, just associate a block with a call to <i>Thread.new</i>. A new thread will be created to execute the code in the block, and the original thread will return from <i>Thread.new</i> immediately and resume execution with the next statement &minus;</p>
+<pre class="result notranslate">
+# Thread #1 is running here
+Thread.new {
+   # Thread #2 runs this code
+}
+# Thread #1 runs this code
+</pre>
+<h3>Example</h3>
+<p>Here is an example, which shows how we can use multi-threaded Ruby program.</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+def func1
+   i = 0
+   while i&lt;=2
+      puts "func1 at: #{Time.now}"
+      sleep(2)
+      i = i&plus;1
+   end
+end
+
+def func2
+   j = 0
+   while j&lt;=2
+      puts "func2 at: #{Time.now}"
+      sleep(1)
+      j = j&plus;1
+   end
+end
+
+puts "Started At #{Time.now}"
+t1 = Thread.new{func1()}
+t2 = Thread.new{func2()}
+t1.join
+t2.join
+puts "End at #{Time.now}"
+</pre>
+<p>This will produce following result &minus;</p>
+<pre class="result notranslate">
+Started At Wed May 14 08:21:54 -0700 2008
+func1 at: Wed May 14 08:21:54 -0700 2008
+func2 at: Wed May 14 08:21:54 -0700 2008
+func2 at: Wed May 14 08:21:55 -0700 2008
+func1 at: Wed May 14 08:21:56 -0700 2008
+func2 at: Wed May 14 08:21:56 -0700 2008
+func1 at: Wed May 14 08:21:58 -0700 2008
+End at Wed May 14 08:22:00 -0700 2008
+</pre>
+<h2>Thread Lifecycle</h2>
+<p>A new threads are created with <i>Thread.new</i>. You can also use the synonyms <i>Thread.start</i> and <i>Thread.fork</i>.</p>
+<p>There is no need to start a thread after creating it, it begins running automatically when CPU resources become available.</p>
+<p>The Thread class defines a number of methods to query and manipulate the thread while it is running. A thread runs the code in the block associated with the call to <i>Thread.new</i> and then it stops running.</p>
+<p>The value of the last expression in that block is the value of the thread, and can be obtained by calling the <i>value</i> method of the Thread object. If the thread has run to completion, then the value returns the thread's value right away. Otherwise, the <i>value</i> method blocks and does not return until the thread has completed.</p>
+<p>The class method <i>Thread.current</i> returns the Thread object that represents the current thread. This allows threads to manipulate themselves. The class method <i>Thread.main</i> returns the Thread object that represents the main thread. This is the initial thread of execution that began when the Ruby program was started.</p>
+<p>You can wait for a particular thread to finish by calling that thread's <i>Thread.join</i> method. The calling thread will block until the given thread is finished.</p>
+<h2>Threads and Exceptions</h2>
+<p>If an exception is raised in the main thread, and is not handled anywhere, the Ruby interpreter prints a message and exits. In threads, other than the main thread, unhandled exceptions cause the thread to stop running.</p>
+<p>If a thread <b>t</b> exits because of an unhandled exception, and another thread <b>s</b> calls <i>t.join or t.value,</i> then the exception that occurred in <b>t</b> is raised in the thread <b>s</b>.</p>
+<p>If <i>Thread.abort_on_exception</i> is <i>false</i>, the default condition, an unhandled exception simply kills the current thread and all the rest continue to run.</p>
+<p>If you would like any unhandled exception in any thread to cause the interpreter to exit, set the class method <i>Thread.abort_on_exception</i> to <i>true</i>.</p>
+<pre class="result notranslate">
+t = Thread.new { ... }
+t.abort_on_exception = true
+</pre>
+<h2>Thread Variables</h2>
+<p>A thread can normally access any variables that are in scope when the thread is created. Variables local to the block of a thread are local to the thread, and are not shared.</p>
+<p>Thread class features a special facility that allows thread-local variables to be created and accessed by name. You simply treat the thread object as if it were a Hash, writing to elements using []= and reading them back using [].</p>
+<p>In this example, each thread records the current value of the variable count in a threadlocal variable with the key <i>mycount</i>.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/oVib5c" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+count = 0
+arr = []
+
+10.times do |i|
+   arr[i] = Thread.new {
+      sleep(rand(0)/10.0)
+      Thread.current["mycount"] = count
+      count &plus;= 1
+   }
+end
+
+arr.each {|t| t.join; print t["mycount"], ", " }
+puts "count = #{count}"
+</pre>
+<p>This produces the following result &minus;</p>
+<pre class="result notranslate">
+8, 0, 3, 7, 2, 1, 6, 5, 4, 9, count = 10
+</pre>
+<p>The main thread waits for the subthreads to finish and then prints out the value of <i>count</i> captured by each.</p>
+<h2>Thread Priorities</h2>
+<p>The first factor that affects the thread scheduling is the thread priority: high-priority threads are scheduled before low-priority threads. More precisely, a thread will only get CPU time if there are no higher-priority threads waiting to run.</p>
+<p>You can set and query the priority of a Ruby Thread object with <i>priority =</i> and <i>priority</i>. A newly created thread starts at the same priority as the thread that created it. The main thread starts off at priority 0.</p>
+<p>There is no way to set the priority of a thread before it starts running. A thread can, however, raise or lower its own priority as the first action it takes.</p>
+<h2>Thread Exclusion</h2>
+<p>If two threads share access to the same data, and at least one of the threads modifies that data, you must take special care to ensure that no thread can ever see the data in an inconsistent state. This is called <i>thread exclusion</i>.</p>
+<p><b>Mutex</b> is a class that implements a simple semaphore lock for mutually exclusive access to some shared resource. That is, only one thread may hold the lock at a given time. Other threads may choose to wait in line for the lock to become available, or may simply choose to get an immediate error indicating that the lock is not available.</p>
+<p>By placing all accesses to the shared data under control of a <i>mutex</i>, we ensure consistency and atomic operation. Let's try to examples, first one without mutax and second one with mutax &minus;</p>
+<h3>Example without Mutax</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/ZN9FmX" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+require 'thread'
+
+count1 = count2 = 0
+difference = 0
+counter = Thread.new do
+   loop do
+      count1 &plus;= 1
+      count2 &plus;= 1
+   end
+end
+spy = Thread.new do
+   loop do
+      difference &plus;= (count1 - count2).abs
+   end
+end
+sleep 1
+puts "count1 :  #{count1}"
+puts "count2 :  #{count2}"
+puts "difference : #{difference}"
+</pre>
+<p>This will produce the following result &minus;</p>
+<pre class="prettyprint notranslate">
+count1 :  1583766
+count2 :  1583766
+difference : 0
+</pre>
+<div class="demo-view">
+<a href="http://tpcg.io/yd9dWW" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+require 'thread'
+mutex = Mutex.new
+
+count1 = count2 = 0
+difference = 0
+counter = Thread.new do
+   loop do
+      mutex.synchronize do
+         count1 &plus;= 1
+         count2 &plus;= 1
+      end
+   end
+end
+spy = Thread.new do
+   loop do
+      mutex.synchronize do
+         difference &plus;= (count1 - count2).abs
+      end
+   end
+end
+sleep 1
+mutex.lock
+puts "count1 :  #{count1}"
+puts "count2 :  #{count2}"
+puts "difference : #{difference}"
+</pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">
+count1 :  696591
+count2 :  696591
+difference : 0
+</pre>
+<h2>Handling Deadlock</h2>
+<p>When we start using <i>Mutex</i> objects for thread exclusion we must be careful to avoid <i>deadlock</i>. Deadlock is the condition that occurs when all threads are waiting to acquire a resource held by another thread. Because all threads are blocked, they cannot release the locks they hold. And because they cannot release the locks, no other thread can acquire those locks.</p>
+<p>This is where <i>condition variables</i> come into picture. A <i>condition variable</i> is simply a semaphore that is associated with a resource and is used within the protection of a particular <i>mutex</i>. When you need a resource that's unavailable, you wait on a condition variable. That action releases the lock on the corresponding <i>mutex</i>. When some other thread signals that the resource is available, the original thread comes off the wait and simultaneously regains the lock on the critical region.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/E92cwJ" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+require 'thread'
+mutex = Mutex.new
+
+cv = ConditionVariable.new
+a = Thread.new {
+   mutex.synchronize {
+      puts "A: I have critical section, but will wait for cv"
+      cv.wait(mutex)
+      puts "A: I have critical section again! I rule!"
+   }
+}
+
+puts "(Later, back at the ranch...)"
+
+b = Thread.new {
+   mutex.synchronize {
+      puts "B: Now I am critical, but am done with cv"
+      cv.signal
+      puts "B: I am still critical, finishing up"
+   }
+}
+a.join
+b.join
+</pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">
+A: I have critical section, but will wait for cv
+(Later, back at the ranch...)
+B: Now I am critical, but am done with cv
+B: I am still critical, finishing up
+A: I have critical section again! I rule!
+</pre>
+<h2>Thread States</h2>
+<p>There are five possible return values corresponding to the five possible states as shown in the following table. The <i>status</i> method returns the state of the thread.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<th style="text-align:center;width:50%">Thread state</th>
+<th style="text-align:center;">Return value</th></tr>
+<tr>
+<td>Runnable</td>
+<td>run</td>
+</tr>
+<tr>
+<td>Sleeping</td>
+<td>Sleeping</td>
+</tr>
+<tr>
+<td>Aborting</td>
+<td>aborting</td>
+</tr>
+<tr>
+<td>Terminated normally</td>
+<td>false</td>
+</tr>
+<tr>
+<td>Terminated with exception</td>
+<td>nil</td>
+</tr>
+</table>
+<h2>Thread Class Methods</h2>
+<p>Following methods are provided by <i>Thread</i> class and they are applicable to all the threads available in the program. These methods will be called as using <i>Thread</i> class name as follows &minus;</p>
+<pre class="prettyprint notranslate">
+Thread.abort_on_exception = true
+</pre>
+<section class="toggle">
+<label><i class="icon icon-minus"></i><i class="icon icon-plus"></i>Here is the complete list of all the class methods available &minus;</label>
+<div class="toggle-content" style="display: none;"> 
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th style="text-align:center;">Methods &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Thread.abort_on_exception</b></p>
+<p>Returns the status of the global <i>abort on exception</i> condition. The default is <i>false</i>. When set to <i>true</i>, will cause all threads to abort (the process will exit(0)) if an exception is raised in any thread </p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Thread.abort_on_exception=</b></p>
+<p>When set to <i>true</i>, all threads will abort if an exception is raised. Returns the new state.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Thread.critical</b></p>
+<p>Returns the status of the global <i>thread critical</i> condition.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>Thread.critical=</b></p>
+<p>Sets the status of the global <i>thread critical</i> condition and returns it. When set to <i>true</i>, prohibits scheduling of any existing thread. Does not block new threads from being created and run. Certain thread operations (such as stopping or killing a thread, sleeping in the current thread, and raising an exception) may cause a thread to be scheduled even when in a critical section.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>Thread.current</b></p>
+<p>Returns the currently executing thread.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>Thread.exit</b></p>
+<p>Terminates the currently running thread and schedules another thread to be run. If this thread is already marked to be killed, <i>exit</i> returns the <i>Thread.</i> If this is the main thread, or the last thread, exit the process.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>Thread.fork { block }</b></p>
+<p>Synonym for Thread.new.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>Thread.kill( aThread )</b></p>
+<p>Causes the given <i>a Thread</i> to exit</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>Thread.list</b></p>
+<p>Returns an array of <i>Thread</i> objects for all threads that are either runnable or stopped. Thread.</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>Thread.main</b></p>
+<p>Returns the main thread for the process.</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>Thread.new( [ arg ]* ) {| args | block }</b></p>
+<p>Creates a new thread to execute the instructions given in block, and begins running it. Any arguments passed to <i>Thread.new</i> are passed into the block.</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><p><b>Thread.pass</b></p>
+<p>Invokes the thread scheduler to pass execution to another thread.</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><p><b>Thread.start( [ args ]* ) {| args | block }</b></p>
+<p>Basically the same as <i>Thread.new</i>. However, if class <i>Thread</i> is subclassed, then calling <i>start</i> in that subclass will not invoke the subclass's <i>initialize</i> method.</p></td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><p><b>Thread.stop</b></p>
+<p>Stops execution of the current thread, putting it into a <i>sleep</i> state, and schedules execution of another thread. Resets the <i>critical</i> condition to false.</p></td>
+</tr>
+</table>
+</div>
+</section>
+<h2>Thread Instance Methods</h2>
+<p>These methods are applicable to an instance of a thread. These methods will be called as using an instance of a <i>Thread</i> as follows &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+thr = Thread.new do   # Calling a class method new
+   puts "In second thread"
+   raise "Raise exception"
+end
+thr.join   # Calling an instance method join
+</pre>
+<section class="toggle">
+<label><i class="icon icon-minus"></i><i class="icon icon-plus"></i>Here is the complete list of all the instance methods available &minus;</label>
+<div class="toggle-content" style="display: none;"> 
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th style="text-align:center;">Methods &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>thr[ aSymbol ]</b></p>
+<p>Attribute Reference - Returns the value of a thread-local variable, using either a symbol or an <i>aSymbol</i> name. If the specified variable does not exist, returns <i>nil</i>.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>thr[ aSymbol ] =</b></p>
+<p>Attribute Assignment - Sets or creates the value of a thread-local variable, using either a symbol or a string.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>thr.abort_on_exception</b></p>
+<p>Returns the status of the <i>abort on exception</i> condition for <i>thr</i>. The default is <i>false</i>.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>thr.abort_on_exception=</b></p>
+<p>When set to <i>true</i>, causes all threads (including the main program) to abort if an exception is raised in <i>thr</i>. The process will effectively <i>exit(0)</i>.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>thr.alive?</b></p>
+<p>Returns <i>true</i> if <i>thr</i> is running or sleeping.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>thr.exit</b></p>
+<p>Terminates <i>thr</i> and schedules another thread to be run. If this thread is already marked to be killed, <i>exit</i> returns the <i>Thread</i>. If this is the main thread, or the last thread, exits the process.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>thr.join</b></p>
+<p>The calling thread will suspend execution and run <i>thr</i>. Does not return until <i>thr</i> exits. Any threads not joined will be killed when the main program exits.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>thr.key?</b></p>
+<p>Returns <i>true</i> if the given string (or symbol) exists as a thread-local variable.</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>thr.kill</b></p>
+<p>Synonym for <i>Thread.exit</i>.</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>thr.priority</b></p>
+<p>Returns the priority of <i>thr</i>. Default is zero; higher-priority threads will run before lower priority threads.</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>thr.priority=</b></p>
+<p>Sets the priority of <i>thr</i> to an Integer. Higher-priority threads will run before lower priority threads.</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><p><b>thr.raise( anException )</b></p>
+<p>Raises an exception from <i>thr</i>. The caller does not have to be <i>thr</i>.</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><p><b>thr.run</b></p>
+<p>Wakes up <i>thr</i>, making it eligible for scheduling. If not in a critical section, then invokes the scheduler.</p></td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><p><b>thr.safe_level</b></p>
+<p>Returns the safe level in effect for <i>thr</i>.</p></td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><p><b>thr.status</b></p>
+<p>Returns the status of <i>thr</i>: <i>sleep</i> if <i>thr</i> is sleeping or waiting on I/O, <i>run</i> if <i>thr</i> is executing, false if <i>thr</i> terminated normally, and <i>nil</i> if <i>thr</i> terminated with an exception.</p></td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><p><b>thr.stop?</b></p>
+<p>Returns <i>true</i> if <i>thr</i> is dead or sleeping.</p></td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><p><b>thr.value</b></p>
+<p>Waits for thr to complete via <i>Thread.join</i> and returns its value.</p></td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><p><b>thr.wakeup</b></p>
+<p>Marks <i>thr</i> as eligible for scheduling, it may still remain blocked on I/O, however.</p></td>
+</tr>
+</table>
+</div>
+</section>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/ruby/ruby_ldap.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/ruby/ruby_builtin_functions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

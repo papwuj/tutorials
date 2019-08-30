@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>XStream - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="XStream - Quick Guide - XStream is a simple Java-based library to serialize Java objects to XML and vice versa."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/xstream/xstream_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#30807d;
+}
+a.demo {
+    background:#30807d;
+}
+li.heading {
+    background:#30807d;
+}
+.course-box{background:#30807d}
+.home-intro-sub p{color:#30807d}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/xstream/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/xstream/images/xstream-mini-logo.jpg" alt="XStream Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">XStream Tutorial</li>
+<li><a href="/xstream/index.htm">XStream - Home</a></li>
+<li><a href="/xstream/xstream_overview.htm">XStream - Overview</a></li>
+<li><a href="/xstream/xstream_environment.htm">XStream - Environment Setup</a></li>
+<li><a href="/xstream/xstream_first_application.htm">XStream - First Application</a></li>
+<li><a href="/xstream/xstream_aliasing.htm">XStream - Aliasing</a></li>
+<li><a href="/xstream/xstream_annotations.htm">XStream - Annotations</a></li>
+<li><a href="/xstream/xstream_converters.htm">XStream - Converters</a></li>
+<li><a href="/xstream/xstream_object_streams.htm">XStream - Object Streams</a></li>
+<li><a href="/xstream/xstream_json.htm">XStream - JSON</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">XStream Useful Resources</li>
+<li><a href="/xstream/xstream_quick_guide.htm">XStream - Quick Guide</a></li>
+<li><a href="/xstream/xstream_useful_resources.htm">XStream - Useful Resources</a></li>
+<li><a href="/xstream/xstream_discussion.htm">XStream - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>XStream - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/xstream/xstream_json.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/xstream/xstream_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>XStream - Overview</h1>
+<p>XStream is a simple Java-based library to serialize Java objects to XML and vice versa.</p>
+<h2>Features</h2>
+<ul class="list">
+<li><p><b>Easy to use</b> &minus; XStream API provides a high-level facade to simplify common use cases.</p></li>
+<li><p><b>No need to create mapping</b> &minus; XStream API provides default mapping for most of the objects to be serialized.</p></li>
+<li><p><b>Performance</b> &minus; XStream is fast and is of low memory footprint, which is suitable for large object graphs or systems.</p></li>
+<li><p><b>Clean XML</b> &minus; XStream produces clean and compact XML output that is easy to read.</p></li>
+<li><p><b>Object modification not required</b> &minus; XStream serializes internal fields like private and final fields, and supports non-public and inner classes. Default constructor is not a mandatory requirement.</p></li>
+<li><p><b>Full object graph support</b> &minus; XStream allows to maintain duplicate references encountered in the object-model and also supports circular references.</p></li>
+<li><p><b>Customizable conversion strategies</b> &minus; Custom strategies can be registered in order to allow customization of a particular type to be represented as XML.</p></li>
+<li><p><b>Security framework</b> &minus; XStream provides a fair control over unmarshalled types to prevent security issues with manipulated input.</p></li>
+<li><p><b>Error messages</b> &minus; When an exception occurs due to malformed XML, it provides detailed diagnostics to fix the problem.</p></li>
+<li><p><b>Alternative output format</b> &minus; XStream supports other output formats like JSON and morphing.</p></li>
+</ul>
+<h2>Common Uses</h2>
+<ul class="list">
+<li><p><b>Transport</b> &minus; XML is a text representation of object and can be used to transport objects over the wire independent of the serialization / deserialization techniques used.</p></li>
+<li><p><b>Persistence</b> &minus; Objects can be persisted as XML in databases and can be marshalled/unmarshalled as and when required.</p></li>
+<li><p><b>Configuration</b> &minus; XML is self-explanatory and is heavily used to define configurations. Objects can also be used for configuration purpose after converting them to XML representation.</p></li>
+<li><p><b>Unit Tests</b> &minus; XStream API is JUnit compatible and can be used to enhance unit testing of application modules.</p></li>
+</ul>
+<h1>XStream - Environment Setup</h1>
+<p>In this chapter, we will discuss on the different aspects of setting up a congenial environment for Java.</p>
+<h2>Local Environment Setup</h2>
+<p>If you want to set up your environment for Java programming language, then this section explains how to download and set up Java on your machine. Please follow the steps given below to set up you Java environment.</p>
+<p>Java SE can be downloaded for free from the link &minus;</p>
+<p><a rel="nofollow" href="https://java.sun.com/javase/downloads/index_jdk5.jsp" target="_blank">Download Java</a>.</p>
+<p>Follow the instructions to download Java and run the <b>.exe</b> to install Java on your machine. Once you have installed Java on your machine, you would need to set the environment variables to point to correct installation directories &minus;</p>
+<h2>Setting Up the Path for Windows 2000/XP</h2>
+<p>Assuming you have installed Java in <i>c:\Program Files\java\jdk</i> directory &minus;</p>
+<ul class="list">
+<li><p>Right-click on 'My Computer' and select 'Properties'.</p></li>
+<li><p>Click the 'Environment variables' button under the 'Advanced' tab.</p></li>
+<li><p>Alter the 'Path' variable so that it also contains the path to the Java executable. For example, if the path is currently set to 'C:\WINDOWS\SYSTEM32', then change your path to read 'C:\WINDOWS\SYSTEM32;c:\Program Files\java\jdk\bin'.</p></li>
+</ul>
+<h2>Setting Up the Path for Windows 95/98/ME</h2>
+<p>Assuming you have installed Java in <i>c:\Program Files\java\jdk</i> directory &minus;</p>
+<ul class="list">
+<li><p>Edit the 'C:\autoexec.bat' file and add the following line at the end &minus;</p> 
+<p>'SET PATH = %PATH%;C:\Program Files\java\jdk\bin'</p></li>
+</ul>
+<h2>Setting Up the Path for Linux, UNIX, Solaris, FreeBSD</h2>
+<p>Environment variable PATH should be set to point to where the Java binaries have been installed. Refer to your shell documentation if you have trouble doing this.</p>
+<p>For example, if you use <i>bash</i> as your shell, then you would add the following line at the end of your '.bashrc: export PATH=/path/to/java:$PATH'</p>
+<h2>Popular Java Editors</h2>
+<p>To write Java programs, you will need a text editor. There are even more sophisticated IDEs available in the market. But for now, you can consider one of the following &minus;</p>
+<ul class="list">
+<li><p><b>Notepad</b> &minus; On Windows, you can use any simple text editor like Notepad (Recommended for this tutorial) or TextPad.</p></li>
+<li><p><b>Netbeans</b> &minus; It is a Java IDE that is free and can be downloaded from <a rel="nofollow" href="https://netbeans.org/" target="_blank">https://www.netbeans.org/index.html</a>.</p></li>
+<li><p><b>Eclipse</b> &minus; It is also a Java IDE developed by the eclipse open-source community and can be downloaded from <a href="https://www.eclipse.org/" target="_blank" rel="nofollow">https://www.eclipse.org/</a>.</p></li>
+</ul>
+<h2>Download XStream Archive</h2>
+<p>Download the latest version of XStream jar file from <!--<a target="_blank" rel="nofollow" href="https://nexus.codehaus.org/content/repositories/releases/com/thoughtworks/xstream/xstream/1.4.7/xstream-1.4.7.jar">xstream-1.4.7.jar</a>-->xstream-1.4.7.jar. At the time of writing this tutorial, we have downloaded <i>xstream-1.4.7.jar</i> and copied it into C:\&gt;XStream folder.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:20%">OS</th>
+<th style="text-align:center;">Archive name</th>
+</tr>
+<tr>
+<td style="text-align:center;">Windows</td>
+<td>xstream-1.4.7.jar</td>
+</tr>
+<tr>
+<td style="text-align:center;">Linux</td>
+<td>xstream-1.4.7.jar</td>
+</tr>
+<tr>
+<td style="text-align:center;">Mac</td>
+<td>xstream-1.4.7.jar</td>
+</tr>
+</table>
+<h2>Set XStream Environment</h2>
+<p>Set the <b>XStream_HOME</b> environment variable to point to the base directory location where xstream jar is stored on your machine. The following table shows how to set the XStream environment on Windows, Linux, and Mac, assuming we've extracted xstream-1.4.7.jar in the XStream folder.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">OS &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Windows</b></p>
+<p>Set the environment variable XStream_HOME to C:\XStream</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Linux</b></p>
+<p>export XStream_HOME=/usr/local/XStream</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Mac</b></p>
+<p>export XStream_HOME=/Library/XStream</p></td>
+</tr>
+</table>
+<h2>Set CLASSPATH Variable</h2>
+<p>Set the <b>CLASSPATH</b> environment variable to point to the XStream jar location. The following table shows how to set the CLASSPATH variable on Windows, Linux, and Mac system, assuming we've stored xstream-1.4.7.jar in the XStream folder.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">OS &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>Windows</b></p>
+<p>Set the environment variable CLASSPATH to %CLASSPATH%;%XStream_HOME%\xstream-1.4.7.jar;</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Linux</b></p>
+<p>export CLASSPATH=$CLASSPATH:$XStream_HOME/xstream-1.4.7.jar;</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Mac</b></p>
+<p>export CLASSPATH=$CLASSPATH:$XStream_HOME/xstream-1.4.7.jar;</p></td>
+</tr>
+</table>
+<h1>XStream - First Application</h1>
+<p>Before going into the details of the XStream library, let us see an application in action. In this example, we've created Student and Address classes. We will create a student object and then serialize it to an XML String. Then de-serialize the same XML string to obtain the student object back.</p>
+<p>Create a java class file named XStreamTester in C:\&gt;XStream_WORKSPACE.</p>
+<p><b><i>File: XStreamTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import org.xml.sax.InputSource;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+
+public class XStreamTester {
+
+   public static void main(String args[]) {
+      XStreamTester tester = new XStreamTester();
+      XStream xstream = new XStream(new StaxDriver());
+      
+      Student student = tester.getStudentDetails();
+      
+      //Object to XML Conversion
+      String xml = xstream.toXML(student);
+      System.out.println(formatXml(xml));
+      
+      //XML to Object Conversion
+      Student student1 = (Student)xstream.fromXML(xml);
+      System.out.println(student1);
+   }
+   
+   private Student getStudentDetails() {
+   
+      Student student = new Student();
+      student.setFirstName("Mahesh");
+      student.setLastName("Parashar");
+      student.setRollNo(1);
+      student.setClassName("1st");
+
+      Address address = new Address();
+      address.setArea("H.No. 16/3, Preet Vihar.");
+      address.setCity("Delhi");
+      address.setState("Delhi");
+      address.setCountry("India");
+      address.setPincode(110012);
+
+      student.setAddress(address);
+      return student;
+   }
+   
+   public static String formatXml(String xml) {
+   
+      try {
+         Transformer serializer = SAXTransformerFactory.newInstance().newTransformer();
+         
+         serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+         serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+         
+         Source xmlSource = new SAXSource(new InputSource(
+            new ByteArrayInputStream(xml.getBytes())));
+         StreamResult res =  new StreamResult(new ByteArrayOutputStream());            
+         
+         serializer.transform(xmlSource, res);
+         
+         return new String(((ByteArrayOutputStream)res.getOutputStream()).toByteArray());
+         
+      } catch(Exception e) {
+         return xml;
+      }
+   }
+}
+
+class Student {
+   private int rollNo;
+   private String firstName;
+   private String lastName;
+   private String className;
+   private Address address;
+
+   public String getFirstName() {
+      return firstName;
+   }
+   
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+   }
+   
+   public String getLastName() {
+      return lastName;
+   }
+   
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
+   }
+   
+   public int getRollNo() {
+      return rollNo;
+   }
+   
+   public void setRollNo(int rollNo) {
+      this.rollNo = rollNo;
+   }
+   
+   public String getClassName() {
+      return className;
+   }
+   
+   public void setClassName(String className) {
+      this.className = className;
+   }
+   
+   public Address getAddress() {
+      return address;
+   }
+   
+   public void setAddress(Address address) {
+      this.address = address;
+   }
+   
+   public String toString() {
+      StringBuilder stringBuilder = new StringBuilder();
+      
+      stringBuilder.append("Student [ ");
+      stringBuilder.append("\nfirstName: ");
+      stringBuilder.append(firstName);
+      stringBuilder.append("\nlastName: ");
+      stringBuilder.append(lastName);
+      stringBuilder.append("\nrollNo: ");
+      stringBuilder.append(rollNo);
+      stringBuilder.append("\nclassName: ");
+      stringBuilder.append(className);
+      stringBuilder.append("\naddress: ");
+      stringBuilder.append(address);
+      stringBuilder.append(" ]");
+      
+      return stringBuilder.toString();
+   }
+}
+
+class Address {
+   private String area;
+   private String city;
+   private String state;
+   private String country;
+   private int pincode;
+
+   public String getArea() {
+      return area;
+   }
+
+   public void setArea(String area) {
+      this.area = area;
+   }
+
+   public String getCity() {
+      return city;
+   }
+
+   public void setCity(String city) {
+      this.city = city;
+   }
+
+   public String getState() {
+      return state;
+   }
+
+   public void setState(String state) {
+      this.state = state;
+   }
+
+   public String getCountry() {
+      return country;
+   }
+
+   public void setCountry(String country) {
+      this.country = country;
+   }
+
+   public int getPincode() {
+      return pincode;
+   }
+
+   public void setPincode(int pincode) {
+      this.pincode = pincode;
+   }
+
+   public String toString() {
+
+      StringBuilder stringBuilder = new StringBuilder();
+
+      stringBuilder.append("\nAddress [ ");
+      stringBuilder.append("\narea: ");
+      stringBuilder.append(area);
+      stringBuilder.append("\ncity: ");
+      stringBuilder.append(city);
+      stringBuilder.append("\nstate: ");
+      stringBuilder.append(state);
+      stringBuilder.append("\ncountry: ");
+      stringBuilder.append(country);
+      stringBuilder.append("\npincode: ");	
+      stringBuilder.append(pincode);
+      stringBuilder.append(" ]");
+
+      return stringBuilder.toString();
+   }
+}
+</pre>
+<p><b>Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE&gt;javac XStreamTester.java
+</pre>
+<p>Now run the XStreamTester to see the result &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE&gt;java XStreamTester
+</pre>
+<p><b>Verify the output as follows</b></p>
+<pre class="result notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;Student&gt;
+   &lt;firstName&gt;Mahesh&lt;/firstName&gt;
+   &lt;lastName&gt;Parashar&lt;/lastName&gt;
+   &lt;rollNo&gt;1&lt;/rollNo&gt;
+   &lt;className&gt;1st&lt;/className&gt;
+   &lt;address&gt;
+      &lt;area&gt;H.No. 16/3, Preet Vihar.&lt;/area&gt;
+      &lt;city&gt;Delhi&lt;/city&gt;
+      &lt;state&gt;Delhi&lt;/state&gt;
+      &lt;country&gt;India&lt;/country&gt;
+      &lt;pincode&gt;110012&lt;/pincode&gt;
+   &lt;/address&gt;
+&lt;/Student&gt;
+
+Student [ 
+   firstName: Mahesh
+   lastName: Parashar
+   rollNo: 1
+   className: 1st
+   address: 
+   Address [ 
+      area: H.No. 16/3, Preet Vihar.
+      city: Delhi
+      state: Delhi
+      country: India
+      pincode: 110012
+   ] 
+]
+</pre>
+<h2>Steps to Remember</h2>
+<p>Following are the important steps to be considered here.</p>
+<h3>Step 1: Create an XStream Object</h3>
+<p>Create an XStream object by passing it a StaxDriver. StaxDriver uses Stax pull parser (available from java 6) and is a fast xml parser.</p>
+<pre class="prettyprint notranslate">
+XStream xstream = new XStream(new StaxDriver());
+</pre>
+<h3>Step 2: Serialize the Object to XML</h3>
+<p>Use toXML() method to get the XML string representation of the object.</p>
+<pre class="prettyprint notranslate">
+//Object to XML Conversion
+String xml = xstream.toXML(student);
+</pre>
+<h3>Step 3: De-serialize XML to Get the Object</h3>
+<p>Use fromXML() method to get the object from the XML.</p>
+<pre class="prettyprint notranslate">
+//XML to Object Conversion		
+Student student1 = (Student)xstream.fromXML(xml);
+</pre>
+<h1>XStream - Aliasing</h1>
+<p>Aliasing is a technique to customize the generated XML or to use a particular formatted XML using XStream. Let’s suppose the following XML format is to be used to serialize/de-serialize the Student object.</p>
+<pre class="prettyprint notranslate">
+&lt;student name = "Suresh"&gt;
+   &lt;note&gt;
+      &lt;title&gt;first&lt;/title&gt;
+      &lt;description&gt;My first assignment.&lt;/description&gt;
+   &lt;/note&gt;
+   
+   &lt;note&gt;
+      &lt;title&gt;second&lt;/title&gt;
+      &lt;description&gt;My second assignment.&lt;/description&gt;
+   &lt;/note&gt;
+&lt;/student&gt;
+</pre>
+<p>Based on the above XML format, let's create model classes.</p>
+<pre class="prettyprint notranslate">
+class Student {
+   private String studentName;
+   private List&lt;Note&gt; notes = new ArrayList&lt;Note&gt;();
+   
+   public Student(String name) {
+      this.studentName = name;
+   }
+   
+   public void addNote(Note note) {
+      notes.add(note);
+   }
+   
+   public String getName() {
+      return studentName;
+   }
+   
+   public List&lt;Note&gt; getNotes() {
+      return notes;
+   }
+}
+
+class Note {
+   private String title;
+   private String description;
+
+   public Note(String title, String description) {
+      this.title = title;
+      this.description = description;
+   }
+
+   public String getTitle() {
+      return title;
+   }
+
+   public String getDescription() {
+      return description;
+   }     
+}
+</pre>
+<p>Let's test the above objects serialization using XStream.</p>
+<p>Create a java class file named XStreamTester in C:\&gt;XStream_WORKSPACE\com\tutorialspoint\xstream.</p>
+<p><b><i>File: XStreamTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.xstream;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+
+import org.xml.sax.InputSource;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+
+public class XStreamTester {
+   public static void main(String args[]) {
+   
+      XStreamTester tester = new XStreamTester();
+      XStream xstream = new XStream(new StaxDriver());
+      Student student = tester.getStudentDetails();
+      
+      //Object to XML Conversion
+      String xml = xstream.toXML(student);
+      System.out.println(formatXml(xml));		
+   }	
+
+   private Student getStudentDetails() {
+   
+      Student student = new Student("Mahesh");
+      
+      student.addNote(new Note("first","My first assignment."));
+      student.addNote(new Note("second","My Second assignment."));
+      
+      return student;
+   }
+
+   public static String formatXml(String xml) {
+   
+      try {
+         Transformer serializer = SAXTransformerFactory.newInstance().newTransformer();
+         
+         serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+         serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+         
+         Source xmlSource = new SAXSource(new InputSource(
+            new ByteArrayInputStream(xml.getBytes())));
+         StreamResult res =  new StreamResult(new ByteArrayOutputStream());            
+         
+         serializer.transform(xmlSource, res);
+         
+         return new String(((ByteArrayOutputStream)res.getOutputStream()).toByteArray());
+         
+      } catch(Exception e) {
+         return xml;
+      }
+   }
+}
+
+class Student {
+   private String studentName;
+   private List&lt;Note&gt; notes = new ArrayList&lt;Note&gt;();
+   
+   public Student(String name) {
+      this.studentName = name;
+   }
+   
+   public void addNote(Note note) {
+      notes.add(note);
+   }
+   
+   public String getName() {
+      return studentName;
+   }
+   
+   public List&lt;Note&gt; getNotes() {
+      return notes;
+   }
+}
+
+class Note {
+   private String title;
+   private String description;
+   
+   public Note(String title, String description) {
+      this.title = title;
+      this.description = description;
+   }
+   
+   public String getTitle() {
+      return title;
+   }
+   
+   public String getDescription() {
+      return description;
+   }     
+}
+</pre>
+<p><b>Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;javac XStreamTester.java
+</pre>
+<p>Now run the XStreamTester to see the result &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;java XStreamTester
+</pre>
+<p>Verify the output as follows &minus;</p>
+<pre class="result notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;com.tutorialspoint.xstream.Student&gt;
+   &lt;studentName&gt;Mahesh&lt;/studentName&gt;
+   &lt;notes&gt;
+      &lt;com.tutorialspoint.xstream.Note&gt;
+         &lt;title&gt;first&lt;/title&gt;
+         &lt;description&gt;My first assignment.&lt;/description&gt;
+      &lt;/com.tutorialspoint.xstream.Note&gt;
+      
+      &lt;com.tutorialspoint.xstream.Note&gt;
+         &lt;title&gt;second&lt;/title&gt;
+         &lt;description&gt;My Second assignment.&lt;/description&gt;
+     &lt;/com.tutorialspoint.xstream.Note&gt;
+   &lt;/notes&gt;
+&lt;/com.tutorialspoint.xstream.Student&gt;
+</pre>
+<p>In the above result, the Student object name is fully qualified. To replace it as student tag, follow the next section.</p>   
+<ul class="list">
+<li><p><a href="/xstream/xstream_class_aliasing.htm">Class Aliasing</a></p></li>
+<li><p><a href="/xstream/xstream_field_aliasing.htm">Field Aliasing</a></p></li>
+<li><p><a href="/xstream/xstream_implicit_aliasing.htm">Implicit Collections Aliasing</a></p></li>
+<li><p><a href="/xstream/xstream_attribute_aliasing.htm">Attribute Aliasing</a></p></li>
+<li><p><a href="/xstream/xstream_package_aliasing.htm">Package Aliasing</a></p></li>
+</ul>
+<h1>XStream - Annotations</h1>
+<p>XStream supports annotations similarly like automatic configuration instead of coding. In the previous chapter, we've seen the following configurations in code.</p>
+<pre class="prettyprint notranslate">
+xstream.alias("student", Student.class);
+xstream.alias("note", Note.class);
+
+xstream.useAttributeFor(Student.class, "studentName");
+xstream.aliasField("name", Student.class, "studentName");
+xstream.addImplicitCollection(Student.class, "notes");
+</pre>
+<p>The following code snippet illustrates the use of annotations to do the same work in a much easier way.</p>
+<pre class="prettyprint notranslate">
+@XStreamAlias("student")   //define class level alias
+class Student {
+
+   @XStreamAlias("name")   //define field level alias
+   @XStreamAsAttribute     //define field as attribute
+   private String studentName;
+   
+   @XStreamImplicit        //define list as an implicit collection
+   private List&lt;Note&gt; notes = new ArrayList&lt;Note&gt;();
+   
+   @XStreamOmitField       //omit a field to not to be a part of XML
+   private int type;
+}
+</pre>
+<p>Let us test the above annotation using XStream.</p>
+<p>Create a java class file named XStreamTester in C:\&gt;XStream_WORKSPACE\com\tutorialspoint\xstream.</p>
+<h2>File: XStreamTester.java</h2>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.xstream;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+
+import org.xml.sax.InputSource;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+
+public class XStreamTester {
+
+   public static void main(String args[]) {
+
+      XStreamTester tester = new XStreamTester();
+      XStream xstream = new XStream(new StaxDriver());
+      Student student = tester.getStudentDetails();
+      
+      xstream.processAnnotations(Student.class);		
+
+      //Object to XML Conversion
+      String xml = xstream.toXML(student);
+      System.out.println(formatXml(xml));		
+   }
+   
+   private Student getStudentDetails() {
+   
+      Student student = new Student("Mahesh");
+      
+      student.addNote(new Note("first","My first assignment."));
+      student.addNote(new Note("second","My Second assignment."));
+      student.setType(1);
+      
+      return student;
+   }
+
+   public static String formatXml(String xml) {
+   
+      try {
+         Transformer serializer = SAXTransformerFactory.newInstance().newTransformer();
+         
+         serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+         serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+         
+         Source xmlSource = new SAXSource(new InputSource(
+            new ByteArrayInputStream(xml.getBytes())));
+         StreamResult res = new StreamResult(new ByteArrayOutputStream());            
+         
+         serializer.transform(xmlSource, res);
+         
+         return new String(((ByteArrayOutputStream)res.getOutputStream()).toByteArray());
+         
+      } catch(Exception e) {
+         return xml;
+      }
+   }
+}
+
+@XStreamAlias("student")
+class Student {
+
+   @XStreamAlias("name")
+   @XStreamAsAttribute   
+   private String studentName;
+
+   @XStreamImplicit
+   private List&lt;Note&gt; notes = new ArrayList&lt;Note&gt;();
+
+   public Student(String name) {
+      this.studentName = name;
+   }
+
+   public void addNote(Note note) {
+      notes.add(note);
+   }
+
+   public String getName() {
+      return studentName;
+   }
+
+   public List&lt;Note&gt; getNotes() {
+      return notes;
+   }
+   
+   @XStreamOmitField		
+   private int type;
+
+   public int getType() {
+      return type;
+   }
+
+   public void setType(int type) {
+      this.type = type;
+   }
+}
+
+@XStreamAlias("note")
+class Note {
+   private String title;
+   private String description;
+
+   public Note(String title, String description) {
+      this.title = title;
+      this.description = description;
+   }
+
+   public String getTitle() {
+      return title;
+   }
+
+   public String getDescription() {
+      return description;
+   }     
+}
+</pre>
+<h2>Verify the Result</h2>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;javac XStreamTester.java
+</pre>
+<p>Now run the XStreamTester to see the result &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;java XStreamTester
+</pre>
+<p>Verify the output as follows &minus;</p>
+<pre class="result notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;student name = "Mahesh"&gt;
+   &lt;note&gt;
+      &lt;title&gt;first&lt;/title&gt;
+      &lt;description&gt;My first assignment.&lt;/description&gt;
+   &lt;/note&gt;
+
+   &lt;note&gt;
+      &lt;title&gt;second&lt;/title&gt;
+      &lt;description&gt;My Second assignment.&lt;/description&gt;
+   &lt;/note&gt;
+&lt;/student&gt;
+</pre>
+<p>In order to instruct the XStream framework to process annotation, you need to add the following command before serializing xml.</p>
+<pre class="result notranslate">
+xstream.processAnnotations(Student.class);		
+</pre>
+<p>Or</p>
+<pre class="result notranslate">
+xstream.autodetectAnnotations(true);
+</pre>
+<h1>XStream - Converters</h1>
+<p>XStream converters are the key components of the XStream library, which are responsible to convert an object to XML and vice versa. XStream provides numerous converters for common types such as primitives, String, File, Collections, arrays, and Dates.</p>
+<h2>Using Converter</h2>
+<p>Let us use a SingleValueConvertor whose purpose is to convert an object into a single string. We will use SingleValueConvertor to write an object as attribute string.</p>
+<h3>Create a Converter</h3>
+<pre class="prettyprint notranslate">
+class NameConverter implements SingleValueConverter {
+
+   public Object fromString(String name) {
+      String[] nameparts = name.split(",");
+      return new Name(nameparts[0], nameparts[1]);
+   }
+   
+   public String toString(Object name) {
+      return ((Name)name).getFirstName() + "," + ((Name)name).getLastName();
+   }
+   
+   public boolean canConvert(Class type) {
+      return type.equals(Name.class);
+   }	
+}
+</pre>
+<h3>Register a Converter</h3>
+<pre class="prettyprint notranslate">
+xstream.registerConverter(new NameConverter());
+</pre>
+<h2>Example without Converter</h2>
+<p>Let us first test the code without converter in XStream.</p>
+<p>Create a java class file named XStreamTester in C:\&gt;XStream_WORKSPACE\com\tutorialspoint\xstream.</p>
+<p><b><i>File: XStreamTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.xstream;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+
+import org.xml.sax.InputSource;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+
+public class XStreamTester {
+   public static void main(String args[]) {
+   
+      XStreamTester tester = new XStreamTester();
+      XStream xstream = new XStream(new StaxDriver());
+      Student student = tester.getStudentDetails();
+      xstream.autodetectAnnotations(true);
+      
+      //Object to XML Conversion
+      String xml = xstream.toXML(student);
+      System.out.println(formatXml(xml));
+   }
+   
+   private Student getStudentDetails() {
+      Student student = new Student("Mahesh","Parashar");
+      return student;
+   }
+   
+   public static String formatXml(String xml) {
+   
+      try {
+      
+         Transformer serializer = SAXTransformerFactory.newInstance().newTransformer();
+         
+         serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+         serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+         
+         Source xmlSource = new SAXSource(new InputSource(
+            new ByteArrayInputStream(xml.getBytes())));
+         StreamResult res =  new StreamResult(new ByteArrayOutputStream());
+         
+         serializer.transform(xmlSource, res);
+         
+         return new String(((ByteArrayOutputStream)res.getOutputStream()).toByteArray());
+         
+      } catch(Exception e) {
+         return xml;
+      }
+   }
+}
+
+@XStreamAlias("student")
+class Student {
+
+   @XStreamAlias("name")
+   @XStreamAsAttribute
+   private Name studentName;
+
+   public Student(String firstName, String lastName) {
+      this.studentName = new Name(firstName, lastName);
+   }
+
+   public Name getName() {
+      return studentName;
+   }	
+}
+
+class Name {
+   private String firstName;
+   private String lastName;
+
+   public Name(String firstName, String lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+   }
+
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }     
+}
+</pre>
+<p><b>Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;javac XStreamTester.java
+</pre>
+<p>Now run the XStreamTester to see the result &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;java XStreamTester
+</pre>
+<p>Verify the output as follows &minus;</p>
+<pre class="result notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;student&gt;
+   &lt;name&gt;
+      &lt;firstName&gt;Mahesh&lt;/firstName&gt;
+      &lt;lastName&gt;Parashar&lt;/lastName&gt;
+   &lt;/name&gt;
+&lt;/student&gt;
+</pre>
+<h2>Example with Converter</h2>
+<p>Let us now test the code with converter in XStream.</p>
+<p>Create a java class file named XStreamTester in C:\&gt;XStream_WORKSPACE\com\tutorialspoint\xstream.</p>
+<p><b><i>File: XStreamTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.xstream;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+
+import org.xml.sax.InputSource;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.converters.SingleValueConverter;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+
+public class XStreamTester {
+
+   public static void main(String args[]) {
+   
+      XStreamTester tester = new XStreamTester();
+      XStream xstream = new XStream(new StaxDriver());
+      Student student = tester.getStudentDetails();		
+      
+      xstream.autodetectAnnotations(true);
+      xstream.registerConverter(new NameConverter());
+      
+      //Object to XML Conversion
+      String xml = xstream.toXML(student);
+      System.out.println(formatXml(xml));		
+   }	
+
+   private Student getStudentDetails() {
+      Student student = new Student("Mahesh","Parashar");		
+      return student;
+   }
+
+   public static String formatXml(String xml) {
+
+      try {
+      
+         Transformer serializer = SAXTransformerFactory.newInstance().newTransformer();
+         
+         serializer.setOutputProperty(OutputKeys.INDENT, "yes");         
+         serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+         
+         Source xmlSource = new SAXSource(new InputSource(
+            new ByteArrayInputStream(xml.getBytes())));
+         StreamResult res = new StreamResult(new ByteArrayOutputStream());            
+         
+         serializer.transform(xmlSource, res);
+         
+         return new String(((ByteArrayOutputStream)res.getOutputStream()).toByteArray());
+         
+      } catch(Exception e) {   
+         return xml;
+      }
+   }
+}
+
+@XStreamAlias("student")
+class Student {
+
+   @XStreamAlias("name")
+   @XStreamAsAttribute	
+   private Name studentName;
+
+   public Student(String firstName, String lastName) {
+      this.studentName = new Name(firstName, lastName);
+   }
+
+   public Name getName() {
+      return studentName;
+   }	
+}
+
+class Name {
+   private String firstName;
+   private String lastName;
+
+   public Name(String firstName, String lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+   }
+
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }     
+}
+
+class NameConverter implements SingleValueConverter  {
+
+   public Object fromString(String name) {
+      String[] nameparts = name.split(",");
+      return new Name(nameparts[0], nameparts[1]);
+   }
+
+   public String toString(Object name) {
+      return ((Name)name).getFirstName() + "," + ((Name)name).getLastName();
+   }
+
+   public boolean canConvert(Class type) {
+      return type.equals(Name.class);
+   }
+}
+</pre>
+<p><b>Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;javac XStreamTester.java
+</pre>
+<p>Now run the XStreamTester to see the result &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;java XStreamTester
+</pre>
+<p>Verify the output as follows &minus;</p>
+<pre class="result notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;student name = "Mahesh,Parashar"/&gt;
+</pre>
+<p><a href="/xstream/xstream_custom_converter.htm">Custom Converter</a></p>
+<h1>XStream - Object Streams</h1>
+<p>XStream provides alternative implementations of java.io.ObjectInputStream and java.io.ObjectOutputStream so that streams of objects can be serialized or deserialized from XML. This is particularly useful when large sets of objects are to be processed, keeping one object in memory at a time.</p>
+<h2>Syntax: createObjectOutputStream()</h2>
+<pre class="prettyprint notranslate">
+ObjectOutputStream objectOutputStream = xstream.createObjectOutputStream(
+   new FileOutputStream("test.txt"));
+</pre>
+<h2>Syntax: createObjectInputStream()</h2>
+<pre class="prettyprint notranslate">
+ObjectInputStream objectInputStream = xstream.createObjectInputStream(
+   new FileInputStream("test.txt"));
+</pre>
+<p>Let us now test the code with object streams in XStream.</p>
+<p>Create a java class file named XStreamTester in C:\>XStream_WORKSPACE\com\tutorialspoint\xstream.</p>
+<h3>File: XStreamTester.java</h3>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.xstream;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+
+public class XStreamTester {
+   public static void main(String args[]) {
+   
+      XStreamTester tester = new XStreamTester();
+      XStream xstream = new XStream(new StaxDriver());
+      
+      xstream.autodetectAnnotations(true);
+      
+      Student student1 = new Student("Mahesh","Parashar");
+      Student student2 = new Student("Suresh","Kalra");
+      Student student3 = new Student("Ramesh","Kumar");
+      Student student4 = new Student("Naresh","Sharma");
+      
+      try {
+      
+         ObjectOutputStream objectOutputStream = xstream.createObjectOutputStream(
+            new FileOutputStream("test.txt"));
+         
+         objectOutputStream.writeObject(student1);
+         objectOutputStream.writeObject(student2);
+         objectOutputStream.writeObject(student3);
+         objectOutputStream.writeObject(student4);
+         objectOutputStream.writeObject("Hello World");
+         
+         objectOutputStream.close();
+         
+         ObjectInputStream objectInputStream = xstream.createObjectInputStream(
+            new FileInputStream("test.txt"));
+         
+         Student student5 = (Student)objectInputStream.readObject();
+         Student student6 = (Student)objectInputStream.readObject();
+         Student student7 = (Student)objectInputStream.readObject();
+         Student student8 = (Student)objectInputStream.readObject();
+         
+         String text = (String)objectInputStream.readObject();
+         
+         System.out.println(student5);
+         System.out.println(student6);
+         System.out.println(student7);
+         System.out.println(student8);
+         System.out.println(text);
+      
+      } catch (IOException e) {
+         e.printStackTrace();
+         
+      } catch (ClassNotFoundException e) {
+         e.printStackTrace();
+      }
+   }
+}
+
+@XStreamAlias("student")
+class Student {
+
+   private String firstName;
+   private String lastName;
+   
+   public Student(String firstName, String lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+   }
+
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }   
+
+   public String toString() {
+      return "Student [ firstName: "+firstName+", lastName: "+ lastName+ " ]";
+   }	
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;javac XStreamTester.java
+</pre>
+<p>Now run the XStreamTester to see the result &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;java XStreamTester
+</pre>
+<p>Verify the output as follows &minus;</p>
+<pre class="result notranslate">
+Student [ firstName: Mahesh, lastName: Parashar ]
+Student [ firstName: Suresh, lastName: Kalra ]
+Student [ firstName: Ramesh, lastName: Kumar ]
+Student [ firstName: Naresh, lastName: Sharma ]
+Hello World
+</pre>
+<p>Look at the content of the test.txt present at C:\&gt;XStream_WORKSPACE\com\tutorialspoint\xstream folder.</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" ?&gt;
+&lt;object-stream&gt;
+   &lt;student&gt;
+      &lt;firstName&gt;Mahesh&lt;/firstName&gt;
+      &lt;lastName&gt;Parashar&lt;/lastName&gt;
+   &lt;/student&gt;
+   
+   &lt;student&gt;
+      &lt;firstName&gt;Suresh&lt;/firstName&gt;
+      &lt;lastName&gt;Kalra&lt;/lastName&gt;
+   &lt;/student&gt;
+   
+   &lt;student&gt;
+      &lt;firstName&gt;Ramesh&lt;/firstName&gt;
+      &lt;lastName&gt;Kumar&lt;/lastName&gt;
+   &lt;/student&gt;
+   
+   &lt;student&gt;
+      &lt;firstName&gt;Naresh&lt;/firstName&gt;
+      &lt;lastName&gt;Sharma&lt;/lastName&gt;
+   &lt;/student&gt;
+   &lt;string&gt;Hello World&lt;/string&gt;
+&lt;/object-stream&gt;
+</pre>
+<h1>XStream - Writing JSON using XStream</h1>
+<p>XStream supports JSON by initializing XStream object with an appropriate driver. XStream currently supports JettisonMappedXmlDriver and JsonHierarchicalStreamDriver.</p>
+<p>Let us now test the code with json handling in XStream.</p>
+<p>Create a java class file named XStreamTester in C:\&gt;XStream_WORKSPACE\com\tutorialspoint\xstream.</p>
+<h2>File: XStreamTester.java</h2>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.xstream;
+
+import java.io.Writer;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
+import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
+import com.thoughtworks.xstream.io.json.JsonWriter;
+
+public class XStreamTester {
+
+   public static void main(String args[]) {
+
+      XStreamTester tester = new XStreamTester();
+      XStream xstream = new XStream(new JsonHierarchicalStreamDriver() {
+      
+         public HierarchicalStreamWriter createWriter(Writer writer) {
+            return new JsonWriter(writer, JsonWriter.DROP_ROOT_MODE);
+         }
+      });
+
+      Student student = new Student("Mahesh","Parashar");
+
+      xstream.setMode(XStream.NO_REFERENCES);
+      xstream.alias("student", Student.class);
+      
+      System.out.println(xstream.toXML(student));
+   }
+}
+
+@XStreamAlias("student")
+class Student {
+
+   private String firstName;
+   private String lastName;
+
+   public Student(String firstName, String lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+   }
+
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }   
+	
+   public String toString() {
+      return "Student [ firstName: "+firstName+", lastName: "+ lastName+ " ]";
+   }	
+}
+</pre>
+<h2>Verify the Result</h2>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;javac XStreamTester.java
+</pre>
+<p>Now run the XStreamTester to see the result &minus;</p>
+<pre class="result notranslate">
+C:\XStream_WORKSPACE\com\tutorialspoint\xstream&gt;java XStreamTester
+</pre>
+<p>Verify the output as follows &minus;</p>
+<pre class="result notranslate">
+{
+   "firstName": "Mahesh",
+   "lastName": "Parashar"
+}
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/xstream/xstream_json.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/xstream/xstream_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

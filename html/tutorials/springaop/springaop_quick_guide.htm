@@ -1,0 +1,3444 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Spring AOP - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Spring AOP - Quick Guide - One of the key components of Spring Framework is the Aspect Oriented Programming (AOP) framework. Aspect Oriented Programming entails breaking down program logi"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/springaop/springaop_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#6db33f;
+}
+a.demo {
+    background:#6db33f;
+}
+li.heading {
+    background:#6db33f;
+}
+.course-box{background:#6db33f}
+.home-intro-sub p{color:#6db33f}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/springaop/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/springaop/images/spring-aop-mini-logo.jpg" alt="Spring AOP Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Spring AOP Tutorial</li>
+<li><a href="/springaop/index.htm">Spring AOP - Home</a></li>
+<li><a href="/springaop/springaop_overview.htm">Spring AOP - Overview</a></li>
+<li><a href="/springaop/springaop_environment.htm">Spring AOP - Environment Setup</a></li>
+<li><a href="/springaop/springaop_core_concepts.htm">Spring AOP - Core Concepts</a></li>
+<li><a href="/springaop/springaop_advice_types.htm">Spring AOP - Advice Types</a></li>
+<li><a href="/springaop/springaop_implementations.htm">Spring AOP - Implementations</a></li>
+<li class="heading">By XML Configuration Examples</li>
+<li><a href="/springaop/springaop_application.htm">Spring AOP - Application</a></li>
+<li><a href="/springaop/springaop_pointcut_methods.htm">Spring AOP - Pointcut Methods</a></li>
+<li><a href="/springaop/springaop_before_advice.htm">Spring AOP - Before Advice</a></li>
+<li><a href="/springaop/springaop_after_advice.htm">Spring AOP - After Advice</a></li>
+<li><a href="/springaop/springaop_after_returning.htm">Spring AOP - After Returning Advice</a></li>
+<li><a href="/springaop/springaop_after_throwing.htm">Spring AOP - After Throwing Advice</a></li>
+<li><a href="/springaop/springaop_around_aspect.htm">Spring AOP - Around Advice</a></li>
+<li class="heading">By Annotation Examples</li>
+<li><a href="/springaop/springaop_application1.htm">Spring AOP - Application</a></li>
+<li><a href="/springaop/springaop_pointcut_methods1.htm">Spring AOP - Pointcut Methods</a></li>
+<li><a href="/springaop/springaop_before_aspect1.htm">Spring AOP - Before Aspect</a></li>
+<li><a href="/springaop/springaop_after_advice1.htm">Spring AOP - After Advice</a></li>
+<li><a href="/springaop/springaop_after_returning1.htm">Spring AOP - After Returning Advice</a></li>
+<li><a href="/springaop/springaop_after_throwing1.htm">Spring AOP - After Throwing Advice</a></li>
+<li><a href="/springaop/springaop_around_aspect1.htm">Spring AOP - Around Advice</a></li>
+<li class="heading">Spring AOP Advanced</li>
+<li><a href="/springaop/springaop_proxy.htm">Spring AOP - Proxy</a></li>
+<li><a href="/springaop/springaop_custom_annotation.htm">Spring AOP - Custom Annotation</a></li>
+<li class="heading">Spring AOP Useful Resources</li>
+<li><a href="/springaop/springaop_quick_guide.htm">Spring AOP - Quick Guide</a></li>
+<li><a href="/springaop/springaop_useful_resources.htm">Spring AOP - Useful Resources</a></li>
+<li><a href="/springaop/springaop_discussion.htm">Spring AOP - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Spring AOP - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/springaop/springaop_custom_annotation.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/springaop/springaop_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>Spring AOP - Overview</h1>
+<p>One of the key components of Spring Framework is the <b>Aspect Oriented Programming (AOP)</b> framework. Aspect Oriented Programming entails breaking down program logic into distinct parts called <b>so-called concerns</b>. The functions that span multiple points of an application are called cross-cutting concerns. These <b>cross-cutting concerns</b> are conceptually separate from the application's business logic. There are various common good examples of aspects such as logging, auditing, declarative transactions, security, caching, etc.</p>
+<p>The key unit of modularity in OOP is the class, whereas in AOP the unit of modularity is the aspect. Dependency Injection helps you decouple your application objects from each other, while AOP helps you decouple cross-cutting concerns from the objects that they affect. AOP is like triggers in programming languages such as Perl, .NET, Java, and others.</p>
+<p>Spring AOP module lets interceptors intercept an application. For example, when a method is executed, you can add extra functionality before or after the method execution.</p>
+<h1>Spring AOP - Environment Setup</h1>
+<p>This chapter takes you through the process of setting up Spring AOP on Windows and Linux based systems. Spring AOP can be easily installed and integrated with your current Java environment and MAVEN by following a few simple steps without any complex setup procedures. User administration is required while installation.</p>
+<h2>System Requirements</h2>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<td>JDK</td>
+<td>Java SE 2 JDK 1.5 or above</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>1 GB RAM (recommended)</td>
+</tr>
+<tr>
+<td>Disk Space</td>
+<td>No minimum requirement</td>
+</tr>
+<tr>
+<td>Operating System Version</td>
+<td>Windows XP or above, Linux</td>
+</tr>
+</table>
+<p>Let us now look at the steps to install Spring AOP.</p>
+<h2>Step 1: Verify your Java Installation</h2>
+<p>First of all, you need to have Java Software Development Kit (SDK) installed on your system. To verify this, execute any of the following two commands depending on the platform you are working on.</p>
+<p>If the Java installation has been done properly, then it will display the current version and specification of your Java installation. A sample output is given in the following table.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Platform</th>
+<th style="text-align:center;">Command</th>
+<th style="text-align:center;">Sample Output</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">Windows</td>
+<td style="vertical-align:middle;"><p>Open command console and type &minus;</p>
+<p><b>\&gt;java -version</b></p></td>
+<td><p>Java version "1.7.0_60"</p>
+<p>Java (TM) SE Run Time Environment (build 1.7.0_60-b19)</p>
+<p>Java Hotspot (TM) 64-bit Server VM (build 24.60-b09,mixed mode)</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">Linux</td>
+<td style="vertical-align:middle;"><p>Open command terminal and type &minus;</p>
+<p><b>$java -version</b></p></td>
+<td><p>java version "1.7.0_25"</p>
+<p>Open JDK Runtime Environment (rhel-2.3.10.4.el6_4-x86_64)</p>
+<p>Open JDK 64-Bit Server VM (build 23.7-b01, mixed mode)</p></td>
+</tr>
+</table>
+<p>We assume the readers of this tutorial have Java SDK version 1.7.0_60 installed on their system.</p>
+<p>In case you do not have Java SDK, download its current version from <a href = "https://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="nofollow">https://www.oracle.com/technetwork/java/javase/downloads/index.html</a> and have it installed.</p>
+<h2>Step 2: Set your Java Environment</h2>
+<p>Set the environment variable JAVA_HOME to point to the base directory location where Java is installed on your machine. For example,</p>
+<table class="table table-bordered">
+<tr>
+<th width="9%">Sr.No.</th>
+<th style="text-align:center;">Platform &amp; Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td><p><b>Windows</b></p>
+<p>Set JAVA_HOME to C:\ProgramFiles\java\jdk1.7.0_60</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td><p><b>Linux</b></p>
+<p>Export  JAVA_HOME = /usr/local/java-current</p></td>
+</tr>
+</table>
+<p>Append the full path of Java compiler location to the System Path.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Platform &amp; Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td><p><b>Windows</b></p>
+<p>Append the String "C:\Program Files\Java\jdk1.7.0_60\bin" to the end of the system variable Path.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td><p><b>Linux</b></p>
+<p>Export PATH = $PATH:$JAVA_HOME/bin/</p></td>
+</tr>
+</table>
+<p>Execute the command <b>java -version</b> from the command prompt as explained above.</p>
+<h2>Step 3: Download Maven Archive</h2>
+<p>Download Maven 3.3.3 from <a target="_blank" rel="nofollow" href = "https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a></p>
+<table class="table table-bordered"  style="text-align:center;">
+<tr>
+<th style="text-align:center;width:20%">OS</th>
+<th style="text-align:center;">Archive Name</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>apache-maven-3.3.3-bin.zip</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>apache-maven-3.3.3-bin.tar.gz</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>apache-maven-3.3.3-bin.tar.gz</td>
+</tr>
+</table>
+<h2>Step 4: Extract the Maven Archive</h2>
+<p>Extract the archive, to the directory you wish to install Maven 3.3.3. The subdirectory apache-maven-3.3.3 will be created from the archive.</p>
+<table class="table table-bordered"  style="text-align:center;">
+<tr>
+<th style="text-align:center;width:20%">OS</th>
+<th style="text-align:center;">Location (can be different based on your installation)</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Windows</td>
+<td>C:\Program Files\Apache Software Foundation\apache-maven-3.3.3</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td> /usr/local/apache-maven</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>/usr/local/apache-maven</td>
+</tr>
+</table>
+<h2>Step 5: Set Maven Environment Variables</h2>
+<p>Add M2_HOME, M2, MAVEN_OPTS to environment variables.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:20%" style="">OS</th>
+<th style="text-align:center;">Output</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">Windows</td>
+<td><p>Set the environment variables using system properties.</p>
+<p><i>M2_HOME = C:\Program Files\Apache Software Foundation\apache-maven-3.3.3</i></p>
+<p><i>M2 = %M2_HOME%\bin</i></p>
+<p><i>MAVEN_OPTS = -Xms256m -Xmx512m</i></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">Linux</td>
+<td>Open command terminal and set environment variables.<br/>
+<p><i>export M2_HOME = /usr/local/apache-maven/apache-maven-3.3.3</i></p>
+<p><i>export M2 = $M2_HOME/bin</i></p>
+<p><i>export MAVEN_OPTS = -Xms256m -Xmx512m</i></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">Mac</td>
+<td><p>Open command terminal and set environment variables.</p>
+<p><i>export M2_HOME = /usr/local/apache-maven/apache-maven-3.3.3</i></p>
+<p><i>export M2 = $M2_HOME/bin</i></p>
+<p><i>export MAVEN_OPTS = -Xms256m -Xmx512m</i></p>
+</td>
+</tr>
+</table>
+<h2>Step 6: Add Maven Bin Directory Location to System Path</h2>
+<p>Now append M2 variable to System Path.</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="width:20;text-align:center;">OS</th>
+<th style="text-align:center;">Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Append the string ;%M2% to the end of the system variable, Path.</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export PATH = $M2:$PATH</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export PATH = $M2:$PATH</td>
+</tr>
+</table>
+<h2>Step 7: Verify Maven installation</h2>
+<p>Now open console, and execute the following <b>mvn</b> command.</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center;width:20%">OS</th>
+<th style="text-align:center;">Task</th>
+<th style="text-align:center;">Command</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Open Command Console</td>
+<td>c:\&gt; mvn --version</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Open Command Terminal</td>
+<td>$ mvn --version</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>Open Terminal</td>
+<td>machine:&lt; joseph$ mvn --version</td>
+</tr>
+</table>
+<p>Finally, verify the output of the above commands, which should be something as follows &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:20%">OS</th>
+<th style="text-align:center;">Output</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">Windows</td>
+<td><p>Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T17:27:37+05:30)</p>
+<p>Maven home: C:\Program Files\Apache Software Foundation\apache-maven-3.3.3</p>
+<p>Java version: 1.7.0_75, vendor: Oracle Corporation</p>
+<p>Java home: C:\Program Files\Java\jdk1.7.0_75\jre</p>
+<p>Default locale: en_US, platform encoding: Cp1252</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">Linux</td>
+<td><p>Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T17:27:37+05:30)</p>
+<p>Maven home: /usr/local/apache-maven/apache-maven-3.3.3</p>
+<p>Java version: 1.7.0_75, vendor: Oracle Corporation </p>
+<p>Java home: /usr/local/java-current/jdk1.7.0_75/jre </p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">Mac</td>
+<td><p>Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T17:27:37+05:30)</p>
+<p>Maven home: /usr/local/apache-maven/apache-maven-3.3.3</p>
+<p>Java version: 1.7.0_75, vendor: Oracle Corporation </p>
+<p>Java home: /Library/Java/Home/jdk1.7.0_75/jre </p>
+</td>
+</tr>
+</table>
+<h2>Step 8 - Set Up Eclipse IDE</h2>
+<p>All the examples in this tutorial have been written using Eclipse IDE. So I would suggest you should have the latest version of Eclipse installed on your machine.</p>
+<p>To install Eclipse IDE, download the latest Eclipse binaries from <a rel="nofollow" target="_blank" href = "https://www.eclipse.org/downloads/">https://www.eclipse.org/downloads/</a>. Once you download the installation, unpack the binary distribution into a convenient location. For example, in C:\eclipse on Windows, or /usr/local/eclipse on Linux/Unix and finally set PATH variable appropriately.</p>
+<p>Eclipse can be started by executing the following commands on Windows machine, or you can double-click on eclipse.exe</p>
+<pre class="prettyprint notranslate">
+ %C:\eclipse\eclipse.exe
+</pre>
+<p>Eclipse can be started by executing the following commands on Unix (Solaris, Linux, etc.) machine &minus;</p>
+<pre class="prettyprint notranslate">
+$/usr/local/eclipse/eclipse
+</pre>
+<p>After a successful startup, if everything is fine then it should display the following result &minus;</p>
+<img src="/springaop/images/eclipsehomepage.jpg" alt="Eclipse Home page" />
+<p>Once you are done with this last step, you are ready to proceed for your first AOP example, which you will see in the next chapter.</p>
+</ul>
+<h1>Spring AOP - Core Concepts</h1>
+<p>Before we start working with AOP, let us become familiar with the AOP concepts and terminologies. These terms are not specific to Spring, rather they are related to AOP.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Terms &amp; Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td><p><b>Aspect</b></p>
+<p>A module which has a set of APIs providing cross-cutting requirements. For example, a logging module would be called AOP aspect for logging. An application can have any number of aspects depending on the requirement.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td><p><b>Join point</b></p>
+<p>This represents a point in your application where you can plug-in AOP aspect. You can also say, it is the actual place in the application where an action will be taken using Spring AOP framework.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">3</td>
+<td><p><b>Advice</b></p>
+<p>This is the actual action to be taken either before or after the method execution. This is the actual piece of code that is invoked during program execution by Spring AOP framework.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">4</td>
+<td><p><b>PointCut</b></p>
+<p>This is a set of one or more joinpoints where an advice should be executed. You can specify PointCuts using expressions or patterns as we will see in our AOP examples.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">5</td>
+<td><p><b>Introduction</b></p>
+<p>An introduction allows you to add new methods or attributes to existing classes.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">6</td>
+<td><p><b>Target object</b></p>
+<p>The object being advised by one or more aspects. This object will always be a proxied object. Also referred to as the advised object.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">7</td>
+<td><p><b>Weaving</b></p>
+<p>Weaving is the process of linking aspects with other application types or objects to create an advised object. This can be done at compile time, load time, or at runtime.</p></td>
+</tr>
+</table>
+<h1>Spring AOP - Advice Types</h1>
+<p>Spring aspects can work with five kinds of advice mentioned in the following table.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Advice &amp; Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td><p><b>before</b></p>
+<p>Run advice before the method execution.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td><p><b>after</b></p>
+<p>Run advice after the method execution, regardless of its outcome.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">3</td>
+<td><p><b>after-returning</b></p>
+<p>Run advice after the method execution, only if the method completes successfully.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">4</td>
+<td><p><b>after-throwing</b></p>
+<p>Run advice after the method execution, only if the method exits by throwing an exception.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">5</td>
+<td><p><b>around</b></p>
+<p>Run advice before and after the advised method is invoked.</p></td>
+</tr>
+</table>
+<h1>Spring AOP - Implementations</h1>
+<p>Spring supports the <b>@AspectJ annotation style</b> approach and the <b>schema-based</b> approach to implement custom aspects.</p>
+<h2>XML Schema Based</h2>
+<p>Aspects are implemented using regular classes along with XML based configuration.</p>
+<p>To use the AOP namespace tags described in this section, you need to import the spring AOP schema, described as follows &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;!-- bean definition &amp; AOP specific configuration --&gt;
+
+&lt;/beans&gt;
+</pre>
+<h2>Declaring an Aspect</h2>
+<p>An <b>aspect</b> is declared using the <b>&lt;aop:aspect&gt;</b> element, and the backing bean is referenced using the <b>ref</b> attribute as follows.</p>
+<pre class="prettyprint notranslate">
+&lt;aop:config&gt;
+   &lt;aop:aspect id = "myAspect" ref = "aBean"&gt;
+   ...
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+
+&lt;bean id = "aBean" class = "..."&gt;
+   ...
+&lt;/bean&gt;
+</pre>
+<p>Here "aBean" will be configured and dependency injected just like any other Spring bean as you have seen in the previous chapters.</p>
+<h2>Declaring a PointCut</h2>
+<p>A <b>PointCut</b> helps in determining the join points (i.e. methods) of interest to be executed with different advices. While working with XML Schema based configuration, PointCut will be defined as follows &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;aop:config&gt;
+   &lt;aop:aspect id = "myAspect" ref = "aBean"&gt;
+
+   &lt;aop:PointCut id = "businessService"
+      expression = "execution(* com.xyz.myapp.service.*.*(..))"/&gt;
+      ...
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+
+&lt;bean id = "aBean" class = "..."&gt;
+   ...
+&lt;/bean&gt;
+</pre>
+<p>The following example defines a PointCut named 'businessService' that will match the execution of getName() method available in Student class under the package com.tutorialspoint.</p>
+<pre class="prettyprint notranslate">
+&lt;aop:config&gt;
+   &lt;aop:aspect id = "myAspect" ref = "aBean"&gt;
+
+   &lt;aop:PointCut id = "businessService"
+      expression = "execution(* com.tutorialspoint.Student.getName(..))"/&gt;
+   ...
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+
+&lt;bean id = "aBean" class = "..."&gt;
+   ...
+&lt;/bean&gt;
+</pre>
+<h2>Declaring Advices</h2>
+<p>You can declare any of the five advices inside an &lt;aop:aspect&gt; using the &lt;aop:{ADVICE NAME}&gt; element as follows.</p>
+<pre class="prettyprint notranslate">
+&lt;aop:config&gt;
+   &lt;aop:aspect id = "myAspect" ref = "aBean"&gt;
+      &lt;aop:PointCut id = "businessService"
+         expression = "execution(* com.xyz.myapp.service.*.*(..))"/&gt;
+
+      &lt;!-- a before advice definition --&gt;
+      &lt;aop:before PointCut-ref = "businessService" 
+         method = "doRequiredTask"/&gt;
+
+      &lt;!-- an after advice definition --&gt;
+      &lt;aop:after PointCut-ref = "businessService" 
+         method = "doRequiredTask"/&gt;
+
+      &lt;!-- an after-returning advice definition --&gt;
+      &lt;!--The doRequiredTask method must have parameter named retVal --&gt;
+      &lt;aop:after-returning PointCut-ref = "businessService"
+         returning = "retVal"
+         method = "doRequiredTask"/&gt;
+
+      &lt;!-- an after-throwing advice definition --&gt;
+      &lt;!--The doRequiredTask method must have parameter named ex --&gt;
+      &lt;aop:after-throwing PointCut-ref = "businessService"
+        throwing = "ex"
+         method = "doRequiredTask"/&gt;
+
+      &lt;!-- an around advice definition --&gt;
+      &lt;aop:around PointCut-ref = "businessService" 
+         method = "doRequiredTask"/&gt;
+   ...
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+
+&lt;bean id = "aBean" class = "..."&gt;
+   ...
+&lt;/bean&gt;
+</pre>
+<p>You can use same <b>doRequiredTask</b>  or different methods for different advices. These methods will be defined as a part of aspect module.</p>
+<h2>@AspectJ based</h2>
+<p>@AspectJ refers to a style of declaring aspects as regular Java classes annotated with Java 5 annotations. @AspectJ refers to a style of declaring aspects as regular Java classes annotated with Java 5 annotations. The @AspectJ support is enabled by including the following element inside your XML Schema-based configuration file.</p>
+<pre class="prettyprint notranslate">
+&lt;aop:aspectj-autoproxy/&gt;
+</pre>
+<h2>Declaring an Aspect</h2>
+<p>Aspects  classes are like any other normal bean and may have methods and fields just like any other class, except that they will be annotated with @Aspect as follows.</p>
+<pre class="prettyprint notranslate">
+package org.xyz;
+
+import org.aspectj.lang.annotation.Aspect;
+
+@Aspect
+public class AspectModule {
+
+}
+</pre>
+<p>They will be configured in XML like any other bean as follows.</p>
+<pre class="prettyprint notranslate">
+&lt;bean id = "myAspect" class = "org.xyz.AspectModule"&gt;
+   &lt;!-- configure properties of aspect here as normal --&gt;
+&lt;/bean&gt;
+</pre>
+<h2>Declaring a PointCut</h2>
+<p>A <b>PointCut</b> helps in determining the join points (i.e. methods) of interest to be executed with different advices. While working with @AspectJ based configuration, PointCut declaration has two parts &minus;</p>
+<ul class="list">
+<li><p>A PointCut expression that determines exactly which method executions we are interested in.</p></li>
+<li><p>A PointCut signature comprising a name and any number of parameters. The actual body of the method is irrelevant and in fact should be empty.</p></li>
+</ul>
+<p>The following example defines a PointCut named 'businessService' that will match the execution of every method available in the classes under the package com.xyz.myapp.service.</p>
+<pre class="prettyprint notranslate">
+import org.aspectj.lang.annotation.PointCut;
+
+@PointCut("execution(* com.xyz.myapp.service.*.*(..))") // expression 
+private void businessService() {}  // signature
+</pre>
+<p>The following example defines a PointCut named 'getname' that will match the execution of getName() method available in Student class under the package com.tutorialspoint.</p>
+<pre class="prettyprint notranslate">
+import org.aspectj.lang.annotation.PointCut;
+
+@PointCut("execution(* com.tutorialspoint.Student.getName(..))") 
+private void getname() {}
+</pre>
+<h2>Declaring Advices</h2>
+<p>You can declare any of the five advices using @{ADVICE-NAME} annotations as given below. This assumes that you already have defined a PointCut signature method businessService().</p>
+<pre class="prettyprint notranslate">
+@Before("businessService()")
+public void doBeforeTask(){
+   ...
+}
+
+@After("businessService()")
+public void doAfterTask(){
+   ...
+}
+
+@AfterReturning(PointCut = "businessService()", returning = "retVal")
+public void doAfterReturnningTask(Object retVal){
+   // you can intercept retVal here.
+   ...
+}
+
+@AfterThrowing(PointCut = "businessService()", throwing = "ex")
+public void doAfterThrowingTask(Exception ex){
+   // you can intercept thrown exception here.
+   ...
+}
+
+@Around("businessService()")
+public void doAroundTask(){
+   ...
+}
+</pre>
+<p>You can define PointCut inline for any of the advices. Following is an example to define inline PointCut for before advice.</p>
+<pre class="prettyprint notranslate">
+@Before("execution(* com.xyz.myapp.service.*.*(..))")
+public doBeforeTask(){
+   ...
+}
+</pre>
+<h1>Spring AOP - XML Based Application</h1>
+<p>In this chapter, we will write actual AOP applications using Spring AOP Framework. Before you start writing your first example using Spring-WS framework, you have to make sure that you have set up your Spring AOP environment properly as explained in <a href = "/springaop/springaop_environment.htm">Spring Web Services - Environment Setup</a> chapter.</p>
+<p>Now, proceed to write a simple console-ased Spring AOP Application, which will demonstrate AOP concepts.</p>
+<h2>Create a Project</h2>
+<p><b>Step 1</b> &minus; Open a command console, go the C:\MVN directory and execute the following <b>mvn</b> command.</p>
+<pre class="prettyprint notranslate">
+C:\MVN&gt;mvn archetype:generate -DgroupId = com.tutorialspoint -DartifactId = Student
+	-DarchetypeArtifactId = maven-archetype-quickstart -DinteractiveMode = false
+</pre>
+<p>Maven will start processing and will create the complete Java application project structure.</p>
+<pre class="prettyprint notranslate">
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Maven Stub Project (No POM) 1
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] &gt;&gt;&gt; maven-archetype-plugin:2.4:generate (default-cli) &gt; generate-sources
+@ standalone-pom &gt;&gt;&gt;
+[INFO]
+[INFO] &lt;&lt;&lt; maven-archetype-plugin:2.4:generate (default-cli) &lt; generate-sources
+@ standalone-pom &lt;&lt;&lt;
+[INFO]
+[INFO] --- maven-archetype-plugin:2.4:generate (default-cli) @ standalone-pom --
+-
+[INFO] Generating project in Batch mode
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/ma
+ven-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.jar
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/mav
+en-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.jar (5 KB at 1.1 KB/s
+ec)
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/ma
+ven-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/mav
+en-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.pom (703 B at 1.2 KB/
+sec)
+[INFO] -------------------------------------------------------------------------
+---
+[INFO] Using following parameters for creating project from Old (1.x) Archetype:
+ maven-archetype-quickstart:1.0
+[INFO] -------------------------------------------------------------------------
+---
+[INFO] Parameter: groupId, Value: com.tutorialspoint
+[INFO] Parameter: packageName, Value: com.tutorialspoint
+[INFO] Parameter: package, Value: com.tutorialspoint
+[INFO] Parameter: artifactId, Value: Student
+[INFO] Parameter: basedir, Value: C:\MVN
+[INFO] Parameter: version, Value: 1.0-SNAPSHOT
+[INFO] project created from Old (1.x) Archetype in dir: C:\MVN\Student
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 01:17 min
+[INFO] Finished at: 2017-02-19T21:11:14+05:30
+[INFO] Final Memory: 15M/114M
+[INFO] ------------------------------------------------------------------------
+</pre>
+<p><b>Step 2</b> &minus; Go to C:/MVN directory. You'll see a Java application project created, named student (as specified in artifactId). Update the POM.xml to include Spring-AOP dependencies. Add MainApp.java, Student.java, and Logging.java files.</p>
+<p><b>POM.xml</b></p>
+<pre class="prettyprint notranslate">
+&lt;project xmlns = "http://maven.apache.org/POM/4.0.0" 
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 
+   http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+   &lt;groupId&gt;com.tutorialspoint&lt;/groupId&gt;
+   &lt;artifactId&gt;Student&lt;/artifactId&gt;
+   &lt;packaging&gt;jar&lt;/packaging&gt;
+   &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+   &lt;name&gt;Student&lt;/name&gt;
+   &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+   
+   &lt;dependencies&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;junit&lt;/groupId&gt;
+         &lt;artifactId&gt;junit&lt;/artifactId&gt;
+         &lt;version&gt;3.8.1&lt;/version&gt;
+         &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+         &lt;version&gt;4.1.0.RELEASE&lt;/version&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+         &lt;version&gt;4.1.4.RELEASE&lt;/version&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+         &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+         &lt;version&gt;1.6.8&lt;/version&gt;
+      &lt;/dependency&gt;
+      
+   &lt;/dependencies&gt;
+&lt;/project&gt;
+package com.tutorialspoint;
+
+public class Logging {
+
+   /** 
+    * This is the method which I would like to execute
+    * before a selected method execution.
+    */
+   public void beforeAdvice() {
+      System.out.println("Going to setup student profile.");
+   }
+
+   /** 
+    * This is the method which I would like to execute
+    * after a selected method execution.
+    */
+   public void afterAdvice() {
+      System.out.println("Student profile has been setup.");
+   }
+
+   /** 
+    * This is the method which I would like to execute
+    * when any method returns.
+    */
+   public void afterReturningAdvice(Object retVal){
+      System.out.println("Returning:" + retVal.toString() );
+   }
+
+   /**
+    * This is the method which I would like to execute
+    * if there is an exception raised.
+    */
+   public void AfterThrowingAdvice(IllegalArgumentException ex) {
+      System.out.println("There has been an exception: " + ex.toString());   
+   }
+   
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();
+      
+      student.printThrowException();
+   }
+}
+</pre> 
+<p><b>Step 3</b> &minus; Add the configuration file <b>Beans.xml</b> under <b> src &gt; main &gt; resources </b> folder.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:config&gt;
+      &lt;aop:aspect id = "log" ref = "logging"&gt;
+         &lt;aop:PointCut id = "selectAll" 
+            expression = "execution(* com.tutorialspoint.*.*(..))"/&gt;
+         &lt;aop:before PointCut-ref = "selectAll" method = "beforeAdvice"/&gt;
+         &lt;aop:after PointCut-ref = "selectAll" method = "afterAdvice"/&gt;
+         &lt;aop:after-returning PointCut-ref = "selectAll" 
+            returning = "retVal"
+            method = "afterReturningAdvice"/&gt;
+         &lt;aop:after-throwing PointCut-ref = "selectAll" 
+           throwing = "ex"
+            method = "AfterThrowingAdvice"/&gt;
+      &lt;/aop:aspect&gt;
+   &lt;/aop:config&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre> 
+<p><b>Step 4</b> &minus; Open the command console, go the C:\MVN directory and execute the following <b>mvn</b> command.</p>
+<pre class="prettyprint notranslate">
+C:\MVN&gt;Student&gt; mvn package
+</pre>
+<p>Maven will start processing and downloading the required libraries.</p>
+<pre class="prettyprint notranslate">
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Student 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven
+-jar-plugin/2.4/maven-jar-plugin-2.4.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-
+jar-plugin/2.4/maven-jar-plugin-2.4.pom (6 KB at 2.2 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven
+-jar-plugin/2.4/maven-jar-plugin-2.4.jar
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-
+jar-plugin/2.4/maven-jar-plugin-2.4.jar (34 KB at 31.6 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-aop
+/4.1.0.RELEASE/spring-aop-4.1.0.RELEASE.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-aop/
+4.1.0.RELEASE/spring-aop-4.1.0.RELEASE.pom (3 KB at 3.7 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-bea
+ns/4.1.0.RELEASE/spring-beans-4.1.0.RELEASE.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-bean
+s/4.1.0.RELEASE/spring-beans-4.1.0.RELEASE.pom (3 KB at 4.1 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-cor
+e/4.1.0.RELEASE/spring-core-4.1.0.RELEASE.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-core
+/4.1.0.RELEASE/spring-core-4.1.0.RELEASE.pom (3 KB at 4.0 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-aop
+/4.1.0.RELEASE/spring-aop-4.1.0.RELEASE.jar
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-cor
+e/4.1.0.RELEASE/spring-core-4.1.0.RELEASE.jar
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-bea
+ns/4.1.0.RELEASE/spring-beans-4.1.0.RELEASE.jar
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-aop/
+4.1.0.RELEASE/spring-aop-4.1.0.RELEASE.jar (351 KB at 43.9 KB/sec)
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-bean
+s/4.1.0.RELEASE/spring-beans-4.1.0.RELEASE.jar (685 KB at 37.5 KB/sec)
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-core
+/4.1.0.RELEASE/spring-core-4.1.0.RELEASE.jar (982 KB at 47.1 KB/sec)
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ Student --
+-
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources,
+i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\MVN\Student\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ Student ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. b
+uild is platform dependent!
+[INFO] Compiling 1 source file to C:\MVN\Student\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ St
+udent ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources,
+i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\MVN\Student\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ Student
+ ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. b
+uild is platform dependent!
+[INFO] Compiling 1 source file to C:\MVN\Student\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ Student ---
+[INFO] Surefire report directory: C:\MVN\Student\target\surefire-reports
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/sure
+fire-junit3/2.12.4/surefire-junit3-2.12.4.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/suref
+ire-junit3/2.12.4/surefire-junit3-2.12.4.pom (2 KB at 1.3 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/sure
+fire-junit3/2.12.4/surefire-junit3-2.12.4.jar
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/suref
+ire-junit3/2.12.4/surefire-junit3-2.12.4.jar (26 KB at 27.7 KB/sec)
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.tutorialspoint.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ Student ---
+Downloading: https://repo.maven.apache.org/maven2/classworlds/classworlds/1.1-al
+pha-2/classworlds-1.1-alpha-2.jar
+Downloaded: https://repo.maven.apache.org/maven2/classworlds/classworlds/1.1-alp
+ha-2/classworlds-1.1-alpha-2.jar (37 KB at 35.8 KB/sec)
+[INFO] Building jar: C:\MVN\Student\target\Student-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 38.441 s
+[INFO] Finished at: 2017-02-19T21:18:59+05:30
+[INFO] Final Memory: 18M/109M
+[INFO] ------------------------------------------------------------------------
+</pre>
+<h2>Import Project in Eclipse</h2>
+<p><b>Step 1</b> &minus; Open Eclipse.</p>
+<p><b>Step 2</b> &minus; Select <b>File &rarr; Import &rarr;</b> option.</p>
+<p><b>Step 3</b> &minus; Select Maven Projects Option. Click the Next Button.</p>
+<p><b>Step 4</b> &minus; Select Project location, where Student project was created using Maven.</p>
+<p><b>Step 5</b> &minus; Click Finish Button.</p>
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Going to setup student profile.
+Name : Zara
+Student profile has been setup.
+Returning:Zara
+Going to setup student profile.
+Age : 11
+Student profile has been setup.
+Returning:11
+Going to setup student profile.
+Exception raised
+Student profile has been setup.
+There has been an exception: java.lang.IllegalArgumentException
+Exception in thread "main" java.lang.IllegalArgumentException
+   at com.tutorialspoint.Student.printThrowException(Student.java:25)
+   
+   at com.tutorialspoint.Student$$FastClassBySpringCGLIB$$7dc55815.invoke(&lt;generated&gt;)
+   
+   at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+   
+   at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:717)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+   
+   at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:52)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:43)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:52)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:58)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:653)
+   
+   at com.tutorialspoint.Student$$EnhancerBySpringCGLIB$$56a970f2.printThrowException(&lt;generated&gt;)
+   
+   at com.tutorialspoint.MainApp.main(MainApp.java:16)
+</pre>
+<h1>Spring AOP - XML Based PointCut</h1>
+<h2>Join Point</h2>
+<p>A JoinPoint represents a point in your application where you can plug-in AOP aspect. You can also say, it is the actual place in the application where an action will be taken using Spring AOP framework. Consider the following examples &minus;</p>
+<ul class="list">
+<li><p>All methods classes contained in a package(s).</p></li>
+<li><p>A particular methods of a class.</p></li>
+</ul>
+<h2>PointCut</h2>
+<p>PointCut is a set of one or more JoinPoints where an advice should be executed. You can specify PointCuts using expressions or patterns as we will see in our AOP examples. In Spring, PointCut helps to use specific JoinPoints to apply the advice. Consider the following examples &minus;</p>
+<ul class="list">
+<li><p>expression = "execution(* com.tutorialspoint.*.*(..))"</p></li>
+<li><p>expression = "execution(* com.tutorialspoint.Student.getName(..))"</p></li>
+</ul>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+&lt;aop:config&gt;
+   &lt;aop:aspect id = "log" ref = "adviceClass"&gt;
+      &lt;aop:PointCut id = "PointCut-id" expression = "execution( expression )"/&gt;    
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>adviceClass</b> &minus; ref of the class containing advice methods</p></li>
+<li><p><b>PointCut-id</b> &minus; id of the PointCut</p></li>
+<li><p><b>execution( expression )</b> &minus; Expression covering methods on which advice is to be applied.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to JoinPoint and PointCut, let us write an example which will implement few of the PointCuts. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application.</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Logging {
+
+   /** 
+    * This is the method which I would like to execute
+    * before a selected method execution.
+    */
+   public void beforeAdvice(){
+      System.out.println("Going to setup student profile.");
+   }   
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:config&gt;
+      &lt;aop:aspect id = "log" ref = "logging"&gt;
+         &lt;aop:PointCut id = "selectAll" 
+         expression = "execution(* com.tutorialspoint.*.*(..))"/&gt;
+         &lt;aop:before PointCut-ref = "selectAll" method = "beforeAdvice"/&gt;         
+      &lt;/aop:aspect&gt;
+   &lt;/aop:config&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre> 
+<p>Once you are done with creating the source and bean configuration files, run the application. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Going to setup student profile.
+Name : Zara
+Going to setup student profile.
+Age : 11
+</pre>
+<p>The above-defined &lt;aop:pointcut&gt; selects all the methods defined under the package com.tutorialspoint. Let us suppose, you want to execute your advice before or after a particular method, you can define your PointCut to narrow down your execution by replacing stars (*) in PointCut definition with actual class and method names. Following is a modified XML configuration file to show the concept.</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:config&gt;
+      &lt;aop:aspect id = "log" ref = "logging"&gt;
+         &lt;aop:PointCut id = "selectAll" 
+            expression = "execution(* com.tutorialspoint.Student.getName(..))"/&gt;
+         &lt;aop:before PointCut-ref = "selectAll" method = "beforeAdvice"/&gt;
+      &lt;/aop:aspect&gt;
+   &lt;/aop:config&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre> 
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Going to setup student profile.
+Name : Zara
+Age : 11 
+</pre>
+<h1>Spring AOP - XML Based Before Advice</h1>
+<p><b>Before</b> is an advice type which ensures that an advice runs before the method execution. Following is the syntax of before advice.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+&lt;aop:config&gt;
+   &lt;aop:aspect id = "log" ref = "logging"&gt;
+      &lt;aop:PointCut id = "PointCut-id" expression = "execution( expression )"/&gt;    
+      &lt;aop:before PointCut-ref = "PointCut-id" method = "methodName"/&gt;
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>PointCut-id</b> &minus; id of the PointCut.</p></li>
+<li><p><b>methodName</b> &minus; Method name of the function to be called before a called function.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to Before Advice, let us write an example, which will implement Before Advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application.</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Logging {
+
+   /** 
+    * This is the method which I would like to execute
+    * before a selected method execution.
+    */
+   public void beforeAdvice(){
+      System.out.println("Going to setup student profile.");
+   }   
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:config&gt;
+      &lt;aop:aspect id = "log" ref = "logging"&gt;
+         &lt;aop:PointCut id = "selectAll" 
+            expression = "execution(* com.tutorialspoint.Student.getName(..))"/&gt;
+         &lt;aop:before PointCut-ref = "selectAll" method = "beforeAdvice"/&gt;
+      &lt;/aop:aspect&gt;
+   &lt;/aop:config&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre>
+<h2>Run Project</h2>
+<p>Once you are done creating source and configuration files, run your application. Right-click on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Going to setup student profile.
+Name : Zara
+Age : 11 
+</pre> 
+<h1>Spring AOP - XML Based After Advice</h1>
+<p><b>After</b> is an advice type which ensures that an advice runs after the method execution. Following is the syntax of after advice.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+&lt;aop:config&gt;
+   &lt;aop:aspect id = "log" ref = "logging"&gt;
+      &lt;aop:PointCut id = "PointCut-id" expression = "execution( expression )"/&gt;    
+      &lt;aop:after PointCut-ref = "PointCut-id" method = "methodName"/&gt;
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>PointCut-id</b> &minus; id of the PointCut.</p></li>
+<li><p><b>methodName</b> &minus; Method name of the function to be called after a called function.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to After Advice, let us write an example which will implement After Advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application.</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Logging {
+
+   /** 
+    * This is the method which I would like to execute
+    * after a selected method execution.
+    */
+   public void afterAdvice(){
+      System.out.println("Student profile setup complete.");
+   }   
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:config&gt;
+      &lt;aop:aspect id = "log" ref = "logging"&gt;
+         &lt;aop:PointCut id = "selectAll" 
+            expression = "execution(* com.tutorialspoint.Student.getAge(..))"/&gt;
+         &lt;aop:after PointCut-ref = "selectAll" method = "afterAdvice"/&gt;
+      &lt;/aop:aspect&gt;
+   &lt;/aop:config&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre> 
+<h2>Run Project</h2>
+<p>Once you are done creating source and configuration files, run your application. Right-click on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, this will print the following message.</p>
+<pre class="result notranslate">
+Name : Zara
+Age : 11
+Student profile setup complete.
+</pre>
+<h1>Spring AOP - XML Based After Returning Advice</h1>
+<p><b>After</b> is an advice type which ensures that an advice runs after the method execution only if the method completes successfully. Following is the syntax of after advice.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+&lt;aop:config&gt;
+   &lt;aop:aspect id = "log" ref = "logging"&gt;
+      &lt;aop:PointCut id = "PointCut-id" expression = "execution( expression )"/&gt;    
+      &lt;aop:after-returning PointCut-ref = "PointCut-id" 
+         returning = "retVal" method = "methodName"/&gt;
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>PointCut-id</b> &minus; id of the PointCut.</p></li>
+<li><p><b>methodName</b> &minus; Method name of the function to be called after a called function returns successfully.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to After Returning Advice, let us write an example which will implement After Returning advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Logging {
+
+   /** 
+    * This is the method which I would like to execute
+    * when any method returns.
+    */
+   public void afterReturningAdvice(Object retVal){
+      System.out.println("Returning:" + retVal.toString() );
+   }
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:config&gt;
+      &lt;aop:aspect id = "log" ref = "logging"&gt;
+         &lt;aop:PointCut id = "selectAll" 
+         expression = "execution(* com.tutorialspoint.*.*(..))"/&gt;
+         &lt;aop:after-returning PointCut-ref = "selectAll" 
+            method = "afterReturningAdvice" returning = "retVal"/&gt;         
+      &lt;/aop:aspect&gt;
+   &lt;/aop:config&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre> 
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Name : Zara
+Returning : Name
+Age : 11
+Exception raised
+</pre>
+<h1>Spring AOP - XML Based After Throwing Advice</h1>
+<p><b>After-throwing</b> is an advice type which ensures that an advice runs after the method execution, only if the method exits by throwing an exception. Following is the syntax of after-throwing advice.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+&lt;aop:config&gt;
+   &lt;aop:aspect id = "log" ref = "logging"&gt;
+      &lt;aop:PointCut id = "PointCut-id" expression = "execution( expression )"/&gt;    
+      &lt;aop:after-throwing PointCut-ref = "PointCut-id" throwing = "ex" 
+         method = "methodName"/&gt;
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>PointCut-id</b> &minus; id of the PointCut.</p></li>
+<li><p><b>ex</b> &minus; Exception to be thrown.</p></li>
+<li><p><b>methodName</b> &minus; Method name of the function to be called when a called function throws an exception and exits.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to After Throwing Advice, let us write an example which will implement After Throwing Advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Logging {
+   /**
+    * This is the method which I would like to execute
+    * if there is an exception raised.
+    */
+   public void afterThrowingAdvice(IllegalArgumentException ex) {
+      System.out.println("There has been an exception: " + ex.toString());   
+   } 
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+	  return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.printThrowException();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:config&gt;
+      &lt;aop:aspect id = "log" ref = "logging"&gt;
+         &lt;aop:PointCut id = "selectAll" 
+         expression = "execution(* com.tutorialspoint.*.*(..))"/&gt;
+         &lt;aop:after-throwing PointCut-ref = "selectAll" 
+            throwing = "ex" method = "afterThrowingAdvice"/&gt;         
+      &lt;/aop:aspect&gt;
+   &lt;/aop:config&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre> 
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Exception raised
+There has been an exception: java.lang.IllegalArgumentException
+Exception in thread "main" java.lang.IllegalArgumentException
+   at com.tutorialspoint.Student.printThrowException(Student.java:25)
+	
+   at com.tutorialspoint.Student$$FastClassBySpringCGLIB$$7dc55815.invoke(&lt;generated>&gt;)
+	
+   at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	
+   at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:717)
+	
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	
+   at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:58)
+	
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	
+   at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	
+   at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:653)
+	
+   at com.tutorialspoint.Student$$EnhancerBySpringCGLIB$$8514cd8.printThrowException(&lt;generated&gt;)
+	
+   at com.tutorialspoint.MainApp.main(MainApp.java:15)
+</pre>
+<h1>Spring AOP - XML Based Around Advice</h1>
+<p><b>Around</b> is an advice type which ensures that an advice runs before and after the method execution. Following is the syntax of around advice.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+&lt;aop:config&gt;
+   &lt;aop:aspect id = "log" ref = "logging"&gt;
+      &lt;aop:PointCut id = "PointCut-id" expression = "execution( expression )"/&gt;    
+      &lt;aop:around PointCut-ref = "PointCut-id" method = "methodName"/&gt;
+   &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>PointCut-id</b> &minus; id of the PointCut.</p></li>
+<li><p><b>methodName</b> &minus; Method name of the function to be called before a called function.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to Around Advice, let us write an example which will implement Around Advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+
+public class Logging {
+
+   /** 
+    * This is the method which I would like to execute
+    * around a selected method execution.
+    */
+   public String aroundAdvice(ProceedingJoinPoint jp) throws Throwable{
+      System.out.println("Around advice");
+      Object[] args = jp.getArgs();
+      if(args.length&gt;0){
+         System.out.print("Arguments passed: " );
+         for (int i = 0; i &lt; args.length; i++) {
+            System.out.print("arg "+(i+1)+": "+args[i]);
+         }
+      }
+
+      Object result = jp.proceed(args);
+      System.out.println("Returning " + result);
+      return result.toString();
+   }   
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();    
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:config&gt;
+      &lt;aop:aspect id = "log" ref = "logging"&gt;
+         &lt;aop:PointCut id = "selectName" 
+            expression = "execution(* com.tutorialspoint.Student.getName(..))"/&gt;
+         &lt;aop:around PointCut-ref = "selectName" method = "aroundAdvice"/&gt;
+      &lt;/aop:aspect&gt;
+   &lt;/aop:config&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre>
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Around advice
+Name : Zara
+Returning Zara
+</pre> 
+<h1>Spring AOP - Annotation Based Application</h1>
+<p>Let us write an example which will implement advice using Annotation based configuration. For this, let us have a working Eclipse IDE in place and use the following steps to create a Spring application.</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.PointCut;
+
+@Aspect
+public class Logging {
+
+   /** Following is the definition for a PointCut to select
+    *  all the methods available. So advice will be called
+    *  for all the methods.
+    */
+   @PointCut("execution(* com.tutorialspoint.*.*(..))")
+   private void selectAll(){}
+
+   /** 
+    * This is the method which I would like to execute
+    * before a selected method execution.
+    */
+   @Before("selectAll()")
+   public void beforeAdvice(){
+      System.out.println("Going to setup student profile.");
+   }  
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();   
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:aspectj-autoproxy/&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre> 
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Going to setup student profile.
+Name : Zara
+Going to setup student profile.
+Age : 11
+</pre>
+<h1>Spring AOP - Annotation Based PointCut</h1>
+<h2>JoinPoint</h2>
+<p>A JoinPoint represents a point in your application where you can plug-in AOP aspect. You can also say, it is the actual place in the application where an action will be taken using Spring AOP framework. Consider the following examples &minus;</p>
+<ul class="list">
+<li><p>All methods classes contained in a package(s).</p></li>
+<li><p>A particular methods of a class.</p></li>
+</ul>
+<h2>PointCut</h2>
+<p>PointCut is a set of one or more JoinPoint where an advice should be executed. You can specify PointCuts using expressions or patterns as we will see in our AOP examples. In Spring, PointCut helps to use specific JoinPoints to apply the advice. Consider the following examples &minus;</p>
+<ul class="list">
+<li><p>@PointCut("execution(* com.tutorialspoint.*.*(..))")</p></li>
+<li><p>@PointCut("execution(* com.tutorialspoint.Student.getName(..))")</p></li>
+</ul>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+@Aspect
+public class Logging {
+
+   @PointCut("execution(* com.tutorialspoint.*.*(..))")
+   private void selectAll(){}
+
+}
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>@Aspect</b> &minus; Mark a class as a class containing advice methods.</p></li>
+<li><p><b>@PointCut</b> &minus; Mark a function as a PointCut</p></li>
+<li><p><b>execution( expression )</b> &minus; Expression covering methods on which advice is to be applied.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to JoinPoint and PointCut, let us write an example which will implement few of the PointCuts. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.PointCut;
+import org.aspectj.lang.annotation.Before;
+
+@Aspect
+public class Logging {
+
+   /** Following is the definition for a PointCut to select
+    *  all the methods available. So advice will be called
+    *  for all the methods.
+    */
+   @PointCut("execution(* com.tutorialspoint.*.*(..))")
+   private void selectAll(){}
+
+   /** 
+    * This is the method which I would like to execute
+    * before a selected method execution.
+    */
+   @Before("selectAll()")
+   public void beforeAdvice(){
+      System.out.println("Going to setup student profile.");
+   }  
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:aspectj-autoproxy/&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre> 
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Going to setup student profile.
+Name : Zara
+Going to setup student profile.
+Age : 11
+</pre>
+<p>The above-defined @Pointcut uses an expression to select all the methods defined under the package com.tutorialspoint. @Before advice uses the above-defined PointCut as a parameter. Effectively beforeAdvice() method will be called before every method covered by above PointCut.</p>
+<h1>Spring AOP - Annotation Based Before Advice</h1>
+<p><b>@Before</b> is an advice type which ensures that an advice runs before the method execution. Following is the syntax of @Before advice.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+@PointCut("execution(* com.tutorialspoint.Student.getName(..))")
+private void selectGetName(){}
+
+@Before("selectGetName()")
+public void beforeAdvice(){
+   System.out.println("Going to setup student profile.");
+} 
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>@PointCut</b> &minus; Mark a function as a PointCut</p></li>
+<li><p><b>execution( expression )</b> &minus; Expression covering methods on which advice is to be applied.</p></li>
+<li><p><b>@Before</b> &minus; Mark a function as an advice to be executed before method(s) covered by PointCut.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to @Before Advice, let us write an example which will implement @Before Advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.PointCut;
+import org.aspectj.lang.annotation.Before;
+
+@Aspect
+public class Logging {
+
+   /** Following is the definition for a PointCut to select
+    *  all the methods available. So advice will be called
+    *  for all the methods.
+    */
+   @PointCut("execution(* com.tutorialspoint.Student.getName(..))")
+   private void selectGetName(){}
+
+   /** 
+    * This is the method which I would like to execute
+    * before a selected method execution.
+    */
+   @Before("selectGetName()")
+   public void beforeAdvice(){
+      System.out.println("Going to setup student profile.");
+   }  
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:aspectj-autoproxy/&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre>
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Going to setup student profile.
+Name : Zara
+Age : 11
+</pre>
+<p>The above-defined @Pointcut uses an expression to select method getAge() defined in class(es) under the package com.tutorialspoint. @After advice uses the above-defined PointCut as a parameter. Effectively afterAdvice() method will be called before every method covered by the above PointCut.</p>
+<h1>Spring AOP - Annotation Based After Advice</h1>
+<p><b>@After</b> is an advice type which ensures that an advice runs after the method execution. Following is the syntax of @After advice.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+@PointCut("execution(* com.tutorialspoint.Student.getAge(..))")
+private void selectGetName(){}
+
+@After("selectGetAge()")
+public void afterAdvice(){
+   System.out.println("Student profile setup completed.");
+} 
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>@PointCut</b> &minus; Mark a function as a PointCut</p></li>
+<li><p><b>execution( expression )</b> &minus; Expression covering methods on which advice is to be applied.</p></li>
+<li><p><b>@After</b> &minus; Mark a function as an advice to be executed before method(s) covered by PointCut.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to @After Advice, let us write an example which will implement @After Advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application.</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.PointCut;
+import org.aspectj.lang.annotation.After;
+
+@Aspect
+public class Logging {
+
+   /** Following is the definition for a PointCut to select
+    *  all the methods available. So advice will be called
+    *  for all the methods.
+    */
+   @PointCut("execution(* com.tutorialspoint.Student.getAge(..))")
+   private void selectGetAge(){}
+
+   /** 
+    * This is the method which I would like to execute
+    * after a selected method execution.
+    */
+   @After("selectGetAge()")
+   public void afterAdvice(){
+      System.out.println("Student profile setup completed.");
+   }  
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:aspectj-autoproxy/&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre>
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Name : Zara
+Age : 11
+Student profile setup completed.
+</pre>
+<p>The above-defined @Pointcut uses an expression to select method getAge() defined in class(es) under the package com.tutorialspoint. @After advice uses the above-defined PointCut as a parameter. Effectively afterAdvice() method will be called before every method covered by the above PointCut.</p>
+<h1>Spring AOP - Annotation Based After Returning Advice</h1>
+<p><b>@AfterReturning</b> is an advice type, which ensures that an advice runs after the method executes successfully. Following is the syntax of @AfterReturning advice.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+
+@AfterReturning(PointCut = "execution(* com.tutorialspoint.Student.*(..))", 
+   returning = "retVal")
+public void afterReturningAdvice(JoinPoint jp, Object retVal){
+   System.out.println("Method Signature: "  + jp.getSignature());  
+   System.out.println("Returning:" + retVal.toString() );
+}
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>@AfterReturning</b> &minus; Mark a function as an advice to be executed before method(s) covered by PointCut, if the method returns successfully.</p></li>
+<li><p><b>PointCut</b> &minus; Provides an expression to select a function</p></li>
+<li><p><b>execution( expression )</b> &minus; Expression covering methods on which advice is to be applied.</p></li>
+<li><p><b>returning</b> &minus; Name of the variable to be returned.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to @AfterReturning Advice, let us write an example, which will implement @AfterReturning Advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application.</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.JoinPoint;  
+import org.aspectj.lang.annotation.AfterReturning; 
+
+@Aspect
+public class Logging {
+
+   /** 
+    * This is the method which I would like to execute
+    * after a selected method execution.
+    */
+   @AfterReturning(PointCut = "execution(* com.tutorialspoint.Student.*(..))", 
+      returning = "retVal")
+   public void afterReturningAdvice(JoinPoint jp, Object retVal){
+      System.out.println("Method Signature: "  + jp.getSignature());  
+      System.out.println("Returning:" + retVal.toString() );
+   }
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getAge();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:aspectj-autoproxy/&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre>
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Age : 11
+Method Signature: Integer com.tutorialspoint.Student.getAge()  
+Returning 11
+</pre>
+<h1>Spring AOP - Annotation Based After Throwing Advice</h1>
+<p><b>@AfterThrowing</b> is an advice type which ensures that an advice runs if the method throws an exception. Following is the syntax of @AfterThrowing advice.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+
+@AfterThrowing(PointCut = "execution(* com.tutorialspoint.Student.*(..))", 
+   throwing = "error")
+public void afterThrowingAdvice(JoinPoint jp, Throwable error){
+   System.out.println("Method Signature: "  + jp.getSignature());  
+   System.out.println("Exception: "+error);  
+}
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>@AfterThrowing</b> &minus; Mark a function as an advice to be executed before method(s) covered by PointCut, if the method throws an exception.</p></li>
+<li><p><b>PointCut</b> &minus; Provides an expression to select a function.</p></li>
+<li><p><b>execution( expression )</b> &minus; Expression covering methods on which advice is to be applied.</p></li>
+<li><p><b>throwing</b> &minus; Name of the exception to be returned.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to @AfterThrowing Advice, let us write an example which will implement @AfterThrowing Advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application.</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.JoinPoint;  
+import org.aspectj.lang.annotation.AfterThrowing;  
+
+@Aspect
+public class Logging {
+
+   /** 
+    * This is the method which I would like to execute
+    * after a selected method execution throws exception.
+    */
+   @AfterThrowing(PointCut = "execution(* com.tutorialspoint.Student.*(..))", 
+      throwing = "error")
+   public void afterThrowingAdvice(JoinPoint jp, Throwable error){
+      System.out.println("Method Signature: "  + jp.getSignature());  
+      System.out.println("Exception: "+error);  
+   }
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.printThrowException();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:aspectj-autoproxy/&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre>
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Exception raised
+Method Signature: void com.tutorialspoint.Student.printThrowException()
+Exception: java.lang.IllegalArgumentException
+Exception in thread "main" java.lang.IllegalArgumentException
+   
+   at com.tutorialspoint.Student.printThrowException(Student.java:25)
+   
+   at com.tutorialspoint.Student$$FastClassBySpringCGLIB$$7dc55815.invoke(&lt;generated&gt;)
+   
+   at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+   
+   at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:717)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+   
+   at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:58)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:653)
+   
+   at com.tutorialspoint.Student$$EnhancerBySpringCGLIB$$99b0a988.printThrowException(&lt;generated&gt;)
+   
+   at com.tutorialspoint.MainApp.main(MainApp.java:13)
+</pre>
+<h1>Spring AOP - Annotation Based Around Advice</h1>
+<p><b>@Around</b> is an advice type, which ensures that an advice can run before and after the method execution. Following is the syntax of @Around advice.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+@PointCut("execution(* com.tutorialspoint.Student.getAge(..))")
+private void selectGetName(){}
+
+@Around("selectGetAge()")
+public void aroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
+   System.out.println("Around advice");
+   Object[] args = jp.getArgs();
+   if(args.length&gt;0){
+      System.out.print("Arguments passed: " );
+      for (int i = 0; i &lt; args.length; i++) {
+         System.out.print("arg "+(i+1)+": "+args[i]);
+      }
+   }
+
+   Object result = jp.proceed(args);
+   System.out.println("Returning " + result);
+   return result.toString();   
+} 
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>@PointCut</b> &minus; Mark a function as a PointCut</p></li>
+<li><p><b>execution( expression )</b> &minus; Expression covering methods on which advice is to be applied.</p></li>
+<li><p><b>@Around</b> &minus; Mark a function as an advice to be executed before method(s) covered by PointCut.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to @Around Advice, let us write an example which will implement @Around Advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.PointCut;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.ProceedingJoinPoint; 
+
+@Aspect
+public class Logging {
+
+   /** Following is the definition for a PointCut to select
+    *  all the methods available. So advice will be called
+    *  for all the methods.
+    */
+   @PointCut("execution(* com.tutorialspoint.Student.getAge(..))")
+   private void selectGetAge(){}
+
+   /** 
+    * This is the method which I would like to execute
+    * around a selected method execution.
+    */
+   @Around("selectGetAge()")
+   public void aroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
+      System.out.println("Around advice");
+      Object[] args = proceedingJoinPoint.getArgs();
+      if(args.length&gt;0){
+         System.out.print("Arguments passed: " );
+         for (int i = 0; i &lt; args.length; i++) {
+            System.out.print("arg "+(i+1)+": "+args[i]);
+         }
+      }
+
+      Object result = proceedingJoinPoint.proceed(args);
+      System.out.println("Returning " + result);
+   }  
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getAge();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:aspectj-autoproxy/&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre>
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Around advice
+Age : 11
+Returning 11
+</pre>
+<h1>Spring AOP - Proxy</h1>
+<p>So far, we've declared aspects using <b>&lt;aop:config&gt;</b> or <b>&lt; aop:aspectj-autoproxy&gt;</b>. We can create a proxy programmatically as well as invoke the aspects programmatically using the proxy object.  </p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+//Create object to be proxied
+Student student = new Student();
+
+//Create the Proxy Factory
+AspectJProxyFactory proxyFactory = new AspectJProxyFactory(student);
+
+//Add Aspect class to the factory
+proxyFactory.addAspect(Logging.class);
+
+//Get the proxy object
+Student proxyStudent = proxyFactory.getProxy();
+
+//Invoke the proxied method.
+proxyStudent.getAge();
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>AspectJProxyFactory</b> &minus; Factory class to create a proxy object.</p></li>
+<li><p><b>Logging.class</b> &minus; Class of the Aspect containing advices.</p></li>
+<li><p><b>Student</b> &minus; Business class to be advised.</p></li>
+</ul>
+<p>To understand the above-mentioned concepts related to proxy, let us write an example which will implement proxy. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.PointCut;
+import org.aspectj.lang.annotation.Before;
+
+@Aspect
+public class Logging {
+
+   /** Following is the definition for a PointCut to select
+    *  all the methods available. So advice will be called
+    *  for all the methods.
+    */
+   @PointCut("execution(* com.tutorialspoint.Student.getAge(..))")
+   private void selectGetAge(){}
+
+   /** 
+    * This is the method which I would like to execute
+    * before a selected method execution.
+    */
+   @Before("selectGetAge()")
+   public void beforeAdvice(){
+      System.out.println("Going to setup student profile.");
+   }  
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+  
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }   
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      //Create the Proxy Factory
+      AspectJProxyFactory proxyFactory = new AspectJProxyFactory(student);
+
+      //Add Aspect class to the factory
+      proxyFactory.addAspect(Logging.class);
+
+      //Get the proxy object
+      Student proxyStudent = proxyFactory.getProxy();
+
+      //Invoke the proxied method.
+      proxyStudent.getAge();
+ 
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre>
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Going to setup student profile.
+Age : 11
+</pre>
+<h1>Spring AOP - Custom Annotation</h1>
+<p>As per PointCut expressions, it may be the case that they get applied to some other beans for which advice is not intended. For example, consider the following expression.</p>
+<pre class="prettyprint notranslate">
+execution(* com.tutorialspoint.*.getAge(..)) 
+</pre>
+<p>A new spring bean is added with getAge() method and the advice will start getting applied to it although it may not be intended. To achieve this, we can create a custom annotation and annotate the methods on which the advice is to be applied.</p>
+<pre class="prettyprint notranslate">
+@Before("@annotation(com.tutorialspoint.Loggable)")
+</pre>
+<p>To understand the above-mentioned concepts related to @Before Advice, let us write an example which will implement @Before Advice. To write our example with few advices, let us have a working Eclipse IDE in place and use the following steps to create a Spring application.</p>
+<table class="table table-bordered">
+<tr>
+<th>Step</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td>Update the project <i>Student</i> created under chapter <a href = "/springaop/springaop_application.htm">Spring AOP - Application</a>.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td>Update the bean configuration and run the application as explained below.</td>
+</tr>
+</table>
+<p>Following is the content of <b>Logging.java</b> file. This is actually a sample of aspect module, which defines the methods to be called at various points.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+
+@Aspect
+public class Logging {
+
+   /** 
+    * This is the method which I would like to execute
+    * before a selected method execution.
+    */
+   @Before("@annotation(com.tutorialspoint.Loggable)")
+   public void beforeAdvice(){
+      System.out.println("Going to setup student profile.");
+   }  
+}
+</pre>
+<p>Following is the content of the <b>Loggable.java</b> file &minus;</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public @interface Loggable {
+
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+   
+   public void setName(String name) {
+      this.name = name;
+   }
+   
+   @Loggable
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();     
+   }
+}
+</pre> 
+<p>Following is the configuration file <b>Beans.xml</b>.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:aspectj-autoproxy/&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre>
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Going to setup student profile.
+Name : Zara
+Age : 11
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/springaop/springaop_custom_annotation.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/springaop/springaop_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

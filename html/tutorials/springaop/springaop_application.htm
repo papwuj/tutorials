@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Spring AOP - XML Based Application - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Spring AOP - XML Based Application - In this chapter, we will write actual AOP applications using Spring AOP Framework. Before you start writing your first example using Spring-WS framework, you ha"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/springaop/springaop_application.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#6db33f;
+}
+a.demo {
+    background:#6db33f;
+}
+li.heading {
+    background:#6db33f;
+}
+.course-box{background:#6db33f}
+.home-intro-sub p{color:#6db33f}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/springaop/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/springaop/images/spring-aop-mini-logo.jpg" alt="Spring AOP Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Spring AOP Tutorial</li>
+<li><a href="/springaop/index.htm">Spring AOP - Home</a></li>
+<li><a href="/springaop/springaop_overview.htm">Spring AOP - Overview</a></li>
+<li><a href="/springaop/springaop_environment.htm">Spring AOP - Environment Setup</a></li>
+<li><a href="/springaop/springaop_core_concepts.htm">Spring AOP - Core Concepts</a></li>
+<li><a href="/springaop/springaop_advice_types.htm">Spring AOP - Advice Types</a></li>
+<li><a href="/springaop/springaop_implementations.htm">Spring AOP - Implementations</a></li>
+<li class="heading">By XML Configuration Examples</li>
+<li><a href="/springaop/springaop_application.htm">Spring AOP - Application</a></li>
+<li><a href="/springaop/springaop_pointcut_methods.htm">Spring AOP - Pointcut Methods</a></li>
+<li><a href="/springaop/springaop_before_advice.htm">Spring AOP - Before Advice</a></li>
+<li><a href="/springaop/springaop_after_advice.htm">Spring AOP - After Advice</a></li>
+<li><a href="/springaop/springaop_after_returning.htm">Spring AOP - After Returning Advice</a></li>
+<li><a href="/springaop/springaop_after_throwing.htm">Spring AOP - After Throwing Advice</a></li>
+<li><a href="/springaop/springaop_around_aspect.htm">Spring AOP - Around Advice</a></li>
+<li class="heading">By Annotation Examples</li>
+<li><a href="/springaop/springaop_application1.htm">Spring AOP - Application</a></li>
+<li><a href="/springaop/springaop_pointcut_methods1.htm">Spring AOP - Pointcut Methods</a></li>
+<li><a href="/springaop/springaop_before_aspect1.htm">Spring AOP - Before Aspect</a></li>
+<li><a href="/springaop/springaop_after_advice1.htm">Spring AOP - After Advice</a></li>
+<li><a href="/springaop/springaop_after_returning1.htm">Spring AOP - After Returning Advice</a></li>
+<li><a href="/springaop/springaop_after_throwing1.htm">Spring AOP - After Throwing Advice</a></li>
+<li><a href="/springaop/springaop_around_aspect1.htm">Spring AOP - Around Advice</a></li>
+<li class="heading">Spring AOP Advanced</li>
+<li><a href="/springaop/springaop_proxy.htm">Spring AOP - Proxy</a></li>
+<li><a href="/springaop/springaop_custom_annotation.htm">Spring AOP - Custom Annotation</a></li>
+<li class="heading">Spring AOP Useful Resources</li>
+<li><a href="/springaop/springaop_quick_guide.htm">Spring AOP - Quick Guide</a></li>
+<li><a href="/springaop/springaop_useful_resources.htm">Spring AOP - Useful Resources</a></li>
+<li><a href="/springaop/springaop_discussion.htm">Spring AOP - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Spring AOP - XML Based Application</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/springaop/springaop_implementations.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/springaop/springaop_pointcut_methods.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, we will write actual AOP applications using Spring AOP Framework. Before you start writing your first example using Spring-WS framework, you have to make sure that you have set up your Spring AOP environment properly as explained in <a href = "/springaop/springaop_environment.htm">Spring Web Services - Environment Setup</a> chapter.</p>
+<p>Now, proceed to write a simple console-ased Spring AOP Application, which will demonstrate AOP concepts.</p>
+<h2>Create a Project</h2>
+<p><b>Step 1</b> &minus; Open a command console, go the C:\MVN directory and execute the following <b>mvn</b> command.</p>
+<pre class="prettyprint notranslate">
+C:\MVN&gt;mvn archetype:generate -DgroupId = com.tutorialspoint -DartifactId = Student
+	-DarchetypeArtifactId = maven-archetype-quickstart -DinteractiveMode = false
+</pre>
+<p>Maven will start processing and will create the complete Java application project structure.</p>
+<pre class="prettyprint notranslate">
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Maven Stub Project (No POM) 1
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] &gt;&gt;&gt; maven-archetype-plugin:2.4:generate (default-cli) &gt; generate-sources
+@ standalone-pom &gt;&gt;&gt;
+[INFO]
+[INFO] &lt;&lt;&lt; maven-archetype-plugin:2.4:generate (default-cli) &lt; generate-sources
+@ standalone-pom &lt;&lt;&lt;
+[INFO]
+[INFO] --- maven-archetype-plugin:2.4:generate (default-cli) @ standalone-pom --
+-
+[INFO] Generating project in Batch mode
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/ma
+ven-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.jar
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/mav
+en-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.jar (5 KB at 1.1 KB/s
+ec)
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/ma
+ven-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/mav
+en-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.pom (703 B at 1.2 KB/
+sec)
+[INFO] -------------------------------------------------------------------------
+---
+[INFO] Using following parameters for creating project from Old (1.x) Archetype:
+ maven-archetype-quickstart:1.0
+[INFO] -------------------------------------------------------------------------
+---
+[INFO] Parameter: groupId, Value: com.tutorialspoint
+[INFO] Parameter: packageName, Value: com.tutorialspoint
+[INFO] Parameter: package, Value: com.tutorialspoint
+[INFO] Parameter: artifactId, Value: Student
+[INFO] Parameter: basedir, Value: C:\MVN
+[INFO] Parameter: version, Value: 1.0-SNAPSHOT
+[INFO] project created from Old (1.x) Archetype in dir: C:\MVN\Student
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 01:17 min
+[INFO] Finished at: 2017-02-19T21:11:14+05:30
+[INFO] Final Memory: 15M/114M
+[INFO] ------------------------------------------------------------------------
+</pre>
+<p><b>Step 2</b> &minus; Go to C:/MVN directory. You'll see a Java application project created, named student (as specified in artifactId). Update the POM.xml to include Spring-AOP dependencies. Add MainApp.java, Student.java, and Logging.java files.</p>
+<p><b>POM.xml</b></p>
+<pre class="prettyprint notranslate">
+&lt;project xmlns = "http://maven.apache.org/POM/4.0.0" 
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 
+   http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+   &lt;groupId&gt;com.tutorialspoint&lt;/groupId&gt;
+   &lt;artifactId&gt;Student&lt;/artifactId&gt;
+   &lt;packaging&gt;jar&lt;/packaging&gt;
+   &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+   &lt;name&gt;Student&lt;/name&gt;
+   &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+   
+   &lt;dependencies&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;junit&lt;/groupId&gt;
+         &lt;artifactId&gt;junit&lt;/artifactId&gt;
+         &lt;version&gt;3.8.1&lt;/version&gt;
+         &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+         &lt;version&gt;4.1.0.RELEASE&lt;/version&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+         &lt;version&gt;4.1.4.RELEASE&lt;/version&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+         &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+         &lt;version&gt;1.6.8&lt;/version&gt;
+      &lt;/dependency&gt;
+      
+   &lt;/dependencies&gt;
+&lt;/project&gt;
+package com.tutorialspoint;
+
+public class Logging {
+
+   /** 
+    * This is the method which I would like to execute
+    * before a selected method execution.
+    */
+   public void beforeAdvice() {
+      System.out.println("Going to setup student profile.");
+   }
+
+   /** 
+    * This is the method which I would like to execute
+    * after a selected method execution.
+    */
+   public void afterAdvice() {
+      System.out.println("Student profile has been setup.");
+   }
+
+   /** 
+    * This is the method which I would like to execute
+    * when any method returns.
+    */
+   public void afterReturningAdvice(Object retVal){
+      System.out.println("Returning:" + retVal.toString() );
+   }
+
+   /**
+    * This is the method which I would like to execute
+    * if there is an exception raised.
+    */
+   public void AfterThrowingAdvice(IllegalArgumentException ex) {
+      System.out.println("There has been an exception: " + ex.toString());   
+   }
+   
+}
+</pre>
+<p>Following is the content of the <b>Student.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+public class Student {
+   private Integer age;
+   private String name;
+
+   public void setAge(Integer age) {
+      this.age = age;
+   }
+   public Integer getAge() {
+      System.out.println("Age : " + age );
+      return age;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+   public String getName() {
+      System.out.println("Name : " + name );
+      return name;
+   }
+   
+   public void printThrowException(){
+      System.out.println("Exception raised");
+      throw new IllegalArgumentException();
+   }
+}
+</pre>
+<p>Following is the content of the <b>MainApp.java</b> file.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      Student student = (Student) context.getBean("student");
+
+      student.getName();
+      student.getAge();
+      
+      student.printThrowException();
+   }
+}
+</pre> 
+<p><b>Step 3</b> &minus; Add the configuration file <b>Beans.xml</b> under <b> src &gt; main &gt; resources </b> folder.</p> 
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:aop = "http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "&gt;
+
+   &lt;aop:config&gt;
+      &lt;aop:aspect id = "log" ref = "logging"&gt;
+         &lt;aop:PointCut id = "selectAll" 
+            expression = "execution(* com.tutorialspoint.*.*(..))"/&gt;
+         &lt;aop:before PointCut-ref = "selectAll" method = "beforeAdvice"/&gt;
+         &lt;aop:after PointCut-ref = "selectAll" method = "afterAdvice"/&gt;
+         &lt;aop:after-returning PointCut-ref = "selectAll" 
+            returning = "retVal"
+            method = "afterReturningAdvice"/&gt;
+         &lt;aop:after-throwing PointCut-ref = "selectAll" 
+            throwing = "ex"
+            method = "AfterThrowingAdvice"/&gt;
+      &lt;/aop:aspect&gt;
+   &lt;/aop:config&gt;
+
+   &lt;!-- Definition for student bean --&gt;
+   &lt;bean id = "student" class = "com.tutorialspoint.Student"&gt;
+      &lt;property name = "name"  value = "Zara" /&gt;
+      &lt;property name = "age"  value = "11"/&gt;      
+   &lt;/bean&gt;
+
+   &lt;!-- Definition for logging aspect --&gt;
+   &lt;bean id = "logging" class = "com.tutorialspoint.Logging"/&gt; 
+      
+&lt;/beans&gt;
+</pre> 
+<p><b>Step 4</b> &minus; Open the command console, go the C:\MVN directory and execute the following <b>mvn</b> command.</p>
+<pre class="prettyprint notranslate">
+C:\MVN&gt;Student&gt; mvn package
+</pre>
+<p>Maven will start processing and downloading the required libraries.</p>
+<pre class="prettyprint notranslate">
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Student 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven
+-jar-plugin/2.4/maven-jar-plugin-2.4.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-
+jar-plugin/2.4/maven-jar-plugin-2.4.pom (6 KB at 2.2 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven
+-jar-plugin/2.4/maven-jar-plugin-2.4.jar
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-
+jar-plugin/2.4/maven-jar-plugin-2.4.jar (34 KB at 31.6 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-aop
+/4.1.0.RELEASE/spring-aop-4.1.0.RELEASE.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-aop/
+4.1.0.RELEASE/spring-aop-4.1.0.RELEASE.pom (3 KB at 3.7 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-bea
+ns/4.1.0.RELEASE/spring-beans-4.1.0.RELEASE.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-bean
+s/4.1.0.RELEASE/spring-beans-4.1.0.RELEASE.pom (3 KB at 4.1 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-cor
+e/4.1.0.RELEASE/spring-core-4.1.0.RELEASE.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-core
+/4.1.0.RELEASE/spring-core-4.1.0.RELEASE.pom (3 KB at 4.0 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-aop
+/4.1.0.RELEASE/spring-aop-4.1.0.RELEASE.jar
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-cor
+e/4.1.0.RELEASE/spring-core-4.1.0.RELEASE.jar
+Downloading: https://repo.maven.apache.org/maven2/org/springframework/spring-bea
+ns/4.1.0.RELEASE/spring-beans-4.1.0.RELEASE.jar
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-aop/
+4.1.0.RELEASE/spring-aop-4.1.0.RELEASE.jar (351 KB at 43.9 KB/sec)
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-bean
+s/4.1.0.RELEASE/spring-beans-4.1.0.RELEASE.jar (685 KB at 37.5 KB/sec)
+Downloaded: https://repo.maven.apache.org/maven2/org/springframework/spring-core
+/4.1.0.RELEASE/spring-core-4.1.0.RELEASE.jar (982 KB at 47.1 KB/sec)
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ Student --
+-
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources,
+i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\MVN\Student\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ Student ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. b
+uild is platform dependent!
+[INFO] Compiling 1 source file to C:\MVN\Student\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ St
+udent ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources,
+i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\MVN\Student\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ Student
+ ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. b
+uild is platform dependent!
+[INFO] Compiling 1 source file to C:\MVN\Student\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ Student ---
+[INFO] Surefire report directory: C:\MVN\Student\target\surefire-reports
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/sure
+fire-junit3/2.12.4/surefire-junit3-2.12.4.pom
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/suref
+ire-junit3/2.12.4/surefire-junit3-2.12.4.pom (2 KB at 1.3 KB/sec)
+Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/sure
+fire-junit3/2.12.4/surefire-junit3-2.12.4.jar
+Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/suref
+ire-junit3/2.12.4/surefire-junit3-2.12.4.jar (26 KB at 27.7 KB/sec)
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.tutorialspoint.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ Student ---
+Downloading: https://repo.maven.apache.org/maven2/classworlds/classworlds/1.1-al
+pha-2/classworlds-1.1-alpha-2.jar
+Downloaded: https://repo.maven.apache.org/maven2/classworlds/classworlds/1.1-alp
+ha-2/classworlds-1.1-alpha-2.jar (37 KB at 35.8 KB/sec)
+[INFO] Building jar: C:\MVN\Student\target\Student-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 38.441 s
+[INFO] Finished at: 2017-02-19T21:18:59+05:30
+[INFO] Final Memory: 18M/109M
+[INFO] ------------------------------------------------------------------------
+</pre>
+<h2>Import Project in Eclipse</h2>
+<p><b>Step 1</b> &minus; Open Eclipse.</p>
+<p><b>Step 2</b> &minus; Select <b>File &rarr; Import &rarr;</b> option.</p>
+<p><b>Step 3</b> &minus; Select Maven Projects Option. Click the Next Button.</p>
+<p><b>Step 4</b> &minus; Select Project location, where Student project was created using Maven.</p>
+<p><b>Step 5</b> &minus; Click Finish Button.</p>
+<h2>Run Project</h2>
+<p>Once you are done creating the source and configuration files, run your application. Rightclick on MainApp.java in your application and use <b>run as Java Application</b> command. If everything is fine with your application, it will print the following message.</p>
+<pre class="result notranslate">
+Going to setup student profile.
+Name : Zara
+Student profile has been setup.
+Returning:Zara
+Going to setup student profile.
+Age : 11
+Student profile has been setup.
+Returning:11
+Going to setup student profile.
+Exception raised
+Student profile has been setup.
+There has been an exception: java.lang.IllegalArgumentException
+Exception in thread "main" java.lang.IllegalArgumentException
+   at com.tutorialspoint.Student.printThrowException(Student.java:25)
+   
+   at com.tutorialspoint.Student$$FastClassBySpringCGLIB$$7dc55815.invoke(&lt;generated&gt;)
+   
+   at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+   
+   at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:717)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+   
+   at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:52)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:43)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:52)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:58)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+   
+   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+   
+   at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:653)
+   
+   at com.tutorialspoint.Student$$EnhancerBySpringCGLIB$$56a970f2.printThrowException(&lt;generated&gt;)
+   
+   at com.tutorialspoint.MainApp.main(MainApp.java:16)
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/springaop/springaop_implementations.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/springaop/springaop_pointcut_methods.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

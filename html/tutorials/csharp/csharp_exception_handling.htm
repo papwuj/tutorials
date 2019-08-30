@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>C# - Exception Handling - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="C# - Exception Handling - An exception is a problem that arises during the execution of a program. A C# exception is a response to an exceptional circumstance that arises while a program"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/csharp/csharp_exception_handling.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#FE9400;
+}
+a.demo {
+    background:#FE9400;
+}
+li.heading {
+    background:#FE9400;
+}
+.course-box{background:#FE9400}
+.home-intro-sub p{color:#FE9400}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/csharp/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/csharp/images/csharp-mini-logo.jpg" alt="Csharp Tutorial" />
+</div>
+<ul class="toc chapters">
+<li><a class="videolink" href="/csharp_online_training/index.asp" target="_blank"><img src="/csharp/images/csharp-video-tutorials.jpg" alt="C# Video Tutorials" /></a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">C# Basic Tutorial</li>
+<li><a href="/csharp/index.htm">C# - Home</a></li>
+<li><a href="/csharp/csharp_overview.htm">C# - Overview</a></li>
+<li><a href="/csharp/csharp_environment_setup.htm">C# - Environment</a></li>
+<li><a href="/csharp/csharp_program_structure.htm">C# - Program Structure</a></li>
+<li><a href="/csharp/csharp_basic_syntax.htm">C# - Basic Syntax</a></li>
+<li><a href="/csharp/csharp_data_types.htm">C# - Data Types</a></li>
+<li><a href="/csharp/csharp_type_conversion.htm">C# - Type Conversion</a></li>
+<li><a href="/csharp/csharp_variables.htm">C# - Variables</a></li>
+<li><a href="/csharp/csharp_constants.htm">C# - Constants</a></li>
+<li><a href="/csharp/csharp_operators.htm">C# - Operators</a></li>
+<li><a href="/csharp/csharp_decision_making.htm">C# - Decision Making</a></li>
+<li><a href="/csharp/csharp_loops.htm">C# - Loops</a></li>
+<li><a href="/csharp/csharp_encapsulation.htm">C# - Encapsulation</a></li>
+<li><a href="/csharp/csharp_methods.htm">C# -  Methods</a></li>
+<li><a href="/csharp/csharp_nullables.htm">C# -  Nullables</a></li>
+<li><a href="/csharp/csharp_arrays.htm">C# - Arrays</a></li>
+<li><a href="/csharp/csharp_strings.htm">C# - Strings</a></li>
+<li><a href="/csharp/csharp_struct.htm">C# - Structure</a></li>
+<li><a href="/csharp/csharp_enums.htm">C# - Enums</a></li>
+<li><a href="/csharp/csharp_classes.htm">C# - Classes</a></li>
+<li><a href="/csharp/csharp_inheritance.htm">C# - Inheritance</a></li>
+<li><a href="/csharp/csharp_polymorphism.htm">C# - Polymorphism</a></li>
+<li><a href="/csharp/csharp_operator_overloading.htm">C# - Operator Overloading</a></li>
+<li><a href="/csharp/csharp_interfaces.htm">C# - Interfaces</a></li>
+<li><a href="/csharp/csharp_namespaces.htm">C# - Namespaces</a></li>
+<li><a href="/csharp/csharp_preprocessor_directives.htm">C# - Preprocessor Directives</a></li>
+<li><a href="/csharp/csharp_regular_expressions.htm">C# - Regular Expressions</a></li>
+<li><a href="/csharp/csharp_exception_handling.htm">C# - Exception Handling</a></li>
+<li><a href="/csharp/csharp_file_io.htm">C# - File I/O</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">C# Advanced Tutorial</li>
+<li><a href="/csharp/csharp_attributes.htm">C# - Attributes</a></li>
+<li><a href="/csharp/csharp_reflection.htm">C# - Reflection</a></li>
+<li><a href="/csharp/csharp_properties.htm">C# - Properties</a></li>
+<li><a href="/csharp/csharp_indexers.htm">C# - Indexers</a></li>
+<li><a href="/csharp/csharp_delegates.htm">C# - Delegates</a></li>
+<li><a href="/csharp/csharp_events.htm">C# - Events</a></li>
+<li><a href="/csharp/csharp_collections.htm">C# - Collections</a></li>
+<li><a href="/csharp/csharp_generics.htm">C# - Generics</a></li>
+<li><a href="/csharp/csharp_anonymous_methods.htm">C# - Anonymous Methods</a></li>
+<li><a href="/csharp/csharp_unsafe_codes.htm">C# - Unsafe Codes</a></li>
+<li><a href="/csharp/csharp_multithreading.htm">C# - Multithreading</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">C# Useful Resources</li>
+<li><a href="/csharp/csharp_questions_answers.htm">C# - Questions and Answers</a></li>
+<li><a href="/csharp/csharp_quick_guide.htm">C# - Quick Guide</a></li>
+<li><a href="/csharp/csharp_useful_resources.htm">C# - Useful Resources</a></li>
+<li><a href="/csharp/csharp_discussion.htm">C# - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>C# - Exception Handling</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/csharp/csharp_regular_expressions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/csharp/csharp_file_io.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>An exception is a problem that arises during the execution of a program. A C# exception is a response to an exceptional circumstance that arises while a program is running, such as an attempt to divide by zero.</p>
+<p>Exceptions provide a way to transfer control from one part of a program to another. C# exception handling is built upon four keywords: <b>try</b>, <b>catch</b>, <b>finally</b>, and <b>throw</b>.</p>
+<ul class="list">
+<li><p><b>try</b> &minus; A try block identifies a block of code for which particular exceptions is activated. It is followed by one or more catch blocks.</p></li>
+<li><p><b>catch</b> &minus; A program catches an exception with an exception handler at the place in a program where you want to handle the problem. The catch keyword indicates the catching of an exception.</p></li>
+<li><p><b>finally</b> &minus; The finally block is used to execute a given set of statements, whether an exception is thrown or not thrown. For example, if you open a file, it must be closed whether an exception is raised or not.</p></li>
+<li><p><b>throw</b> &minus; A program throws an exception when a problem shows up. This is done using a throw keyword.</p></li>
+</ul>
+<h2>Syntax</h2>
+<p>Assuming a block raises an exception, a method catches an exception using a combination of the try and catch keywords. A try/catch block is placed around the code that might generate an exception. Code within a try/catch block is referred to as protected code, and the syntax for using try/catch looks like the following &minus;</p>
+<pre class="result notranslate">
+try {
+   // statements causing exception
+} catch( ExceptionName e1 ) {
+   // error handling code
+} catch( ExceptionName e2 ) {
+   // error handling code
+} catch( ExceptionName eN ) {
+   // error handling code
+} finally {
+   // statements to be executed
+}
+</pre>
+<p>You can list down multiple catch statements to catch different type of exceptions in case your try block raises more than one exception in different situations.</p>
+<h2>Exception Classes in C#</h2>
+<p>C# exceptions are represented by classes. The exception classes in C# are mainly directly or indirectly derived from the <b>System.Exception</b> class. Some of the exception classes derived from the System.Exception class are the <b>System.ApplicationException</b> and <b>  System.SystemException</b> classes.</p>
+<p>The <b>System.ApplicationException</b> class supports exceptions generated by application programs. Hence the exceptions defined by the programmers should derive from this class.</p>
+<p>The <b>System.SystemException</b> class is the base class for all predefined system exception.</p>
+<p>The following table provides some of the predefined exception classes derived from the Sytem.SystemException class &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Exception Class &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>System.IO.IOException</b></p>
+<p>Handles I/O errors.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>System.IndexOutOfRangeException</b></p>
+<p>Handles errors generated when a method refers to an array index out of range.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>System.ArrayTypeMismatchException</b></p>
+<p>Handles errors generated when type is mismatched with the array type.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>System.NullReferenceException</b></p>
+<p>Handles errors generated from referencing a null object.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>System.DivideByZeroException</b></p>
+<p>Handles errors generated from dividing a dividend with zero.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>System.InvalidCastException</b></p>
+<p>Handles errors generated during typecasting.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>System.OutOfMemoryException</b></p>
+<p>Handles errors generated from insufficient free memory.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>System.StackOverflowException</b></p>
+<p>Handles errors generated from stack overflow.</p></td>
+</tr>
+</table>
+<h2>Handling Exceptions</h2>
+<p>C# provides a structured solution to the exception handling in the form of try and catch blocks. Using these blocks the core program statements are separated from the error-handling statements.</p>
+<p>These error handling blocks are implemented using the <b>try</b>, <b>catch</b>, and <b>finally</b> keywords. Following is an example of throwing an exception when dividing by zero condition occurs &minus;</p>
+<div class="demo-view">
+<a href="http://tpcg.io/fp4I6h" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+using System;
+
+namespace ErrorHandlingApplication {
+   class DivNumbers {
+      int result;
+      
+      DivNumbers() {
+         result = 0;
+      }
+      public void division(int num1, int num2) {
+         try {
+            result = num1 / num2;
+         } catch (DivideByZeroException e) {
+            Console.WriteLine("Exception caught: {0}", e);
+         } finally {
+            Console.WriteLine("Result: {0}", result);
+         }
+      }
+      static void Main(string[] args) {
+         DivNumbers d = new DivNumbers();
+         d.division(25, 0);
+         Console.ReadKey();
+      }
+   }
+}
+</pre>
+<p>When the above code is compiled and executed, it produces the following result &minus;</p>
+<pre class="result notranslate">
+Exception caught: System.DivideByZeroException: Attempted to divide by zero. 
+at ...
+Result: 0
+</pre>
+<h2>Creating User-Defined Exceptions</h2>
+<p>You can also define your own exception. User-defined exception classes are derived from the <b>Exception</b> class. The following example demonstrates this &minus;</p>
+<div class="demo-view">
+<a href="http://tpcg.io/OM5Y06" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+using System;
+
+namespace UserDefinedException {
+   class TestTemperature {
+      static void Main(string[] args) {
+         Temperature temp = new Temperature();
+         try {
+            temp.showTemp();
+         } catch(TempIsZeroException e) {
+            Console.WriteLine("TempIsZeroException: {0}", e.Message);
+         }
+         Console.ReadKey();
+      }
+   }
+}
+public class TempIsZeroException: Exception {
+   public TempIsZeroException(string message): base(message) {
+   }
+}
+public class Temperature {
+   int temperature = 0;
+   
+   public void showTemp() {
+      
+      if(temperature == 0) {
+         throw (new TempIsZeroException("Zero Temperature found"));
+      } else {
+         Console.WriteLine("Temperature: {0}", temperature);
+      }
+   }
+}
+</pre>
+<p>When the above code is compiled and executed, it produces the following result &minus;</p>
+<pre class="result notranslate">
+TempIsZeroException: Zero Temperature found
+</pre>
+<h2>Throwing Objects</h2>
+<p>You can throw an object if it is either directly or indirectly derived from the <b>System.Exception</b> class. You can use a throw statement in the catch block to throw the present object as &minus;</p>
+<pre class="result notranslate">
+Catch(Exception e) {
+   ...
+   Throw e
+}
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/csharp/csharp_regular_expressions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/csharp/csharp_file_io.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

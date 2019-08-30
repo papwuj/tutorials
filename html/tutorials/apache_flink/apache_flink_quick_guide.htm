@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Apache Flink - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="Apache Flink - Quick Guide - The advancement of data in the last 10 years has been enormous; this gave rise to a term 'Big Data'. There is no fixed size of data, which you can call as big d"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/apache_flink/apache_flink_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#d1476a;
+}
+a.demo {
+    background:#d1476a;
+}
+li.heading {
+    background:#d1476a;
+}
+.course-box{background:#d1476a}
+.home-intro-sub p{color:#d1476a}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/apache_flink/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/apache_flink/images/apache-flink-mini-logo.jpg" alt="Apache Flink Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Apache Flink Tutorial</li>
+<li><a href="/apache_flink/index.htm">Apache Flink - Home</a></li>
+<li><a href="/apache_flink/apache_flink_big_data_platform.htm">Apache Flink - Big Data Platform</a></li>
+<li><a href="/apache_flink/apache_flink_batch_realtime_processing.htm">Batch vs Real-time Processing</a></li>
+<li><a href="/apache_flink/apache_flink_introduction.htm">Apache Flink - Introduction</a></li>
+<li><a href="/apache_flink/apache_flink_architecture.htm">Apache Flink - Architecture</a></li>
+<li><a href="/apache_flink/apache_flink_system_requirements.htm">Apache Flink - System Requirements</a></li>
+<li><a href="/apache_flink/apache_flink_setup_installation.htm">Apache Flink - Setup/Installation</a></li>
+<li><a href="/apache_flink/apache_flink_api_concepts.htm">Apache Flink - API Concepts</a></li>
+<li><a href="/apache_flink/apache_flink_table_api_sql.htm">Apache Flink - Table API and SQL</a></li>
+<li><a href="/apache_flink/apache_flink_creating_application.htm">Creating a Flink Application</a></li>
+<li><a href="/apache_flink/apache_flink_running_program.htm">Apache Flink - Running a Flink Program</a></li>
+<li><a href="/apache_flink/apache_flink_libraries.htm">Apache Flink - Libraries</a></li>
+<li><a href="/apache_flink/apache_flink_machine_learning.htm">Apache Flink - Machine Learning</a></li>
+<li><a href="/apache_flink/apache_flink_use_cases.htm">Apache Flink - Use Cases</a></li>
+<li><a href="/apache_flink/apache_flink_spark_hadoop.htm">Apache Flink - Flink vs Spark vs Hadoop</a></li>
+<li><a href="/apache_flink/apache_flink_conclusion.htm">Apache Flink - Conclusion</a></li>
+<li class="heading">Apache Flink Resources</li>
+<li><a href="/apache_flink/apache_flink_quick_guide.htm">Apache Flink - Quick Guide</a></li>
+<li><a href="/apache_flink/apache_flink_useful_resources.htm">Apache Flink - Useful Resources</a></li>
+<li><a href="/apache_flink/apache_flink_discussion.htm">Apache Flink - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Apache Flink - Quick Guide</h1>
+<hr/>
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/apache_flink/apache_flink_conclusion.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/apache_flink/apache_flink_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="mui-container-fluid button-borders">
+</div>
+<div class="clearer"></div>
+<h1>Apache Flink - Big Data Platform</h1>
+<p>The advancement of data in the last 10 years has been enormous; this gave rise to a term 'Big Data'. There is no fixed size of data, which you can call as big data; any data that your traditional system (RDBMS) is not able to handle is Big Data. This Big Data can be in structured, semi-structured or un-structured format. Initially, there were three dimensions to data &minus;  Volume, Velocity, Variety. The dimensions have now gone beyond just the three Vs. We have now added other Vs &minus;  Veracity, Validity, Vulnerability, Value, Variability, etc.</p>
+<p>Big Data led to the emergence of multiple tools and frameworks that help in the storage and processing of data. There are a few popular big data frameworks such as Hadoop, Spark, Hive, Pig, Storm and Zookeeper. It also gave opportunity to create Next Gen products in multiple domains like Healthcare, Finance, Retail, E-Commerce and more.</p>
+<p>Whether it is an MNC or a start-up, everyone is leveraging Big Data to store and process it and take smarter decisions.</p>
+<h1>Apache Flink - Batch vs Real-time Processing</h1>
+<p>In terms of Big Data, there are two types of processing &minus;</p>
+<ul class="list">
+<li>Batch Processing </li>
+<li>Real-time Processing</li>
+</ul>
+<p>Processing based on the data collected over time is called Batch Processing. For example, a bank manager wants to process past one-month data (collected over time) to know the number of cheques that got cancelled in the past 1 month.</p>
+<p>Processing based on immediate data for instant result is called Real-time Processing. For example, a bank manager getting a fraud alert immediately after a fraud transaction (instant result) has occurred.</p>
+<p>The table given below lists down the differences between Batch and Real-Time Processing &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Batch Processing</th>
+<th>Real-Time Processing</th>
+</tr>
+<tr>
+<td><p>Static Files</p></td>
+<td><p>Event Streams</p></td>
+</tr>
+<tr>
+<td><p>Processed Periodically in minute, 
+hour, day etc.</p></td>
+<td><p>Processed immediately</p>
+<p>nanoseconds</p></td>
+</tr>
+<tr>
+<td><p>Past data on disk storage</p></td>
+<td><p>In Memory Storage</p></td>
+</tr>
+<tr>
+<td><p>Example &minus; Bill Generation</p></td>
+<td><p>Example &minus; ATM Transaction Alert</p></td>
+</tr>
+</table>
+<p>These days, real-time processing is being used a lot in every organization. Use cases like fraud detection, real-time alerts in healthcare and network attack alert require real-time processing of instant data; a delay of even few milliseconds can have a huge impact.</p>
+<p>An ideal tool for such real time use cases would be the one, which can input data as stream and not batch. Apache Flink is that real-time processing tool.</p>
+<h1>Apache Flink - Introduction</h1>
+<p>Apache Flink is a real-time processing framework which can process streaming data. It is an open source stream processing framework for high-performance, scalable, and accurate real-time applications. It has true streaming model and does not take input data as batch or micro-batches.</p>
+<p>Apache Flink was founded by Data Artisans company and is now developed under Apache License by Apache Flink Community. This community has over 479 contributors and 15500 + commits so far.</p>
+<h2>Ecosystem on Apache Flink</h2>
+<p>The diagram given below shows the different layers of Apache Flink Ecosystem &minus;</p>
+<img class="center" src="/apache_flink/images/ecosystem_on_apache_flink.jpg" alt="Ecosystem on Apache Flink" />
+<h3>Storage</h3>
+<p>Apache Flink has multiple options from where it can Read/Write data. Below is a basic storage list &minus;</p>
+<ul class="list">
+<li>HDFS (Hadoop Distributed File System)</li>
+<li>Local File System</li>
+<li>S3</li>
+<li>RDBMS (MySQL, Oracle, MS SQL etc.)</li>
+<li>MongoDB</li>
+<li>HBase</li>
+<li>Apache Kafka</li>
+<li>Apache Flume</li>
+</ul>
+<h3>Deploy</h3>
+<p>You can deploy Apache Fink in local mode, cluster mode or on cloud. Cluster mode can be standalone, YARN, MESOS.</p>
+<p>On cloud, Flink can be deployed on AWS or GCP.</p>
+<h3>Kernel</h3>
+<p>This is the runtime layer,&nbsp;which provides distributed processing, fault tolerance, reliability, native iterative processing capability and more.</p>
+<h3>APIs &amp; Libraries</h3>
+<p>This is the top layer and most important layer of Apache Flink. It has Dataset API, which takes care of batch processing, and Datastream API, which takes care of stream processing. There are other libraries like Flink ML (for machine learning), Gelly (for graph processing ), Tables for SQL. This layer provides diverse capabilities to Apache Flink.</p>
+<h1>Apache Flink - Architecture</h1>
+<p>Apache Flink works on Kappa architecture. Kappa architecture has a single processor - stream, which treats all input as stream and the streaming engine processes the data in real-time. Batch data in kappa architecture is a special case of streaming.</p>
+<p>The following diagram shows the <b>Apache Flink Architecture</b>.</p>
+<img class="full-width" src="/apache_flink/images/apache_flink_architecture.jpg" alt="Apache Flink Architecture" />
+<p>The key idea in Kappa architecture is to handle both batch and real-time data through a single stream processing engine.</p>
+<p>Most big data framework works on Lambda architecture, which has separate processors for batch and streaming data. In Lambda architecture, you have separate codebases for batch and stream views. For querying and getting the result, the codebases need to be merged. Not maintaining separate codebases/views and merging them is a pain, but Kappa architecture solves this issue as it has only one view &minus;  real-time, hence merging of codebase is not required.</p>
+<p>That does not mean Kappa architecture replaces Lambda architecture, it completely depends on the use-case and the application that decides which architecture would be preferable.</p>
+<p>The following diagram shows Apache Flink job execution architecture.</p>
+<img class="center" src="/apache_flink/images/execution_architecture.jpg" alt="Execution architecture" />
+<h3>Program</h3>
+<p>It is a piece of code, which you run on the Flink Cluster.</p>
+<h3>Client</h3>
+<p>It is responsible for taking code (program) and constructing job dataflow graph, then passing it to JobManager. It also retrieves the Job results.</p>
+<h3>JobManager</h3>
+<p>After receiving the Job Dataflow Graph from Client, it is responsible for creating the execution graph. It assigns the job to TaskManagers in the cluster and supervises the execution of the job.</p>
+<h3>TaskManager</h3>
+<p>It is responsible for executing all the tasks that have been assigned by JobManager. All the TaskManagers run the tasks in their separate slots in specified parallelism. It is responsible to send the status of the tasks to JobManager.</p>
+<h2>Features of Apache Flink</h2>
+<p>The features of Apache Flink are as follows &minus;</p>
+<ul class="list">
+<li><p>It has a streaming processor, which can run both batch and stream programs.</p></li>
+<li><p>It can process data at lightning fast speed.</p></li>
+<li><p>APIs available in Java, Scala and Python.</p></li>
+<li><p>Provides APIs for all the common operations, which is very easy for programmers to use.</p></li>
+<li><p>Processes data in low latency (nanoseconds) and high throughput.</p></li>
+<li><p>Its fault tolerant. If a node, application or a hardware fails, it does not affect the cluster.</p></li>
+<li><p>Can easily integrate with Apache Hadoop, Apache MapReduce, Apache Spark, HBase and other big data tools.</p></li>
+<li><p>In-memory management can be customized for better computation.</p></li>
+<li><p>It is highly scalable and can scale upto thousands of node in a cluster.</p></li>
+<li><p>Windowing is very flexible in Apache Flink.</p></li>
+<li><p>Provides Graph Processing, Machine Learning, Complex Event Processing libraries.</p></li>
+</ul>
+<h1>Apache Flink - System Requirements</h1>
+<p>The following are the system requirements to download and work on Apache Flink &minus;</p>
+<h2>Recommended Operating System</h2>
+<ul class="list">
+<li>Microsoft Windows 10</li>
+<li>Ubuntu 16.04 LTS</li>
+<li>Apple macOS 10.13/High Sierra</li>
+</ul>
+<h2>Memory Requirement</h2>
+<ul class="list">
+<li>Memory - Minimum 4 GB, Recommended 8 GB</li>
+<li>Storage Space - 30 GB</li>
+</ul>
+<p><b>Note</b> &minus; Java 8 must be available with environment variables already set.</p>
+<h1>Apache Flink - Setup/Installation</h1>
+<p>Before the start with the setup/ installation of Apache Flink, let us check whether we have Java 8 installed in our system.</p>
+<h2>Java - version</h2>
+<img class="full-width" src="/apache_flink/images/installation1.jpg" alt="Installation1" />
+<p>We will now proceed by downloading Apache Flink.</p>
+<pre class="result notranslate">
+wget http://mirrors.estointernet.in/apache/flink/flink-1.7.1/flink-1.7.1-bin-scala_2.11.tgz
+</pre>
+<img class="full-width" src="/apache_flink/images/installation2.jpg" alt="Installation2" />
+<p>Now, uncompress the tar file.</p>
+<pre class="result notranslate">
+tar -xzf flink-1.7.1-bin-scala_2.11.tgz
+</pre>
+<img class="full-width" src="/apache_flink/images/installation3.jpg" alt="Installation3" />
+<p>Go to Flink's home directory.</p>
+<pre class="result notranslate">
+cd flink-1.7.1/
+</pre>
+<p>Start the Flink Cluster.</p>
+<pre class="result notranslate">
+./bin/start-cluster.sh
+</pre>
+<img class="full-width" src="/apache_flink/images/installation4.jpg" alt="Installation4" />
+<p>Open the Mozilla browser and go to the below URL, it will open the Flink Web Dashboard.</p>
+<p><b>http://localhost:8081</b></p>
+<p>This is how the User Interface of Apache Flink Dashboard looks like.</p>
+<img class="full-width" src="/apache_flink/images/flink_cluster.jpg" alt="Flink cluster" />
+<p>Now the Flink cluster is up and running.</p>
+<h1>Apache Flink - API Concepts</h1>
+<p>Flink has a rich set of APIs using which developers can perform transformations on both batch and real-time data. A variety of transformations includes mapping, filtering, sorting, joining, grouping and aggregating. These transformations by Apache Flink are performed on distributed data. Let us discuss the different APIs Apache Flink offers.</p>
+<h2>Dataset API</h2>
+<p>Dataset API in Apache Flink is used to perform batch operations on the data over a period. This API can be used in Java, Scala and Python. It can apply different kinds of transformations on the datasets like filtering, mapping, aggregating, joining and grouping.</p>
+<p>Datasets are created from sources like local files or by reading a file from a particular sourse and the result data can be written on different sinks like distributed files or command line terminal. This API is supported by both Java and Scala programming languages.</p>
+<p>Here is a Wordcount program of Dataset API &minus;</p>
+<pre class="prettyprint notranslate">
+public class WordCountProg {
+   public static void main(String[] args) throws Exception {
+      final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+
+      DataSet&lt;String&gt; text = env.fromElements(
+      "Hello",
+      "My Dataset API Flink Program");
+
+      DataSet&lt;Tuple2&lt;String, Integer&gt;&gt; wordCounts = text
+      .flatMap(new LineSplitter())
+      .groupBy(0)
+      .sum(1);
+
+      wordCounts.print();
+   }
+
+   public static class LineSplitter implements FlatMapFunction&lt;String, Tuple2&lt;String, Integer&gt;&gt; {
+      @Override
+      public void flatMap(String line, Collector&lt;Tuple2&lt;String, Integer&gt;&gt; out) {
+         for (String word : line.split(" ")) {
+            out.collect(new Tuple2&lt;String, Integer&gt;(word, 1));
+         }
+      }
+   }
+}
+</pre>
+<h2>DataStream API</h2>
+<p>This API is used for handling data in continuous stream. You can perform various operations like filtering, mapping, windowing, aggregating on the stream data. There are various sources on this data stream like message queues, files, socket streams and the result data can be written on different sinks like command line terminal. Both Java and Scala programming languages support this API.</p>
+<p>Here is a streaming Wordcount program of DataStream API, where you have continuous stream of word counts and the data is grouped in the second window.</p>
+<pre class="prettyprint notranslate">
+import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.util.Collector;
+public class WindowWordCountProg {
+   public static void main(String[] args) throws Exception {
+      StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+      DataStream&lt;Tuple2&lt;String, Integer&gt;&gt; dataStream = env
+      .socketTextStream("localhost", 9999)
+      .flatMap(new Splitter())
+      .keyBy(0)
+      .timeWindow(Time.seconds(5))
+      .sum(1);
+      dataStream.print();
+      env.execute("Streaming WordCount Example");
+   }
+   public static class Splitter implements FlatMapFunction&lt;String, Tuple2&lt;String, Integer&gt;&gt; {
+      @Override
+      public void flatMap(String sentence, Collector&lt;Tuple2&lt;String, Integer&gt;&gt; out) throws Exception {
+         for (String word: sentence.split(" ")) {
+            out.collect(new Tuple2&lt;String, Integer&gt;(word, 1));
+         }
+      }
+   }
+}
+</pre>
+<h1>Apache Flink - Table API and SQL</h1>
+<p>Table API is a relational API with SQL like expression language. This API can do both batch and stream processing. It can be embedded with Java and Scala Dataset and Datastream APIs. You can create tables from existing Datasets and Datastreams or from external data sources. Through this relational API, you can perform operations like join, aggregate, select and filter. Whether the input is batch or stream, the semantics of the query remains the same.</p>
+<p>Here is a sample Table API program &minus;</p>
+<pre class="prettyprint notranslate">
+// for batch programs use ExecutionEnvironment instead of StreamExecutionEnvironment
+val env = StreamExecutionEnvironment.getExecutionEnvironment
+
+// create a TableEnvironment
+val tableEnv = TableEnvironment.getTableEnvironment(env)
+
+// register a Table
+tableEnv.registerTable("table1", ...) // or
+tableEnv.registerTableSource("table2", ...) // or
+tableEnv.registerExternalCatalog("extCat", ...)
+
+// register an output Table
+tableEnv.registerTableSink("outputTable", ...);
+// create a Table from a Table API query
+val tapiResult = tableEnv.scan("table1").select(...)
+// Create a Table from a SQL query
+val sqlResult = tableEnv.sqlQuery("SELECT ... FROM table2 ...")
+
+// emit a Table API result Table to a TableSink, same for SQL result
+tapiResult.insertInto("outputTable")
+
+// execute
+env.execute()
+</pre>
+<h1>Apache Flink - Creating a Flink Application</h1>
+<p>In this chapter, we will learn how to create a Flink application.</p>
+<p>Open Eclipse IDE, click on New Project and Select Java Project.</p>
+<img class="full-width" src="/apache_flink/images/create_flink_application.jpg" alt="Create Flink Application" />
+<p>Give Project Name and click on Finish.</p>
+<img class="full-width" src="/apache_flink/images/create_flink_application2.jpg" alt="Create Flink Application2" />
+<p>Now, click on Finish as shown in the following screenshot.</p>
+<img class="full-width" src="/apache_flink/images/create_flink_application3.jpg" alt="Create Flink Application3" />
+<p>Now, right-click on <b>src</b> and go to New &gt;&gt; Class.</p>
+<img class="full-width" src="/apache_flink/images/create_flink_application4.jpg" alt="Create Flink Application4" />
+<p>Give a class name and click on Finish.</p>
+<img class="full-width" src="/apache_flink/images/create_flink_application5.jpg" alt="Create Flink Application5" />
+<p>Copy and paste the below code in the Editor.</p>
+<pre class="prettyprint notranslate">
+import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.java.DataSet;
+import org.apache.flink.api.java.ExecutionEnvironment;
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.api.java.utils.ParameterTool;
+import org.apache.flink.util.Collector;
+public class WordCount {
+
+   // *************************************************************************
+   // PROGRAM
+   // *************************************************************************
+   public static void main(String[] args) throws Exception {
+      final ParameterTool params = ParameterTool.fromArgs(args);
+      // set up the execution environment
+      final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+      // make parameters available in the web interface
+      env.getConfig().setGlobalJobParameters(params);
+      // get input data
+      DataSet&lt;String&gt; text = env.readTextFile(params.get("input"));
+      DataSet&lt;Tuple2&lt;String, Integer&gt;&gt; counts =
+      // split up the lines in pairs (2-tuples) containing: (word,1)
+      text.flatMap(new Tokenizer())
+      // group by the tuple field "0" and sum up tuple field "1"
+      .groupBy(0)
+      .sum(1);
+      // emit result
+      if (params.has("output")) {
+         counts.writeAsCsv(params.get("output"), "\n", " ");
+         // execute program
+         env.execute("WordCount Example");
+      } else {
+         System.out.println("Printing result to stdout. Use --output to specify output path.");
+         counts.print();
+      }
+   }
+   
+   // *************************************************************************
+   // USER FUNCTIONS
+   // *************************************************************************
+   public static final class Tokenizer implements FlatMapFunction&lt;String, Tuple2&lt;String, Integer&gt;&gt; {
+      public void flatMap(String value, Collector&lt;Tuple2&lt;String, Integer&gt;&gt; out) {
+         // normalize and split the line
+         String[] tokens = value.toLowerCase().split("\\W+");
+         // emit the pairs
+         for (String token : tokens) {
+            if (token.length() &gt; 0) {
+               out.collect(new Tuple2&lt;&gt;(token, 1));
+            }
+         }
+      }
+   }
+}
+</pre>
+<p>You will get many errors in the editor, because Flink libraries need to be added to this project.</p>
+<img class="full-width" src="/apache_flink/images/flink_libraries_added.jpg" alt="Flink libraries Added" />
+<p>Right-click on the project &gt;&gt; Build Path &gt;&gt; Configure Build Path.</p>
+<img class="full-width" src="/apache_flink/images/right_click_project.jpg" alt="Right click Project" />
+<p>Select the Libraries tab and click on Add External JARs.</p>
+<img class="full-width" src="/apache_flink/images/select_libraries.jpg" alt="Select Libraries" />
+<p>Go to Flink's lib directory, select all the 4 libraries and click on OK.</p>
+<img class="full-width" src="/apache_flink/images/flinks_lib_directory.jpg" alt="Flinks lib directory" />
+<p>Go to the Order and Export tab, select all the libraries and click on OK.</p>
+<img class="full-width" src="/apache_flink/images/order_and_export_tab.jpg" alt="Order and Export Tab" />
+<p>You will see that the errors are no more there.</p>
+<p>Now, let us export this application. Right-click on the project and click on Export.</p>
+<img class="full-width" src="/apache_flink/images/export_this_application.jpg" alt="Export this Application" />
+<p>Select JAR file and click Next</p>
+<img class="full-width" src="/apache_flink/images/select_jar_file.jpg" alt="Select JAR file" />
+<p>Give a destination path and click on Next</p>
+<img class="full-width" src="/apache_flink/images/destination_path.jpg" alt="destination path" />
+<p>Click on Next&gt;</p>
+<img class="full-width" src="/apache_flink/images/click_next.jpg" alt="Click Next" />
+<p>Click on Browse, select the main class (WordCount) and click Finish.</p>
+<img class="full-width" src="/apache_flink/images/click_finish.jpg" alt="Click Finish" />
+<p><b>Note</b> &minus; Click OK, in case you get any warning.</p>
+<p>Run the below command. It will further run the Flink application you just created.</p>
+<pre class="result notranslate">
+./bin/flink run /home/ubuntu/wordcount.jar --input README.txt --output /home/ubuntu/output
+</pre>
+<img class="full-width" src="/apache_flink/images/get_warning.jpg" alt="Get Warning" />
+<h1>Apache Flink - Running a Flink Program</h1>
+<p>In this chapter, we will learn how to run a Flink program.</p>
+<p>Let us run the Flink wordcount example on a Flink cluster.</p>
+<p>Go to Flink's home directory and run the below command in the terminal.</p>
+<pre class="result notranslate">
+bin/flink run examples/batch/WordCount.jar -input README.txt -output /home/ubuntu/flink-1.7.1/output.txt
+</pre>
+<img class="full-width" src="/apache_flink/images/flink_home_directory.jpg" alt="Flink Home Directory" />
+<p>Go to Flink dashboard, you will be able to see a completed job with its details.</p>
+<img class="full-width" src="/apache_flink/images/flink_dashboard.jpg" alt="Flink dashboard" />
+<p>If you click on Completed Jobs, you will get detailed overview of the jobs.</p>
+<img class="full-width" src="/apache_flink/images/click_completed_jobs.jpg" alt="Click Completed Jobs" />
+<p>To check the output of wordcount program, run the below command in the terminal.</p>
+<pre class="result notranslate">
+cat output.txt
+</pre>
+<img class="full-width" src="/apache_flink/images/output_wordcount_program.jpg" alt="Output Wordcount Program" />
+<h1>Apache Flink - Libraries</h1>
+<p>In this chapter, we will learn about the different libraries of Apache Flink.</p>
+<h2>Complex Event Processing (CEP)</h2>
+<p>FlinkCEP is an API in Apache Flink, which analyses event patterns on continuous streaming data. These events are near real time, which have high throughput and low latency. This API is used mostly on Sensor data, which come in real-time and are very complex to process.</p>
+<p>CEP analyses the pattern of the input stream and gives the result very soon. It has the ability to provide real-time notifications and alerts in case the event pattern is complex. FlinkCEP can connect to different kind of input sources and analyse patterns in them.</p>
+<p>This how a sample architecture with CEP looks like &minus;</p>
+<img class="full-width" src="/apache_flink/images/architecture_with_cep.jpg" alt="architecture with CEP" />
+<p>Sensor data will be coming in from different sources, Kafka will act as a distributed messaging framework, which will distribute the streams to Apache Flink, and FlinkCEP will analyse the complex event patterns.</p>
+<p>You can write programs in Apache Flink for complex event processing using Pattern API. It allows you to decide the event patterns to detect from the continuous stream data. Below are some of the most commonly used CEP patterns &minus;</p>
+<h3>Begin</h3>
+<p>It is used to define the starting state. The following program shows how it is defined in a Flink program &minus;</p>
+<pre class="result notranslate">
+Pattern&lt;Event, ?&gt; next = start.next("next");
+</pre>
+<h3>Where</h3>
+<p>It is used to define a filter condition in the current state.</p>
+<pre class="result notranslate">
+patternState.where(new FilterFunction &lt;Event&gt;() {  
+   @Override 
+      public boolean filter(Event value) throws Exception { 
+   } 
+});
+</pre>
+<h3>Next</h3>
+<p>It is used to append a new pattern state and the matching event needed to pass the previous pattern.</p>
+<pre class="result notranslate">
+Pattern&lt;Event, ?&gt; next = start.next("next");
+</pre>
+<h3>FollowedBy</h3>
+<p>It is used to append a new pattern state but here other events can occur b/w two matching events.</p>
+<pre class="result notranslate">
+Pattern&lt;Event, ?&gt; followedBy = start.followedBy("next");
+</pre>
+<h3>Gelly</h3>
+<p>Apache Flink's Graph API is Gelly. Gelly is used to perform graph analysis on Flink applications using a set of methods and utilities. You can analyse huge graphs using Apache Flink API in a distributed fashion with Gelly. There are other graph libraries also like Apache Giraph for the same purpose, but since Gelly is used on top of Apache Flink, it uses single API. This is very helpful from development and operation point of view.</p>
+<p>Let us run an example using Apache Flink API &minus;  Gelly.</p>
+<p>Firstly, you need to copy 2 Gelly jar files from opt directory of Apache Flink to its lib directory. Then run flink-gelly-examples jar.</p>
+<pre class="result notranslate">
+cp opt/flink-gelly* lib/ 
+./bin/flink run examples/gelly/flink-gelly-examples_*.jar 
+</pre>
+<img class="full-width" src="/apache_flink/images/gelly.jpg" alt="Gelly" />
+<p>Let us now run the PageRank example.</p>
+<p>PageRank computes a per-vertex score, which is the sum of PageRank scores transmitted over in-edges. Each vertex's score is divided evenly among out-edges. High-scoring vertices are linked to by other high-scoring vertices.</p>
+<p>The result contains the vertex ID and the PageRank score.</p>
+<pre class="result notranslate">
+usage: flink run examples/flink-gelly-examples_&lt;version&gt;.jar --algorithm PageRank [algorithm options] --input &lt;input&gt; [input options] --output &lt;output&gt; [output options] 
+
+./bin/flink run examples/gelly/flink-gelly-examples_*.jar --algorithm PageRank --input CycleGraph --vertex_count 2 --output Print 
+</pre>
+<img class="full-width" src="/apache_flink/images/pagerank_score.jpg" alt="PageRank score" />
+<h1>Apache Flink - Machine Learning</h1>
+<p>Apache Flink's Machine Learning library is called FlinkML. Since usage of machine learning has been increasing exponentially over the last 5 years, Flink community decided to add this machine learning APO also in its ecosystem. The list of contributors and algorithms are increasing in FlinkML. This API is not a part of binary distribution yet.</p>
+<p>Here is an example of linear regression using FlinkML &minus;</p>
+<pre class="prettyprint notranslate">
+// LabeledVector is a feature vector with a label (class or real value)
+val trainingData: DataSet[LabeledVector] = ...
+val testingData: DataSet[Vector] = ...
+
+// Alternatively, a Splitter is used to break up a DataSet into training and testing data.
+val dataSet: DataSet[LabeledVector] = ...
+val trainTestData: DataSet[TrainTestDataSet] = Splitter.trainTestSplit(dataSet)
+val trainingData: DataSet[LabeledVector] = trainTestData.training
+val testingData: DataSet[Vector] = trainTestData.testing.map(lv => lv.vector)
+val mlr = MultipleLinearRegression()
+
+.setStepsize(1.0)
+.setIterations(100)
+.setConvergenceThreshold(0.001)
+mlr.fit(trainingData)
+
+// The fitted model can now be used to make predictions
+val predictions: DataSet[LabeledVector] = mlr.predict(testingData)
+</pre>
+<p>Inside <b>flink-1.7.1/examples/batch/</b> path, you will find KMeans.jar file. Let us run this sample FlinkML example.</p>
+<p>This example program is run using the default point and the centroid data set.</p>
+<pre class="result notranslate">
+./bin/flink run examples/batch/KMeans.jar --output Print
+</pre>
+<img class="full-width" src="/apache_flink/images/centroid_data_set.jpg" alt="Centroid Data Set" />
+<h1>Apache Flink - Use Cases</h1>
+<p>In this chapter, we will understand a few test cases in Apache Flink.</p>
+<h2>Apache Flink &minus;  Bouygues Telecom</h2>
+<p>Bouygues Telecom is one of the largest telecom organization in France. It has 11+ million mobile subscribers and 2.5+ million fixed customers. Bouygues heard about Apache Flink for the first time in a Hadoop Group Meeting held at Paris. Since then they have been using Flink for multiple use-cases. They have been processing billions of messages in a day in real-time through Apache Flink.</p>
+<p>This is what Bouygues has to say about Apache Flink: "We <i>ended up with Flink because the system supports true streaming - both at the API and at the runtime level, giving us the programmability and low latency that we were looking for. In addition, we were able to get our system up and running with Flink in a fraction of the time compared to other solutions, which resulted in more available developer resources for expanding the business logic in the system."</i></p>
+<p>At Bouygues, customer experience is the highest priority. They analyse data in real-time so that they can give below insights to their engineers &minus;</p>
+<ul class="list">
+<li><p>Real-Time Customer Experience over their network</p></li>
+<li><p>What is happening globally on the network</p></li>
+<li><p>Network evaluations and operations</p></li>
+</ul>
+<p>They created a system called LUX (Logged User Experience) which processed massive log data from network equipment with internal data reference to give quality of experience indicators which will log their customer experience and build an alarming functionality to detect any failure in consumption of data within 60 seconds.</p>
+<p>To achieve this, they needed a framework which can take massive data in real-time, is easy to set up and provides rich set of APIs for processing the streamed data. Apache Flink was a perfect fit for Bouygues Telecom.</p>
+<h2>Apache Flink &minus;  Alibaba</h2>
+<p>Alibaba is the largest ecommerce retail company in the world with 394 billion $ revenue in 2015. Alibaba search is the entry point to all the customers, which shows all the search and recommends accordingly.</p>
+<p>Alibaba uses Apache Flink in its search engine to show results in real-time with highest accuracy and relevancy for each user.</p>
+<p>Alibaba was looking for a framework, which was &minus;</p>
+<ul class="list">
+<li><p>Very Agile in maintaining one codebase for their entire search infrastructure process.</p></li>
+<li><p>Provides low latency for the availability changes in the products on the website.</p></li>
+<li><p>Consistent and cost effective.</p></li>
+</ul>
+<p>Apache Flink qualified for all the above requirements. They need a framework, which has a single processing engine and can process both batch and stream data with same engine and that is what Apache Flink does.</p>
+<p>They also use Blink, a forked version for Flink to meet some unique requirements for their search. They are also using Apache Flink's Table API with few improvements for their search.</p>
+<p>This is what Alibaba had to say about apache Flink: "<i>Looking back, it was no doubt a huge year for Blink and Flink at Alibaba. No one thought that we would make this much progress in a year, and we are very grateful to all the people who helped us in the community. Flink is proven to work at the very large scale. We are more committed than ever to continue our work with the community to move Flink forward!</i>"</p>
+<h1>Apache Flink - Flink vs Spark vs Hadoop</h1>
+<p>Here is a comprehensive table, which shows the comparison between three most popular big data frameworks: Apache Flink, Apache Spark and Apache Hadoop.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:25%;text-align:center;"></th>
+<th style="width:25%;text-align:center;">Apache Hadoop</th>
+<th style="text-align:center;">Apache Spark</th>
+<th style="text-align:center;">Apache Flink</th>
+</tr>
+<tr>
+<td><p><b>Year of Origin</b></p></td>
+<td class="ts">2005</td>
+<td class="ts">2009</td>
+<td class="ts">2009</td>
+</tr>
+<tr>
+<td><p><b>Place of Origin</b></p></td>
+<td class="ts">MapReduce (Google) Hadoop (Yahoo)</td>
+<td class="ts">University of California, Berkeley</td>
+<td class="ts">Technical University of Berlin</td>
+</tr>
+<tr>
+<td><p><b>Data Processing Engine</b></p></td>
+<td class="ts">Batch</td>
+<td class="ts">Batch</td>
+<td class="ts">Stream</td>
+</tr>
+<tr>
+<td><p><b>Processing Speed</b></p></td>
+<td class="ts">Slower than Spark and Flink</td>
+<td class="ts">100x Faster than Hadoop</td>
+<td class="ts">Faster than spark</td>
+</tr>
+<tr>
+<td><p><b>Programming Languages</b></p></td>
+<td class="ts">Java, C, C++, Ruby, Groovy, Perl, Python</td>
+<td class="ts">Java, Scala, python and R</td>
+<td class="ts">Java and Scala</td>
+</tr>
+<tr>
+<td><p><b>Programming Model</b></p></td>
+<td class="ts">MapReduce</td>
+<td class="ts">Resilient distributed Datasets (RDD)</td>
+<td class="ts">Cyclic dataflows</td>
+</tr>
+<tr>
+<td><p><b>Data Transfer</b></p></td>
+<td class="ts">Batch</td>
+<td class="ts">Batch</td>
+<td class="ts">Pipelined and Batch</td>
+</tr>
+<tr>
+<td><p><b>Memory Management</b></p></td>
+<td class="ts">Disk Based</td>
+<td class="ts">JVM Managed</td>
+<td class="ts">Active Managed</td>
+</tr>
+<tr>
+<td><p><b>Latency</b></p></td>
+<td class="ts">Low</td>
+<td class="ts">Medium</td>
+<td class="ts">Low</td>
+</tr>
+<tr>
+<td><p><b>Throughput</b></p></td>
+<td class="ts">Medium</td>
+<td class="ts">High</td>
+<td class="ts">High</td>
+</tr>
+<tr>
+<td><p><b>Optimization</b></p></td>
+<td class="ts">Manual</td>
+<td class="ts">Manual</td>
+<td class="ts">Automatic</td>
+</tr>
+<tr>
+<td><p><b>API</b></p></td>
+<td class="ts">Low-level</td>
+<td class="ts">High-level</td>
+<td class="ts">High-level</td>
+</tr>
+<tr>
+<td><p><b>Streaming Support</b></p></td>
+<td class="ts">NA</td>
+<td class="ts">Spark Streaming</td>
+<td class="ts">Flink Streaming</td>
+</tr>
+<tr>
+<td><p><b>SQL Support</b></p></td>
+<td class="ts">Hive, Impala</td>
+<td class="ts">SparkSQL</td>
+<td class="ts">Table API and SQL</td>
+</tr>
+<tr>
+<td><p><b>Graph Support</b></p></td>
+<td class="ts">NA</td>
+<td class="ts">GraphX</td>
+<td class="ts">Gelly</td>
+</tr>
+<tr>
+<td><p><b>Machine Learning Support</b></p></td>
+<td class="ts">NA</td>
+<td class="ts">SparkML</td>
+<td class="ts">FlinkML</td>
+</tr>
+</table>
+<h1>Apache Flink - Conclusion</h1>
+<p>The comparison table that we saw in the previous chapter concludes the pointers pretty much. Apache Flink is the most suited framework for real-time processing and use cases. Its single engine system is unique which can process both batch and streaming data with different APIs like Dataset and DataStream.</p>
+<p>It does not mean Hadoop and Spark are out of the game, the selection of the most suited big data framework always depends and vary from use case to use case. There can be several use cases where a combination of Hadoop and Flink or Spark and Flink might be suited.</p>
+<p>Nevertheless, Flink is the best framework for real time processing currently. The growth of Apache Flink has been amazing and the number of contributors to its community is growing day by day.</p>
+<p>Happy Flinking!</p>
+<div class="mui-container-fluid button-borders">
+</div>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/apache_flink/apache_flink_conclusion.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/apache_flink/apache_flink_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

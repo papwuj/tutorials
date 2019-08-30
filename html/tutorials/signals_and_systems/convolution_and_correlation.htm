@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Convolution and Correlation</title>
+<meta charset="utf-8">
+<meta name="description" content="Convolution and Correlation - Convolution is a mathematical operation used to express the relation between input and output of an LTI system. It relates input, output and impulse response of"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/signals_and_systems/convolution_and_correlation.htm" />
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+"HTML-CSS": {
+  linebreaks: { automatic: true, width: "container" }          
+}              
+});
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#016652;
+}
+a.demo {
+    background:#016652;
+}
+li.heading {
+    background:#016652;
+}
+.course-box{background:#016652}
+.home-intro-sub p{color:#016652}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/signals_and_systems/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/signals_and_systems/images/signals-systems-mini-logo.jpg" alt="Signals and Systems Tutorial" />
+</div>
+<ul class="toc chapters">
+<li><a class="videolink" href="/signals_and_systems/index.asp" target="_blank"><img src="/signals_and_systems/images/signals-and-systems-video-tutorials.jpg" alt="Signals and Systems Video Tutorials" /></a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Signals and Systems Tutorial</li>
+<li><a href="/signals_and_systems/index.htm">Signals &amp; Systems Home</a></li>
+<li><a href="/signals_and_systems/signals_and_systems_overview.htm">Signals &amp; Systems Overview</a></li>
+<li><a href="/signals_and_systems/signals_basic_types.htm">Signals Basic Types</a></li>
+<li><a href="/signals_and_systems/signals_classification.htm">Signals Classification</a></li>
+<li><a href="/signals_and_systems/signals_basic_operations.htm">Signals Basic Operations</a></li>
+<li><a href="/signals_and_systems/systems_classification.htm">Systems Classification</a></li>
+<li><a href="/signals_and_systems/signals_analysis.htm">Signals Analysis</a></li>
+<li><a href="/signals_and_systems/fourier_series.htm">Fourier Series</a></li>
+<li><a href="/signals_and_systems/fourier_series_properties.htm">Fourier Series Properties</a></li>
+<li><a href="/signals_and_systems/fourier_series_types.htm">Fourier Series Types</a></li>
+<li><a href="/signals_and_systems/fourier_transforms.htm">Fourier Transforms</a></li>
+<li><a href="/signals_and_systems/fourier_transforms_properties.htm">Fourier Transforms Properties</a></li>
+<li><a href="/signals_and_systems/distortion_less_transmission.htm">Distortion Less Transmission</a></li>
+<li><a href="/signals_and_systems/hilbert_transform.htm">Hilbert Transform</a></li>
+<li><a href="/signals_and_systems/convolution_and_correlation.htm">Convolution and Correlation</a></li>
+<li><a href="/signals_and_systems/signals_sampling_theorem.htm">Signals Sampling Theorem</a></li>
+<li><a href="/signals_and_systems/signals_sampling_techniques.htm">Signals Sampling Techniques</a></li>
+<li><a href="/signals_and_systems/laplace_transforms.htm">Laplace Transforms</a></li>
+<li><a href="/signals_and_systems/laplace_transforms_properties.htm">Laplace Transforms Properties</a></li>
+<li><a href="/signals_and_systems/region_of_convergence.htm">Region of Convergence</a></li>
+<li><a href="/signals_and_systems/z_transforms.htm">Z-Transforms (ZT)</a></li>
+<li><a href="/signals_and_systems/z_transforms_properties.htm">Z-Transforms Properties</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Signals and Systems Resources</li>
+<!--<li><a href="/signals_and_systems/signals_and_systems_quick_guide.htm">Signals and Systems - Quick Guide</a></li>-->
+<li><a href="/signals_and_systems/signals_and_systems_resources.htm">Signals and Systems - Resources</a></li>
+<li><a href="/signals_and_systems/signals_and_systems_discussion.htm">Signals and Systems - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Convolution and Correlation</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/signals_and_systems/hilbert_transform.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/signals_and_systems/signals_sampling_theorem.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h2>Convolution</h2>
+<p>Convolution is a mathematical operation used to express the relation between input and output of an LTI system. It relates input, output and impulse response of an LTI system as</p>
+<p>$$ y (t) = x(t) * h(t) $$</p>
+<p>Where y (t) = output of LTI</p>
+<p style="margin-left:4em;">x (t) = input of LTI</p>
+<p style="margin-left:4em;">h (t) = impulse response of LTI</p>
+<p>There are two types of convolutions:</p>
+<ul class="list">
+<li><p>Continuous convolution</p></li>
+<li><p>Discrete convolution</p></li>
+</ul>
+<h3>Continuous Convolution</h3>
+<p></p>
+<img src="/signals_and_systems/images/continuous_convolution.png" alt="continuous convolution">
+<p>$ y(t) \,\,=  x (t) * h (t) $</p>
+<p style="margin-left:3em;">$= \int_{-\infty}^{\infty} x(\tau)  h (t-\tau)d\tau$</p>
+<p style="margin-left:3em;">(or)</p>
+<p style="margin-left:3em;">$= \int_{-\infty}^{\infty} x(t - \tau)  h (\tau)d\tau $</p>
+
+<h3>Discrete Convolution</h3>
+<img src="/signals_and_systems/images/discrete_convolution.png" alt="Discrete convolution">
+
+<p>$y(n)\,\,=  x (n) * h (n)$</p>    
+<p style="margin-left:3em;">$= \Sigma_{k = - \infty}^{\infty} x(k) h (n-k)  $</p>
+<p style="margin-left:3em;">(or)</p>
+<p style="margin-left:3em;">$= \Sigma_{k = - \infty}^{\infty} x(n-k) h (k)  $</p>
+<p>By using convolution we can find zero state response of the system.</p>
+
+<h2>Deconvolution</h2>
+<p>Deconvolution is reverse process to convolution widely used in signal and image processing. </p>
+
+<h2>Properties of Convolution</h2>
+<h3>Commutative Property</h3>
+<p style="margin-left:3em;">$ x_1 (t) * x_2 (t) = x_2 (t) * x_1 (t) $</p>
+
+<h3>Distributive Property</h3>
+<p style="margin-left:3em;">$ x_1 (t) * [x_2 (t) + x_3 (t) ] = [x_1 (t) * x_2 (t)] + [x_1 (t) * x_3 (t)]$</p>
+
+<h3>Associative Property</h3>
+<p style="margin-left:3em;">$x_1 (t) * [x_2 (t) * x_3 (t) ] = [x_1 (t) * x_2 (t)] * x_3 (t) $</p>
+
+<h3>Shifting Property</h3>
+<p style="margin-left:3em;">$ x_1 (t) * x_2 (t) = y (t) $</p>
+<p style="margin-left:3em;">$ x_1 (t) * x_2 (t-t_0) = y (t-t_0) $</p>
+<p style="margin-left:3em;">$ x_1 (t-t_0) * x_2 (t) = y (t-t_0) $</p>
+<p style="margin-left:3em;">$ x_1 (t-t_0) * x_2 (t-t_1) = y (t-t_0-t_1) $</p>
+
+<h3>Convolution with Impulse</h3>
+<p style="margin-left:3em;">$ x_1 (t) * \delta (t) = x(t) $</p>
+<p style="margin-left:3em;">$ x_1 (t) * \delta (t- t_0) = x(t-t_0) $</p>   
+
+<h3>Convolution of Unit Steps</h3>
+<p style="margin-left:3em;">$ u (t) * u (t) = r(t) $</p>
+<p style="margin-left:3em;">$ u (t-T_1) * u (t-T_2) = r(t-T_1-T_2) $</p>
+<p style="margin-left:3em;">$ u (n) * u (n) = [n+1] u(n) $</p>
+
+<h3>Scaling Property</h3>
+<p style="margin-left:3em;"> If $x (t) * h (t) = y (t) $</p>
+<p style="margin-left:3em;">then $x (a t) * h (a t) = {1 \over |a|} y (a t)$</p>
+
+<h3>Differentiation of Output</h3>
+<p style="margin-left:3em;">if  $y (t) = x (t) * h (t)$</p>
+<p style="margin-left:3em;">then $ {dy (t) \over dt} = {dx(t) \over dt}  * h (t) $ </p>
+<p style="margin-left:3em;">or</p>
+<p style="margin-left:3em;">$ {dy (t) \over dt} = x (t) * {dh(t) \over dt}$</p>
+<p><b>Note:</b></p>
+<ul class="list">
+<li><p>Convolution of two causal sequences is causal.</p></li>
+<li><p>Convolution of two anti causal sequences is anti causal.</p></li>
+<li><p>Convolution of two unequal length rectangles results a trapezium.</p></li>
+<li><p>Convolution of two equal length rectangles results a triangle.</p></li>
+<li><p>A function convoluted itself is equal to integration of that function.</p></li>
+</ul>
+<p><b>Example:</b> You know that $u(t) * u(t) = r(t)$</p>
+<p>According to above note, $u(t) * u(t) = \int u(t)dt = \int 1dt = t = r(t)$</p>
+<p>Here, you get the result just by integrating $u(t)$.</p>
+
+<h2>Limits of Convoluted Signal</h2>
+<p>	If two signals are convoluted then the resulting convoluted signal has following range:</p>
+<p><b> Sum of lower limits &lt; t &lt; sum of upper limits </b></p>
+<p>Ex: find the range of convolution of signals given below</p>
+<img src="/signals_and_systems/images/limits_of_convoluted_signal.png" alt="Limits of convoluted signal">
+<p>Here, we have two rectangles of unequal length to convolute, which results a trapezium.</p>
+<p>The range of convoluted signal is:</p>
+<p><b>Sum of lower limits &lt; t &lt; sum of upper limits</b> </p>
+<p>$-1+-2 &lt; t &lt; 2+2 $</p>
+<p>$-3 &lt; t &lt; 4 $</p>
+<p>Hence the result is trapezium with period 7.</p>
+
+<h2>Area of Convoluted Signal</h2>
+<p>The area under convoluted signal is given by $A_y = A_x A_h$</p>
+<p>Where  A<sub>x</sub> = area under input signal</p>
+<p style="margin-left:3em;">A<sub>h</sub> = area under impulse response</p>
+<p style="margin-left:3em;">A<sub>y</sub> = area under output signal</p>
+
+<p><b>Proof:</b> $y(t)  = \int_{-\infty}^{\infty} x(\tau)  h (t-\tau)d\tau$</p>
+<p>Take integration on both sides</p>
+<p>$ \int y(t)dt  \,\,\, =\int \int_{-\infty}^{\infty}\, x (\tau)  h (t-\tau)d\tau dt $</p>
+<p style="margin-left:5em;">$ =\int x (\tau) d\tau \int_{-\infty}^{\infty}\,  h (t-\tau) dt $</p>
+<p>We know that area of any signal is the integration of that signal itself.</p>
+<p>$\therefore A_y = A_x\,A_h$</p>
+
+<h2>DC Component</h2>
+<p>DC component of any signal is given by </p>
+<p>$\text{DC component}={\text{area of the signal} \over \text{period of the signal}}$</p>
+<p>Ex: what is the dc component of the resultant convoluted signal given below?</p>
+
+<img src="/signals_and_systems/images/dc_component_of_the_resultant_convoluted_signal.png" alt="dc component of the resultant convoluted signal">
+<p>Here area of   x<sub>1</sub>(t) = length × breadth =  1 × 3 = 3</p>
+<p>area of x<sub>2</sub>(t) = length × breadth =  1 × 4 = 4</p>
+<p>area of convoluted signal = area of x<sub>1</sub>(t) ×  area of x<sub>2</sub>(t)</p>
+<p>= 3 × 4 = 12</p>
+<p>Duration of the convoluted signal = sum of lower limits &lt; t &lt; sum of upper limits</p>
+<p>= -1 + -2 &lt; t &lt; 2+2</p>
+<p>= -3 &lt; t &lt; 4</p>
+<p><b>Period=7</b></p>
+<p>$\therefore$ Dc component of the convoluted signal = $\text{area of the signal} \over \text{period of the signal}$</p>
+<p>Dc component = ${12 \over 7}$</p>
+
+<h2>Discrete Convolution</h2>
+<p>Let us see how to calculate discrete convolution:</p>
+<p><b>i. To calculate discrete linear convolution: </b></p>
+<p>Convolute two sequences x[n] = {a,b,c} &amp; h[n] = [e,f,g]	</p>
+
+<img src="/signals_and_systems/images/discrete_linear_convolution_1.png" alt="discrete linear convolution">
+<p>Convoluted output = [ ea, eb+fa, ec+fb+ga, fc+gb, gc]</p>
+<p><b>Note:</b> if any two sequences have m, n number of samples respectively, then the resulting convoluted sequence will have [m+n-1] samples.</p>
+<p><b>Example:</b> Convolute two sequences x[n] = {1,2,3} &amp; h[n] = {-1,2,2}</p>
+<img src="/signals_and_systems/images/discrete_linear_convolution_2.png" alt="discrete linear convolution">
+<p>Convoluted output y[n] = [ -1, -2+2, -3+4+2, 6+4, 6]</p>
+<p>= [-1, 0, 3, 10, 6]</p>
+<p>Here x[n] contains 3 samples and h[n] is also having 3 samples so the resulting sequence having 3+3-1 = 5 samples.</p>
+
+<p><b>ii. To calculate periodic or circular convolution:</b></p> 
+<p>Periodic convolution is valid for discrete Fourier transform. To calculate periodic convolution all the samples must be real. Periodic or circular convolution is also called as fast convolution.</p>
+
+<p>If two sequences of length m, n respectively are convoluted using circular convolution then resulting sequence having max [m,n] samples.</p>
+<p>Ex: convolute two sequences x[n] = {1,2,3} & h[n] = {-1,2,2} using circular convolution</p>
+
+<img src="/signals_and_systems/images/discrete_linear_convolution_2.png" alt="discrete linear convolution">
+<p>Normal Convoluted output y[n] = [ -1, -2+2, -3+4+2, 6+4, 6].</p>
+<p>= [-1, 0, 3, 10, 6]</p>
+<p>Here x[n] contains 3 samples and h[n] also has 3 samples. Hence the resulting sequence obtained by circular convolution must have max[3,3]= 3 samples.</p>
+<p>Now to get periodic convolution result, 1st 3 samples [as the period is 3] of normal convolution is same next two samples are added to 1st samples as shown below:</p>
+<img src="/signals_and_systems/images/circular_convolution_result.png" alt="circular convolution result">
+<p>$\therefore$  Circular convolution result $y[n] = [9\quad 6\quad 3 ]$</p>
+
+<h2>Correlation</h2>
+<p>	Correlation is a measure of similarity between two signals. The general formula for correlation is</p>
+<p>$$ \int_{-\infty}^{\infty}  x_1 (t)x_2 (t-\tau) dt $$</p>
+<p>There are two types of correlation:</p>
+<ul class="list">
+<li><p>Auto correlation</p></li>
+<li><p>Cros correlation</p></li>
+</ul>
+
+<h2>Auto Correlation Function</h2>
+<p>	It is defined as correlation of a signal with itself. Auto correlation function is a measure of similarity between a signal &amp; its time delayed version. It is represented with R($\tau$).</p>
+<p>Consider a signals x(t). The auto correlation function of x(t) with its time delayed version is given by</p>
+
+<p>$$ R_{11} (\tau) = R (\tau) = \int_{-\infty}^{\infty} x(t)x(t-\tau) dt \quad \quad \text{[+ve shift]} $$</p>
+<p>$$\quad \quad \quad \quad \quad = \int_{-\infty}^{\infty} x(t)x(t + \tau) dt \quad \quad \text{[-ve shift]} $$</p>
+<p>Where $\tau$ = searching or scanning or delay parameter.</p>
+<p>If the signal is complex then auto correlation function is given by</p>
+<p>$$ R_{11} (\tau) = R (\tau) = \int_{-\infty}^{\infty} x(t)x * (t-\tau) dt \quad \quad \text{[+ve shift]} $$</p>
+<p>$$\quad \quad \quad \quad \quad = \int_{-\infty}^{\infty} x(t + \tau)x * (t) dt \quad \quad \text{[-ve shift]} $$</p>
+
+<h3>Properties of Auto-correlation Function of Energy Signal</h3>
+<ul class="list">
+<li><p>	Auto correlation exhibits conjugate symmetry i.e. R ($\tau$) = R*(-$\tau$)</p></li>
+<li><p>	Auto correlation function of energy signal at origin i.e. at $\tau$=0 is equal to total energy of that signal, which is given as:</p>
+<p>R (0) = E = $ \int_{-\infty}^{\infty}\,|\,x(t)\,|^2\,dt $</p></li>
+<li><p>	Auto correlation function $\infty {1 \over \tau} $, </p></li>
+<li><p>	Auto correlation function is maximum at $\tau$=0 i.e |R ($\tau$) | &le; R (0) &forall;  $\tau$</p></li>
+<li><p> Auto correlation function and energy spectral densities are Fourier transform pairs. i.e.</p>
+<p>$F.T\,[ R (\tau) ] = \Psi(\omega)$</p>
+<p>$\Psi(\omega) = \int_{-\infty}^{\infty} R (\tau) e^{-j\omega \tau} d \tau$</p>
+</li>
+<li><p>$	R (\tau) = x (\tau)* x(-\tau) $</p></li>
+</ul>    
+
+<h3>Auto Correlation Function of Power Signals</h3>
+<p>	The auto correlation function of periodic power signal with period T is given by</p>
+<p>$$ R (\tau) = \lim_{T \to \infty} {1\over T} \int_{{-T \over 2}}^{{T \over 2}}\, x(t) x* (t-\tau) dt $$</p>
+
+<h3>Properties</h3>
+<ul class="list">
+<li><p>	Auto correlation of power signal exhibits conjugate symmetry i.e. $ R (\tau) = R*(-\tau)$</p></li>
+<li><p>	Auto correlation function of power signal at $\tau = 0$ (at origin)is equal to total power of that signal. i.e. </p>
+<p>$R (0)= \rho $</p></li>
+<li><p>	Auto correlation function of power signal $\infty {1 \over \tau}$, </p></li>
+<li><p>	Auto correlation function of power signal is maximum at $\tau$ = 0 i.e.,</p>
+<p>$ | R (\tau) | \leq R (0)\, \forall \,\tau$</p>    
+</li>
+<li><p>Auto correlation function and power spectral densities are Fourier transform pairs. i.e.,</p>
+<p>$F.T[ R (\tau) ] = s(\omega)$</p>    
+<p>$s(\omega) = \int_{-\infty}^{\infty} R (\tau) e^{-j\omega \tau} d\tau$</p></li>
+<li><p>$R (\tau) = x (\tau)* x(-\tau) $</p></li>
+
+</ul>
+
+<h2>Density Spectrum</h2>
+<p>Let us see density spectrums:</p>
+<h3>Energy Density Spectrum</h3>
+<p>Energy density spectrum can be calculated using the formula:</p>
+<p>$$ E = \int_{-\infty}^{\infty} |\,x(f)\,|^2 df $$</p>
+
+<h3>Power Density Spectrum</h3>
+<p>Power density spectrum can be calculated by using the formula:</p>
+<p>$$P =  \Sigma_{n = -\infty}^{\infty}\, |\,C_n |^2 $$</p>
+
+<h2>Cross Correlation Function</h2>
+<p>Cross correlation is the measure of similarity between two different signals.</p>
+<p>Consider two signals x<sub>1</sub>(t) and x<sub>2</sub>(t). The cross correlation of these two signals $R_{12}(\tau)$ is given by</p>
+<p>$$R_{12} (\tau)  = \int_{-\infty}^{\infty} x_1 (t)x_2 (t-\tau)\, dt \quad \quad  \text{[+ve shift]} $$</p>
+<p>$$\quad \quad =  \int_{-\infty}^{\infty} x_1 (t+\tau)x_2 (t)\, dt \quad \quad  \text{[-ve shift]}$$</p>
+<p>If signals are complex then</p>
+<p>$$R_{12} (\tau)  = \int_{-\infty}^{\infty} x_1 (t)x_2^{*}(t-\tau)\, dt \quad \quad  \text{[+ve shift]} $$</p>
+<p>$$\quad \quad =  \int_{-\infty}^{\infty} x_1 (t+\tau)x_2^{*} (t)\, dt \quad \quad  \text{[-ve shift]}$$</p>
+<p>$$R_{21} (\tau)  = \int_{-\infty}^{\infty} x_2 (t)x_1^{*}(t-\tau)\, dt \quad \quad  \text{[+ve shift]} $$</p> 
+<p>$$\quad \quad =  \int_{-\infty}^{\infty} x_2 (t+\tau)x_1^{*} (t)\, dt \quad \quad  \text{[-ve shift]}$$</p>
+
+<h3>Properties of Cross Correlation Function of Energy and Power Signals</h3>
+<ul class="list">
+<li><p>	Auto correlation exhibits conjugate symmetry i.e. $R_{12}  (\tau) = R^*_{21} (-\tau)$.</p></li>    
+<li><p>Cross correlation is not commutative like convolution i.e.</p>
+<p>$$ R_{12}  (\tau) \neq R_{21}  (-\tau) $$</p>
+</li>
+<li>
+<p>	If R<sub>12</sub>(0) = 0 means, if $ \int_{-\infty}^{\infty} x_1 (t) x_2^* (t) dt = 0$, then the two signals are said to be orthogonal.</p>
+<p> For power signal if $ \lim_{T \to \infty} {1\over T} \int_{{-T \over 2}}^{{T \over 2}}\, x(t) x^* (t)\,dt $ then two signals are said to be orthogonal.
+</p></li>
+
+<li><p>Cross correlation function corresponds to the multiplication of spectrums of one signal to the complex conjugate of spectrum of another signal. i.e.</p>
+<p>$$ R_{12}  (\tau) \leftarrow \rightarrow X_1(\omega) X_2^*(\omega)$$</p>
+<p>This also called as correlation theorem.</p>
+
+</li>
+</ul>
+<h2>Parseval's Theorem</h2>
+<p>Parseval's theorem for energy signals states that the total energy in a signal can be obtained by the spectrum of the signal as</p>
+<p>$ E = {1\over 2 \pi} \int_{-\infty}^{\infty} |X(\omega)|^2  d\omega $</p>
+<p><b>Note:</b> If a signal has energy E then time scaled version of that signal x(at) has energy E/a.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/signals_and_systems/hilbert_transform.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/signals_and_systems/signals_sampling_theorem.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

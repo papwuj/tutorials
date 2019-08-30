@@ -1,0 +1,3085 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>HBase - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="HBase - Quick Guide - Since 1970, RDBMS is the solution for data storage and maintenance related problems. After the advent of big data, companies realized the benefit of processing "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/hbase/hbase_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#ba160d;
+}
+a.demo {
+    background:#ba160d;
+}
+li.heading {
+    background:#ba160d;
+}
+.course-box{background:#ba160d}
+.home-intro-sub p{color:#ba160d}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/hbase/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/hbase/images/hbase-mini-logo.jpg" alt="HBase Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">HBase Tutorial</li>
+<li><a target="_top" href="/hbase/index.htm">HBase - Home</a></li>
+<li><a target="_top" href="/hbase/hbase_overview.htm">HBase - Overview</a></li>
+<li><a target="_top" href="/hbase/hbase_architecture.htm">HBase - Architecture</a></li>
+<li><a target="_top" href="/hbase/hbase_installation.htm">HBase - Installation</a></li>
+<li><a target="_top" href="/hbase/hbase_shell.htm">HBase - Shell</a></li>
+<li><a target="_top" href="/hbase/hbase_general_commands.htm">HBase - General Commands</a></li>
+<li><a target="_top" href="/hbase/hbase_admin_api.htm">HBase - Admin API</a></li>
+<li><a target="_top" href="/hbase/hbase_create_table.htm">HBase - Create Table</a></li>
+<li><a target="_top" href="/hbase/hbase_listing_table.htm">HBase - Listing Table</a></li>
+<li><a target="_top" href="/hbase/hbase_disabling_table.htm">HBase - Disabling a Table</a></li>
+<li><a target="_top" href="/hbase/hbase_enabling_table.htm">HBase - Enabling a Table</a></li>
+<li><a target="_top" href="/hbase/hbase_describe_and_alter.htm">HBase - Describe &amp; Alter</a></li>
+<li><a target="_top" href="/hbase/hbase_exists.htm">HBase - Exists</a></li>
+<li><a target="_top" href="/hbase/hbase_drop_table.htm">HBase - Drop a Table</a></li>
+<li><a target="_top" href="/hbase/hbase_shutting_down.htm">HBase - Shutting Down</a></li>
+<li><a target="_top" href="/hbase/hbase_client_api.htm">HBase - Client API</a></li>
+<li><a target="_top" href="/hbase/hbase_create_data.htm">HBase - Create Data</a></li>
+<li><a target="_top" href="/hbase/hbase_update_data.htm">HBase - Update Data</a></li>
+<li><a target="_top" href="/hbase/hbase_read_data.htm">HBase - Read Data</a></li>
+<li><a target="_top" href="/hbase/hbase_delete_data.htm">HBase - Delete Data</a></li>
+<li><a target="_top" href="/hbase/hbase_scan.htm">HBase - Scan</a></li>
+<li><a target="_top" href="/hbase/hbase_count_truncate.htm">HBase - Count &amp; Truncate</a></li>
+<li><a target="_top" href="/hbase/hbase_security.htm">HBase - Security</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">HBase Resources</li>
+<li><a target="_top" href="/hbase/hbase_questions_answers.htm">HBase - Questions and Answers</a></li>
+<li><a target="_top" href="/hbase/hbase_quick_guide.htm">HBase - Quick Guide</a></li>
+<li><a target="_top" href="/hbase/hbase_useful_resources.htm">HBase - Useful Resources</a></li>
+<li><a target="_top" href="/hbase/hbase_discussion.htm">HBase - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>HBase - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/hbase/hbase_questions_answers.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/hbase/hbase_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>HBase - Overview</h1>
+<p>Since 1970, RDBMS is the solution for data storage and maintenance related problems. After the advent of big data, companies realized the benefit of processing big data and started opting for solutions like Hadoop.</p>
+<p>Hadoop uses distributed file system for storing big data, and MapReduce to process it. Hadoop excels in storing and processing of huge data of various formats such as arbitrary, semi-, or even unstructured.</p>
+<h2>Limitations of Hadoop</h2>
+<p>Hadoop can perform only batch processing, and data will be accessed only in a sequential manner. That means one has to search the entire dataset even for the simplest of jobs.</p>
+<p>A huge dataset when processed results in another huge data set, which should also be processed sequentially. At this point, a new solution is needed to access any point of data in a single unit of time (random access).</p>
+<h2>Hadoop Random Access Databases</h2>
+<p>Applications such as HBase, Cassandra, couchDB, Dynamo, and MongoDB are some of the databases that store huge amounts of data and access the data in a random manner.</p>
+<h2>What is HBase?</h2>
+<p>HBase is a distributed column-oriented database built on top of the Hadoop file system. It is an open-source project and is horizontally scalable.</p>
+<p>HBase is a data model that is similar to Google’s big table designed to provide quick random access to huge amounts of structured data. It leverages the fault tolerance provided by the Hadoop File System (HDFS).</p>
+<p>It is a part of the Hadoop ecosystem that provides random real-time read/write access to data in the Hadoop File System.</p>
+<p>One can store the data in HDFS either directly or through HBase. Data consumer reads/accesses the data in HDFS randomly using HBase. HBase sits on top of the Hadoop File System and provides read and write access.</p>
+<img src="/hbase/images/hbase_flow.jpg" alt="HBase Flow" />
+<h2>HBase and HDFS</h2>
+<table class="table table-bordered">
+<tr>
+<th>HDFS</th>
+<th>HBase</th>
+</tr>
+<tr>
+<td>HDFS is a distributed file system suitable for storing large files.</td>
+<td>HBase is a database built on top of the HDFS.</td>
+</tr>
+<tr>
+<td>HDFS does not support fast individual record lookups.</td>
+<td>HBase provides fast lookups for larger tables.</td>
+</tr>
+<tr>
+<td>It provides high latency batch processing; no concept of batch processing.</td>
+<td>It provides low latency access to single rows from billions of records (Random access).</td>
+</tr>
+<tr>
+<td>It provides only sequential access of data.</td>
+<td>HBase internally uses Hash tables and provides random access, and it stores the data in indexed HDFS files for faster lookups.</td>
+</tr>
+</table>
+<h2>Storage Mechanism in HBase</h2>
+<p>HBase is a <b>column-oriented database</b> and the tables in it are sorted by row. The table schema defines only column families, which are the key value pairs. A table have multiple column families and each column family can have any number of columns. Subsequent column values are stored contiguously on the disk. Each cell value of the table has a timestamp. In short, in an HBase:</p>
+<ul class="list">
+<li>Table is a collection of rows.</li>
+<li>Row is a collection of column families.</li>
+<li>Column family is a collection of columns.</li>
+<li>Column is a collection of key value pairs.</li>
+</ul>
+<p>Given below is an example schema of table in HBase.</p>
+<table class="table table-bordered">
+<tr>
+<th rowspan="2">Rowid</th>
+<th colspan="3">Column Family</th>
+<th colspan="3">Column Family</th>
+<th colspan="3">Column Family</th>
+<th colspan="3">Column Family</th>                
+</tr>
+<tr>
+<th style="padding:3px;">col1</th>
+<th style="padding:3px;">col2</th>
+<th style="padding:3px;">col3</th>
+<th style="padding:3px;">col1</th>
+<th style="padding:3px;">col2</th>
+<th style="padding:3px;">col3</th>
+<th style="padding:3px;">col1</th>
+<th style="padding:3px;">col2</th>
+<th style="padding:3px;">col3</th>
+<th style="padding:3px;">col1</th>
+<th style="padding:3px;">col2</th>
+<th style="padding:3px;">col3</th>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+<h2>Column Oriented and Row Oriented</h2>
+<p>Column-oriented databases are those that store data tables as sections of columns of data, rather than as rows of data. Shortly, they will have column families.</p>
+<table class="table table-bordered">
+<tr>
+<th>Row-Oriented Database</th>
+<th>Column-Oriented Database</th>
+</tr>
+<tr>
+<td>It is suitable for Online Transaction Process (OLTP).</td>
+<td>It is suitable for Online Analytical Processing (OLAP).</td>
+</tr>
+<tr>
+<td>Such databases are designed for small number of rows and columns.</td>
+<td>Column-oriented databases are designed for huge tables.</td>
+</tr>
+</table>
+<p>The following image shows column families in a column-oriented database:</p>
+<img src="/hbase/images/table.jpg" alt="Table" />
+<h2>HBase and RDBMS</h2>
+<table class="table table-bordered">
+<tr>
+<th>HBase</th>
+<th>RDBMS</th>
+</tr>
+<tr>
+<td>HBase is schema-less, it doesn't have the concept of fixed columns schema; defines only column families.</td>
+<td>An RDBMS is governed by its schema, which describes the whole structure of tables.</td>
+</tr>
+<tr>
+<td>It is built for wide tables. HBase is horizontally scalable.</td>
+<td>It is thin and built for small tables. Hard to scale.</td>
+</tr>
+<tr>
+<td>No transactions are there in HBase.</td>
+<td>RDBMS is transactional.</td>
+</tr>
+<tr>
+<td>It has de-normalized data.</td>
+<td>It will have normalized data.</td>
+</tr>
+<tr>
+<td>It is good for semi-structured as well as structured data.</td>
+<td>It is good for structured data.</td>
+</tr>
+</table>
+<h2>Features of HBase</h2>
+<ul class="list">
+<li>HBase is linearly scalable.</li>
+<li>It has automatic failure support.</li>
+<li>It provides consistent read and writes.</li>
+<li>It integrates with Hadoop, both as a source and a destination.</li>
+<li>It has easy java API for client.</li>
+<li>It provides data replication across clusters.</li>
+</ul>
+<h2>Where to Use HBase</h2>
+<ul class="list">
+<li><p>Apache HBase is used to have random, real-time read/write access to Big Data.</p></li>
+<li><p>It hosts very large tables on top of clusters of commodity hardware.</p></li>
+<li><p>Apache HBase is a non-relational database modeled after Google's Bigtable. Bigtable acts up on Google File System, likewise Apache HBase works on top of Hadoop and HDFS.</p></li>
+</ul>
+<h2>Applications of HBase</h2>
+<ul class="list">
+<li>It is used whenever there is a need to write heavy applications.</li>
+<li>HBase is used whenever we need to provide fast random access to available data.</li>
+<li>Companies such as Facebook, Twitter, Yahoo, and Adobe use HBase internally.</li>
+</ul>
+<h2>HBase History</h2>
+<table class="table table-bordered">
+<tr>
+<th>Year</th>
+<th>Event</th>
+</tr>
+<tr>
+<td>Nov 2006</td>
+<td>Google released the paper on BigTable.</td>
+</tr>
+<tr>
+<td>Feb 2007</td>
+<td>Initial HBase prototype was created as a Hadoop contribution.</td>
+</tr>
+<tr>
+<td>Oct 2007</td>
+<td>The first usable HBase along with Hadoop 0.15.0 was released.</td>
+</tr>
+<tr>
+<td>Jan 2008</td>
+<td>HBase became the sub project of Hadoop.</td>
+</tr>
+<tr>
+<td>Oct 2008</td>
+<td>HBase 0.18.1 was released.</td>
+</tr>
+<tr>
+<td>Jan 2009</td>
+<td>HBase 0.19.0 was released.</td>
+</tr>
+<tr>
+<td>Sept 2009</td>
+<td>HBase 0.20.0 was released.</td>
+</tr>
+<tr>
+<td>May 2010</td>
+<td>HBase became Apache top-level project.</td>
+</tr>
+</table>
+<h1>HBase - Architecture</h1>
+<p>In HBase, tables are split into regions and are served by the region servers. Regions are vertically divided by column families into “Stores”. Stores are saved as files in HDFS. Shown below is the architecture of HBase.</p>
+<p><b>Note:</b> The term ‘store’ is used for regions to explain the storage structure.</p>
+<img src="/hbase/images/architecture.jpg" alt="HBase Architecture" />
+<p>HBase has three major components: the client library, a master server, and region servers. Region servers can be added or removed as per requirement.</p>
+<h2>MasterServer</h2>
+<p>The master server -</p>
+<ul class="list">
+<li><p>Assigns regions to the region servers and takes the help of Apache ZooKeeper for this task.</p></li>
+<li><p>Handles load balancing of the regions across region servers. It unloads the busy servers and shifts the regions to less occupied servers.</p></li>
+<li><p>Maintains the state of the cluster by negotiating the load balancing.</p></li>
+<li><p>Is responsible for schema changes and other metadata operations such as creation of tables and column families.</p></li>
+</ul>
+<h2>Regions</h2>
+<p>Regions are nothing but tables that are split up and spread across the region servers.</p>
+<h3>Region server</h3>
+<p>The region servers have regions that -</p>
+<ul class="list">
+<li>Communicate with the client and handle data-related operations.</li>
+<li>Handle read and write requests for all the regions under it.</li>
+<li>Decide the size of the region by following the region size thresholds.</li>
+</ul>
+<p>When we take a deeper look into the region server, it contain regions and stores as shown below:</p>
+<img src="/hbase/images/regional_server.jpg" alt="Regional Server" />
+<p>The store contains memory store and HFiles. Memstore is just like a cache memory. Anything that is entered into the HBase is stored here initially. Later, the data is transferred and saved in Hfiles as blocks and the memstore is flushed.</p>
+<h2>Zookeeper</h2>
+<ul class="list">
+<li><p>Zookeeper is an open-source project that provides services like maintaining configuration information, naming, providing distributed synchronization, etc.</p></li>
+<li><p>Zookeeper has ephemeral nodes representing different region servers. Master servers use these nodes to discover available servers.</p></li>
+<li><p>In addition to availability, the nodes are also used to track server failures or network partitions.</p></li>
+<li><p>Clients communicate with region servers via zookeeper.</p></li>
+<li><p>In pseudo and standalone modes, HBase itself will take care of zookeeper.</p></li>
+</ul>
+<h1>HBase - Installation</h1>
+<p>This chapter explains how HBase is installed and initially configured. Java and
+Hadoop are required to proceed with HBase, so you have to download and install
+java and Hadoop in your system.</p>
+<h2>Pre-Installation Setup</h2>
+<p>Before installing Hadoop into Linux environment, we need to set up Linux using <b>ssh</b> (Secure Shell). Follow the steps given below for setting up the Linux environment.</p>
+<h3>Creating a User</h3>
+<p>First of all, it is recommended to create a separate user for Hadoop to isolate the Hadoop file system from the Unix file system. Follow the steps given below to create a user.</p>
+<ul class="list">
+<li>Open the root using the command “su”.</li>
+<li>Create a user from the root account using the command “useradd username”.</li>
+<li>Now you can open an existing user account using the command “su username”.</li>
+</ul>
+<p>Open the Linux terminal and type the following commands to create a user.</p>
+<pre class="result notranslate">
+$ su
+password:
+# useradd hadoop
+# passwd hadoop
+New passwd:
+Retype new passwd
+</pre>
+<h3>SSH Setup and Key Generation</h3>
+<p>SSH setup is required to perform different operations on the cluster such as start, stop, and distributed daemon shell operations. To authenticate different users of Hadoop, it is required to provide public/private key pair for a Hadoop user and share it with different users.</p>
+<p>The following commands are used to generate a key value pair using SSH. Copy the public keys form id_rsa.pub to authorized_keys, and provide owner, read and write permissions to authorized_keys file respectively.</p>
+<pre class="result notranslate">
+$ ssh-keygen -t rsa
+$ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+$ chmod 0600 ~/.ssh/authorized_keys
+</pre>
+<h3>Verify ssh</h3>
+<pre class="result notranslate">
+ssh localhost
+</pre>
+<h2>Installing Java</h2>
+<p>Java is the main prerequisite for Hadoop and HBase. First of all, you should verify the existence of java in your system using “java -version”. The syntax of java version command is given below.</p>
+<pre class="result notranslate">
+$ java -version
+</pre>
+<p>If everything works fine, it will give you the following output.</p>
+<pre class="result notranslate">
+java version "1.7.0_71"
+Java(TM) SE Runtime Environment (build 1.7.0_71-b13)
+Java HotSpot(TM) Client VM (build 25.0-b02, mixed mode)
+</pre>
+<p>If java is not installed in your system, then follow the steps given below for installing java.</p>
+<h3>Step 1</h3>
+<p>Download java (JDK &lt;latest version&gt; - X64.tar.gz) by visiting the following link <a rel="nofollow" target="_blank" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Oracle Java</a>.</p>
+<p>Then <b>jdk-7u71-linux-x64.tar.gz</b> will be downloaded into your system.</p>
+<h3>Step 2</h3>
+<p>Generally you will find the downloaded java file in Downloads folder. Verify it and extract the <b>jdk-7u71-linux-x64.gz</b> file using the following commands.</p>
+<pre class="result notranslate">
+$ cd Downloads/
+$ ls
+jdk-7u71-linux-x64.gz
+
+$ tar zxf jdk-7u71-linux-x64.gz
+$ ls
+jdk1.7.0_71 jdk-7u71-linux-x64.gz
+</pre>
+<h3>Step 3</h3>
+<p>To make java available to all the users, you have to move it to the location “/usr/local/”. Open root and type the following commands.</p>
+<pre class="result notranslate">
+$ su
+password:
+# mv jdk1.7.0_71 /usr/local/
+# exit
+</pre>
+<h3>Step 4</h3>
+<p>For setting up <b>PATH</b> and <b>JAVA_HOME</b> variables, add the following commands to <b>~/.bashrc</b> file.</p>
+<pre class="result notranslate">
+export JAVA_HOME=/usr/local/jdk1.7.0_71
+export PATH= $PATH:$JAVA_HOME/bin
+</pre>
+<p>Now apply all the changes into the current running system.</p>
+<pre class="result notranslate">
+$ source ~/.bashrc
+</pre>
+<h3>Step 5</h3>
+<p>Use the following commands to configure java alternatives:</p>
+<pre class="result notranslate">
+# alternatives --install /usr/bin/java java usr/local/java/bin/java 2
+
+# alternatives --install /usr/bin/javac javac usr/local/java/bin/javac 2
+
+# alternatives --install /usr/bin/jar jar usr/local/java/bin/jar 2
+
+
+# alternatives --set java usr/local/java/bin/java
+
+# alternatives --set javac usr/local/java/bin/javac
+
+# alternatives --set jar usr/local/java/bin/jar
+</pre>
+<p>Now verify the <b>java -version</b> command from the terminal as explained above.</p>
+<h2>Downloading Hadoop</h2>
+<p>After installing java, you have to install Hadoop. First of all, verify the existence of Hadoop using “ Hadoop version ” command as shown below.</p>
+<pre class="result notranslate">
+hadoop version
+</pre>
+<p>If everything works fine, it will give you the following output.</p>
+<pre class="result notranslate">
+Hadoop 2.6.0
+Compiled by jenkins on 2014-11-13T21:10Z
+Compiled with protoc 2.5.0
+From source with checksum 18e43357c8f927c0695f1e9522859d6a
+This command was run using
+/home/hadoop/hadoop/share/hadoop/common/hadoop-common-2.6.0.jar
+</pre>
+<p>If your system is unable to locate Hadoop, then download Hadoop in your system. Follow the commands given below to do so.</p>
+<p>Download and extract <a href="http://apache.bytenet.in/hadoop/common/hadoop-2.6.0/">hadoop-2.6.0</a> from Apache Software Foundation using the following commands.</p>
+<pre class="result notranslate">
+$ su
+password:
+# cd /usr/local
+# wget http://mirrors.advancedhosters.com/apache/hadoop/common/hadoop-
+2.6.0/hadoop-2.6.0-src.tar.gz
+# tar xzf hadoop-2.6.0-src.tar.gz
+# mv hadoop-2.6.0/* hadoop/
+# exit
+</pre>
+<h2>Installing Hadoop</h2>
+<p>Install Hadoop in any of the required mode. Here, we are demonstrating HBase functionalities in pseudo distributed mode, therefore install Hadoop in pseudo distributed mode.</p>
+<p>The following steps are used for installing <b>Hadoop 2.4.1</b>.</p>
+<h3>Step 1 - Setting up Hadoop</h3>
+<p>You can set Hadoop environment variables by appending the following commands to <b>~/.bashrc</b> file.</p>
+<pre class="result notranslate">
+export HADOOP_HOME=/usr/local/hadoop
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+export HADOOP_INSTALL=$HADOOP_HOME
+</pre>
+<p>Now apply all the changes into the current running system.</p>
+<pre class="result notranslate">
+$ source ~/.bashrc
+</pre>
+<h3>Step 2 - Hadoop Configuration</h3>
+<p>You can find all the Hadoop configuration files in the location “$HADOOP_HOME/etc/hadoop”. You need to make changes in those configuration files according to your Hadoop infrastructure.</p>
+<pre class="result notranslate">
+$ cd $HADOOP_HOME/etc/hadoop
+</pre>
+<p>In order to develop Hadoop programs in java, you have to reset the java environment variable in <b>hadoop-env.sh</b> file by replacing <b>JAVA_HOME</b> value with the location of java in your system.</p>
+<pre class="result notranslate">
+export JAVA_HOME=/usr/local/jdk1.7.0_71
+</pre>
+<p>You will have to edit the following files to configure Hadoop.</p>
+<p><b>core-site.xml</b></p>
+<p>The <b>core-site.xml</b> file contains information such as the port number used for Hadoop instance, memory allocated for file system, memory limit for storing data, and the size of Read/Write buffers.</p>
+<p>Open core-site.xml and add the following properties in between the &lt;configuration&gt; and &lt;/configuration&gt; tags.</p>
+<pre class="prettyprint notranslate">
+&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;fs.default.name&lt;/name&gt;
+      &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+<p><b>hdfs-site.xml</b></p>
+<p>The <b>hdfs-site.xml</b> file contains information such as the value of replication data, namenode path, and datanode path of your local file systems, where you want to store the Hadoop infrastructure.</p>
+<p>Let us assume the following data.</p>
+<pre class="result notranslate">
+dfs.replication (data replication value) = 1
+(In the below given path /hadoop/ is the user name.
+hadoopinfra/hdfs/namenode is the directory created by hdfs file system.)
+
+namenode path = //home/hadoop/hadoopinfra/hdfs/namenode
+(hadoopinfra/hdfs/datanode is the directory created by hdfs file system.)
+
+datanode path = //home/hadoop/hadoopinfra/hdfs/datanode
+</pre>
+<p>Open this file and add the following properties in between the &lt;configuration&gt;, &lt;/configuration&gt; tags.</p>
+<pre class="prettyprint notranslate">
+&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.replication&lt;/name &gt;
+      &lt;value&gt;1&lt;/value&gt;
+   &lt;/property&gt;
+	
+   &lt;property&gt;
+      &lt;name&gt;dfs.name.dir&lt;/name&gt;
+      &lt;value&gt;file:///home/hadoop/hadoopinfra/hdfs/namenode&lt;/value&gt;
+   &lt;/property&gt;
+	
+   &lt;property&gt;
+      &lt;name&gt;dfs.data.dir&lt;/name&gt;
+      &lt;value&gt;file:///home/hadoop/hadoopinfra/hdfs/datanode&lt;/value&gt;
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+<p><b>Note:</b> In the above file, all the property values are user-defined and you can make changes according to your Hadoop infrastructure.</p>
+<p><b>yarn-site.xml</b></p>
+<p>This file is used to configure yarn into Hadoop. Open the yarn-site.xml file and add the following property in between the &lt;configuration$gt;, &lt;/configuration$gt; tags in this file.</p>
+<pre class="prettyprint notranslate">
+&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+      &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+<p><b>mapred-site.xml</b></p>
+<p>This file is used to specify which MapReduce framework we are using. By default, Hadoop contains a template of yarn-site.xml. First of all, it is required to copy the file from <b>mapred-site.xml.template</b> to <b>mapred-site.xml</b> file using the following command.</p>
+<pre class="result notranslate">
+$ cp mapred-site.xml.template mapred-site.xml
+</pre>
+<p>Open <b>mapred-site.xml</b> file and add the following properties in between the &lt;configuration&gt; and &lt;/configuration&gt; tags.</p>
+<pre class="prettyprint notranslate">
+&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+      &lt;value&gt;yarn&lt;/value&gt;
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+<h2>Verifying Hadoop Installation</h2>
+<p>The following steps are used to verify the Hadoop installation.</p>
+<h3>Step 1 - Name Node Setup</h3>
+<p>Set up the namenode using the command “hdfs namenode -format” as follows.</p>
+<pre class="result notranslate">
+$ cd ~
+$ hdfs namenode -format
+</pre>
+<p>The expected result is as follows.</p>
+<pre class="result notranslate">
+10/24/14 21:30:55 INFO namenode.NameNode: STARTUP_MSG:
+/************************************************************
+STARTUP_MSG: Starting NameNode
+STARTUP_MSG: host = localhost/192.168.1.11
+STARTUP_MSG: args = [-format]
+STARTUP_MSG: version = 2.4.1
+...
+...
+10/24/14 21:30:56 INFO common.Storage: Storage directory
+/home/hadoop/hadoopinfra/hdfs/namenode has been successfully formatted.
+10/24/14 21:30:56 INFO namenode.NNStorageRetentionManager: Going to
+retain 1 images with txid &gt;= 0
+10/24/14 21:30:56 INFO util.ExitUtil: Exiting with status 0
+10/24/14 21:30:56 INFO namenode.NameNode: SHUTDOWN_MSG:
+/************************************************************
+SHUTDOWN_MSG: Shutting down NameNode at localhost/192.168.1.11
+************************************************************/
+</pre>
+<h3>Step 2 - Verifying Hadoop dfs</h3>
+<p>The following command is used to start dfs. Executing this command will start your Hadoop file system.</p>
+<pre class="result notranslate">
+$ start-dfs.sh
+</pre>
+<p>The expected output is as follows.</p>
+<pre class="result notranslate">
+10/24/14 21:37:56
+Starting namenodes on [localhost]
+localhost: starting namenode, logging to /home/hadoop/hadoop-
+2.4.1/logs/hadoop-hadoop-namenode-localhost.out
+localhost: starting datanode, logging to /home/hadoop/hadoop-
+2.4.1/logs/hadoop-hadoop-datanode-localhost.out
+Starting secondary namenodes [0.0.0.0]
+</pre>
+<h3>Step 3 - Verifying Yarn Script</h3>
+<p>The following command is used to start the yarn script. Executing this command will start your yarn daemons.</p>
+<pre class="result notranslate">
+$ start-yarn.sh
+</pre>
+<p>The expected output is as follows.</p>
+<pre class="result notranslate">
+starting yarn daemons
+starting resourcemanager, logging to /home/hadoop/hadoop-
+2.4.1/logs/yarn-hadoop-resourcemanager-localhost.out
+localhost: starting nodemanager, logging to /home/hadoop/hadoop-
+2.4.1/logs/yarn-hadoop-nodemanager-localhost.out
+</pre>
+<h3>Step 4 - Accessing Hadoop on Browser</h3>
+<p>The default port number to access Hadoop is 50070. Use the following url to get Hadoop services on your browser.</p>
+<pre class="result notranslate">
+http://localhost:50070
+</pre>
+<p></p>
+<img src="/hbase/images/hadoop_browser.jpg" alt="Hadoop on Browser" />
+<h3>Step 5 - Verify all Applications of Cluster</h3>
+<p>The default port number to access all the applications of cluster is 8088. Use the following url to visit this service.</p>
+<pre class="result notranslate">
+http://localhost:8088/
+</pre>
+<p></p>
+<img src="/hbase/images/hadoop_application_cluster.jpg" alt="Hadoop Applicatin Cluster" />
+<h2>Installing HBase</h2>
+<p>We can install HBase in any of the three modes: Standalone mode, Pseudo Distributed mode, and Fully Distributed mode.</p>
+<h3>Installing HBase in Standalone Mode</h3>
+<p>Download the latest stable version of HBase form <a href="http://www.interior-dsgn.com/apache/hbase/stable/">http://www.interior-dsgn.com/apache/hbase/stable/</a> using “wget” command, and extract it using the tar “zxvf” command. See the following command.</p>
+<pre class="result notranslate">
+$cd usr/local/
+$wget http://www.interior-dsgn.com/apache/hbase/stable/hbase-0.98.8-
+hadoop2-bin.tar.gz
+$tar -zxvf hbase-0.98.8-hadoop2-bin.tar.gz
+</pre>
+<p>Shift to super user mode and move the HBase folder to /usr/local as shown below.</p>
+<pre class="result notranslate">
+$su
+$password: enter your password here
+mv hbase-0.99.1/* Hbase/
+</pre>
+<h3>Configuring HBase in Standalone Mode</h3>
+<p>Before proceeding with HBase, you have to edit the following files and configure HBase.</p>
+<h3>hbase-env.sh</h3>
+<p>Set the java Home for HBase and open <b>hbase-env.sh</b> file from the conf folder. Edit JAVA_HOME environment variable and change the existing path to your current JAVA_HOME variable as shown below.</p>
+<pre class="result notranslate">
+cd /usr/local/Hbase/conf
+gedit hbase-env.sh
+</pre>
+<p>This will open the env.sh file of HBase. Now replace the existing <b>JAVA_HOME</b> value with your current value as shown below.</p>
+<pre class="result notranslate">
+export JAVA_HOME=/usr/lib/jvm/java-1.7.0
+</pre>
+<h3>hbase-site.xml</h3>
+<p>This is the main configuration file of HBase. Set the data directory to an appropriate location by opening the HBase home folder in /usr/local/HBase. Inside the conf folder, you will find several files, open the <b>hbase-site.xml</b> file as shown below.</p>
+<pre class="result notranslate">
+#cd /usr/local/HBase/
+#cd conf
+# gedit hbase-site.xml
+</pre>
+<p>Inside the <b>hbase-site.xml</b> file, you will find the &lt;configuration&gt; and
+&lt;/configuration&gt; tags. Within them, set the HBase directory under the property
+key with the name “hbase.rootdir” as shown below.</p>
+<pre class="prettyprint notranslate">
+&lt;configuration&gt;
+   //Here you have to set the path where you want HBase to store its files.
+   &lt;property&gt;
+      &lt;name&gt;hbase.rootdir&lt;/name&gt;
+      &lt;value&gt;file:/home/hadoop/HBase/HFiles&lt;/value&gt;
+   &lt;/property&gt;
+	
+   //Here you have to set the path where you want HBase to store its built in zookeeper  files.
+   &lt;property&gt;
+      &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
+      &lt;value&gt;/home/hadoop/zookeeper&lt;/value&gt;
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+<p>With this, the HBase installation and configuration part is successfully complete. We can start HBase by using <b>start-hbase.sh</b> script provided in the bin folder of HBase. For that, open HBase Home Folder and run HBase start script as shown below.</p>
+<pre class="result notranslate">
+$cd /usr/local/HBase/bin
+$./start-hbase.sh
+</pre>
+<p>If everything goes well, when you try to run HBase start script, it will prompt you a message saying that HBase has started.</p>
+<pre class="result notranslate">
+starting master, logging to /usr/local/HBase/bin/../logs/hbase-tpmaster-localhost.localdomain.out
+</pre>
+<h3>Installing HBase in Pseudo-Distributed Mode</h3>
+<p>Let us now check how HBase is installed in pseudo-distributed mode.</p>
+<h4>Configuring HBase</h4>
+<p>Before proceeding with HBase, configure Hadoop and HDFS on your local system or on a remote system and make sure they are running. Stop HBase if it is running.</p>
+<p><b>hbase-site.xml</b></p>
+<p>Edit hbase-site.xml file to add the following properties.</p>
+<pre class="prettyprint notranslate">
+&lt;property&gt;
+   &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;
+   &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+<p>It will mention in which mode HBase should be run. In the same file from the local file system, change the hbase.rootdir, your HDFS instance address, using the hdfs://// URI syntax. We are running HDFS on the localhost at port 8030.</p>
+<pre class="prettyprint notranslate">
+&lt;property&gt;
+   &lt;name&gt;hbase.rootdir&lt;/name&gt;
+   &lt;value&gt;hdfs://localhost:8030/hbase&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+<h3>Starting HBase</h3>
+<p>After configuration is over, browse to HBase home folder and start HBase using the following command.</p>
+<pre class="result notranslate">
+$cd /usr/local/HBase
+$bin/start-hbase.sh
+</pre>
+<p><b>Note:</b> Before starting HBase, make sure Hadoop is running.</p>
+<h3>Checking the HBase Directory in HDFS</h3>
+<p>HBase creates its directory in HDFS. To see the created directory, browse to Hadoop bin and type the following command.</p>
+<pre class="result notranslate">
+$ ./bin/hadoop fs -ls /hbase
+</pre>
+<p>If everything goes well, it will give you the following output.</p>
+<pre class="result notranslate">
+Found 7 items
+drwxr-xr-x - hbase users 0 2014-06-25 18:58 /hbase/.tmp
+drwxr-xr-x - hbase users 0 2014-06-25 21:49 /hbase/WALs
+drwxr-xr-x - hbase users 0 2014-06-25 18:48 /hbase/corrupt
+drwxr-xr-x - hbase users 0 2014-06-25 18:58 /hbase/data
+-rw-r--r-- 3 hbase users 42 2014-06-25 18:41 /hbase/hbase.id
+-rw-r--r-- 3 hbase users 7 2014-06-25 18:41 /hbase/hbase.version
+drwxr-xr-x - hbase users 0 2014-06-25 21:49 /hbase/oldWALs
+</pre>
+<h2>Starting and Stopping a Master</h2>
+<p>Using the “local-master-backup.sh” you can start up to 10 servers. Open the home folder of HBase, master and execute the following command to start it.</p>
+<pre class="result notranslate">
+$ ./bin/local-master-backup.sh 2 4
+</pre>
+<p>To kill a backup master, you need its process id, which will be stored in a file named <b>“/tmp/hbase-USER-X-master.pid.”</b> you can kill the backup master using the following command.</p>
+<pre class="result notranslate">
+$ cat /tmp/hbase-user-1-master.pid |xargs kill -9
+</pre>
+<h2>Starting and Stopping RegionServers</h2>
+<p>You can run multiple region servers from a single system using the following command.</p>
+<pre class="result notranslate">
+$ .bin/local-regionservers.sh start 2 3
+</pre>
+<p>To stop a region server, use the following command.</p>
+<pre class="result notranslate">
+$ .bin/local-regionservers.sh stop 3
+</pre>
+<p>&nbsp;</p>
+<h2>Starting HBaseShell</h2>
+<p>After Installing HBase successfully, you can start HBase Shell. Below given are the sequence of steps that are to be followed to start the HBase shell. Open the terminal, and login as super user.</p>
+<h3>Start Hadoop File System</h3>
+<p>Browse through Hadoop home sbin folder and start Hadoop file system as shown below.</p>
+<pre class="result notranslate">
+$cd $HADOOP_HOME/sbin
+$start-all.sh
+</pre>
+<h3>Start HBase</h3>
+<p>Browse through the HBase root directory bin folder and start HBase.</p>
+<pre class="result notranslate">
+$cd /usr/local/HBase
+$./bin/start-hbase.sh
+</pre>
+<h3>Start HBase Master Server</h3>
+<p>This will be the same directory. Start it as shown below.</p>
+<pre class="result notranslate">
+$./bin/local-master-backup.sh start 2 (number signifies specific
+server.) 
+</pre>
+<h3>Start Region</h3>
+<p>Start the region server as shown below.</p>
+<pre class="result notranslate">
+$./bin/./local-regionservers.sh start 3
+</pre>
+<h3>Start HBase Shell</h3>
+<p>You can start HBase shell using the following command.</p>
+<pre class="result notranslate">
+$cd bin
+$./hbase shell
+</pre>
+<p>This will give you the HBase Shell Prompt as shown below.</p>
+<pre class="result notranslate">
+2014-12-09 14:24:27,526 INFO [main] Configuration.deprecation:
+hadoop.native.lib is deprecated. Instead, use io.native.lib.available
+HBase Shell; enter 'help&lt;RETURN&gt;' for list of supported commands.
+Type "exit&lt;RETURN&gt;" to leave the HBase Shell
+Version 0.98.8-hadoop2, r6cfc8d064754251365e070a10a82eb169956d5fe, Fri
+Nov 14 18:26:29 PST 2014
+
+hbase(main):001:0&gt;
+</pre>
+<h2>HBase Web Interface</h2>
+<p>To access the web interface of HBase, type the following url in the browser.</p>
+<pre class="result notranslate">
+http://localhost:60010
+</pre>
+<p>This interface lists your currently running Region servers, backup masters and HBase tables.</p>
+<h3>HBase Region servers and Backup Masters</h3>
+<img src="/hbase/images/hbase_servers.jpg" alt="HBase Servers" />
+<h3>HBase Tables</h3>
+<img src="/hbase/images/hbase_tables.jpg" alt="HBase Tables" />
+<h2>Setting Java Environment</h2>
+<p>We can also communicate with HBase using Java libraries, but before accessing HBase using Java API you need to set classpath for those libraries.</p>
+<h3>Setting the Classpath</h3>
+<p>Before proceeding with programming, set the classpath to HBase libraries in <b>.bashrc</b> file. Open <b>.bashrc</b> in any of the editors as shown below.</p>
+<pre class="result notranslate">
+$ gedit ~/.bashrc
+</pre>
+<p>Set classpath for HBase libraries (lib folder in HBase) in it as shown below.</p>
+<pre class="result notranslate">
+export CLASSPATH = $CLASSPATH://home/hadoop/hbase/lib/*
+</pre>
+<p>This is to prevent the “class not found” exception while accessing the HBase using java API.</p>
+<h1>HBase - Shell</h1>
+<p>This chapter explains how to start HBase interactive shell that comes along with HBase.</p>
+<h2>HBase Shell</h2>
+<p>HBase contains a shell using which you can communicate with HBase. HBase uses the Hadoop File System to store its data. It will have a master server and region servers. The data storage will be in the form of regions (tables). These regions will be split up and stored in region servers.</p>
+<p>The master server manages these region servers and all these tasks take place on HDFS. Given below are some of the commands supported by HBase Shell.</p>
+<h2>General Commands</h2>
+<ul class="list">
+<li><p><b>status</b> - Provides the status of HBase, for example, the number of servers.</p></li>
+<li><p><b>version</b> - Provides the version of HBase being used.</p></li>
+<li><p><b>table_help</b> - Provides help for table-reference commands.</p></li>
+<li><p><b>whoami</b> - Provides information about the user.</p></li>
+</ul>
+<h2>Data Definition Language</h2>
+<p>These are the commands that operate on the tables in HBase.</p>
+<ul class="list">
+<li><p><b>create</b> - Creates a table.</p></li>
+<li><p><b>list</b> - Lists all the tables in HBase.</p></li>
+<li><p><b>disable</b> - Disables a table.</p></li>
+<li><p><b>is_disabled</b> - Verifies whether a table is disabled.</p></li>
+<li><p><b>enable</b> - Enables a table.</p></li>
+<li><p><b>is_enabled</b> - Verifies whether a table is enabled.</p></li>
+<li><p><b>describe</b> - Provides the description of a table.</p></li>
+<li><p><b>alter</b> - Alters a table.</p></li>
+<li><p><b>exists</b> - Verifies whether a table exists.</p></li>
+<li><p><b>drop</b> - Drops a table from HBase.</p></li>
+<li><p><b>drop_all</b> - Drops the tables matching the ‘regex’ given in the command.</p></li>
+<li><p><b>Java Admin API</b> - Prior to all the above commands, Java provides an Admin API to achieve DDL functionalities through programming. Under <b>org.apache.hadoop.hbase.client</b> package, HBaseAdmin and
+HTableDescriptor are the two important classes in this package that provide DDL functionalities.</p></li>
+</ul>
+<h2>Data Manipulation Language</h2>
+<ul class="list">
+<li><p><b>put</b> - Puts a cell value at a specified column in a specified row in a
+particular table.</p></li>
+<li><p><b>get</b> - Fetches the contents of row or a cell.</p></li>
+<li><p><b>delete</b> - Deletes a cell value in a table.</p></li>
+<li><p><b>deleteall</b> - Deletes all the cells in a given row.</p></li>
+<li><p><b>scan</b> - Scans and returns the table data.</p></li>
+<li><p><b>count</b> - Counts and returns the number of rows in a table.</p></li>
+<li><p><b>truncate</b> - Disables, drops, and recreates a specified table.</p></li>
+<li><p><b>Java client API</b> - Prior to all the above commands, Java provides a client API to achieve DML functionalities, <b>CRUD</b> (Create Retrieve Update Delete) operations and more through programming, under org.apache.hadoop.hbase.client package. <b>HTable Put</b> and <b>Get</b> are the important classes in this package.</p></li>
+</ul>
+<h2>Starting HBase Shell</h2>
+<p>To access the HBase shell, you have to navigate to the HBase home folder.</p>
+<pre class="result notranslate">
+cd /usr/localhost/
+cd Hbase
+</pre>
+<p>You can start the HBase interactive shell using <b>“hbase shell”</b> command as shown below.</p>
+<pre class="result notranslate">
+./bin/hbase shell
+</pre>
+<p>If you have successfully installed HBase in your system, then it gives you the HBase shell prompt as shown below.</p>
+<pre class="result notranslate">
+HBase Shell; enter 'help&lt;RETURN&gt;' for list of supported commands.
+Type "exit&lt;RETURN&gt;" to leave the HBase Shell
+Version 0.94.23, rf42302b28aceaab773b15f234aa8718fff7eea3c, Wed Aug 27
+00:54:09 UTC 2014
+
+hbase(main):001:0&gt;
+</pre>
+<p>To exit the interactive shell command at any moment, type exit or use &lt;ctrl+c&gt;. Check the shell functioning before proceeding further. Use the <b>list</b> command for this purpose. <b>List</b> is a command used to get the list of all the tables in HBase. First of all, verify the installation and the configuration of HBase in your system using this command as shown below.</p>
+<pre class="result notranslate">
+hbase(main):001:0&gt; list
+</pre>
+<p>When you type this command, it gives you the following output.</p>
+<pre class="result notranslate">
+hbase(main):001:0&gt; list
+TABLE
+</pre>
+<h1>HBase - General Commands</h1>
+<p>The general commands in HBase are status, version, table_help, and whoami. This chapter explains these commands.</p>
+<h2>status</h2>
+<p>This command returns the status of the system including the details of the servers running on the system. Its syntax is as follows:</p>
+<pre class="result notranslate">
+hbase(main):009:0&gt; status
+</pre>
+<p>If you execute this command, it returns the following output.</p>
+<pre class="result notranslate">
+hbase(main):009:0&gt; status
+3 servers, 0 dead, 1.3333 average load
+</pre>
+<h2>version</h2>
+<p>This command returns the version of HBase used in your system. Its syntax is as follows:</p>
+<pre class="result notranslate">
+hbase(main):010:0&gt; version
+</pre>
+<p>If you execute this command, it returns the following output.</p>
+<pre class="result notranslate">
+hbase(main):009:0&gt; version
+0.98.8-hadoop2, r6cfc8d064754251365e070a10a82eb169956d5fe, Fri Nov 14
+18:26:29 PST 2014
+</pre>
+<h2>table_help</h2>
+<p>This command guides you what and how to use table-referenced commands. Given below is the syntax to use this command.</p>
+<pre class="result notranslate">
+hbase(main):02:0&gt; table_help
+</pre>
+<p>When you use this command, it shows help topics for table-related commands. Given below is the partial output of this command.</p>
+<pre class="result notranslate">
+hbase(main):002:0&gt; table_help
+Help for table-reference commands.
+You can either create a table via 'create' and then manipulate the table
+via commands like 'put', 'get', etc.
+See the standard help information for how to use each of these commands.
+However, as of 0.96, you can also get a reference to a table, on which
+you can invoke commands.
+For instance, you can get create a table and keep around a reference to
+it via:
+ hbase> t = create 't', 'cf'…...
+</pre>
+<h2>whoami</h2>
+<p>This command returns the user details of HBase. If you execute this command, returns the current HBase user as shown below.</p>
+<pre class="result notranslate">
+hbase(main):008:0&gt; whoami
+hadoop (auth:SIMPLE)
+groups: hadoop
+</pre>
+<h1>HBase - Admin API</h1>
+<p>HBase is written in java, therefore it provides java API to communicate with HBase. Java API is the fastest way to communicate with HBase. Given below is the referenced java Admin API that covers the tasks used to manage tables.</p>
+<h2>Class HBaseAdmin</h2>
+<p><b>HBaseAdmin</b> is a class representing the Admin. This class belongs to the <b>org.apache.hadoop.hbase.client</b> package. Using this class, you can perform the tasks of an administrator. You can get the instance of Admin using <b>Connection.getAdmin()</b> method.</p> 
+<h3>Methods and Description</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>void createTable(HTableDescriptor desc)</b></p>
+<p>Creates a new table.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>void createTable(HTableDescriptor desc, byte[][] splitKeys)</b></p>
+<p>Creates a new table with an initial set of empty regions defined by the specified split keys.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>void deleteColumn(byte[] tableName, String columnName)</b></p>
+<p>Deletes a column from a table.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>void deleteColumn(String tableName, String columnName)</b></p>
+<p>Delete a column from a table.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><p><b>void deleteTable(String tableName)</b></p>
+<p>Deletes a table.</p></td>
+</tr>
+</table>
+<h2>Class Descriptor</h2>
+<p>This class contains the details about an HBase table such as:</p>
+<ul class="list">
+<li>the descriptors of all the column families,</li>
+<li>if the table is a catalog table,</li>
+<li>if the table is read only,</li>
+<li>the maximum size of the mem store,</li>
+<li>when the region split should occur,</li>
+<li>co-processors associated with it, etc.</li>
+</ul>
+<h3>Constructors</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Constructor and summary</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>HTableDescriptor(TableName name)</b></p>
+Constructs a table descriptor specifying a TableName object.</p></td>
+</tr>
+</table>
+<h3>Methods and Description</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>HTableDescriptor addFamily(HColumnDescriptor family)</b></p>
+<p>Adds a column family to the given descriptor</p></td>
+</tr>
+</table>
+<h1>HBase - Create Table</h1>
+<h2>Creating a Table using HBase Shell</h2>
+<p>You can create a table using the <b>create</b> command, here you must specify the table name and the Column Family name. The <b>syntax</b> to create a table in HBase shell is shown below.</p>
+<pre class="result notranslate">
+create ‘&lt;table name&gt;’,’&lt;column family&gt;’ 
+</pre>
+<h3>Example</h3>
+<p>Given below is a sample schema of a table named emp. It has two column families: “personal data” and “professional data”.</p>
+<table class="table table-bordered">
+<tr>
+<th>Row key</th>
+<th>personal data</th>
+<th>professional data</th>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+<p>You can create this table in HBase shell as shown below.</p>
+<pre class="result notranslate">
+hbase(main):002:0&gt; create 'emp', 'personal data', 'professional data'
+</pre>
+<p>And it will give you the following output.</p>
+<pre class="result notranslate">
+0 row(s) in 1.1300 seconds
+=> Hbase::Table - emp
+</pre>
+<h3>Verification</h3>
+<p>You can verify whether the table is created using the <b>list</b> command as shown below. Here you can observe the created emp table.</p>
+<pre class="result notranslate">
+hbase(main):002:0&gt; list
+TABLE 
+emp
+2 row(s) in 0.0340 seconds
+</pre>
+<h2>Creating a Table Using java API</h2>
+<p>You can create a table in HBase using the <b>createTable()</b> method of <b>HBaseAdmin</b> class. This class belongs to the <b>org.apache.hadoop.hbase.client</b> package. Given below are the steps to create a table in HBase using java API.</p>
+<h3>Step1: Instantiate HBaseAdmin</h3>
+<p>This class requires the Configuration object as a parameter, therefore initially instantiate the Configuration class and pass this instance to HBaseAdmin.</p>
+<pre class="result notranslate">
+Configuration conf = HBaseConfiguration.create();
+HBaseAdmin admin = new HBaseAdmin(conf);
+</pre>
+<h3>Step2: Create TableDescriptor</h3>
+<p><b>HTableDescriptor</b> is a class that belongs to the <b>org.apache.hadoop.hbase</b> class. This class is like a container of table names and column families.</p>
+<pre class="result notranslate">
+//creating table descriptor
+HTableDescriptor table = new HTableDescriptor(toBytes("Table name"));
+
+//creating column family descriptor
+HColumnDescriptor family = new HColumnDescriptor(toBytes("column family"));
+
+//adding coloumn family to HTable
+table.addFamily(family);
+</pre>
+<h3>Step 3: Execute through Admin</h3>
+<p>Using the <b>createTable()</b> method of <b>HBaseAdmin</b> class, you can execute the created table in Admin mode.</p>
+<pre class="result notranslate">
+admin.createTable(table);
+</pre>
+<p>Given below is the complete program to create a table via admin.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.HColumnDescriptor;
+import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+import org.apache.hadoop.hbase.TableName;
+
+import org.apache.hadoop.conf.Configuration;
+
+public class CreateTable {
+      
+   public static void main(String[] args) throws IOException {
+
+      // Instantiating configuration class
+      Configuration con = HBaseConfiguration.create();
+
+      // Instantiating HbaseAdmin class
+      HBaseAdmin admin = new HBaseAdmin(con);
+
+      // Instantiating table descriptor class
+      HTableDescriptor tableDescriptor = new
+      HTableDescriptor(TableName.valueOf("emp"));
+
+      // Adding column families to table descriptor
+      tableDescriptor.addFamily(new HColumnDescriptor("personal"));
+      tableDescriptor.addFamily(new HColumnDescriptor("professional"));
+
+      // Execute the table through admin
+      admin.createTable(tableDescriptor);
+      System.out.println(" Table created ");
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac CreateTable.java
+$java CreateTable
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+Table created
+</pre>
+<h1>HBase - Listing Table</h1>
+<h2>Listing a Table using HBase Shell</h2>
+<p>list is the command that is used to list all the tables in HBase. Given below is the syntax of the list command.</p>
+<pre class="result notranslate">
+hbase(main):001:0 &gt; list
+</pre>
+<p>When you type this command and execute in HBase prompt, it will display the list of all the tables in HBase as shown below.</p>
+<pre class="result notranslate">
+hbase(main):001:0&gt; list
+TABLE
+emp
+</pre>
+<p>Here you can observe a table named emp.</p>
+<h2>Listing Tables Using Java API</h2>
+<p>Follow the steps given below to get the list of tables from HBase using java API.</p>
+<h3>Step 1</h3>
+<p>You have a method called <b>listTables()</b> in the class <b>HBaseAdmin</b> to get the list of all the tables in HBase. This method returns an array of <b>HTableDescriptor</b> objects.</p>
+<pre class="result notranslate">
+//creating a configuration object
+Configuration conf = HBaseConfiguration.create();
+
+//Creating HBaseAdmin object
+HBaseAdmin admin = new HBaseAdmin(conf);
+
+//Getting all the list of tables using HBaseAdmin object
+HTableDescriptor[] tableDescriptor = admin.listTables();
+</pre>
+<h3>Step 2</h3>
+<p>You can get the length of the <b>HTableDescriptor[]</b> array using the length variable of the <b>HTableDescriptor</b> class. Get the name of the tables from this object using <b>getNameAsString()</b> method. Run the ‘for’ loop using these and get the list of the tables in HBase.</p>
+<p>Given below is the program to list all the tables in HBase using Java API.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.MasterNotRunningException;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class ListTables {
+
+   public static void main(String args[])throws MasterNotRunningException, IOException{
+
+      // Instantiating a configuration class
+      Configuration conf = HBaseConfiguration.create();
+
+      // Instantiating HBaseAdmin class
+      HBaseAdmin admin = new HBaseAdmin(conf);
+
+      // Getting all the list of tables using HBaseAdmin object
+      HTableDescriptor[] tableDescriptor = admin.listTables();
+
+      // printing all the table names.
+      for (int i=0; i&lt;tableDescriptor.length;i++ ){
+         System.out.println(tableDescriptor[i].getNameAsString());
+      }
+   
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac ListTables.java
+$java ListTables
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+User
+emp
+</pre>
+<h1>HBase - Disabling a Table</h1>
+<h2>Disabling a Table using HBase Shell</h2>
+<p>To delete a table or change its settings, you need to first disable the table using the disable command. You can re-enable it using the enable command.</p>
+<p>Given below is the syntax to disable a table:</p>
+<pre class="result notranslate">
+disable ‘emp’
+</pre>
+<h3>Example</h3>
+<p>Given below is an example that shows how to disable a table.</p>
+<pre class="result notranslate">
+hbase(main):025:0&gt; disable 'emp'
+0 row(s) in 1.2760 seconds
+</pre>
+<h3>Verification</h3>
+<p>After disabling the table, you can still sense its existence through <b>list</b> and <b>exists</b> commands. You cannot scan it. It will give you the following error.</p>
+<pre class="result notranslate">
+hbase(main):028:0&gt; scan 'emp'
+ROW         COLUMN &plus; CELL
+ERROR: emp is disabled.
+</pre>
+<h3>is_disabled</h3>
+<p>This command is used to find whether a table is disabled. Its syntax is as follows.</p>
+<pre class="result notranslate">
+hbase&gt; is_disabled 'table name'
+</pre>
+<p>The following example verifies whether the table named emp is disabled. If it is disabled, it will return true and if not, it will return false.</p>
+<pre class="result notranslate">
+hbase(main):031:0&gt; is_disabled 'emp'
+true
+0 row(s) in 0.0440 seconds
+</pre>
+<h3>disable_all</h3>
+<p>This command is used to disable all the tables matching the given regex. The syntax for <b>disable_all</b> command is given below.</p>
+<pre class="result notranslate">
+hbase&gt; disable_all 'r.*'
+</pre>
+<p>Suppose there are 5 tables in HBase, namely raja, rajani, rajendra, rajesh, and
+raju. The following code will disable all the tables starting with <b>raj.</b></p>
+<pre class="result notranslate">
+hbase(main):002:07&gt; disable_all 'raj.*'
+raja
+rajani
+rajendra
+rajesh
+raju
+Disable the above 5 tables (y/n)?
+y
+5 tables successfully disabled
+</pre>
+<h2>Disable a Table Using Java API</h2>
+<p>To verify whether a table is disabled, <b>isTableDisabled()</b> method is used and to disable a table, <b>disableTable()</b> method is used. These methods belong to the <b>HBaseAdmin</b> class. Follow the steps given below to disable a table.</p>
+<h3>Step 1</h3>
+<p>Instantiate <b>HBaseAdmin</b> class as shown below.</p>
+<pre class="result notranslate">
+// Creating configuration object
+Configuration conf = HBaseConfiguration.create();
+
+// Creating HBaseAdmin object
+HBaseAdmin admin = new HBaseAdmin(conf);
+</pre>
+<h3>Step 2</h3>
+<p>Verify whether the table is disabled using <b>isTableDisabled()</b> method as shown below.</p>
+<pre class="result notranslate">
+Boolean b = admin.isTableDisabled("emp");
+</pre>
+<h3>Step 3</h3>
+<p>If the table is not disabled, disable it as shown below.</p>
+<pre class="prettyprint notranslate">
+if(!b){
+   admin.disableTable("emp");
+   System.out.println("Table disabled");
+}
+</pre>
+<p>Given below is the complete program to verify whether the table is disabled; if not, how to disable it.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.MasterNotRunningException;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class DisableTable{
+
+   public static void main(String args[]) throws MasterNotRunningException, IOException{
+
+      // Instantiating configuration class
+      Configuration conf = HBaseConfiguration.create();
+ 
+      // Instantiating HBaseAdmin class
+      HBaseAdmin admin = new HBaseAdmin(conf);
+
+      // Verifying weather the table is disabled
+      Boolean bool = admin.isTableDisabled("emp");
+      System.out.println(bool);
+
+      // Disabling the table using HBaseAdmin object
+      if(!bool){
+         admin.disableTable("emp");
+         System.out.println("Table disabled");
+      }
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac DisableTable.java
+$java DsiableTable
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+false
+Table disabled
+</pre>
+<h1>HBase - Enabling a Table</h1>
+<h2>Enabling a Table using HBase Shell</h2>
+<p>Syntax to enable a table:</p>
+<pre class="result notranslate">
+enable ‘emp’
+</pre>
+<h3>Example</h3>
+<p>Given below is an example to enable a table.</p>
+<pre class="result notranslate">
+hbase(main):005:0&gt; enable 'emp'
+0 row(s) in 0.4580 seconds
+</pre>
+<h3>Verification</h3>
+<p>After enabling the table, scan it. If you can see the schema, your table is successfully enabled.</p>
+<pre class="result notranslate">
+hbase(main):006:0&gt; scan 'emp'
+
+   ROW                        COLUMN &plus; CELL
+
+1 column = personal data:city, timestamp = 1417516501, value = hyderabad
+
+1 column = personal data:name, timestamp = 1417525058, value = ramu
+
+1 column = professional data:designation, timestamp = 1417532601, value = manager
+
+1 column = professional data:salary, timestamp = 1417524244109, value = 50000
+
+2 column = personal data:city, timestamp = 1417524574905, value = chennai
+
+2 column = personal data:name, timestamp = 1417524556125, value = ravi
+
+2 column = professional data:designation, timestamp = 14175292204, value = sr:engg
+
+2 column = professional data:salary, timestamp = 1417524604221, value = 30000 
+
+3 column = personal data:city, timestamp = 1417524681780, value = delhi
+
+3 column = personal data:name, timestamp = 1417524672067, value = rajesh
+
+3 column = professional data:designation, timestamp = 14175246987, value = jr:engg
+
+3 column = professional data:salary, timestamp = 1417524702514, value = 25000
+
+3 row(s) in 0.0400 seconds
+</pre>
+<h2>is_enabled</h2>
+<p>This command is used to find whether a table is enabled. Its syntax is as follows:</p>
+<pre class="result notranslate">
+hbase&gt; is_enabled 'table name'
+</pre>
+<p>The following code verifies whether the table named <b>emp</b> is enabled. If it is enabled, it will return true and if not, it will return false.</p>
+<pre class="result notranslate">
+hbase(main):031:0&gt; is_enabled 'emp'
+true
+0 row(s) in 0.0440 seconds
+</pre>
+<h2>Enable a Table Using Java API</h2>
+<p>To verify whether a table is enabled, <b>isTableEnabled()</b> method is used; and to enable a table, <b>enableTable()</b> method is used. These methods belong to <b>HBaseAdmin</b> class. Follow the steps given below to enable a table.</p>
+<h3>Step1</h3>
+<p>Instantiate <b>HBaseAdmin</b> class as shown below.</p>
+<pre class="result notranslate">
+// Creating configuration object
+Configuration conf = HBaseConfiguration.create();
+
+// Creating HBaseAdmin object
+HBaseAdmin admin = new HBaseAdmin(conf);
+</pre>
+<h3>Step 2</h3>
+<p>Verify whether the table is enabled using <b>isTableEnabled()</b> method as shown below.</p>
+<pre class="result notranslate">
+Boolean bool = admin.isTableEnabled("emp");
+</pre>
+<h3>Step 3</h3>
+<p>If the table is not disabled, disable it as shown below.</p>
+<pre class="prettyprint notranslate">
+if(!bool){
+   admin.enableTable("emp");
+   System.out.println("Table enabled");
+}
+</pre>
+<p>Given below is the complete program to verify whether the table is enabled and if it is not, then how to enable it.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.MasterNotRunningException;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class EnableTable{
+
+   public static void main(String args[]) throws MasterNotRunningException, IOException{
+
+      // Instantiating configuration class
+      Configuration conf = HBaseConfiguration.create();
+
+      // Instantiating HBaseAdmin class
+      HBaseAdmin admin = new HBaseAdmin(conf);
+
+      // Verifying whether the table is disabled
+      Boolean bool = admin.isTableEnabled("emp");
+      System.out.println(bool);
+
+      // Enabling the table using HBaseAdmin object
+      if(!bool){
+         admin.enableTable("emp");
+         System.out.println("Table Enabled");
+      }
+   }
+}
+</pre> 
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac EnableTable.java
+$java EnableTable
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+false
+Table Enabled
+</pre>
+<h1>HBase - Describe &amp; Alter</h1>
+<h2>describe</h2>
+<p>This command returns the description of the table. Its syntax is as follows:</p>
+<pre class="result notranslate">
+hbase&gt; describe 'table name'
+</pre>
+<p>Given below is the output of the describe command on the <b>emp</b> table.</p>
+<pre class="result notranslate">
+hbase(main):006:0&gt; describe 'emp'
+   DESCRIPTION
+      ENABLED
+      
+'emp', {NAME &rArr; 'READONLY', DATA_BLOCK_ENCODING &rArr; 'NONE', BLOOMFILTER
+&rArr; 'ROW', REPLICATION_SCOPE &rArr; '0', COMPRESSION &rArr; 'NONE', VERSIONS &rArr;
+'1', TTL true
+
+&rArr; 'FOREVER', MIN_VERSIONS &rArr; '0', KEEP_DELETED_CELLS &rArr; 'false',
+BLOCKSIZE &rArr; '65536', IN_MEMORY &rArr; 'false', BLOCKCACHE &rArr; 'true'}, {NAME
+&rArr; 'personal
+
+data', DATA_BLOCK_ENCODING &rArr; 'NONE', BLOOMFILTER &rArr; 'ROW',
+REPLICATION_SCOPE &rArr; '0', VERSIONS &rArr; '5', COMPRESSION &rArr; 'NONE',
+MIN_VERSIONS &rArr; '0', TTL
+
+&rArr; 'FOREVER', KEEP_DELETED_CELLS &rArr; 'false', BLOCKSIZE &rArr; '65536',
+IN_MEMORY &rArr; 'false', BLOCKCACHE &rArr; 'true'}, {NAME &rArr; 'professional
+data', DATA_BLO
+
+CK_ENCODING &rArr; 'NONE', BLOOMFILTER &rArr; 'ROW', REPLICATION_SCOPE &rArr; '0',
+VERSIONS &rArr; '1', COMPRESSION &rArr; 'NONE', MIN_VERSIONS &rArr; '0', TTL &rArr;
+'FOREVER', K
+
+EEP_DELETED_CELLS &rArr; 'false', BLOCKSIZE &rArr; '65536', IN_MEMORY &rArr;
+'false', BLOCKCACHE &rArr; 'true'}, {NAME &rArr; 'table_att_unset',
+DATA_BLOCK_ENCODING &rArr; 'NO 
+
+NE', BLOOMFILTER &rArr; 'ROW', REPLICATION_SCOPE &rArr; '0', COMPRESSION &rArr;
+'NONE', VERSIONS &rArr; '1', TTL &rArr; 'FOREVER', MIN_VERSIONS &rArr; '0',
+KEEP_DELETED_CELLS
+
+&rArr; 'false', BLOCKSIZE &rArr; '6
+</pre>
+<h2>alter</h2>
+<p>Alter is the command used to make changes to an existing table. Using this command, you can change the maximum number of cells of a column family, set and delete table scope operators, and delete a column family from a table.</p>
+<h3>Changing the Maximum Number of Cells of a Column Family</h3>
+<p>Given below is the syntax to change the maximum number of cells of a column family.</p>
+<pre class="result notranslate">
+hbase&gt; alter 't1', NAME &rArr; 'f1', VERSIONS &rArr; 5
+</pre>
+<p>In the following example, the maximum number of cells is set to 5.</p>
+<pre class="result notranslate">
+hbase(main):003:0&gt; alter 'emp', NAME &rArr; 'personal data', VERSIONS &rArr; 5
+Updating all regions with the new schema...
+0/1 regions updated.
+1/1 regions updated.
+Done.
+0 row(s) in 2.3050 seconds
+</pre>
+<h3>Table Scope Operators</h3>
+<p>Using alter, you can set and remove table scope operators such as MAX_FILESIZE, READONLY, MEMSTORE_FLUSHSIZE, DEFERRED_LOG_FLUSH, etc.</p>
+<h3>Setting Read Only</h3>
+<p>Below given is the syntax to make a table read only.</p>
+<pre class="result notranslate">
+hbase&gt;alter 't1', READONLY(option)
+</pre>
+<p>In the following example, we have made the <b>emp</b> table read only.</p>
+<pre class="result notranslate">
+hbase(main):006:0&gt; alter 'emp', READONLY
+Updating all regions with the new schema...
+0/1 regions updated.
+1/1 regions updated.
+Done.
+0 row(s) in 2.2140 seconds
+</pre>
+<h3>Removing Table Scope Operators</h3>
+<p>We can also remove the table scope operators. Given below is the syntax to remove ‘MAX_FILESIZE’ from emp table.</p>
+<pre class="result notranslate">
+hbase&gt; alter 't1', METHOD &rArr; 'table_att_unset', NAME &rArr; 'MAX_FILESIZE'
+</pre>
+<h3>Deleting a Column Family</h3>
+<p>Using alter, you can also delete a column family. Given below is the syntax to delete a column family using alter.</p>
+<pre class="result notranslate">
+hbase&gt; alter ‘ table name ’, ‘delete’ &rArr; ‘ column family ’ 
+</pre>
+<p>Given below is an example to delete a column family from the ‘emp’ table.</p>
+<p>Assume there is a table named employee in HBase. It contains the following data:</p>
+<pre class="result notranslate">
+hbase(main):006:0&gt; scan 'employee'
+
+   ROW                   COLUMN+CELL
+
+row1 column = personal:city, timestamp = 1418193767, value = hyderabad
+
+row1 column = personal:name, timestamp = 1418193806767, value = raju
+
+row1 column = professional:designation, timestamp = 1418193767, value = manager
+
+row1 column = professional:salary, timestamp = 1418193806767, value = 50000
+
+1 row(s) in 0.0160 seconds 
+</pre>
+<p>Now let us delete the column family named <b>professional</b> using the alter command.</p>
+<pre class="result notranslate">
+hbase(main):007:0&gt; alter 'employee','delete'&rArr;'professional'
+Updating all regions with the new schema...
+0/1 regions updated.
+1/1 regions updated.
+Done.
+0 row(s) in 2.2380 seconds 
+</pre>
+<p>Now verify the data in the table after alteration. Observe the column family ‘professional’ is no more, since we have deleted it.</p>
+<pre class="result notranslate">
+hbase(main):003:0&gt; scan 'employee'
+   ROW             COLUMN &plus; CELL
+row1 column = personal:city, timestamp = 14181936767, value = hyderabad
+
+row1 column = personal:name, timestamp = 1418193806767, value = raju
+
+1 row(s) in 0.0830 seconds
+</pre>
+<h2>Adding a Column Family Using Java API</h2>
+<p>You can add a column family to a table using the method <b>addColumn()</b> of <b>HBAseAdmin</b> class. Follow the steps given below to add a column family to a table.</p>
+<h3>Step 1</h3>
+<p>Instantiate the <b>HBaseAdmin</b> class.</p>
+<pre class="result notranslate">
+// Instantiating configuration object
+Configuration conf = HBaseConfiguration.create();
+
+// Instantiating HBaseAdmin class
+HBaseAdmin admin = new HBaseAdmin(conf); 
+</pre>
+<h3>Step 2</h3>
+<p>The <b>addColumn()</b> method requires a table name and an object of <b>HColumnDescriptor</b> class. Therefore instantiate the <b>HColumnDescriptor</b> class. The constructor of <b>HColumnDescriptor</b> in turn requires a column family name that is to be added. Here we are adding a column family named “contactDetails” to the existing “employee” table.</p>
+<pre class="result notranslate">
+// Instantiating columnDescriptor object
+
+HColumnDescriptor columnDescriptor = new
+HColumnDescriptor("contactDetails");
+</pre>
+<h3>Step 3</h3>
+<p>Add the column family using <b>addColumn</b> method. Pass the table name and the <b>HColumnDescriptor</b> class object as parameters to this method.</p>
+<pre class="result notranslate">
+// Adding column family
+admin.addColumn("employee", new HColumnDescriptor("columnDescriptor"));
+</pre>
+<p>Given below is the complete program to add a column family to an existing table.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.HColumnDescriptor;
+import org.apache.hadoop.hbase.MasterNotRunningException;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class AddColoumn{
+
+   public static void main(String args[]) throws MasterNotRunningException, IOException{
+
+      // Instantiating configuration class.
+      Configuration conf = HBaseConfiguration.create();
+
+      // Instantiating HBaseAdmin class.
+      HBaseAdmin admin = new HBaseAdmin(conf);
+
+      // Instantiating columnDescriptor class
+      HColumnDescriptor columnDescriptor = new HColumnDescriptor("contactDetails");
+      
+      // Adding column family
+      admin.addColumn("employee", columnDescriptor);
+      System.out.println("coloumn added");
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac AddColumn.java
+$java AddColumn
+</pre>
+<p>The above compilation works only if you have set the classpath in “ <b>.bashrc</b> ”. If you haven't, follow the procedure given below to compile your .java file.</p>
+<pre class="result notranslate">
+//if "/home/home/hadoop/hbase " is your Hbase home folder then.
+
+$javac -cp /home/hadoop/hbase/lib/*: Demo.java
+</pre>
+<p>If everything goes well, it will produce the following output:</p>
+<pre class="result notranslate">
+column added
+</pre>
+<h2>Deleting a Column Family Using Java API</h2>
+<p>You can delete a column family from a table using the method <b>deleteColumn()</b> of <b>HBAseAdmin</b> class. Follow the steps given below to add a column family to a table.</p>
+<h3>Step1</h3>
+<p>Instantiate the <b>HBaseAdmin</b> class.</p>
+<pre class="result notranslate">
+// Instantiating configuration object
+Configuration conf = HBaseConfiguration.create();
+
+// Instantiating HBaseAdmin class
+HBaseAdmin admin = new HBaseAdmin(conf); 
+</pre>
+<h3>Step2</h3>
+<p>Add the column family using <b>deleteColumn()</b> method. Pass the table name and the column family name as parameters to this method.</p>
+<pre class="result notranslate">
+// Deleting column family
+admin.deleteColumn("employee", "contactDetails"); 
+</pre>
+<p>Given below is the complete program to delete a column family from an existing table.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.MasterNotRunningException;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class DeleteColoumn{
+
+   public static void main(String args[]) throws MasterNotRunningException, IOException{
+
+      // Instantiating configuration class.
+      Configuration conf = HBaseConfiguration.create();
+
+      // Instantiating HBaseAdmin class.
+      HBaseAdmin admin = new HBaseAdmin(conf);
+
+      // Deleting a column family
+      admin.deleteColumn("employee","contactDetails");
+      System.out.println("coloumn deleted"); 
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac DeleteColumn.java
+$java DeleteColumn
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+column deleted
+</pre>
+<h1>HBase - Exists</h1>
+<h2>Existence of Table using HBase Shell</h2>
+<p>You can verify the existence of a table using the <b>exists</b> command. The following example shows how to use this command.</p>
+<pre class="result notranslate">
+hbase(main):024:0&gt; exists 'emp'
+Table emp does exist
+
+0 row(s) in 0.0750 seconds
+
+==================================================================
+
+hbase(main):015:0&gt; exists 'student'
+Table student does not exist
+
+0 row(s) in 0.0480 seconds
+</pre>
+<h2>Verifying the Existence of Table Using Java API</h2>
+<p>You can verify the existence of a table in HBase using the <b>tableExists()</b> method of the <b>HBaseAdmin </b> class. Follow the steps given below to verify the existence of a table in HBase.</p>
+<h3>Step 1</h3>
+<pre class="result notranslate">
+Instantiate the HBaseAdimn class
+
+// Instantiating configuration object
+Configuration conf = HBaseConfiguration.create();
+
+// Instantiating HBaseAdmin class
+HBaseAdmin admin = new HBaseAdmin(conf); 
+</pre>
+<h3>Step 2</h3>
+<p>Verify the existence of the table using the <b>tableExists( )</b> method.</p>
+<p>Given below is the java program to test the existence of a table in HBase using java API.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class TableExists{
+
+   public static void main(String args[])throws IOException{
+
+      // Instantiating configuration class
+      Configuration conf = HBaseConfiguration.create();
+
+      // Instantiating HBaseAdmin class
+      HBaseAdmin admin = new HBaseAdmin(conf);
+
+      // Verifying the existance of the table
+      boolean bool = admin.tableExists("emp");
+      System.out.println( bool);
+   }
+} 
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac TableExists.java
+$java TableExists 
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>HBase - Drop a Table</h1>
+<h2>Dropping a Table using HBase Shell</h2>
+<p>Using the <b>drop</b> command, you can delete a table. Before dropping a table, you have to disable it.</p>
+<pre class="result notranslate">
+hbase(main):018:0&gt; disable 'emp'
+0 row(s) in 1.4580 seconds
+
+hbase(main):019:0&gt; drop 'emp'
+0 row(s) in 0.3060 seconds
+</pre>
+<p>Verify whether the table is deleted using the exists command.</p>
+<pre class="result notranslate">
+hbase(main):020:07gt; exists 'emp'
+Table emp does not exist
+0 row(s) in 0.0730 seconds
+</pre>
+<h2>drop_all</h2>
+<p>This command is used to drop the tables matching the “regex” given in the command. Its syntax is as follows:</p>
+<pre class="result notranslate">
+hbase&gt; drop_all ‘t.*’ 
+</pre>
+<p><b>Note:</b> Before dropping a table, you must disable it.</p>
+<h3>Example</h3>
+<p>Assume there are tables named raja, rajani, rajendra, rajesh, and raju.</p>
+<pre class="result notranslate">
+hbase(main):017:0&gt; list
+TABLE
+raja
+rajani
+rajendra 
+rajesh
+raju
+9 row(s) in 0.0270 seconds
+</pre>
+<p>All these tables start with the letters <b>raj</b>. First of all, let us disable all these tables using the <b>disable_all</b> command as shown below.</p>
+<pre class="result notranslate">
+hbase(main):002:0&gt; disable_all 'raj.*'
+raja
+rajani
+rajendra
+rajesh
+raju
+Disable the above 5 tables (y/n)?
+y
+5 tables successfully disabled
+</pre>
+<p>Now you can delete all of them using the <b>drop_all</b> command as given below.</p>
+<pre class="result notranslate">
+hbase(main):018:0&gt; drop_all 'raj.*'
+raja
+rajani
+rajendra
+rajesh
+raju
+Drop the above 5 tables (y/n)?
+y
+5 tables successfully dropped
+</pre>
+<h2>Deleting a Table Using Java API</h2>
+<p>You can delete a table using the <b>deleteTable()</b> method in the <b>HBaseAdmin</b> class. Follow the steps given below to delete a table using java API.</p>
+<h3>Step 1</h3>
+<p>Instantiate the HBaseAdmin class.</p>
+<pre class="result notranslate">
+// creating a configuration object
+Configuration conf = HBaseConfiguration.create();
+
+// Creating HBaseAdmin object
+HBaseAdmin admin = new HBaseAdmin(conf); 
+</pre> 
+<h3>Step 2</h3>
+<p>Disable the table using the <b>disableTable()</b> method of the <b>HBaseAdmin</b> class.</p>
+<pre class="result notranslate">
+admin.disableTable("emp1");
+</pre>
+<h3>Step 3</h3>
+<p>Now delete the table using the <b>deleteTable()</b> method of the <b>HBaseAdmin</b> class.</p>
+<pre class="result notranslate">
+admin.deleteTable("emp12");
+</pre>
+<p>Given below is the complete java program to delete a table in HBase.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class DeleteTable {
+
+   public static void main(String[] args) throws IOException {
+
+      // Instantiating configuration class
+      Configuration conf = HBaseConfiguration.create();
+
+      // Instantiating HBaseAdmin class
+      HBaseAdmin admin = new HBaseAdmin(conf);
+
+      // disabling table named emp
+      admin.disableTable("emp12");
+
+      // Deleting emp
+      admin.deleteTable("emp12");
+      System.out.println("Table deleted");
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac DeleteTable.java
+$java DeleteTable
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+Table deleted
+</pre>
+<h1>HBase - Shutting Down</h1>
+<h2>exit</h2>
+<p>You exit the shell by typing the <b>exit</b> command.</p>
+<pre class="result notranslate">
+hbase(main):021:0&gt; exit
+</pre>
+<h2>Stopping HBase</h2>
+<p>To stop HBase, browse to the HBase home folder and type the following command.</p>
+<pre class="result notranslate">
+./bin/stop-hbase.sh
+</pre>
+<h2>Stopping HBase Using Java API</h2>
+<p>You can shut down the HBase using the <b>shutdown()</b> method of the <b>HBaseAdmin</b> class. Follow the steps given below to shut down HBase:</p>
+<h3>Step 1</h3>
+<p>Instantiate the HbaseAdmin class.</p>
+<pre class="result notranslate">
+// Instantiating configuration object
+Configuration conf = HBaseConfiguration.create();
+
+// Instantiating HBaseAdmin object
+HBaseAdmin admin = new HBaseAdmin(conf);
+</pre>
+<h3>Step 2</h3>
+<p>Shut down the HBase using the <b>shutdown()</b> method of the <b>HBaseAdmin</b> class.</p>
+<pre class="result notranslate">
+admin.shutdown();
+</pre>
+<p>Given below is the program to stop the HBase.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+
+public class ShutDownHbase{
+
+   public static void main(String args[])throws IOException {
+
+      // Instantiating configuration class
+      Configuration conf = HBaseConfiguration.create();
+
+      // Instantiating HBaseAdmin class
+      HBaseAdmin admin = new HBaseAdmin(conf);
+
+      // Shutting down HBase
+      System.out.println("Shutting down hbase");
+      admin.shutdown();
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac ShutDownHbase.java
+$java ShutDownHbase
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+Shutting down hbase
+</pre>
+<h1>HBase - Client API</h1>
+<p>This chapter describes the java client API for HBase that is used to perform <b>CRUD</b> operations on HBase tables. HBase is written in Java and has a Java Native API. Therefore it provides programmatic access to Data Manipulation Language (DML).</p>
+<h2>Class HBase Configuration</h2>
+<p>Adds HBase configuration files to a Configuration. This class belongs to the <b>org.apache.hadoop.hbase</b> package.</p>
+<h3>Methods and description</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>static org.apache.hadoop.conf.Configuration create()</b></p>
+<p>This method creates a Configuration with HBase resources.</p></td>
+</tr>
+</table>
+<h2>Class HTable</h2>
+<p>HTable is an HBase internal class that represents an HBase table. It is an implementation of table that is used to communicate with a single HBase table. This class belongs to the <b>org.apache.hadoop.hbase.client</b> class.</p>
+<h3>Constructors</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Constructors and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>HTable()</b></p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>HTable(TableName tableName, ClusterConnection connection, ExecutorService pool)</b></p>
+<p>Using this constructor, you can create an object to access an HBase table.</p></td>
+</tr>
+</table>
+<h3>Methods and description</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>void close()</b></p>
+<p>Releases all the resources of the HTable.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>void delete(Delete delete)</b></p>
+<p>Deletes the specified cells/row.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>boolean exists(Get get)</b></p>
+<p>Using this method, you can test the existence of columns in the table, as specified by Get.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>Result get(Get get)</b></p>
+<p>Retrieves certain cells from a given row.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><p><b>org.apache.hadoop.conf.Configuration getConfiguration()</b></p>
+<p>Returns the Configuration object used by this instance.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><p><b>TableName getName()</b></p>
+<p>Returns the table name instance of this table.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><p><b>HTableDescriptor getTableDescriptor()</b></p>
+<p>Returns the table descriptor for this table.</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td><p><b>byte[] getTableName()</b></p>
+<p>Returns the name of this table.</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td><p><b>void put(Put put)</b></p>
+<p>Using this method, you can insert data into the table.</p></td>
+</tr>
+</table>
+<h2>Class Put</h2>
+<p>This class is used to perform Put operations for a single row. It belongs to the <b>org.apache.hadoop.hbase.client</b> package.</p>
+<h3>Constructors</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Constructors and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>Put(byte[] row)</b></p>
+<p>Using this constructor, you can create a Put operation for the specified row.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>Put(byte[] rowArray, int rowOffset, int rowLength)</b></p>
+<p>Using this constructor, you can make a copy of the passed-in row key to keep local.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>Put(byte[] rowArray, int rowOffset, int rowLength, long ts)</b></p>
+<p>Using this constructor, you can make a copy of the passed-in row key to keep local.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>Put(byte[] row, long ts)</b></p>
+<p>Using this constructor, we can create a Put operation for the specified row, using a given timestamp.</p></td>
+</tr>
+</table>
+<h3>Methods</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>Put add(byte[] family, byte[] qualifier, byte[] value)</b></p>
+<p>Adds the specified column and value to this Put operation.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>Put add(byte[] family, byte[] qualifier, long ts, byte[] value)</b></p>
+<p>Adds the specified column and value, with the specified timestamp as its version to this Put operation.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>Put add(byte[] family, ByteBuffer qualifier, long ts, ByteBuffer value)</b></p>
+<p>Adds the specified column and value, with the specified timestamp as its version to this Put operation.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>Put add(byte[] family, ByteBuffer qualifier, long ts, ByteBuffer value)</b></p>
+<p>Adds the specified column and value, with the specified timestamp as its version to this Put operation.</p></td>
+</tr>
+</table>
+<h2>Class Get</h2>
+<p>This class is used to perform Get operations on a single row. This class belongs to the <b>org.apache.hadoop.hbase.client</b> package.</p>
+<h3>Constructor</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Constructor and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>Get(byte[] row)</b></p>
+<p>Using this constructor, you can create a Get operation for the specified row.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><b>Get(Get get)</b></td>
+</tr>
+</table>
+<h3>Methods</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>Get addColumn(byte[] family, byte[] qualifier)</b></p>
+<p>Retrieves the column from the specific family with the specified qualifier.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>Get addFamily(byte[] family)</b></p>
+<p>Retrieves all columns from the specified family.</p></td>
+</tr>
+</table>
+<h2>Class Delete</h2>
+<p>This class is used to perform Delete operations on a single row. To delete an entire row, instantiate a Delete object with the row to delete. This class belongs to the <b>org.apache.hadoop.hbase.client</b> package.</p>
+<h3>Constructor</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Constructor and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>Delete(byte[] row)</b></p>
+<p>Creates a Delete operation for the specified row.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>Delete(byte[] rowArray, int rowOffset, int rowLength)</b></p>
+<p>Creates a Delete operation for the specified row and timestamp.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>Delete(byte[] rowArray, int rowOffset, int rowLength, long ts)</b></p>
+<p>Creates a Delete operation for the specified row and timestamp.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>Delete(byte[] row, long timestamp)</b></p>
+<p>Creates a Delete operation for the specified row and timestamp.</p></td>
+</tr>
+</table>
+<h3>Methods</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>Delete addColumn(byte[] family, byte[] qualifier)</b></p>
+<p>Deletes the latest version of the specified column.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>Delete addColumns(byte[] family, byte[] qualifier, long timestamp)</b></p>
+<p>Deletes all versions of the specified column with a timestamp less than or equal to the specified timestamp.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>Delete addFamily(byte[] family)</b></p>
+<p>Deletes all versions of all columns of the specified family.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>Delete addFamily(byte[] family, long timestamp)</b></p>
+<p>Deletes all columns of the specified family with a timestamp less than or equal to the specified timestamp.</p></td>
+</tr>
+</table>
+<h2>Class Result</h2>
+<p>This class is used to get a single row result of a Get or a Scan query.</p>
+<h3>Constructors</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Constructors</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>Result()</b></p>
+<p>Using this constructor, you can create an empty Result with no KeyValue payload; returns null if you call raw Cells().</p></td>
+</tr>
+</table>
+<h3>Methods</h3>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>byte[] getValue(byte[] family, byte[] qualifier)</b></p>
+<p>This method is used to get the latest version of the specified column.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>byte[] getRow()</b></p>
+<p>This method is used to retrieve the row key that corresponds to the row from which this Result was created.</p></td>
+</tr>
+</table>
+<h1>HBase - Create Data</h1>
+<h2>Inserting Data using HBase Shell</h2>
+<p>This chapter demonstrates how to create data in an HBase table. To create data in an HBase table, the following commands and methods are used:</p>
+<ul class="list">
+<li><p><b>put</b> command,</p></li>
+<li><p><b>add()</b> method of <b>Put</b> class, and</p></li>
+<li><p><b>put()</b> method of <b>HTable</b> class.</p></li>
+</ul>
+<p>As an example, we are going to create the following table in HBase.</p>
+<img src="/hbase/images/table.jpg" alt="HBase Table" />
+<p>Using <b>put</b> command, you can insert rows into a table. Its syntax is as follows:</p>
+<pre class="result notranslate">
+put ’&lt;table name&gt;’,’row1’,’&lt;colfamily:colname&gt;’,’&lt;value&gt;’
+</pre>
+<h3>Inserting the First Row</h3>
+<p>Let us insert the first row values into the emp table as shown below.</p>
+<pre class="result notranslate">
+hbase(main):005:0&gt; put 'emp','1','personal data:name','raju'
+0 row(s) in 0.6600 seconds
+hbase(main):006:0&gt; put 'emp','1','personal data:city','hyderabad'
+0 row(s) in 0.0410 seconds
+hbase(main):007:0&gt; put 'emp','1','professional
+data:designation','manager'
+0 row(s) in 0.0240 seconds
+hbase(main):007:0&gt; put 'emp','1','professional data:salary','50000'
+0 row(s) in 0.0240 seconds
+</pre>
+<p>Insert the remaining rows using the put command in the same way. If you insert the whole table, you will get the following output.</p>
+<pre class="result notranslate">
+hbase(main):022:0&gt; scan 'emp'
+
+   ROW                        COLUMN+CELL
+1 column=personal data:city, timestamp=1417524216501, value=hyderabad
+
+1 column=personal data:name, timestamp=1417524185058, value=ramu
+
+1 column=professional data:designation, timestamp=1417524232601,
+
+ value=manager
+ 
+1 column=professional data:salary, timestamp=1417524244109, value=50000
+
+2 column=personal data:city, timestamp=1417524574905, value=chennai
+
+2 column=personal data:name, timestamp=1417524556125, value=ravi
+
+2 column=professional data:designation, timestamp=1417524592204,
+
+ value=sr:engg
+ 
+2 column=professional data:salary, timestamp=1417524604221, value=30000
+
+3 column=personal data:city, timestamp=1417524681780, value=delhi
+
+3 column=personal data:name, timestamp=1417524672067, value=rajesh
+
+3 column=professional data:designation, timestamp=1417524693187,
+
+value=jr:engg
+3 column=professional data:salary, timestamp=1417524702514,
+
+value=25000 
+</pre>
+<h2>Inserting Data Using Java API</h2>
+<p>You can insert data into Hbase using the <b>add()</b> method of the <b>Put</b> class. You can save it using the <b>put()</b> method of the <b>HTable</b> class. These classes belong to the <b>org.apache.hadoop.hbase.client</b> package. Below given are the steps to create data in a Table of HBase.</p>
+<h3>Step 1:Instantiate the Configuration Class</h3>
+<p>The <b>Configuration</b> class adds HBase configuration files to its object. You can create a configuration object using the <b>create()</b> method of the <b>HbaseConfiguration</b> class as shown below.</p>
+<pre class="result notranslate">
+Configuration conf = HbaseConfiguration.create();
+</pre>
+<h3>Step 2:Instantiate the HTable Class</h3>
+<p>You have a class called <b>HTable</b>, an implementation of Table in HBase. This class is used to communicate with a single HBase table. While instantiating this class, it accepts configuration object and table name as parameters. You can instantiate HTable class as shown below.</p>
+<pre class="result notranslate">
+HTable hTable = new HTable(conf, tableName);
+</pre>
+<h3>Step 3: Instantiate the PutClass</h3>
+<p>To insert data into an HBase table, the <b>add()</b> method and its variants are used. This method belongs to <b>Put</b>, therefore instantiate the put class. This class requires the row name you want to insert the data into, in string format. You can instantiate the <b>Put</b> class as shown below.</p>
+<pre class="result notranslate">
+Put p = new Put(Bytes.toBytes("row1"));
+</pre>
+<h3>Step 4: InsertData</h3>
+<p>The <b>add()</b> method of <b>Put</b> class is used to insert data. It requires 3 byte arrays representing column family, column qualifier (column name), and the value to be inserted, respectively. Insert data into the HBase table using the add() method as shown below.</p>
+<pre class="result notranslate">
+p.add(Bytes.toBytes("coloumn family "), Bytes.toBytes("column
+name"),Bytes.toBytes("value"));
+</pre>
+<h3>Step 5: Save the Data in Table</h3>
+<p>After inserting the required rows, save the changes by adding the put instance to the <b>put()</b> method of HTable class as shown below.</p>
+<pre class="result notranslate">
+hTable.put(p); 
+</pre>
+<h3>Step 6: Close the HTable Instance</h3>
+<p>After creating data in the HBase Table, close the <b>HTable</b> instance using the <b>close()</b> method as shown below.</p>
+<pre class="result notranslate">
+hTable.close(); 
+</pre>
+<p>Given below is the complete program to create data in HBase Table.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.HTable;
+import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.util.Bytes;
+
+public class InsertData{
+
+   public static void main(String[] args) throws IOException {
+
+      // Instantiating Configuration class
+      Configuration config = HBaseConfiguration.create();
+
+      // Instantiating HTable class
+      HTable hTable = new HTable(config, "emp");
+
+      // Instantiating Put class
+      // accepts a row name.
+      Put p = new Put(Bytes.toBytes("row1")); 
+
+      // adding values using add() method
+      // accepts column family name, qualifier/row name ,value
+      p.add(Bytes.toBytes("personal"),
+      Bytes.toBytes("name"),Bytes.toBytes("raju"));
+
+      p.add(Bytes.toBytes("personal"),
+      Bytes.toBytes("city"),Bytes.toBytes("hyderabad"));
+
+      p.add(Bytes.toBytes("professional"),Bytes.toBytes("designation"),
+      Bytes.toBytes("manager"));
+
+      p.add(Bytes.toBytes("professional"),Bytes.toBytes("salary"),
+      Bytes.toBytes("50000"));
+      
+      // Saving the put Instance to the HTable.
+      hTable.put(p);
+      System.out.println("data inserted");
+      
+      // closing HTable
+      hTable.close();
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac InsertData.java
+$java InsertData
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+data inserted
+</pre>
+<h1>HBase - Update Data</h1>
+<h2>Updating Data using HBase Shell</h2>
+<p>You can update an existing cell value using the <b>put</b> command. To do so, just follow the same syntax and mention your new value as shown below.</p>
+<pre class="result notranslate">
+put ‘table name’,’row ’,'Column family:column name',’new value’
+</pre>
+<p>The newly given value replaces the existing value, updating the row.</p>
+<h3>Example</h3>
+<p>Suppose there is a table in HBase called <b>emp</b> with the following data.</p>
+<pre class="result notranslate">
+hbase(main):003:0&gt; scan 'emp'
+ ROW              COLUMN &plus; CELL
+row1 column = personal:name, timestamp = 1418051555, value = raju
+row1 column = personal:city, timestamp = 1418275907, value = Hyderabad
+row1 column = professional:designation, timestamp = 14180555,value = manager
+row1 column = professional:salary, timestamp = 1418035791555,value = 50000
+1 row(s) in 0.0100 seconds
+</pre>
+<p>The following command will update the city value of the employee named ‘Raju’ to Delhi.</p>
+<pre class="result notranslate">
+hbase(main):002:0&gt; put 'emp','row1','personal:city','Delhi'
+0 row(s) in 0.0400 seconds
+</pre>
+<p>The updated table looks as follows where you can observe the city of Raju has been changed to ‘Delhi’.</p>
+<pre class="result notranslate">
+hbase(main):003:0&gt; scan 'emp'
+  ROW          COLUMN &plus; CELL
+row1 column = personal:name, timestamp = 1418035791555, value = raju
+row1 column = personal:city, timestamp = 1418274645907, value = Delhi
+row1 column = professional:designation, timestamp = 141857555,value = manager
+row1 column = professional:salary, timestamp = 1418039555, value = 50000
+1 row(s) in 0.0100 seconds
+</pre>
+<h2>Updating Data Using Java API</h2>
+<p>You can update the data in a particular cell using the <b>put()</b> method. Follow the steps given below to update an existing cell value of a table.</p>
+<h3>Step 1: Instantiate the Configuration Class</h3>
+<p><b>Configuration</b> class adds HBase configuration files to its object. You can create a configuration object using the <b>create()</b> method of the <b>HbaseConfiguration</b> class as shown below.</p>
+<pre class="result notranslate">
+Configuration conf = HbaseConfiguration.create();
+</pre>
+<h3>Step 2: Instantiate the HTable Class</h3>
+<p>You have a class called <b>HTable</b>, an implementation of Table in HBase. This class is used to communicate with a single HBase table. While instantiating this class, it accepts the configuration object and the table name as parameters. You can instantiate the HTable class as shown below.</p>
+<pre class="result notranslate">
+HTable hTable = new HTable(conf, tableName);
+</pre>
+<h3>Step 3: Instantiate the Put Class</h3>
+<p>To insert data into HBase Table, the <b>add()</b> method and its variants are used. This method belongs to <b>Put</b>, therefore instantiate the <b>put</b> class. This class requires the row name you want to insert the data into, in string format. You can instantiate the <b>Put</b> class as shown below.</p>
+<pre class="result notranslate">
+Put p = new Put(Bytes.toBytes("row1"));
+</pre>
+<h3>Step 4: Update an Existing Cell</h3>
+<p>The <b>add()</b> method of <b>Put</b> class is used to insert data. It requires 3 byte arrays representing column family, column qualifier (column name), and the value to be inserted, respectively. Insert data into HBase table using the <b>add()</b> method as shown below.</p>
+<pre class="result notranslate">
+p.add(Bytes.toBytes("coloumn family "), Bytes.toBytes("column
+name"),Bytes.toBytes("value"));
+p.add(Bytes.toBytes("personal"),
+Bytes.toBytes("city"),Bytes.toBytes("Delih"));
+</pre>
+<h3>Step 5: Save the Data in Table</h3>
+<p>After inserting the required rows, save the changes by adding the put instance
+to the <b>put()</b> method of the HTable class as shown below.</p>
+<pre class="result notranslate">
+hTable.put(p); 
+</pre>
+<h3>Step 6: Close HTable Instance</h3>
+<p>After creating data in HBase Table, close the <b>HTable</b> instance using the close() method as shown below.</p>
+<pre class="result notranslate">
+hTable.close();
+</pre>
+<p>Given below is the complete program to update data in a particular table.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.HTable;
+import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.util.Bytes;
+
+public class UpdateData{
+
+   public static void main(String[] args) throws IOException {
+
+      // Instantiating Configuration class
+      Configuration config = HBaseConfiguration.create();
+
+      // Instantiating HTable class
+      HTable hTable = new HTable(config, "emp");
+
+      // Instantiating Put class
+      //accepts a row name
+      Put p = new Put(Bytes.toBytes("row1"));
+
+      // Updating a cell value
+      p.add(Bytes.toBytes("personal"),
+      Bytes.toBytes("city"),Bytes.toBytes("Delih"));
+
+      // Saving the put Instance to the HTable.
+      hTable.put(p);
+      System.out.println("data Updated");
+
+      // closing HTable
+      hTable.close();
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac UpdateData.java
+$java UpdateData
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+data Updated
+</pre>
+<h1>HBase - Read Data</h1>
+<h2>Reading Data using HBase Shell</h2>
+<p>The <b>get</b> command and the <b>get()</b> method of <b>HTable</b> class are used to read data from a table in HBase. Using <b>get</b> command, you can get a single row of data at a time. Its syntax is as follows:</p>
+<pre class="result notranslate">
+get ’&lt;table name&gt;’,’row1’
+</pre>
+<h3>Example</h3>
+<p>The following example shows how to use the get command. Let us scan the first row of the <b>emp</b> table.</p>
+<pre class="result notranslate">
+hbase(main):012:0&gt; get 'emp', '1'
+
+   COLUMN                     CELL
+   
+personal : city timestamp = 1417521848375, value = hyderabad
+
+personal : name timestamp = 1417521785385, value = ramu
+
+professional: designation timestamp = 1417521885277, value = manager
+
+professional: salary timestamp = 1417521903862, value = 50000
+
+4 row(s) in 0.0270 seconds
+</pre>
+<h2>Reading a Specific Column</h2>
+<p>Given below is the syntax to read a specific column using the <b>get</b> method.</p>
+<pre class="result notranslate">
+hbase&gt; get 'table name', ‘rowid’, {COLUMN &rArr; ‘column family:column name ’}
+</pre>
+<h3>Example</h3>
+<p>Given below is the example to read a specific column in HBase table.</p>
+<pre class="result notranslate">
+hbase(main):015:0&gt; get 'emp', 'row1', {COLUMN &rArr; 'personal:name'}
+  COLUMN                CELL  
+personal:name timestamp = 1418035791555, value = raju
+1 row(s) in 0.0080 seconds
+</pre>
+<h2>Reading Data Using Java API</h2>
+<p>To read data from an HBase table, use the <b>get()</b> method of the HTable class. This method requires an instance of the <b>Get</b> class. Follow the steps given below to retrieve data from the HBase table.</p>
+<h3>Step 1: Instantiate the Configuration Class</h3>
+<p><b>Configuration</b> class adds HBase configuration files to its object. You can create a configuration object using the <b>create()</b> method of the <b>HbaseConfiguration</b> class as shown below.</p>
+<pre class="result notranslate">
+Configuration conf = HbaseConfiguration.create();
+</pre>
+<h3>Step 2: Instantiate the HTable Class</h3>
+<p>You have a class called <b>HTable</b>, an implementation of Table in HBase. This class is used to communicate with a single HBase table. While instantiating this class, it accepts the configuration object and the table name as parameters. You can instantiate the HTable class as shown below.</p>
+<pre class="result notranslate">
+HTable hTable = new HTable(conf, tableName);
+</pre>
+<h3>Step 3: Instantiate the Get Class</h3>
+<p>You can retrieve data from the HBase table using the <b>get()</b> method of the <b>HTable</b> class. This method extracts a cell from a given row. It requires a <b>Get</b> class object as parameter. Create it as shown below.</p>
+<pre class="result notranslate">
+Get get = new Get(toBytes("row1"));
+</pre>
+<h3>Step 4: Read the Data</h3>
+<p>While retrieving data, you can get a single row by id, or get a set of rows by a set of row ids, or scan an entire table or a subset of rows.</p>
+<p>You can retrieve an HBase table data using the add method variants in <b>Get</b> class.</p>
+<p>To get a specific column from a specific column family, use the following method.</p>
+<pre class="result notranslate">
+get.addFamily(personal) 
+</pre>
+<p>To get all the columns from a specific column family, use the following method.</p>
+<pre class="result notranslate">
+get.addColumn(personal, name) 
+</pre>
+<h3>Step 5: Get the Result</h3>
+<p>Get the result by passing your <b>Get</b> class instance to the get method of the <b>HTable</b> class. This method returns the <b>Result</b> class object, which holds the requested result. Given below is the usage of <b>get()</b> method.</p>
+<pre class="result notranslate">
+Result result = table.get(g);  
+</pre>
+<h3>Step 6: Reading Values from the Result Instance</h3>
+<p>The <b>Result</b> class provides the <b>getValue()</b> method to read the values from its instance. Use it as shown below to read the values from the <b>Result</b> instance.</p>
+<pre class="result notranslate">
+byte [] value = result.getValue(Bytes.toBytes("personal"),Bytes.toBytes("name"));
+byte [] value1 = result.getValue(Bytes.toBytes("personal"),Bytes.toBytes("city"));
+</pre>
+<p>Given below is the complete program to read values from an HBase table.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.Get;
+import org.apache.hadoop.hbase.client.HTable;
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.util.Bytes;
+
+public class RetriveData{
+
+   public static void main(String[] args) throws IOException, Exception{
+   
+      // Instantiating Configuration class
+      Configuration config = HBaseConfiguration.create();
+
+      // Instantiating HTable class
+      HTable table = new HTable(config, "emp");
+
+      // Instantiating Get class
+      Get g = new Get(Bytes.toBytes("row1"));
+
+      // Reading the data
+      Result result = table.get(g);
+
+      // Reading values from Result class object
+      byte [] value = result.getValue(Bytes.toBytes("personal"),Bytes.toBytes("name"));
+
+      byte [] value1 = result.getValue(Bytes.toBytes("personal"),Bytes.toBytes("city"));
+
+      // Printing the values
+      String name = Bytes.toString(value);
+      String city = Bytes.toString(value1);
+      
+      System.out.println("name: " + name + " city: " + city);
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac RetriveData.java
+$java RetriveData
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+name: Raju city: Delhi
+</pre>
+<h1>HBase - Delete Data</h1>
+<h2>Deleting a Specific Cell in a Table</h2>
+<p>Using the <b>delete</b> command, you can delete a specific cell in a table. The syntax of <b>delete</b> command is as follows:</p>
+<pre class="result notranslate">
+delete ‘&lt;table name&gt;’, ‘&lt;row&gt;’, ‘&lt;column name &gt;’, ‘&lt;time stamp&gt;’
+</pre>
+<h3>Example</h3>
+<p>Here is an example to delete a specific cell. Here we are deleting the salary.</p>
+<pre class="result notranslate">
+hbase(main):006:0&gt; delete 'emp', '1', 'personal data:city',
+1417521848375
+0 row(s) in 0.0060 seconds
+</pre>
+<h2>Deleting All Cells in a Table</h2>
+<p>Using the “deleteall” command, you can delete all the cells in a row. Given below is the syntax of deleteall command.</p>
+<pre class="result notranslate">
+deleteall ‘&lt;table name&gt;’, ‘&lt;row&gt;’,
+</pre>
+<h3>Example</h3>
+<p>Here is an example of “deleteall” command, where we are deleting all the cells of row1 of emp table.</p>
+<pre class="result notranslate">
+hbase(main):007:0&gt; deleteall 'emp','1'
+0 row(s) in 0.0240 seconds
+</pre>
+<p>Verify the table using the <b>scan</b> command. A snapshot of the table after deleting the table is given below.</p>
+<pre class="result notranslate">
+hbase(main):022:0&gt; scan 'emp'
+
+ROW                  COLUMN &plus; CELL
+
+2 column = personal data:city, timestamp = 1417524574905, value = chennai 
+
+2 column = personal data:name, timestamp = 1417524556125, value = ravi
+
+2 column = professional data:designation, timestamp = 1417524204, value = sr:engg
+
+2 column = professional data:salary, timestamp = 1417524604221, value = 30000
+
+3 column = personal data:city, timestamp = 1417524681780, value = delhi
+
+3 column = personal data:name, timestamp = 1417524672067, value = rajesh
+ 
+3 column = professional data:designation, timestamp = 1417523187, value = jr:engg
+
+3 column = professional data:salary, timestamp = 1417524702514, value = 25000
+</pre>
+<h2>Deleting Data Using Java API</h2>
+<p>You can delete data from an HBase table using the <b>delete()</b> method of the <b>HTable</b> class. Follow the steps given below to delete data from a table.</p>
+<h3>Step 1: Instantiate the Configuration Class</h3>
+<p><b>Configuration</b> class adds HBase configuration files to its object. You can create a configuration object using the <b>create()</b> method of the the <b>HbaseConfiguration</b> class as shown below.</b></p>
+<pre class="result notranslate">
+Configuration conf = HbaseConfiguration.create();
+</pre>
+<h3>Step 2: Instantiate the HTable Class</h3>
+<p>You have a class called <b>HTable</b>, an implementation of Table in HBase. This class is used to communicate with a single HBase table. While instantiating this class, it accepts the configuration object and the table name as parameters. You can instantiate the HTable class as shown below.</p>
+<pre class="result notranslate">
+HTable hTable = new HTable(conf, tableName); 
+</pre>
+<h3>Step 3: Instantiate the Delete Class</h3>
+<p>Instantiate the <b>Delete</b> class by passing the rowid of the row that is to be deleted, in byte array format. You can also pass timestamp and Rowlock to this constructor.</p>
+<pre class="result notranslate">
+Delete delete = new Delete(toBytes("row1"));
+</pre>
+<h3>Step 4: Select the Data to be Deleted</h3>
+<p>You can delete the data using the delete methods of the <b>Delete</b> class. This class has various delete methods. Choose the columns or column families to be deleted using those methods. Take a look at the following examples that show the usage of Delete class methods.</p>
+<pre class="result notranslate">
+delete.deleteColumn(Bytes.toBytes("personal"), Bytes.toBytes("name"));
+delete.deleteFamily(Bytes.toBytes("professional"));
+</pre>
+<h3>Step 5: Delete the Data</h3>
+<p>Delete the selected data by passing the <b>delete</b> instance to the <b>delete()</b> method of the <b>HTable</b> class as shown below.</p>
+<pre class="result notranslate">
+table.delete(delete); 
+</pre>
+<h3>Step 6: Close the HTableInstance</h3>
+<p>After deleting the data, close the <b>HTable</b> Instance.</p>
+<pre class="result notranslate">
+table.close();
+</pre>
+<p>Given below is the complete program to delete data from the HBase table.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.client.Delete;
+import org.apache.hadoop.hbase.client.HTable;
+import org.apache.hadoop.hbase.util.Bytes;
+
+public class DeleteData {
+
+   public static void main(String[] args) throws IOException {
+
+      // Instantiating Configuration class
+      Configuration conf = HBaseConfiguration.create();
+
+      // Instantiating HTable class
+      HTable table = new HTable(conf, "employee");
+
+      // Instantiating Delete class
+      Delete delete = new Delete(Bytes.toBytes("row1"));
+      delete.deleteColumn(Bytes.toBytes("personal"), Bytes.toBytes("name"));
+      delete.deleteFamily(Bytes.toBytes("professional"));
+
+      // deleting the data
+      table.delete(delete);
+
+      // closing the HTable object
+      table.close();
+      System.out.println("data deleted.....");
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac Deletedata.java
+$java DeleteData
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+data deleted
+</pre>
+<h1>HBase - Scan</h1>
+<h2>Scaning using HBase Shell</h2>
+<p>The <b>scan</b> command is used to view the data in HTable. Using the scan command, you can get the table data. Its syntax is as follows:</p>
+<pre class="result notranslate">
+scan ‘&lt;table name&gt;’ 
+</pre>
+<h3>Example</h3>
+<p>The following example shows how to read data from a table using the scan command. Here we are reading the <b>emp</b> table.</p>
+<pre class="prettyprint notranslate">
+hbase(main):010:0&gt; scan 'emp'
+
+ROW                           COLUMN &plus; CELL
+
+1 column = personal data:city, timestamp = 1417521848375, value = hyderabad
+ 
+1 column = personal data:name, timestamp = 1417521785385, value = ramu
+
+1 column = professional data:designation, timestamp = 1417585277,value = manager
+
+1 column = professional data:salary, timestamp = 1417521903862, value = 50000
+
+1 row(s) in 0.0370 seconds
+</pre>
+<h2>Scanning Using Java API</h2>
+<p>The complete program to scan the entire table data using java API is as follows.</p>
+<pre class="prettyprint notranslate">
+import java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.util.Bytes;
+
+import org.apache.hadoop.hbase.client.HTable;
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.client.ResultScanner;
+import org.apache.hadoop.hbase.client.Scan;
+
+
+public class ScanTable{
+
+   public static void main(String args[]) throws IOException{
+
+      // Instantiating Configuration class
+      Configuration config = HBaseConfiguration.create();
+
+      // Instantiating HTable class
+      HTable table = new HTable(config, "emp");
+
+      // Instantiating the Scan class
+      Scan scan = new Scan();
+
+      // Scanning the required columns
+      scan.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("name"));
+      scan.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("city"));
+
+      // Getting the scan result
+      ResultScanner scanner = table.getScanner(scan);
+
+      // Reading values from scan result
+      for (Result result = scanner.next(); result != null; result = Scanner.next())
+
+      System.out.println("Found row : " + result);
+      //closing the scanner
+      scanner.close();
+   }
+}
+</pre>
+<p>Compile and execute the above program as shown below.</p>
+<pre class="result notranslate">
+$javac ScanTable.java
+$java ScanTable 
+</pre>
+<p>The following should be the output:</p>
+<pre class="result notranslate">
+Found row :
+keyvalues={row1/personal:city/1418275612888/Put/vlen=5/mvcc=0,
+row1/personal:name/1418035791555/Put/vlen=4/mvcc=0}
+</pre>
+<h1>HBase - Count &amp; Truncate</h1>
+<h2>count</h2>
+<p>You can count the number of rows of a table using the <b>count</b> command. Its syntax is as follows:</p>
+<pre class="result notranslate">
+count ‘&lt;table name&gt;’ 
+</pre>
+<p>After deleting the first row, emp table will have two rows. Verify it as shown below.</p>
+<pre class="result notranslate">
+hbase(main):023:0&gt; count 'emp'
+2 row(s) in 0.090 seconds
+&rArr; 2 
+</pre>
+<h2>truncate</h2>
+<p>This command disables drops and recreates a table. The syntax of <b>truncate</b> is as follows:</p>
+<pre class="result notranslate">
+hbase&gt; truncate 'table name'
+</pre>
+<h3>Example</h3>
+<p>Given below is the example of truncate command. Here we have truncated the <b>emp</b> table.</p>
+<pre class="result notranslate">
+hbase(main):011:0&gt; truncate 'emp'
+Truncating 'one' table (it may take a while):
+   - Disabling table...
+   - Truncating table...
+   0 row(s) in 1.5950 seconds
+</pre>
+<p>After truncating the table, use the scan command to verify. You will get a table with zero rows.</p>
+<pre class="result notranslate">
+hbase(main):017:0&gt; scan ‘emp’
+ROW                  COLUMN &plus; CELL
+0 row(s) in 0.3110 seconds
+</pre>
+<h1>HBase - Security</h1>
+<p>We can grant and revoke permissions to users in HBase. There are three commands for security purpose: grant, revoke, and user_permission.</p>
+<h2>grant</h2>
+<p>The <b>grant</b> command grants specific rights such as read, write, execute, and admin on a table to a certain user. The syntax of grant command is as follows:</p>
+<pre class="result notranslate">
+hbase&gt; grant &lt;user&gt; &lt;permissions&gt; [&lt;table&gt; [&lt;column family&gt; [&ltcolumn; qualifier&gt;]]
+</pre>
+<p>We can grant zero or more privileges to a user from the set of RWXCA, where</p>
+<ul class="list">
+<li>R - represents read privilege.</li>
+<li>W - represents write privilege.</li>
+<li>X - represents execute privilege.</li>
+<li>C - represents create privilege.</li>
+<li>A - represents admin privilege.</li>
+</ul>
+<p>Given below is an example that grants all privileges to a user named ‘Tutorialspoint’.</p>
+<pre class="result notranslate">
+hbase(main):018:0&gt; grant 'Tutorialspoint', 'RWXCA'
+</pre>
+<h2>revoke</h2>
+<p>The <b>revoke</b> command is used to revoke a user's access rights of a table. Its syntax is as follows:</p>
+<pre class="result notranslate">
+hbase> revoke &lt;user&gt;
+</pre>
+<p>The following code revokes all the permissions from the user named ‘Tutorialspoint’.</p>
+<pre class="result notranslate">
+hbase(main):006:0&gt; revoke 'Tutorialspoint'
+</pre>
+<h2>user_permission</h2>
+<p>This command is used to list all the permissions for a particular table. The
+syntax of <b>user_permission</b> is as follows:</p>
+<pre class="result notranslate">
+hbase&gt;user_permission ‘tablename’
+</pre>
+<p>The following code lists all the user permissions of ‘emp’ table.</p>
+<pre class="result notranslate">
+hbase(main):013:0&gt; user_permission 'emp'
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/hbase/hbase_questions_answers.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/hbase/hbase_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

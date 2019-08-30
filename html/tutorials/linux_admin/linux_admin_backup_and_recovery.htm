@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Linux Admin - Backup and Recovery</title>
+<meta charset="utf-8">
+<meta name="description" content="Linux Admin - Backup and Recovery - Before exploring methods particular to CentOS for deploying a standard backup plan, let's first discuss typical considerations for a standard level backup polic"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/linux_admin/linux_admin_backup_and_recovery.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#dfa018;
+}
+a.demo {
+    background:#dfa018;
+}
+li.heading {
+    background:#dfa018;
+}
+.course-box{background:#dfa018}
+.home-intro-sub p{color:#dfa018}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/linux_admin/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/linux_admin/images/linux-admin-mini-logo.jpg" alt="Linux Admin Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Tutorial</li>
+<li><a href="/linux_admin/index.htm">Linux Admin - Home</a></li>
+<li><a href="/linux_admin/linux_admin_centos_overview.htm">CentOS Overview</a></li>
+<li><a href="/linux_admin/basic_centos_linux_commands.htm">Basic CentOS Linux Commands</a></li>
+<li><a href="/linux_admin/linux_admin_file_folder_management.htm">File / Folder Management</a></li>
+<li><a href="/linux_admin/linux_admin_user_management.htm">User Management</a></li>
+<li><a href="/linux_admin/linux_admin_quota_management.htm">Quota Management</a></li>
+<li><a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Systemd Services Start and Stop</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Resource Mgmt with systemctl</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Resource Mgmt with crgoups</a></li>
+<li><a href="/linux_admin/linux_admin_process_management.htm">Process Management</a></li>
+<li><a href="/linux_admin/linux_admin_firewall_setup.htm">Firewall Setup</a></li>
+<li><a href="/linux_admin/configure_php_in_centos_linux.htm">Configure PHP in CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_python_with_centos_linux.htm">Set Up Python with CentOS Linux</a></li>
+<li><a href="/linux_admin/configure_ruby_on_centos_linux.htm">Configure Ruby on CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_perl_for_centos_linux.htm">Set Up Perl for CentOS Linux</a></li>
+<li><a href="/linux_admin/install_and_configure_open_ldap.htm">Install and Configure Open LDAP</a></li>
+<li><a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Create SSL Certificates</a></li>
+<li><a href="/linux_admin/linux_admin_install_apache_web_server_centos_7.htm">Install Apache Web Server CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">MySQL Setup On CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_set_up_postfix_mta_and_imap_pop3.htm">Set Up Postfix MTA and IMAP/POP3</a></li>
+<li><a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Install Anonymous FTP</a></li>
+<li><a href="/linux_admin/linux_admin_remote_management.htm">Remote Management</a></li>
+<li><a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm">Traffic Monitoring in CentOS</a></li>
+<li><a href="/linux_admin/linux_admin_log_management.htm">Log Management</a></li>
+<li><a href="/linux_admin/linux_admin_backup_and_recovery.htm">Backup and Recovery</a></li>
+<li><a href="/linux_admin/linux_admin_system_updates.htm">System Updates</a></li>
+<li><a href="/linux_admin/linux_admin_shell_scripting.htm">Shell Scripting</a></li>
+<li><a href="/linux_admin/linux_admin_package_management.htm">Package Management</a></li>
+<li><a href="/linux_admin/linux_admin_volume_management.htm">Volume Management</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Useful Resources</li>
+<li><a href="/linux_admin/linux_admin_quick_guide.htm">Linux Admin - Quick Guide</a></li>
+<li><a href="/linux_admin/linux_admin_useful_resources.htm">Linux Admin - Useful Resources</a></li>
+<li><a href="/linux_admin/linux_admin_discussion.htm">Linux Admin - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Linux Admin - Backup and Recovery</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_log_management.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_system_updates.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Before exploring methods particular to CentOS for deploying a standard backup plan, let's first discuss typical considerations for a standard level backup policy. The first thing we want to get accustomed to is the <b>3-2-1 backup rule</b>.</p>
+<h3>3-2-1 Backup Strategy</h3>
+<p>Throughout the industry, you'll often hear the term 3-2-1 backup model. This is a very good approach to live by when implementing a backup plan. 3-2-1 is defined as follows: <b>3</b> copies of data; for example, we may have the working copy; a copy put onto the CentOS server designed for redundancy using rsync; and rotated, offsite USB backups are made from data on the backup server. <b>2</b> different backup mediums. We would actually have three different backup mediums in this case: the working copy on an SSD of a laptop or workstation, the CentOS server data on a RADI6 Array, and the offsite backups put on USB drives. <b>1</b> copy of data offsite; we are rotating the USB drives offsite on a nightly basis. Another modern approach may be a cloud backup provider.</p>
+<h3>System Recovery</h3>
+<p>A <i>bare metal restore plan</i> is simply a plan laid out by a CentOS administrator to get vital systems online with all data intact. Assuming 100% systems failure and loss of all past system hardware, an  administrator must have a plan to achieve uptime with intact user-data costing minimal downtime. The monolithic kernel used in Linux actually makes bare metal restores using system images much easier than Windows. Where Windows uses a micro-kernel architecture.</p>
+<p>A full data restore and bare metal recovery are usually accomplished through a combination of methods including working, configured production disk-images of key operational servers, redundant backups of user data abiding by the 3-2-1 rule. Even some sensitive files that may be stored in a secure, fireproof safe with limited access to the trusted company personnel.</p>
+<p>A multiphase <i>bare metal restore</i> and <i>data recovery plan</i> using native CentOS tools may consist of &minus;</p>
+<ul class="list">
+<li><p>dd to make and restore production disk-images of configured servers</p></li>
+<li><p>rsync to make incremental backups of all user data</p></li>
+<li><p>tar &amp; gzip to store encrypted backups of files with passwords and notes from administrators. Commonly, this can be put on a USB drive, encrypted and locked in a safe that a Senior Manager access. Also, this ensures someone else will know vital security credentials if the current administrator wins the lottery and disappears to a sunny island somewhere.</p></li>
+</ul>
+<p>If a system crashes due to a hardware failure or disaster, following will be the different phases of restoring operations &minus;</p>
+<ul class="list">
+<li><p>Build a working server with a configured bare metal image</p></li>
+<li><p>Restore data to the working server from backups</p></li>
+<li><p>Have physical access to credentials needed to perform the first two operations</p></li>
+</ul>
+<h2>Use rsync for File Level Backups</h2>
+<p><i>rsync</i> is a great utility for syncing directories of files either locally or to another server. <i>rsync</i> has been used for years by System Administrators, hence it is very refined for the purpose of backing up data. In the author's opinion, one of the best features of <i>sync</i> is its ability to be scripted from the command line.</p>
+<p>In this tutorial, we will discuss rsync in various ways &minus;</p>
+<ul class="list">
+<li>Explore and talk about some common options</li>
+<li>Create local backups</li>
+<li>Create remote backups over SSH</li>
+<li>Restore local backups</li>
+</ul>
+<p><b>rsync</b> is named for its purpose: <i>Remote Sync</i> and is both powerful and flexible in use.</p>
+<p>Following is a basic <i>rsync</i> remote backup over ssh &minus;</p>
+<pre class="result notranslate">
+MiNi:~ rdc$ rsync -aAvz --progress ./Desktop/ImportantStuff/ 
+rdc@192.168.1.143:home/rdc/ Documents/RemoteStuff/
+rdc@192.168.1.143's password:
+sending incremental file list
+   6,148 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=23/25)
+2017-02-14 16_26_47-002 - Veeam_Architecture001.png
+   33,144 100%   31.61MB/s    0:00:00 (xfr#2, to-chk=22/25)
+A Guide to the WordPress REST API | Toptal.pdf
+   892,406 100%   25.03MB/s    0:00:00 (xfr#3, to-chk=21/25)
+Rick Cardon Technologies, LLC..webloc
+   77 100%    2.21kB/s    0:00:00 (xfr#4, to-chk=20/25)
+backbox-4.5.1-i386.iso
+   43,188,224   1%    4.26MB/s    0:08:29
+sent 2,318,683,608 bytes  received 446 bytes  7,302,941.90 bytes/sec
+total size is 2,327,091,863  speedup is 1.00
+MiNi:~ rdc$
+</pre>
+<p>The following sync sent nearly 2.3GB of data across our LAN. The beauty of rsync is it works incrementally at the block level on a file-by-file basis. This means, if we change just two characters in a 1MB text file, only one or two blocks will be transferred across the lan on the next sync!</p>
+<p>Furthermore, the incremental function can be disabled in favor of more network bandwidth used for less CPU utilization. This might prove advisable if constantly copying several 10MB database files every 10 minutes on a 1Gb dedicated Backup-Lan. The reasoning is: these will always be changing and will be transmitting incrementally every 10 minutes and may tax load of the remote CPU. Since the total transfer load will not exceed 5 minutes, we may just wish to sync the database files in their entirety.</p>
+<p>Following are the most common switches with <i>rsync</i> &minus;</p>
+<pre class="result notranslate">
+rsync syntax:
+rsync [options] [local path] [[remote host:remote path] or [target path
+</pre>
+<p></p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:25%">Switch</th>
+<th style="text-align:center;">Action</th>
+</tr>
+<tr>
+<td style="text-align:center;">-a</td>
+<td>Archive mode and assumes -r, -p, -t, -g, -l</td>
+</tr>
+<tr>
+<td style="text-align:center;">-d</td>
+<td>Sync only directory tree, no files</td>
+</tr>
+<tr>
+<td style="text-align:center;">-r</td>
+<td>Recursive into directory</td>
+</tr>
+<tr>
+<td style="text-align:center;">-l</td>
+<td>Copy symlinks as symlinks</td>
+</tr>
+<tr>
+<td style="text-align:center;">-p</td>
+<td>Preserve permissions</td>
+</tr>
+<tr>
+<td style="text-align:center;">-g</td>
+<td>Preserve group</td>
+</tr>
+<tr>
+<td style="text-align:center;">-v</td>
+<td>Verbose output</td>
+</tr>
+<tr>
+<td style="text-align:center;">-z</td>
+<td>Compress over network link</td>
+</tr>
+<tr>
+<td style="text-align:center;">-X</td>
+<td>Preserve extended attributes</td>
+</tr>
+<tr>
+<td style="text-align:center;">-A</td>
+<td>Preserve ACLs</td>
+</tr>
+<tr>
+<td style="text-align:center;">-t</td>
+<td>Preserve timestamps</td>
+</tr>
+<tr>
+<td style="text-align:center;">-W</td>
+<td>Transfer whole file, not incremental blocks</td>
+</tr>
+<tr>
+<td style="text-align:center;">-u</td>
+<td>Do not overwrite files on target</td>
+</tr>
+<tr>
+<td style="text-align:center;">--progress</td>
+<td>Show transfer progress</td>
+</tr>
+<tr>
+<td style="text-align:center;">--delete</td>
+<td>Delete older files on target</td>
+</tr>
+<tr>
+<td style="text-align:center;">--max-size = XXX</td>
+<td>Max file size to sync</td>
+</tr>
+</table>
+<h3>When to use rsync</h3>
+<p>My personal preference for <i>rsync</i> is when backing up files from a source host to a target host. For example, all the home directories for data recovery or even offsite and into the cloud for disaster recovery.</p>
+<h2>Local Backup With rsync</h2>
+<p>We have already seen how to transfer files from one host to another. The same method can be used to sync directories and files locally.</p>
+<p>Let's make a manual incremental backup of <i>/etc/</i> in our root user's directory.</p>
+<p>First, we need to create a directory off ~/root for the synced backup &minus;</p>
+<pre class="result notranslate">
+[root@localhost rdc]# mkdir /root/etc_baks
+</pre>
+<p>Then, assure there is enough free disk-space.</p>
+<pre class="result notranslate">
+[root@localhost rdc]# du -h --summarize /etc/ 
+49M    /etc/
+ 
+[root@localhost rdc]# df -h 
+Filesystem           Size     Used     Avail    Use%     Mounted on 
+/dev/mapper/cl-root   43G      15G        28G    35%         /
+</pre>
+<p>We are good for syncing our entire /etc/ directory &minus;</p>
+<pre class="result notranslate">
+rsync -aAvr /etc/ /root/etc_baks/
+</pre>
+<p>Our synced /etc/ directory &minus;</p>
+<pre class="result notranslate">
+[root@localhost etc_baks]# ls -l ./
+total 1436
+drwxr-xr-x.   3 root root      101 Feb  1 19:40 abrt
+-rw-r--r--.   1 root root       16 Feb  1 19:51 adjtime
+-rw-r--r--.   1 root root     1518 Jun  7  2013 aliases
+-rw-r--r--.   1 root root    12288 Feb 27 19:06 aliases.db
+drwxr-xr-x.   2 root root       51 Feb  1 19:41 alsa
+drwxr-xr-x.   2 root root     4096 Feb 27 17:11 alternatives
+-rw-------.   1 root root      541 Mar 31  2016 anacrontab
+-rw-r--r--.   1 root root       55 Nov  4 12:29 asound.conf
+-rw-r--r--.   1 root root        1 Nov  5 14:16 at.deny
+drwxr-xr-x.   2 root root       32 Feb  1 19:40 at-spi2
+--{ condensed output }--
+</pre>
+<p>Now let's do an incremental rsync &minus;</p>
+<pre class="result notranslate">
+[root@localhost etc_baks]# rsync -aAvr --progress  /etc/ /root/etc_baks/
+sending incremental file list
+
+test_incremental.txt 
+   0 100%    0.00kB/s    0:00:00 (xfer#1, to-check=1145/1282)
+   
+sent 204620 bytes  received 2321 bytes  413882.00 bytes/sec
+total size is 80245040  speedup is 387.77
+
+[root@localhost etc_baks]#
+</pre>
+<p>Only our <i>test_incremental.txt</i> file was copied.</p>
+<h2>Remote Differential Backups With rsync</h2>
+<p>Let's do our initial rsync full backup onto a server with a backup plan deployed. This example is actually backing up a folder on a Mac OS X Workstation to a CentOS server. Another great aspect of <i>rsync</i> is that it can be used on any platform rsync has been ported to.</p>
+<pre class="result notranslate">
+MiNi:~ rdc$ rsync -aAvz Desktop/ImportanStuff/
+rdc@192.168.1.143:Documents/RemoteStuff
+rdc@192.168.1.143's password:
+sending incremental file list
+./
+A Guide to the WordPress REST API | Toptal.pdf
+Rick Cardon Tech LLC.webloc
+VeeamDiagram.png
+backbox-4.5.1-i386.iso
+dhcp_admin_script_update.py
+DDWRT/
+DDWRT/.DS_Store
+DDWRT/ddwrt-linksys-wrt1200acv2-webflash.bin
+DDWRT/ddwrt_mod_notes.docx
+DDWRT/factory-to-ddwrt.bin
+open_ldap_config_notes/
+open_ldap_config_notes/ldap_directory_a.png
+open_ldap_config_notes/open_ldap_notes.txt
+perl_scripts/
+perl_scripts/mysnmp.pl
+php_scripts/
+php_scripts/chunked.php
+php_scripts/gettingURL.php
+sent 2,318,281,023 bytes  received 336 bytes  9,720,257.27 bytes/sec
+total size is 2,326,636,892  speedup is 1.00
+MiNi:~ rdc$
+</pre>
+<p>We have now backed up a folder from a workstation onto a server running a RAID6 volume with rotated disaster recovery media stored offsite. Using rsync has given us standard 3-2-1 backup with only one server having an expensive redundant disk array and rotated differential backups.</p>
+<p>Now let's do another backup of the same folder using rsync after a single new file named <i>test_file.txt</i> has been added.</p>
+<pre class="result notranslate">
+MiNi:~ rdc$ rsync -aAvz Desktop/ImportanStuff/
+rdc@192.168.1.143:Documents/RemoteStuff 
+rdc@192.168.1.143's password:  
+sending incremental file list 
+ ./ 
+test_file.txt
+
+sent 814 bytes  received 61 bytes  134.62 bytes/sec
+total size is 2,326,636,910  speedup is 2,659,013.61
+MiNi:~ rdc$
+</pre>
+<p>As you can see, only the new file was delivered to the server via <i>rsync</i>. The differential comparison was made on a file-by-file basis.</p>
+<p>A few things to note are: This only copies the new file: test_file.txt, since it was the only file with changes. rsync uses ssh. We did not ever need to use our root account on either machine.</p>
+<p>Simple, powerful and effective, <i>rsync</i> is great for backing up entire folders and directory structures. However, <i>rsync</i> by itself doesn't automate the process. This is where we need to dig into our toolbox and find the best, small, and simple tool for the job.</p>
+<p>To automate rsync backups with <i>cronjobs</i>, it is essential that SSH users be set up using SSH keys for authentication. This combined with cronjobs enables rsync to be done automatically at timed intervals.</p>
+<h2>Use DD for Block-by-Block Bare Metal Recovery Images</h2>
+<p>DD is a Linux utility that has been around since the dawn of the Linux kernel meeting the GNU Utilities.</p>
+<p><i>dd</i> in simplest terms copies an image of a selected disk area. Then provides the ability to copy selected blocks of a physical disk. So unless you have backups, once dd writes over a disk, all blocks are replaced. Loss of previous data exceeds the recovery capabilities for even highly priced professional-level data-recovery.</p>
+<p>The entire process for making a bootable system image with <i>dd</i> is as follows &minus;</p>
+<ul class="list">
+<li>Boot from the CentOS server with a bootable linux distribution</li>
+<li>Find the designation of the bootable disk to be imaged</li>
+<li>Decide location where the recovery image will be stored</li>
+<li>Find the block size used on your disk</li>
+<li>Start the dd image operation</li>
+</ul>
+<p>In this tutorial, for the sake of time and simplicity, we will be creating an ISO image of the master-boot record from a CentOS virtual machine. We will then store this image offsite. In case our MBR becomes corrupted and needs to be restored, the same process can be applied to an entire bootable disk or partition. However, the time and disk space needed really goes a little overboard for this tutorial.</p>
+<p>It is encouraged for CentOS admins to become proficient in restoring a fully bootable disk/partition in a test environment and perform a bare metal restore. This will take a lot of pressure off when eventually one needs to complete the practice in a real life situation with Managers and a few dozen end-users counting downtime. In such a case, 10 minutes of figuring things out can seem like an eternity and make one sweat.</p>
+<p><b>Note</b> &minus; When using dd make sure to NOT confuse source and target volumes. You can destroy data and bootable servers by copying your backup location to a boot drive. Or possibly worse destroy data forever by copying over data at a very low level with DD.</p>
+<p>Following are the common command line switches and parameters for <i>dd</i> &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:10%">Switch</th>
+<th style="text-align:center;">Action</th>
+</tr>
+<tr>
+<td style="text-align:center;">if=</td>
+<td>In file or source to be copied</td>
+</tr>
+<tr>
+<td style="text-align:center;">of=</td>
+<td>Out file or the copy of the in file</td>
+</tr>
+<tr>
+<td style="text-align:center;">bs</td>
+<td>Set both input and output block size</td>
+</tr>
+<tr>
+<td style="text-align:center;">obs</td>
+<td>Set output file block size</td>
+</tr>
+<tr>
+<td style="text-align:center;">ibs</td>
+<td>Set input file block size</td>
+</tr>
+<tr>
+<td style="text-align:center;">count</td>
+<td>Set the number of blocks to copy</td>
+</tr>
+<tr>
+<td style="text-align:center;">conv</td>
+<td>Extra options to add for imaging</td>
+</tr>
+<tr>
+<td style="text-align:center;">Noerror</td>
+<td>Do not stop processing an error</td>
+</tr>
+<tr>
+<td style="text-align:center;">sync</td>
+<td>Pads unfitted input blocks in the event of error or misalignment</td>
+</tr>
+</table>
+<p><b>Note on block size</b> &minus; The default block size for dd is 512 bytes. This was the standard block size of lower density hard disk drives. Today's higher density HDDs have increased to 4096 byte (4kB) block sizes to allow for disks ranging from 1TB and larger. Thus, we will want to check disk block size before using dd with newer, higher capacity hard disks.</p>
+<p>For this tutorial, instead of working on a production server with <i>dd</i>, we will be using a CentOS installation running in VMWare. We will also configure VMWare to boot a bootable Linux ISO image instead of working with a bootable USB Stick.</p>
+<p>First, we will need to download the CentOS image entitled: <i>CentOS Gnome ISO</i>. This is almost 3GB and it is advised to always keep a copy for creating bootable USB thumb-drives and booting into virtual server installations for trouble-shooting and bare metal images.</p>
+<p>Other bootable Linux distros will work just as well. Linux Mint can be used for bootable ISOs as it has great hardware support and polished GUI disk tools for maintenance.</p>
+<p>CentOS GNOME Live bootable image can be downloaded from: <a target="_blank" rel="nofollow" href="http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-LiveGNOME.iso">http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-LiveGNOME.iso</a></p>
+<p>Let's configure our VMWare Workstation installation to boot from our Linux bootable image. The steps are for VMWare on OS X. However, they are similar across VMWare Workstation on Linux, Windows, and even Virtual Box.</p>
+<p><b>Note</b> &minus; Using a virtual desktop solution like Virtual Box or VMWare Workstation is a great way to set up lab scenarios for learning CentOS Administration tasks. It provides the ability to install several CentOS installations, practically no hardware configuration letting the person focus on administration, and even save the server state before making changes.</p>
+<p>First let's configure a virtual cd-rom and attach our ISO image to boot instead of the virtual CentOS server installation &minus;</p>
+<img src="/linux_admin/images/iso_image.jpg" alt="ISO image" />
+<p>Now, set the startup disk &minus;</p>
+<img src="/linux_admin/images/startup_disk.jpg" alt="Startup Disk" />
+<p>Now when booted, our virtual machine will boot from the CentOS bootable ISO image and allow access to files on the Virtual CentOS server that was previously configured.</p>
+<p>Let’s check our disks to see where we want to copy the MBR from (condensed output is as follows).</p>
+<pre class="result notranslate">
+MiNt ~ # fdisk -l
+Disk /dev/sda: 60 GiB, 21474836480 bytes, 41943040 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+Disk /dev/sdb: 20 GiB, 21474836480 bytes, 41943040 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+</pre>
+<p>We have located both our physical disks: <i>sda</i> and <i>sdb</i>. Each has a block size of 512 bytes. So, we will now run the <i>dd</i> command to copy the first 512 bytes for our MBR on SDA1.</p>
+<p>The best way to do this is &minus;</p>
+<pre class="result notranslate">
+[root@mint rdc]# dd if=/dev/sda bs=512 count=1  | gzip -c &gt;
+/mnt/sdb/images/mbr.iso.gz 
+1+0 records in 
+1+0 records out 
+512 bytes copied, 0.000171388 s, 3.0 MB/s
+
+[root@mint rdc]# ls /mnt/sdb/ 
+   mbr-iso.gz
+   
+[root@mint rdc]#
+</pre>
+<p>Just like that, we have full image of out master boot record. If we have enough room to image the boot drive, we could just as easily make a full system boot image &minus;</p>
+<pre class="result notranslate">
+dd if=/dev/INPUT/DEVICE-NAME-HERE conv=sync,noerror bs=4K | gzip -c &gt;
+/mnt/sdb/boot-server-centos-image.iso.gz
+</pre>
+<p>The <i>conv=sync</i> is used when bytes must be aligned for a physical medium. In this case, dd may get an error if exact 4K alignments are not read (say... a file that is only 3K but needs to take minimum of a single 4K block on disk. Or, there is simply an error reading and the file cannot be read by dd.). Thus, <i>dd</i> with <i>conv=sync,noerror</i> will pad the 3K with trivial, but useful data to physical medium in 4K block alignments. While not presenting an error that may end a large operation.</p>
+<p>When working with data from disks we always want to include: <i>conv=sync,noerror</i> parameter.</p>
+<p>This is simply because the disks are not streams like TCP data. They are made up of blocks aligned to a certain size. For example, if we have 512 byte blocks, a file of only 300 bytes still needs a full 512 bytes of disk-space (possibly 2 blocks for inode information like permissions and other filesystem information).</p>
+<h2>Use gzip and tar for Secure Storage</h2>
+<p>gzip and tar are two utilities a CentOS administrator must become accustomed to using. They are used for a lot more than to simply decompress archives.</p>
+<h3>Using Gnu Tar in CentOS Linux</h3>
+<p>Tar is an archiving utility similar to <i>winrar</i> on Windows. Its name <i>Tape Archive</i> abbreviated as <i>tar</i> pretty much sums up the utility. <i>tar</i> will take files and place them into an archive for logical convenience. Hence, instead of the dozens of files stored in /etc. we could just "tar" them up into an archive for backup and storage convenience.</p>
+<p><i>tar</i> has been the standard for storing archived files on Unix and Linux for many years. Hence, using tar along with <i>gzip</i> or <i>bzip</i> is considered as a best practice for archives on each system.</p>
+<p>Following is a list of common command line switches and options used with tar &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:10%">Switch</th>
+<th style="text-align:center;">Action</th>
+</tr>
+<tr>
+<td style="text-align:center;">-c</td>
+<td>Creates a new .tar archive</td>
+</tr>
+<tr>
+<td style="text-align:center;">-C</td>
+<td>Extracts to a different directory</td>
+</tr>
+<tr>
+<td style="text-align:center;">-j</td>
+<td>Uses bzip2 compression</td>
+</tr>
+<tr>
+<td style="text-align:center;">-z</td>
+<td>Uses gzip compression</td>
+</tr>
+<tr>
+<td style="text-align:center;">-v</td>
+<td>Verbose show archiving progress</td>
+</tr>
+<tr>
+<td style="text-align:center;">-t</td>
+<td>Lists archive contents</td>
+</tr>
+<tr>
+<td style="text-align:center;">-f</td>
+<td>File name of the archive</td>
+</tr>
+<tr>
+<td style="text-align:center;">-x</td>
+<td>Extracts tar archive</td>
+</tr>
+</table>
+<p>Following is the basic syntax for creating a <i>tar</i> archive.</p>
+<pre class="result notranslate">
+tar -cvf [tar archive name]
+</pre>
+<p><b>Note on Compression mechanisms with tar</b> &minus; It is advised to stick with one of two common compression schemes when using tar: gzip and bzip2. gzip files consume less CPU resources but are usually larger in size. While bzip2 will take longer to compress, they utilize more CPU resources; but will result in a smaller end filesize.</p>
+<p>When using file compression, we will always want to use standard file extensions letting everyone including ourselves know (versus guess by trial and error) what compression scheme is needed to extract archives.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<td>bzip2</td>
+<td>.tbz</td>
+</tr>
+<tr>
+<td>bzip2</td>
+<td>.tar.tbz</td>
+</tr>
+<tr>
+<td>bzip2</td>
+<td>.tb2</td>
+</tr>
+<tr>
+<td>gzip</td>
+<td>.tar.gz</td>
+</tr>
+<tr>
+<td>gzip</td>
+<td>.tgz</td>
+</tr>
+</table>
+<p>When needing to possibly extract archives on a Windows box or for use on Windows, it is advised to use the <i>.tar.tbz</i> or <i>.tar.gz</i> as most the three character single extensions will confuse Windows and Windows only Administrators (however, that is sometimes the desired outcome)</p>
+<p>Let's create a <i>gzipped</i> tar archive from our remote backups copied from the Mac Workstation &minus;</p>
+<pre class="result notranslate">
+[rdc@mint Documents]$ tar -cvz -f RemoteStuff.tgz ./RemoteStuff/ 
+./RemoteStuff/
+./RemoteStuff/.DS_Store
+./RemoteStuff/DDWRT/
+./RemoteStuff/DDWRT/.DS_Store
+./RemoteStuff/DDWRT/ddwrt-linksys-wrt1200acv2-webflash.bin
+./RemoteStuff/DDWRT/ddwrt_mod_notes.docx
+./RemoteStuff/DDWRT/factory-to-ddwrt.bin
+./RemoteStuff/open_ldap_config_notes/
+./RemoteStuff/open_ldap_config_notes/ldap_directory_a.png
+./RemoteStuff/open_ldap_config_notes/open_ldap_notes.txt
+./RemoteStuff/perl_scripts/
+./RemoteStuff/perl_scripts/mysnmp.pl
+./RemoteStuff/php_scripts/
+./RemoteStuff/php_scripts/chunked.php
+./RemoteStuff/php_scripts/gettingURL.php
+./RemoteStuff/A Guide to the WordPress REST API | Toptal.pdf
+./RemoteStuff/Rick Cardon Tech LLC.webloc
+./RemoteStuff/VeeamDiagram.png
+./RemoteStuff/backbox-4.5.1-i386.iso
+./RemoteStuff/dhcp_admin_script_update.py
+./RemoteStuff/test_file.txt
+[rdc@mint Documents]$ ls -ld RemoteStuff.tgz
+-rw-rw-r--. 1 rdc rdc 2317140451 Mar 12 06:10 RemoteStuff.tgz
+</pre>
+<p><b>Note</b> &minus; Instead of adding all the files directly to the archive, we archived the entire folder <i>RemoteStuff</i>. This is the easiest method. Simply because when extracted, the entire directory <i>RemoteStuff</i> is extracted with all the files inside the current working directory as <i>./currentWorkingDirectory/RemoteStuff/</i></p>
+<p>Now let's extract the archive inside the <i>/root/</i> home directory.</p>
+<pre class="result notranslate">
+[root@centos ~]# tar -zxvf RemoteStuff.tgz
+./RemoteStuff/
+./RemoteStuff/.DS_Store
+./RemoteStuff/DDWRT/
+./RemoteStuff/DDWRT/.DS_Store
+./RemoteStuff/DDWRT/ddwrt-linksys-wrt1200acv2-webflash.bin
+./RemoteStuff/DDWRT/ddwrt_mod_notes.docx
+./RemoteStuff/DDWRT/factory-to-ddwrt.bin
+./RemoteStuff/open_ldap_config_notes/
+./RemoteStuff/open_ldap_config_notes/ldap_directory_a.png
+./RemoteStuff/open_ldap_config_notes/open_ldap_notes.txt
+./RemoteStuff/perl_scripts/
+./RemoteStuff/perl_scripts/mysnmp.pl
+./RemoteStuff/php_scripts/
+./RemoteStuff/php_scripts/chunked.php
+./RemoteStuff/php_scripts/gettingURL.php
+./RemoteStuff/A Guide to the WordPress REST API | Toptal.pdf
+./RemoteStuff/Rick Cardon Tech LLC.webloc
+./RemoteStuff/VeeamDiagram.png
+./RemoteStuff/backbox-4.5.1-i386.iso
+./RemoteStuff/dhcp_admin_script_update.py
+./RemoteStuff/test_file.txt
+[root@mint ~]# ping www.google.com
+</pre>
+<p>As seen above, all the files were simply extracted into the containing directory within our current working directory.</p>
+<pre class="result notranslate">
+[root@centos ~]# ls -l 
+total 2262872 
+-rw-------.   1   root   root       1752   Feb   1   19:52   anaconda-ks.cfg 
+drwxr-xr-x. 137   root   root       8192   Mar   9   04:42   etc_baks 
+-rw-r--r--.   1   root   root       1800   Feb   2   03:14   initial-setup-ks.cfg 
+drwxr-xr-x.   6   rdc    rdc        4096   Mar  10   22:20   RemoteStuff 
+-rw-r--r--.   1   root   root 2317140451   Mar  12   07:12   RemoteStuff.tgz 
+-rw-r--r--.   1   root   root       9446   Feb  25   05:09   ssl.conf [root@centos ~]#
+</pre>
+<h3>Use gzip to Compress File Backups</h3>
+<p>As noted earlier, we can use either bzip2 or gzip from tar with the <b>-j</b> or <b>-z</b> command line switches. We can also use gzip to compress individual files. However, using bzip or gzip alone does not offer as many features as when combined with <i>tar</i>.</p>
+<p>When using <i>gzip</i>, the default action is to remove the original files, replacing each with a compressed version adding the .gz extension.</p>
+<p>Some common command line switches for gzip are &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:15%">Switch</th>
+<th style="text-align:center;">Action</th>
+</tr>
+<tr>
+<td style="text-align:center;">-c</td>
+<td>Keeps files after placing into the archive</td>
+</tr>
+<tr>
+<td style="text-align:center;">-l</td>
+<td>Get statistics for the compressed archive</td>
+</tr>
+<tr>
+<td style="text-align:center;">-r</td>
+<td>Recursively compresses files in the directories</td>
+</tr>
+<tr>
+<td style="text-align:center;">-1 thru 9</td>
+<td>Specifies the compression level on a scale of 1 thru 9</td>
+</tr>
+</table>
+<p><i>gzip</i> more or less works on a file-by-file basis and not on an archive basis like some Windows O/S zip utilities. The main reason for this is that <i>tar</i> already provides advanced archiving features. <i>gzip</i> is designed to provide only a compression mechanism.</p>
+<p>Hence, when thinking of <i>gzip</i>, think of a single file. When thinking of multiple files, think of <i>tar</i> archives. Let's now explore this with our previous <i>tar</i> archive.</p>
+<p><b>Note</b> &minus; Seasoned Linux professionals will often refer to a tarred archive as a tarball.</p>
+<p>Let's make another <i>tar</i> archive from our <i>rsync</i> backup.</p>
+<pre class="result notranslate">
+[root@centos Documents]# tar -cvf RemoteStuff.tar ./RemoteStuff/
+[root@centos Documents]# ls
+RemoteStuff.tar RemoteStuff/
+</pre>
+<p>For demonstration purposes, let's <i>gzip</i> the newly created tarball, and tell <i>gzip</i> to keep the old file. By default, without the <i>-c</i> option, gzip will replace the entire tar archive with a <i>.gz</i> file.</p>
+<pre class="result notranslate">
+[root@centos Documents]# gzip -c RemoteStuff.tar &gt; RemoteStuff.tar.gz
+[root@centos Documents]# ls
+RemoteStuff  RemoteStuff.tar  RemoteStuff.tar.gz
+We now have our original directory, our tarred directory and finally our gziped tarball.
+</pre>
+<p>Let's try to test the <i>-l</i> switch with <i>gzip</i>.</p>
+<pre class="result notranslate">
+[root@centos Documents]# gzip -l RemoteStuff.tar.gz  
+     compressed        uncompressed        ratio uncompressed_name 
+     2317140467          2326661120        0.4% RemoteStuff.tar
+     
+[root@centos Documents]#
+</pre>
+<p>To demonstrate how <i>gzip</i> differs from Windows Zip Utilities, let's run gzip on a folder of text files.</p>
+<pre class="result notranslate">
+[root@centos Documents]# ls text_files/
+ file1.txt  file2.txt  file3.txt  file4.txt  file5.txt
+[root@centos Documents]#
+</pre>
+<p>Now let's use the -r option to recursively compress all the text files in the directory.</p>
+<pre class="result notranslate">
+[root@centos Documents]# gzip -9 -r text_files/
+
+[root@centos Documents]# ls ./text_files/
+file1.txt.gz  file2.txt.gz  file3.txt.gz  file4.txt.gz  file5.txt.gz
+ 
+[root@centos Documents]#
+</pre>
+<p>See? Not what some may have anticipated. All the original text files were removed and each was compressed individually. Because of this behavior, it is best to think of <i>gzip</i> alone when needing to work in single files.</p>
+<p>Working with <i>tarballs</i>, let's extract our <i>rsynced</i> tarball into a new directory.</p>
+<pre class="result notranslate">
+[root@centos Documents]# tar -C /tmp -zxvf RemoteStuff.tar.gz
+./RemoteStuff/
+./RemoteStuff/.DS_Store
+./RemoteStuff/DDWRT/
+./RemoteStuff/DDWRT/.DS_Store
+./RemoteStuff/DDWRT/ddwrt-linksys-wrt1200acv2-webflash.bin
+./RemoteStuff/DDWRT/ddwrt_mod_notes.docx
+./RemoteStuff/DDWRT/factory-to-ddwrt.bin
+./RemoteStuff/open_ldap_config_notes/
+./RemoteStuff/open_ldap_config_notes/ldap_directory_a.png
+./RemoteStuff/open_ldap_config_notes/open_ldap_notes.txt
+./RemoteStuff/perl_scripts/
+./RemoteStuff/perl_scripts/mysnmp.pl
+./RemoteStuff/php_scripts/
+./RemoteStuff/php_scripts/chunked.php
+</pre>
+<p>As seen above, we extracted and decompressed our tarball into the /tmp directory.</p>
+<pre class="result notranslate">
+[root@centos Documents]# ls /tmp 
+hsperfdata_root
+RemoteStuff
+</pre>
+<h2>Encrypt TarBall Archives</h2>
+<p>Encrypting tarball archives for storing secure documents that may need to be accessed by other employees of the organization, in case of disaster recovery, can be a tricky concept. There are basically three ways to do this: either use GnuPG, or use openssl, or use a third part utility.</p>
+<p>GnuPG is primarily designed for asymmetric encryption and has an identity-association in mind rather than a passphrase. True, it can be used with symmetrical encryption, but this is not the main strength of GnuPG. Thus, I would discount GnuPG for storing archives with physical security when more people than the original person may need access (like maybe a corporate manager who wants to protect against an Administrator holding all the keys to the kingdom as leverage).</p>
+<p>Openssl like GnuPG can do what we want and ships with CentOS. But again, is not specifically designed to do what we want and encryption has been questioned in the security community.</p>
+<p>Our choice is a utility called <b>7zip</b>. 7zip is a compression utility like <i>gzip</i> but with many more features. Like Gnu Gzip, 7zip and its standards are in the open-source community. We just need to install 7zip from our EHEL Repository (the next chapter will cover installing the Extended Enterprise Repositories in detail).</p>
+<h3>Install 7zip on Centos</h3>
+<p>7zip is a simple install once our EHEL repositories have been loaded and configured in CentOS.</p>
+<pre class="result notranslate">
+[root@centos Documents]# yum -y install p7zip.x86_64 p7zip-plugins.x86_64
+Loaded plugins: fastestmirror, langpacks
+base
+| 3.6 kB  00:00:00
+epel/x86_64/metalink
+|  13 kB  00:00:00
+epel
+| 4.3 kB  00:00:00
+extras
+| 3.4 kB  00:00:00
+updates
+| 3.4 kB  00:00:00
+(1/2): epel/x86_64/updateinfo
+| 756 kB  00:00:04      
+(2/2):
+epel/x86_64/primary_db
+| 4.6 MB  00:00:18
+Loading mirror speeds from cached hostfile
+--&gt; Running transaction check
+---&gt; Package p7zip.x86_64 0:16.02-2.el7 will be installed
+---&gt; Package p7zip-plugins.x86_64 0:16.02-2.el7 will be installed
+--&gt; Finished Dependency Resolution
+Dependencies Resolved
+</pre>
+<p>Simple as that, 7zip is installed and ready be used with 256-bit AES encryption for our tarball archives.</p>
+<p>Now let's use 7z to encrypt our gzipped archive with a password. The syntax for doing so is pretty simple &minus;</p>
+<pre class="result notranslate">
+7z a -p &lt;output filename&gt;&lt;input filename&gt;
+</pre>
+<p>Where, <b>a:</b> add to archive, and <b>-p:</b> encrypt and prompt for passphrase</p>
+<pre class="result notranslate">
+[root@centos Documents]# 7z a -p RemoteStuff.tgz.7z RemoteStuff.tar.gz
+
+7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_US.UTF-8,Utf16=on,HugeFiles=on,64 bits,1 CPU Intel(R)
+Core(TM) i5-4278U CPU @ 2.60GHz (40651),ASM,AES-NI)
+Scanning the drive:
+1 file, 2317140467 bytes (2210 MiB)
+
+Creating archive: RemoteStuff.tgz.7z
+
+Items to compress: 1
+
+Enter password (will not be echoed):
+Verify password (will not be echoed) :
+
+Files read from disk: 1
+Archive size: 2280453410 bytes (2175 MiB)
+Everything is Ok
+[root@centos Documents]# ls
+RemoteStuff  RemoteStuff.tar  RemoteStuff.tar.gz  RemoteStuff.tgz.7z  slapD
+text_files
+
+[root@centos Documents]#
+</pre>
+<p>Now, we have our .7z archive that encrypts the gzipped tarball with 256-bit AES.</p>
+<p><b>Note</b> &minus; 7zip uses AES 256-bit encryption with an SHA-256 hash of the password and counter, repeated up to 512K times for key derivation. This should be secure enough if a complex key is used.</p>
+<p>The process of encrypting and recompressing the archive further can take some time with larger archives.</p>
+<p>7zip is an advanced offering with more features than gzip or bzip2. However, it is not as standard with CentOS or amongst the Linux world. Thus, the other utilities should be used often as possible.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_log_management.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_system_updates.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

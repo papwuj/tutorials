@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Python Pandas - Working with Text Data</title>
+<meta charset="utf-8">
+<meta name="description" content="Python Pandas - Working with Text Data - In this chapter, we will discuss the string operations with our basic Series/Index. In the subsequent chapters, we will learn how to apply these string function"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/python_pandas/python_pandas_working_with_text_data.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#036db0;
+}
+a.demo {
+    background:#036db0;
+}
+li.heading {
+    background:#036db0;
+}
+.course-box{background:#036db0}
+.home-intro-sub p{color:#036db0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/python_pandas/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/python_pandas/images/python-pandas-mini-logo.jpg" alt="Python Pandas Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Python Pandas Tutorial</li>
+<li><a href="/python_pandas/index.htm">Python Pandas - Home</a></li>
+<li><a href="/python_pandas/python_pandas_introduction.htm">Python Pandas - Introduction</a></li>
+<li><a href="/python_pandas/python_pandas_environment_setup.htm">Python Pandas - Environment Setup</a></li>
+<li><a href="/python_pandas/python_pandas_introduction_to_data_structures.htm">Introduction to Data Structures</a></li>
+<li><a href="/python_pandas/python_pandas_series.htm">Python Pandas - Series</a></li>
+<li><a href="/python_pandas/python_pandas_dataframe.htm">Python Pandas - DataFrame</a></li>
+<li><a href="/python_pandas/python_pandas_panel.htm">Python Pandas - Panel</a></li>
+<li><a href="/python_pandas/python_pandas_basic_functionality.htm">Python Pandas - Basic Functionality</a></li>
+<li><a href="/python_pandas/python_pandas_descriptive_statistics.htm">Descriptive Statistics</a></li>
+<li><a href="/python_pandas/python_pandas_function_application.htm">Function Application</a></li>
+<li><a href="/python_pandas/python_pandas_reindexing.htm">Python Pandas - Reindexing</a></li>
+<li><a href="/python_pandas/python_pandas_iteration.htm">Python Pandas - Iteration</a></li>
+<li><a href="/python_pandas/python_pandas_sorting.htm">Python Pandas - Sorting</a></li>
+<li><a href="/python_pandas/python_pandas_working_with_text_data.htm">Working with Text Data</a></li>
+<li><a href="/python_pandas/python_pandas_options_and_customization.htm">Options &amp; Customization</a></li>
+<li><a href="/python_pandas/python_pandas_indexing_and_selecting_data.htm">Indexing &amp; Selecting Data</a></li>
+<li><a href="/python_pandas/python_pandas_statistical_functions.htm">Statistical Functions</a></li>
+<li><a href="/python_pandas/python_pandas_window_functions.htm">Python Pandas - Window Functions</a></li>
+<li><a href="/python_pandas/python_pandas_aggregations.htm">Python Pandas - Aggregations</a></li>
+<li><a href="/python_pandas/python_pandas_missing_data.htm">Python Pandas - Missing Data</a></li>
+<li><a href="/python_pandas/python_pandas_groupby.htm">Python Pandas - GroupBy</a></li>
+<li><a href="/python_pandas/python_pandas_merging_joining.htm">Python Pandas - Merging/Joining</a></li>
+<li><a href="/python_pandas/python_pandas_concatenation.htm">Python Pandas - Concatenation</a></li>
+<li><a href="/python_pandas/python_pandas_date_functionality.htm">Python Pandas - Date Functionality</a></li>
+<li><a href="/python_pandas/python_pandas_timedelta.htm">Python Pandas - Timedelta</a></li>
+<li><a href="/python_pandas/python_pandas_categorical_data.htm">Python Pandas - Categorical Data</a></li>
+<li><a href="/python_pandas/python_pandas_visualization.htm">Python Pandas - Visualization</a></li>
+<li><a href="/python_pandas/python_pandas_io_tool.htm">Python Pandas - IO Tools</a></li>
+<li><a href="/python_pandas/python_pandas_sparse_data.htm">Python Pandas - Sparse Data</a></li>
+<li><a href="/python_pandas/python_pandas_caveats_and_gotchas.htm">Python Pandas - Caveats &amp; Gotchas</a></li>
+<li><a href="/python_pandas/python_pandas_comparison_with_sql.htm">Comparison with SQL</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Python Pandas Useful Resources</li>
+<li><a href="/python_pandas/python_pandas_quick_guide.htm">Python Pandas - Quick Guide</a></li>
+<li><a href="/python_pandas/python_pandas_useful_resources.htm">Python Pandas - Useful Resources</a></li>
+<li><a href="/python_pandas/python_pandas_discussion.htm">Python Pandas - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Python Pandas - Working with Text Data</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/python_pandas/python_pandas_sorting.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/python_pandas/python_pandas_options_and_customization.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, we will discuss the string operations with our basic Series/Index. In the subsequent chapters, we will learn how to apply these string functions on the DataFrame.</p>
+<p>Pandas provides a set of string functions which make it easy to operate on string data. Most importantly, these functions ignore (or exclude) missing/NaN values.</p>
+<p>Almost, all of these methods work with Python string functions (refer: <a rel="nofollow" target="_blank" href="https://docs.python.org/3/library/stdtypes.html#string-methods">https://docs.python.org/3/library/stdtypes.html#string-methods</a>). So, convert the Series Object to String Object and then perform the operation.</p>
+<p>Let us now see how each operation performs.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No</th>
+<th style="text-align:center;">Function &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>lower()</b></p>
+<p>Converts strings in the Series/Index to lower case.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>upper()</b></p>
+<p>Converts strings in the Series/Index to upper case.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>len()</b></p>
+<p>Computes String length().</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>strip()</b></p>
+<p>Helps strip whitespace(including newline) from each string in the Series/index from both the sides.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>split(' ')</b></p>
+<p>Splits each string with the given pattern.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>cat(sep=' ')</b></p>
+<p>Concatenates the series/index elements with given separator.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>get_dummies()</b></p>
+<p>Returns the DataFrame with One-Hot Encoded values.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><b>contains(pattern)</b></p>
+<p>Returns a Boolean value True for each element if the substring contains in the element, else False.</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><b>replace(a,b)</b></p>
+<p>Replaces the value <b>a</b> with the value <b>b</b>.</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td>
+<p><b>repeat(value)</b></p>
+<p>Repeats each element with specified number of times.</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td>
+<p><b>count(pattern)</b></p>
+<p>Returns count of appearance of pattern in each element.</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td>
+<p><b>startswith(pattern)</b></p>
+<p>Returns true if the element in the Series/Index starts with the pattern.</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td>
+<p><b>endswith(pattern)</b></p>
+<p>Returns true if the element in the Series/Index ends with the pattern.</p></td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td>
+<p><b>find(pattern)</b></p>
+<p>Returns the first position of the first occurrence of the pattern.</p></td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td>
+<p><b>findall(pattern)</b></p>
+<p>Returns a list of all occurrence of the pattern.</p></td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td>
+<p><b>swapcase</b></p>
+<p>Swaps the case lower/upper.</p></td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td>
+<p><b>islower()</b></p>
+<p>Checks whether all characters in each string in the Series/Index in lower case or not. Returns Boolean</p></td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td>
+<p><b>isupper()</b></p>
+<p>Checks whether all characters in each string in the Series/Index in upper case or not. Returns Boolean.</p></td>
+</tr>
+<tr>
+<td class="ts">19</td>
+<td>
+<p><b>isnumeric()</b></p>
+<p>Checks whether all characters in each string in the
+Series/Index are numeric. Returns Boolean.</p></td>
+</tr>
+</table>
+<p>Let us now create a Series and see how all the above functions work.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/xImdhb" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+
+s = pd.Series(['Tom', 'William Rick', 'John', 'Alber@t', np.nan, '1234','SteveSmith'])
+
+print s
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0            Tom
+1   William Rick
+2           John
+3        Alber@t
+4            NaN
+5           1234
+6    Steve Smith
+dtype: object
+</pre>
+<h3>lower()</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/X8ltxA" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+
+s = pd.Series(['Tom', 'William Rick', 'John', 'Alber@t', np.nan, '1234','SteveSmith'])
+
+print s.str.lower()
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0            tom
+1   william rick
+2           john
+3        alber@t
+4            NaN
+5           1234
+6    steve smith
+dtype: object
+</pre>
+<h3>upper()</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/Y42pST" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+
+s = pd.Series(['Tom', 'William Rick', 'John', 'Alber@t', np.nan, '1234','SteveSmith'])
+
+print s.str.upper()
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0            TOM
+1   WILLIAM RICK
+2           JOHN
+3        ALBER@T
+4            NaN
+5           1234
+6    STEVE SMITH
+dtype: object
+</pre>
+<h3>len()</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/6SmL4C" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+
+s = pd.Series(['Tom', 'William Rick', 'John', 'Alber@t', np.nan, '1234','SteveSmith'])
+print s.str.len()
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0    3.0
+1   12.0
+2    4.0
+3    7.0
+4    NaN
+5    4.0
+6   10.0
+dtype: float64
+</pre>
+<h3>strip()</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/TSXCMy" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+print s
+print ("After Stripping:")
+print s.str.strip()
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0            Tom
+1   William Rick
+2           John
+3        Alber@t
+dtype: object
+
+After Stripping:
+0            Tom
+1   William Rick
+2           John
+3        Alber@t
+dtype: object
+</pre>
+<h3>split(pattern)</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/bQzFpz" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+print s
+print ("Split Pattern:")
+print s.str.split(' ')
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0            Tom
+1   William Rick
+2           John
+3        Alber@t
+dtype: object
+
+Split Pattern:
+0   [Tom, , , , , , , , , , ]
+1   [, , , , , William, Rick]
+2   [John]
+3   [Alber@t]
+dtype: object
+</pre>
+<h3>cat(sep=pattern)</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/uwVdKe" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+
+print s.str.cat(sep='_')
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+Tom _ William Rick_John_Alber@t
+</pre>
+<h3>get_dummies()</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/wZ8JXV" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+
+print s.str.get_dummies()
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+   William Rick   Alber@t   John   Tom
+0             0         0      0     1
+1             1         0      0     0
+2             0         0      1     0
+3             0         1      0     0
+</pre>
+<h3>contains ()</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/OZOF4o" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+
+print s.str.contains(' ')
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0   True
+1   True
+2   False
+3   False
+dtype: bool
+</pre>
+<h3>replace(a,b)</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/8imdSG" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+print s
+print ("After replacing @ with $:")
+print s.str.replace('@','$')
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0   Tom
+1   William Rick
+2   John
+3   Alber@t
+dtype: object
+
+After replacing @ with $:
+0   Tom
+1   William Rick
+2   John
+3   Alber$t
+dtype: object
+</pre>
+<h3>repeat(value)</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/5ORmzQ" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+
+print s.str.repeat(2)
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0   Tom            Tom
+1   William Rick   William Rick
+2                  JohnJohn
+3                  Alber@tAlber@t
+dtype: object
+</pre>
+<h3>count(pattern)</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/L0z9Mc" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+ 
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+
+print ("The number of 'm's in each string:")
+print s.str.count('m')
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+The number of 'm's in each string:
+0    1
+1    1
+2    0
+3    0
+</pre>
+<h3>startswith(pattern)</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/zfKtcw" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+
+print ("Strings that start with 'T':")
+print s.str. startswith ('T')
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0  True
+1  False
+2  False
+3  False
+dtype: bool
+</pre>
+<h3>endswith(pattern)</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/SlYFmD" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+print ("Strings that end with 't':")
+print s.str.endswith('t')
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+Strings that end with 't':
+0  False
+1  False
+2  False
+3  True
+dtype: bool
+</pre>
+<h3>find(pattern)</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/4O9VNo" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+
+print s.str.find('e')
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0  -1
+1  -1
+2  -1
+3   3
+dtype: int64
+</pre>
+<p>"-1" indicates that there no such pattern available in the element.</p>
+<h3>findall(pattern)</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/i0Y1y0" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+s = pd.Series(['Tom ', ' William Rick', 'John', 'Alber@t'])
+
+print s.str.findall('e')
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0 []
+1 []
+2 []
+3 [e]
+dtype: object
+</pre>
+<p>Null list([ ]) indicates that there is no such pattern available in the element.</p>
+<h3>swapcase()</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/4dpAFQ" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+s = pd.Series(['Tom', 'William Rick', 'John', 'Alber@t'])
+print s.str.swapcase()
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0  tOM
+1  wILLIAM rICK
+2  jOHN
+3  aLBER@T
+dtype: object
+</pre>
+<h3>islower()</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/wML4aC" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+s = pd.Series(['Tom', 'William Rick', 'John', 'Alber@t'])
+print s.str.islower()
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0  False
+1  False
+2  False
+3  False
+dtype: bool
+</pre>
+<h3>isupper()</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/waTnX1" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+s = pd.Series(['Tom', 'William Rick', 'John', 'Alber@t'])
+
+print s.str.isupper()
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0  False
+1  False
+2  False
+3  False
+dtype: bool
+</pre>
+<h3>isnumeric()</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/OgPrz8" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+s = pd.Series(['Tom', 'William Rick', 'John', 'Alber@t'])
+
+print s.str.isnumeric()
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0  False
+1  False
+2  False
+3  False
+dtype: bool
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/python_pandas/python_pandas_sorting.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/python_pandas/python_pandas_options_and_customization.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

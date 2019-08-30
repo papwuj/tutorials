@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Espresso Testing Framework - View Matchers</title>
+<meta charset="utf-8">
+<meta name="description" content="Espresso Testing Framework - View Matchers - Espresso framework provides many view matchers. The purpose of the matcher is to match a view using different attributes of the view like Id, Text, and availabi"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/espresso_testing/espresso_testing_view_matchers.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#4a372d;
+}
+a.demo {
+    background:#4a372d;
+}
+li.heading {
+    background:#4a372d;
+}
+.course-box{background:#4a372d}
+.home-intro-sub p{color:#4a372d}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/espresso_testing/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/espresso_testing/images/espresso-testing-framework-mini-logo.jpg" alt="Espresso Testing Framework Tutorial" />
+</div>
+<ul class="toc chapters" >
+<li class="heading">Espresso Testing Framework Tutorial</li>
+<li><a href="/espresso_testing/index.htm">Espresso Testing - Home</a></li>
+<li><a href="/espresso_testing/espresso_testing_introduction.htm">Introduction</a></li>
+<li><a href="/espresso_testing/espresso_testing_setup_instructions.htm">Setup Instructions</a></li>
+<li><a href="/espresso_testing/espresso_testing_running_tests_in_android_studio.htm">Running Tests In Android Studio</a></li>
+<li><a href="/espresso_testing/espresso_testing_overview_of_junit.htm">Overview of JUnit</a></li>
+<li><a href="/espresso_testing/espresso_testing_architecture.htm">Architecture</a></li>
+<li><a href="/espresso_testing/espresso_testing_view_matchers.htm">View Matchers</a></li>
+<li><a href="/espresso_testing/espresso_testing_custom_view_matchers.htm">Custom View Matchers</a></li>
+<li><a href="/espresso_testing/espresso_testing_view_assertions.htm">View Assertions</a></li>
+<li><a href="/espresso_testing/espresso_testing_view_actions.htm">View Actions</a></li>
+<li><a href="/espresso_testing/espresso_testing_adapterview.htm">Testing AdapterView</a></li>
+<li><a href="/espresso_testing/espresso_testing_webview.htm">Testing WebView</a></li>
+<li><a href="/espresso_testing/espresso_testing_asynchronous_operations.htm">Testing Asynchronous Operations</a></li>
+<li><a href="/espresso_testing/espresso_testing_intents.htm">Testing Intents</a></li>
+<li><a href="/espresso_testing/espresso_testing_ui_for_multiple_application.htm">Testing UI for Multiple Application</a></li>
+<li><a href="/espresso_testing/espresso_testing_test_recorder.htm">Test Recorder</a></li>
+<li><a href="/espresso_testing/espresso_testing_ui_performance.htm">Testing UI Performance</a></li>
+<li><a href="/espresso_testing/espresso_testing_accessibility.htm">Testing Accessibility</a></li>
+</ul>
+<ul class="toc chapters" >
+<li class="heading">Espresso Testing Resources</li>
+<li><a href="/espresso_testing/espresso_testing_quick_guide.htm">Espresso Testing - Quick Guide</a></li>
+<li><a href="/espresso_testing/espresso_testing_useful_resources.htm">Espresso Testing - Useful Resources</a></li>
+<li><a href="/espresso_testing/espresso_testing_discussion.htm">Espresso Testing - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Espresso Testing Framework - View Matchers</h1>
+<hr/>
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/espresso_testing/espresso_testing_architecture.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/espresso_testing/espresso_testing_custom_view_matchers.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="mui-container-fluid button-borders">
+</div>
+<div class="clearer"></div>
+<p>Espresso framework provides many view matchers. The purpose of the matcher is to match a view using different attributes of the view like Id, Text, and availability of child view. Each matcher matches a particular attributes of the view and applies to particular type of view. For example, <i>withId</i> matcher matches the <i>Id</i> property of the view and applies to all view, whereas withText matcher matches the <i>Text</i> property of the view and applies to <i>TextView</i> only.</p>
+<p>In this chapter, let us learn the different matchers provided by espresso testing framework as well as learn the <i>Hamcrest</i> library upon which the espresso matchers are built.</p>
+<h2>Hamcrest Library</h2>
+<p><i>Hamcrest</i> library is an important library in the scope of espresso testing framework. <i>Hamcrest</i> is itself a framework for writing matcher objects. Espresso framework extensively uses the <i>Hamcrest</i> library and extend it whenever necessary to provide simple and extendable matchers.</p>
+<p><i>Hamcrest</i> provides a simple function <i>assertThat</i> and a collection of matchers to assert any objects. <i>assertThat</i> has three arguments and they are as shown below &minus;</p>
+<ul class="list">
+<li><p>String (description of the test, optional)</p></li>
+<li><p>Object (actual)</p></li>
+<li><p>Matcher (expected)</p></li>
+</ul>
+<p>Let us write a simple example to test whether a list object has expected value.</p>
+<pre class="prettyprint notranslate">
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.MatcherAssert.assertThat;
+@Test
+public void list_hasValue() {
+   ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
+   list.add("John");
+   assertThat("Is list has John?", list, hasItem("John"));
+}
+</pre>
+<p>Here, <i>hasItem</i> returns a matcher, which checks whether the actual list has specified value as one of the item.</p>
+<p><i>Hamcrest</i> has a lot of built-in matchers and also options to create new matchers. Some of the important built-in matchers useful in espresso testing framework are as follows &minus;</p>
+<h3>anything - always matchers</h3>
+<p>Logical based matchers</p>
+<ul class="list">
+<li><p><b>allOf</b> &minus; accept any number of matchers and matches only if all matchers are succeeded.</p></li>
+<li><p><b>anyOf</b> &minus; accept any number of matchers and matches if any one matcher succeeded.</p></li>
+<li><p><b>not</b> &minus; accept one matcher and matches only if the matcher failed and vice versa.</p></li>
+</ul>
+<h3>Text based matchers</h3>
+<ul class="list">
+<li><p><b>equalToIgnoringCase</b> &minus; used to test whether the actual input equals the expected string ignoring case.</p></li>
+<li><p><b>equalToIgnoringWhiteSpace</b> &minus; used to test whether the actual input equals the specified string ignoring case and white spaces.</p></li>
+<li><p><b>containsString</b> &minus; used to test whether the actual input contains specified string.</p></li>
+<li><p><b>endsWith</b> &minus; used to test whether the actual input starts with specified string.</p></li>
+<li><p><b>startsWith</b> &minus; used to test whether actual the input ends with specified string.</p></li>
+</ul>
+<h3>Number based matchers</h3>
+<ul class="list">
+<li><p><b>closeTo</b> &minus; used to test whether the actual input is close to the expected number.</p></li>
+<li><p><b>greaterThan</b> &minus; used to test whether the actual input is greater than the expected number.</p></li>
+<li><p><b>greaterThanOrEqualTo</b> &minus; used to test whether the actual input is greater than or equal to the expected number.</p></li>
+<li><p><b>lessThan</b> &minus; used to test whether the actual input is less than the expected number.</p></li>
+<li><p><b>lessThanOrEqualTo</b> &minus; used to test whether the actual input is less than or equal to the expected number.</p></li>
+</ul>
+<h3>Object based matchers</h3>
+<ul class="list">
+<li><p><b>equalTo</b> &minus; used to test whether the actual input is equals to the expected object</p></li>
+<li><p><b>hasToString</b> &minus; used to test whether the actual input has toString method.</p></li>
+<li><p><b>instanceOf</b> &minus; used to test whether the actual input is the instance of expected class.</p></li>
+<li><p><b>isCompatibleType</b> &minus; used to test whether the actual input is compatible with the expected type.</p></li>
+<li><p><b>notNullValue</b> &minus; used to test whether the actual input is not null.</p></li>
+<li><p><b>sameInstance</b> &minus; used to test whether the actual input and expected are of same instance.</p></li>
+<li><p><b>hasProperty</b> &minus; used to test whether the actual input has the expected property</p></li>
+</ul>
+<h3>is &minus; Sugar or short cut for <i>equalTo</i></h3>
+<h2>Matchers</h2>
+<p>Espresso provides the onView() method to match and find the views. It accepts view matchers and returns ViewInteraction object to interact with the matched view. The frequently used list of view matchers are described below &minus;</p>
+<h3>withId()</h3>
+<p><i>withId()</i> accepts an argument of type int and the argument refers the id of the view. It returns a matcher, which matches the view using the id of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withId(R.id.testView))
+</pre>
+<h3>withText()</h3>
+<p><i>withText()</i> accepts an argument of type <i>string</i> and the argument refers the value of the view’s text property. It returns a matcher, which matches the view using the text value of the view. It applies to <i>TextView</i> only. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withText("Hello World!"))
+</pre>
+<h3>withContentDescription()</h3>
+<p><i>withContentDescription()</i> accepts an argument of type <i>string</i> and the argument refers the value of the view’s content description property. It returns a matcher, which matches the view using the description of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withContentDescription("blah"))
+</pre>
+<p>We can also pass the resource id of the text value instead of the text itself.</p>
+<pre class="result notranslate">
+onView(withContentDescription(R.id.res_id_blah))
+</pre>
+<h3>hasContentDescription()</h3>
+<p><i>hasContentDescription()</i> has no argument. It returns a matcher, which matches the view that has any content description. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), hasContentDescription()))
+</pre>
+<h3>withTagKey()</h3>
+<p><i>withTagKey()</i> accepts an argument of type <i>string</i> and the argument refers the view’s tag key. It returns a matcher, which matches the view using its tag key. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withTagKey("blah"))
+</pre>
+<p>We can also pass the resource id of the tag name instead of the tag name itself.</p>
+<pre class="result notranslate">
+onView(withTagKey(R.id.res_id_blah))
+</pre>
+<h3>withTagValue()</h3>
+<p><i>withTagValue()</i> accepts an argument of type Matcher &lt;Object&gt; and the argument refers the view’s tag value. It returns a matcher, which matches the view using its tag value. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withTagValue(is((Object) "blah")))
+</pre>
+<p>Here, <i>is</i> is Hamcrest matcher.</p>
+<h3>withClassName()</h3>
+<p><i>withClassName()</i> accepts an argument of type Matcher&lt;String&gt; and the argument refers the view’s class name value. It returns a matcher, which matches the view using its class name. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withClassName(endsWith("EditText")))
+</pre>
+<p>Here, <i>endsWith</i> is Hamcrest matcher and return Matcher&lt;String&gt;</p>
+<h3>withHint()</h3>
+<p><i>withHint()</i> accepts an argument of type Matcher&lt;String&gt; and the argument refers the view’s hint value. It returns a matcher, which matches the view using the hint of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withClassName(endsWith("Enter name")))
+</pre>
+<h3>withInputType()</h3>
+<p><i>withInputType()</i> accepts an argument of type <i>int</i> and the argument refers the input type of the view. It returns a matcher, which matches the view using its input type. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withInputType(TYPE_CLASS_DATETIME))
+</pre>
+<p>Here, <i>TYPE_CLASS_DATETIME</i> refers edit view supporting dates and times.</p>
+<h3>withResourceName()</h3>
+<p><i>withResourceName()</i> accepts an argument of type Matcher&lt;String&gt; and the argument refers the view’s class name value. It returns a matcher, which matches the view using resource name of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withResourceName(endsWith("res_name")))
+</pre>
+<p>It accepts string argument as well. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withResourceName("my_res_name"))
+</pre>
+<h3>withAlpha()</h3>
+<p><i>withAlpha()</i> accepts an argument of type <i>float</i> and the argument refers the alpha value of the view. It returns a matcher, which matches the view using the alpha value of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withAlpha(0.8))
+</pre>
+<h3>withEffectiveVisibility()</h3>
+<p><i>withEffectiveVisibility()</i> accepts an argument of type <i>ViewMatchers.Visibility</i> and the argument refers the effective visibility of the view. It returns a matcher, which matches the view using the visibility of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withEffectiveVisibility(withEffectiveVisibility.INVISIBLE))
+</pre>
+<h3>withSpinnerText()</h3>
+<p><i>withSpinnerText()</i> accepts an argument of type Matcher&lt;String&gt; and the argument refers the Spinner’s current selected view’s value. It returns a matcher, which matches the the spinner based on it’s selected item’s toString value. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withSpinnerText(endsWith("USA")))
+</pre>
+<p>It accepts string argument or resource id of the string as well. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withResourceName("USA"))
+onView(withResourceName(R.string.res_usa))
+</pre>
+<h3>withSubstring()</h3>
+<p><i>withSubString()</i> is similar to <i>withText()</i> except it helps to test substring of the text value of the view.</p>
+<pre class="result notranslate">
+onView(withSubString("Hello"))
+</pre>
+<h3>hasLinks()</h3>
+<p><i>hasLinks()</i> has no arguments and it returns a matcher, which matches the view having links. It applies to TextView only. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withSubString("Hello"), hasLinks()))
+</pre>
+<p>Here, <i>allOf</i> is a Hamcrest matcher. <i>allOf</i> returns a matcher, which matches all the passed in matchers and here, it is used to match a view as well as check whether the view has links in its text value.</p>
+<h3>hasTextColor()</h3>
+<p><i>hasTextColor()</i> accepts a single argument of type int and the argument refers the resource id of the color. It returns a matcher, which matches the <i>TextView</i> based on its color. It applies to <i>TextView</i> only. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withSubString("Hello"), hasTextColor(R.color.Red)))
+</pre>
+<h3>hasEllipsizedText()</h3>
+<p><i>hasEllipsizedText()</i> has no argument. It returns a matcher, which matches the TextView that has long text and either ellipsized (first.. ten.. last) or cut off (first…). The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_text_view_id), hasEllipsizedText()))
+</pre>
+<h3>hasMultilineText()</h3>
+<p><i>hasMultilineText()</i> has no argument. It returns a matcher, which matches the TextView that has any multi line text. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_test_view_id), hasMultilineText()))
+</pre>
+<h3>hasBackground()</h3>
+<p><i>hasBackground()</i> accepts a single argument of type int and the argument refers the resource id of the background resource. It returns a matcher, which matches the view based on its background resources. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId("image"), hasBackground(R.drawable.your_drawable)))
+</pre>
+<h3>hasErrorText()</h3>
+<p><i>hasErrorText()</i> accepts an argument of type Matcher&lt;String&gt; and the argument refers the view’s (EditText) error string value. It returns a matcher, which matches the view using error string of the view. This applies to <i>EditText</i> only. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.editText_name), hasErrorText(is("name is required"))))
+</pre>
+<p>It accepts string argument as well. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.editText_name), hasErrorText("name is required")))
+</pre>
+<h3>hasImeAction()</h3>
+<p><i>hasImeAction()</i> accepts an argument of type Matcher&lt;Integer&gt; and the argument refers the view’s (EditText) supported input methods. It returns a matcher, which matches the view using supported input method of the view. This applies to <i>EditText</i> only. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.editText_name),
+hasImeAction(is(EditorInfo.IME_ACTION_GO))))
+</pre>
+<p>Here, EditorInfo.IME_ACTION_GO is on of the input methods options. <i>hasImeAction()</i> accepts integer argument as well. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.editText_name),
+hasImeAction(EditorInfo.IME_ACTION_GO)))
+</pre>
+<h3>supportsInputMethods()</h3>
+<p><i>supportsInputMethods()</i> has no argument. It returns a matcher, which matches the view if it supports input methods. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.editText_name), supportsInputMethods()))
+</pre>
+<h3>isRoot()</h3>
+<p><i>isRoot()</i> has no argument. It returns a matcher, which matches the root view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_root_id), isRoot()))
+</pre>
+<h3>isDisplayed()</h3>
+<p><i>isDisplayed()</i> has no argument. It returns a matcher, which matches the view that are currently displayed. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isDisplayed()))
+</pre>
+<h3>isDisplayingAtLeast()</h3>
+<p><i>isDisplayingAtLeast()</i> accepts a single argument of type int. It returns a matcher, which matches the view that are current displayed at least the specified percentage. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isDisplayingAtLeast(75)))
+</pre>
+<h3>isCompletelyDisplayed()</h3>
+<p><i>isCompletelyDisplayed()</i> has no argument. It returns a matcher, which matches the view that are currently displayed completely on the screen. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isCompletelyDisplayed()))
+</pre>
+<h3>isEnabled()</h3>
+<p><i>isEnabled()</i> has no argument. It returns a matcher, which matches the view that is enabled. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isEnabled()))
+</pre>
+<h3>isFocusable()</h3>
+<p><i>isFocusable()</i> has no argument. It returns a matcher, which matches the view that has focus option. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isFocusable()))
+</pre>
+<h3>hasFocus()</h3>
+<p><i>hasFocus()</i> has no argument. It returns a matcher, which matches the view that is currently focused. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), hasFocus()))
+</pre>
+<h3>isClickable()</h3>
+<p><i>isClickable()</i> has no argument. It returns a matcher, which matches the view that is click option. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isClickable()))
+</pre>
+<h3>isSelected()</h3>
+<p><i>isSelected()</i> has no argument. It returns a matcher, which matches the view that is currently selected. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isSelected()))
+</pre>
+<h3>isChecked()</h3>
+<p><i>isChecked()</i> has no argument. It returns a matcher, which matches the view that is of type CompoundButton (or subtype of it) and is in checked state. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isChecked()))
+</pre>
+<h3>isNotChecked()</h3>
+<p><i>isNotChecked()</i> is just opposite to isChecked. The sample code is as *follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isNotChecked()))
+</pre>
+<h3>isJavascriptEnabled()</h3>
+<p><i>isJavascriptEnabled()</i> has no argument. It returns a matcher, which matches the WebView that is evaluating JavaScript. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_webview_id), isJavascriptEnabled()))
+</pre>
+<h3>withParent()</h3>
+<p><i>withParent()</i> accepts one argument of type Matcher&lt;View&gt;. The argument refers a view. It returns a matcher, which matches the view that specified view is parent view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.childView), withParent(withId(R.id.parentView))))
+</pre>
+<h3>hasSibling()</h3>
+<p><i>hasSibling()</i> accepts one argument of type Matcher&gt;View&lt;. The argument refers a view. It returns a matcher, which matches the view that passed-in view is one of its sibling view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(hasSibling(withId(R.id.siblingView)))
+</pre>
+<h3>withChild()</h3>
+<p><i>withChild()</i> accepts one argument of type Matcher&lt;View&gt;. The argument refers a view. It returns a matcher, which matches the view that passed-in view is child view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.parentView), withChild(withId(R.id.childView))))
+</pre>
+<h3>hasChildCount()</h3>
+<p><i>hasChildCount()</i> accepts one argument of type int. The argument refers the child count of a view. It returns a matcher, which matches the view that has exactly the same number of child view as specified in the argument. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(hasChildCount(4))
+</pre>
+<h3>hasMinimumChildCount()</h3>
+<p><i>hasMinimumChildCount()</i> accepts one argument of type int. The argument refers the child count of a view. It returns a matcher, which matches the view that has at least the number of child view as specified in the argument. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(hasMinimumChildCount(4))
+</pre>
+<h3>hasDescendant()</h3>
+<p><i>hasDescendant()</i> accepts one argument of type Matcher&lt;View&gt;. The argument refers a view. It returns a matcher, which matches the view that passed-in view is one of the descendant view in the view hierarchy. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(hasDescendant(withId(R.id.descendantView)))
+</pre>
+<h3>isDescendantOfA()</h3>
+<p><i>isDescendantOfA()</i> accepts one argument of type Matcher&lt;View&gt;. The argument refers a view. It returns a matcher, which matches the view that passed-in view is one of the ancestor view in the view hierarchy. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.myView), isDescendantOfA(withId(R.id.parentView))))
+</pre>
+<div class="mui-container-fluid button-borders">
+</div>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/espresso_testing/espresso_testing_architecture.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/espresso_testing/espresso_testing_custom_view_matchers.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

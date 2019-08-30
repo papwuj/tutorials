@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>SAP HANA Admin - User Provisioning</title>
+<meta charset="utf-8">
+<meta name="description" content="SAP HANA Admin - User Provisioning - SAP HANA user and role management configuration depends on the architecture of your HANA system. If SAP HANA is integrated with BI platform tools and acts as a "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/sap_hana_administration/sap_hana_administration_user_provisioning.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#036db0;
+}
+a.demo {
+    background:#036db0;
+}
+li.heading {
+    background:#036db0;
+}
+.course-box{background:#036db0}
+.home-intro-sub p{color:#036db0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/sap_hana_administration/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/sap_hana_administration/images/sap-hana-administration-mini-logo.jpg" alt="SAP HANA Administration Tutorial" />
+</div>
+<ul class="toc chapters">
+<li><a class="videolink" href="/hana_administration_online_training/index.asp" target="_blank"><img src="/sap_hana_administration/images/sap-hana-admin-video-tutorials.jpg" alt="SAP HANA Administration Video Tutorials" /></a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">SAP HANA Admin Tutorial</li>
+<li><a href="/sap_hana_administration/index.htm">SAP HANA Admin - Home</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_overview.htm">SAP HANA Admin - Overview</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_architecture_overview.htm">Architecture Overview</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_multitenant_database.htm">Multitenant Database</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_multiple_host_systems.htm">Multiple Host Systems</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_tools.htm">Tools</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_cockpit.htm">Cockpit</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_studio.htm">Studio</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_system_management.htm">SAP HANA Admin - System Mngmt</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_multitenant_db_container_management.htm">Multitenant DB Container Mgmt</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_starting_system.htm">Starting a HANA System</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_stopping_system.htm">Stopping a HANA System</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_license_keys.htm">License Keys</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_monitoring_system.htm">Monitoring the HANA System</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_table_management.htm">SAP HANA Admin - Table Mngmt</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_table_partition.htm">SAP HANA Admin - Table Partition</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_table_replication.htm">SAP HANA Admin - Table Replication</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_data_compression.htm">Data Compression</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_solman_integration.htm">Solman Integration</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_lifecycle_management.htm">SAP HANA Admin - Lifecycle Mngmt</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_securing_system.htm">Securing HANA System</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_user_provisioning.htm">User Provisioning</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_authentication_methods.htm">Authentication Methods</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_auditing_activities.htm">Auditing Activities</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_backing_up_system.htm">Backing Up HANA System</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_recovery_system.htm">Recovery HANA System</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_xs_application_service.htm">HANA XS Application Service</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_data_provisioning.htm">Data Provisioning</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_smart_data_access.htm">Smart Data Access</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_new_remote_system_connection.htm">New Remote System Connection</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_integration_with_hadoop.htm">Integration with Hadoop</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_key_commands.htm">Key Commands</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_job_responsibilities.htm">Job Responsibilities</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">SAP HANA Admin Useful Resources</li>
+<li><a href="/sap_hana_administration/sap_hana_administration_quick_guide.htm">SAP HANA Admin - Quick Guide</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_useful_resources.htm">SAP HANA Admin - Useful Resources</a></li>
+<li><a href="/sap_hana_administration/sap_hana_administration_discussion.htm">SAP HANA Admin - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>SAP HANA Admin - User Provisioning</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/sap_hana_administration/sap_hana_administration_securing_system.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/sap_hana_administration/sap_hana_administration_authentication_methods.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>SAP HANA user and role management configuration depends on the architecture of your HANA system. If SAP HANA is integrated with BI platform tools and acts as a reporting database, then the end user and the role are managed in the application server.</p>
+<p>If the end user directly connects to SAP HANA database, then the user and the role in the database layer of HANA system is required for both end users and administrators.</p>
+<p>Every user who wants to work with HANA database must have a database user with necessary privileges. User accessing HANA system can either be a technical user or an end user depending on the access requirement. After successful logon to the system, the user’s authorization to perform the required operation is verified. Executing that operation depends on the privileges that the user has been granted. These privileges can be granted using roles in HANA Security. HANA Studio is one of the powerful tools to manage the user and the roles for HANA database system.</p>
+<h2>User Types</h2>
+<p>User types vary according to the security policies and different privileges assigned to the user profile. User type can be a technical database user or an end user. The user needs access to HANA system for reporting the purpose or for data manipulation.</p>
+<h3>Standard Users</h3>
+<p>Standard users are the users who can create objects in their own Schemas and have Read access in the system Information models. Read access is provided by PUBLIC role, which is assigned to every standard user.</p>
+<img src="/sap_hana_administration/images/standard_users.jpg" alt="Standard Users" />
+<h3>Restricted Users</h3>
+<p>Restricted users are those users who access HANA system with some applications and they don’t have SQL privileges on HANA system. When these users are created they don’t have any access initially.</p>
+<p>If we compare restricted users with Standard users &minus;</p>
+<ul class="list">
+<li><p>Restricted users can’t create objects in HANA database or their own Schemas.</p></li>
+<li><p>They don’t have access to view any data in the database as they don’t have generic Public role added to profile like standard users.</p></li>
+<li><p>They can connect to HANA database only using HTTP/HTTPS.</p></li>
+</ul>
+<h3>HANA Users Administration and Role Management</h3>
+<p>Technical database users are used only for administrative purpose such as creating new objects in the database, assigning privileges to other users, on packages, applications, etc.</p>
+<h3>SAP HANA User Administration Activities</h3>
+<p>Depending on the business needs and the configuration of HANA system, there are different user activities that can be performed using user administration tools such as HANA studio.</p>
+<p>Most common activities include &minus;</p>
+<ul class="list">
+<li>Create users</li>
+<li>Grant roles to users</li>
+<li>Define and create roles</li>
+<li>Delete users</li>
+<li>Reset user passwords</li>
+<li>Reactivate users after too many failed logon attempts</li>
+<li>Deactivate users when it is required</li>
+</ul>
+<h2>Create Users in HANA Studio</h2>
+<p>Only database users with the system privilege ROLE ADMIN are allowed to create users and roles in HANA Studio. To create users and roles in HANA Studio, go to HANA Administrator Console. You will see the security tab in System view.</p>
+<img src="/sap_hana_administration/images/create_users_in_hana_studio.jpg" alt="Create Users in HANA Studio" />
+<p>When you expand the security tab, it gives an option of User and Roles. To create a new user, right-click on the User and go to New User. A new window will open where you define User and User parameters.</p>
+<p>Enter the user name (mandate) and in the Authentication field enter the password. Password is applied while saving password for a new user. You can also choose to create a restricted user.</p>
+<p>The specified role name must not be identical to the name of an existing user or role. The password rules include a minimal password length and a definition of which character types (lower, upper, digit, special characters) have to be part of the password.</p>
+<img src="/sap_hana_administration/images/user.jpg" alt="User" />
+<p>Different authorization methods can be configured such as SAML, X509 certificates, SAP Logon ticket, etc. Users in the database can be authenticated by varying mechanisms &minus;</p>
+<ul class="list">
+<li><p>Internal authentication mechanism using a password.</p></li>
+<li><p>External mechanisms such as Kerberos, SAML, SAP Logon Ticket, SAP Assertion Ticket or X.509.</p></li>
+<li><p>A user can be authenticated by more than one mechanism at a time. However only one password and one principal name for Kerberos can be valid at any one time. One authentication mechanism has to be specified to allow the user to connect and work with the database instance.</p></li>
+</ul>
+<p>It also gives an option to define the validity of the user. You can mention the validity interval by selecting the dates. Validity specification is an optional user parameter.</p>
+<p>There are some users that are by default delivered with the SAP HANA database: SYS, SYSTEM, _SYS_REPO, _SYS_STATISTICS.</p>
+<p>Once this is done, next is to define the privileges for the user profile.</p>
+<h2>Types of Privileges to User Profile</h2>
+<p>There are different types of privileges that can be added to the user profile.</p>
+<h3>Granted Role</h3>
+<p>This is used to add inbuilt sap.hana roles to the user profile or to add custom roles created under Roles tab. Custom roles allow you to define roles as per access requirement and you can add these roles directly to the user profile. This removes the need to remember and add objects to a user profile every time for different access types.</p>
+<img src="/sap_hana_administration/images/grated_role.jpg" alt="Grated Role" />
+<h3>Public Role</h3>
+<p>This is a generic role and is assigned to all database users by default. This role contains read-only access to system views and execute privileges for some procedures. These roles cannot be revoked.</p>
+<img src="/sap_hana_administration/images/public_role.jpg" alt="Public Role" />
+<h3>Modeling</h3>
+<p>It contains all privileges required for using the information modeler in the SAP HANA studio.</p>
+<h3>System Privileges</h3>
+<p>There are different types of System privileges that can be added to a user profile. To add system privileges to a user profile, click on the (+) sign.</p>
+<p>System privileges are used for Backup/Restore, User Administration, Instance start and stop, etc.</p>
+<h3>Content Admin</h3>
+<p>It contains the similar privileges as that in MODELING role, but with the addition that this role is allowed to grant these privileges to other users. It also contains the repository privileges to work with imported objects.</p>
+<img src="/sap_hana_administration/images/content_admin.jpg" alt="Content Admin" />
+<h3>Data Admin</h3>
+<p>This is another type of privilege that is required for adding Data from the objects to the user profile.</p>
+<img src="/sap_hana_administration/images/data_admin.jpg" alt="Data Admin" />
+<p>Following are some common supported System Privileges &minus;</p>
+<p><b>ATTACH DEBUGGER</b> &minus; Authorizes the debugging of a procedure call, called by a different user. Additionally, the DEBUG privilege for the corresponding procedure is needed.</p>
+<p><b>AUDIT ADMIN</b> &minus; Controls the execution of the following auditing-related commands: CREATE AUDIT POLICY, DROP AUDIT POLICY and ALTER AUDIT POLICY and the changes of the auditing configuration. Also allows access to AUDIT_LOG system view.</p>
+<p><b>AUDIT OPERATOR</b> &minus; Authorizes the execution of the following command: ALTER SYSTEM CLEAR AUDIT LOG. Also allows access to AUDIT_LOG system view.</p>
+<p><b>BACKUP ADMIN</b> &minus; Authorizes BACKUP and RECOVERY commands for defining and initiating backup and recovery procedures.</p>
+<p><b>BACKUP OPERATOR</b> &minus; Authorizes the BACKUP command to initiate a backup process.</p>
+<p><b>CATALOG READ</b> &minus; Authorizes the users to have unfiltered read-only access to all system views. Normally, the content of these views is filtered based on the privileges of the accessing user.</p>
+<p><b>CREATE SCHEMA</b> &minus; Authorizes the creation of database schemas using the CREATE SCHEMA command. By default, each user owns one schema. With this privilege, the user is allowed to create additional schemas.</p>
+<p><b>CREATE STRUCTURED PRIVILEGE</b> &minus; Authorizes the creation of Structured Privileges (Analytical Privileges). Only the owner of an Analytical Privilege can further grant or revoke that privilege to other users or roles.</p>
+<p><b>CREDENTIAL ADMIN</b> &minus; Authorizes the credential commands: CREATE/ALTER/DROP CREDENTIAL.</p>
+<p><b>DATA ADMIN</b> &minus; Authorizes reading all data in the system views. It also enables the execution of any Data Definition Language (DDL) commands in the SAP HANA database. A user having this privilege cannot select or change data stored tables for which they do not have access privileges, but they can drop tables or modify table definitions.</p>
+<p><b>DATABASE ADMIN</b> &minus; Authorizes all commands related to databases in a multi-database, such as CREATE, DROP, ALTER, RENAME, BACKUP, RECOVERY.</p>
+<p><b>EXPORT</b> &minus; Authorizes export activity in the database via the EXPORT TABLE command. Note that besides this privilege, the user requires the SELECT privilege on the source tables to be exported.</p>
+<p><b>IMPORT</b> &minus; Authorizes the import activity in the database using the IMPORT commands. Note that besides this privilege, the user requires the INSERT privilege on the target tables to be imported.</p>
+<p><b>INIFILE ADMIN</b> &minus; Authorizes changing of system settings.</p>
+<p><b>LICENSE ADMIN</b> &minus; Authorizes the SET SYSTEM LICENSE command to install a new license.</p>
+<p><b>LOG ADMIN</b> &minus; Authorizes the ALTER SYSTEM LOGGING [ON|OFF] commands to enable or disable the log flush mechanism.</p>
+<p><b>MONITOR ADMIN</b> &minus; Authorizes the ALTER SYSTEM commands for EVENTs.</p>
+<p><b>OPTIMIZER ADMIN</b> &minus; Authorizes the ALTER SYSTEM commands concerning SQL PLAN CACHE and ALTER SYSTEM UPDATE STATISTICS commands, which influence the behavior of the query optimizer.</p>
+<p><b>RESOURCE ADMIN</b> &minus; Authorizes commands concerning system resources. For example, ALTER SYSTEM RECLAIM DATAVOLUME and ALTER SYSTEM RESET MONITORING VIEW. It also authorizes many of the commands available in the Management Console.</p>
+<p><b>ROLE ADMIN</b> &minus; Authorizes the creation and deletion of roles using the CREATE ROLE and DROP ROLE commands. It also authorizes the granting and revocation of roles using the GRANT and REVOKE commands.</p>
+<p>Activated roles, meaning roles whose creator is the pre-defined user _SYS_REPO, can neither be granted to other roles or users nor dropped directly. Users having ROLE ADMIN privilege are also not able to do so. Please check documentation concerning activated objects.</p>
+<p><b>SAVEPOINT ADMIN</b> &minus; Authorizes the execution of a savepoint process using the ALTER SYSTEM SAVEPOINT command.</p>
+<p>Components of the SAP HANA database can create new system privileges. These privileges use the component-name as the first identifier of the system privilege and the componentprivilege-name as the second identifier.</p>
+<h3>Object/SQL Privileges</h3>
+<p>Object privileges are also known as SQL privileges. These privileges are used to allow access to objects like Select, Insert, Update and Delete of tables, Views, or Schemas.</p>
+<img src="/sap_hana_administration/images/object_privileges.jpg" alt="Object Privileges" />
+<p>Following are the types of Object Privileges &minus;</p>
+<ul class="list">
+<li><p>Object privilege on database objects that exist only in runtime.</p></li>
+<li><p>Object privilege on activated objects created in the repository, such as calculation views.</p></li>
+<li><p>Object privilege on schema containing activated objects created in the repository.</p></li>
+<li><p>Object/SQL Privileges are collection of all DDL and DML privileges on database objects.</p></li>
+</ul>
+<p>Following are some commonly supported Object Privileges &minus;</p>
+<p>There are multiple database objects in HANA database, so not all the privileges are applicable to all kinds of database objects.</p>
+<img src="/sap_hana_administration/images/database_objects.jpg" alt="Database Objects" />
+<p>Object Privileges and their applicability on database objects.</p>
+<img src="/sap_hana_administration/images/applicability.jpg" alt="Applicability" />
+<h3>Analytic Privileges in User Profile</h3>
+<p>Sometime it is required that data in the same view shouldn’t be accessible to other users who don’t have any relevant requirement for that data.</p>
+<p>Analytic privileges are used to limit the access on HANA Information Views at the object level. We can apply row and column level security in Analytic Privileges.</p>
+<p>Analytic Privileges are used for &minus;</p>
+<ul class="list">
+<li>Allocation of row and column level security for specific value range</li>
+<li>Allocation of row and column level security for modeling views</li> 
+</ul>
+<img src="/sap_hana_administration/images/analytic_privileges.jpg" alt="Analytic Privileges" />
+<h3>Package Privileges</h3>
+<p>In the SAP HANA repository, you can set package authorizations for a specific user or for a role. Package privileges are used to allow access to data models - Analytic or Calculation views or on to Repository objects. All privileges that are assigned to a repository package are assigned to all sub packages too. You can also mention if the assigned user authorizations can be passed to other users.</p>
+<p>Steps to add package privileges to User profile &minus;</p>
+<ul class="list">
+<li><p><b>Step 1</b> &minus; Click Package privilege tab in HANA studio under User creation &rarr; Choose (+) sign to add one or more packages. Use Ctrl key to select multiple packages.</p></li>
+<li><p><b>Step 2</b> &minus; In the Select Repository Package dialog, use all or part of the package name to locate the repository package that you want to authorize access to.</p></li>
+<li><p><b>Step 3</b> &minus; Select one or more repository packages that you want to authorize access to, the selected packages appear in the Package Privileges tab.</p></li>
+</ul>
+<img src="/sap_hana_administration/images/package_privileges_tab.jpg" alt="Package Privileges Tab" />
+<p>Following grant privileges are used on repository packages to authorize the user to modify the objects &minus;</p>
+<ul class="list">
+<li><p><b>REPO.READ</b> &minus; Read access to the selected package and design-time objects (both native and imported)</p></li>
+<li><p><b>REPO.EDIT_NATIVE_OBJECTS</b> &minus; Authorization to modify objects in packages</p></li>
+<li><p><b>Grantable to Others</b></p></li>
+</ul>
+<p>If you choose ‘Yes’ for this, this allows assigned user authorization to pass to the other users.</p>
+<h3>Application Privileges</h3>
+<p>Application privileges in a user profile used to define authorization for access to HANA XS application. This can be assigned to an individual user or to a group of users. Application privileges can also be used to provide different level of access to the same application such as to provide advanced functions for database administrators and read-only access to normal users.</p>
+<img src="/sap_hana_administration/images/application_privileges.jpg" alt="Application Privileges" />
+<p>To define Application specific privileges in a user profile or to add a group of users, following privileges should be used &minus;</p>
+<ul class="list">
+<li>Application-privileges file (.xsprivileges)</li>
+<li>Application-access file (.xsaccess)</li>
+<li>Role-definition file (&lt;RoleName&gt;.hdbrole)</li>
+</ul>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/sap_hana_administration/sap_hana_administration_securing_system.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/sap_hana_administration/sap_hana_administration_authentication_methods.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

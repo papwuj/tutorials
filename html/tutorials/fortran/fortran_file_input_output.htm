@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Fortran - File Input Output - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Fortran - File Input Output - Fortran allows you to read data from, and write data into files."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/fortran/fortran_file_input_output.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#f18901;
+}
+a.demo {
+    background:#f18901;
+}
+li.heading {
+    background:#f18901;
+}
+.course-box{background:#f18901}
+.home-intro-sub p{color:#f18901}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/fortran/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/fortran/images/fortran-mini-logo.jpg" alt="Fortran Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Fortran Tutorial</li>
+<li><a href="/fortran/index.htm">Fortran - Home</a></li>
+<li><a href="/fortran/fortran_overview.htm">Fortran - Overview</a></li>
+<li><a href="/fortran/fortran_environment_setup.htm">Fortran - Environment Setup</a></li>
+<li><a href="/fortran/fortran_basic_syntax.htm">Fortran - Basic Syntax</a></li>
+<li><a href="/fortran/fortran_data_types.htm">Fortran - Data Types</a></li>
+<li><a href="/fortran/fortran_variables.htm">Fortran - Variables</a></li>
+<li><a href="/fortran/fortran_constants.htm">Fortran - Constants</a></li>
+<li><a href="/fortran/fortran_operators.htm">Fortran - Operators</a></li>
+<li><a href="/fortran/fortran_decisions.htm">Fortran - Decisions</a></li>
+<li><a href="/fortran/fortran_loops.htm">Fortran - Loops</a></li>
+<li><a href="/fortran/fortran_numbers.htm">Fortran - Numbers</a></li>
+<li><a href="/fortran/fortran_characters.htm">Fortran - Characters</a></li>
+<li><a href="/fortran/fortran_strings.htm">Fortran - Strings</a></li>
+<li><a href="/fortran/fortran_arrays.htm">Fortran - Arrays</a></li>
+<li><a href="/fortran/fortran_dynamic_arrays.htm">Fortran - Dynamic Arrays</a></li>
+<li><a href="/fortran/fortran_derived_data_types.htm">Fortran - Derived Data Types</a></li>
+<li><a href="/fortran/fortran_pointers.htm">Fortran - Pointers</a></li>
+<li><a href="/fortran/fortran_basic_input_output.htm">Fortran - Basic Input Output</a></li>
+<li><a href="/fortran/fortran_file_input_output.htm">Fortran - File Input Output</a></li>
+<li><a href="/fortran/fortran_procedures.htm">Fortran - Procedures</a></li>
+<li><a href="/fortran/fortran_modules.htm">Fortran - Modules</a></li>
+<li><a href="/fortran/fortran_intrinsic_functions.htm">Fortran - Intrinsic Functions</a></li>
+<li><a href="/fortran/fortran_numeric_precision.htm">Fortran - Numeric Precision</a></li>
+<li><a href="/fortran/fortran_program_libraries.htm">Fortran - Program Libraries</a></li>
+<li><a href="/fortran/fortran_programming_style.htm">Fortran - Programming Style</a></li>
+<li><a href="/fortran/fortran_debugging_program.htm">Fortran - Debugging Program</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Fortran Resources</li>
+<li><a href="/fortran/fortran_quick_guide.htm">Fortran - Quick Guide</a></li>
+<li><a href="/fortran/fortran_useful_resources.htm">Fortran - Useful Resources</a></li>
+<li><a href="/fortran/fortran_discussion.htm">Fortran - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Fortran - File Input Output</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/fortran/fortran_basic_input_output.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/fortran/fortran_procedures.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Fortran allows you to read data from, and write data into files.</p>
+<p>In the last chapter, you have seen how to read data from, and write data to the terminal. In this chapter you will study file input and output functionalities provided by Fortran.</p>
+<p>You can read and write to one or more files. The OPEN, WRITE, READ and CLOSE statements allow you to achieve this.</p>
+<h2>Opening and Closing Files</h2>
+<p>Before using a file you must open the file. The <b>open</b> command is used to open files for reading or writing. The simplest form of the command is &minus;</p>
+<pre class="result notranslate">
+open (unit = number, file = "name").
+</pre>
+<p>However, the open statement may have a general form &minus;</p>
+<pre class="result notranslate">
+open (list-of-specifiers)
+</pre>
+<p>The following table describes the most commonly used specifiers &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No</th>
+<th style="text-align:center;">Specifier &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>[UNIT=] u</b></p>
+<p>The unit number u could be any number in the range 9-99 and it indicates the file, you may choose any number but every open file in the program must have a unique number</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>IOSTAT= ios</b></p>
+<p>It is the I/O status identifier and should be an integer variable. If the open statement is successful then the ios value returned is zero else a non-zero value.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>ERR = err</b></p>
+<p>It is a label to which the control jumps in case of any error.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>FILE = fname</b></p>
+<p>File name, a character string.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>STATUS = sta</b></p>
+<p>It shows the prior status of the file. A character string and can have one of the three values NEW, OLD or SCRATCH. A scratch file is created and deleted when closed or the program ends.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>ACCESS = acc</b></p>
+<p>It is the file access mode. Can have either of the two values, SEQUENTIAL or DIRECT. The default is SEQUENTIAL.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>FORM = frm</b></p>
+<p>It gives the formatting status of the file. Can have either of the two values FORMATTED or UNFORMATTED. The default is UNFORMATTED</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>RECL = rl</b></p>
+<p>It specifies the length of each record in a direct access file.</p></td>
+</tr>
+</table>
+<p>After the file has been opened, it is accessed by read and write statements. Once done, it should be closed using the <b>close</b> statement.</p>
+<p>The close statement has the following syntax &minus;</p>
+<pre class="result notranslate">
+close ([UNIT = ]u[,IOSTAT = ios,ERR = err,STATUS = sta])
+</pre>
+<p>Please note that the parameters in brackets are optional.</p>
+<p><b>Example</b></p>
+<p>This example demonstrates opening a new file for writing some data into the file.</p>
+<pre class="prettyprint notranslate">
+program outputdata   
+implicit none
+
+   real, dimension(100) :: x, y  
+   real, dimension(100) :: p, q
+   integer :: i  
+   
+   ! data  
+   do i=1,100  
+      x(i) = i * 0.1 
+      y(i) = sin(x(i)) * (1-cos(x(i)/3.0))  
+   end do  
+   
+   ! output data into a file 
+   open(1, file = 'data1.dat', status = 'new')  
+   do i=1,100  
+      write(1,*) x(i), y(i)   
+   end do  
+   
+   close(1) 
+   
+end program outputdata
+</pre>
+<p>When the above code is compiled and executed, it creates the file data1.dat and writes the x and y array values into it. And then closes the file.</p>
+<h3>Reading from and Writing into the File</h3>
+<p>The read and write statements respectively are used for reading from and writing into a file respectively.</p>
+<p>They have the following syntax &minus;</p>
+<pre class="result notranslate">
+read ([UNIT = ]u, [FMT = ]fmt, IOSTAT = ios, ERR = err, END = s)
+write([UNIT = ]u, [FMT = ]fmt, IOSTAT = ios, ERR = err, END = s)
+</pre>
+<p>Most of the specifiers have already been discussed in the above table.</p>
+<p>The END = s specifier is a statement label where the program jumps, when it reaches end-of-file.</p>
+<p><b>Example</b></p>
+<p>This example demonstrates reading from and writing into a file.</p>
+<p>In this program we read from the file, we created in the last example, data1.dat, and display it on screen.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/baX7Tj" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+program outputdata   
+implicit none   
+
+   real, dimension(100) :: x, y  
+   real, dimension(100) :: p, q
+   integer :: i  
+   
+   ! data  
+   do i = 1,100  
+      x(i) = i * 0.1 
+      y(i) = sin(x(i)) * (1-cos(x(i)/3.0))  
+   end do  
+   
+   ! output data into a file 
+   open(1, file = 'data1.dat', status='new')  
+   do i = 1,100  
+      write(1,*) x(i), y(i)   
+   end do  
+   close(1) 
+
+   ! opening the file for reading
+   open (2, file = 'data1.dat', status = 'old')
+
+   do i = 1,100  
+      read(2,*) p(i), q(i)
+   end do 
+   
+   close(2)
+   
+   do i = 1,100  
+      write(*,*) p(i), q(i)
+   end do 
+   
+end program outputdata
+</pre>
+<p>When the above code is compiled and executed, it produces the following result &minus;</p>
+<pre class="result notranslate">
+0.100000001  5.54589933E-05
+0.200000003  4.41325130E-04
+0.300000012  1.47636665E-03
+0.400000006  3.45637114E-03
+0.500000000  6.64328877E-03
+0.600000024  1.12552457E-02
+0.699999988  1.74576249E-02
+0.800000012  2.53552198E-02
+0.900000036  3.49861123E-02
+1.00000000   4.63171229E-02
+1.10000002   5.92407547E-02
+1.20000005   7.35742599E-02
+1.30000007   8.90605897E-02
+1.39999998   0.105371222    
+1.50000000   0.122110792    
+1.60000002   0.138823599    
+1.70000005   0.155002072    
+1.80000007   0.170096487    
+1.89999998   0.183526158    
+2.00000000   0.194692180    
+2.10000014   0.202990443    
+2.20000005   0.207826138    
+2.29999995   0.208628103    
+2.40000010   0.204863414    
+2.50000000   0.196052119    
+2.60000014   0.181780845    
+2.70000005   0.161716297    
+2.79999995   0.135617107    
+2.90000010   0.103344671    
+3.00000000   6.48725405E-02
+3.10000014   2.02930309E-02
+3.20000005  -3.01767997E-02
+3.29999995  -8.61928314E-02
+3.40000010  -0.147283033    
+3.50000000  -0.212848678    
+3.60000014  -0.282169819    
+3.70000005  -0.354410470    
+3.79999995  -0.428629100    
+3.90000010  -0.503789663    
+4.00000000  -0.578774154    
+4.09999990  -0.652400017    
+4.20000029  -0.723436713    
+4.30000019  -0.790623367    
+4.40000010  -0.852691114    
+4.50000000  -0.908382416    
+4.59999990  -0.956472993    
+4.70000029  -0.995793998    
+4.80000019  -1.02525222    
+4.90000010  -1.04385209    
+5.00000000  -1.05071592    
+5.09999990  -1.04510069    
+5.20000029  -1.02641726    
+5.30000019  -0.994243503    
+5.40000010  -0.948338211    
+5.50000000  -0.888650239    
+5.59999990  -0.815326691    
+5.70000029  -0.728716135    
+5.80000019  -0.629372001    
+5.90000010  -0.518047631    
+6.00000000  -0.395693362    
+6.09999990  -0.263447165    
+6.20000029  -0.122622721    
+6.30000019   2.53026206E-02
+6.40000010   0.178709000    
+6.50000000   0.335851669    
+6.59999990   0.494883657    
+6.70000029   0.653881252    
+6.80000019   0.810866773    
+6.90000010   0.963840425    
+7.00000000   1.11080539    
+7.09999990   1.24979746    
+7.20000029   1.37891412    
+7.30000019   1.49633956    
+7.40000010   1.60037732    
+7.50000000   1.68947268    
+7.59999990   1.76223695    
+7.70000029   1.81747139    
+7.80000019   1.85418403    
+7.90000010   1.87160957    
+8.00000000   1.86922085    
+8.10000038   1.84674001    
+8.19999981   1.80414569    
+8.30000019   1.74167395    
+8.40000057   1.65982044    
+8.50000000   1.55933595    
+8.60000038   1.44121361    
+8.69999981   1.30668485    
+8.80000019   1.15719533    
+8.90000057   0.994394958    
+9.00000000   0.820112705    
+9.10000038   0.636327863    
+9.19999981   0.445154816    
+9.30000019   0.248800844    
+9.40000057   4.95488606E-02
+9.50000000  -0.150278628    
+9.60000038  -0.348357052    
+9.69999981  -0.542378068    
+9.80000019  -0.730095863    
+9.90000057  -0.909344316    
+10.0000000  -1.07807255    
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/fortran/fortran_basic_input_output.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/fortran/fortran_procedures.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

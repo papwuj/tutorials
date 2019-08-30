@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Laravel - Request</title>
+<meta charset="utf-8">
+<meta name="description" content="Laravel - Request - In this chapter, you will learn in detail about Requests in Laravel."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/laravel/laravel_request.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#FB503C;
+}
+a.demo {
+    background:#FB503C;
+}
+li.heading {
+    background:#FB503C;
+}
+.course-box{background:#FB503C}
+.home-intro-sub p{color:#FB503C}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/laravel/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/laravel/images/laravel-mini-logo.jpg" alt="Laravel Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Laravel Tutorial</li>
+<li><a href="/laravel/index.htm">Laravel - Home</a></li>
+<li><a href="/laravel/laravel_overview.htm">Laravel - Overview</a></li>
+<li><a href="/laravel/laravel_installation.htm">Laravel - Installation</a></li>
+<li><a href="/laravel/laravel_application_structure.htm">Laravel - Application Structure</a></li>
+<li><a href="/laravel/laravel_configuration.htm">Laravel - Configuration</a></li>
+<li><a href="/laravel/laravel_routing.htm">Laravel - Routing</a></li>
+<li><a href="/laravel/laravel_middleware.htm">Laravel - Middleware</a></li>
+<li><a href="/laravel/laravel_namespaces.htm">Laravel - Namespaces</a></li>
+<li><a href="/laravel/laravel_controllers.htm">Laravel - Controllers</a></li>
+<li><a href="/laravel/laravel_request.htm">Laravel - Request</a></li>
+<li><a href="/laravel/laravel_cookie.htm">Laravel - Cookie</a></li>
+<li><a href="/laravel/laravel_response.htm">Laravel - Response</a></li>
+<li><a href="/laravel/laravel_views.htm">Laravel - Views</a></li>
+<li><a href="/laravel/laravel_blade_templates.htm">Laravel - Blade Templates</a></li>
+<li><a href="/laravel/laravel_redirections.htm">Laravel - Redirections</a></li>
+<li><a href="/laravel/laravel_working_with_database.htm">Laravel - Working With Database</a></li>
+<li><a href="/laravel/laravel_errors_and_logging.htm">Laravel - Errors &amp; Logging</a></li>
+<li><a href="/laravel/laravel_forms.htm">Laravel - Forms</a></li>
+<li><a href="/laravel/laravel_localization.htm">Laravel - Localization</a></li>
+<li><a href="/laravel/laravel_session.htm">Laravel - Session</a></li>
+<li><a href="/laravel/laravel_validation.htm">Laravel - Validation</a></li>
+<li><a href="/laravel/laravel_file_uploading.htm">Laravel - File Uploading</a></li>
+<li><a href="/laravel/laravel_sending_email.htm">Laravel - Sending Email</a></li>
+<li><a href="/laravel/laravel_ajax.htm">Laravel - Ajax</a></li>
+<li><a href="/laravel/laravel_error_handling.htm">Laravel - Error Handling</a></li>
+<li><a href="/laravel/laravel_event_handling.htm">Laravel - Event Handling</a></li>
+<li><a href="/laravel/laravel_facades.htm">Laravel - Facades</a></li>
+<li><a href="/laravel/laravel_contracts.htm">Laravel - Contracts</a></li>
+<li><a href="/laravel/laravel_csrf_protection.htm">Laravel - CSRF Protection</a></li>
+<li><a href="/laravel/laravel_authentication.htm">Laravel - Authentication</a></li>
+<li><a href="/laravel/laravel_authorization.htm">Laravel - Authorization</a></li>
+<li><a href="/laravel/laravel_artisan_console.htm">Laravel - Artisan Console</a></li>
+<li><a href="/laravel/laravel_encryption.htm">Laravel - Encryption</a></li>
+<li><a href="/laravel/laravel_hashing.htm">Laravel - Hashing</a></li>
+<li><a href="/laravel/laravel_understanding_release_process.htm">Understanding Release Process</a></li>
+<li><a href="/laravel/laravel_guest_user_gates.htm">Laravel - Guest User Gates</a></li>
+<li><a href="/laravel/laravel_artisan_commands.htm">Laravel - Artisan Commands</a></li>
+<li><a href="/laravel/laravel_pagination_customizations.htm">Laravel - Pagination Customizations</a></li>
+<li><a href="/laravel/laravel_dump_server.htm">Laravel - Dump Server</a></li>
+<li><a href="/laravel/laravel_action_url.htm">Laravel - Action URL</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Laravel Useful Resources</li>
+<li><a href="/laravel/laravel_quick_guide.htm">Laravel - Quick Guide</a></li>
+<li><a href="/laravel/laravel_useful_resources.htm">Laravel - Useful Resources</a></li>
+<li><a href="/laravel/laravel_discussion.htm">Laravel - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Laravel - Request</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/laravel/laravel_controllers.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/laravel/laravel_cookie.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, you will learn in detail about Requests in Laravel.</p>
+<h2>Retrieving the Request URI</h2>
+<p>The <b>“path”</b> method is used to retrieve the requested URI. The <b>is</b> method is used to retrieve the requested URI which matches the particular pattern specified in the argument of the method. To get the full URL, we can use the <b>url</b> method.</p>
+<h3>Example</h3>
+<p><b>Step 1</b> &minus; Execute the below command to create a new controller called <b>UriController</b>.</p>
+<pre class="result notranslate">
+php artisan make:controller UriController –plain
+</pre>
+<p><b>Step 2</b> &minus; After successful execution of the URL, you will receive the following output &minus;</p>
+<img src="/laravel/images/uricontroller.jpg" alt="UriController" />
+<p><b>Step 3</b> &minus; After creating a controller, add the following code in that file.</p>
+<p><b>app/Http/Controllers/UriController.php</b></p>
+<pre class="prettyprint notranslate">
+&lt;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class UriController extends Controller {
+   
+   public function index(Request $request) {
+      // Usage of path method
+      $path = $request-&gt;path();
+      echo 'Path Method: '.$path;
+      echo '&lt;br&gt;';
+     
+      // Usage of is method
+      $pattern = $request-&gt;is('foo/*');
+      echo 'is Method: '.$pattern;
+      echo '&lt;br&gt;';
+      
+      // Usage of url method
+      $url = $request-&gt;url();
+      echo 'URL method: '.$url;
+   }
+}
+</pre>
+<p><b>Step 4</b> &minus; Add the following line in the <b>app/Http/route.php</b> file.</p>
+<p><b>app/Http/route.php</b></p>
+<pre class="result notranslate">
+Route::get('/foo/bar','UriController@index');
+</pre>
+<p><b>Step 5</b> &minus; Visit the following URL.</p>
+<pre class="result notranslate">
+http://localhost:8000/foo/bar
+</pre>
+<p><b>Step 6</b> &minus; The output will appear as shown in the following image.</p>
+<img src="/laravel/images/path_method.jpg" alt="Path Method" />
+<h2>Retrieving Input</h2>
+<p>The input values can be easily retrieved in Laravel. No matter what method was used <b>“get”</b> or <b>“post”</b>, the Laravel method will retrieve input values for both the methods the same way. There are two ways we can retrieve the input values.</p>
+<ul class="list">
+<li>Using the input() method</li>
+<li>Using the properties of Request instance</li>
+</ul>
+<h3>Using the input() method</h3>
+<p>The <b>input()</b> method takes one argument, the name of the field in form. For example, if the form contains username field then we can access it by the following way.</p>
+<pre class="result notranslate">
+$name = $request-&gt;input('username');
+</pre>
+<h3>Using the properties of Request instance</h3>
+<p>Like the <b>input()</b> method, we can get the username property directly from the request instance.</p>
+<pre class="result notranslate">
+$request-&gt;username
+</pre>
+<h3>Example</h3>
+<p>Observe the following example to understand more about Requests &minus;</p>
+<p><b>Step 1</b> &minus; Create a Registration form, where user can register himself and store the form at <b>resources/views/register.php</b></p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+
+   &lt;head&gt;
+      &lt;title&gt;Form Example&lt;/title&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;form action = "/user/register" method = "post"&gt;
+         &lt;input type = "hidden" name = "_token" value = "&lt;?php echo csrf_token() ?&gt;"&gt;
+      
+         &lt;table&gt;
+            &lt;tr&gt;
+               &lt;td&gt;Name&lt;/td&gt;
+               &lt;td&gt;&lt;input type = "text" name = "name" /&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+               &lt;td&gt;Username&lt;/td&gt;
+               &lt;td&gt;&lt;input type = "text" name = "username" /&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+               &lt;td&gt;Password&lt;/td&gt;
+               &lt;td&gt;&lt;input type = "text" name = "password" /&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+               &lt;td colspan = "2" align = "center"&gt;
+                  &lt;input type = "submit" value = "Register" /&gt;
+               &lt;/td&gt;
+            &lt;/tr&gt;
+         &lt;/table&gt;
+      
+      &lt;/form&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><b>Step 2</b> &minus; Execute the below command to create a <b>UserRegistration</b> controller.</p>
+<pre class="result notranslate">
+php artisan make:controller UserRegistration --plain
+</pre>
+<p><b>Step 3</b> &minus; After successful execution of the above step, you will receive the following output &minus;</p>
+<img src="/laravel/images/userregistration.jpg" alt="UserRegistration" />
+<p><b>Step 4</b> &minus; Copy the following code in</p>
+<p><b>app/Http/Controllers/UserRegistration.php</b> controller.</p>
+<p><b>app/Http/Controllers/UserRegistration.php</b></p>
+<pre class="prettyprint notranslate">
+&lt;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class UserRegistration extends Controller {
+   public function postRegister(Request $request) {
+      //Retrieve the name input field
+      $name = $request-&gt;input('name');
+      echo 'Name: '.$name;
+      echo '&lt;br&gt;';
+      
+      //Retrieve the username input field
+      $username = $request-&gt;username;
+      echo 'Username: '.$username;
+      echo '&lt;br&gt;';
+      
+      //Retrieve the password input field
+      $password = $request-&gt;password;
+      echo 'Password: '.$password;
+   }
+}
+</pre>
+<p><b>Step 5</b> &minus; Add the following line in <b>app/Http/routes.php</b> file.</p>
+<p><b>app/Http/routes.php</b></p>
+<pre class="result notranslate">
+Route::get('/register',function() {
+   return view('register');
+});
+Route::post('/user/register',array('uses'=&gt;'UserRegistration@postRegister'));
+</pre>
+<p><b>Step 6</b> &minus; Visit the following URL and you will see the registration form as shown in the below figure. Type the registration details and click Register and you will see on the second page that we have retrieved and displayed the user registration details.</p>
+<pre class="result notranslate">
+http://localhost:8000/register
+</pre>
+<p><b>Step 7</b> &minus; The output will look something like as shown in below the following images.</p>
+<img src="/laravel/images/registration.jpg" alt="Registration" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/laravel/laravel_controllers.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/laravel/laravel_cookie.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

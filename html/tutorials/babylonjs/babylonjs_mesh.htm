@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>BabylonJS - Mesh</title>
+<meta charset="utf-8">
+<meta name="description" content="BabylonJS - Mesh - In this chapter, we will learn to create different shapes using the mesh builder. We have already learnt how to create shapes in one of our previous chapters."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/babylonjs/babylonjs_mesh.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#3C789A;
+}
+a.demo {
+    background:#3C789A;
+}
+li.heading {
+    background:#3C789A;
+}
+.course-box{background:#3C789A}
+.home-intro-sub p{color:#3C789A}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/babylonjs/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/babylonjs/images/babylonjs-mini-logo.jpg" alt="BabylonJS Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">BabylonJS Tutorial</li>
+<li><a href="/babylonjs/index.htm">BabylonJS - Home</a></li>
+<li><a href="/babylonjs/babylonjs_introduction.htm">BabylonJS - Introduction</a></li>
+<li><a href="/babylonjs/babylonjs_environment_setup.htm">BabylonJS - Environment Setup</a></li>
+<li><a href="/babylonjs/babylonjs_overview.htm">BabylonJS - Overview</a></li>
+<li><a href="/babylonjs/babylonjs_basic_elements.htm">BabylonJS - Basic Elements</a></li>
+<li><a href="/babylonjs/babylonjs_materials.htm">BabylonJS - Materials</a></li>
+<li><a href="/babylonjs/babylonjs_animations.htm">BabylonJS - Animations</a></li>
+<li><a href="/babylonjs/babylonjs_cameras.htm">BabylonJS - Cameras</a></li>
+<li><a href="/babylonjs/babylonjs_lights.htm">BabylonJS - Lights</a></li>
+<li><a href="/babylonjs/babylonjs_parametric_shapes.htm">BabylonJS - Parametric Shapes</a></li>
+<li><a href="/babylonjs/babylonjs_mesh.htm">BabylonJS - Mesh</a></li>
+<li><a href="/babylonjs/babylonjs_vectorposition_and_rotation.htm">VectorPosition and Rotation</a></li>
+<li><a href="/babylonjs/babylonjs_decals.htm">BabylonJS - Decals</a></li>
+<li><a href="/babylonjs/babylonjs_curve3.htm">BabylonJS - Curve3</a></li>
+<li><a href="/babylonjs/babylonjs_dynamic_texture.htm">BabylonJS - Dynamic Texture</a></li>
+<li><a href="/babylonjs/babylonjs_parallax_mapping.htm">BabylonJS - Parallax Mapping</a></li>
+<li><a href="/babylonjs/babylonjs_lens_flares.htm">BabylonJS - Lens Flares</a></li>
+<li><a href="/babylonjs/babylonjs_create_screenshot.htm">BabylonJS - Create ScreenShot</a></li>
+<li><a href="/babylonjs/babylonjs_reflection_probes.htm">BabylonJS - Reflection Probes</a></li>
+<li><a href="/babylonjs/babylonjs_standard_rendering_pipeline.htm">Standard Rendering Pipeline</a></li>
+<li><a href="/babylonjs/babylonjs_shadermaterial.htm">BabylonJS - ShaderMaterial</a></li>
+<li><a href="/babylonjs/babylonjs_bones_and_skeletons.htm">BabylonJS - Bones and Skeletons</a></li>
+<li><a href="/babylonjs/babylonjs_physics_engine.htm">BabylonJS - Physics Engine</a></li>
+<li><a href="/babylonjs/babylonjs_playing_sounds_and_music.htm">BabylonJS - Playing Sounds &amp; Music</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">BabylonJS Useful Resources</li>
+<li><a href="/babylonjs/babylonjs_quick_guide.htm">BabylonJS - Quick Guide</a></li>
+<li><a href="/babylonjs/babylonjs_useful_resources.htm">BabylonJS - Useful Resources</a></li>
+<li><a href="/babylonjs/babylonjs_discussion.htm">BabylonJS - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>BabylonJS - Mesh</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/babylonjs/babylonjs_parametric_shapes.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/babylonjs/babylonjs_vectorposition_and_rotation.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, we will learn to create different shapes using the mesh builder. We have already learnt how to create shapes in one of our previous chapters.</p>
+<p>The difference is that with meshbuilder gives you the flexibility to add color, images to the shapes.</p>
+<h2>CreateBox using MeshBuilder</h2>
+<p>Let us now see how to create box using MeshBuilder.</p>
+<h3>Demo</h3>
+<pre class="prettyprint notranslate">
+&lt;!doctype html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta charset = "utf-8"&gt;
+      &lt;title&gt;BabylonJs - Basic Element-Creating Scene&lt;/title&gt;
+      &lt;script src = "babylon.js"&gt;&lt;/script&gt;
+      &lt;style&gt;
+         canvas {width: 100%; height: 100%;}
+      &lt;/style&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;canvas id = "renderCanvas"&gt;&lt;/canvas&gt;
+      &lt;script type = "text/javascript"&gt;
+         var canvas = document.getElementById("renderCanvas");
+         var engine = new BABYLON.Engine(canvas, true);
+         
+         var createScene  = function() {
+            var scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color3(0, 0, 1);
+            
+            var camera = new BABYLON.ArcRotateCamera("Camera", 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), scene);
+            camera.attachControl(canvas, true);
+
+            var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+            light.intensity = 0.7;
+
+            var pl = new BABYLON.PointLight("pl", BABYLON.Vector3.Zero(), scene);
+            pl.diffuse = new BABYLON.Color3(1, 1, 1);
+            pl.specular = new BABYLON.Color3(1, 1, 1);
+            pl.intensity = 0.8;
+
+            var mat = new BABYLON.StandardMaterial("mat1", scene);
+            mat.alpha = 1.0;
+            mat.diffuseColor = new BABYLON.Color3(0, 1, 0);
+            
+            var texture = new BABYLON.Texture("images/cube.png", scene);
+            mat.diffuseTexture = texture;
+
+            var hSpriteNb =  3;  // 3 sprites per raw
+            var vSpriteNb =  2;  // 2 sprite raws
+
+            var faceUV = new Array(6);
+            for (var i = 0; i &lt; 6; i++) {
+               faceUV[i] = new BABYLON.Vector4(i/hSpriteNb, i/vSpriteNb, (i+1)/hSpriteNb, (i+1)/vSpriteNb);
+            }
+
+            var options = {
+               width: 1.5,
+               height: 1.5,
+               depth: 1.5,
+               faceUV: faceUV
+            };
+
+            var box = BABYLON.MeshBuilder.CreateBox("box", options, scene);
+            box.material = mat;
+
+            scene.registerBeforeRender(function() { 
+               pl.position = camera.position;
+            });
+            return scene;
+         };
+         var scene = createScene();
+         engine.runRenderLoop(function() {
+            scene.render();
+         });
+      &lt;/script&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Output</h3>
+<p>The above line of code generates the following output &minus;</p>
+<img src="/babylonjs/images/meshbuilder_cubebox.jpg" alt="MeshBuilder CubeBox" />
+<p>For the above example, we have used a sprite image as shown below. It has horizontally 3 Colums and vertically 2 rows.</p>
+<img src="/babylonjs/images/cube.jpg" alt="Cube" />
+<p>In this demo, we have used an image called cube.png. The images are stored in images/ folder locally and are also pasted below for reference. Please note cube.png is a sprite image,  a sprite image is a collection of images. We wanted to show the image on a cube so wanted all the sides of the cube together. You can also download similar sprite images of your choice and use in the demo link.</p>
+<p>The createBox builder gives you options for the sizes.</p>
+<p>For example,</p>
+<pre class="result notranslate">
+var box = BABYLON.MeshBuilder.CreateBox("box", options, scene);
+</pre>
+<h3>Demo</h3>
+<pre class="prettyprint notranslate">
+var hSpriteNb =  3;  // 3 sprites per raw ie colums horizontally as shown in the image
+
+var vSpriteNb =  2;  // 2 sprite raws as shown in the image above.
+
+var faceUV = new Array(6); // the cube has 6 sides so creating array for same.
+for (var i = 0; i &lt; 6; i++) {
+   faceUV[i] = new BABYLON.Vector4(i/hSpriteNb, i/vSpriteNb, (i+1)/hSpriteNb, (i+1)/vSpriteNb);
+}
+
+var options = {
+   width: 1.5,
+   height: 1.5,
+   depth: 1.5,
+   faceUV: faceUV
+};
+</pre>
+<p>This is called applying textures to the meshbuilder using the createBox method.We have used the image <b>cube.png</b> which has horizontally 3 colums and vertically 2 rows.The cube or box has 6 sides.</p>
+<p>To apply textures we are using the options parameter.For example,</p>
+<pre class="result notranslate">
+Var box = BABYLON.MeshBuilder.CreateBox ('box', options, scene);
+</pre>
+<p>We have defined an array called faceUV with size as 6 which are the sides of the cube. This array will always have Vector4 elements. Each Vector4(x, y, z, w) will be defined as follows &minus;</p>
+<ul class="list">
+<li>x = Ubottom</li>
+<li>y = Vbottom</li>
+<li>z = Utop</li>
+<li>w = Vtop</li>
+</ul>
+<p>The vectorsare in the range [0, 1]. Ubottom and Vbottom are the 2D coordinates of the bottom left point of where the texture crop starts. Utop, Vtop are the top right points where the texture crop ends.</p>
+<pre class="prettyprint notranslate">
+var hSpriteNb =  3;  // 3 sprites per raw
+var vSpriteNb =  2;  // 2 sprite raws
+
+var faceUV = new Array(6);
+for (var i = 0; i &lt; 6; i++) {
+   faceUV[i] = new BABYLON.Vector4(i/hSpriteNb, i/vSpriteNb, (i+1)/hSpriteNb, (i+1)/vSpriteNb);
+}
+</pre>
+<p>Suppose the default texture, i.e., the image given is applied to all the faces of the box. If you want to change only 1 face or 1 side of the box, you can directly assign the values as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+var hSpriteNb =  3;  // 3 sprites per raw
+var vSpriteNb =  2;  // 2 sprite raws
+
+var faceUV = new Array(6);
+faceUV[4] = new BABYLON.Vector4(0, 0, 1/hSpriteNb, 1/vSpriteNb);
+</pre>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+&lt;!doctype html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta charset = "utf-8"&gt;
+      &lt;title&gt;BabylonJs - Basic Element-Creating Scene&lt;/title&gt;
+      &lt;script src = "babylon.js"&gt;&lt;/script&gt;
+      &lt;style&gt;
+         canvas {width: 100%; height: 100%;}
+      &lt;/style&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;canvas id = "renderCanvas"&gt;&lt;/canvas&gt;
+      &lt;script type = "text/javascript"&gt;
+         var canvas = document.getElementById("renderCanvas");
+         var engine = new BABYLON.Engine(canvas, true);
+         
+         var createScene  = function() {
+            var scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color3(0, 0, 1);
+            
+            var camera = new BABYLON.ArcRotateCamera("Camera", 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), scene);
+            camera.attachControl(canvas, true);
+
+            var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+            light.intensity = 0.7;
+
+            var pl = new BABYLON.PointLight("pl", BABYLON.Vector3.Zero(), scene);
+            pl.diffuse = new BABYLON.Color3(1, 1, 1);
+            pl.specular = new BABYLON.Color3(1, 1, 1);
+            pl.intensity = 0.8;
+
+            var mat = new BABYLON.StandardMaterial("mat1", scene);
+            mat.alpha = 1.0;
+            mat.diffuseColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+            
+            var texture = new BABYLON.Texture("images/3d.png", scene);
+            mat.diffuseTexture = texture;
+
+            var hSpriteNb =  3;  // 3 sprites per raw
+            var vSpriteNb =  2;  // 2 sprite raws
+
+            var faceUV = new Array(6);
+            faceUV[4] = new BABYLON.Vector4(0, 0, 1/hSpriteNb, 1/vSpriteNb);
+
+            var options = {
+               width:3,
+               height:3,
+               depth: 3,
+               faceUV:faceUV
+            };
+
+            var box = BABYLON.MeshBuilder.CreateBox("box", options, scene);
+            box.material = mat;
+
+            scene.registerBeforeRender(function() { 
+               pl.position = camera.position;
+            });
+            return scene;
+         };
+         var scene = createScene();
+         engine.runRenderLoop(function() {
+            scene.render();
+         });
+      &lt;/script&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Output</h3>
+<p>The above line of code generates the following output &minus;</p>
+<img src="/babylonjs/images/textturepahse4.jpg" alt="Textturepahse4" />
+<p>In this demo, we have used an image called 3d.png. The images are stored in images/ folder locally and are also pasted below for reference. Please note 3d.png is a sprite image;  a sprite image is a collection of images. We wanted to show the image on a cube with all the sides of the cube together. You can also download similar sprite images of your choice and use in the demo link.</p>
+<p>Texture used for box &minus; <b>images/3d.png</b></p>
+<img src="/babylonjs/images/3d.jpg" alt="3d" />
+<h2>MeshCylinder</h2>
+<p>In this section, we will see how to create MeshCylinder. </p>
+<p>To create MeshCylinder, you need to use the class BABYLON.MeshBuilder.CreateCylinder.</p>
+<p>The parameters for the class are as follows &minus;</p>
+<pre class="result notranslate">
+var meshcylinder = BABYLON.MeshBuilder.CreateCylinder("meshcylinder", {
+   height: 3,
+   diameter: 35,
+   tessellation: 52
+}, scene);
+</pre>
+<p>The difference between CreateCylinder using mesh and meshbuilder is - you can use options in meshbuilder. Right now we are using height, diameter and tessellation as the options to be passed to the cylinder. We are using standard material with wireframe as the material for this mesh. Check the output in the browser and see the cylinder. You can use similar structure in your game as a wheel rotating in the scene.</p>
+<h3>Demo</h3>
+<pre class="prettyprint notranslate">
+&lt;!doctype html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta charset = "utf-8"&gt;
+      &lt;title&gt;Babylon.js demo - Mesh Builder&lt;/title&gt;
+      &lt;script src = "babylon.js"&gt;&lt;/script&gt;
+      &lt;style&gt;
+         html,body,canvas { margin: 0; padding: 0; width: 100%; height: 100%; font-size: 0; }
+      &lt;/style&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;canvas id = "renderCanvas"&gt;&lt;/canvas&gt;
+      &lt;script type = "text/javascript"&gt;
+         var canvas = document.getElementById("renderCanvas");
+         var engine = new BABYLON.Engine(canvas, true);
+         var createScene  = function() {
+            var scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+            
+            var camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI / 6, 1.3, 40, new BABYLON.Vector3(0, -3, 0), scene);
+            
+            var light = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 0), scene);
+
+            var mat = new BABYLON.StandardMaterial("mat", scene);
+            mat.diffuseColor = new BABYLON.Color3(0.1, .5, 0);
+            mat.specularColor = new BABYLON.Color3(0, 0, 0);
+            mat.wireframe = true;
+
+            var meshcylinder = BABYLON.MeshBuilder.CreateCylinder("meshcylinder", {
+               height: 3,
+               diameter: 35,
+               tessellation: 52
+            }, scene);
+
+            meshcylinder.material = mat;
+            meshcylinder.position = new BABYLON.Vector3(0, 0, 0);
+
+            scene.activeCamera.attachControl(canvas);
+            return scene;
+         };
+         
+         var scene = createScene();
+         engine.runRenderLoop(function() {
+            scene.render();
+         });
+      &lt;/script&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Output</h3>
+<p>The above line of code generates the following output &minus;</p>
+<img src="/babylonjs/images/meshcylinder.jpg" alt="Meshcylinder" />
+<p>A number of shapes created with mesh builder will now be used together in one demo. The shapes covered in the demo link below are listed in subsequent sections.</p>
+<ul class="list">
+<li><p><a href="/babylonjs/babylonjs_mesh_ground.htm">Ground</a></p></li>
+<li><p><a href="/babylonjs/babylonjs_mesh_cone.htm">Cone</a></p></li>
+<li><p><a href="/babylonjs/babylonjs_mesh_plane.htm">Plane</a></p></li>
+<li><p><a href="/babylonjs/babylonjs_mesh_disc.htm">Disc</a></p></li>
+<li><p><a href="/babylonjs/babylonjs_mesh_torus.htm">Torus</a></p></li>
+<li><p><a href="/babylonjs/babylonjs_mesh_polyhedron.htm">Polyhedron</a></p></li>
+<li><p><a href="/babylonjs/babylonjs_mesh_icosphere.htm">IcoSphere</a></p></li>
+</ul>
+<h2>BabylonJS –  Mesh Intersection and Point</h2>
+<p>Mesh Intersection in games is important as you know what needs to be done when 2 objects intersect in a game. The same concept is explained in demo below on the event that needs to be captured when the meshes intersect.</p>
+<p>In the demo given below, we have covered the following two concepts &minus;</p>
+<ul class="list">
+<li>Intersect Mesh</li>
+<li>Intersect Point</li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;!doctype html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta charset = "utf-8"&gt;
+      &lt;title&gt;BabylonJs - Basic Element-Creating Scene&lt;/title&gt;
+      &lt;script src = "babylon.js"&gt;&lt;/script&gt;
+      &lt;style&gt;
+         canvas {width: 100%; height: 100%;}
+      &lt;/style&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;canvas id = "renderCanvas"&gt;&lt;/canvas&gt;
+      &lt;script type = "text/javascript"&gt;
+         var canvas = document.getElementById("renderCanvas");
+         var engine = new BABYLON.Engine(canvas, true);
+         
+         var createScene  = function() {
+            var scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color3(1, 1, 1);
+            
+            var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 1, 0.8, 20, new BABYLON.Vector3(0, 0, 0), scene);
+            camera.attachControl(canvas, true);
+
+            var matcone = new BABYLON.StandardMaterial("mat1", scene);
+            matcone.alpha = 1.0;
+            matcone.diffuseColor = new BABYLON.Color3(0, 0, 0);
+            matcone.wireframe = true;
+
+            var cone = BABYLON.MeshBuilder.CreateCylinder("cone", {height : 10, diameterTop: 10,diameterBottom:10, tessellation: 5}, scene);
+            cone.position= new BABYLON.Vector3(12,1,0);
+            cone.material = matcone;	
+
+            var balloon1 = BABYLON.Mesh.CreateSphere("balloon1",5, 1.0, scene);
+            var balloon2 = BABYLON.Mesh.CreateSphere("balloon2", 5, 1.0, scene);
+            var balloon3 = BABYLON.Mesh.CreateSphere("balloon3", 5, 1.0, scene);
+            
+            balloon1.material = new BABYLON.StandardMaterial("matBallon", scene);
+            balloon2.material = new BABYLON.StandardMaterial("matBallon", scene);
+            balloon3.material = new BABYLON.StandardMaterial("matBallon", scene);
+
+            balloon1.position = new BABYLON.Vector3(4, 2, 0);
+            balloon2.position = new BABYLON.Vector3(5, 1, 0);
+            balloon3.position = new BABYLON.Vector3(7, 0, 0);
+
+            var pointToIntersect = new BABYLON.Vector3(10, 0, 0);
+            var a = 0.01;
+            
+            scene.registerBeforeRender(function () {
+               if (balloon1.intersectsMesh(cone, false)) {
+                  balloon1.material.emissiveColor = new BABYLON.Color3(1, 0, 0);
+               } else {
+                  balloon1.material.emissiveColor = new BABYLON.Color3(0, 1, 0);
+               }
+
+               if (balloon2.intersectsMesh(cone, false)) {
+                  balloon2.material.emissiveColor = new BABYLON.Color3(1, 0, 0);
+               } else {
+                  balloon2.material.emissiveColor = new BABYLON.Color3(0, 1, 0);
+               }
+
+               if (balloon3.intersectsMesh(cone, false)) {
+                  balloon3.material.emissiveColor = new BABYLON.Color3(1, 0, 0);
+               } else {
+                  balloon3.material.emissiveColor = new BABYLON.Color3(0, 1, 0);
+               }
+
+               if (balloon3.intersectsPoint(pointToIntersect)) {
+                  balloon3.material.emissiveColor = new BABYLON.Color3(0, 0, 0);
+               }
+
+               a += 0.01;
+               balloon1.position.x += Math.cos(a) / 10;
+               balloon2.position.x += Math.cos(a) / 10;
+               balloon3.position.x += Math.cos(a) / 10;
+            });
+            return scene;
+         };
+         var scene = createScene();
+         engine.runRenderLoop(function() {
+            scene.render();
+         });
+      &lt;/script&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Output</h3>
+<p>The above code generates the following output &minus;</p>
+<img src="/babylonjs/images/mesh_intersection_point.jpg" alt="Mesh Intersection Point" />
+<h3>Explanation</h3>
+<p>With the above code, we created a cylinder with wireframe as true. We created 3 spheres. The original color of the sphere is green.</p>
+<p>In the <b>scene.registerBeforeRender</b> function, we will change the color of the sphere based on intersection with the mesh which is the cylinder here.</p>
+<p>Consider the following code in <b>registerBeforeRender</b> &minus;</p>
+<pre class="prettyprint notranslate">
+if (balloon1.intersectsMesh(cone, false)) {
+   balloon1.material.emissiveColor = new BABYLON.Color3(1, 0, 0);
+} else {
+   balloon1.material.emissiveColor = new BABYLON.Color3(0, 1, 0);
+}
+</pre>
+<p><b>intersectsMesh</b> gives true or false if it intersects with the mesh given in the parameter passed to it.</p>
+<p>For example,</p>
+<pre class="result notranslate">
+balloon1.intersectsMesh(cone, false); //cone refers to the cylinder mesh here.
+</pre>
+<p>The color of the sphere is changed to red it intersects with the cylinder; otherwise, it is green.</p>
+<p>Following code is used for the point to intersect &minus;</p>
+<pre class="result notranslate">
+var pointToIntersect = new BABYLON.Vector3(10, 0, 0);
+if (balloon3.intersectsPoint(pointToIntersect)) {
+   balloon3.material.emissiveColor = new BABYLON.Color3(0, 0, 0);
+}
+</pre>
+<p>Here, <b>pointtoIntersect</b> variable is the position vector which is 10 on x-axis. If the sphere crosses the point of intersect, the color of the sphere is changed to black.</p>
+<h2>BabylonJS – MeshPicking Collision</h2>
+<p>Picking collision actually gives you the coordinates and you can position your mesh in that place. The object is picked by the mouse and you can just place where you click with your mouse.Consider you need to place a mesh (object) at a place where the user clicks the mouse; so, with the help of picking collision it helps you with the co-ordinates at the position of the place clicked.</p>
+<h3>Demo</h3>
+<pre class="prettyprint notranslate">
+&lt;!doctype html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta charset = "utf-8"&gt;
+      &lt;title&gt;BabylonJs - Basic Element-Creating Scene&lt;/title&gt;
+      &lt;script src = "babylon.js"&gt;&lt;/script&gt;
+      &lt;style&gt;
+         canvas {width: 100%; height: 100%;}
+      &lt;/style&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;canvas id = "renderCanvas"&gt;&lt;/canvas&gt;
+      &lt;script type = "text/javascript"&gt;
+         var canvas = document.getElementById("renderCanvas");
+         var engine = new BABYLON.Engine(canvas, true);
+         var createScene  = function() {
+            var scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color3(1, 1, 1);
+
+            // setup environment
+            var light0 = new BABYLON.PointLight("Omni", new BABYLON.Vector3(0, 10, 20), scene);
+            var freeCamera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 0, -30), scene);
+
+            var balloon1 = BABYLON.Mesh.CreateSphere("balloon1",5, 1.0, scene);
+            var balloon2 = BABYLON.Mesh.CreateSphere("balloon2", 5, 1.0, scene);
+            balloon1.material = new BABYLON.StandardMaterial("matBallon", scene);
+            balloon2.material = new BABYLON.StandardMaterial("matBallon", scene);
+
+            balloon1.position = new BABYLON.Vector3(0, 0, -0.1);
+            balloon2.position = new BABYLON.Vector3(0, 0, -0.1);
+            balloon1.material.emissiveColor = new BABYLON.Color3(1, 0, 0);
+            balloon2.material.emissiveColor = new BABYLON.Color3(0, 0, 1);
+
+            //Wall
+            var wall = BABYLON.Mesh.CreatePlane("wall", 30.0, scene);
+            wall.material = new BABYLON.StandardMaterial("wallMat", scene);
+            wall.material.emissiveColor = new BABYLON.Color3(0.5, 1, 0.5);
+
+            //When pointer down event is raised
+
+            scene.onPointerDown = function (evt, pickResult) {
+               // if the click hits the ground object, we change the impact position
+               if (pickResult.hit) {
+                  var dateValue = new Date();
+                  var secondNumber = dateValue.getSeconds();
+                  if (secondNumber % 2 == 0) {
+                  balloon1.position.x = pickResult.pickedPoint.x;
+                  balloon1.position.y = pickResult.pickedPoint.y;
+                  } else {
+                     balloon2.position.x = pickResult.pickedPoint.x;
+                     balloon2.position.y = pickResult.pickedPoint.y;
+                  }
+               }
+            };
+            return scene;
+         };
+         var scene = createScene();
+         engine.runRenderLoop(function() {
+            scene.render();
+         });
+      &lt;/script&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Output</h3>
+<img src="/babylonjs/images/picking_collision.jpg" alt="Picking collision" />
+<h3>Explanation</h3>
+<p>In the above example, we have used a plane and 2 spheres. To generate this output, use the following code &minus;</p>
+<pre class="prettyprint notranslate">
+scene.onPointerDown = function (evt, pickResult) {
+   // if the click hits the ground object, we change the impact position
+   if (pickResult.hit) {
+      var dateValue = new Date();
+      var secondNumber = dateValue.getSeconds();
+      if (secondNumber % 2 == 0) {
+      balloon1.position.x = pickResult.pickedPoint.x;
+      balloon1.position.y = pickResult.pickedPoint.y;
+      } else {
+         balloon2.position.x = pickResult.pickedPoint.x;
+         balloon2.position.y = pickResult.pickedPoint.y;
+      }
+   }
+};
+</pre>
+<p>The event <b>scene.onPointerDown</b> gives you the coordinated -x,y and z which in our example is <b>pickResult</b>.</p>
+<p>It gives pickResult.hit as true if you click on the ground mesh. We consider odd/even seconds and change the position of the sphere to pick result z and y co-ordinates as shown above. Once the position is changed, the sphere is placed where you click and position your mouse. You can try the above demo for the same.</p>
+<h2>BabylonJS – Raycasts</h2>
+<p>Raycasts are like rays of sun and are used to check collision and intersection in the scene.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+var ray = new BABYLON.Ray(origin, direction, length);
+</pre>
+<h3>Parameters</h3>
+<p>Consider the following parameters for raycasts &minus;</p>
+<ul class="list">
+<li><p><b>Origin</b> &minus; Place where the ray will start.</p></li>
+<li><p><b>Direction</b> &minus; Direction to the ray is calculated as follows &minus;</p></li>
+</ul>
+<pre class="result notranslate">
+var forward = new BABYLON.Vector3(0,0,1);		
+forward = vecToLocal(forward, box);
+var direction = forward.subtract(origin);
+</pre>
+<p>Then, to get the direction, we subtract it from the origin, the box position &minus;</p>
+<ul class="list">
+<li><p><b>Length</b> &minus; Length of the ray.</p></li>
+</ul>
+<h3>Demo</h3>
+<pre class="prettyprint notranslate">
+&lt;!doctype html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta charset = "utf-8"&gt;
+      &lt;title&gt;BabylonJs - Basic Element-Creating Scene&lt;/title&gt;
+      &lt;script src = "babylon.js"&gt;&lt;/script&gt;
+      &lt;style&gt;
+         canvas {width: 100%; height: 100%;}
+      &lt;/style&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;canvas id = "renderCanvas"&gt;&lt;/canvas&gt;
+      &lt;script type = "text/javascript"&gt;
+         var canvas = document.getElementById("renderCanvas");
+         var engine = new BABYLON.Engine(canvas, true);
+         
+         var createScene  = function() {
+            var scene = new BABYLON.Scene(engine);
+
+            var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(0, 100, 100), scene);
+            
+            var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, new BABYLON.Vector3.Zero(), scene);
+            camera.attachControl(canvas, true);
+
+            var ground = BABYLON.Mesh.CreateGround("ground", 500, 500, 10, scene);
+
+            var box = BABYLON.Mesh.CreateBox("box", 4.0, scene);
+            box.position.y = 2;
+            box.scaling.z = 2;
+           
+            var matBox = new BABYLON.StandardMaterial("matBox", scene);
+            matBox.diffuseColor = new BABYLON.Color3(0.8, 0.1, 0.5);
+            box.material = matBox;
+            box.isPickable = false; 
+
+            var box2 = BABYLON.Mesh.CreateBox("box2", 8.0, scene);
+            box2.position = new BABYLON.Vector3(-20, 4, 0); 
+            
+            var matBox2 = new BABYLON.StandardMaterial("matBox2", scene);
+            matBox2.diffuseColor = new BABYLON.Color3(1, 0, 0);
+            box2.material = matBox2;
+
+            var box3 = BABYLON.Mesh.CreateBox("box3", 8.0, scene);
+            box3.position = new BABYLON.Vector3(20, 4, 0); 
+            
+            var matBox3 = new BABYLON.StandardMaterial("matBox3", scene);
+            matBox3.diffuseColor = new BABYLON.Color3(1, 0, 0);
+            box3.material = matBox3;
+
+            var box4 = BABYLON.Mesh.CreateBox("box4", 8.0, scene);
+            box4.position = new BABYLON.Vector3(0, 0, 20); 
+            
+            var matBox4 = new BABYLON.StandardMaterial("matBox4", scene);
+            matBox4.diffuseColor = new BABYLON.Color3(0, 1, 0);
+            box4.material = matBox4;
+
+            var box5 = BABYLON.Mesh.CreateBox("box5", 8.0, scene);
+            box5.position = new BABYLON.Vector3(0, 0, -20); 
+            
+            var matBox5 = new BABYLON.StandardMaterial("matBox5", scene);
+            matBox5.diffuseColor = new BABYLON.Color3(0, 1, 0);
+            box5.material = matBox5;
+
+            function mousemovef() {
+               var pickResult = scene.pick(scene.pointerX, scene.pointerY);
+
+               if (pickResult.hit) {
+                  var diffX = pickResult.pickedPoint.x - box.position.x;
+                  var diffY = pickResult.pickedPoint.z - box.position.z;
+                  box.rotation.y = Math.atan2(diffX,diffY);			
+               }	
+            }
+
+            scene.onPointerMove = function () {
+               mousemovef();
+            };
+
+            function vecToLocal(vector, mesh) {
+               var m = mesh.getWorldMatrix();
+               var v = BABYLON.Vector3.TransformCoordinates(vector, m);
+               return v;		
+            }   
+
+            scene.registerBeforeRender(function () {
+               var origin = box.position;
+
+               var forward = new BABYLON.Vector3(0,0,1);		
+               forward = vecToLocal(forward, box);
+
+               var direction = forward.subtract(origin);
+               direction = BABYLON.Vector3.Normalize(direction);
+
+               var length = 100;
+
+               var ray = new BABYLON.Ray(origin, direction, length);
+               // ray.show(scene, new BABYLON.Color3(1, 1, 0.1));
+
+               var hit = scene.pickWithRay(ray);
+
+               if (hit.pickedMesh) {
+                  hit.pickedMesh.scaling.y  += 0.01;
+               }
+            });		
+            return scene;
+         };
+         var scene = createScene();
+         engine.runRenderLoop(function() {
+            scene.render();
+         });
+      &lt;/script&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Output</h3>
+<p>The above line of code generates the following output &minus;</p>
+<img src="/babylonjs/images/raycast.jpg" alt="Raycast" />
+<h3>Explanation</h3>
+<p>There is a main box at the center which acts as a raycast. The moment it points to any of the boxes, the size of the box will increase. This concept proves useful while playing games to know which other object is coming into contact and necessary action can be taken.</p>
+<p>Adding <b>box.isPickable = false;</b> so that the main box at the center is not considered. If you do not want any object to be included in the rays to come into contact, add <b>box.isPickable = false;</b> to it.</p>
+<p>The following code adds scaling ofhe box which is picked by the ray.</p>
+<pre class="prettyprint notranslate">
+scene.registerBeforeRender(function () {
+   var origin = box.position;	
+   var forward = new BABYLON.Vector3(0,0,1);		
+   forward = vecToLocal(forward, box);
+
+   var direction = forward.subtract(origin);
+   direction = BABYLON.Vector3.Normalize(direction);
+
+   var length = 100;
+
+   var ray = new BABYLON.Ray(origin, direction, length);
+
+   var hit = scene.pickWithRay(ray);
+
+   if (hit.pickedMesh) {
+      hit.pickedMesh.scaling.y  += 0.01;
+   }
+});	
+</pre>
+<p><b>var ray = new BABYLON.Ray(origin, direction, length);</b> creates a ray and it takes the main box position as the origin.</p>
+<p>Direction to the ray is calculated as follows &minus;</p>
+<pre class="result notranslate">
+var forward = new BABYLON.Vector3(0,0,1);		
+forward = vecToLocal(forward, box);
+var direction = forward.subtract(origin);
+</pre>
+<p>Then, to get the direction, we subtract it from the origin, the box position. The function <b>vecToLocal</b> is designed to transform a position from a mesh point of view by multiplicating a vector by the mesh matrix.</p>
+<p>We get the hit point from the ray using <b>var hit = scene.pickWithRay(ray);</b></p>
+<p>It gives the position where the ray coincides with the mesh.</p>
+<p>The scaling is applied to the mesh which is picked by executing the following line of code &minus;</p>
+<pre class="result notranslate">
+if (hit.pickedMesh) {
+   hit.pickedMesh.scaling.y  += 0.01;
+}
+</pre>
+<p>Try the above example in the browser to see the output.</p>
+<h3>Raycast with predicate function</h3>
+<p>Let us now see how the raycast with predicate function works and the direction shown with rayhelper.</p>
+<h3>Demo</h3>
+<pre class="prettyprint notranslate">
+&lt;!doctype html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta charset = "utf-8"&gt;
+      &lt;title&gt;BabylonJs - Basic Element-Creating Scene&lt;/title&gt;
+      &lt;script src = "babylon.js"&gt;&lt;/script&gt;
+      &lt;style&gt;
+         canvas {width: 100%; height: 100%;}
+      &lt;/style&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;canvas id = "renderCanvas"&gt;&lt;/canvas&gt;
+      &lt;script type = "text/javascript"&gt;
+         var canvas = document.getElementById("renderCanvas");
+         var engine = new BABYLON.Engine(canvas, true);
+         var createScene  = function() {
+            var scene = new BABYLON.Scene(engine);
+
+            var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(0, 100, 100), scene);
+            var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, new BABYLON.Vector3.Zero(), scene);
+            camera.attachControl(canvas, true);
+
+            var ground = BABYLON.Mesh.CreateGround("ground", 500, 500, 10, scene);
+
+            var box = BABYLON.Mesh.CreateBox("box", 4.0, scene);
+            box.position.y = 2;
+            box.scaling.z = 2;
+            var matBox = new BABYLON.StandardMaterial("matBox", scene);
+            matBox.diffuseColor = new BABYLON.Color3(0.8, 0.1, 0.5);
+            box.material = matBox;
+            box.isPickable = false; 
+
+            var box2 = BABYLON.Mesh.CreateBox("box2", 8.0, scene);
+            box2.position = new BABYLON.Vector3(-20, 4, 0); 
+            var matBox2 = new BABYLON.StandardMaterial("matBox2", scene);
+            matBox2.diffuseColor = new BABYLON.Color3(1, 0, 0);
+            box2.material = matBox2;
+
+            var box3 = BABYLON.Mesh.CreateBox("box3", 8.0, scene);
+            box3.position = new BABYLON.Vector3(20, 4, 0); 
+            var matBox3 = new BABYLON.StandardMaterial("matBox3", scene);
+            matBox3.diffuseColor = new BABYLON.Color3(1, 0, 0);
+            box3.material = matBox3;
+
+            var box4 = BABYLON.Mesh.CreateBox("box4", 8.0, scene);
+            box4.position = new BABYLON.Vector3(0, 0, 20); 
+            var matBox4 = new BABYLON.StandardMaterial("matBox4", scene);
+            matBox4.diffuseColor = new BABYLON.Color3(0, 1, 0);
+            box4.material = matBox4;
+
+            var box5 = BABYLON.Mesh.CreateBox("box5", 8.0, scene);
+            box5.position = new BABYLON.Vector3(0, 0, -20); 
+            var matBox5 = new BABYLON.StandardMaterial("matBox5", scene);
+            matBox5.diffuseColor = new BABYLON.Color3(0, 1, 0);
+            box5.material = matBox5;
+
+            //ray showing the direction
+            var ray = new BABYLON.Ray();
+            var rayHelper = new BABYLON.RayHelper(ray);
+
+            var localMeshDirection = new BABYLON.Vector3(0, 0, -1);
+            var localMeshOrigin = new BABYLON.Vector3(0, 0, -.4);
+            var length = 10;
+
+            rayHelper.attachToMesh(box, localMeshDirection, localMeshOrigin, length);
+            rayHelper.show(scene);
+
+            function mousemovef() {
+               var pickResult = scene.pick(scene.pointerX, scene.pointerY);
+
+               if (pickResult.hit) {
+                  var diffX = pickResult.pickedPoint.x - box.position.x;
+                  var diffY = pickResult.pickedPoint.z - box.position.z;
+                  box.rotation.y = Math.atan2(diffX,diffY);			
+               }	
+            }
+
+            scene.onPointerMove = function () {
+               mousemovef();
+            };
+
+            function vecToLocal(vector, mesh) {
+               var m = mesh.getWorldMatrix();
+               var v = BABYLON.Vector3.TransformCoordinates(vector, m);
+               return v;		
+            }   
+
+            scene.registerBeforeRender(function () {
+               var origin = box.position;
+               function predicate(mesh) {
+                  if (mesh == box2 || mesh == box || mesh == box5) {
+                     return false;
+                  }
+                  return true;
+               }
+               
+               var forward = new BABYLON.Vector3(0,0,1);		
+               forward = vecToLocal(forward, box);
+
+               var direction = forward.subtract(origin);
+               direction = BABYLON.Vector3.Normalize(direction);
+
+               var length = 100;
+
+               var ray = new BABYLON.Ray(origin, direction, length);
+               // ray.show(scene, new BABYLON.Color3(1, 1, 0.1));
+
+               var hit = scene.pickWithRay(ray, predicate);
+               if (hit.pickedMesh) {
+                  hit.pickedMesh.scaling.y  += 0.01;
+               }
+            });		
+            return scene;
+         };
+         var scene = createScene();
+         engine.runRenderLoop(function() {
+            scene.render();
+         });
+      &lt;/script&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Output</h3>
+<p>The above line of code generates the following output &minus;</p>
+<img src="/babylonjs/images/raycast_predicate.jpg" alt="Raycast Predicate" />
+<h3>Explanation</h3>
+<p>Raycast with predicate function helps to choose which mesh we want. If we do not want a mesh to be picked, we can ignore the same.</p>
+<pre class="prettyprint notranslate">
+function predicate(mesh) {
+   if (mesh == box2 || mesh == box || mesh == box5) {
+      return false;
+   }
+   return true;
+}
+</pre>
+<p>The above function gives the mesh which is selected by the ray. If the mesh selected is box2, box, or box5, it will return false; otherwise, true.</p>
+<p>You can try the above example for the same.</p>
+<h2>BabylonJS – Mesh Shadows</h2>
+<p>Shadows are rendered based on the way light falls on the mesh created. They play an important role towards making the output look realistic in the 3D world.</p>
+<p>Let us now learn how to create shadows using babylonjs.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+var shadowGenerator00 = new BABYLON.ShadowGenerator(shadowsize, light);
+</pre>
+<h3>Parameters</h3>
+<p>Consider the following parameters related to mesh shadows &minus;</p>
+<ul class="list">
+<li><p><b>Shadowsize</b> &minus; Size of the shadow.</p></li>
+<li><p><b>Light</b> &minus; Light used in the scene.</p></li>
+</ul>
+<h3>Demo</h3>
+<pre class="prettyprint notranslate">
+&lt;!doctype html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta charset = "utf-8"&gt;
+      &lt;title&gt;BabylonJs - Basic Element-Creating Scene&lt;/title&gt;
+      &lt;script src = "babylon.js"&gt;&lt;/script&gt;
+      &lt;style&gt;
+         canvas {width: 100%; height: 100%;}
+      &lt;/style&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;canvas id = "renderCanvas"&gt;&lt;/canvas&gt;
+      &lt;script type = "text/javascript"&gt;
+         var canvas = document.getElementById("renderCanvas");
+         var engine = new BABYLON.Engine(canvas, true);
+         
+         var createScene  = function() {
+            var scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color3(1, 1, 1);	
+            var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 1, 0.8, 20, new BABYLON.Vector3(0, 0, 0), scene);
+            camera.attachControl(canvas, true);
+            // light1
+            var light = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(-1, -2, -1), scene);
+            light.position = new BABYLON.Vector3(20, 40, 20);
+
+            var ground01 = BABYLON.Mesh.CreateGround("Spotlight Hard Shadows", 24, 60, 1, scene, false);
+            var groundMaterial = new BABYLON.StandardMaterial("ground", scene);
+            groundMaterial.diffuseTexture = new BABYLON.Texture("images/gr1.jpg", scene);
+            groundMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+            groundMaterial.emissiveColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+
+            ground01.material = groundMaterial;
+            ground01.receiveShadows = true;
+            ground01.position.x = -5;
+
+            var box = BABYLON.Mesh.CreateBox("box", 3.0, scene);
+            box.position.x = -5;
+            box.position.y = 5;
+            var shadowGenerator00 = new BABYLON.ShadowGenerator(512, light);
+            shadowGenerator00.getShadowMap().renderList.push(box);
+            //shadowGenerator00.usePoissonSampling = true;
+            //shadowGenerator00.useExponentialShadowMap = true;
+            shadowGenerator00.useBlurExponentialShadowMap = true;
+            shadowGenerator00.bias = 0.01;
+            scene.registerBeforeRender(function() {
+               box.rotation.x += 0.01;
+               box.rotation.x += 0.01;
+            });
+            return scene;
+         };
+         var scene = createScene();
+         engine.runRenderLoop(function() {
+            scene.render();
+         });
+      &lt;/script&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Output</h3>
+<p>The above line of code generates the following output &minus;</p>
+<img src="/babylonjs/images/shadows.jpg" alt="Shadows" />
+<h3>Explanation</h3>
+<p>To create shadows, you need to create the shadowgenerator. Consider an example shown below.</p>
+<pre class="result notranslate">
+var shadowGenerator00 = new BABYLON.ShadowGenerator(512, light);
+</pre>
+<p>To define the mesh for which the shadow is required, you need to add the same to above generator.</p>
+<pre class="result notranslate">
+shadowGenerator00.getShadowMap().renderList.push(box);
+</pre>
+<p>Now, we have created a ground and a box on top of it. We want the shadow of the box to fall on the ground. To do that, we need to make sure the ground is marked to receive shadow which is done as follows &minus;</p>
+<pre class="result notranslate">
+ground01.receiveShadows = true;
+</pre>
+<p>There are some filters available for shadows which are as follows &minus;</p>
+<pre class="result notranslate">
+shadowGenerator.usePoissonSampling = true; - Called Poisson sampling 
+shadowGenerator.useExponentialShadowMap = true; - Exponential Shadow Map
+shadowGenerator.useBlurExponentialShadowMap= true;  - Blur Exponential Shadow Map
+</pre>
+<p>In our demo, we have used shadowGenerator00.useBlurExponentialShadowMap = true; You can try the others and see how the output looks like.</p>
+<p>Here, we have used image called gr1.jpg. The images are stored in the images/ folder locally. You can download any image of your choice and use in the demo link.</p>
+<h2>BabylonJS – Advanced Textures on Meshes</h2>
+<p>In this section, we will learn about the advanced textures on meshes. The different textures are shown below &minus;</p>
+<ul class="list">
+<li><p><a href="/babylonjs/babylonjs_mesh_cube_texture.htm">Cube Texture</a></p></li>
+<li><p><a href="/babylonjs/babylonjs_mesh_mirror_bump_texture.htm">Mirror and Bump Texture</a></p></li>
+<li><p><a href="/babylonjs/babylonjs_mesh_video_texture.htm">Video Texture</a></p></li>
+</ul>
+<p>Let us apply some complex texture to the mesh – mirror, bump, video and refraction.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Mesh &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/babylonjs/babylonjs_meshhighlight_layer.htm">MeshHightlight Layer</a>
+<p>Highlight layer is used to highlight the mesh in the scene. You can give color to it and the color is applied to the borders of the mesh. In case in a game you want to hightlight, the mesh hightlight layer can be used for the same.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/babylonjs/babylonjs_morph_mesh.htm">Morph a Mesh</a>
+<p>Morphing changes the shape of an object to another by  some means of transition. We have seen the updatable parameter for the shapes; the parameter is set to false otherwise. For morphing, it is set to true and the mesh is updated to change the shape.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/babylonjs/babylonjs_actions_to_mesh.htm">Actions to Mesh</a>
+<p>Actions are used to add interaction to the mesh. Events are activated when you click on the mesh, or when mesh intersects or collides.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/babylonjs/babylonjs_mesh_assetsmanager.htm">Mesh AssetsManager</a>
+<p>With assestsmanager class, you can load meshes, images and binaryfiles in the scene.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/babylonjs/babylonjs_import_mesh.htm">Import Mesh</a>
+<p>Using Import Mesh we will learn.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/babylonjs/babylonjs_mesh_morph_targets.htm">Mesh Morph Targets</a>
+<p>We have already seen morhphing of lines, ribbon, polygon, etc. Now, we will see morphing of sphere and box in this demo.With morph targets, the shape of the sphere is changed which is seen in the demo below.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/babylonjs/babylonjs_mesh_instances.htm">Mesh Instances</a>
+<p>If you want to draw identical meshes in your scene , make use of the instances.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="/babylonjs/babylonjs_mesh_lod_and_instances.htm">Mesh LOD &amp; Instances</a>
+<p>LOD stands for line of distance. This feature allows you to specify meshes based on the distance of the viewer. As the distance from the viewer to the object increases, the level of detail for the mesh is shown clearly using LOD.</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="/babylonjs/babylonjs_mesh_volumemetriclightscatteringpostprocess.htm">Mesh VolumemetricLightScatteringPost-process</a>
+<p>This process scatters the light as shown in the output given below. Test the same in browser and you will see how the light scatters through the mesh.</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="/babylonjs/babylonjs_mesh_edgesrenderer.htm">Mesh EdgesRenderer</a>
+<p>EdgesRendering is used to draw egdes around the mesh as shown in the output above.</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="/babylonjs/babylonjs_mesh_blendmodes.htm">Mesh BlendModes</a>
+<p>You can create a blend mode by modifying the alphamode of the materials.</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="/babylonjs/babylonjs_mesh_solidparticles.htm">Mesh SolidParticles</a>
+<p>SolidParticle System is updated on a mesh. All the properties that we have seen on a mesh can be used on the solid partilcle.</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="/babylonjs/babylonjs_mesh_facetdata.htm">Mesh FacetData</a>
+<p>Facet data takes up a lot of memory and this feature is not enabled by default. To enable it, we need to create a mesh as required and update facet data to it.</p></td>
+</tr>
+</table>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/babylonjs/babylonjs_parametric_shapes.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/babylonjs/babylonjs_vectorposition_and_rotation.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

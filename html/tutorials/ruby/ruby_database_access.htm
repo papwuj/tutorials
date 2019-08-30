@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Ruby/DBI Tutorial</title>
+<meta charset="utf-8">
+<meta name="description" content="Ruby/DBI Tutorial - This chapter teaches you how to access a database using Ruby. The Ruby DBI module provides a database-independent interface for Ruby scripts similar to that of "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/ruby/ruby_database_access.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#891204;
+}
+a.demo {
+    background:#891204;
+}
+li.heading {
+    background:#891204;
+}
+.course-box{background:#891204}
+.home-intro-sub p{color:#891204}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/ruby/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/ruby/images/ruby-mini-logo.jpg" alt="Ruby Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Ruby Basics</li>
+<li><a href="/ruby/index.htm">Ruby - Home</a></li>
+<li><a href="/ruby/ruby_overview.htm">Ruby - Overview</a></li>
+<li><a href="/ruby/ruby_environment.htm">Ruby - Environment Setup</a></li>
+<li><a href="/ruby/ruby_syntax.htm">Ruby - Syntax</a></li>
+<li><a href="/ruby/ruby_classes.htm">Ruby - Classes and Objects</a></li>
+<li><a href="/ruby/ruby_variables.htm">Ruby - Variables</a></li>
+<li><a href="/ruby/ruby_operators.htm">Ruby - Operators</a></li>
+<li><a href="/ruby/ruby_comments.htm">Ruby - Comments</a></li>
+<li><a href="/ruby/ruby_if_else.htm">Ruby - IF...ELSE</a></li>
+<li><a href="/ruby/ruby_loops.htm">Ruby - Loops</a></li>
+<li><a href="/ruby/ruby_methods.htm">Ruby - Methods</a></li>
+<li><a href="/ruby/ruby_blocks.htm">Ruby - Blocks</a></li>
+<li><a href="/ruby/ruby_modules.htm">Ruby - Modules</a></li>
+<li><a href="/ruby/ruby_strings.htm">Ruby - Strings</a></li>
+<li><a href="/ruby/ruby_arrays.htm">Ruby - Arrays</a></li>
+<li><a href="/ruby/ruby_hashes.htm">Ruby - Hashes</a></li>
+<li><a href="/ruby/ruby_date_time.htm">Ruby - Date &amp; Time</a></li>
+<li><a href="/ruby/ruby_ranges.htm">Ruby - Ranges</a></li>
+<li><a href="/ruby/ruby_iterators.htm">Ruby - Iterators</a></li>
+<li><a href="/ruby/ruby_input_output.htm">Ruby - File I/O</a></li>
+<li><a href="/ruby/ruby_exceptions.htm">Ruby - Exceptions</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Ruby Advanced</li>
+<li><a href="/ruby/ruby_object_oriented.htm">Ruby - Object Oriented</a></li>
+<li><a href="/ruby/ruby_regular_expressions.htm">Ruby - Regular Expressions</a></li>
+<li><a href="/ruby/ruby_database_access.htm">Ruby - Database Access</a></li>
+<li><a href="/ruby/ruby_web_applications.htm">Ruby - Web Applications</a></li>
+<li><a href="/ruby/ruby_sending_email.htm">Ruby - Sending Email</a></li>
+<li><a href="/ruby/ruby_socket_programming.htm">Ruby - Socket Programming</a></li>
+<li><a href="/ruby/ruby_xml_xslt.htm">Ruby - Ruby/XML, XSLT</a></li>
+<li><a href="/ruby/ruby_web_services.htm">Ruby - Web Services</a></li>
+<li><a href="/ruby/ruby_tk_guide.htm">Ruby - Tk Guide</a></li>
+<li><a href="/ruby/ruby_ldap.htm">Ruby - Ruby/LDAP Tutorial</a></li>
+<li><a href="/ruby/ruby_multithreading.htm">Ruby - Multithreading</a></li>
+<li><a href="/ruby/ruby_builtin_functions.htm">Ruby - Built-in Functions</a></li>
+<li><a href="/ruby/ruby_predefined_variables.htm">Ruby - Predefined Variables</a></li>
+<li><a href="/ruby/ruby_predefined_constants.htm">Ruby - Predefined Constants</a></li>
+<li><a href="/ruby/ruby_associated_tools.htm">Ruby - Associated Tools</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Ruby Useful Resources</li>
+<li><a href="/ruby/ruby_quick_guide.htm">Ruby - Quick Guide</a></li>
+<li><a href="/ruby/ruby_resources.htm">Ruby - Useful Resources</a></li>
+<li><a href="/ruby/ruby_discussion.htm">Ruby - Discussion</a></li>
+<li><a href="/ruby-on-rails/index.htm">Ruby - Ruby on Rails Tutorial</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Ruby/DBI Tutorial</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/ruby/ruby_regular_expressions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/ruby/ruby_web_applications.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>This chapter teaches you how to access a database using Ruby. The <i>Ruby DBI</i> module provides a database-independent interface for Ruby scripts similar to that of the Perl DBI module.</p>
+<p>DBI stands for Database Independent Interface for Ruby, which means DBI provides an abstraction layer between the Ruby code and the underlying database, allowing you to switch database implementations really easily. It defines a set of methods, variables, and conventions that provide a consistent database interface, independent of the actual database being used.</p>
+<p>DBI can interface with the following &minus;</p>
+<ul class="list">
+<li>ADO (ActiveX Data Objects)</li>
+<li>DB2</li>
+<li>Frontbase</li>
+<li>mSQL</li>
+<li>MySQL</li>
+<li>ODBC</li>
+<li>Oracle</li>
+<li>OCI8 (Oracle)</li>
+<li>PostgreSQL</li>
+<li>Proxy/Server</li>
+<li>SQLite</li>
+<li>SQLRelay</li>
+</ul>
+<h2>Architecture of a DBI Application</h2>
+<p>DBI is independent of any database available in the backend. You can use DBI whether you are working with Oracle, MySQL or Informix, etc. This is clear from the following architecture diagram.</p>
+<img src="/ruby/images/ruby_dbi.jpg" alt="Ruby DBI Architecture" />
+<p>The general architecture for Ruby DBI uses two layers &minus;</p>
+<ul class="list">
+<li><p>The database interface (DBI) layer. This layer is database independent and provides a set of common access methods that are used the same way regardless of the type of database server with which you're communicating.</p></li>
+<li><p>The database driver (DBD) layer. This layer is database dependent; different drivers provide access to different database engines. There is one driver for MySQL, another for PostgreSQL, another for InterBase, another for Oracle, and so forth. Each driver interprets requests from the DBI layer and maps them onto requests appropriate for a given type of database server.</p></li>
+</ul>
+<h2>Prerequisites</h2>
+<p>If you want to write Ruby scripts to access MySQL databases, you'll need to have the Ruby MySQL module installed.</p>
+<p>This module acts as a DBD as explained above and can be downloaded from <a target="_blank" rel="nofollow" href="https://www.tmtm.org/en/mysql/ruby/">https://www.tmtm.org/en/mysql/ruby/</a></p>
+<h2>Obtaining and Installing Ruby/DBI</h2>
+<p>You can download and install the Ruby DBI module from the following location &minus;</p>
+<p><a href="https://imgur.com/NFEuWe4/embed" target="_blank">https://imgur.com/NFEuWe4/embed</a></p>
+<p>Before starting this installation make sure you have the root privilege. Now, follow the steps given below &minus;</p>
+<h3>Step 1</h3>
+<pre class="result notranslate">
+$ tar zxf dbi-0.2.0.tar.gz
+</pre>
+<h3>Step 2</h3>
+<p>Go in distribution directory <i>dbi-0.2.0</i> nd configure it using the <i>setup.rb</i> script in that directory. The most general configuration command looks like this, with no arguments following the config argument. This command configures the distribution to install all drivers by default.</p>
+<pre class="result notranslate">
+$ ruby setup.rb config
+</pre>
+<p>To be more specific, provide a --with option that lists the particular parts of the distribution you want to use. For example, to configure only the main DBI module and the MySQL DBD-level driver, issue the following command &minus;</p>
+<pre class="result notranslate">
+$ ruby setup.rb config --with = dbi,dbd_mysql
+</pre>
+<h3>Step 3</h3>
+<p>Final step is to build the driver and install it using the following commands &minus;</p>
+<pre class="result notranslate">
+$ ruby setup.rb setup
+$ ruby setup.rb install
+</pre>
+<h2>Database Connection</h2>
+<p>Assuming we are going to work with MySQL database, before connecting to a database make sure of the following &minus;</p>
+<ul class="list">
+<li><p>You have created a database TESTDB.</p></li>
+<li><p>You have created EMPLOYEE in TESTDB.</p></li>
+<li><p>This table is having fields FIRST_NAME, LAST_NAME, AGE, SEX, and INCOME.</p></li>
+<li><p>User ID "testuser" and password "test123" are set to access TESTDB.</p></li>
+<li><p>Ruby Module DBI is installed properly on your machine.</p></li>
+<li><p>You have gone through MySQL tutorial to understand MySQL Basics.</p></li>
+</ul>
+<p>Following is the example of connecting with MySQL database "TESTDB"</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby -w
+
+require "dbi"
+
+begin
+   # connect to the MySQL server
+   dbh = DBI.connect("DBI:Mysql:TESTDB:localhost", "testuser", "test123")
+   # get server version string and display it
+   row = dbh.select_one("SELECT VERSION()")
+   puts "Server version: " + row[0]
+rescue DBI::DatabaseError =&gt; e
+   puts "An error occurred"
+   puts "Error code:    #{e.err}"
+   puts "Error message: #{e.errstr}"
+ensure
+   # disconnect from server
+   dbh.disconnect if dbh
+end
+</pre>
+<p>While running this script, it produces the following result at our Linux machine.</p>
+<pre class="result notranslate">
+Server version: 5.0.45
+</pre>
+<p>If a connection is established with the data source, then a Database Handle is returned and saved into <b>dbh</b> for further use otherwise <b>dbh</b> is set to nil value and <i>e.err</i> and <i>e::errstr</i> return error code and an error string respectively.</p>
+<p>Finally, before coming out it, ensure that database connection is closed and resources are released.</p>
+<h2>INSERT Operation</h2>
+<p>INSERT operation is required when you want to create your records into a database table.</p>
+<p>Once a database connection is established, we are ready to create tables or records into the database tables using <b>do</b> method or <b>prepare</b> and <b>execute</b> method.</p>
+<h2>Using do Statement</h2>
+<p>Statements that do not return rows can be issued by invoking the <b>do</b> database handle method. This method takes a statement string argument and returns a count of the number of rows affected by the statement.</p>
+<pre class="prettyprint notranslate">
+dbh.do("DROP TABLE IF EXISTS EMPLOYEE")
+dbh.do("CREATE TABLE EMPLOYEE (
+   FIRST_NAME  CHAR(20) NOT NULL,
+   LAST_NAME  CHAR(20),
+   AGE INT,  
+   SEX CHAR(1),
+   INCOME FLOAT )" );
+</pre>
+<p>Similarly, you can execute the SQL <i>INSERT</i> statement to create a record into the EMPLOYEE table.</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby -w
+
+require "dbi"
+
+begin
+   # connect to the MySQL server
+   dbh = DBI.connect("DBI:Mysql:TESTDB:localhost", "testuser", "test123")
+   dbh.do( "INSERT INTO EMPLOYEE(FIRST_NAME, LAST_NAME, AGE, SEX, INCOME)
+      VALUES ('Mac', 'Mohan', 20, 'M', 2000)" )
+   puts "Record has been created"
+   dbh.commit
+rescue DBI::DatabaseError =&gt; e
+   puts "An error occurred"
+   puts "Error code:    #{e.err}"
+   puts "Error message: #{e.errstr}"
+   dbh.rollback
+ensure
+   # disconnect from server
+   dbh.disconnect if dbh
+end
+</pre>
+<h2>Using prepare and execute</h2>
+<p>You can use <i>prepare</i> and <i>execute</i> methods of DBI class to execute the SQL statement through Ruby code.</p>
+<p>Record creation takes the following steps &minus;</p>
+<ul class="list">
+<li><p>Preparing SQL statement with INSERT statement. This will be done using the <b>prepare</b> method.</p></li>
+<li><p>Executing SQL query to select all the results from the database. This will be done using the <b>execute</b> method.</p></li>
+<li><p>Releasing Statement handle. This will be done using <b>finish</b> API</p></li>
+<li><p>If everything goes fine, then <b>commit</b> this operation otherwise you can <b>rollback</b> the complete transaction.</p></li>
+</ul>
+<p>Following is the syntax to use these two methods &minus;</p>
+<pre class="result notranslate">
+sth = dbh.prepare(statement)
+sth.execute
+   ... zero or more SQL operations ...
+sth.finish
+</pre>
+<p>These two methods can be used to pass <b>bind</b> values to SQL statements. There may be a case when values to be entered is not given in advance. In such a case, binding values are used. A question mark (<b>?</b>) is used in place of actual values and then actual values are passed through execute() API.</p>
+<p>Following is the example to create two records in the EMPLOYEE table &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby -w
+
+require "dbi"
+
+begin
+   # connect to the MySQL server
+   dbh = DBI.connect("DBI:Mysql:TESTDB:localhost", "testuser", "test123")
+   sth = dbh.prepare( "INSERT INTO EMPLOYEE(FIRST_NAME, LAST_NAME, AGE, SEX, INCOME)
+      VALUES (?, ?, ?, ?, ?)" )
+   sth.execute('John', 'Poul', 25, 'M', 2300)
+   sth.execute('Zara', 'Ali', 17, 'F', 1000)
+   sth.finish
+   dbh.commit
+   puts "Record has been created"
+rescue DBI::DatabaseError =&gt; e
+   puts "An error occurred"
+   puts "Error code:    #{e.err}"
+   puts "Error message: #{e.errstr}"
+   dbh.rollback
+ensure
+   # disconnect from server
+   dbh.disconnect if dbh
+end
+</pre>
+<p>If there are multiple INSERTs at a time, then preparing a statement first and then executing it multiple times within a loop is more efficient than invoking do each time through the loop.</p>
+<h2>READ Operation</h2>
+<p>READ Operation on any database means to fetch some useful information from the database.</p>
+<p>Once our database connection is established, we are ready to make a query into this database. We can use either <b>do</b> method or <b>prepare</b> and <b>execute</b> methods to fetch values from a database table.</p>
+<p>Record fetching takes following steps &minus;</p>
+<ul class="list">
+<li><p>Preparing SQL query based on required conditions. This will be done using the <b>prepare</b> method.</p></li>
+<li><p>Executing SQL query to select all the results from the database. This will be done using the <b>execute</b> method.</p></li>
+<li><p>Fetching all the results one by one and printing those results. This will be done using the <b>fetch</b> method.</p></li>
+<li><p>Releasing Statement handle. This will be done using the <b>finish</b> method.</p></li>
+</ul>
+<p>Following is the procedure to query all the records from EMPLOYEE table having salary more than 1000.</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby -w
+
+require "dbi"
+
+begin
+   # connect to the MySQL server
+   dbh = DBI.connect("DBI:Mysql:TESTDB:localhost", "testuser", "test123")
+   sth = dbh.prepare("SELECT * FROM EMPLOYEE WHERE INCOME &gt; ?")
+   sth.execute(1000)
+
+   sth.fetch do |row|
+   printf "First Name: %s, Last Name : %s\n", row[0], row[1]
+   printf "Age: %d, Sex : %s\n", row[2], row[3]
+   printf "Salary :%d \n\n", row[4]
+end
+   sth.finish
+rescue DBI::DatabaseError =&gt; e
+   puts "An error occurred"
+   puts "Error code:    #{e.err}"
+   puts "Error message: #{e.errstr}"
+ensure
+   # disconnect from server
+   dbh.disconnect if dbh
+end
+</pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">
+First Name: Mac, Last Name : Mohan
+Age: 20, Sex : M
+Salary :2000
+
+First Name: John, Last Name : Poul
+Age: 25, Sex : M
+Salary :2300
+</pre>
+<p>There are more short cut methods to fetch records from the database. If you are interested then go through the <a href="/ruby/ruby_dbi_fetching_results.htm" title="Ruby DBI Read Operation">Fetching the Result</a> otherwise proceed to the next section.</p>
+<h2>Update Operation</h2>
+<p>UPDATE Operation on any database means to update one or more records, which are already available in the database. Following is the procedure to update all the records having SEX as 'M'. Here, we will increase AGE of all the males by one year. This will take three steps &minus;</p>
+<ul class="list">
+<li><p>Preparing SQL query based on required conditions. This will be done using the <b>prepare</b> method.</p></li>
+<li><p>Executing SQL query to select all the results from the database. This will be done using the <b>execute</b> method.</p></li>
+<li><p>Releasing Statement handle. This will be done using the <b>finish</b> method.</p></li>
+<li><p>If everything goes fine then <b>commit</b> this operation otherwise you can <b>rollback</b> the complete transaction.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby -w
+
+require "dbi"
+
+begin
+   # connect to the MySQL server
+   dbh = DBI.connect("DBI:Mysql:TESTDB:localhost", "testuser", "test123")
+   sth = dbh.prepare("UPDATE EMPLOYEE SET AGE = AGE + 1 WHERE SEX = ?")
+   sth.execute('M')
+   sth.finish
+   dbh.commit
+rescue DBI::DatabaseError =&gt; e
+   puts "An error occurred"
+   puts "Error code:    #{e.err}"
+   puts "Error message: #{e.errstr}"
+   dbh.rollback
+ensure
+   # disconnect from server
+   dbh.disconnect if dbh
+end
+</pre>
+<h2>DELETE Operation</h2>
+<p>DELETE operation is required when you want to delete some records from your database. Following is the procedure to delete all the records from EMPLOYEE where AGE is more than 20. This operation will take following steps.</p>
+<ul class="list">
+<li><p>Preparing SQL query based on required conditions. This will be done using the <b>prepare</b> method.</p></li>
+<li><p>Executing SQL query to delete required records from the database. This will be done using the <b>execute</b> method.</p></li>
+<li><p>Releasing Statement handle. This will be done using the <b>finish</b> method.</p></li>
+<li><p>If everything goes fine then <b>commit</b> this operation otherwise you can <b>rollback</b> the complete transaction.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby -w
+
+require "dbi"
+
+begin
+   # connect to the MySQL server
+   dbh = DBI.connect("DBI:Mysql:TESTDB:localhost", "testuser", "test123")
+   sth = dbh.prepare("DELETE FROM EMPLOYEE WHERE AGE &gt; ?")
+   sth.execute(20)
+   sth.finish
+   dbh.commit
+rescue DBI::DatabaseError =&gt; e
+   puts "An error occurred"
+   puts "Error code:    #{e.err}"
+   puts "Error message: #{e.errstr}"
+   dbh.rollback
+ensure
+   # disconnect from server
+   dbh.disconnect if dbh
+end
+</pre>
+<h2>Performing Transactions</h2>
+<p>Transactions are a mechanism that ensures data consistency. Transactions should have the following four properties &minus;</p>
+<ul class="list">
+<li><p><b>Atomicity</b> &minus; Either a transaction completes or nothing happens at all.</p></li>
+<li><p><b>Consistency</b> &minus; A transaction must start in a consistent state and leave the system is a consistent state.</p></li>
+<li><p><b>Isolation</b> &minus; Intermediate results of a transaction are not visible outside the current transaction.</p></li>
+<li><p><b>Durability</b> &minus; Once a transaction was committed, the effects are persistent, even after a system failure.</p></li>
+</ul>
+<p>The DBI provides two methods to either <i>commit</i> or <i>rollback</i> a transaction. There is one more method called <i>transaction</i> which can be used to implement transactions. There are two simple approaches to implement transactions &minus;</p>
+<h3>Approach I</h3>
+<p>The first approach uses DBI's <i>commit</i> and <i>rollback</i> methods to explicitly commit or cancel the transaction &minus;</p>
+<pre class="prettyprint notranslate">
+dbh['AutoCommit'] = false # Set auto commit to false.
+begin
+   dbh.do("UPDATE EMPLOYEE SET AGE = AGE+1 WHERE FIRST_NAME = 'John'")
+   dbh.do("UPDATE EMPLOYEE SET AGE = AGE+1 WHERE FIRST_NAME = 'Zara'")
+   dbh.commit
+rescue
+   puts "transaction failed"
+   dbh.rollback
+end
+dbh['AutoCommit'] = true
+</pre>
+<h3>Approach II</h3>
+<p>The second approach uses the <i>transaction</i> method. This is simpler, because it takes a code block containing the statements that make up the transaction. The <i>transaction</i> method executes the block, then invokes <i>commit</i> or <i>rollback</i> automatically, depending on whether the block succeeds or fails &minus;</p>
+<pre class="prettyprint notranslate">
+dbh['AutoCommit'] = false # Set auto commit to false.
+dbh.transaction do |dbh|
+   dbh.do("UPDATE EMPLOYEE SET AGE = AGE+1 WHERE FIRST_NAME = 'John'")
+   dbh.do("UPDATE EMPLOYEE SET AGE = AGE+1 WHERE FIRST_NAME = 'Zara'")
+end
+dbh['AutoCommit'] = true
+</pre>
+<h2>COMMIT Operation</h2>
+<p>Commit is the operation, which gives a green signal to database to finalize the changes, and after this operation, no change can be reverted back.</p>
+<p>Here is a simple example to call the <b>commit</b> method.</p>
+<pre class="prettyprint notranslate">
+dbh.commit
+</pre>
+<h2>ROLLBACK Operation</h2>
+<p>If you are not satisfied with one or more of the changes and you want to revert back those changes completely, then use the <b>rollback</b> method.</p>
+<p>Here is a simple example to call the <b>rollback</b> method.</p>
+<pre class="prettyprint notranslate">
+dbh.rollback
+</pre>
+<h2>Disconnecting Database</h2>
+<p>To disconnect Database connection, use disconnect API.</p>
+<pre class="prettyprint notranslate">
+dbh.disconnect
+</pre>
+<p>If the connection to a database is closed by the user with the disconnect method, any outstanding transactions are rolled back by the DBI. However, instead of depending on any of DBI's implementation details, your application would be better off calling the commit or rollback explicitly.</p>
+<h2>Handling Errors</h2>
+<p>There are many sources of errors. A few examples are a syntax error in an executed SQL statement, a connection failure, or calling the fetch method for an already canceled or finished statement handle.</p>
+<p>If a DBI method fails, DBI raises an exception. DBI methods may raise any of several types of exception but the two most important exception classes are <i>DBI::InterfaceError</i> and <i>DBI::DatabaseError</i>.</p>
+<p>Exception objects of these classes have three attributes named <i>err</i>, <i>errstr</i>, and <i>state</i>, which represent the error number, a descriptive error string, and a standard error code. The attributes are explained below &minus;</p>
+<ul class="list">
+<li><p><b>err</b> &minus; Returns an integer representation of the occurred error or <i>nil</i> if this is not supported by the DBD.The Oracle DBD for example returns the numerical part of an <i>ORA-XXXX</i> error message.</p></li>
+<li><p><b>errstr</b> &minus; Returns a string representation of the occurred error.</p></li>
+<li><p><b>state</b> &minus; Returns the SQLSTATE code of the occurred error.The SQLSTATE is a five-character-long string. Most DBDs do not support this and return nil instead.</p></li>
+</ul>
+<p>You have seen following code above in most of the examples &minus;</p>
+<pre class="prettyprint notranslate">
+rescue DBI::DatabaseError =&gt; e
+   puts "An error occurred"
+   puts "Error code:    #{e.err}"
+   puts "Error message: #{e.errstr}"
+   dbh.rollback
+ensure
+   # disconnect from server
+   dbh.disconnect if dbh
+end
+</pre>
+<p>To get debugging information about what your script is doing as it executes, you can enable tracing. To do this, you must first load the dbi/trace module and then call the <i>trace</i> method that controls the trace mode and output destination &minus;</p>
+<pre class="prettyprint notranslate">
+require "dbi/trace"
+..............
+
+trace(mode, destination)
+</pre>
+<p>The mode value may be 0 (off), 1, 2, or 3, and the destination should be an IO object. The default values are 2 and STDERR, respectively.</p>
+<h2>Code Blocks with Methods</h2>
+<p>There are some methods that create handles. These methods can be invoked with a code block. The advantage of using code block along with methods is that they provide the handle to the code block as its parameter and automatically cleans up the handle when the block terminates. There are few examples to understand the concept.</p>
+<ul class="list">
+<li><p><b>DBI.connect</b> &minus; This method generates a database handle and it is recommended to call <i>disconnect</i> at the end of the block to disconnect the database.</p></li>
+<li><p><b>dbh.prepare</b> &minus; This method generates a statement handle and it is recommended to <i>finish</i> at the end of the block. Within the block, you must invoke <i>execute</i> method to execute the statement.</p></li>
+<li><p><b>dbh.execute</b> &minus; This method is similar except we don't need to invoke execute within the block. The statement handle is automatically executed.</p></li>
+</ul>
+<h3>Example 1</h3>
+<p><b>DBI.connect</b> can take a code block, passes the database handle to it, and automatically disconnects the handle at the end of the block as follows.</p>
+<pre class="prettyprint notranslate">
+dbh = DBI.connect("DBI:Mysql:TESTDB:localhost", "testuser", "test123") do |dbh|
+</pre>
+<h3>Example 2</h3>
+<p><b>dbh.prepare</b> can take a code block, passes the statement handle to it, and automatically calls finish at the end of the block as follows.</p>
+<pre class="prettyprint notranslate">
+dbh.prepare("SHOW DATABASES") do |sth|
+   sth.execute
+   puts "Databases: " + sth.fetch_all.join(", ")
+end
+</pre>
+<h3>Example 3</h3>
+<p><b>dbh.execute</b> can take a code block, passes the statement handle to it, and automatically calls finish at the end of the block as follows &minus;</p>
+<pre class="prettyprint notranslate">
+dbh.execute("SHOW DATABASES") do |sth|
+   puts "Databases: " + sth.fetch_all.join(", ")
+end
+</pre>
+<p>DBI <i>transaction</i> method also takes a code block which has been described in above.</p>
+<h2>Driver-specific Functions and Attributes</h2>
+<p>The DBI lets the database drivers provide additional database-specific functions, which can be called by the user through the <i>func</i> method of any Handle object.</p>
+<p>Driver-specific attributes are supported and can be set or gotten using the <b>[]=</b> or <b>[]</b> methods.</p>
+<section class="toggle">
+<label><i class="icon icon-minus"></i><i class="icon icon-plus"></i>DBD::Mysql implements the following driver-specific functions &minus;</label>
+<div class="toggle-content" style="display: none;"> 
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th style="text-align:center;">Functions &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>dbh.func(:createdb, db_name)</b></p>
+<p>Creates a new database.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>dbh.func(:dropdb, db_name)</b></p>
+<p>Drops a database.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>dbh.func(:reload)</b></p>
+<p>Performs a reload operation.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>dbh.func(:shutdown)</b></p>
+<p>Shuts down the server.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>dbh.func(:insert_id) =&gt; Fixnum</b></p>
+<p>Returns the most recent AUTO_INCREMENT value for a connection.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>dbh.func(:client_info) =&gt; String</b></p>
+<p>Returns MySQL client information in terms of version.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>dbh.func(:client_version) =&gt; Fixnum</b></p>
+<p>Returns client information in terms of version. It's similar to :client_info but it return a fixnum instead of sting.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>dbh.func(:host_info) =&gt; String</b></p>
+<p>Returns host information.</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>dbh.func(:proto_info) =&gt; Fixnum</b></p>
+<p>Returns protocol being used for the communication.</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>dbh.func(:server_info) =&gt; String</b></p>
+<p>Returns MySQL server information in terms of version.</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>dbh.func(:stat) =&gt; String</b></p>
+<p>Returns current state of the database.</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><p><b>dbh.func(:thread_id) =&gt; Fixnum</b></p>
+<p>Returns current thread ID.</p></td>
+</tr>
+</table>
+</div>
+</section>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+require "dbi"
+begin
+   # connect to the MySQL server
+   dbh = DBI.connect("DBI:Mysql:TESTDB:localhost", "testuser", "test123") 
+   puts dbh.func(:client_info)
+   puts dbh.func(:client_version)
+   puts dbh.func(:host_info)
+   puts dbh.func(:proto_info)
+   puts dbh.func(:server_info)
+   puts dbh.func(:thread_id)
+   puts dbh.func(:stat)
+rescue DBI::DatabaseError =&gt; e
+   puts "An error occurred"
+   puts "Error code:    #{e.err}"
+   puts "Error message: #{e.errstr}"
+ensure
+   dbh.disconnect if dbh
+end
+</pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">
+5.0.45
+50045
+Localhost via UNIX socket
+10
+5.0.45
+150621
+Uptime: 384981  Threads: 1  Questions: 1101078  Slow queries: 4 \
+Opens: 324  Flush tables: 1  Open tables: 64  \
+Queries per second avg: 2.860
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/ruby/ruby_regular_expressions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/ruby/ruby_web_applications.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

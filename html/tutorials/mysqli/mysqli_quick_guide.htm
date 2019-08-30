@@ -1,0 +1,2570 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>MySQLi - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="MySQLi - Quick Guide - A database is a separate application that stores a collection of data. Each database has one or more distinct APIs for creating, accessing, managing, searching "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/mysqli/mysqli_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#b86701;
+}
+a.demo {
+    background:#b86701;
+}
+li.heading {
+    background:#b86701;
+}
+.course-box{background:#b86701}
+.home-intro-sub p{color:#b86701}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/mysqli/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/mysqli/images/mysqli-mini-logo.jpg" alt="MySQLi Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">MySQLi Tutorial</li>
+<li><a href="/mysqli/index.htm">MySQLi - Home</a></li>
+<li><a href="/mysqli/mysqli_introduction.htm">MySQLi - Introduction</a></li>
+<li><a href="/mysqli/mysqli_installation.htm">MySQLi - Installation</a></li>
+<li><a href="/mysqli/mysqli_administration.htm" >MySQLi - Administration</a></li>
+<li><a href="/mysqli/mysqli_php_syntax.htm">MySQLi - PHP Syntax</a></li>
+<li><a href="/mysqli/mysqli_connection.htm">MySQLi - Connection</a></li>
+<li><a href="/mysqli/mysqli_create_database.htm">MySQLi - Create Database</a></li>
+<li><a href="/mysqli/mysqli_drop_database.htm">MySQLi - Drop Database</a></li>
+<li><a href="/mysqli/mysqli_select_database.htm">MySQLi - Select Database</a></li>
+<li><a href="/mysqli/mysqli_data_types.htm">MySQLi - Data Types</a></li>
+<li><a href="/mysqli/mysqli_create_tables.htm">MySQLi - Create Tables</a></li>
+<li><a href="/mysqli/mysqli_drop_tables.htm">MySQLi - Drop Tables</a></li>
+<li><a href="/mysqli/mysqli_insert_query.htm">MySQLi - Insert Query</a></li>
+<li><a href="/mysqli/mysqli_select_query.htm">MySQLi - Select Query</a></li>
+<li><a href="/mysqli/mysqli_where_clause.htm">MySQLi - Where Clause</a></li>
+<li><a href="/mysqli/mysqli_update_query.htm">MySQLi - Update Query</a></li>
+<li><a href="/mysqli/mysqli_delete_query.htm">MySQLi - Delete Query</a></li>
+<li><a href="/mysqli/mysqli_like_clause.htm">MySQLi - Like Clause</a></li>
+<li><a href="/mysqli/mysqli_sorting_results.htm">MySQLi - Sorting Results</a></li>
+<li><a href="/mysqli/mysqli_using_joins.htm">MySQLi - Using Joins</a></li>
+<li><a href="/mysqli/mysqli_handling_null_values.htm">MySQLi - Handling NULL Values</a></li>
+<li><a href="/mysqli/mysqli_regexps.htm">MySQLi - Regexps</a></li>
+<li><a href="/mysqli/mysqli_transactions.htm">MySQLi - Transactions</a></li>
+<li><a href="/mysqli/mysqli_alter_command.htm">MySQLi - Alter Command</a></li>
+<li><a href="/mysqli/mysqli_indexes.htm">MySQLi - Indexes</a></li>
+<li><a href="/mysqli/mysqli_temporary_tables.htm">MySQLi - Temporary Tables</a></li>
+<li><a href="/mysqli/mysqli_clone_tables.htm">MySQLi - Clone Tables</a></li>
+<li><a href="/mysqli/obtaining_using_mysqli_metadata.htm">Obtaining &amp; Using MySQLi Metadata</a></li>
+<li><a href="/mysqli/mysqli_using_sequences.htm">MySQLi - Using Sequences</a></li>
+<li><a href="/mysqli/mysqli_handling_duplicates.htm">MySQLi - Handling Duplicates</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">MySQLi Useful Resources</li>
+<li><a href="/mysqli/mysqli_useful_functions.htm">MySQLi - Useful Functions</a></li>
+<li><a href="/mysqli/mysqli_quick_guide.htm">MySQLi - Quick Guide</a></li>
+<li><a href="/mysqli/mysqli_useful_resources.htm">MySQLi - Useful Resources</a></li>
+<li><a href="/mysqli/mysqli_discussion.htm">MySQLi - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>MySQLi - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/mysqli/mysqli_useful_functions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/mysqli/mysqli_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>MySQLi - Introduction</h1>
+<h2>What is Database?</h2>
+<p>A database is a separate application that stores a collection of data. Each database has one or more distinct APIs for creating, accessing, managing, searching and replicating the data it holds.</p>
+<p>Other kinds of data stores can be used, such as files on the file system or large hash tables in memory but data fetching and writing would not be so fast and easy with those types of systems.</p>
+<p>So nowadays, we use relational database management systems (RDBMS) to store and manage huge volume of data. This is called relational database because all the data is stored into different tables and relations are established using primary keys or other keys known as foreign keys.</p>
+<p>A <b>Relational  DataBase Management System (RDBMS)</b> is a software that &minus;</p>
+<ul class="list">
+<li><p>Enables you to implement a database with tables, columns and indexes.</p></li>
+<li><p>Guarantees the Referential Integrity between rows of various tables.</p></li>
+<li><p>Updates the indexes automatically.</p></li>
+<li><p>Interprets an SQL query and combines information from various tables.</p></li>
+</ul>
+<h2>RDBMS Terminology</h2>
+<p>Before we proceed to explain MySQLi database system, let's revise few definitions related to database.</p>
+<ul class="list">
+<li><p><b>Database</b> &minus; A database is a collection of tables, with related data.</p></li>
+<li><p><b>Table</b> &minus; A table is a matrix with data. A table in a database looks like a simple spreadsheet.</p></li>
+<li><p><b>Column</b> &minus; One column (data element) contains data of one and the same kind, for example the column postcode.</p></li>
+<li><p><b>Row</b> &minus; A row (= tuple, entry or record) is a group of related data, for example the data of one subscription.</p></li>
+<li><p><b>Redundancy</b> &minus; Storing data twice, redundantly to make the system faster.</p></li>
+<li><p><b>Primary Key</b> &minus; A primary key is unique. A key value can not occur twice in one table. With a key, you can find at most one row. </p></li>
+<li><p><b>Foreign Key</b> &minus; A  foreign key is the linking pin between two tables.</p></li>
+<li><p><b>Compound Key</b> &minus; A compound key (composite key) is a key that consists of multiple columns, because one column is not sufficiently unique.</p></li>
+<li><p><b>Index</b> &minus; An index in a database resembles an index at the back of a book.</p></li>
+<li><p><b>Referential Integrity</b> &minus; Referential Integrity makes sure that a foreign key value always points to an existing row.</p></li>
+</ul>
+<h2>MySQLi Database</h2>
+<p>MySQLi is a fast, easy-to-use RDBMS being used for many small and big businesses. MySQLi Extension is developed, marketed, and supported by MySQL. MySQL is becoming so popular because of many good reasons &minus;</p>
+<ul class="list">
+<li><p>MySQLi is released under an open-source license. So you have nothing to pay to use it.</p></li>
+<li><p>MySQLi is  a very powerful program in its own right. It handles a large subset of the functionality of the most expensive and powerful database packages.</p></li>
+<li><p>MySQLi uses a standard form of the well-known SQL data language.</p></li>
+<li><p>MySQLi works on many operating systems and with many languages including PHP, PERL, C, C++, JAVA, etc.</p></li>
+<li><p>MySQLi works very quickly and works well even with large data sets.</p></li>
+<li><p>MySQLi is very friendly to PHP, the most appreciated language for web development.</p></li>
+<li><p>MySQLi supports large databases, up to 50 million rows or more in a table. The default file size limit for a table is 4GB, but you can increase this (if your operating system can handle it) to a theoretical limit of 8 million terabytes (TB).</p></li>
+<li><p>MySQLi is customizable. The open-source GPL license allows programmers to modify the MySQL software to fit their own specific environments.</p></li>
+</ul>
+<h2>Before You Begin</h2>
+<p>Before you begin this tutorial, you should have a basic knowledge of the information covered in our PHP and HTML tutorials.</p>
+<p>This tutorial focuses heavily on using MySQLi in a PHP environment. Many examples given in this tutorial will be useful for PHP Programmers.</p>
+<p>We recommend you check our <a href="/php/index.htm">PHP Tutorial</a> for your reference.</p>
+<h1>MySQLi - Installation</h1>
+<h2>Downloading MySQL</h2>
+<p>The MySQLi extension is designed to work with MySQL version 4.1.13 or newer, So have to download MySQL. All downloads for MySQL are located at <a href="https://www.mysql.com/downloads" rel="nofollow" target="_blank">MySQL Downloads</a>. Pick the latest version number for <i>MySQL Community Server</i> you want and, as exactly as possible, the platform you want.</p>
+<h2>Installing MySQL on Linux/UNIX</h2>
+<p>The recommended way to install MySQL on a Linux system is via RPM. MySQL AB makes the following RPMs available for download on its web site &minus;</p>
+<ul class="list">
+<li><p><b>MySQL</b> &minus; The MySQL database server, which manages databases and tables, controls user access, and processes SQL queries.</p></li>
+<li><p><b>MySQL-client</b> &minus; MySQL client programs, which make it possible to connect to and interact with the server.</p></li>
+<li><p><b>MySQL-devel</b> &minus; Libraries and header files that come in handy when compiling other programs that use MySQL.</p></li>
+<li><p><b>MySQL-shared</b> &minus; Shared libraries for the MySQL client.</p></li>
+<li><p><b>MySQL-bench</b> &minus; Benchmark and performance testing tools for the MySQL database server.</p></li>
+</ul>
+<p>The MySQL RPMs listed here are all built on a SuSE Linux system, but they'll usually work on other Linux variants with no difficulty.</p>
+<p>Now, follow the following steps to proceed for installation &minus;</p>
+<ul class="list">
+<li><p>Login to the system using <b>root</b> user.</p></li>
+<li><p>Switch to the directory containing the RPMs &minus;</p></li>
+<li><p>Install the MySQL database server by executing the following command. Remember to replace the filename in italics with the file name of your RPM.</p></li>
+</ul>
+<pre class="result notranslate">
+[root@host]# rpm -i <i>MySQL-5.0.9-0.i386.rpm</i>
+</pre>
+<ul class="list">
+<p>Above command takes care of installing MySQL server, creating a user of MySQL, creating necessary configuration and starting MySQL server automatically.</p>
+<p>You can find all the MySQL related binaries in /usr/bin and /usr/sbin. All the tables and databases will be created in /var/lib/mysql directory.</p>
+<li><p>This is optional but recommended step to install the remaining RPMs in the same manner &minus;</p></li>
+</ul>
+<pre class="result notranslate">
+[root@host]# rpm -i MySQL-client-5.0.9-0.i386.rpm
+[root@host]# rpm -i MySQL-devel-5.0.9-0.i386.rpm
+[root@host]# rpm -i MySQL-shared-5.0.9-0.i386.rpm
+[root@host]# rpm -i MySQL-bench-5.0.9-0.i386.rpm
+</pre>
+<h2>Installing MySQL on Windows</h2>
+<p>Default installation on any version of Windows is now much easier than it used to be, as MySQL now comes neatly packaged with an installer. Simply download the installer package, unzip it anywhere, and run setup.exe.</p>
+<p>Default installer setup.exe will walk you through the trivial process and by default will install everything under C:\mysql.</p>
+<p>Test the server by firing it up from the command prompt the first time. Go to the location of the mysqld server which is probably C:\mysql\bin, and type &minus;</p>
+<pre class="result notranslate">
+mysqld.exe --console
+</pre>
+<p><b>NOTE</b> &minus; If you are on NT, then you will have to use mysqld-nt.exe instead of mysqld.exe</p>
+<p>If all went well, you will see some messages about startup and InnoDB. If not, you may have a permissions issue. Make sure that the directory that holds your data is accessible to whatever user (probably mysql) the database processes run under.</p>
+<p>MySQL will not add itself to the start menu, and there is no particularly nice GUI way to stop the server either. Therefore, if you tend to start the server by double clicking the mysqld executable, you should remember to halt the process by hand by using mysqladmin, Task List, Task Manager, or other Windows-specific means.</p>
+<h2>Verifying MySQL Installation</h2>
+<p>After MySQL has been successfully installed, the base tables have been initialized, and the server has been started, you can verify that all is working as it should via some simple tests.</p>
+<h2>Use the mysqladmin Utility to Obtain Server Status</h2>
+<p>Use <b>mysqladmin</b> binary to check server version. This binary would be available in /usr/bin on linux and in C:\mysql\bin on windows.</p>
+<pre class="result notranslate">
+[root@host]# mysqladmin --version
+</pre>
+<p>It will produce the following result on Linux. It may vary depending on your installation &minus;</p>
+<pre class="result notranslate">
+mysqladmin  Ver 8.23 Distrib 5.0.9-0, for redhat-linux-gnu on i386
+</pre>
+<p>If you do not get such message, then there may be some problem in your installation and you would need some help to fix it.</p>
+<h2>Execute simple SQL commands using MySQL Client</h2>
+<p>You can connect to your MySQL server by using MySQL client using <b>mysql</b> command. At this moment, you do not need to give any password as by default it will be set to blank.</p>
+<p>So just use following command</p>
+<pre class="result notranslate">
+[root@host]# mysql
+</pre>
+<p>It should be rewarded with a mysql&gt; prompt. Now, you are connected to the MySQL server and you can execute all the SQL command at mysql&gt; prompt as follows &minus;</p>
+<pre class="result notranslate">
+mysql&gt; SHOW DATABASES;
++----------+
+| Database |
++----------+
+| mysql    |
+| test     |
++----------+
+2 rows in set (0.13 sec)
+</pre>
+<h2>Post-installation Steps</h2>
+<p>MySQL ships with a blank password for the root MySQL user. As soon as you have successfully installed the database and client, you need to set a root password as follows &minus;</p>
+<pre class="result notranslate">
+[root@host]# mysqladmin -u root password "new_password";
+</pre>
+<p>Now to make a connection to your MySQL server, you would have to use the following command &minus;</p>
+<pre class="result notranslate">
+[root@host]# mysql -u root -p
+Enter password:*******
+</pre>
+<p>UNIX users will also want to put your MySQL directory in your PATH, so you won't have to keep typing out the full path every time you want to use the command-line client. For bash, it would be something like &minus;</p>
+<pre class="result notranslate">
+export PATH = $PATH:/usr/bin:/usr/sbin
+</pre>
+<h2>Running MySQL at boot time</h2>
+<p>If you want to run MySQL server at boot time, then make sure you have following entry in /etc/rc.local file.</p>
+<pre class="result notranslate">
+/etc/init.d/mysqld start
+</pre>
+<p>Also,you should have mysqld binary in /etc/init.d/ directory.</p>
+<h1>MySQLi - Administration</h1>
+<h2>Running and Shutting down MySQLi Server</h2>
+<p>MySQLi is extended of MySQL so first check if your MySQL server is running or not. You can use the following command to check this &minus;</p>
+<pre class="result notranslate">
+ps -ef | grep mysqld
+</pre>
+<p>If your MySql is running, then you will see <b>mysqld</b> process listed out in your result. If server is not running, then you can start it by using the following command&minus;</p>
+<pre class="result notranslate">
+root@host# cd /usr/bin
+./safe_mysqld &amp;
+</pre>
+<p>Now, if you want to shut down an already running MySQL server, then you can do it by using the following command &minus;</p>
+<pre class="result notranslate">
+root@host# cd /usr/bin
+./mysqladmin -u root -p shutdown
+Enter password: ******
+</pre>
+<h2>Setting Up a MySQLi User Account</h2>
+<p>For adding a new user to MySQLi Which is improved version of MySQL, you just need to add a new entry to <b>user</b> table in database <b>mysql</b>.</p>
+<p>Below is an example of adding new user <b>guest</b> with SELECT, INSERT and UPDATE privileges with the password  <b>guest123</b>;  the SQL query is &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p
+Enter password:*******
+mysql&gt; use mysql;
+Database changed
+
+mysql&gt; INSERT INTO user (
+   host, user, password, select_priv, insert_priv, update_priv) 
+   VALUES ('localhost', 'guest', PASSWORD('guest123'), 'Y', 'Y', 'Y');
+
+Query OK, 1 row affected (0.20 sec)
+
+mysql&gt; FLUSH PRIVILEGES;
+Query OK, 1 row affected (0.01 sec)
+
+mysql&gt; SELECT host, user, password FROM user WHERE user = 'guest';
++-----------+---------+------------------+
+| host      | user    | password         |
++-----------+---------+------------------+
+| localhost | guest | 6f8c114b58f2ce9e |
++-----------+---------+------------------+
+1 row in set (0.00 sec)
+</pre>
+<p>When adding a new user, remember to encrypt the new password using PASSWORD() function provided by MySQL. As you can see in the above example the password mypass is encrypted to 6f8c114b58f2ce9e.</p>
+<p>Notice the FLUSH PRIVILEGES statement. This tells the server to reload the grant tables. If you don't use it, then you won't be able to connect to mysql using the new user account at least until the server is rebooted.</p>
+<p>You can also specify other privileges to a new user by setting the values of following columns in user table to 'Y' when executing the INSERT query or you can update them later using UPDATE query.</p>
+<ul class="list">
+<li>Select_priv</li>
+<li>Insert_priv</li>
+<li>Update_priv</li>
+<li>Delete_priv</li>
+<li>Create_priv</li>
+<li>Drop_priv</li>
+<li>Reload_priv</li>
+<li>Shutdown_priv</li>
+<li>Process_priv</li>
+<li>File_priv</li>
+<li>Grant_priv</li>
+<li>References_priv</li>
+<li>Index_priv</li>
+<li>Alter_priv</li>
+</ul>
+<p>Another way of adding user account is by using GRANT SQL command; following example will add user <b>zara</b> with password <b>zara123</b> for a particular database called <b>TUTORIALS</b>.</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+mysql&gt; use mysql;
+Database changed
+
+mysql&gt; GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP
+   -&gt; ON TUTORIALS.*
+   -&gt; TO 'zara'@'localhost'
+   -&gt; IDENTIFIED BY 'zara123';
+</pre>
+<p>This will also create an entry in mysql database table called <b>user</b>.</p>
+<p><b>NOTE</b> &minus; MySQL does not terminate a command until you give a semi colon (;) at the end of SQL command.</p>
+<h2>The /etc/my.cnf File Configuration</h2>
+<p>Most of the cases, you should not touch this file. By default, it will have the following entries &minus;</p>
+<pre class="result notranslate">
+[mysqld]
+datadir = /var/lib/mysql
+socket = /var/lib/mysql/mysql.sock
+
+[mysql.server]
+user = mysql
+basedir = /var/lib
+
+[safe_mysqld]
+err-log = /var/log/mysqld.log
+pid-file = /var/run/mysqld/mysqld.pid
+</pre>
+<p>Here, you can specify a different directory for error log, otherwise  you should not change any entry in this table.</p>
+<h2>Administrative MySQLi Command</h2>
+<p>Here is the list of important MySQLi commands, which you will use time to time to work with MySQL database &minus;</p>
+<ul class="list">
+<li><p><b>USE <i>Databasename</i></b> &minus; This will be used to select a particular database in MySQLi workarea.</p></li>
+<li><p><b>SHOW DATABASES</b> &minus; Lists the databases that are accessible by the MySQLi DBMS.</p></li>
+<li><p><b>SHOW TABLES</b> &minus; Shows the tables in the database once a database has been selected with the use command.</p></li>
+<li><p><b>SHOW COLUMNS FROM <i>tablename</i></b> &minus; Shows the attributes, types of attributes, key information, whether NULL is permitted, defaults, and other information for a table.</p></li>
+<li><p><b>SHOW INDEX FROM <i>tablename</i></b> &minus; Presents the details of all indexes on the table, including the PRIMARY KEY.</p></li>
+<li><p><b>SHOW TABLE STATUS LIKE <i>tablename</i>\G</b> &minus; Reports details of the MySQLi DBMS performance and statistics.</p></li>
+</ul>
+<h1>MySQLi - PHP Syntax</h1>
+<p>MySQLi works very well in combination of various programming languages like PERL, C, C++, JAVA and PHP. Out of these languages, PHP is the most popular one because of its web application development capabilities.</p>
+<p>This tutorial focuses heavily on using MySQLi in a PHP environment. PHP provides various functions to access MySQLi database and to manipulate data records inside MySQLi database. You would require to call PHP functions in the same way you call any other PHP function.</p>
+<p>The PHP functions for use with MySQLi have the following general format &minus;</p>
+<pre class="result notranslate">
+mysqli_function(value,value,...);
+</pre>
+<p>The second part of the function name is specific to the function, usually a word that describes what the function does. The following are two of the functions, which we will use in our tutorial &minus;</p>
+<pre class="result notranslate">
+mysqli_connect($connect);
+mysqli_query($connect,"SQL statement");
+</pre>
+<p>Following example shows a generic syntax of PHP to call any MySQLi function.</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;PHP with MySQLi&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;?php
+         $retval = mysqli_function(value, [value,...]);
+         if( !$retval ){
+            die ( "Error: a related error message" );
+         }
+         // Otherwise MySQLi  or PHP Statements
+      ?&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>Starting from next chapter, we will see all the important MySQLi functionality along with PHP.</p>
+<h1>MySQLi - Connection</h1>
+<h2>MySQLi Connection using mysql binary</h2>
+<p>You can establish MySQLi database using <b>mysql</b> binary at command prompt.</p>
+<h3>Example</h3>
+<p>Here is a simple example to connect to MySQL server to establish mysqli database from command prompt &minus;</p>
+<pre class="result notranslate">
+[root@host]# mysql -u root -p
+Enter password:******
+</pre>
+<p>This will give you mysql&gt; command prompt where you will be able to execute any SQL command. Following is the result of above command &minus;</p>
+<pre class="result notranslate">
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2854760 to server version: 5.0.9
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+</pre>
+<p>In above example, we have used <b>root</b> as a user but you can use any other user. Any user will be able to perform all the SQL operations, which are allowed to that user.</p>
+<p>You can disconnect from MySQL database any time using <b>exit</b> command at mysql&gt; prompt.</p>
+<pre class="result notranslate">
+mysql&gt; exit
+Bye
+</pre>
+<h2>MySQLi Connection using PHP Script</h2>
+<p>PHP provides <b>mysqli_connect()</b> function to open a database connection. This function takes five parameters and returns a MySQLi link identifier on success or FALSE on failure.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+connection mysqli_connect(server,user,passwd,new_link,client_flag);
+</pre>
+<p></p>
+<table class="table table-bordered"> 
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Parameter &amp; Description</th>
+</tr>  
+<tr>
+<td>1</td>
+<td><p><b>server</b></p>
+<p>Optional - The host name running database server. If not specified, then default value is <b>localhost:3306</b>.</p/></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>user</b></p>
+<p>Optional - The username accessing the database. If not specified, then default is the name of the user that owns the server process.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>passwd</b></p>
+<p>Optional - The password of the user accessing the database. If not specified, then default is an empty password.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>new_link</b></p>
+<p>Optional - If a second call is made to mysqli_connect() with the same arguments, no new connection will be established; instead, the identifier of the already opened connection will be returned.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><p><b>client_flags</b></p>
+<p>Optional - A combination of the following constants &minus;</p>
+<ul class="list">
+<li>MYSQLI_CLIENT_SSL - Use SSL encryption</li>
+<li>MYSQLI_CLIENT_COMPRESS - Use compression protocol</li>
+<li>MYSQLI_CLIENT_IGNORE_SPACE - Allow space after function names</li>
+<li>MYSQLI_CLIENT_INTERACTIVE - Allow interactive timeout seconds of inactivity before closing the connection</li>
+</ul>
+</td>
+</tr>
+</table>
+<p>You can disconnect from MySQLi database anytime using another PHP function <b>mysqli_close()</b>. This function takes a single parameter, which is a connection returned by <b>mysqli_connect()</b> function.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+bool mysqli_close ( resource $link_identifier );
+</pre>
+<p>If a resource is not specified then last opened database is closed. This function returns true if it closes connection successfully otherwise it returns false.</p>
+<h3>Example</h3>
+<p>Try out the following example to connect to a MySQL server &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Connecting MySQLi Server&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;?php
+         $dbhost = 'localhost:3306';
+         $dbuser = 'guest';
+         $dbpass = 'guest123';
+         $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+   
+         if(! $conn ){
+            die('Could not connect: ' . mysqli_error());
+         }
+         echo 'Connected successfully';
+         mysqli_close($conn);
+      ?&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>If above example is connected with MySQLi, then the output should be like this on your browser &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+</pre>
+<h1>MySQLi - Create Database</h1>
+<h2>Create Database using mysqladmin</h2>
+<p>You would need special privileges to create or to delete a MySQLi database. So assuming you have access to root user, you can create any database using mysql <b>mysqladmin</b> binary.</p>
+<h3>Example</h3>
+<p>Here is a simple example to create database called <b>TUTORIALS</b> &minus;</p>
+<pre class="result notranslate">
+[root@host]# mysqladmin -u root -p create TUTORIALS
+Enter password:******
+</pre>
+<p>This will create a MySQLi database TUTORIALS.</p>
+<h2>Create Database using PHP Script</h2>
+<p>PHP uses <b>mysqli_query</b> function to create or delete a MySQLi database. This function takes two parameters and returns TRUE on success or FALSE on failure.</p>
+<h3>Example</h3>
+<p>Try out the following example to create a database &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Connecting MySQLi Server&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;?php
+         $dbhost = 'localhost:3306';
+         $dbuser = 'root';
+         $dbpass = '&lt;password here&gt;';
+         $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+   
+         if(! $conn ){
+            echo 'Connected failure&lt;br&gt;';
+         }
+         echo 'Connected successfully&lt;br&gt;';
+         $sql = "CREATE DATABASE TUTORIALS";
+         
+         if (mysqli_query($conn, $sql)) {
+            echo "Database created successfully";
+         } else {
+            echo "Error creating database: " . mysqli_error($conn);
+         }
+         mysqli_close($conn);
+      ?&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>If connected and created database successfully,then the sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+Database created successfully
+</pre>
+<h1>MySQLi - Drop Database</h1>
+<h2>Drop Database using mysqladmin</h2>
+<p>You would need special privileges  to create or to delete a MySQLi database. So assuming you have access to root user, you can create any database using mysql <b>mysqladmin</b> binary.</p>
+<p>Be careful while deleting any database because you will lose your all the data available in your database.</p>
+<p>Here is an example to delete a database created in previous chapter &minus;</p>
+<pre class="result notranslate">
+[root@host]# mysqladmin -u root -p drop TUTORIALS
+Enter password:******
+</pre>
+<p>This will give you a warning and it will confirm if you really want to delete this database or not.</p>
+<pre class="result notranslate">
+Dropping the database is potentially a very bad thing to do.
+Any data stored in the database will be destroyed.
+
+Do you really want to drop the 'TUTORIALS' database [y/N] y
+Database "TUTORIALS" dropped
+</pre>
+<h2>Drop Database using PHP Script</h2>
+<p>PHP uses <b>query</b> function to create or delete a MySQLi database. This function takes two parameters and returns TRUE on success or FALSE on failure.</p>
+<h3>Example</h3>
+<p>Try out the following example to delete a database &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Connecting MySQLi Server&gt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;?php
+         $dbhost = 'localhost:3306';
+         $dbuser = 'root';
+         $dbpass = '&lt;Password Here&gt;';
+         $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+         
+         if(! $conn ){
+            echo 'Connected failure&lt;br&gt;';
+         }
+         echo 'Connected successfully&lt;br&gt;';
+         $sql = "DROP DATABASE TUTORIALS";
+         
+         if (mysqli_query($conn, $sql)) {
+         echo "Record deleted successfully";
+         } else {
+            echo "Error deleting record: " . mysqli_error($conn);
+         }
+         mysqli_close($conn);
+      ?&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><b>WARNING</b> &minus; While deleting a database using PHP script, it does not prompt you for any confirmation. So be careful while deleting a MySQLi database.</p>
+<p>If connected and deleted database successfully,then the sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+Database deleted successfully
+</pre>
+<h1>MySQLi - Select Database</h1>
+<p>Once you get connection with MySQLi server, it is required to select a particular database to work with. This is because there may be more than one database available with MySQLi Server.</p>
+<h2>Syntax</h2>
+<pre class="result notranslate">
+bool mysqli_select_db( db_name, connection );
+</pre>
+<p></p>
+<table class="table table-bordered"> 
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Parameter &amp; Description</th>
+</tr>  
+<tr>
+<td>1</td>
+<td><p><b>db_name</b></p>
+<p>Required - MySQLi Database name to be selected</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>connection</b></p>
+<p>Optional - if not specified, then last opened connection by mysqli_connect will be used.</p></td>
+</tr>
+</table>
+<h2>Example</h2>
+<p>Here is the example showing you how to select a database.</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Connecting MySQLi Server&lt;/title&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;?php
+         $dbhost = 'localhost:3306';
+         $dbuser = 'root';
+         $dbpass = '&lt;Password Here&gt;';
+         $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+   
+         if(! $conn ) {
+            echo 'Connected failure&lt;br&gt;';
+         }
+         echo 'Connected successfully&lt;br&gt;';
+         mysqli_select_db( 'TUTORIALS' );
+   
+         //Write some code here
+         mysqli_close($conn);
+      ?&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>If connected and Selected database successfully,then the sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+</pre>
+<h1>MySQLi - Data Types</h1>
+<p>Properly defining the fields in a table is important to the overall optimization of your database. You should use only the type and size of field you really need to use; don't define a field as 10 characters wide if you know you're only going to use 2 characters. These types of fields (or columns) are also referred to as data types, after the <b>type of data</b> you will be storing in those fields.</p>
+<p>MySQLi uses many different data types broken into three categories: numeric, date and time, and string types.</p>
+<h2>Numeric Data Types</h2>
+<p>MySQLi uses all the standard ANSI SQL numeric data types, so if you're coming to MySQLi from a different database system, these definitions will look familiar to you. The following list shows the common numeric data types and their descriptions &minus;</p>
+<ul class="list">
+<li><p><b>INT</b> &minus; A normal-sized integer that can be signed or unsigned. If signed, the allowable range is from -2147483648 to 2147483647. If unsigned, the allowable range is from 0 to 4294967295. You can specify a width of up to 11 digits.</p></li>
+<li><p><b>TINYINT</b> &minus; A very small integer that can be signed or unsigned. If signed, the allowable range is from -128 to 127. If unsigned, the allowable range is from 0 to 255. You can specify a width of up to 4 digits.</p></li>
+<li><p><b>SMALLINT</b> &minus; A small integer that can be signed or unsigned. If signed, the allowable range is from -32768 to 32767. If unsigned, the allowable range is from 0 to 65535. You can specify a width of up to 5 digits.</p></li>
+<li><p><b>MEDIUMINT</b> &minus; A medium-sized integer that can be signed or unsigned. If signed, the allowable range is from -8388608 to 8388607. If unsigned, the allowable range is from 0 to 16777215. You can specify a width of up to 9 digits.</p></li>
+<li><p><b>BIGINT</b> &minus; A large integer that can be signed or unsigned. If signed, the allowable range is from -9223372036854775808 to 9223372036854775807. If unsigned, the allowable range is from 0 to 18446744073709551615. You can specify a width of up to 20 digits.</p></li>
+<li><p><b>FLOAT(M,D)</b> &minus; A floating-point number that cannot be unsigned. You can define the display length (M) and the number of decimals (D). This is not required and will default to 10,2, where 2 is the number of decimals and 10 is the total number of digits (including decimals). Decimal precision can go to 24 places for a FLOAT.</p></li>
+<li><p><b>DOUBLE(M,D)</b> &minus; A double precision floating-point number that cannot be unsigned. You can define the display length (M) and the number of decimals (D). This is not required and will default to 16,4, where 4 is the number of decimals. Decimal precision can go to 53 places for a DOUBLE. REAL is a synonym for DOUBLE.</p></li>
+<li><p><b>DECIMAL(M,D) </b> &minus; An unpacked floating-point number that cannot be unsigned. In unpacked decimals, each decimal corresponds to one byte. Defining the display length (M) and the number of decimals (D) is required. NUMERIC is a synonym for DECIMAL.</p></li>
+</ul>
+<h2>Date and Time Types</h2>
+<p>The MySQL date and time datatypes are &minus;</p>
+<ul class="list">
+<li><p><b>DATE</b> &minus; A date in YYYY-MM-DD format, between 1000-01-01 and 9999-12-31. For example, December 30th, 1973 would be stored as 1973-12-30.</p></li>
+<li><p><b>DATETIME</b> &minus; A date and time combination in YYYY-MM-DD HH:MM:SS format, between 1000-01-01 00:00:00 and 9999-12-31 23:59:59. For example, 3:30 in the afternoon on December 30th, 1973 would be stored as 1973-12-30 15:30:00.</p></li>
+<li><p><b>TIMESTAMP </b> &minus; A timestamp between midnight, January 1, 1970 and sometime in 2037. This looks like the previous DATETIME format, only without the hyphens between numbers; 3:30 in the afternoon on December 30th, 1973 would be stored as 19731230153000 ( YYYYMMDDHHMMSS ).</p></li>
+<li><p><b>TIME</b> &minus; Stores the time in HH:MM:SS format.</p></li>
+<li><p><b>YEAR(M)</b> &minus; Stores a year in 2-digit or 4-digit format. If the length is specified as 2 (for example YEAR(2)), YEAR can be 1970 to 2069 (70 to 69). If the length is specified as 4, YEAR can be 1901 to 2155. The default length is 4.</p></li>
+</ul>
+<h2>String Types</h2>
+<p>Although numeric and date types are fun, most data you'll store will be in string format. This list describes the common string datatypes in MySQLi.</p>
+<ul class="list">
+<li><p><b>CHAR(M)</b> &minus; A fixed-length string between 1 and 255 characters in length (for example CHAR(5)), right-padded with spaces to the specified length when stored. Defining a length is not required, but the default is 1.</p></li>
+<li><p><b>VARCHAR(M)</b> &minus; A variable-length string between 1 and 255 characters in length; for example VARCHAR(25). You must define a length when creating a VARCHAR field.</p></li>
+<li><p><b>BLOB or TEXT</b> &minus; A field with a maximum length of 65535 characters. BLOBs are "Binary Large Objects" and are used to store large amounts of binary data, such as images or other types of files. Fields defined as TEXT also hold large amounts of data; the difference between the two is that sorts and comparisons on stored data are case sensitive on BLOBs and are not case sensitive in TEXT fields. You do not specify a length with BLOB or TEXT.</p></li>
+<li><p><b>TINYBLOB or TINYTEXT</b> &minus; A BLOB or TEXT column with a maximum length of 255 characters. You do not specify a length with TINYBLOB or TINYTEXT.</p></li>
+<li><p><b>MEDIUMBLOB or MEDIUMTEXT</b> &minus; A BLOB or TEXT column with a maximum length of 16777215 characters. You do not specify a length with MEDIUMBLOB or MEDIUMTEXT.</p></li>
+<li><p><b>LONGBLOB or LONGTEXT</b> &minus; A BLOB or TEXT column with a maximum length of 4294967295 characters. You do not specify a length with LONGBLOB or LONGTEXT.</p></li>
+<li><p><b>ENUM </b> &minus; An enumeration, which is a fancy term for list. When defining an ENUM, you are creating a list of items from which the value must be selected (or it can be NULL). For example, if you wanted your field to contain "A" or "B" or "C", you would define your ENUM as ENUM ('A', 'B', 'C') and only those values (or NULL) could ever populate that field.</p></li>
+</ul>
+<h1>MySQLi - Create Tables</h1>
+<p>The table creation command requires &minus;</p>
+<ul class="list">
+<li>Name of the table</li>
+<li>Names of fields</li>
+<li>Definitions for each field</li>
+</ul>
+<h2>Syntax</h2>
+<p>Here is generic SQL syntax to create a MySQLi table &minus;</p>
+<pre class="result notranslate">
+CREATE TABLE table_name (column_name column_type);
+</pre>
+<p>Now, we will create following table in <b>TUTORIALS</b> database.</p>
+<pre class="result notranslate">
+CREATE TABLE tutorials_inf(
+   id INT AUTO_INCREMENT,
+   name VARCHAR(20) NOT NULL,
+   primary key (id),
+);
+</pre>
+<p>Here few items need explanation &minus;</p>
+<ul class="list">
+<li><p>Field Attribute <b>NOT NULL</b> is being used because we do not want this field to be NULL. So if user will try to create a record with NULL value, then MySQLi will raise an error.</p></li>
+<li><p>Field Attribute <b>AUTO_INCREMENT</b> tells MySQLi to go ahead and add the next available number to the id field.</p></li>
+<li><p>Keyword <b>PRIMARY KEY</b> is used to define a column as primary key. You can use multiple columns separated by comma to define a primary key.</p></li>
+</ul>
+<h2>Creating Tables from Command Prompt</h2>
+<p>This is easy to create a MySQLi table from mysql&gt; prompt. You will use SQL command <b>CREATE TABLE</b> to create a table.</p>
+<h3>Example</h3>
+<p>Here is an example, which creates <b>tutorials_tbl</b> &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; CREATE TABLE tutorials_inf(
+   id INT AUTO_INCREMENT,name VARCHAR(20) NOT NULL,primary key (id));
+Query OK, 0 rows affected (0.16 sec)
+
+mysql&gt;
+</pre>
+<p><b>NOTE</b> &minus; MySQLi does not terminate a command until you give a semicolon (;) at the end of SQL command.</p>
+<h2>Creating Tables Using PHP Script</h2>
+<p>To create new table in any existing database you would need to use PHP function <b>mysqli_query()</b>. You will pass its second argument with proper SQL command to create a table.</p>
+<h3>Example</h3>
+<p>Here is an example to create a table using PHP script &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Creating MySQLi Tables&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;?php  
+         $host = 'localhost:3306';  
+         $user = 'root';  
+         $pass = '&lt;Password Here&gt;';  
+         $dbname = 'TUTORIALS';  
+         $conn = mysqli_connect($host, $user, $pass,$dbname);  
+         
+         if(!$conn){  
+            die('Could not connect: '.mysqli_connect_error());  
+         }  
+         echo 'Connected successfully&lt;br/&gt;';  
+  
+         $sql = "create table tutorials_inf(
+            id INT AUTO_INCREMENT,name VARCHAR(20) NOT NULL,primary key (id))";  
+         
+         if(mysqli_query($conn, $sql)){  
+         echo "Table created successfully";  
+         } else {  
+            echo "Table is not created successfully ";  
+         }  
+         mysqli_close($conn);  
+      ?&gt;  
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+Table created successfully
+</pre>
+<h1>MySQLi - Drop Tables</h1>
+<p>It is very easy to drop an existing MySQLi table, but you need to be very careful while deleting any existing table because data lost will not be recovered after deleting a table.</p>
+<h2>Syntax</h2>
+<p>Here is generic SQL syntax to drop a MySQLi table &minus;</p>
+<pre class="result notranslate">
+DROP TABLE table_name ;
+</pre>
+<h2>Dropping Tables from Command Prompt</h2>
+<p>This needs just  to execute <b>DROP  TABLE</b> SQL command at mysql&gt; prompt.</p>
+<h3>Example</h3>
+<p>Here is an example, which deletes <b>tutorials_inf</b> &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; DROP TABLE tutorials_inf
+Query OK, 0 rows affected (0.8 sec)
+
+mysql&gt;
+</pre>
+<h2>Dropping Tables Using PHP Script</h2>
+<p>To drop an existing table in any database, you would need to use PHP function <b>mysqli_query()</b>. You will pass its second argument with proper SQL command to drop a table.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Dropping MySQLi Tables&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;?php  
+         $host = 'localhost:3306';  
+         $user = 'root';  
+         $pass = '';  
+         $dbname = 'TUTORIALS';  
+         $conn = mysqli_connect($host, $user, $pass,$dbname);  
+         
+         if(!$conn) {  
+            die('Could not connect: '.mysqli_connect_error());  
+         }  
+         echo 'Connected successfully&lt;br/&gt;';  
+         $sql = "DROP TABLE tutorials_inf";
+         
+         if(mysqli_query($conn, $sql)) {  
+            echo "Table is deleted successfully";  
+         } else {  
+            echo "Table is not deleted successfully\n";
+         }  
+         mysqli_close($conn);  
+      ?&gt;  
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+Table is deleted successfully
+</pre>
+<h1>MySQLi - Insert Query</h1>
+<p>To insert data into MySQLi table, you would need to use SQL <b>INSERT INTO</b> command. You can insert data into MySQLi table by using mysql&gt; prompt or by using any script like PHP.</p>
+<h2>Syntax</h2>
+<p>Here is generic SQL syntax  of INSERT INTO command to insert data into MySQLi table:</p>
+<pre class="result notranslate">
+INSERT INTO table_name 
+   ( field1, field2,...fieldN )
+   VALUES
+   ( value1, value2,...valueN );
+</pre>
+<p>To insert string data types, it is required to keep all the values into double or single quote, for example:- <b>"value"</b>.</p>
+<h2>Inserting Data from Command Prompt</h2>
+<p>This will use SQL INSERT INTO command to insert data into MySQLi table tutorials_inf.</p>
+<h3>Example</h3>
+<p>Following example will create 3 records into <b>tutorials_tbl</b> table &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; INSERT INTO tutorials_inf 
+   -&gt;(id, name)
+   -&gt;VALUES
+   -&gt;(10, "John Poul");
+Query OK, 1 row affected (0.01 sec)
+</pre>
+<p><b>NOTE</b> &minus; Please note that all the arrow signs (-&gt;) are not part of SQL command; they are indicating a new line and they are created automatically by MySQL prompt while pressing enter key without giving a semicolon at the end of each line of the command.</p>
+<h2>Inserting Data Using PHP Script</h2>
+<p>You can use same SQL INSERT INTO command into PHP function <b>mysqli_query()</b> to insert data into a MySQLi table.</p>
+<h3>Example</h3>
+<p>This example will take three parameters from user and will insert them into MySQLi table &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Add New Record in MySQLi Database&lt;/title&gt;
+      &lt;link rel = "stylesheet" type = "text/css" href = "style.css"&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;div id = "main"&gt;
+         &lt;form action = "" method = "post"&gt;
+            &lt;label&gt;Name :&lt;/label&gt;
+            &lt;input type = "text" name = "name" id = "name" /&gt;
+            &lt;br /&gt;
+            &lt;br /&gt;
+            &lt;input type = "submit" value ="Submit" name = "submit"/&gt;
+            &lt;br /&gt;
+         &lt;/form&gt;
+      &lt;/div&gt;
+      
+      &lt;?php
+         if(isset($_POST["submit"])){
+            $servername = "localhost:3306";
+            $username = "root";
+            $password = "&lt;Password here&gt;";
+            $dbname = "TUTORIALS";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn-&gt;connect_error) {
+               die("Connection failed: " . $conn-&gt;connect_error);
+            } 
+            $sql = "INSERT INTO tutorials_inf(name)VALUES ('".$_POST["name"]."')";
+
+            if (mysqli_query($conn, $sql)) {
+               echo "New record created successfully";
+            } else {
+               echo "Error: " . $sql . "" . mysqli_error($conn);
+            }
+            $conn-&gt;close();
+         }
+      ?&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
+New record created successfully
+</pre>
+<h1>MySQLi - Select Query</h1>
+<p>The SQL <b>SELECT</b> command is used to fetch data from MySQLi database. You can use this command at mysql&gt; prompt as well as in any script like PHP.</p>
+<h2>Syntax</h2>
+<p>Here is generic SQL syntax  of SELECT command to fetch data from MySQLi table &minus;</p>
+<pre class="result notranslate">
+SELECT field1, field2,...fieldN table_name1, table_name2...
+[WHERE Clause]
+[OFFSET M ][LIMIT N]
+</pre>
+<ul class="list">
+<li><p>You can use one or more tables separated by comma to include various conditions using a WHERE clause, but WHERE clause is an optional part of SELECT command.</p></li>
+<li><p>You can fetch one or more fields in a single SELECT command.</p></li>
+<li><p>You can specify star (*) in place of fields. In this case, SELECT will return all the fields.</p></li>
+<li><p>You can specify any condition using WHERE clause.</p></li>
+<li><p>You can specify an offset using <b>OFFSET</b> from where SELECT will start returning records. By default offset is zero.</p></li>
+<li><p>You can limit the number of returns using <b>LIMIT</b> attribute.</p></li>
+</ul>
+<h2>Fetching Data from Command Prompt &minus;</h2>
+<p>This will use SQL SELECT command to fetch data from MySQLi table tutorials_tbl</p>
+<h3>Example</h3>
+<p>Following example will  return all the records from <b>tutorials_inf</b> table &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; SELECT * from tutorials_inf;
++----+------+
+| id | name |
++----+------+
+|  1 | sai  |
+|  2 | kit  |
+|  3 | ram  |
++----+------+
+3 rows in set (0.00 sec)
+
+mysql&gt;
+</pre>
+<h2>Fetching Data Using PHP Script</h2>
+<p>You can use same SQL SELECT command into PHP function <b>mysqli_query()</b>. This function is used to execute SQL command and later another PHP function <b>mysqli_fetch_assoc()</b> can be used to fetch all the selected data. This function returns row as an associative array, a numeric array, or both. This function returns FALSE if there are no more rows.</p>
+<p>Below is a simple example to fetch records from <b>tutorials_inf</b> table.</p>
+<h3>Example</h3>
+<p>Try out the following example to display all the records from tutorials_inf table.</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Selecting Table in MySQLi Server&lt;/title&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;?php
+         $dbhost = 'localhost:3306';
+         $dbuser = 'root';
+         $dbpass = '';
+         $dbname = 'TUTORIALS';
+         $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+   
+         if(! $conn ) {
+            die('Could not connect: ' . mysqli_error());
+         }
+         echo 'Connected successfully&lt;br&gt;';
+         $sql = 'SELECT name FROM tutorials_inf';
+         $result = mysqli_query($conn, $sql);
+
+         if (mysqli_num_rows($result) &gt; 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+               echo "Name: " . $row["name"]. "&lt;br&gt;";
+            }
+         } else {
+            echo "0 results";
+         }
+         mysqli_close($conn);
+      ?&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The content of the rows are assigned to the variable $row and the values in row are then printed.</p>
+<p><b>NOTE</b> &minus; Always remember to put curly brackets when you want to insert an array value directly into a string.</p>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+Name: ram
+Name: kit
+Name: abc
+</pre>
+<h1>MySQLi - WHERE Clause</h1>
+<p>We have seen SQL <b>SELECT</b> command to fetch data from MySQLi table. We can use a conditional clause called <b>WHERE</b> clause to filter out results. Using WHERE clause, we can specify a selection criteria to select required records from a table.</p>
+<h2>Syntax</h2>
+<p>Here is generic SQL syntax  of SELECT command with WHERE clause to fetch data from MySQLi table &minus;</p>
+<pre class="result notranslate">
+SELECT field1, field2,...fieldN table_name1, table_name2...
+[WHERE condition1 [AND [OR]] condition2.....
+</pre>
+<ul class="list">
+<li><p>You can use one or more tables separated by comma to include various conditions using a WHERE clause, but WHERE clause is an optional part of SELECT command.</p></li>
+<li><p>You can specify any condition using WHERE clause.</p></li>
+<li><p>You can specify more than one conditions using <b>AND</b> or <b>OR</b> operators.</p></li>
+<li><p>A WHERE clause can be used along with DELETE or UPDATE SQL command also to specify a condition.</p></li>
+</ul>
+<p>The <b>WHERE</b> clause works like an if condition in any programming language. This clause is used to compare given value with the field value available in MySQLi table. If given value from outside is equal to the available field value in MySQLi table, then it returns that row.</p>
+<p>Here is the list of operators, which can be used with <b>WHERE</b> clause.</p>
+<p>Assume field A holds 10 and field B holds 20, then &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:10%; text-align:center;">Operator</th>
+<th style="width:55%; text-align:center;">Description</th>
+<th style="text-align:center;">Example</th>
+</tr>
+<tr>
+<td style="text-align:center;">=</td>
+<td>Checks if the values of two operands are equal or not, if yes then condition becomes true.</td><td> (A = B) is not true. </td>
+</tr>
+<tr>
+<td style="text-align:center;">!=</td>
+<td>Checks if the values of two operands are equal or not, if values are not equal then condition becomes true.</td>
+<td>(A != B) is true.</td>
+</tr>
+<tr>
+<td style="text-align:center;">&gt;</td>
+<td>Checks if the value of left operand is greater than the value of right operand, if yes then condition becomes true.</td>
+<td>(A &gt; B) is not true.</td>
+</tr>
+<tr>
+<td style="text-align:center;">&lt;</td>
+<td>Checks if the value of left operand is less than the value of right operand, if yes then condition becomes true.</td>
+<td>(A &lt; B) is true.</td>
+</tr>
+<tr>
+<td style="text-align:center;">&gt;=</td>
+<td>Checks if the value of left operand is greater than or equal to the value of right operand, if yes then condition becomes true.</td>
+<td>(A &gt;= B) is not true.</td>
+</tr>
+<tr>
+<td style="text-align:center;">&lt;=</td>
+<td>Checks if the value of left  operand is less than or equal to the value of right operand, if yes then condition becomes true.</td>
+<td>(A &lt;= B) is true.</td>
+</tr>
+</table>
+<p>The WHERE clause is very useful when you want to fetch selected rows from a table, especially when you use <b>MySQLi Join</b>. Joins are discussed in another chapter.</p>
+<p>It is a common practice to search records using <b>Primary Key</b> to make search fast.</p>
+<p>If given condition does not match any record in the table, then query would not return any row.</p>
+<h2>Fetching Data from Command Prompt</h2>
+<p>This will use SQL SELECT command with WHERE clause to fetch selected data from MySQLi table tutorials_inf.</p>
+<h3>Example</h3>
+<p>Following example will return all the records from <b>tutorials_inf</b> table for which name is <b>sai</b> &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt;SELECT * from tutorials_inf where name = 'sai';
++----+------+
+| id | name |
++----+------+
+|  1 | SAI  |
++----+------+
+1 row in set (0.00 sec)
+
+mysql&gt;
+</pre>
+<p>Unless performing a <b>LIKE</b> comparison on a string, the comparison is not case sensitive. You can make your search case sensitive using <b>BINARY</b> keyword as follows &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; SELECT * from tutorials_inf \WHERE BINARY name = 'sai';
+Empty set (0.02 sec)
+
+mysql&gt;
+</pre>
+<h2>Fetching Data Using PHP Script:</h2>
+<p>You can use same SQL SELECT command with WHERE CLAUSE into PHP function <b>mysqli_query()</b>.</p>
+<h3>Example</h3>
+<p>Following example will return all the records from <b>tutorials_inf</b> table for which name is <b>sai</b> &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;?php
+   $dbhost = 'localhost:3306';
+   $dbuser = 'root';
+   $dbpass = '';
+   $dbname = 'TUTORIALS';
+   $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysqli_error());
+   }
+   echo 'Connected successfully&lt;br&gt;';
+   $sql = 'SELECT * from tutorials_inf where name="sai"';
+   $result = mysqli_query($conn, $sql);
+
+   if (mysqli_num_rows($result) &gt; 0) {
+      while($row = mysqli_fetch_assoc($result)) {
+         echo "Name: " . $row["name"]. "&lt;br&gt;";
+      }
+   } else {
+      echo "0 results";
+   }
+   mysqli_close($conn);
+?&gt;
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+Name: SAI
+</pre>
+<h1>MySQLi - UPDATE Query</h1>
+<p>There may be a requirement where existing data in a MySQLi table needs to be modified. You can do so by using SQL <b>UPDATE</b> command. This will modify any field value of any MySQLi table.</p>
+<h2>Syntax</h2>
+<p>Here is generic SQL syntax of UPDATE command to modify data into MySQLi table &minus;</p>
+<pre class="result notranslate">
+UPDATE table_name SET field1 = new-value1, field2 = new-value2 [WHERE Clause]
+</pre>
+<ul class="list">
+<li><p>You can update one or more field altogether.</p></li>
+<li><p>You can specify any condition using WHERE clause.</p></li>
+<li><p>You can update values in a single table at a time.</p></li>
+</ul>
+<p>The WHERE clause is very useful when you want to update selected rows in a table.</p>
+<h2>Updating Data from Command Prompt</h2>
+<p>This will use SQL UPDATE command with WHERE clause to update selected data into MySQLi table tutorials_inf.</p>
+<h3>Example</h3>
+<p>Following example will update <b>name</b> field for a record having tutorial_inf.</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; UPDATE tutorials_inf 
+   -&gt; SET name = 'johar' 
+   -&gt; WHERE name = 'sai';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt;
+</pre>
+<h2>Updating Data Using PHP Script</h2>
+<p>You can use SQL UPDATE command with or without WHERE CLAUSE into PHP function <b> mysqli_query()</b>. This function will execute SQL command in similar way it is executed at mysql&gt; prompt.</p>
+<h3>Example</h3>
+<p>Try out the following example to update <b>name</b> field for a record.</p>
+<pre class="prettyprint notranslate">
+&lt;?php
+   $dbhost = 'localhost:3306';
+   $dbuser = 'root';
+   $dbpass = '';
+   $dbname = 'TUTORIALS';
+   $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysqli_error());
+   }
+   echo 'Connected successfully&lt;br&gt;';
+   $sql = ' UPDATE tutorials_inf SET name="althamas" WHERE name="ram"';
+   
+   if (mysqli_query($conn, $sql)) {
+      echo "Record updated successfully";
+   } else {
+      echo "Error updating record: " . mysqli_error($conn);
+   }
+   mysqli_close($conn);
+?&gt;
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+Record updated successfully
+</pre>
+<h1>MySQLi - DELETE Query</h1>
+<p>If you want to delete a record from any MySQLi table, then you can use SQL command <b>DELETE FROM</b>. You can use this command at mysql&gt; prompt as well as in any script like PHP.</p>
+<h2>Syntax</h2>
+<p>Here is generic SQL syntax  of DELETE command to delete data from a MySQLi table &minus;</p>
+<pre class="result notranslate">
+DELETE FROM table_name [WHERE Clause]
+</pre>
+<ul class="list">
+<li><p>If WHERE clause is not specified, then all the records will be deleted from the given MySQLi table.</p></li>
+<li><p>You can specify any condition using WHERE clause.</p></li>
+<li><p>You can delete records in a single table at a time.</p></li>
+</ul>
+<p>The WHERE clause is very useful when you want to delete  selected rows in a table.</p>
+<h2>Deleting  Data from Command Prompt</h2>
+<p>This will use SQL DELETE command with WHERE clause to delete selected data into MySQLi table tutorials_inf.</p>
+<h3>Example</h3>
+<p>Following example will delete a record into tutorial_inf whose name is johar.</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; DELETE FROM tutorials_inf where name = 'johar';
+Query OK, 1 row affected (0.23 sec)
+
+mysql&gt;
+</pre>
+<h2>Deleting Data Using PHP Script</h2>
+<p>You can use SQL DELETE command with or without WHERE CLAUSE into PHP function <b>mysqli_query()</b>. This function will execute SQL command in similar way it is executed at mysql&gt; prompt.</p>
+<h3>Example</h3>
+<p>Try out the following example to delete a record from tutorial_inf whose name is althamas.</p>
+<pre class="prettyprint notranslate">
+&lt;?php
+   $dbhost = 'localhost:3306';
+   $dbuser = 'root';
+   $dbpass = '';
+   $dbname = 'TUTORIALS';
+   $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysqli_error());
+   }
+   echo 'Connected successfully&lt;br&gt;';
+   $sql = ' DELETE FROM tutorials_inf WHERE name = "althamas"';
+   
+   if (mysqli_query($conn, $sql)) {
+      echo "Record deleted successfully";
+   } else {
+      echo "Error deleting record: " . mysqli_error($conn);
+   }
+   mysqli_close($conn);
+?&gt;
+</pre>
+<p>The sample output should be like this-</p>
+<pre class="result notranslate">
+Connected successfully
+Record deleted successfully
+</pre>
+<h1>MySQLi - LIKE Clause</h1>
+<p>We have seen SQL <b>SELECT</b> command to fetch data from MySQLi table. We can also use a conditional clause called <b>WHERE</b> clause to select required records.</p>
+<p>A WHERE clause with equals sign (=) works fine where we want to do an exact match. Like if "name = 'sai'". But there may be a requirement where we want to filter out all the results where name should contain "johar". This can be handled using SQL <b>LIKE</b> clause along with WHERE clause.</p>
+<p>If SQL LIKE clause is used along with % characters, then it will work like a meta character (*) in UNIX while listing out all the files or directories at command prompt.</p>
+<p>Without a % character, LIKE clause is very similar to equals sign along with WHERE clause.</p>
+<h2>Syntax</h2>
+<p>Here is generic SQL syntax  of SELECT command along with LIKE clause to fetch data from MySQLi table &minus;</p>
+<pre class="result notranslate">
+SELECT field1, field2,...fieldN table_name1, table_name2...
+WHERE field1 LIKE condition1 [AND [OR]] filed2 = 'somevalue'
+</pre>
+<ul class="list">
+<li><p>You can specify any condition using WHERE clause.</p></li>
+<li><p>You can use LIKE clause along with WHERE clause.</p></li>
+<li><p>You can use LIKE clause in place of equals sign.</p></li>
+<li><p>When LIKE is used along with % sign then it will work like a meta character search.</p></li>
+<li><p>You can specify more than one conditions using <b>AND</b> or <b>OR</b> operators.</p></li>
+<li><p>A WHERE...LIKE clause can be used along with DELETE or UPDATE SQL command also to specify a condition.</p></li>
+</ul>
+<h2>Using LIKE clause at Command Prompt</h2>
+<p>This will use SQL SELECT command with WHERE...LIKE clause to fetch selected data from MySQLi table tutorials_inf.</p>
+<h3>Example</h3>
+<p>Following example will return all the records from <b>tutorials_inf</b> table for which author name ends with <b> johar</b> &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; SELECT * from tutorials_inf 
+   -&gt; WHERE name LIKE '%johar';
++----+-------+
+| id | name  |
++----+-------+
+|  2 | johar |
++----+-------+
+1 row in set (0.00 sec)
+
+mysql&gt;
+</pre>
+<h2>Using LIKE clause inside PHP Script</h2>
+<p>You can use similar syntax of WHERE...LIKE clause into PHP function <b>mysqli_query()</b>. This function is used to execute SQL command and later another PHP function <b>mysqli_fetch_array()</b> can be used to fetch all the selected data if WHERE...LIKE clause is used along with SELECT command.</p>
+<p>But if WHERE...LIKE clause is being used with DELETE or UPDATE command, then no further PHP function call is required.</p>
+<h3>Example</h3>
+<p>Try out the following example to return all the records from <b>tutorials_inf</b> table for which name contains <b>johar</b> &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;?php
+   $dbhost = 'localhost:3306';
+   $dbuser = 'root';
+   $dbpass = '';
+   $dbname = 'TUTORIALS';
+   $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysqli_error());
+   }
+   echo 'Connected successfully&lt;br&gt;';
+   $sql = 'SELECT * FROM tutorials_inf WHERE name LIKE "%johar%"';
+   $result = mysqli_query($conn, $sql);
+   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+   
+   printf ("%s \n",$row["name"]);
+   mysqli_free_result($result);
+   mysqli_close($conn);
+?&gt;
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+johar
+</pre>
+<h1>MySQLi - Sorting Results</h1>
+<p>We have seen SQL <b>SELECT</b> command to fetch data from MySQLi table. When you select rows, the MySQLi server is free to return them in any order, unless you instruct it otherwise by saying how to sort the result. But you sort a result set by adding an ORDER BY clause that names the column or columns you want to sort by.</p>
+<h2>Syntax</h2>
+<p>Here is generic SQL syntax of SELECT command along with ORDER BY clause to sort data from MySQL table &minus;</p>
+<pre class="result notranslate">
+SELECT field1, field2,...fieldN table_name1, table_name2...
+ORDER BY field1, [field2...] [ASC [DESC]]
+</pre>
+<ul class="list">
+<li><p>You can sort returned result on any field provided that filed is being listed out.</p></li>
+<li><p>You can sort result on more than one field.</p></li>
+<li><p>You can use keyword ASC or DESC to get result in ascending or descending order. By default, it's ascending order.</p></li>
+<li><p>You can use WHERE...LIKE clause in usual way to put condition.</p></li>
+</ul>
+<h2>Using ORDER BY clause at Command Prompt</h2>
+<p>This will use SQL SELECT command with ORDER BY  clause to fetch data from MySQLi table tutorials_inf.</p>
+<h3>Example</h3>
+<p>Try out the following example, which returns result in descending order.</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; SELECT * from tutorials_inf ORDER BY id desc;
++----+-------+
+| id | name  |
++----+-------+
+|  4 | ram   |
+|  3 | raghu |
+|  2 | johar |
+|  1 | sai   |
++----+-------+
+4 rows in set (0.00 sec)
+
+mysql&gt;
+</pre>
+<p>Verify all id's are listed out in descending order.</p>
+<h2>Using  ORDER BY clause inside PHP Script</h2>
+<p>You can use similar syntax of ORDER BY  clause into PHP function <b>mysqli_query()</b>. This function is used to execute SQL command and later another PHP function <b>mysqli_fetch_array()</b> can be used to fetch all the selected data.</p>
+<h3>Example</h3>
+<p>Try out the following example, which returns result in descending order of tutorial author.</p>
+<pre class="prettyprint notranslate">
+&lt;?php
+   $dbhost = 'localhost:3306';
+   $dbuser = 'root';
+   $dbpass = '';
+   $dbname = 'TUTORIALS';
+   $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysqli_error());
+   }
+   echo 'Connected successfully&lt;/br&gt;';
+   $sql = 'SELECT * from tutorials_inf ORDER BY id desc';
+   
+   if($result = mysqli_query($conn, $sql)){
+      if(mysqli_num_rows($result) &gt; 0){
+         echo "&lt;table&gt;";
+         echo "&lt;tr&gt;";
+         echo "&lt;th&gt;id&lt;/th&gt;";
+         echo "&lt;th&gt;name&lt;/th&gt;";
+         echo "&lt;/tr&gt;";
+         
+         while($row = mysqli_fetch_array($result)){
+            echo "&lt;tr&gt;";
+            echo "&lt;td&gt;" . $row['id'] . "&lt;/td&gt;";
+            echo "&lt;td&gt;" . $row['name'] . "&lt;/td&gt;";
+            echo "&lt;/tr&gt;";
+         }
+         echo "&lt;/table&gt;";
+         mysqli_free_result($result);
+      } else {
+         echo "No records matching your query were found.";
+      }
+   } else {
+      echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+   }
+   mysqli_close($conn);
+?&gt;
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+id	name
+4	ram
+3	raghu
+2	johar
+1	sai
+</pre>
+<h1>MySQLi - Using Joins</h1>
+<p>Thus far, we have only been getting data from one table at a time. This is fine for simple takes, but in most real world MySQL usage, you will often need to get data from multiple tables in a single query.</p>
+<p>You can use multiple tables in your single SQL query. The act of joining in MySQLi refers to smashing two or more tables into a single table.</p>
+<p>You can use JOINS in SELECT, UPDATE and DELETE statements to join MySQLi tables. We will see an example of LEFT JOIN also which is different from simple MySQLi JOIN.</p>
+<h2>Using Joins at Command Prompt</h2>
+<p>Suppose we have two tables <b>tutorials_bks</b> and <b>tutorials_inf</b>, in TUTORIALS. A complete listing is given below &minus;</p>
+<h3>Example</h3>
+<p>Try out the following examples &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; SELECT * FROM tcount_bks;
++----+---------+
+| id | book    |
++----+---------+
+|  1 | java    |
+|  2 | java    |
+|  3 | html    |
+|  4 | c++     |
+|  5 | Android |
++----+---------+
+5 rows in set (0.00 sec)
+
+mysql&gt; SELECT * from tutorials_inf;
++----+-------+
+| id | name  |
++----+-------+
+|  1 | sai   |
+|  2 | johar |
+|  3 | raghu |
+|  4 | ram   |
++----+-------+
+4 rows in set (0.00 sec)
+
+mysql&gt;
+</pre>
+<p>Now we can write a SQL query to join these two tables. This query will select all the names from table <b>tutorials_inf</b> and will pickup corresponding number of tutorials from<b>tutorials_bks</b>.</p>
+<pre class="result notranslate">
+mysql&gt; SELECT a.id, a.name,b.id FROM tutorials_inf a,tutorials_bks b WHERE a.id = b.id;
++----+-------+----+
+| id | name  | id |
++----+-------+----+
+|  1 | sai   |  1 |
+|  2 | johar |  2 |
+|  3 | raghu |  3 |
+|  4 | ram   |  4 |
++----+-------+----+
+4 rows in set (0.00 sec)
+mysql&gt;
+</pre>
+<p>In tutorials_bks table, we have 5 records but in the above example it filters and gives only 4 id records as per query</p>
+<h2>Using Joins in  PHP Script</h2>
+<p>You can use any of the above-mentioned SQL query in PHP script. You only need to pass SQL query into PHP function <b>mysqli_query()</b> and then you will fetch results in usual way.</p>
+<h3>Example</h3>
+<p>Try out the following example &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;?php
+   $dbhost = 'localhost:3306';
+   $dbuser = 'root';
+   $dbpass = '';
+   $dbname = 'TUTORIALS';
+   $conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysqli_error());
+   }
+   echo 'Connected successfully&lt;/br&gt;';
+   $sql = 'SELECT a.id, a.name,b.id FROM tutorials_inf a,tutorials_bks b WHERE a.id = b.id';
+   
+   if($result = mysqli_query($conn, $sql)) {
+      if(mysqli_num_rows($result) &gt; 0) {
+         echo "&lt;table&gt;";
+         echo "&lt;tr&gt;";
+         echo "&lt;th&gt;id&lt;/th&gt;";
+         echo "&lt;th&gt;name&lt;/th&gt;";
+         echo "&lt;th&gt;id&lt;/th&gt;";
+         echo "&lt;/tr&gt;";
+         
+         while($row = mysqli_fetch_array($result)){
+            echo "&lt;tr&gt;";
+            echo "&lt;td&gt;" . $row['id'] . "&lt;/td&gt;";
+            echo "&lt;td&gt;" . $row['name'] . "&lt;/td&gt;";
+				echo "&lt;td&gt;" . $row['id'] . "&lt;/td&gt;";
+            echo "&lt;/tr&gt;";
+         }
+         echo "&lt;/table&gt;";
+         mysqli_free_result($result);
+      } else {
+         echo "No records matching your query were found.";
+      }
+   } else {
+      echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+   }
+   mysqli_close($conn);
+?&gt;
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
+Connected successfully
+id	name	id
+1	sai	1
+2	johar	2
+3	raghu	3
+4	ram	4
+</pre>
+<h2>MySQL LEFT JOIN</h2>
+<p>A MySQLi left join is different from a simple join. A MySQLi LEFT JOIN gives extra consideration to the table that is on the left.</p>
+<p>If I do a LEFT JOIN, I get all the records that match in the same way and IN ADDITION I get an extra record for each unmatched record in the left table of the join - thus ensuring (in my example) that every name gets a mention &minus;</p>
+<h3>Example</h3>
+<p>Try out the following example to understand LEFT JOIN &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt;SELECT a.id, a.name,b.id FROM tutorials_inf a LEFT JOIN tutorials_bks b ON a.id = b.id;
+</pre>
+<p>You would need to do more practice to become familiar with JOINS. This is a bit complex concept in MySQL/SQL and will become more clear while doing real examples.</p>
+<h1>MySQLi - Handling NULL Values</h1>
+<p>We have seen SQL <b>SELECT</b> command along with <b>WHERE</b> clause to fetch data from MySQLi table, but when we try to give a condition, which compare field or column value to <b>NULL</b>, it does not work properly.</p>
+<p>To handle such situation MySQLi provides three operators</p>
+<ul class="list">
+<li><p><b>IS NULL</b> &minus; operator returns true if column value is NULL.</p></li>
+<li><p><b>IS NOT NULL</b> &minus; operator returns true if column value is not NULL.</p></li>
+<li><p><b>&lt;=&gt;</b> &minus; operator compares values, which (unlike the = operator) is true even for two NULL values.</p></li>
+</ul>
+<p>Conditions involving NULL are special. You cannot use = NULL or != NULL to look for NULL values in columns. Such comparisons always fail because it's impossible to tell whether or not they are true. Even NULL = NULL fails.</p>
+<p>To look for columns that are or are not NULL, use IS NULL or IS NOT NULL.</P>
+<h2>Using NULL values at Command Prompt</h2>
+<p>Suppose a table <b>tutorials_bks</b> in TUTORIALS database and it  contains  two columns  <b>id </b> and <b>name</b>, where a NULL name indicates that the value is unknown &minus;</p>
+<h3>Example</h3>
+<p>Try out the following examples &minus;</p>
+<pre class="prettyprint notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; INSERT INTO tutorials_bks (book) values('');
+Query OK, 1 row affected (0.08 sec)
+
+mysql&gt; INSERT INTO tutorials_bks (book) values('');
+Query OK, 1 row affected (0.08 sec)
+
+mysql&gt; INSERT INTO tutorials_bks (book) values('');
+Query OK, 1 row affected (0.08 sec)
+
+mysql&gt; INSERT INTO tutorials_bks (book) values('NULL');
+Query OK, 1 row affected (0.08 sec)
+
+mysql&gt; INSERT INTO tutorials_bks (book) values('NULL');
+Query OK, 1 row affected (0.08 sec)
+
+mysql&gt; INSERT INTO tutorials_bks (book) values('NULL');
+Query OK, 1 row affected (0.08 sec)
+
++----+---------+
+| id | book    |
++----+---------+
+|  1 | java    |
+|  2 | java    |
+|  3 | html    |
+|  4 | c++     |
+|  5 | Android |
+|  6 |         |
+|  7 |         |
+|  8 |         |
+|  9 | NULL    |
+| 10 | NULL    |
+| 11 | NULL    |
++----+---------+
+11 rows in set (0.00 sec)
+
+mysql&gt;
+</pre>
+<p>To find records where the name column is or is not NULL, the queries should be written like this &minus;</p>
+<pre class="result notranslate">
+mysql&gt; SELECT * FROM tutorials_bks WHERE book = "null";
++----+------+
+| id | book |
++----+------+
+|  9 | NULL |
+| 10 | NULL |
+| 11 | NULL |
++----+------+
+3 rows in set (0.00 sec)
+
+mysql&gt; SELECT * FROM tutorials_bks WHERE book ! = "null";
++----+---------+
+| id | book    |
++----+---------+
+|  1 | java    |
+|  2 | java    |
+|  3 | html    |
+|  4 | c++     |
+|  5 | Android |
+|  6 |         |
+|  7 |         |
+|  8 |         |
++----+---------+
+8 rows in set (0.00 sec)
+
+mysql&gt; SELECT * FROM tutorials_bks WHERE book = "";
++----+------+
+| id | book |
++----+------+
+|  6 |      |
+|  7 |      |
+|  8 |      |
++----+------+
+3 rows in set (0.01 sec)
+</pre>
+<h2>Handling NULL Values in  PHP Script</h2>
+<p>You can use <i>if...else</i> condition to prepare a query based on NULL value.</p>
+<h3>Example</h3>
+<p>Following example takes tutorial_count from outside and then compares it with the value available in the table.</p>
+<pre class="prettyprint notranslate">
+&lt;?php
+   $dbhost = 'localhost:3036';
+   $dbuser = 'root';
+   $dbpass = 'rootpassword';
+   $conn = mysql_connect($dbhost, $dbuser, $dbpass);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysql_error());
+   }
+   if( isset($tutorial_count )) {
+      $sql = 'SELECT tutorial_author, tutorial_count FROM  tcount_tbl
+         WHERE tutorial_count = $tutorial_count';
+   } else {
+      $sql = 'SELECT tutorial_author, tutorial_count
+         FROM  tcount_tbl WHERE tutorial_count IS $tutorial_count';
+   }
+   mysql_select_db('TUTORIALS');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
+      echo "Author:{$row['tutorial_author']}  &lt;br&gt; ".
+         "Count: {$row['tutorial_count']} &lt;br&gt; ".
+         "--------------------------------&lt;br&gt;";
+   } 
+   echo "Fetched data successfully\n";
+   mysql_close($conn);
+?&gt;
+</pre>
+<h1>MySQLi - Regexps</h1>
+<p>You have seen MySQLi pattern matching with <b>LIKE ...%</b>. MySQLi supports another type of pattern matching operation based on regular expressions and the <b>REGEXP</b> operator. If you are aware of PHP or PERL, then it's very simple for you to understand because this matching is very similar to those scripting regular expressions.</p>
+<p>Following is the table of pattern, which can be used along with <b>REGEXP</b> operator.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Pattern</th>
+<th style="text-align:center;">What the pattern matches</th>
+</tr>
+<tr>
+<td>^</td>
+<td>Beginning of string</td>
+</tr>
+<tr>
+<td>$</td>
+<td>End of string</td>
+</tr>
+<tr>
+<td>.</td>
+<td>Any single character</td>
+</tr>
+<tr>
+<td>[...]</td>
+<td>Any character listed between the square brackets</td>
+</tr>
+<tr>
+<td>[^...]</td>
+<td>Any character not listed between the square brackets</td>
+</tr>
+<tr>
+<td>p1|p2|p3</td>
+<td>Alternation; matches any of the patterns p1, p2, or p3</td>
+</tr>
+<tr>
+<td>*</td>
+<td>Zero or more instances of preceding element</td>
+</tr>
+<tr>
+<td>+</td>
+<td>One or more instances of preceding element</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>n instances of preceding element</td>
+</tr>
+<tr>
+<td>{m,n}</td>
+<td>m through n instances of preceding element</td>
+</tr>
+</table>
+<h2>Examples</h2>
+<p>Now based on above table, you can device various type of SQL queries to meet your requirements. Here, I'm listing few for your understanding. Consider we have a table called tutorials_inf and it's having a field called name &minus;</p>
+<p>Query to find all the names starting with 'sa'</p>
+<pre class="result notranslate">
+mysql&gt;  SELECT * FROM tutorials_inf WHERE name REGEXP '^sa';
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
++----+------+
+| id | name |
++----+------+
+|  1 | sai  |
++----+------+
+1 row in set (0.00 sec)
+</pre>
+<p>Query to find all the names ending with 'ai'</p>
+<pre class="result notranslate">
+mysql&gt; SELECT * FROM tutorials_inf WHERE name REGEXP 'ai$';
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
++----+------+
+| id | name |
++----+------+
+|  1 | sai  |
++----+------+
+1 row in set (0.00 sec)
+</pre>
+<p>Query to find all the names, which contain 'a'</p>
+<pre class="result notranslate">
+mysql&gt; SELECT * FROM tutorials_inf WHERE name REGEXP 'a';
+</pre>
+<p>The sample output should be like this &minus;</p>
+<pre class="result notranslate">
++----+-------+
+| id | name  |
++----+-------+
+|  1 | sai   |
+|  3 | ram   |
+|  4 | johar |
++----+-------+
+3 rows in set (0.00 sec)
+</pre>
+<p>Query to find all the names starting with a vowel</p>
+<pre class="result notranslate">
+mysql&gt;  SELECT * FROM tutorials_inf WHERE name REGEXP '^[aeiou]';
+</pre>
+<h1>MySQLi - Transactions</h1>
+<p>A transaction is a sequential group of database manipulation operations, which is performed as if it were one single work unit. In other words, a transaction will never be complete unless each individual operation within the group is successful. If any operation within the transaction fails, the entire transaction will fail.</p>
+<p>Practically, you will club many SQL queries into a group  and you will execute all of them together as part of a transaction.</p>
+<h2>Properties of Transactions</h2>
+<p>Transactions have the following four standard properties, usually referred to by the acronym ACID &minus;</p>
+<ul class="list">
+<li><p><b>Atomicity</b> &minus; ensures that all operations within the work unit are completed successfully; otherwise, the transaction is aborted at the point of failure and previous operations are rolled back to their former state.</p></li>
+<li><p><b>Consistency</b> &minus; ensures that the database properly changes states upon a successfully committed transaction.</p></li>
+<li><p><b>Isolation</b> &minus; enables transactions to operate independently on and transparent to each other.</p></li>
+<li><p><b>Durability</b> &minus; ensures that the result or effect of a committed transaction persists in case of a system failure.</p></li>
+</ul>
+<p>In MySQL, transactions begin with the statement BEGIN WORK and end with either a COMMIT or a ROLLBACK statement. The SQLi commands between the beginning and ending statements form the bulk of the transaction.</p>
+<h2>COMMIT and ROLLBACK</h2>
+<p>These two keywords <b>Commit</b> and <b>Rollback</b> are mainly used for MySQL Transactions.</p>
+<ul class="list">
+<li><p>When a successful transaction is completed, the COMMIT command should be issued so that the changes to all involved tables will take effect.</p></li>
+<li><p>If a failure occurs, a ROLLBACK command should be issued to return every table referenced in the transaction to its previous state.</p></li>
+</ul>
+<p>You can control the behavior of a transaction by setting session variable called <b>AUTOCOMMIT</b>. If AUTOCOMMIT is set to 1 (the default), then each SQL statement (within a transaction or not) is considered a complete transaction and committed by default when it finishes. When AUTOCOMMIT is set to 0, by issuing the SET AUTOCOMMIT=0 command, the subsequent series of statements acts like a transaction and no activities are committed until an explicit COMMIT statement is issued.</p>
+<p>You can execute these SQL commands in PHP by using <b>mysqli_query()</b> function.</p>
+<h2>Generic Example on Transaction</h2>
+<p>This sequence of events is independent of the programming language used; the logical path can be created in whichever language you use to create your application.</p>
+<p>You can execute these SQL commands in PHP by using <b>mysqli_query()</b> function.</p>
+<ul class="list">
+<li><p>Begin transaction by issuing SQL command <b>BEGIN WORK.</b></p></li>
+<li><p>Issue one or more SQL commands like SELECT, INSERT, UPDATE  or DELETE.</p></li>
+<li><p>Check if there is no error and everything is according to your requirement.</p></li>
+<li><p>If there is any error, then issue ROLLBACK command, otherwise issue a COMMIT command.</p></li>
+</ul>
+<h2>Transaction-Safe Table Types in MySQLi</h2>
+<p>You can not use transactions directly, you can but they would not be safe and guaranteed. If you plan to use transactions in your MySQLi programming, then you need to create your tables in a special way. There are many types of tables, which support transactions but most popular one is <b>InnoDB</b>.</p>
+<p>Support for InnoDB tables requires a specific compilation parameter when compiling MySQLi from source. If your MySQLi version does not have InnoDB support, ask your Internet Service Provider to build a version of MySQLi with support for InnoDB table types or download and install the MySQL-Max binary distribution for Windows or Linux/UNIX and work with the table type in a development environment.</p>
+<p>If your MySQLi installation supports InnoDB tables, simply add a <b>TYPE = InnoDB</b> definition to the table creation statement. For example, the following code creates an InnoDB table called tutorials_innodb &minus;</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; create table tutorials_innodb
+   -&gt; (
+   -&gt; tutorial_author varchar(40) NOT NULL,
+   -&gt; tutorial_count  INT
+   -&gt; ) TYPE = InnoDB;
+Query OK, 0 rows affected (0.02 sec)
+</pre>
+<p>Check the following link to know more about &minus; <a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html" rel="nofollow" target="_blank">InnoDB</a></p>
+<p>You can use other table types like <b>GEMINI</b> or <b>BDB</b>, but it depends on your installation if it supports these two types.</p>
+<h1>MySQLi - ALTER Command</h1>
+<p>MySQLi <b>ALTER</b> command is very useful when you want to change a name of your table, any table field or if you want to add or delete an existing column in a table.</p>
+<p>Let's begin with creation of a table called <b>tutorials_alter</b>.</p>
+<pre class="result notranslate">
+root@host# mysql -u root -p password;
+Enter password:*******
+
+mysql&gt; use TUTORIALS;
+Database changed
+
+mysql&gt; create table tutorials_alter
+   -&gt; (
+   -&gt; i INT,
+   -&gt; c CHAR(1)
+   -&gt; );
+Query OK, 0 rows affected (0.27 sec)
+
+mysql&gt; SHOW COLUMNS FROM tutorials_alter;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| i     | int(11) | YES  |     | NULL    |       |
+| c     | char(1) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+</pre>
+<h2>Dropping, Adding or Repositioning a Column</h2>
+<p>Suppose you want to drop an existing column <b>i</b> from above MySQLi table then you will use <b>DROP</b> clause along with <b>ALTER</b> command as follows &minus;</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_alter  DROP i;
+</pre>
+<p>A <b>DROP</b> will not work if the column is the only one left in the table.</p>
+<p>To add a column, use ADD and specify the column definition. The following statement restores the <b>i</b> column to tutorials_alter &minus;</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_alter ADD i INT;
+</pre>
+<p>After issuing this statement, testalter will contain the same two columns that it had when you first created the table, but will not have quite the same structure. That's because new columns are added to the end of the table by default. So even though <b>i</b> originally was the first column in mytbl, now it is the last one.</p>
+<pre class="result notranslate">
+mysql&gt; SHOW COLUMNS FROM tutorials_alter;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| c     | char(1) | YES  |     | NULL    |       |
+| i     | int(11) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+</pre>
+<p>To indicate that you want a column at a specific position within the table, either use FIRST to make it the first column or AFTER col_name to indicate that the new column should be placed after col_name. Try the following ALTER TABLE statements, using SHOW COLUMNS after each one to see what effect each one has &minus;</p>
+<pre class="results notranslate">
+ALTER TABLE testalter_tbl DROP i;
+ALTER TABLE testalter_tbl ADD i INT FIRST;
+ALTER TABLE testalter_tbl DROP i;
+ALTER TABLE testalter_tbl ADD i INT AFTER c;
+</pre>
+<p>The FIRST and AFTER specifiers work only with the ADD clause. This means that if you want to reposition an existing column within a table, you first must DROP it and then ADD it at the new position.</p>
+<h2>Changing a Column Definition or Name</h2>
+<p>To change a column's definition, use <b>MODIFY</b> or <b>CHANGE</b> clause along with ALTER command. For example, to change column <b>c</b> from CHAR(1) to CHAR(10), do this &minus;</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_alter MODIFY c CHAR(10);
+</pre>
+<p>With CHANGE, the syntax is a bit different. After the CHANGE keyword, you name the column you want to change, then specify the new definition, which includes the new name. Try out the following example:</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_alter CHANGE i j BIGINT;
+</pre>
+<p>If you now use CHANGE to convert j from BIGINT back to INT without changing the column name, the statement will be as expected &minus;</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_alter CHANGE j j INT;
+</pre>
+<h2>The Effect of ALTER TABLE on Null and Default Value Attributes &minus;</h2>
+<p>When you MODIFY or CHANGE a column, you can also specify whether or not the column can contain NULL values and what its default value is. In fact, if you don't do this, MySQLi automatically assigns values for these attributes.</p>
+<p>Here is the example, where NOT NULL column will have value 100 by default.</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_alter 
+   -&gt; MODIFY j BIGINT NOT NULL DEFAULT 100;
+</pre>
+<p>If you don't use above command, then MySQLi will fill up NULL values in all the columns.</p>
+<h2>Changing a Column's Default Value</h2>
+<p>You can change a default value for any column using ALTER command. Try out the following example.</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_alter ALTER j SET DEFAULT 1000;
+mysql&gt; SHOW COLUMNS FROM tutorials_alter;
++-------+------------+------+-----+---------+-------+
+| Field | Type       | Null | Key | Default | Extra |
++-------+------------+------+-----+---------+-------+
+| c     | char(10)   | YES  |     | NULL    |       |
+| j     | bigint(20) | NO   |     | 1000    |       |
++-------+------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+</pre>
+<p>You can remove default constraint from any column by using DROP clause along with ALTER command.</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_alter ALTER j DROP DEFAULT;
+mysql&gt; SHOW COLUMNS FROM tutorials_alter;
++-------+------------+------+-----+---------+-------+
+| Field | Type       | Null | Key | Default | Extra |
++-------+------------+------+-----+---------+-------+
+| c     | char(10)   | YES  |     | NULL    |       |
+| j     | bigint(20) | NO   |     | NULL    |       |
++-------+------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+</pre>
+<h2>Changing a Table Type</h2>
+<p>You can use a table type by using <b>TYPE</b> clause along with ALTER command.</p>
+<p>To find out the current type of a table, use the SHOW TABLE STATUS statement.</p>
+<pre class="result notranslate">
+mysql&gt;  SHOW TABLE STATUS LIKE 'tutorials_alter'\G
+*************************** 1. row ***************************
+           Name: tutorials_alter
+         Engine: InnoDB
+        Version: 10
+     Row_format: Compact
+           Rows: 0
+ Avg_row_length: 0
+    Data_length: 16384
+Max_data_length: 0
+   Index_length: 0
+      Data_free: 0
+ Auto_increment: NULL
+    Create_time: 2017-02-17 11:30:29
+    Update_time: NULL
+     Check_time: NULL
+      Collation: latin1_swedish_ci
+       Checksum: NULL
+ Create_options:
+        Comment:
+1 row in set (0.00 sec)
+</pre>
+<h2>Renaming a Table</h2>
+<p>To rename a table, use the <b>RENAME</b> option of the ALTER TABLE statement. Try out the following example to rename tutorials_alter to tutorials_bks.</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_alter RENAME TO tutorials_bks;
+</pre>
+<p>You can use ALTER command to create and drop INDEX on a MySQL file. We will see this feature in next chapter.</p>
+<h1>MySQLi - INDEXES</h1>
+<p>A database index is a data structure that improves the speed of operations in a table. Indexes can be created using one or more columns, providing the basis for both rapid random lookups and efficient ordering of access to records.</p>
+<p>While creating index, it should be considered that what are the columns which will be used to make SQL queries and create one or more indexes on those columns.</p>
+<p>Practically, indexes are also type of tables, which keep primary key or index field and a pointer to each record into the actual table.</p>
+<p>The users cannot see the indexes, they are just used to speed up queries and will be used by Database Search Engine to locate records very fast.</p> 
+<p>INSERT and UPDATE statements take more time  on tables having indexes where as SELECT statements become fast on those tables. The reason is that while doing insert or update, database need to insert or update index values as well.</p>
+<h2>Simple and Unique Index</h2>
+<p>You can create a unique index on a table. A unique index means that two rows cannot have the same index value. Here is the syntax to create an Index on a table.</p>
+<pre class="result notranslate">
+CREATE UNIQUE INDEX index_name ON table_name ( column1, column2,...);
+</pre>
+<p>You can use one or more columns to create an index. For example, we can create an index on tutorials_inf using NAME_INDEX.</p>
+<pre class="result notranslate">
+CREATE UNIQUE INDEX NAME_INDEX ON tutorials_inf(name);
+</pre>
+<p>You can create a simple index on a table. Just omit UNIQUE keyword from the query to create simple index. Simple index allows duplicate values in a table.</p>
+<p>If you want to index the values in a column in descending order, you can add the reserved word DESC after the column name.</p>
+<pre class="result notranslate">
+mysql&gt; CREATE UNIQUE INDEX NAME_INDEX ON tutorials_inf (name DESC);
+</pre>
+<h2>ALTER command to add and drop INDEX</h2>
+<p>There are four types of statements for adding indexes to a table &minus;</p>
+<ul class="list">
+<li><p><b>ALTER TABLE tbl_name ADD PRIMARY KEY (column_list)</b> &minus; This statement adds a PRIMARY KEY, which means that indexed values must be unique and cannot be NULL.</p></li>
+<li><p><b>ALTER TABLE tbl_name ADD UNIQUE index_name (column_list)</b> &minus; This statement creates an index for which values must be unique (with the exception of NULL values, which may appear multiple times).</p></li>
+<li><p><b>ALTER TABLE tbl_name ADD INDEX index_name (column_list)</b> &minus; This adds an ordinary index in which any value may appear more than once.</p></li>
+<li><p><b>ALTER TABLE tbl_name ADD FULLTEXT index_name (column_list)</b> &minus; This creates a special FULLTEXT index that is used for text-searching purposes.</p></li>
+</ul>
+<p>Here is the example to add index in an existing table.</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_inf ADD INDEX (id);
+</pre>
+<p>You can drop any INDEX by using DROP clause along with ALTER command. Try out the following example to drop above-created index.</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_inf DROP INDEX (c);
+</pre>
+<p>You can drop any INDEX by using DROP clause along with ALTER command. Try out the following example to drop above-created index.</p>
+<h2>ALTER Command to add and drop PRIMARY KEY</h2>
+<p>You can add primary key as well in the same way. But make sure Primary Key works on columns, which are NOT NULL.</p>
+<p>Here is the example to add primary key in an existing table. This will make a column NOT NULL first and then add it as a primary key.</p>
+<pre class="result notranslate">
+mysql&gt;  ALTER TABLE tutorials_inf MODIFY id INT NOT NULL;
+mysql&gt; ALTER TABLE tutorials_inf ADD PRIMARY KEY (id);
+</pre>
+<p>You can use ALTER command to drop a primary key as follows:</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_inf DROP PRIMARY KEY;
+</pre>
+<p>To drop an index that is not a PRIMARY KEY, you must specify the index name.</p>
+<h2>Displaying INDEX Information</h2>
+<p>You can use SHOW INDEX command to list out all the indexes associated with a table. Vertical-format output (specified by \G) often is useful with this statement, to avoid long line wraparound &minus;</p>
+<p>Try out the following example</p>
+<pre class="result notranslate">
+mysql&gt; SHOW INDEX FROM <i>table_name</i>\G
+........
+</pre>
+<h1>MySQLi - Temporary Tables</h1>
+<p>The temporary tables could be very useful in some cases to keep temporary data. The most important thing that should be known for temporary tables is that they will be deleted when the current client session terminates.</p>
+<p>As stated earlier, temporary tables will only last as long as the session is alive. If you run the code in a PHP script, the temporary table will be destroyed automatically when the script finishes executing. If you are connected to the MySQL database server through the MySQLi client program, then the temporary table will exist until you close the client or manually destroy  the table.</p>
+<h2>Example</h2>
+<p>Here is an example showing you usage of temporary table. Same code can be used in PHP scripts using <b>mysqli_query()</b> function.</p>
+<pre class="result notranslate">
+mysql&gt; CREATE TEMPORARY TABLE SalesSummary (
+   -&gt; product_name VARCHAR(50) NOT NULL
+   -&gt; , total_sales DECIMAL(12,2) NOT NULL DEFAULT 0.00
+   -&gt; , avg_unit_price DECIMAL(7,2) NOT NULL DEFAULT 0.00
+   -&gt; , total_units_sold INT UNSIGNED NOT NULL DEFAULT 0
+   -&gt; );
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; INSERT INTO SalesSummary
+   -&gt; (product_name, total_sales, avg_unit_price, total_units_sold)
+   -&gt; VALUES
+   -&gt; ('cucumber', 100.25, 90, 2);
+
+mysql&gt; SELECT * FROM SalesSummary;
++--------------+-------------+----------------+------------------+
+| product_name | total_sales | avg_unit_price | total_units_sold |
++--------------+-------------+----------------+------------------+
+| cucumber     |      100.25 |          90.00 |                2 |
++--------------+-------------+----------------+------------------+
+1 row in set (0.00 sec)
+</pre>
+<p>When you issue a SHOW TABLES command, then your temporary table would not be listed out in the list. Now, if you will log out of the MySQLi session and then you will issue a SELECT command, then you will find no data available in the database. Even your temporary table would also not exist.</p>
+<h2>Dropping Temporary Tables</h2>
+<p>By default, all the temporary tables are deleted by MySQLi when your database connection gets terminated. Still if you want to delete them in between, then you do so by issuing DROP TABLE command.</p>
+<p>Following is the example on dropping a temporary table &minus;</p>
+<pre class="result notranslate">
+mysql&gt; DROP TABLE SalesSummary;
+mysql&gt;  SELECT * FROM SalesSummary;
+ERROR 1146: Table 'TUTORIALS.SalesSummary' doesn't exist
+</pre>
+<h1>MySQLi - Clone Tables</h1>
+<p>There may be a situation when you need an exact copy of a table and CREATE TABLE ... SELECT doesn't suit your purposes because the copy must include the same indexes, default values, and so forth.</p>
+<p>You can handle this situation by following steps &minus;</p>
+<ul class="list">
+<li><p>Use SHOW CREATE TABLE to get a CREATE TABLE statement that specifies the source table's structure, indexes and all.</p></li>
+<li><p>Modify the statement to change the table name to that of the clone table and execute the statement. This way, you will have exact clone table.</p></li>
+<li><p>Optionally, if you need the table contents copied as well, issue an INSERT INTO ... SELECT statement, too.</p></li>
+</ul>
+<h2>Example</h2>
+<p>Try out the following example to create a clone table for <b>tutorials_inf</b>.</p>
+<h2>Step 1</h2> 
+<p>Get complete structure about table.</p>
+<pre class="result notranslate">
+mysql&gt; SHOW CREATE TABLE tutorials_inf \G;
+*************************** 1. row ***************************
+       Table: tutorials_inf
+Create Table: CREATE TABLE `tutorials_inf` (
+   `id` int(11) NOT NULL,
+   `name` varchar(20) NOT NULL,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `AUTHOR_INDEX` (`name`),
+   UNIQUE KEY `NAME_INDEX` (`name`),
+   KEY `id` (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = latin1
+1 row in set (0.05 sec)
+
+ERROR: No query specified
+</pre>
+<h2>Step 2</h2> 
+<p>Rename this table and create another table.</p>
+<pre class="result notranslate">
+mysql&gt; CREATE TABLE tutorials_clone(
+   -&gt; id int(11) NOT NULL,
+   -&gt; name varchar(20) NOT NULL,
+   -&gt; PRIMARY KEY (id),
+   &gt; UNIQUE KEY AUTHOR_INDEX (name),
+   -&gt; UNIQUE KEY NAME_INDEX (name),
+   -&gt;  KEY id (id));
+Query OK, 0 rows affected (1.80 sec)
+</pre>
+<h2>Step 3</h2> 
+<p>After executing step 2, you will create a clone table in your database. If you want to copy data from old table then you can do it by using INSERT INTO... SELECT statement.</p>
+<pre class="result notranslate">
+mysql&gt; INSERT INTO tutorials_clone(id,name) SELECT id,name from tutorials_inf;
+Query OK, 4 rows affected (0.19 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+</pre>
+<p>Finally, you will have exact clone table as you wanted to have.</p>
+<h1>Obtaining and Using MySQLi Metadata</h1>
+<p>There are three informations, which you would like to have from MySQLi.</p>
+<ul class="list">
+<li><p><b>Information about the result of queries</b> &minus; This includes number of records affected by any SELECT, UPDATE or DELETE statement.</p></li>
+<li><p><b>Information about tables and databases</b> &minus; This includes information pertaining to the structure of tables and databases.</p></li>
+<li><p><b>Information about the MySQLi server</b> &minus; This includes current status of database server, version number etc.</p></li>
+</ul>
+<p>It's very easy to get all these information at mysqli prompt, but while using PERL or PHP APIs, we need to call various APIs explicitly to obtain all these information. Following section will show you how to obtain this information.</p>
+<h2>Obtaining the Number of Rows Affected by a Query</h2>
+<h2>PERL Example</h2>
+<p>In DBI scripts, the affected-rows count is returned by do( ) or by execute( ), depending on how you execute the query &minus;</p>
+<pre class="result notranslate">
+# Method 1
+# execute $query using do( )
+my $count = $dbh-&gt;do ($query);
+# report 0 rows if an error occurred
+printf "%d rows were affected\n", (defined ($count) ? $count : 0);
+
+# Method 2
+# execute query using prepare( ) plus execute( )
+my $sth = $dbh-&gt;prepare ($query);
+my $count = $sth-&gt;execute ( );
+printf "%d rows were affected\n", (defined ($count) ? $count : 0);
+</pre>
+<h2>PHP Example</h2>
+<p>In PHP, invoke the mysqli_affected_rows( ) function to find out how many rows a query changed &minus;</p>
+<pre class="result notranslate">
+$result_id = mysqli_query ($query, $conn_id);
+# report 0 rows if the query failed
+$count = ($result_id ? mysqli_affected_rows ($conn_id) : 0);
+print ("$count rows were affected\n");
+</pre>
+<h2>Listing Tables and Databases</h2>
+<p>This is very easy to list down all the databases and tables available with database server. Your result may be null if you don't have sufficient privilege.</p>
+<p>Apart from the method I have mentioned below, you can use SHOW TABLES or SHOW DATABASES queries to get list of tables or databases either in PHP or in PERL.</p>
+<h2>PERL Example</h2>
+<pre class="prettyprint notranslate">
+# Get all the tables available in current database.
+my @tables = $dbh-&gt;tables ( );
+foreach $table (@tables ){
+   print "Table Name $table\n";
+}
+</pre>
+<h2>PHP Example</h2>
+<pre class="prettyprint notranslate">
+&lt;?php
+   $servername = "localhost:3306";
+   $username = "root";
+   $password = "";
+   $dbname = "TUTORIALS";
+   $conn = new mysqli($servername, $username, $password, $dbname);
+   
+   if ($conn-&gt;connect_error) {
+      die("Connection failed: " . $conn-&gt;connect_error);
+   } 
+   echo"Database connected";
+   $sql="SHOW DATABASES";
+   
+   if (!($result = mysqli_query($conn,$sql))) {
+      printf("Error: %s\n", mysqli_error($conn));
+   }
+   while( $row = mysqli_fetch_row( $result ) ){
+      if (($row[0]!="information_schema") && ($row[0]!="mysql")) {
+         echo $row[0]."\r\n";
+      }
+   }
+   $conn-&gt;close();
+?&gt;
+</pre>
+<h2>Getting Server Metadata</h2>
+<p>There are following commands in MySQL which can be executed either at mysql prompt or using any script like PHP to get various important informations about database server.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:10%;">Sr.No.</th>
+<th>Command &amp; Description</th>
+</tr>
+<tr>
+<td style="text-align:center;">1</td>
+<td>
+<p><b>SELECT VERSION( )</b></p>
+<p>Server version string</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">2</td>
+<td><p><b>SELECT DATABASE( )</b></p>
+<p>Current database name (empty if none)</p></td>
+</tr>
+<tr>
+<td style="text-align:center;">3</td>
+<td><p><b>SELECT USER( )</b></p>
+<p>Current username</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">4</td>
+<td><p><b>SHOW STATUS</b></p>
+<p>Server status indicators</p></td>
+</tr>
+<tr>
+<td style="text-align:center;">5</td>
+<td><p><b>SHOW VARIABLES</b></p>
+<p>Server configuration variables</p>
+</td>
+</tr>
+</table>
+<h1>MySQLi - Using Sequences</h1>
+<p>A sequence is a set of integers 1, 2, 3, ... that are generated in order on demand. Sequences are frequently used in databases because many applications require each row in a table to contain a unique value and sequences provide an easy way to generate them. This chapter describes how to use sequences in MySQLi.</p>
+<h2>Using AUTO_INCREMENT column</h2>
+<p>The simplest way in MySQLi to use Sequences is to define a column as AUTO_INCREMENT and leave rest of the things to MySQLi to take care.</p>
+<h2>Example</h2>
+<p>Try out the following example. This will create table and after that it will insert few rows in this table where it is not required to give record ID because it's auto incremented by MySQLi.</p>
+<pre class="result notranslate">
+mysql&gt;CREATE TABLE tutorials_auto(
+   id INT UNSIGNED NOT NULL AUTO_INCREMENT, name VARCHAR(30) NOT NULL,PRIMARY KEY(id));
+Query OK, 0 rows affected (0.28 sec)
+
+mysql&gt;INSERT INTO tutorials_auto(id,name) VALUES(NULL,'sai'),(NULL,'ram');
+Query OK, 2 rows affected (0.12 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql&gt; SELECT * FROM insect ORDER BY id;
++----+------+
+| id | name |
++----+------+
+|  1 | sai  |
+|  2 | ram  |
++----+------+
+2 rows in set (0.05 sec)
+</pre>
+<h2>Obtain AUTO_INCREMENT Values</h2>
+<p>LAST_INSERT_ID( ) is a SQL function, so you can use it from within any client that understands how to issue SQL statements. Otherwise, PERL and PHP scripts provide exclusive functions to retrieve auto incremented value of last record.</p>
+<h2>PERL Example</h2>
+<p>Use the mysql_insertid attribute to obtain the AUTO_INCREMENT value generated by a query. This attribute is accessed through either a database handle or a statement handle, depending on how you issue the query. The following example references it through the database handle:</p>
+<pre class="result notranslate">
+$dbh-&gt;do ("INSERT INTO tutorials_auto (name,date,origin)
+VALUES('moth','2001-09-14','windowsill')");
+my $seq = $dbh-&gt;{mysqli_insertid};
+</pre>
+<h2>PHP Example</h2>
+<p>After issuing a query that generates an AUTO_INCREMENT value, retrieve the value by calling mysql_insert_id( ) &minus;</p>
+<pre class="result notranslate">
+mysql_query ("INSERT INTO tutorials_auto (name,date,origin)
+VALUES('moth','2001-09-14','windowsill')", $conn_id);
+$seq = mysqli_insert_id ($conn_id);
+</pre>
+<h2>Renumbering an Existing Sequence</h2>
+<p>There may be a case when you have deleted many records from a table and you want to resequence all the records. This can be done by using a simple trick but you should be very careful to do so if your table is having joins with other table.</p>
+<p>If you determine that resequencing an AUTO_INCREMENT column is unavoidable, the way to do it is to drop the column from the table, then add it again. The following example shows how to renumber the id values in the insect table using this technique &minus;</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_auto DROP id;
+mysql&gt; ALTER TABLE tutorials_auto
+   -&gt; ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
+   -&gt; ADD PRIMARY KEY (id);
+</pre>
+<h2>Starting a Sequence at a Particular Value</h2>
+<p>By default, MySQLi will start sequence from 1 but you can specify any other number as well at the time of table creation. Following is the example where MySQLi will start sequence from 100.</p>
+<pre class="result notranslate">
+mysql&gt; CREATE TABLE tutorials_auto
+   -&gt; (
+   -&gt; id INT UNSIGNED NOT NULL AUTO_INCREMENT = 100,
+   -&gt; PRIMARY KEY (id),
+   -&gt; name VARCHAR(30) NOT NULL, 
+   -&gt; );
+</pre>
+<p>Alternatively, you can create the table and then set the initial sequence value with ALTER TABLE.</p>
+<pre class="result notranslate">
+mysql&gt; ALTER TABLE tutorials_auto AUTO_INCREMENT = 100;
+</pre>
+<h1>MySQLi - Handling Duplicates</h1>
+<p>Tables or result sets sometimes contain duplicate records. Sometimes, it is allowed but sometimes it is required to stop duplicate records. Sometimes, it is required to identify duplicate records and remove them from the table. This chapter will describe how to prevent duplicate records occurring in a table and how to remove already existing duplicate records.</p>
+<h2>Preventing Duplicates from Occurring in a Table</h2>
+<p>You can use a <b>PRIMARY KEY</b> or <b>UNIQUE</b> Index on a table with appropriate fields to stop duplicate records. Let's take one example: The following table contains no such index or primary key, so it would allow duplicate records for first_name and last_name.</p>
+<pre class="result notranslate">
+CREATE TABLE person_tbl (
+   first_name CHAR(20),
+   last_name CHAR(20),
+   sex CHAR(10)
+);
+</pre>
+<p>To prevent multiple records with the same first and last name values from being created in this table, add a PRIMARY KEY to its definition. When you do this, it's also necessary to declare the indexed columns to be NOT NULL, because a PRIMARY KEY does not allow NULL values &minus;</p>
+<pre class="result notranslate">
+CREATE TABLE person_tbl (
+   first_name CHAR(20) NOT NULL,
+   last_name CHAR(20) NOT NULL,
+   sex CHAR(10),
+   PRIMARY KEY (last_name, first_name)
+);
+</pre>
+<p>The presence of a unique index in a table normally causes an error to occur if you insert a record into the table that duplicates an existing record in the column or columns that define the index.</p>
+<p>Use <b>INSERT IGNORE</b> rather than <b>INSERT</b>. If a record doesn't duplicate an existing record, MySQLi inserts it as usual. If the record is a duplicate, the IGNORE keyword tells MySQLi to discard it silently without generating an error.</p>
+<p>Following example does not error out and same time it will not insert duplicate records.</p>
+<pre class="result notranslate">
+mysql&gt; INSERT IGNORE INTO person_tbl (last_name, first_name)
+   -&gt; VALUES( 'Jay', 'Thomas');
+Query OK, 1 row affected (0.00 sec)
+mysql&gt; INSERT IGNORE INTO person_tbl (last_name, first_name)
+   -&gt; VALUES( 'Jay', 'Thomas');
+Query OK, 0 rows affected (0.00 sec)
+</pre>
+<p>Use <b>REPLACE</b> rather than INSERT. If the record is new, it's inserted just as with INSERT. If it's a duplicate, the new record replaces the old one &minus;</p>
+<pre class="result notranslate">
+mysql&gt; REPLACE INTO person_tbl (last_name, first_name)
+   -&gt; VALUES( 'Ajay', 'Kumar');
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; REPLACE INTO person_tbl (last_name, first_name)
+   -&gt; VALUES( 'Ajay', 'Kumar');
+Query OK, 2 rows affected (0.00 sec)
+</pre>
+<p>INSERT IGNORE and REPLACE should be chosen according to the duplicate-handling behavior you want to effect. INSERT IGNORE keeps the first of a set of duplicated records and discards the rest. REPLACE keeps the last of a set of duplicates and erase out any earlier ones.</p>
+<p>Another way to enforce uniqueness is to add a UNIQUE index rather than a PRIMARY KEY to a table.</p>
+<pre class="result notranslate">
+CREATE TABLE person_tbl (
+   first_name CHAR(20) NOT NULL,
+   last_name CHAR(20) NOT NULL,
+   sex CHAR(10)
+   UNIQUE (last_name, first_name)
+);
+</pre>
+<h2>Counting and Identifying Duplicates</h2>
+<p>Following is the query to count duplicate records with first_name and last_name in a table.</p>
+<pre class="result notranslate">
+mysql&gt; SELECT COUNT(*) as repetitions, last_name, first_name
+   -&gt; FROM person_tbl
+   -&gt; GROUP BY last_name, first_name
+   -&gt; HAVING repetitions &gt; 1;
+</pre>
+<p>This query will return a list of all the duplicate records in person_tbl table.  In general, to identify sets of values that are duplicated, do the following &minus;</p>
+<ul class="list">
+<li><p>Determine which columns contain the values that may be duplicated.</p></li>
+<li><p>List those columns in the column selection list, along with COUNT(*).</p></li>
+<li><p>List the columns in the GROUP BY clause as well.</p></li>
+<li><p>Add a HAVING clause that eliminates unique values by requiring group counts to be greater than one.</p></li>
+</ul>
+<h2>Eliminating Duplicates from a Query Result:</h2>
+<p>You can use <b>DISTINCT</b> along with SELECT statement to find out unique records available in a table.</p>
+<pre class="result notranslate">
+mysql&gt; SELECT DISTINCT last_name, first_name
+   -&gt; FROM person_tbl
+   -&gt; ORDER BY last_name;
+</pre>
+<p>An alternative to DISTINCT is to add a GROUP BY clause that names the columns you're selecting. This has the effect of removing duplicates and selecting only the unique combinations of values in the specified columns &minus;</p>
+<pre class="result notranslate">
+mysql&gt; SELECT last_name, first_name
+   -&gt; FROM person_tbl
+   -&gt; GROUP BY (last_name, first_name);
+</pre>
+<h2>Removing Duplicates Using Table Replacement</h2>
+<p>If you have duplicate records in a table and you want to remove all the duplicate records from that table, then here is the procedure &minus;</p>
+<pre class="result notranslate">
+mysql&gt; CREATE TABLE tmp SELECT last_name, first_name, sex
+   -&gt; FROM person_tbl;
+   -&gt; GROUP BY (last_name, first_name);
+mysql&gt; DROP TABLE person_tbl;
+mysql&gt; ALTER TABLE tmp RENAME TO person_tbl;
+</pre>
+<p>An easy way of removing duplicate records from a table is to add an INDEX  or PRIMAY KEY to that table. Even if this table is already available, you can use this technique to remove duplicate records and you will be safe in future as well.</p>
+<pre class="result notranslate">
+mysql&gt; ALTER IGNORE TABLE person_tbl 
+   -&gt; ADD PRIMARY KEY (last_name, first_name);
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/mysqli/mysqli_useful_functions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/mysqli/mysqli_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

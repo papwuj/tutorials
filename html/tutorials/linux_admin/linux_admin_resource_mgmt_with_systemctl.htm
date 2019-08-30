@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Linux Admin - Resource Mgmt with systemctl</title>
+<meta charset="utf-8">
+<meta name="description" content="Linux Admin - Resource Mgmt with systemctl - systemctl is the utility used to control systemd. systemctl provides CentOS administrators with the ability to perform a multitude of operations on systemd incl"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#dfa018;
+}
+a.demo {
+    background:#dfa018;
+}
+li.heading {
+    background:#dfa018;
+}
+.course-box{background:#dfa018}
+.home-intro-sub p{color:#dfa018}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/linux_admin/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/linux_admin/images/linux-admin-mini-logo.jpg" alt="Linux Admin Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Tutorial</li>
+<li><a href="/linux_admin/index.htm">Linux Admin - Home</a></li>
+<li><a href="/linux_admin/linux_admin_centos_overview.htm">CentOS Overview</a></li>
+<li><a href="/linux_admin/basic_centos_linux_commands.htm">Basic CentOS Linux Commands</a></li>
+<li><a href="/linux_admin/linux_admin_file_folder_management.htm">File / Folder Management</a></li>
+<li><a href="/linux_admin/linux_admin_user_management.htm">User Management</a></li>
+<li><a href="/linux_admin/linux_admin_quota_management.htm">Quota Management</a></li>
+<li><a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Systemd Services Start and Stop</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Resource Mgmt with systemctl</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Resource Mgmt with crgoups</a></li>
+<li><a href="/linux_admin/linux_admin_process_management.htm">Process Management</a></li>
+<li><a href="/linux_admin/linux_admin_firewall_setup.htm">Firewall Setup</a></li>
+<li><a href="/linux_admin/configure_php_in_centos_linux.htm">Configure PHP in CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_python_with_centos_linux.htm">Set Up Python with CentOS Linux</a></li>
+<li><a href="/linux_admin/configure_ruby_on_centos_linux.htm">Configure Ruby on CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_perl_for_centos_linux.htm">Set Up Perl for CentOS Linux</a></li>
+<li><a href="/linux_admin/install_and_configure_open_ldap.htm">Install and Configure Open LDAP</a></li>
+<li><a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Create SSL Certificates</a></li>
+<li><a href="/linux_admin/linux_admin_install_apache_web_server_centos_7.htm">Install Apache Web Server CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">MySQL Setup On CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_set_up_postfix_mta_and_imap_pop3.htm">Set Up Postfix MTA and IMAP/POP3</a></li>
+<li><a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Install Anonymous FTP</a></li>
+<li><a href="/linux_admin/linux_admin_remote_management.htm">Remote Management</a></li>
+<li><a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm">Traffic Monitoring in CentOS</a></li>
+<li><a href="/linux_admin/linux_admin_log_management.htm">Log Management</a></li>
+<li><a href="/linux_admin/linux_admin_backup_and_recovery.htm">Backup and Recovery</a></li>
+<li><a href="/linux_admin/linux_admin_system_updates.htm">System Updates</a></li>
+<li><a href="/linux_admin/linux_admin_shell_scripting.htm">Shell Scripting</a></li>
+<li><a href="/linux_admin/linux_admin_package_management.htm">Package Management</a></li>
+<li><a href="/linux_admin/linux_admin_volume_management.htm">Volume Management</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Useful Resources</li>
+<li><a href="/linux_admin/linux_admin_quick_guide.htm">Linux Admin - Quick Guide</a></li>
+<li><a href="/linux_admin/linux_admin_useful_resources.htm">Linux Admin - Useful Resources</a></li>
+<li><a href="/linux_admin/linux_admin_discussion.htm">Linux Admin - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Linux Admin - Resource Mgmt with systemctl</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p><b><i>systemctl</i></b> is the utility used to control systemd. systemctl provides CentOS administrators with the ability to perform a multitude of operations on systemd including &minus;</p>
+<ul class="list">
+<li>Configure systemd units</li>
+<li>Get status of systemd untis</li>
+<li>Start and stop services</li>
+<li>Enable / disable systemd services for runtime, etc.</li>
+</ul>
+<p>The command syntax for <i>systemctl</i> is pretty basic, but can tangle with switches and options. We will present the most essential functions of <i>systemctl</i> needed for administering CentOS Linux.</p>
+<pre class="result notranslate">
+Basic systemctl syntax: 
+systemctl [OPTIONS] COMMAND [NAME]
+</pre>
+<p>Following are the common commands used with <i>systemctl</i> &minus;</p>
+<ul class="list">
+<li>start</li>
+<li>stop</li>
+<li>restart</li>
+<li>reload</li>
+<li>status</li>
+<li>is-active</li>
+<li>list-units</li>
+<li>enable</li>
+<li>disable</li>
+<li>cat</li>
+<li>show</li>
+</ul>
+<p>We have already discussed <i>start</i>, <i>stop</i>, <i>reload</i>, <i>restart</i>, <i>enable</i> and <i>disable</i> with systemctl. So let's go over the remaining commonly used commands.</p>
+<h2>status</h2>
+<p>In its most simple form, the status command can be used to see the system status as a whole &minus;</p>
+<pre class="result notranslate">
+[root@localhost rdc]# systemctl status 
+ ● localhost.localdomain 
+  State: running 
+  Jobs: 0 queued
+  Failed: 0 units 
+  Since: Thu 2017-01-19 19:14:37 EST; 4h 5min ago 
+CGroup: / 
+       ├─1 /usr/lib/systemd/systemd --switched-root --system --deserialize 21 
+       ├─user.slice 
+       │ └─user-1002.slice 
+       │   └─session-1.scope 
+       │     ├─2869 gdm-session-worker [pam/gdm-password] 
+       │     ├─2881 /usr/bin/gnome-keyring-daemon --daemonize --login 
+       │     ├─2888 gnome-session --session gnome-classic 
+       │     ├─2895 dbus-launch --sh-syntax --exit-with-session
+</pre>
+<p>The above output has been condensed. In the real-world <i>systemctl status</i> will output about 100 lines of treed process statuses.</p>
+<p>Let's say we want to check the status of our firewall service &minus;</p>
+<pre class="result notranslate">
+[root@localhost rdc]# systemctl status firewalld 
+● firewalld.service - firewalld - dynamic firewall daemon 
+Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled) 
+Active: active (running) since Thu 2017-01-19 19:14:55 EST; 4h 12min ago 
+ Docs: man:firewalld(1) 
+Main PID: 825 (firewalld) 
+CGroup: /system.slice/firewalld.service 
+       └─825 /usr/bin/python -Es /usr/sbin/firewalld --nofork --nopid
+</pre>
+<p>As you see, our firewall service is currently active and has been for over 4 hours.</p>
+<h2>list-units</h2>
+<p>The list-units command allows us to list all the units of a certain type. Let's check for sockets managed by <i>systemd</i> &minus;</p>
+<pre class="result notranslate">
+[root@localhost]# systemctl list-units --type=socket 
+UNIT                         LOAD     ACTIVE     SUB     DESCRIPTION     
+avahi-daemon.socket          loaded   active  running    Avahi mDNS/DNS-SD Stack Activation Socket 
+cups.socket                  loaded   active  running    CUPS Printing Service Sockets 
+dbus.socket                  loaded   active  running    D-Bus System Message Bus Socket 
+dm-event.socket              loaded   active  listening  Device-mapper event daemon FIFOs 
+iscsid.socket                loaded   active  listening  Open-iSCSI iscsid Socket
+iscsiuio.socket              loaded   active  listening  Open-iSCSI iscsiuio Socket 
+lvm2-lvmetad.socket          loaded   active  running    LVM2 metadata daemon socket 
+lvm2-lvmpolld.socket         loaded   active  listening  LVM2 poll daemon socket 
+rpcbind.socket               loaded   active  listening  RPCbind Server Activation Socket 
+systemd-initctl.socket       loaded   active  listening  /dev/initctl Compatibility Named Pipe 
+systemd-journald.socket      loaded   active  running    Journal Socket 
+systemd-shutdownd.socket     loaded   active  listening  Delayed Shutdown Socket 
+systemd-udevd-control.socket loaded   active  running    udev Control Socket 
+systemd-udevd-kernel.socket  loaded   active  running    udev Kernel Socket 
+virtlockd.socket             loaded   active  listening  Virtual machine lock manager socket 
+virtlogd.socket              loaded   active  listening  Virtual machine log manager socket
+</pre>
+<p>Now let’s check the current running services &minus;</p>
+<pre class="result notranslate">
+[root@localhost rdc]# systemctl list-units --type=service 
+UNIT                      LOAD     ACTIVE     SUB     DESCRIPTION 
+abrt-ccpp.service         loaded   active   exited    Install ABRT coredump hook 
+abrt-oops.service         loaded   active   running   ABRT kernel log watcher 
+abrt-xorg.service         loaded   active   running   ABRT Xorg log watcher 
+abrtd.service             loaded   active   running   ABRT Automated Bug Reporting Tool 
+accounts-daemon.service   loaded   active   running   Accounts Service 
+alsa-state.service        loaded   active   running   Manage Sound Card State (restore and store) 
+atd.service               loaded   active   running   Job spooling tools 
+auditd.service            loaded   active   running   Security Auditing Service
+</pre>
+<h2>is-active</h2>
+<p>The <i>is-active</i> command is an example of systemctl commands designed to return the status information of a unit.</p>
+<pre class="result notranslate">
+[root@localhost rdc]# systemctl is-active ksm.service 
+active
+</pre>
+<h2>cat</h2>
+<p><i>cat</i> is one of the seldomly used command. Instead of using cat at the shell and typing the path to a unit file, simply use <i>systemctl cat</i>.</p>
+<pre class="result notranslate">
+[root@localhost]# systemctl cat firewalld 
+# /usr/lib/systemd/system/firewalld.service
+[Unit] 
+Description=firewalld - dynamic firewall daemon 
+Before=network.target 
+Before=libvirtd.service 
+Before = NetworkManager.service 
+After=dbus.service 
+After=polkit.service 
+Conflicts=iptables.service ip6tables.service ebtables.service ipset.service 
+Documentation=man:firewalld(1)
+
+[Service] 
+EnvironmentFile = -/etc/sysconfig/firewalld 
+ExecStart = /usr/sbin/firewalld --nofork --nopid $FIREWALLD_ARGS 
+ExecReload = /bin/kill -HUP $MAINPID 
+# supress to log debug and error output also to /var/log/messages 
+StandardOutput = null 
+StandardError = null
+
+Type = dbus 
+BusName = org.fedoraproject.FirewallD1
+
+[Install] 
+WantedBy = basic.target 
+Alias = dbus-org.fedoraproject.FirewallD1.service
+
+[root@localhost]#
+</pre>
+<p>Now that we have explored both <i>systemd</i> and <i>systemctl</i> in more detail, let's use them to manage the resources in <i>cgroups</i> or <i>control groups</i>.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

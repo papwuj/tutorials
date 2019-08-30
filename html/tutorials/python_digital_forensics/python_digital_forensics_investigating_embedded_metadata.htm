@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Investigating Embedded Metadata</title>
+<meta charset="utf-8">
+<meta name="description" content="Investigating Embedded Metadata - In this chapter, we will learn in detail about investigating embedded metadata using Python digital forensics."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/python_digital_forensics/python_digital_forensics_investigating_embedded_metadata.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#e84802;
+}
+a.demo {
+    background:#e84802;
+}
+li.heading {
+    background:#e84802;
+}
+.course-box{background:#e84802}
+.home-intro-sub p{color:#e84802}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/python_digital_forensics/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/python_digital_forensics/images/python-digital-forensics-mini-logo.jpg" alt="Python Digital Forensics Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Python Digital Forensics</li>
+<li><a href="/python_digital_forensics/index.htm">Python Digital Forensics - Home</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_introduction.htm">Introduction</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_getting_started.htm">Getting Started With Python</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_artifact_report.htm">Artifact Report</a></li>
+<li><a href="/python_digital_forensics/python_digital_mobile_device_forensics.htm">Mobile Device Forensics</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_investigating_embedded_metadata.htm">Investigating Embedded Metadata</a></li>
+<li><a href="/python_digital_forensics/python_digital_network_forensics.htm">Network Forensics-I</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_network.htm">Network Forensics-II</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_investigation_using_emails.htm">Investigation Using Emails</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_important_artifacts_in_windows.htm">Important Artifacts In Windows-I</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_important_artifacts_in_ms_windows.htm">Important Artifacts In Windows-II</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_important_artifacts_in_microsoft_windows.htm">Important Artifacts In Windows-III</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_investigation_of_log_based_artifacts.htm">Investigation Of Log Based Artifacts</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Python Digital Forensics Resources</li>
+<li><a href="/python_digital_forensics/python_digital_forensics_quick_guide.htm">Quick Guide</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_useful_resources.htm">Python Digital Forensics - Resources</a></li>
+<li><a href="/python_digital_forensics/python_digital_forensics_discussion.htm">Python Digital Forensics - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Investigating Embedded Metadata</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/python_digital_forensics/python_digital_mobile_device_forensics.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/python_digital_forensics/python_digital_network_forensics.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, we will learn in detail about investigating embedded metadata using Python digital forensics.</p>
+<h2>Introduction</h2>
+<p>Embedded metadata is the information about data stored in the same file which is having the object described by that data. In other words, it is the information about a digital asset stored in the digital file itself. It is always associated with the file and can never be separated.</p>
+<p>In case of digital forensics, we cannot extract all the information about a particular file. On the other side, embedded metadata can provide us information critical to the investigation. For example, a text file’s metadata may contain information about the author, its length, written date and even a short summary about that document. A digital image may include the metadata such as the length of the image, the shutter speed etc.</p>
+<h2>Artifacts Containing Metadata Attributes and their Extraction</h2>
+<p>In this section, we will learn about various artifacts containing metadata attributes and their extraction process using Python.</p>
+<h3>Audio and Video</h3>
+<p>These are the two very common artifacts which have the embedded metadata. This metadata can be extracted for the purpose of investigation.</p>
+<p>You can use the following Python script to extract common attributes or metadata from audio or MP3 file and a video or a MP4 file.</p>
+<p>Note that for this script, we need to install a third party python library named mutagen which allows us to extract metadata from audio and video files. It can be installed with the help of the following command &minus;</p>
+<pre class="result notranslate">
+pip install mutagen
+</pre>
+<p>Some of the useful libraries we need to import for this Python script are as follows &minus;</p>
+<pre class="prettyprint notranslate">
+from __future__ import print_function
+
+import argparse
+import json
+import mutagen
+</pre>
+<p>The command line handler will take one argument which represents the path to the MP3 or MP4 files. Then, we will use <b>mutagen.file()</b> method to open a handle to the file as follows &minus;</p>
+<pre class="prettyprint notranslate">
+if __name__ == '__main__':
+   parser = argparse.ArgumentParser('Python Metadata Extractor')
+   parser.add_argument("AV_FILE", help="File to extract metadata from")
+   args = parser.parse_args()
+   av_file = mutagen.File(args.AV_FILE)
+   file_ext = args.AV_FILE.rsplit('.', 1)[-1]
+   
+   if file_ext.lower() == 'mp3':
+      handle_id3(av_file)
+   elif file_ext.lower() == 'mp4':
+      handle_mp4(av_file)
+</pre>
+<p>Now, we need to use two handles, one to extract the data from MP3 and one to extract data from MP4 file. We can define these handles as follows &minus;</p>
+<pre class="prettyprint notranslate">
+def handle_id3(id3_file):
+   id3_frames = {'TIT2': 'Title', 'TPE1': 'Artist', 'TALB': 'Album','TXXX':
+      'Custom', 'TCON': 'Content Type', 'TDRL': 'Date released','COMM': 'Comments',
+         'TDRC': 'Recording Date'}
+   print("{:15} | {:15} | {:38} | {}".format("Frame", "Description","Text","Value"))
+   print("-" * 85)
+   
+   for frames in id3_file.tags.values():
+      frame_name = id3_frames.get(frames.FrameID, frames.FrameID)
+      desc = getattr(frames, 'desc', "N/A")
+      text = getattr(frames, 'text', ["N/A"])[0]
+      value = getattr(frames, 'value', "N/A")
+      
+      if "date" in frame_name.lower():
+         text = str(text)
+      print("{:15} | {:15} | {:38} | {}".format(
+         frame_name, desc, text, value))
+def handle_mp4(mp4_file):
+   cp_sym = u"\u00A9"
+   qt_tag = {
+      cp_sym + 'nam': 'Title', cp_sym + 'art': 'Artist',
+      cp_sym + 'alb': 'Album', cp_sym + 'gen': 'Genre',
+      'cpil': 'Compilation', cp_sym + 'day': 'Creation Date',
+      'cnID': 'Apple Store Content ID', 'atID': 'Album Title ID',
+      'plID': 'Playlist ID', 'geID': 'Genre ID', 'pcst': 'Podcast',
+      'purl': 'Podcast URL', 'egid': 'Episode Global ID',
+      'cmID': 'Camera ID', 'sfID': 'Apple Store Country',
+      'desc': 'Description', 'ldes': 'Long Description'}
+genre_ids = json.load(open('apple_genres.json'))
+</pre>
+<p>Now, we need to iterate through this MP4 file as follows &minus;</p>
+<pre class="prettyprint notranslate">
+print("{:22} | {}".format('Name', 'Value'))
+print("-" * 40)
+
+for name, value in mp4_file.tags.items():
+   tag_name = qt_tag.get(name, name)
+   
+   if isinstance(value, list):
+      value = "; ".join([str(x) for x in value])
+   if name == 'geID':
+      value = "{}: {}".format(
+      value, genre_ids[str(value)].replace("|", " - "))
+   print("{:22} | {}".format(tag_name, value))
+</pre>
+<p>The above script will give us additional information about MP3 as well as MP4 files.</p>
+<h3>Images</h3>
+<p>Images may contain different kind of metadata depending upon its file format. However, most of the images embed GPS information. We can extract this GPS information by using third party Python libraries. You can use the following Python script can be used to do the same &minus;</p>
+<p>First, download third party python library named <b>Python Imaging Library (PIL)</b> as follows &minus;</p>
+<pre class="result notranslate">
+pip install pillow
+</pre>
+<p>This will help us to extract metadata from images.</p>
+<p>We can also write the GPS details embedded in images to KML file, but for this we need to download third party Python library named <b>simplekml</b> as follows &minus;</p>
+<pre class="result notranslate">
+pip install simplekml
+</pre>
+<p>In this script, first we need to import the following libraries &minus;</p>
+<pre class="prettyprint notranslate">
+from __future__ import print_function
+import argparse
+
+from PIL import Image
+from PIL.ExifTags import TAGS
+
+import simplekml
+import sys
+</pre>
+<p>Now, the command line handler will accept one positional argument which basically represents the file path of the photos.</p>
+<pre class="prettyprint notranslate">
+parser = argparse.ArgumentParser('Metadata from images')
+parser.add_argument('PICTURE_FILE', help = "Path to picture")
+args = parser.parse_args()
+</pre>
+<p>Now, we need to specify the URLs that will populate the coordinate information. The URLs are <b>gmaps</b> and <b>open_maps</b>. We also need a function to convert the degree minute seconds (DMS) tuple coordinate, provided by PIL library, into decimal. It can be done as follows &minus;</p>
+<pre class="prettyprint notranslate">
+gmaps = "https://www.google.com/maps?q={},{}"
+open_maps = "http://www.openstreetmap.org/?mlat={}&amp;mlon={}"
+
+def process_coords(coord):
+   coord_deg = 0
+   
+   for count, values in enumerate(coord):
+      coord_deg += (float(values[0]) / values[1]) / 60**count
+   return coord_deg
+</pre>
+<p>Now, we will use <b>image.open()</b> function to open the file as PIL object.</p>
+<pre class="prettyprint notranslate">
+img_file = Image.open(args.PICTURE_FILE)
+exif_data = img_file._getexif()
+
+if exif_data is None:
+   print("No EXIF data found")
+   sys.exit()
+for name, value in exif_data.items():
+   gps_tag = TAGS.get(name, name)
+   if gps_tag is not 'GPSInfo':
+      continue
+</pre>
+<p>After finding the <b>GPSInfo</b> tag, we will store the GPS reference and process the coordinates with the <b>process_coords()</b> method.</p>
+<pre class="prettyprint notranslate">
+lat_ref = value[1] == u'N'
+lat = process_coords(value[2])
+
+if not lat_ref:
+   lat = lat * -1
+lon_ref = value[3] == u'E'
+lon = process_coords(value[4])
+
+if not lon_ref:
+   lon = lon * -1
+</pre>
+<p>Now, initiate <b>kml</b> object from <b>simplekml</b> library as follows &minus;</p>
+<pre class="prettyprint notranslate">
+kml = simplekml.Kml()
+kml.newpoint(name = args.PICTURE_FILE, coords = [(lon, lat)])
+kml.save(args.PICTURE_FILE + ".kml")
+</pre>
+<p>We can now print the coordinates from processed information as follows &minus;</p>
+<pre class="prettyprint notranslate">
+print("GPS Coordinates: {}, {}".format(lat, lon))
+print("Google Maps URL: {}".format(gmaps.format(lat, lon)))
+print("OpenStreetMap URL: {}".format(open_maps.format(lat, lon)))
+print("KML File {} created".format(args.PICTURE_FILE + ".kml"))
+</pre>
+<h3>PDF Documents</h3>
+<p>PDF documents have a wide variety of media including images, text, forms etc. When we extract embedded metadata in PDF documents, we may get the resultant data in the format called Extensible Metadata Platform (XMP). We can extract metadata with the help of the following Python code &minus;</p>
+<p>First, install a third party Python library named <b>PyPDF2</b> to read metadata stored in XMP format. It can be installed as follows &minus;</p>
+<pre class="result notranslate">
+pip install PyPDF2
+</pre>
+<p>Now, import the following libraries for extracting the metadata from PDF files &minus;</p>
+<pre class="prettyprint notranslate">
+from __future__ import print_function
+from argparse import ArgumentParser, FileType
+
+import datetime
+from PyPDF2 import PdfFileReader
+import sys
+</pre>
+<p>Now, the command line handler will accept one positional argument which basically represents the file path of the PDF file.</p>
+<pre class="prettyprint notranslate">
+parser = argparse.ArgumentParser('Metadata from PDF')
+parser.add_argument('PDF_FILE', help='Path to PDF file',type=FileType('rb'))
+args = parser.parse_args()
+</pre>
+<p>Now we can use <b>getXmpMetadata()</b> method to provide an object containing the available metadata as follows &minus;</p>
+<pre class="prettyprint notranslate">
+pdf_file = PdfFileReader(args.PDF_FILE)
+xmpm = pdf_file.getXmpMetadata()
+
+if xmpm is None:
+   print("No XMP metadata found in document.")
+   sys.exit()
+</pre>
+<p>We can use <b>custom_print()</b> method to extract and print the relevant values like title, creator, contributor etc. as follows &minus;</p>
+<pre class="prettyprint notranslate">
+custom_print("Title: {}", xmpm.dc_title)
+custom_print("Creator(s): {}", xmpm.dc_creator)
+custom_print("Contributors: {}", xmpm.dc_contributor)
+custom_print("Subject: {}", xmpm.dc_subject)
+custom_print("Description: {}", xmpm.dc_description)
+custom_print("Created: {}", xmpm.xmp_createDate)
+custom_print("Modified: {}", xmpm.xmp_modifyDate)
+custom_print("Event Dates: {}", xmpm.dc_date)
+</pre>
+<p>We can also define <b>custom_print()</b> method in case if PDF is created using multiple software as follows &minus;</p>
+<pre class="prettyprint notranslate">
+def custom_print(fmt_str, value):
+   if isinstance(value, list):
+      print(fmt_str.format(", ".join(value)))
+   elif isinstance(value, dict):
+      fmt_value = [":".join((k, v)) for k, v in value.items()]
+      print(fmt_str.format(", ".join(value)))
+   elif isinstance(value, str) or isinstance(value, bool):
+      print(fmt_str.format(value))
+   elif isinstance(value, bytes):
+      print(fmt_str.format(value.decode()))
+   elif isinstance(value, datetime.datetime):
+      print(fmt_str.format(value.isoformat()))
+   elif value is None:
+      print(fmt_str.format("N/A"))
+   else:
+      print("warn: unhandled type {} found".format(type(value)))
+</pre>
+<p>We can also extract any other custom property saved by the software as follows &minus;</p>
+<pre class="prettyprint notranslate">
+if xmpm.custom_properties:
+   print("Custom Properties:")
+   
+   for k, v in xmpm.custom_properties.items():
+      print("\t{}: {}".format(k, v))
+</pre>
+<p>The above script will read the PDF document and will print the metadata stored in XMP format including some custom properties stored by the software with the help of which that PDF has been made.</p>
+<h3>Windows Executables Files</h3>
+<p>Sometimes we may encounter a suspicious or unauthorized executable file. But for the purpose of investigation it may be useful because of the embedded metadata. We can get the information such as its location, its purpose and other attributes such as the manufacturer, compilation date etc. With the help of following Python script we can get the compilation date, useful data from headers and imported as well as exported symbols.</p>
+<p>For this purpose, first install the third party Python library <b>pefile</b>. It can be done as follows &minus;</p>
+<pre class="result notranslate">
+pip install pefile
+</pre>
+<p>Once you successfully install this, import the following libraries as follows &minus;</p>
+<pre class="prettyprint notranslate">
+from __future__ import print_function
+
+import argparse
+from datetime import datetime
+from pefile import PE
+</pre>
+<p>Now, the command line handler will accept one positional argument which basically represents the file path of the executable file. You can also choose the style of output, whether you need it in detailed and verbose way or in a simplified manner. For this you need to give an optional argument as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+parser = argparse.ArgumentParser('Metadata from executable file')
+parser.add_argument("EXE_FILE", help = "Path to exe file")
+parser.add_argument("-v", "--verbose", help = "Increase verbosity of output",
+action = 'store_true', default = False)
+args = parser.parse_args()
+</pre>
+<p>Now, we will load the input executable file by using PE class. We will also dump the executable data to a dictionary object by using <b>dump_dict()</b> method.</p>
+<pre class="prettyprint notranslate">
+pe = PE(args.EXE_FILE)
+ped = pe.dump_dict()
+</pre>
+<p>We can extract basic file metadata such as embedded authorship, version and compilation time using the code shown below &minus;</p>
+<pre class="prettyprint notranslate">
+file_info = {}
+for structure in pe.FileInfo:
+   if structure.Key == b'StringFileInfo':
+      for s_table in structure.StringTable:
+         for key, value in s_table.entries.items():
+            if value is None or len(value) == 0:
+               value = "Unknown"
+            file_info[key] = value
+print("File Information: ")
+print("==================")
+
+for k, v in file_info.items():
+   if isinstance(k, bytes):
+      k = k.decode()
+   if isinstance(v, bytes):
+      v = v.decode()
+   print("{}: {}".format(k, v))
+comp_time = ped['FILE_HEADER']['TimeDateStamp']['Value']
+comp_time = comp_time.split("[")[-1].strip("]")
+time_stamp, timezone = comp_time.rsplit(" ", 1)
+comp_time = datetime.strptime(time_stamp, "%a %b %d %H:%M:%S %Y")
+print("Compiled on {} {}".format(comp_time, timezone.strip()))
+</pre>
+<p>We can extract the useful data from headers as follows &minus;</p>
+<pre class="prettyprint notranslate">
+for section in ped['PE Sections']:
+   print("Section '{}' at {}: {}/{} {}".format(
+      section['Name']['Value'], hex(section['VirtualAddress']['Value']),
+      section['Misc_VirtualSize']['Value'],
+      section['SizeOfRawData']['Value'], section['MD5'])
+   )
+</pre>
+<p>Now, extract the listing of imports and exports from executable files as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+if hasattr(pe, 'DIRECTORY_ENTRY_IMPORT'):
+   print("\nImports: ")
+   print("=========")
+   
+   for dir_entry in pe.DIRECTORY_ENTRY_IMPORT:
+      dll = dir_entry.dll
+      
+      if not args.verbose:
+         print(dll.decode(), end=", ")
+         continue
+      name_list = []
+      
+      for impts in dir_entry.imports:
+         if getattr(impts, "name", b"Unknown") is None:
+            name = b"Unknown"
+         else:
+            name = getattr(impts, "name", b"Unknown")
+			name_list.append([name.decode(), hex(impts.address)])
+      name_fmt = ["{} ({})".format(x[0], x[1]) for x in name_list]
+      print('- {}: {}'.format(dll.decode(), ", ".join(name_fmt)))
+   if not args.verbose:
+      print()
+</pre>
+<p>Now, print <b>exports</b>, <b>names</b> and <b>addresses</b> using the code as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+if hasattr(pe, 'DIRECTORY_ENTRY_EXPORT'):
+   print("\nExports: ")
+   print("=========")
+   
+   for sym in pe.DIRECTORY_ENTRY_EXPORT.symbols:
+      print('- {}: {}'.format(sym.name.decode(), hex(sym.address)))
+</pre>
+<p>The above script will extract the basic metadata, information from headers from windows executable files.</p>
+<h3>Office Document Metadata</h3>
+<p>Most of the work in computer is done in three applications of MS Office – Word, PowerPoint and Excel. These files possess huge metadata, which can expose interesting information about their authorship and history.</p>
+<p>Note that metadata from 2007 format of word (.docx), excel (.xlsx) and powerpoint (.pptx) is stored in a XML file. We can process these XML files in Python with the help of following Python script shown below &minus;</p>
+<p>First, import the required libraries as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+from __future__ import print_function
+from argparse import ArgumentParser
+from datetime import datetime as dt
+from xml.etree import ElementTree as etree
+
+import zipfile
+parser = argparse.ArgumentParser('Office Document Metadata’)
+parser.add_argument("Office_File", help="Path to office file to read")
+args = parser.parse_args()
+</pre>
+<p>Now, check if the file is a ZIP file. Else, raise an error. Now, open the file and extract the key elements for processing using the following code &minus;</p>
+<pre class="prettyprint notranslate">
+zipfile.is_zipfile(args.Office_File)
+zfile = zipfile.ZipFile(args.Office_File)
+core_xml = etree.fromstring(zfile.read('docProps/core.xml'))
+app_xml = etree.fromstring(zfile.read('docProps/app.xml'))
+</pre>
+<p>Now, create a dictionary for initiating the extraction of the metadata &minus;</p>
+<pre class="prettyprint notranslate">
+core_mapping = {
+   'title': 'Title',
+   'subject': 'Subject',
+   'creator': 'Author(s)',
+   'keywords': 'Keywords',
+   'description': 'Description',
+   'lastModifiedBy': 'Last Modified By',
+   'modified': 'Modified Date',
+   'created': 'Created Date',
+   'category': 'Category',
+   'contentStatus': 'Status',
+   'revision': 'Revision'
+}
+</pre>
+<p>Use <b>iterchildren()</b> method to access each of the tags within the XML file &minus;</p>
+<pre class="prettyprint notranslate">
+for element in core_xml.getchildren():
+   for key, title in core_mapping.items():
+      if key in element.tag:
+         if 'date' in title.lower():
+            text = dt.strptime(element.text, "%Y-%m-%dT%H:%M:%SZ")
+         else:
+            text = element.text
+         print("{}: {}".format(title, text))
+</pre>
+<p>Similarly, do this for app.xml file which contains statistical information about the contents of the document &minus;</p>
+<pre class="prettyprint notranslate">
+app_mapping = {
+   'TotalTime': 'Edit Time (minutes)',
+   'Pages': 'Page Count',
+   'Words': 'Word Count',
+   'Characters': 'Character Count',
+   'Lines': 'Line Count',
+   'Paragraphs': 'Paragraph Count',
+   'Company': 'Company',
+   'HyperlinkBase': 'Hyperlink Base',
+   'Slides': 'Slide count',
+   'Notes': 'Note Count',
+   'HiddenSlides': 'Hidden Slide Count',
+}
+for element in app_xml.getchildren():
+   for key, title in app_mapping.items():
+      if key in element.tag:
+         if 'date' in title.lower():
+            text = dt.strptime(element.text, "%Y-%m-%dT%H:%M:%SZ")
+         else:
+            text = element.text
+         print("{}: {}".format(title, text))
+</pre>
+<p>Now after running the above script, we can get the different details about the particular document. Note that we can apply this script on Office 2007 or later version documents only.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/python_digital_forensics/python_digital_mobile_device_forensics.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/python_digital_forensics/python_digital_network_forensics.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

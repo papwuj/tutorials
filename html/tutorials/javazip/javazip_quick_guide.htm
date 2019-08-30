@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Java Zip - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="Java Zip - Quick Guide - The java.util.zip.Adler32 class is a class that can be used to compute the Adler-32 checksum of a data stream. An Adler-32 checksum is almost as reliable as a C"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/javazip/javazip_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#ED2027;
+}
+a.demo {
+    background:#ED2027;
+}
+li.heading {
+    background:#ED2027;
+}
+.course-box{background:#ED2027}
+.home-intro-sub p{color:#ED2027}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/javazip/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/javazip/images/javazip-mini-logo.jpg" alt="java.util.zip package tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">java.util.zip Package Classes</li>
+<li><a target="_top" href="/javazip/index.htm">java.util.zip - Home</a></li>
+<li><a target="_top" href="/javazip/javazip_adler32.htm">java.util.zip - Adler32</a></li>
+<li><a target="_top" href="/javazip/javazip_checkedinputstream.htm">java.util.zip - CheckedInputStream</a></li>
+<li><a target="_top" href="/javazip/javazip_checkedoutputstream.htm">java.util.zip - CheckedOutputStream</a></li>
+<li><a target="_top" href="/javazip/javazip_crc32.htm">java.util.zip - CRC32</a></li>
+<li><a target="_top" href="/javazip/javazip_deflater.htm">java.util.zip - Deflater</a></li>
+<li><a target="_top" href="/javazip/javazip_deflaterinputstream.htm">java.util.zip - DeflaterInputStream</a></li>
+<li><a target="_top" href="/javazip/javazip_deflateroutputstream.htm">java.util.zip - DeflaterOutputStream</a></li>
+<li><a target="_top" href="/javazip/javazip_gzipinputstream.htm">java.util.zip - GZIPInputStream</a></li>
+<li><a target="_top" href="/javazip/javazip_gzipoutputstream.htm">java.util.zip - GZIPOutputStream</a></li>
+<li><a target="_top" href="/javazip/javazip_inflater.htm">java.util.zip - Inflater</a></li>
+<li><a target="_top" href="/javazip/javazip_inflaterinputstream.htm">java.util.zip - InflaterInputStream</a></li>
+<li><a target="_top" href="/javazip/javazip_inflateroutputstream.htm">java.util.zip - InflaterOutputStream</a></li>
+<li><a target="_top" href="/javazip/javazip_zipentry.htm">java.util.zip - ZipEntry</a></li>
+<li><a target="_top" href="/javazip/javazip_zipfile.htm">java.util.zip - ZipFile</a></li>
+<li><a target="_top" href="/javazip/javazip_zipinputstream.htm">java.util.zip - ZipInputStream</a></li>
+<li><a target="_top" href="/javazip/javazip_zipoutputstream.htm">java.util.zip - ZipOutputStream</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">java.util.zip Package Extras</li>
+<li><a target="_top" href="/javazip/javazip_exceptions.htm">java.util.zip - Exceptions</a></li>
+<li><a target="_top" href="/javazip/javazip_error.htm">java.util.zip - Error</a></li>
+<li class="heading">java.util.zip Useful Resources</li>
+<li><a target="_top" href="/javazip/javazip_quick_guide.htm">java.util.zip - Quick Guide</a></li>
+<li><a target="_top" href="/javazip/javazip_useful_resources.htm">java.util.zip - Useful Resources</a></li>
+<li><a target="_top" href="/javazip/javazip_discussion.htm">java.util.zip - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Java Zip - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/javazip/javazip_error.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/javazip/javazip_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>java.util.zip - Adler32</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.Adler32</b> class is a class that can be used to compute the Adler-32 checksum of a data stream. An Adler-32 checksum is almost as reliable as a CRC-32 but can be computed much faster.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.Adler32</b> class &minus;</p>
+<pre class="result notranslate">
+public class Adler32
+   extends Object
+      implements Checksum
+</pre>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Adler32()</b></p>
+<p>Creates a new Adler32 object.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_adler32_getvalue.htm">long getValue()</a>
+<p>Returns the checksum value.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_adler32_reset.htm">void reset() </a>
+<p>Resets the checksum to initial value.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_adler32_update.htm">void update(byte[] b)</a>
+<p>Updates the checksum with the specified array of bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_adler32_update1.htm">void update(byte[] b, int off, int len)</a>
+<p>Updates the checksum with the specified array of bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_adler32_update2.htm">void update(int b)</a>
+<p>Updates the checksum with the specified byte (the low eight bits of the argument b).</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - CheckedInputStream Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.CheckedInputStream</b> class is an input stream that also maintains a checksum of the data being read. The checksum can then be used to verify the integrity of the input data.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.CheckedInputStream</b> class &minus;</p>
+<pre class="result notranslate">
+public class CheckedInputStream
+   extends FilterInputStream
+</pre>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>CheckedInputStream(InputStream in, Checksum cksum)</b></p>
+<p>Creates an input stream using the specified Checksum.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_checkedinputstream_getchecksum.htm">Checksum getChecksum()</a>
+<p>Returns the Checksum for this input stream.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_checkedinputstream_read.htm">int read()</a>
+<p>Reads a byte.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_checkedinputstream_read1.htm">int read(byte[] buf, int off, int len)</a>
+<p>Reads into an array of bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_checkedinputstream_skip.htm">long skip(long n)</a>
+<p>Skips specified number of bytes of input.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.io.FilterInputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - CheckedOutputStream Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.CheckedOutputStream</b> class is an output stream that also maintains a checksum of the data being written. The checksum can then be used to verify the integrity of the output data.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.CheckedOutputStream</b> class &minus;</p>
+<pre class="result notranslate">
+public class CheckedOutputStream
+   extends FilterOutputStream
+</pre>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>CheckedOutputStream(OutputStream out, Checksum cksum)</b></p>
+<p>Creates an output stream with the specified Checksum.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_checkedoutputstream_getchecksum.htm">Checksum getChecksum()</a>
+<p>Returns the Checksum for this output stream.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_checkedoutputstream_write.htm">void write(byte[] b, int off, int len)</a>
+<p>Writes an array of bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_checkedoutputstream_write1.htm">void write(int b)</a>
+<p>Writes a byte.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.io.FilterOutputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - CRC32 Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.CRC32</b> class is a class that can be used to compute the CRC-32 of a data stream.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.CRC32</b> class &minus;</p>
+<pre class="result notranslate">
+public class CRC32
+   extends Object
+      implements Checksum
+</pre>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>CRC32()</b></p>
+<p>Creates a new CRC32 object.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_crc32_getvalue.htm">long getValue()</a>
+<p>Returns the CRC-32 value.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_crc32_reset.htm">void reset() </a>
+<p>Resets the CRC-32 to initial value.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_crc32_update.htm">void update(byte[] b)</a>
+<p>Updates the CRC-32 checksum with the specified array of bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_crc32_update1.htm">void update(byte[] b, int off, int len)</a>
+<p>Updates the CRC-32 checksum with the specified array of bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_crc32_update2.htm">void update(int b)</a>
+<p>Updates the CRC-32 checksum with the specified byte (the low eight bits of the argument b).</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - Deflater Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.Deflater</b> class provides support for general purpose compression using the popular ZLIB compression library. The ZLIB compression library was initially developed as part of the PNG graphics standard and is not protected by patents. It is fully described in the specifications at the java.util.zip package description.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.Deflater</b> class &minus;</p>
+<pre class="result notranslate">
+public class Deflater
+   extends Object
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.Deflater</b> class &minus;</p>
+<ul class="list">
+<li><p><b>static int BEST_COMPRESSION</b> &minus; Compression level for best compression.</p></li>
+<li><p><b>static int BEST_SPEED</b> &minus; Compression level for fastest compression.</p></li>
+<li><p><b>static int DEFAULT_COMPRESSION</b> &minus; Default compression level.</p></li>
+<li><p><b>static int DEFAULT_STRATEGY</b> &minus; Default compression strategy.</p></li>
+<li><p><b>static int DEFLATED</b> &minus; Compression method for the deflate algorithm (the only one currently supported).</p></li>
+<li><p><b>static int FILTERED</b> &minus; Compression strategy best used for data consisting mostly of small values with a somewhat random distribution.</p></li>
+<li><p><b>static int FULL_FLUSH</b> &minus; Compression flush mode used to flush out all pending output and reset the deflater.</p></li>
+<li><p><b>static int HUFFMAN_ONLY</b> &minus; Compression strategy for Huffman coding only.</p></li>
+<li><p><b>static int NO_COMPRESSION</b> &minus; Compression level for no compression.</p></li>
+<li><p><b>static int NO_FLUSH</b> &minus; Compression flush mode used to achieve best compression result.</p></li>
+<li><p><b>static int SYNC_FLUSH</b> &minus; Compression flush mode used to flush out all pending output; may degrade compression for some compression algorithms.</p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Deflater()</b></p>
+<p>Creates a new compressor with the default compression level.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Deflater(int level)</b></p>
+<p>Creates a new compressor using the specified compression level.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Deflater(int level, boolean nowrap)</b></p>
+<p>Creates a new compressor using the specified compression level.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_deflater_deflate.htm">int deflate(byte[] b)</a>
+<p>Compresses the input data and fills specified buffer with compressed data.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_deflater_deflate1.htm">int deflate(byte[] b, int off, int len)</a>
+<p>Compresses the input data and fills specified buffer with compressed data.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_deflater_deflate2.htm">int deflate(byte[] b, int off, int len, int flush)</a>
+<p>Compresses the input data and fills the specified buffer with compressed data.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_deflater_end.htm">void end()</a>
+<p>Closes the compressor and discards any unprocessed input.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_deflater_finish.htm">void finish()</a>
+<p>When called, indicates that compression should end with the current contents of the input buffer.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/javazip/javazip_deflater_finished.htm">boolean finished()</a>
+<p>Returns true if the end of the compressed data output stream has been reached.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/javazip/javazip_deflater_getadler.htm">int getAdler()</a>
+<p>Returns the ADLER-32 value of the uncompressed data.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="/javazip/javazip_deflater_getbytesread.htm">long getBytesRead()</a>
+<p>Returns the total number of uncompressed bytes input so far.</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="/javazip/javazip_deflater_getbyteswritten.htm">long getBytesWritten()</a>
+<p>Returns the total number of compressed bytes output so far.</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="/javazip/javazip_deflater_gettotalin.htm">int getTotalIn()</a>
+<p>Returns the total number of uncompressed bytes input so far.</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="/javazip/javazip_deflater_gettotalout.htm">int getTotalOut()</a>
+<p>Returns the total number of compressed bytes output so far.</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="/javazip/javazip_deflater_needsinput.htm">boolean needsInput()</a>
+<p>Returns true if the input data buffer is empty and setInput() should be called in order to provide more input.</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="/javazip/javazip_deflater_reset.htm">void reset()</a>
+<p>Resets deflater so that a new set of input data can be processed.</p></td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="/javazip/javazip_deflater_setdictionary.htm">void setDictionary(byte[] b)</a>
+<p>Sets preset dictionary for compression.</p></td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="/javazip/javazip_deflater_setdictionary1.htm">void setDictionary(byte[] b, int off, int len)</a>
+<p>Sets preset dictionary for compression.</p></td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><a href="/javazip/javazip_deflater_setinput.htm">void setInput(byte[] b)</a>
+<p>Sets input data for compression.</p></td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><a href="/javazip/javazip_deflater_setinput1.htm">void setInput(byte[] b, int off, int len)</a>
+<p>Sets input data for compression.</p></td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><a href="/javazip/javazip_deflater_setlevel.htm">void setLevel(int level)</a>
+<p>Sets the current compression level to the specified value.</p></td>
+</tr>
+<tr>
+<td class="ts">19</td>
+<td><a href="/javazip/javazip_deflater_setstrategy.htm">void setStrategy(int strategy)</a>
+<p>Sets the compression strategy to the specified value.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - DeflaterInputStream Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.DeflaterInputStream</b> class implements an input stream filter for compressing data in the "deflate" compression format.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.DeflaterInputStream</b> class &minus;</p>
+<pre class="result notranslate">
+public class DeflaterInputStream
+   extends FilterInputStream
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.DeflaterInputStream</b> class &minus;</p>
+<ul class="list">
+<li><p><b>protected byte[] buf</b> &minus; Input buffer for reading compressed data.</p></li>
+<li><p><b>protected Deflater def</b> &minus; Compressor for this stream.</p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>DeflaterInputStream(InputStream in)</b></p>
+<p>Creates a new input stream with a default compressor and buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>DeflaterInputStream(InputStream in, Deflater defl)</b></p>
+<p>Creates a new input stream with the specified compressor and a default buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>DeflaterInputStream(InputStream in, Deflater defl, int bufLen)</b></p>
+<p>Creates a new input stream with the specified compressor and buffer size.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_deflaterinputstream_available.htm">int available()</a>
+<p>Returns 0 after EOF has been reached, otherwise always return 1.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_deflaterinputstream_close.htm">void close()</a>
+<p>Closes this input stream and its underlying input stream, discarding any pending uncompressed data.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_deflaterinputstream_read.htm">int read()</a>
+<p>Reads a single byte of compressed data from the input stream.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_deflaterinputstream_read1.htm">int read(byte[] b, int off, int len)</a>
+<p>Reads compressed data into a byte array.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_deflaterinputstream_skip.htm">long skip(long n)</a>
+<p>Skips over and discards data from the input stream.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.io.FilterInputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - DeflaterOutputStream Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.DeflaterOutputStream</b> class implements an output stream filter for compressing data in the "deflate" compression format. It is also used as the basis for other types of compression filters, such as GZIPOutputStream.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.DeflaterOutputStream</b> class &minus;</p>
+<pre class="result notranslate">
+public class DeflaterOutputStream
+   extends FilterOutputStream
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.DeflaterOutputStream</b> class &minus;</p>
+<ul class="list">
+<li><p><b>protected byte[] buf</b> &minus; Output buffer for writing compressed data.</p></li>
+<li><p><b>protected Deflater def</b> &minus; Compressor for this stream.</p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>DeflaterOutputStream(OutputStream out)</b></p>
+<p>Creates a new output stream with a default compressor and buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>DeflaterOutputStream(OutputStream out, boolean syncFlush)</b></p>
+<p>Creates a new output stream with a default compressor, a default buffer size and the specified flush mode.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>DeflaterOutputStream(OutputStream out, Deflater def)</b></p>
+<p>Creates a new output stream with the specified compressor and a default buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>DeflaterOutputStream(OutputStream out, Deflater def, boolean syncFlush)</b></p>
+<p>Creates a new output stream with the specified compressor, flush mode and a default buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>DeflaterOutputStream(OutputStream out, Deflater def, int size)</b></p>
+<p>Creates a new output stream with the specified compressor and buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>DeflaterOutputStream(OutputStream out, Deflater def, int size, boolean syncFlush)</b></p>
+<p>Creates a new output stream with the specified compressor, buffer size and flush mode.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_deflateroutputstream_close.htm">void close()</a>
+<p>Writes remaining compressed data to the output stream and closes the underlying stream.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_deflateroutputstream_finish.htm">void finish()</a>
+<p>Finishes writing compressed data to the output stream without closing the underlying stream.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_deflateroutputstream_flush.htm">void flush()</a>
+<p>Flushes the compressed output stream.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_deflateroutputstream_write.htm">void write(byte[] b, int off, int len)</a>
+<p>Writes an array of bytes to the compressed output stream.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_deflateroutputstream_write1.htm">void write(int b)</a>
+<p>Writes a byte to the compressed output stream.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.io.FilterOutputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - GZIPInputStream Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.GZIPInputStream</b> class implements a stream filter for reading compressed data in the GZIP file format.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.GZIPInputStream</b> class &minus;</p>
+<pre class="result notranslate">
+public class GZIPInputStream
+   extends InflaterInputStream
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.GZIPInputStream</b> class &minus;</p>
+<ul class="list">
+<li><p><b>protected CRC32 crc</b> &minus; CRC-32 for uncompressed data.</p></li>
+<li><p><b>protected boolean eos</b> &minus; Indicates end of input stream.</p></li>
+<li><p><b>static int GZIP_MAGIC</b> &minus; GZIP header magic number.</p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>GZIPInputStream(InputStream in)</b></p>
+<p>Creates a new input stream with a default buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>GZIPInputStream(InputStream in, int size)</b></p>
+<p>Creates a new input stream with the specified buffer size.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_gzipinputstream_close.htm">void close()</a>
+<p>Closes this input stream and releases any system resources associated with the stream.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_gzipinputstream_read.htm">int read(byte[] buf, int off, int len)</a>
+<p>Reads uncompressed data into an array of bytes.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.util.zip.InflaterInputStream</li>
+<li>java.io.FilterInputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - GZIPOutputStream Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.GZIPOutputStream</b> class implements a stream filter for writing compressed data in the GZIP file format.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.GZIPOutputStream</b> class &minus;</p>
+<pre class="result notranslate">
+public class GZIPOutputStream
+   extends DeflaterOutputStream
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.GZIPOutputStream</b> class &minus;</p>
+<ul class="list">
+<li><p><b>protected CRC32 crc</b> &minus; CRC-32 for uncompressed data.</p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>GZIPOutputStream(OutputStream out)</b></p>
+<p>Creates a new output stream with a default buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>GZIPOutputStream(OutputStream out, boolean syncFlush)</b></p>
+<p>Creates a new output stream with a default buffer size and the specified flush mode.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>GZIPOutputStream(OutputStream out, int size)</b></p>
+<p>Creates a new output stream with the specified buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>GZIPOutputStream(OutputStream out, int size, boolean syncFlush)</b></p>
+<p>Creates a new output stream with the specified buffer size and flush mode.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_gzipoutputstream_finish.htm">void finish()</a>
+<p>Finishes writing compressed data to the output stream without closing the underlying stream.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_gzipoutputstream_write.htm">int write(byte[] buf, int off, int len)</a>
+<p>Writes array of bytes to the compressed output stream.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.util.zip.DeflaterOutputStream</li>
+<li>java.io.FilterOutputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - Inflater Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.Inflater</b> class provides support for general purpose decompression using the popular ZLIB compression library. The ZLIB compression library was initially developed as part of the PNG graphics standard and is not protected by patents. It is fully described in the specifications at the java.util.zip package description.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.Inflater</b> class &minus;</p>
+<pre class="result notranslate">
+public class Inflater
+   extends Object
+</pre>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Inflater()</b></p>
+<p>Creates a new decompressor.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Inflater(boolean nowrap)</b></p>
+<p>Creates a new decompressor.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_inflater_end.htm">void end()</a>
+<p>Closes the decompressor and discards any unprocessed input.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_inflater_finished.htm">boolean finished()</a>
+<p>Returns true if the end of the compressed data stream has been reached.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_inflater_getadler.htm">int getAdler()</a>
+<p>Returns the ADLER-32 value of the uncompressed data.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_inflater_getbytesread.htm">long getBytesRead()</a>
+<p>Returns the total number of compressed bytes input so far.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_inflater_getbyteswritten.htm">long getBytesWritten()</a>
+<p>Returns the total number of uncompressed bytes output so far.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/javazip/javazip_inflater_getremaining.htm">int getRemaining()</a>
+<p>Returns the total number of bytes remaining in the input buffer.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/javazip/javazip_inflater_gettotalin.htm">int getTotalIn()</a>
+<p>Returns the total number of compressed bytes input so far.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="/javazip/javazip_inflater_gettotalout.htm">int getTotalOut()</a>
+<p>Returns the total number of uncompressed bytes output so far.</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="/javazip/javazip_inflater_inflate.htm">int inflate(byte[] b)</a>
+<p>Uncompresses bytes into specified buffer.</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="/javazip/javazip_inflater_inflate1.htm">int inflate(byte[] b, int off, int len)</a>
+<p>Uncompresses bytes into specified buffer.</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="/javazip/javazip_inflater_needsdictionary.htm">boolean needsDictionary()</a>
+<p>Returns true if a preset dictionary is needed for decompression.</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="/javazip/javazip_inflater_needsinput.htm">boolean needsInput()</a>
+<p>Returns true if no data remains in the input buffer.</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="/javazip/javazip_inflater_reset.htm">void reset()</a>
+<p>Resets inflater so that a new set of input data can be processed.</p></td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="/javazip/javazip_inflater_setdictionary.htm">void setDictionary(byte[] b)</a>
+<p>Sets the preset dictionary to the given array of bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="/javazip/javazip_inflater_setdictionary1.htm">void setDictionary(byte[] b, int off, int len)</a>
+<p>Sets the preset dictionary to the given array of bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><a href="/javazip/javazip_inflater_setinput.htm">void setInput(byte[] b)</a>
+<p>Sets input data for decompression.</p></td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><a href="/javazip/javazip_inflater_setinput1.htm">void setInput(byte[] b, int off, int len)</a>
+<p>Sets input data for decompression.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - InflaterInputStream Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.InflaterInputStream</b> class implements a stream filter for uncompressing data in the "deflate" compression format. It is also used as the basis for other decompression filters, such as GZIPInputStream.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.InflaterInputStream</b> class &minus;</p>
+<pre class="result notranslate">
+public class InflaterInputStream
+   extends FilterInputStream
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.InflaterInputStream</b> class &minus;</p>
+<ul class="list">
+<li><p><b>protected byte[] buf</b> &minus; Input buffer for decompression.</p></li>
+<li><p><b>protected Inflater inf</b> &minus; Decompressor for this stream.</p></li>
+<li><p><b>protected int len</b> &minus; Length of input buffer.</p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>InflaterInputStream(InputStream in)</b></p>
+<p>Creates a new input stream with a default decompressor and buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>InflaterInputStream(InputStream in, Inflater inf)</b></p>
+<p>Creates a new input stream with the specified decompressor and a default buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>InflaterInputStream(InputStream in, Inflater inf, int size)</b></p>
+<p>Creates a new input stream with the specified decompressor and buffer size.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_inflaterinputstream_available.htm">int available()</a>
+<p>Returns 0 after EOF has been reached, otherwise always return 1.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_inflaterinputstream_close.htm">void close()</a>
+<p>Closes this input stream and releases any system resources associated with the stream.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_inflaterinputstream_mark.htm">void mark(int readlimit)</a>
+<p>Marks the current position in this input stream.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_inflaterinputstream_marksupported.htm">boolean markSupported()</a>
+<p>Tests if this input stream supports the mark and reset methods.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_inflaterinputstream_read.htm">int read()</a>
+<p>Reads a byte of uncompressed data.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/javazip/javazip_inflaterinputstream_read1.htm">int read(byte[] b, int off, int len)</a>
+<p>Reads uncompressed data into an array of bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/javazip/javazip_inflaterinputstream_reset.htm">void reset()</a>
+<p>Repositions this stream to the position at the time the mark method was last called on this input stream.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="/javazip/javazip_inflaterinputstream_skip.htm">long skip(long n)</a>
+<p>Skips specified number of bytes of uncompressed data.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.io.FilterInputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - InflaterOutputStream Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.InflaterOutputStream</b> class implements an output stream filter for uncompressing data stored in the "deflate" compression format.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.InflaterOutputStream</b> class &minus;</p>
+<pre class="result notranslate">
+public class InflaterOutputStream
+   extends FilterOutputStream
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.InflaterOutputStream</b> class &minus;</p>
+<ul class="list">
+<li><p><b>protected byte[] buf</b> &minus; Output buffer for writing uncompressed data.</p></li>
+<li><p><b>protected Inflater inf</b> &minus; Decompressor for this stream.</p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>InflaterOutputStream(OutputStream out)</b></p>
+<p>Creates a new output stream with a default decompressor and buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>InflaterOutputStream(OutputStream out, Inflater infl)</b></p>
+<p>Creates a new output stream with the specified decompressor and a default buffer size.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>InflaterOutputStream(OutputStream out, Inflater infl, int bufLen)</b></p>
+<p>Creates a new output stream with the specified decompressor and buffer size.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_inflateroutputstream_close.htm">void close()</a>
+<p>Writes remaining compressed data to the output stream and closes the underlying stream.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_inflateroutputstream_finish.htm">void finish()</a>
+<p>Finishes writing uncompressed data to the output stream without closing the underlying stream.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_inflateroutputstream_flush.htm">void flush()</a>
+<p>Flushes this output stream, forcing any pending buffered output bytes to be written.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_inflateroutputstream_write.htm">void write(byte[] b, int off, int len)</a>
+<p>Writes an array of bytes to the compressed output stream.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_inflateroutputstream_write1.htm">void write(int b)</a>
+<p>Writes a byte to the compressed output stream.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.io.FilterOutputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - ZipEntry Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.ZipEntry</b> class is used to represent a ZIP file entry.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.ZipEntry</b> class &minus;</p>
+<pre class="result notranslate">
+public class ZipEntry
+   extends Object
+      implements Cloneable
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.ZipEntry</b> class &minus;</p>
+<ul class="list">
+<li><p><b>protected byte[] buf</b> &minus; Output buffer for writing uncompressed data.</p></li>
+<li><p><b>protected Inflater inf</b> &minus; Decompressor for this stream.</p></li>
+<li><p><b>static int CENATT</b></p></li>
+<li><p><b>static int CENATX</b></p></li>
+<li><p><b>static int CENCOM</b></p></li>
+<li><p><b>static int CENCRC</b></p></li>
+<li><p><b>static int CENDSK</b></p></li>
+<li><p><b>static int CENEXT</b></p></li>
+<li><p><b>static int CENFLG</b></p></li>
+<li><p><b>static int CENHDR</b></p></li>
+<li><p><b>static int CENHOW</b></p></li>
+<li><p><b>static int CENLEN</b></p></li>
+<li><p><b>static int CENNAM</b></p></li>
+<li><p><b>static int CENOFF</b></p></li>
+<li><p><b>static long CENSIG</b></p></li>
+<li><p><b>static int CENSIZ</b></p></li>
+<li><p><b>static int CENTIM</b></p></li>
+<li><p><b>static int CENVEM</b></p></li>
+<li><p><b>static int CENVER</b></p></li>
+<li><p><b>static int DEFLATED</b> &minus; Compression method for compressed (deflated) entries.</p></li>
+<li><p><b>static int ENDCOM</b></p></li>
+<li><p><b>static int ENDHDR</b></p></li>
+<li><p><b>static int ENDOFF</b></p></li>
+<li><p><b>static long ENDSIG</b></p></li>
+<li><p><b>static int ENDSIZ</b></p></li>
+<li><p><b>static int ENDSUB</b></p></li>
+<li><p><b>static int ENDTOT</b></p></li>
+<li><p><b>static int EXTCRC</b></p></li>
+<li><p><b>static int EXTHDR</b></p></li>
+<li><p><b>static int EXTLEN</b></p></li>
+<li><p><b>static long EXTSIG</b></p></li>
+<li><p><b>static int EXTSIZ</b></p></li>
+<li><p><b>static int LOCCRC</b></p></li>
+<li><p><b>static int LOCEXT</b></p></li>
+<li><p><b>static int LOCFLG</b></p></li>
+<li><p><b>static int LOCHDR</b></p></li>
+<li><p><b>static int LOCHOW</b></p></li>
+<li><p><b>static int LOCLEN</b></p></li>
+<li><p><b>static int LOCNAM</b></p></li>
+<li><p><b>static long LOCSIG</b></p></li>
+<li><p><b>static int LOCSIZ</b></p></li>
+<li><p><b>static int LOCTIM</b></p></li>
+<li><p><b>static int LOCVER</b></p></li>
+<li><p><b>static int STORED</b> &minus; Compression method for uncompressed entries.</p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>ZipEntry(String name)</b></p>
+<p>Creates a new zip entry with the specified name.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>ZipEntry(ZipEntry e)</b></p>
+<p>Creates a new zip entry with fields taken from the specified zip entry.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_zipentry_clone.htm">Object clone()</a>
+<p>Returns a copy of this entry.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_zipentry_getcomment.htm">String getComment()</a>
+<p>Returns the comment string for the entry, or null if none.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_zipentry_getcompressedsize.htm">long getCompressedSize()</a>
+<p>Returns the size of the compressed entry data, or -1 if not known.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_zipentry_getcrc.htm">long getCrc()</a>
+<p>Returns the CRC-32 checksum of the uncompressed entry data, or -1 if not known.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_zipentry_getextra.htm">byte[] getExtra()</a>
+<p>Returns the extra field data for the entry, or null if none.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/javazip/javazip_zipentry_getmethod.htm">int getMethod()</a>
+<p>Returns the compression method of the entry, or -1 if not specified.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/javazip/javazip_zipentry_getname.htm">String getName()</a>
+<p>Returns the name of the entry.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="/javazip/javazip_zipentry_getsize.htm">long getSize()</a>
+<p>Returns the uncompressed size of the entry data, or -1 if not known.</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="/javazip/javazip_zipentry_gettime.htm">long getTime()</a>
+<p>Returns the modification time of the entry, or -1 if not specified.</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="/javazip/javazip_zipentry_hashcode.htm">int hashCode()</a>
+<p>Returns the hash code value for this entry.</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="/javazip/javazip_zipentry_isdirectory.htm">boolean isDirectory()</a>
+<p>Returns true if this is a directory entry.</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="/javazip/javazip_zipentry_setcomment.htm">void setComment(String comment)</a>
+<p>Sets the optional comment string for the entry.</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="/javazip/javazip_zipentry_setcrc.htm">void setCrc(long crc)</a>
+<p>Sets the CRC-32 checksum of the uncompressed entry data.</p></td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="/javazip/javazip_zipentry_setextra.htm">void setExtra(byte[] extra)</a>
+<p>Sets the optional extra field data for the entry.</p></td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="/javazip/javazip_zipentry_setmethod.htm">void setMethod(int method)</a>
+<p>Sets the compression method for the entry.</p></td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><a href="/javazip/javazip_zipentry_setsize.htm">void setSize(long size)</a>
+<p>Sets the uncompressed size of the entry data.</p></td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><a href="/javazip/javazip_zipentry_settime.htm">void setTime(long time)</a>
+<p>Sets the modification time of the entry.</p></td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><a href="/javazip/javazip_zipentry_tostring.htm">String toString()</a>
+<p>Returns a string representation of the ZIP entry.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.io.FilterOutputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - ZipFile Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.ZipFile</b> class is used to read entries from a zip file.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.ZipFile</b> class &minus;</p>
+<pre class="result notranslate">
+public class ZipFile
+   extends Object
+      implements Closeable
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.ZipFile</b> class &minus;</p>
+<ul class="list">
+<li><p><b>static int CENATT</b></p></li> 
+<li><p><b>static int CENATX</b></p></li> 
+<li><p><b>static int CENCOM</b></p></li> 
+<li><p><b>static int CENCRC</b></p></li> 
+<li><p><b>static int CENDSK</b></p></li> 
+<li><p><b>static int CENEXT</b></p></li> 
+<li><p><b>static int CENFLG</b></p></li>  
+<li><p><b>static int CENHDR</b></p></li>  
+<li><p><b>static int CENHOW</b></p></li> 
+<li><p><b>static int CENLEN</b></p></li> 
+<li><p><b>static int CENNAM</b></p></li> 
+<li><p><b>static int CENOFF</b></p></li> 
+<li><p><b>static long CENSIG</b></p></li> 
+<li><p><b>static int CENSIZ</b></p></li> 
+<li><p><b>static int CENTIM</b></p></li> 
+<li><p><b>static int CENVEM</b></p></li> 
+<li><p><b>static int CENVER</b></p></li> 
+<li><p><b>static int ENDCOM</b></p></li> 
+<li><p><b>static int ENDHDR</b></p></li> 
+<li><p><b>static int ENDOFF</b></p></li> 
+<li><p><b>static long ENDSIG</b></p></li> 
+<li><p><b>static int ENDSIZ</b></p></li> 
+<li><p><b>static int ENDSUB</b></p></li> 
+<li><p><b>static int ENDTOT</b></p></li> 
+<li><p><b>static int EXTCRC</b></p></li> 
+<li><p><b>static int EXTHDR</b></p></li> 
+<li><p><b>static int EXTLEN</b></p></li> 
+<li><p><b>static long EXTSIG</b></p></li> 
+<li><p><b>static int EXTSIZ</b></p></li> 
+<li><p><b>static int LOCCRC</b></p></li> 
+<li><p><b>static int LOCEXT</b></p></li> 
+<li><p><b>static int LOCFLG</b></p></li> 
+<li><p><b>static int LOCHDR</b></p></li> 
+<li><p><b>static int LOCHOW</b></p></li> 
+<li><p><b>static int LOCLEN</b></p></li> 
+<li><p><b>static int LOCNAM</b></p></li> 
+<li><p><b>static long LOCSIG</b></p></li> 
+<li><p><b>static int LOCSIZ</b></p></li> 
+<li><p><b>static int LOCTIM</b></p></li> 
+<li><p><b>static int LOCVER</b></p></li> 
+<li><p><b>static int OPEN_DELETE</b> &minus; Mode flag to open a zip file and mark it for deletion.</p></li> 
+<li><p><b>static int OPEN_READ</b> &minus; Mode flag to open a zip file for reading.</p></li> 
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>ZipFile(File file)</b></p>
+<p>Opens a ZIP file for reading given the specified File object.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>ZipFile(File file, Charset charset)</b></p>
+<p>Opens a ZIP file for reading given the specified File object.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>ZipFile(File file, int mode)</b></p>
+<p>Opens a new ZipFile to read from the specified File object in the specified mode.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>ZipFile(File file, int mode, Charset charset)</b></p>
+<p>Opens a new ZipFile to read from the specified File object in the specified mode.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>ZipFile(String name)</b></p>
+<p>Opens a zip file for reading.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>ZipFile(String name, Charset charset)</b></p>
+<p>Opens a zip file for reading.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_zipfile_close.htm">void close()</a>
+<p>Closes the ZIP file.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_zipfile_entries.htm">Enumeration&lt;? extends ZipEntry&gt; entries()</a>
+<p>Returns an enumeration of the ZIP file entries.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_zipfile_getcomment.htm">String getComment()</a>
+<p>Returns the zip file comment, or null if none.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_zipfile_getentry.htm">ZipEntry getEntry(String name)</a>
+<p>Returns the zip file entry for the specified name, or null if not found.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_zipfile_getinputstream.htm">InputStream getInputStream(ZipEntry entry)</a>
+<p>Returns an input stream for reading the contents of the specified zip file entry.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/javazip/javazip_zipfile_getname.htm">String getName()</a>
+<p>Returns the path name of the ZIP file.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/javazip/javazip_zipfile_size.htm">int size()</a>
+<p>Returns the number of entries in the ZIP file.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>Java.lang.Object</li>
+</ul>
+<h1>java.util.zip - ZipInputStream Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.ZipInputStream</b> class  implements an input stream filter for reading files in the ZIP file format. Includes support for both compressed and uncompressed entries.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.ZipInputStream</b> class &minus;</p>
+<pre class="result notranslate">
+public class ZipInputStream
+   extends InflaterInputStream
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.ZipInputStream</b> class &minus;</p>
+<ul class="list">
+<li><p><b>static int CENATT</b></p></li>
+<li><p><b>static int CENATX</b></p></li>
+<li><p><b>static int CENCOM</b></p></li>
+<li><p><b>static int CENCRC</b></p></li>
+<li><p><b>static int CENDSK</b></p></li>
+<li><p><b>static int CENEXT</b></p></li>
+<li><p><b>static int CENFLG</b></p></li>
+<li><p><b>static int CENHDR</b></p></li>
+<li><p><b>static int CENHOW</b></p></li>
+<li><p><b>static int CENLEN</b></p></li>
+<li><p><b>static int CENNAM</b></p></li>
+<li><p><b>static int CENOFF</b></p></li>
+<li><p><b>static long CENSIG</b></p></li>
+<li><p><b>static int CENSIZ</b></p></li>
+<li><p><b>static int CENTIM</b></p></li>
+<li><p><b>static int CENVEM</b></p></li>
+<li><p><b>static int CENVER</b></p></li>
+<li><p><b>static int ENDCOM</b></p></li>
+<li><p><b>static int ENDHDR</b></p></li>
+<li><p><b>static int ENDOFF</b></p></li>
+<li><p><b>static long ENDSIG</b></p></li>
+<li><p><b>static int ENDSIZ</b></p></li>
+<li><p><b>static int ENDSUB</b></p></li>
+<li><p><b>static int ENDTOT</b></p></li>
+<li><p><b>static int EXTCRC</b></p></li>
+<li><p><b>static int EXTHDR</b></p></li>
+<li><p><b>static int EXTLEN</b></p></li>
+<li><p><b>static long EXTSIG</b></p></li>
+<li><p><b>static int EXTSIZ</b></p></li>
+<li><p><b>static int LOCCRC</b></p></li>
+<li><p><b>static int LOCEXT</b></p></li>
+<li><p><b>static int LOCFLG</b></p></li>
+<li><p><b>static int LOCHDR</b></p></li>
+<li><p><b>static int LOCHOW</b></p></li>
+<li><p><b>static int LOCLEN</b></p></li>
+<li><p><b>static int LOCNAM</b></p></li>
+<li><p><b>static long LOCSIG</b></p></li>
+<li><p><b>static int LOCSIZ</b></p></li>
+<li><p><b>static int LOCTIM</b></p></li>
+<li><p><b>static int LOCVER</b></p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>ZipInputStream(InputStream in)</b></p>
+<p>Creates a new ZIP input stream.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>ZipInputStream(InputStream in,  Charset charset)</b></p>
+<p>Creates a new ZIP input stream.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_zipinputstream_available.htm">int available()</a>
+<p>Returns 0 after EOF has reached for the current entry data, otherwise always return 1.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javazip/javazip_zipinputstream_close.htm">void close()</a>
+<p>Closes this input stream and releases any system resources associated with the stream.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_zipinputstream_closeentry.htm">void closeEntry()</a>
+<p>Closes the current ZIP entry and positions the stream for reading the next entry.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_zipinputstream_getnextentry.htm">ZipEntry getNextEntry()</a>
+<p>Reads the next ZIP file entry and positions the stream at the beginning of the entry data.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_zipinputstream_read.htm">int read(byte[] b, int off, int len)</a>
+<p>Reads from the current ZIP entry into an array of bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/javazip/javazip_zipinputstream_skip.htm">long skip(long n)</a>
+<p>Skips specified number of bytes in the current ZIP entry.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.util.zip.InflaterInputStream</li>
+<li>java.io.FilterInputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>java.util.zip - ZipOutputStream Class</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip.ZipOutputStream</b> class implements an output stream filter for writing files in the ZIP file format. Includes support for both compressed and uncompressed entries.</p>
+<h2>Class declaration</h2>
+<p>Following is the declaration for <b>java.util.zip.ZipOutputStream</b> class &minus;</p>
+<pre class="result notranslate">
+public class ZipOutputStream
+   extends DeflaterOutputStream
+</pre>
+<h2>Fields</h2>
+<p>Following are the fields for <b>java.util.zip.ZipOutputStream</b> class &minus;</p>
+<ul class="list">
+<li><p><b>static int CENATT</b></p></li>
+<li><p><b>static int CENATX</b></p></li>
+<li><p><b>static int CENCOM</b></p></li>
+<li><p><b>static int CENCRC</b></p></li>
+<li><p><b>static int CENDSK</b></p></li>
+<li><p><b>static int CENEXT</b></p></li>
+<li><p><b>static int CENFLG</b></p></li>
+<li><p><b>static int CENHDR</b></p></li>
+<li><p><b>static int CENHOW</b></p></li>
+<li><p><b>static int CENLEN</b></p></li>
+<li><p><b>static int CENNAM</b></p></li>
+<li><p><b>static int CENOFF</b></p></li>
+<li><p><b>static long CENSIG</b></p></li>
+<li><p><b>static int CENSIZ</b></p></li>
+<li><p><b>static int CENTIM</b></p></li>
+<li><p><b>static int CENVEM</b></p></li>
+<li><p><b>static int CENVER</b></p></li>
+<li><p><b>static int DEFLATED</b> &minus; Compression method for compressed (DEFLATED) entries.</p></li>
+<li><p><b>static int ENDCOM</b></p></li>
+<li><p><b>static int ENDHDR</b></p></li>
+<li><p><b>static int ENDOFF</b></p></li>
+<li><p><b>static long ENDSIG</b></p></li>
+<li><p><b>static int ENDSIZ</b></p></li>
+<li><p><b>static int ENDSUB</b></p></li>
+<li><p><b>static int ENDTOT</b></p></li>
+<li><p><b>static int EXTCRC</b></p></li>
+<li><p><b>static int EXTHDR</b></p></li>
+<li><p><b>static int EXTLEN</b></p></li>
+<li><p><b>static long EXTSIG</b></p></li>
+<li><p><b>static int EXTSIZ</b></p></li>
+<li><p><b>static int LOCCRC</b></p></li>
+<li><p><b>static int LOCEXT</b></p></li>
+<li><p><b>static int LOCFLG</b></p></li>
+<li><p><b>static int LOCHDR</b></p></li>
+<li><p><b>static int LOCHOW</b></p></li>
+<li><p><b>static int LOCLEN</b></p></li>
+<li><p><b>static int LOCNAM</b></p></li>
+<li><p><b>static long LOCSIG</b></p></li>
+<li><p><b>static int LOCSIZ</b></p></li>
+<li><p><b>static int LOCTIM</b></p></li>
+<li><p><b>static int LOCVER</b></p></li>
+<li><p><b>static int STORED</b> &minus; Compression method for uncompressed (STORED) entries. </p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Constructor &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>ZipOutputStream(OutputStream out)</b></p>
+<p>Creates a new ZIP output stream.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>ZipOutputStream(OutputStream out,  Charset charset)</b></p>
+<p>Creates a new ZIP output stream.</p></td>
+</tr>
+</table>
+<h2>Class methods</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javazip/javazip_zipoutputstream_close.htm">void close()</a>
+<p>Closes the ZIP output stream as well as the stream being filtered.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>void closeEntry()</b></p>
+<p>Closes the current ZIP entry and positions the stream for writing the next entry.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javazip/javazip_zipoutputstream_finish.htm">void finish()</a>
+<p>Finishes writing the contents of the ZIP output stream without closing the underlying stream.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javazip/javazip_zipoutputstream_putnextentry.htm">void putNextEntry(ZipEntry e)</a>
+<p>Begins writing a new ZIP file entry and positions the stream to the start of the entry data.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javazip/javazip_zipoutputstream_setcomment.htm">void setComment(String comment)</a>
+<p>Sets the ZIP file comment.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/javazip/javazip_zipoutputstream_setlevel.htm">void setLevel(int level)</a>
+<p>Sets the compression level for subsequent entries which are DEFLATED.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/javazip/javazip_zipoutputstream_setmethod.htm">void setMethod(int method)</a>
+<p>Sets the default compression method for subsequent entries.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="/javazip/javazip_zipoutputstream_write.htm">void write(byte[] b, int off, int len)</a>
+<p>Writes an array of bytes to the current ZIP entry data.</p></td>
+</tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes &minus;</p>
+<ul class="list">
+<li>java.util.zip.DeflaterOutputStream</li>
+<li>java.io.FilterOutputStream</li>
+<li>java.lang.Object</li>
+</ul>
+<h1>Java Zip - Exceptions</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip Exceptions</b> contains the exceptions which can occur during zip/unzip operations.</p>
+<h2>Interface Summary</h2>
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th style="text-align:center;">Exception &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>DataFormatException</b></p>
+<p>Signals that a data format error has occurred.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>ZipException</b></p>
+<p>Signals that a Zip exception of some sort has occurred.</p></td>
+</tr>
+</table>
+<h1>Java Zip - Errors</h1>
+<h2>Introduction</h2>
+<p>The <b>java.util.zip Error</b> contains the error which can occur during zip/unzip operations.</p>
+<h2>Interface Summary</h2>
+<table class="table table-bordered">
+<tr>
+<th style="width:5%">Sr.No.</th>
+<th style="text-align:center;">Error &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>ZipError</b></p>
+<p>Signals that an unrecoverable error has occurred.</p></td>
+</tr>
+</table>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/javazip/javazip_error.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/javazip/javazip_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

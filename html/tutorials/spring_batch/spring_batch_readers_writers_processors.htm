@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Spring Batch - Readers, Writers & Processors - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Spring Batch - Readers, Writers & Processors - An Item Reader reads data into the spring batch application from a particular source, whereas an Item Writer writes data from Spring Batch application to a part"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/spring_batch/spring_batch_readers_writers_processors.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#387c2c;
+}
+a.demo {
+    background:#387c2c;
+}
+li.heading {
+    background:#387c2c;
+}
+.course-box{background:#387c2c}
+.home-intro-sub p{color:#387c2c}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/spring_batch/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/spring_batch/images/spring-batch-mini-logo.jpg" alt="Spring Batch Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Spring Batch Tutorial</li>
+<li><a href="/spring_batch/index.htm">Spring Batch - Home</a></li>
+<li><a href="/spring_batch/spring_batch_overview.htm">Spring Batch - Overview</a></li>
+<li><a href="/spring_batch/spring_batch_environment.htm">Spring Batch - Environment</a></li>
+<li><a href="/spring_batch/spring_batch_architecture.htm">Spring Batch - Architecture</a></li>
+<li><a href="/spring_batch/spring_batch_application.htm">Spring Batch - Application</a></li>
+<li><a href="/spring_batch/spring_batch_configuration.htm">Spring Batch - Configuration</a></li>
+<li><a href="/spring_batch/spring_batch_readers_writers_processors.htm">Readers, Writers &amp; Processors</a></li>
+<li><a href="/spring_batch/spring_batch_basic_application.htm">Spring Batch - Basic Application</a></li>
+<li><a href="/spring_batch/spring_batch_xml_to_mysql.htm">Spring Batch - XML to MySQL</a></li>
+<li><a href="/spring_batch/spring_batch_csv_to_xml.htm">Spring Batch -  CSV to XML</a></li>
+<li><a href="/spring_batch/spring_batch_mysql_to_xml.htm">Spring Batch -  MySQL to XML</a></li>
+<li><a href="/spring_batch/spring_batch_mysql_to_flat_file.htm">Spring Batch -  MySQL to Flat File</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Spring Batch Useful Resources</li>
+<li><a href="/spring_batch/spring_batch_quick_guide.htm">Spring Batch - Quick Guide</a></li>
+<li><a href="/spring_batch/spring_batch_useful_resources.htm">Spring Batch - Useful Resources</a></li>
+<li><a href="/spring_batch/spring_batch_discussion.htm">Spring Batch - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Spring Batch - Readers, Writers &amp; Processors</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/spring_batch/spring_batch_configuration.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/spring_batch/spring_batch_basic_application.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>An <b>Item Reader</b> reads data into the spring batch application from a particular source, whereas an <b>Item Writer</b> writes data from Spring Batch application to a particular destination.</p>
+<p>An <b>Item processor</b> is a class which contains the processing code which processes the data read in to the spring batch. If the application reads n records the code in the processor will be executed on each record.</p>
+<p>A <b>chunk</b> is a child element of the <b>tasklet</b>. It is used to perform read, write, and processing operations. We can configure reader, writer, and processors using this element, within a step as shown below.</p>
+<pre class="prettyprint notranslate">
+&lt;batch:job id = "helloWorldJob"&gt; 
+   &lt;batch:step id = "step1"&gt; 
+      &lt;batch:tasklet&gt; 
+         &lt;batch:chunk reader = "cvsFileItemReader" writer = "xmlItemWriter" 
+            processor = "itemProcessor" commit-interval = "10"&gt; 
+         &lt;/batch:chunk&gt; 
+      &lt;/batch:tasklet&gt; 
+   &lt;/batch:step&gt; 
+&lt;/batch:job&gt;
+</pre>
+<p>Spring Batch provides readers and writers to read and write data form various file systems/databases such as MongoDB, Neo4j, MySQL, XML, flatfile, CSV, etc.</p>
+<p>To include a reader in your application, you need to define a bean for that reader, provide values to all the required properties within the bean, and pass the <b>id</b> of such bean as a value to the attribute of the chunk element <b>reader</b> (same for <b>writer</b>).</p>
+<h2>ItemReader</h2>
+<p>It is the entity of a step (of a batch process) which reads data. An ItemReader reads one item a time. Spring Batch provides an Interface <b>ItemReader</b>. All the <b>readers</b> implement this interface.</p>
+<p>Following are some of the predefined ItemReader classes provided by Spring Batch to read from various sources.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Reader</th>
+<th style="text-align:center;">Purpose</th>
+</tr>
+<tr>
+<td style="text-align:center;">FlatFIleItemReader</td>
+<td>To read data from flat files.</td>
+</tr>
+<tr>
+<td style="text-align:center;">StaxEventItemReader</td>
+<td>To read data from XML files.</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">StoredProcedureItemReader</td>
+<td>To read data from the stored procedures of a database.</td>
+</tr>
+<tr>
+<td style="text-align:center;">JDBCPagingItemReader</td>
+<td>To read data from relational databases database.</td>
+</tr>
+<tr>
+<td style="text-align:center;">MongoItemReader</td>
+<td>To read data from MongoDB.</td>
+</tr>
+<tr>
+<td style="text-align:center;">Neo4jItemReader</td>
+<td>To read data from Neo4jItemReader.</td>
+</tr>
+</table>
+<p>We need to configure the <b>ItemReaders</b> by creating the beans. Following is an example of <b>StaxEventItemReader</b> which reads data from an XML file.</p>
+<pre class="prettyprint notranslate">
+&lt;bean id = "mysqlItemWriter" 
+   class = "org.springframework.batch.item.xml.StaxEventItemWriter"&gt; 
+   &lt;property name = "resource" value = "file:xml/outputs/userss.xml" /&gt; 
+   &lt;property name = "marshaller" ref = "reportMarshaller" /&gt; 
+   &lt;property name = "rootTagName" value = "Tutorial" /&gt; 
+&lt;/bean&gt; 
+
+&lt;bean id = "reportMarshaller" 
+   class = "org.springframework.oxm.jaxb.Jaxb2Marshaller"&gt; 
+   &lt;property name = "classesToBeBound"&gt; 
+      &lt;list&gt; 
+         &lt;value&gt;Tutorial&lt;/value&gt; 
+      &lt;/list&gt; 
+   &lt;/property&gt; 
+&lt;/bean&gt; 
+</pre>
+<p>As observed, while configuring, we need to specify the respective class name of the required reader and we need to provide values to all the required properties.</p>
+<h2>ItemWriter</h2>
+<p>It is the element of the <b>step</b> of a batch process which writes data. An ItemWriter writes one item a time. Spring Batch provides an Interface <b>ItemWriter</b>. All the writers implement this interface.</p>
+<p>Following are some of the predefined ItemWriter classes provided by Spring Batch to read from various sources.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Writer</th>
+<th style="text-align:center;">Purpose</th>
+</tr>
+<tr>
+<td style="text-align:center;">FlatFIleItemWriter</td>
+<td>To write data into flat files.</td>
+</tr>
+<tr>
+<td style="text-align:center;">StaxEventItemWriter</td>
+<td>To write data into XML files.</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">StoredProcedureItemWriter</td>
+<td>To write data into the stored procedures of a database.</td>
+</tr>
+<tr>
+<td style="text-align:center;">JDBCPagingItemWriter</td>
+<td>To write data into relational databases database.</td>
+</tr>
+<tr>
+<td style="text-align:center;">MongoItemWriter</td>
+<td>To write data into MongoDB.</td>
+</tr>
+<tr>
+<td style="text-align:center;">Neo4jItemWriter</td>
+<td>To write data into Neo4j.</td>
+</tr>
+</table>
+<p>In same way, we need to configure the ItemWriters by creating the beans. Following is an example of <b>JdbcCursorItemReader</b> which writes data to an MySQL database.</p>
+<pre class="prettyprint notranslate">
+&lt;bean id = "dbItemReader"
+   class = "org.springframework.batch.item.database.JdbcCursorItemReader" scope = "step"&gt;
+   &lt;property name = "dataSource" ref = "dataSource" /&gt;
+   &lt;property name = "sql" value = "select * from tutorialsdata" /&gt;
+   &lt;property name = "rowMapper"&gt;
+      &lt;bean class = "TutorialRowMapper" /&gt; 
+   &lt;/property&gt;
+&lt;/bean&gt;
+</pre>
+<h2>Item Processor</h2>
+<p><b>ItemProcessor</b>: An ItemProcessor is used to process the data. When the given item is not valid it returns <b>null</b>, else it processes the given item and returns the processed result. The interface <b>ItemProcessor&lt;I,O&gt;</b> represents the processor.</p>
+<p><b>Tasklet class</b> &minus; When no <b>reader</b> and <b>writer</b> are given, a Tasklet acts as a processor for SpringBatch. It processes only single task.</p>
+<p>We can define a custom item processor by implementing the interface <b>ItemProcessor</b> of the package <b>org.springframework.batch.item.ItemProcessor</b>. This ItemProcessor class accepts an object and processes the data and returns the processed data as another object.</p>
+<p>In a batch process, if <b>"n"</b> records or data elements are read, then for each record, it will read the data, process it, and writes the data in the writer. To process the data, it relays on the processor passed.</p>
+<p>For example, let’s suppose you have written code to load a particular PDF document, create a new page, write the data item on to the PDF in a tabular format. If you execute this application, it reads all the data items from the XML document, stores them in the MySQL database, and prints them in the given PDF document in individual pages.</p>
+<h3>Example</h3>
+<p>Following is a sample ItemProcessor class.</p>
+<pre class="prettyprint notranslate">
+import org.springframework.batch.item.ItemProcessor;  
+
+public class CustomItemProcessor implements ItemProcessor&lt;Tutorial, Tutorial&gt; {  
+   
+   @Override 
+   public Tutorial process(Tutorial item) throws Exception {  
+      System.out.println("Processing..." + item); 
+      return item; 
+   } 
+} 
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/spring_batch/spring_batch_configuration.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/spring_batch/spring_batch_basic_application.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

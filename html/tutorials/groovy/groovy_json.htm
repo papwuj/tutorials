@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Groovy - JSON</title>
+<meta charset="utf-8">
+<meta name="description" content="Groovy - JSON - This chapter covers how to we can use the Groovy language for parsing and producing JSON objects."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/groovy/groovy_json.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#3483a1;
+}
+a.demo {
+    background:#3483a1;
+}
+li.heading {
+    background:#3483a1;
+}
+.course-box{background:#3483a1}
+.home-intro-sub p{color:#3483a1}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/groovy/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/groovy/images/groovy-mini-logo.jpg" alt="Groovy Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Groovy Tutorial</li>
+<li><a href="/groovy/index.htm">Groovy - Home</a></li>
+<li><a href="/groovy/groovy_overview.htm">Groovy - Overview</a></li>
+<li><a href="/groovy/groovy_environment.htm">Groovy - Environment</a></li>
+<li><a href="/groovy/groovy_basic_syntax.htm">Groovy - Basic Syntax</a></li>
+<li><a href="/groovy/groovy_data_types.htm">Groovy - Data Types</a></li>
+<li><a href="/groovy/groovy_variables.htm">Groovy - Variables</a></li>
+<li><a href="/groovy/groovy_operators.htm">Groovy - Operators</a></li>
+<li><a href="/groovy/groovy_loops.htm">Groovy - Loops</a></li>
+<li><a href="/groovy/groovy_decision_making.htm">Groovy - Decision Making</a></li> 
+<li><a href="/groovy/groovy_methods.htm">Groovy - Methods</a></li>
+<li><a href="/groovy/groovy_file_io.htm">Groovy - File I/O</a></li>
+<li><a href="/groovy/groovy_optionals.htm">Groovy - Optionals</a></li>
+<li><a href="/groovy/groovy_numbers.htm">Groovy - Numbers</a></li>
+<li><a href="/groovy/groovy_strings.htm">Groovy - Strings</a></li>
+<li><a href="/groovy/groovy_ranges.htm">Groovy - Ranges</a></li>
+<li><a href="/groovy/groovy_lists.htm">Groovy - Lists</a></li>
+<li><a href="/groovy/groovy_maps.htm">Groovy - Maps</a></li>
+<li><a href="/groovy/groovy_dates_times.htm">Groovy - Dates &amp; Times</a></li>
+<li><a href="/groovy/groovy_regular_expressions.htm">Groovy - Regular Expressions</a></li>
+<li><a href="/groovy/groovy_exception_handling.htm">Groovy - Exception Handling</a></li>
+<li><a href="/groovy/groovy_object_oriented.htm">Groovy - Object Oriented</a></li>
+<li><a href="/groovy/groovy_generics.htm">Groovy - Generics</a></li>
+<li><a href="/groovy/groovy_traits.htm">Groovy - Traits</a></li>
+<li><a href="/groovy/groovy_closures.htm">Groovy - Closures</a></li>
+<li><a href="/groovy/groovy_annotations.htm">Groovy - Annotations</a></li>
+<li><a href="/groovy/groovy_xml.htm">Groovy - XML</a></li>
+<li><a href="/groovy/groovy_jmx.htm">Groovy - JMX</a></li>
+<li><a href="/groovy/groovy_json.htm">Groovy - JSON</a></li>
+<li><a href="/groovy/groovy_dsls.htm">Groovy - DSLS</a></li>
+<li><a href="/groovy/groovy_database.htm">Groovy - Database</a></li>
+<li><a href="/groovy/groovy_builders.htm">Groovy - Builders</a></li>
+<li><a href="/groovy/groovy_command_line.htm">Groovy - Command Line</a></li>
+<li><a href="/groovy/groovy_unit_testing.htm">Groovy - Unit Testing</a></li>
+<li><a href="/groovy/groovy_template_engines.htm">Groovy - Template Engines</a></li>
+<li><a href="/groovy/groovy_meta_object_programming.htm">Groovy - Meta Object Programming</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Groovy Useful Resources</li>
+<li><a href="/groovy/groovy_quick_guide.htm">Groovy - Quick Guide</a></li>
+<li><a href="/groovy/groovy_useful_resources.htm">Groovy - Useful Resources</a></li>
+<li><a href="/groovy/groovy_discussion.htm">Groovy - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Groovy - JSON</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/groovy/groovy_jmx.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/groovy/groovy_dsls.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>This chapter covers how to we can use the Groovy language for parsing and producing JSON objects.</p>
+<h2>JSON Functions</h2>
+<table class="table table-bordered">
+<tr>
+<th class="ts">Sr.No</th>
+<th class="ts">Function &amp; Libraries</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>JsonSlurper</b></p>
+<p>JsonSlurper is a class that parses JSON text or reader content into Groovy data</p>
+<p>Structures such as maps, lists and primitive types like Integer, Double, Boolean and String.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>JsonOutput</b></p>
+<p>This method is responsible for serialising Groovy objects into JSON strings.</p></td>
+</tr>
+</table>
+<h2>Parsing Data using JsonSlurper</h2>
+<p>JsonSlurper is a class that parses JSON text or reader content into Groovy data Structures such as maps, lists and primitive types like Integer, Double, Boolean and String.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+def slurper = new JsonSlurper()
+</pre>
+<p>JSON slurper parses text or reader content into a data structure of lists and maps.</p>
+<p>The JsonSlurper class comes with a couple of variants for parser implementations. Sometimes you may have different requirements when it comes to parsing certain strings. Let’s take an instance wherein one needs to read the JSON which is returned from the response from a web server. In such a case it’s beneficial to use the parser JsonParserLax variant. This parsee allows comments in the JSON text as well as no quote strings etc. To specify this sort of parser you need to use JsonParserType.LAX parser type when defining an object of the JsonSlurper.</p>
+<p>Let’s see an example of this given below. The example is for getting JSON data from a web server using the http module. For this type of traversal, the best option is to have the parser type set to JsonParserLax variant.</p>
+<pre class="prettyprint notranslate">
+http.request( GET, TEXT ) {
+   headers.Accept = 'application/json'
+   headers.'User-Agent' = USER_AGENT
+	
+   response.success = { 
+      res, rd -&gt;  
+      def jsonText = rd.text 
+		
+      //Setting the parser type to JsonParserLax
+      def parser = new JsonSlurper().setType(JsonParserType.LAX)
+      def jsonResp = parser.parseText(jsonText)
+   }
+}
+</pre>
+<p>Similarly the following additional parser types are available in Groovy &minus;</p>
+<ul class="list">
+<li><p>The JsonParserCharArray parser basically takes a JSON string and operates on the underlying character array. During value conversion it copies character sub-arrays (a mechanism known as "chopping") and operates on them individually.</p></li>
+<li><p>The JsonFastParser is a special variant of the JsonParserCharArray and is the fastest parser. JsonFastParser is also known as the index-overlay parser. During parsing of the given JSON String it tries as hard as possible to avoid creating new char arrays or String instances. It just keeps pointers to the underlying original character array only. In addition, it defers object creation as late as possible.</p></li>
+<li><p>The JsonParserUsingCharacterSource is a special parser for very large files. It uses a technique called "character windowing" to parse large JSON files (large means files over 2MB size in this case) with constant performance characteristics.</p></li>
+</ul>
+<h3>Parsing Text</h3>
+<p>Let’s have a look at some examples of how we can use the JsonSlurper class.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/SL9Qbp" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import groovy.json.JsonSlurper 
+
+class Example {
+   static void main(String[] args) {
+      def jsonSlurper = new JsonSlurper()
+      def object = jsonSlurper.parseText('{ "name": "John", "ID" : "1"}') 
+		
+      println(object.name);
+      println(object.ID);
+   } 
+}
+</pre>
+<p>In the above example, we are &minus;</p>
+<ul class="list">
+<li><p>First creating an instance of the JsonSlurper class</p></li>
+<li><p>We are then using the parseText function of the JsonSlurper class to parse some JSON text.</p></li>
+<li><p>When we get the object, you can see that we can actually access the values in the JSON string via the key.</p></li>
+</ul>
+<p>The output of the above program is given below &minus;</p>
+<pre class="result notranslate">
+John 
+1
+</pre>
+<h3>Parsing List of Integers</h3>
+<p>Let’s take a look at another example of the JsonSlurper parsing method. In the following example, we are pasing a list of integers. You will notice from The following codethat we are able to use the List method of each and pass a closure to it.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/HmXLFE" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import groovy.json.JsonSlurper 
+class Example {
+   static void main(String[] args) {
+      def jsonSlurper = new JsonSlurper()
+      Object lst = jsonSlurper.parseText('{ "List": [2, 3, 4, 5] }')
+      lst.each { println it }
+   } 
+}
+</pre>
+<p>The output of the above program is given below &minus;</p>
+<pre class="result notranslate">
+List=[2, 3, 4, 5]
+</pre>
+<h3>Parsing List of Primitive Data types</h3>
+<p>The JSON parser also supports the primitive data types of string, number, object, true, false and null. The JsonSlurper class converts these JSON types into corresponding Groovy types.</p>
+<p>The following example shows how to use the JsonSlurper to parse a JSON string. And here you can see that the JsonSlurper is able to parse the individual items into their respective primitive types.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/VyyNoP" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import groovy.json.JsonSlurper 
+class Example {
+
+   static void main(String[] args) {
+      def jsonSlurper = new JsonSlurper()
+      def obj = jsonSlurper.parseText ''' {"Integer": 12, "fraction": 12.55, "double": 12e13}'''
+		
+      println(obj.Integer);
+      println(obj.fraction);
+      println(obj.double); 
+   } 
+}
+</pre>
+<p>The output of the above program is given below &minus;</p>
+<pre class="result notranslate">
+12 
+12.55 
+1.2E+14 
+</pre>
+<h2>JsonOutput</h2>
+<p>Now let’s talk about how to print output in Json. This can be done by the JsonOutput method. This method is responsible for serialising Groovy objects into JSON strings.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+Static string JsonOutput.toJson(datatype obj)
+</pre>
+<p><b>Parameters</b> &minus; The parameters can be an object of a datatype – Number, Boolean, character,String, Date, Map, closure etc.</p>
+<p><b>Return type</b> &minus; The return type is a json string.</p>
+<h3>Example</h3> 
+<p>Following is a simple example of how this can be achieved.</p>
+<pre class="prettyprint notranslate">
+import groovy.json.JsonOutput 
+class Example {
+   static void main(String[] args) {
+      def output = JsonOutput.toJson([name: 'John', ID: 1])
+      println(output);  
+   }
+}
+</pre>
+<p>The output of the above program is given below &minus;</p>
+<pre class="result notranslate">
+{"name":"John","ID":1}
+</pre>
+<p>The JsonOutput can also be used for plain old groovy objects. In the following example, you can see that we are actually passing objects of the type Student to the JsonOutput method.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/3okKJL" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i>Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import groovy.json.JsonOutput  
+class Example {
+   static void main(String[] args) {
+      def output = JsonOutput.toJson([ new Student(name: 'John',ID:1),
+         new Student(name: 'Mark',ID:2)])
+      println(output);  
+   } 
+}
+ 
+class Student {
+   String name
+   int ID; 
+}
+</pre>
+<p>The output of the above program is given below &minus;</p>
+<pre class="result notranslate">
+[{"name":"John","ID":1},{"name":"Mark","ID":2}]
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/groovy/groovy_jmx.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/groovy/groovy_dsls.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

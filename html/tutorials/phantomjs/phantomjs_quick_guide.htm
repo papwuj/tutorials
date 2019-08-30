@@ -1,0 +1,2878 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>PhantomJS - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="PhantomJS - Quick Guide - PhantomJS is said to be a headless browser because there is no involvement of browser while executing the JavaScript code. The execution will not be seen in the"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/phantomjs/phantomjs_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#01b8c0;
+}
+a.demo {
+    background:#01b8c0;
+}
+li.heading {
+    background:#01b8c0;
+}
+.course-box{background:#01b8c0}
+.home-intro-sub p{color:#01b8c0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/phantomjs/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/phantomjs/images/phantom-js-mini-logo.jpg" alt="PhantomJS Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">PhantomJS Tutorial</li>
+<li><a href="/phantomjs/index.htm">PhantomJS - Home</a></li>
+<li><a href="/phantomjs/phantomjs_overview.htm">PhantomJS - Overview</a></li>
+<li><a href="/phantomjs/phantomjs_environment_setup.htm">PhantomJS - Environment Setup</a></li>
+<li><a href="/phantomjs/phantomjs_object.htm">PhantomJS - Object</a></li>
+<li><a href="/phantomjs/phantomjs_methods.htm">PhantomJS - Methods</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">WebPage Module</li>
+<li><a href="/phantomjs/phantomjs_webpage_module_properties.htm">PhantomJS - Properties</a></li>
+<li><a href="/phantomjs/phantomjs_webpage_module_methods.htm">PhantomJS - Methods</a></li>
+<li><a href="/phantomjs/phantomjs_webpage_module_events_callbacks.htm">PhantomJS - Events/Callbacks</a></li>
+<li><a href="/phantomjs/phantomjs_webpage_child_process_module.htm">PhantomJS - Child Process Module</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">File System Module</li>
+<li><a href="/phantomjs/phantomjs_file_system_module_properties.htm">PhantomJS - Properties</a></li>
+<li><a href="/phantomjs/phantomjs_file_system_module_methods.htm">PhantomJS - Methods</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">System Module</li>
+<li><a href="/phantomjs/phantomjs_system_module_properties.htm">PhantomJS - Properties</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Web Server Module</li>
+<li><a href="/phantomjs/phantomjs_web_server_module_properties.htm">PhantomJS - Properties</a></li>
+<li><a href="/phantomjs/phantomjs_web_server_module_methods.htm">PhantomJS - Methods</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Miscellaneous</li>
+<li><a href="/phantomjs/phantomjs_command_line_interface.htm">Command Line Interface</a></li>
+<li><a href="/phantomjs/phantomjs_screen_capture.htm">PhantomJS - Screen Capture</a></li>
+<li><a href="/phantomjs/phantomjs_page_automation.htm">PhantomJS - Page Automation</a></li>
+<li><a href="/phantomjs/phantomjs_network_monitoring.htm">PhantomJS - Network Monitoring</a></li>
+<li><a href="/phantomjs/phantomjs_testing.htm">PhantomJS - Testing</a></li>
+<li><a href="/phantomjs/phantomjs_repl.htm">PhantomJS - REPL</a></li>
+<li><a href="/phantomjs/phantomjs_examples.htm">PhantomJS - Examples</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">PhantomJS Useful Resources</li>
+<li><a href="/phantomjs/phantomjs_quick_guide.htm">PhantomJS - Quick Guide</a></li>
+<li><a href="/phantomjs/phantomjs_useful_resources.htm">PhantomJS - Useful Resources</a></li>
+<li><a href="/phantomjs/phantomjs_discussion.htm">PhantomJS - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>PhantomJS - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/phantomjs/phantomjs_examples.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/phantomjs/phantomjs_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>PhantomJS - Overview</h1>
+<p><b>PhantomJS</b> is said to be a <b>headless browser</b> because there is no involvement of browser while executing the JavaScript code. The execution will not be seen in the browser display, but on the command line prompt. The functionalities like <b>CSS Handling, DOM Manipulation, JSON, Ajax, Canvas, SVG,</b> etc., will all be taken care at the command prompt. PhantomJS does not have a GUI and hence, all its execution takes place at the command line.</p>
+<p>Using PhantomJS, we can write to a file, read the contents of the file or upload a file, take an screen capture, convert the webpage into a pdf and lots more. With headless browsers, you get all the browser behavior i.e. <b>Cookies, Http Request Methods</b> i.e. <b>GET /POST, Clearing Cookies, Deleting Cookies</b>, etc., <b>Reloading of Page, Navigating to a Different Page</b>.</p>
+<p>PhantomJS uses WebKit that has a similar browsing environment like the famous browsers – Google Chrome, Mozilla Firefox, Safari, etc. It also provides a lot of JavaScript API, which helps in taking screenshots, uploading of file, writing to file, reading a file, interacting with the web pages, etc.</p>
+<p>PhantomJS does not support Flash or Video, as it requires plugins and it is difficult to support the same on the command line.</p>
+<h2>Features of PhantomJS</h2>
+<p>Let us now understand the features that PhantomJS offers.</p>
+<h3>Page Automation</h3>
+<p>PhantomJS allows you to read the page contents with the help of its API. It can help to manipulate the DOM, use external libraries to carry out the task required.</p>
+<h3>Screen Capture</h3>
+<p>PhantomJS helps in taking a screen capture of a page specified and save the same as an image in various formats like PNG, JPEG, PDF, and GIF. With the help of the screen capture, it can easily help to make sure the web content is fine.</p>
+<p>PhantomJS offers properties and methods with the help of which it allows developers to adjust the size of the screenshots and specify the area they want to capture.</p>
+<h3>Headless Testing</h3>
+<p>PhantomJS helps testing of UI at the command line. While, with the help of a screenshot, it can easily help to find errors in the UI. PhantomJS sometimes cannot help with testing alone. However, it can be wrapped along with other testing libraries like Mocha, Yoeman, etc. You can take the help of PhantomJS to upload a file and submit the form.</p>
+<p>PhantomJS can be used to test logins across the sites and make sure the security is not compromised. PhantomJS can be used along with other tools like <b>CasperJS, Mocha, Qunit</b> to make the testing more powerful.</p>
+<h3>Network Monitoring</h3>
+<p>One of the important features of PhantomJS is its usage to monitor the network connection using the API available. PhantomJS permits the inspection of network traffic; it is suitable to build various analysis on the network behavior and performance.</p>
+<p>PhantomJS can be used to collect the data about the performance of the webpage in a live environment. PhantomJS can be used with tools like <b>Yslow</b> to gather performance metrics of any websites.</p>
+<h1>PhantomJS - Environment Setup</h1>
+<p>PhantomJS is a free software and is distributed under the <b>BSD License</b>. It is easy to install and it offers multiple features to execute the scripts. PhantomJS can be easily run on multiple platforms such as Windows, Linux, and Mac.</p>
+<p>For downloading PhantomJS, you can go to – <a href="http://phantomjs.org/" target="_blank" rel="nofollow">http://phantomjs.org/</a> and then click on the download option.</p>
+<h2>For Windows</h2>
+<p>The download page shows you the options for download for different OS. Download the zip file, unpack it and you will get an executable <b>phantom.exe</b>. Set the PATH environment variable to the path of phantom.exe file. Open a new command prompt and type <b>phantomjs –v</b>. It should give you the current version of PhantomJS that is running.</p>
+<h2>For MAC OS X</h2>
+<p>Download the PhantomJS zip file meant for MAC OS and extract the content. Once the content is downloaded, move the PhantomJS to – <b>/usr/local/bin/</b>. Execute PhantomJS command i.e. phantomjs –v at the terminal and it should give you the version description of PhantomJS.</p>
+<h2>Linux 64 bit</h2>
+<p>Download the PhantomJS zip file meant for Linux 64 bit and extract the content. Once the content is downloaded, move PhantomJS folder to <b>/usr/local/share/</b> and <b>create a symlink</b> &minus;</p>
+<pre class="result notranslate">
+sudo mv $PHANTOM_JS /usr/local/share 
+sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin.
+</pre>
+<p>Execute phantomjs –v at the terminal and it should give the version of PhantomJS.</p>
+<h2>Linux 32 bit</h2>
+<p>Download the PhantomJS zip file meant for Linux 32 bit and extract the content. Once the content is downloaded, move the PhantomJS folder to <b>/usr/local/share/</b> and create a symlink &minus;</p>
+<pre class="result notranslate">
+sudo mv $PHANTOM_JS /usr/local/share 
+sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin.
+</pre>
+<p>Execute phantomjs –v at the terminal and it should give the version of PhantomJS.</p>
+<p>The PhantomJS source code can also be taken from the git repository by clicking on the following link – <a href="https://github.com/ariya/phantomjs/" target="_blank" rel="nofollow">https://github.com/ariya/phantomjs/</a></p>
+<p>To run scripts in PhantomJS, the command is as follows &minus;</p>
+<pre class="result notranslate">
+phantomjs jsfile arg1 arg2… 
+</pre>
+<h1>PhantomJS - Object</h1>
+<p>In this chapter, we will look at the four important objects PhantomJS. They are as follows &minus;</p>
+<ul class="list">
+<li>CookiesEnabled</li>
+<li>Cookies</li>
+<li>LibraryPath</li>
+<li>Version</li>
+</ul>
+<p>Let us now discuss each of these in detail.</p>
+<h2>cookiesEnabled</h2>
+<p>It tells whether the cookies are enabled or not. It will return <b>true</b>, if yes; otherwise <b>false</b>.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+phantom.cookiesEnabled
+</pre>
+<h3>Example</h3>
+<p><b>cookieenabled.js</b></p>
+<pre class="prettyprint notranslate">
+phantom.addCookie ({  
+   //adding cookie with addcookie property 
+   name: 'c1', 
+   value: '1', 
+   domain: 'localhost' 
+}); 
+
+console.log("Cookie Enabled value is : "+phantom.cookiesEnabled); 
+phantom.exit();
+</pre>
+<h3>Output</h3>
+<p><b>Command</b> &minus; phantomjs cookieenabled.js</p>
+<pre class="result notranslate">
+Cookie Enabled value is : true 
+</pre>
+<h2>Cookies</h2>
+<p>It helps to add and set cookies to a domain. It returns an object with all the cookies available for the domain.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+phantom.cookies; 
+</pre>
+<h3>Example</h3>
+<p><b>Filename: phantomcookie.js</b></p>
+<pre class="prettyprint notranslate">
+phantom.addCookie ({ 
+   name: 'c1', 
+   value: '1', 
+   domain: 'localhost' 
+}); 
+phantom.addCookie ({ 
+   name: 'c2', 
+   value: '2', 
+   domain: 'localhost' 
+}); 
+phantom.addCookie ({ 
+   name: 'c3', 
+   value: '3', 
+   domain: 'localhost' 
+}); 
+console.log(JSON.stringify(phantom.cookies)); 
+phantom.exit();
+</pre>
+<h3>Output</h3>
+<p><b>Command</b> &minus; phantomjs phantomcookie.js</p>
+<pre class="result notranslate">
+[{"domain":".localhost","httponly":false,"name":"c3","path":"/","secure":false, " 
+value":"3"},{"domain":".localhost","httponly":false,"name":"c2","path":"/","sec u 
+re":false,"value":"2"},{"domain":".localhost","httponly":false,"name":"c1","pat h
+":"/","secure":false,"value":"1"}]
+</pre>
+<p>In the above example, we added some cookies to the localhost domain. We then fetched it using <b>phantom.cookies</b>. It returns an object with all the cookies by using the <b>JSON stringify</b> method to convert the JavaScript object into a string. You can also use <b>foreach</b> to access the name/values of the cookies.</p>
+<h2>LibraryPath</h2>
+<p>PhantomJS libraryPath stores the script path to be used by the <b>injectJS</b> method.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+phantom.libraryPath 
+</pre>
+<h3>Example</h3>
+<p>Here is an example to find out the version.</p>
+<pre class="prettyprint notranslate">
+var webPage = require('webpage');
+var page = webPage.create();
+
+page.open('http://www.tutorialspoint.com/jquery', function(status) {
+   if (status === "success") { 
+      page.includeJs('http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js ', function() { 
+         if (page.injectJs('do.js')) { 
+            // returnTitle is a function loaded from our do.js file - see below 
+            return returnTitle(); 
+         });
+         
+         console.log(title); 
+         phantom.exit(); 
+      } 
+   } 
+});
+
+window.returnTitle = function() { 
+   return document.title;
+}; 
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+Jquery Tutorial
+</pre>
+<h2>Version</h2>
+<p>It gives the version of the PhantomJS that is running and returns the details in an object. For example: {"major":2,"minor":1,"patch":1}</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+phantom.version
+</pre>
+<h3>Example</h3>
+<p>Here is an example to find out the version.</p>
+<pre class="prettyprint notranslate">
+var a = phantom.version;
+console.log(JSON.stringify(a));
+console.log(a.major);
+console.log(a.minor);
+console.log(a.patch);
+phantom.exit();
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+{"major":2,"minor":1,"patch":1} 
+2 
+1 
+1
+</pre>
+<p>In the above example, we have used <b>console.log</b> to print the version. Currently, we are running on version 2. It returns the object with the details shown in the above code block.</p>
+<h1>PhantomJS - Methods</h1>
+<p>PhantomJS is a platform to help execute JavaScript without a browser. To do that, the following methods are used, which help in Adding the Cookie, Deleting, Clearing, Exiting the Script, Injecting JS, etc.</p>
+<p>We will discuss more on these PhantomJS methods and their syntax in this chapter. Similar methods i.e. <b>addcookie, injectjs</b> exists on the webpage module, which will be discussed in the subsequent chapters.</p>
+<p>PhantomJS exposes the following methods that can help us to execute JavaScript without the browser &minus;</p>
+<ul class="list">
+<li>addCookie</li>
+<li>clearCookie</li>
+<li>deleteCookie</li>
+<li>Exit</li>
+<li>InjectJS</li>
+</ul>
+<p>Let us now understand these methods in detail with examples.</p>
+<h2>addCookie</h2>
+<p>The addcookie method is used to add cookies and store in the data. It is similar to how the browser stores it. It takes a single argument that is an object with all the properties of cookies and the syntax for it looks like shown below &minus;</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+phantom.addCookie ({ 
+   "name" : "cookie_name",  
+   "value" : "cookie_value", 
+   "domain" : "localhost" 
+});
+</pre>
+<p>The name, value, domain are mandatory properties to be added to the addcookie function. If any of this property is missing in the cookie objects, this method will fail.</p>
+<ul class="list">
+<li><p><b>name</b> &minus; specifies the name of the cookie.</p></li>
+<li><p><b>value</b> &minus; specifies the value of the cookie to be used.</p></li>
+<li><p><b>domain</b> &minus; domain to which the cookie will be applied.</p></li>
+</ul>
+<h3>Example</h3>
+<p>Here is an example of the <b>addcookie</b> method.</p>
+<pre class="prettyprint notranslate">
+var page = require('webpage').create(),url = 'http://localhost/tasks/a.html'; 
+page.open(url, function(status) { 
+   if (status === 'success') {     
+      phantom.addCookie({   //add name cookie1 with value = 1 
+         name: 'cookie1', 
+         value: '1', 
+         domain: 'localhost' 
+      }); 
+      phantom.addCookie({   // add cookie2 with value 2 
+         name: 'cookie2', 
+         value: '2', 
+         domain: 'localhost' 
+      }); 
+      phantom.addCookie({   // add cookie3 with value 3 
+         name: 'cookie3', 
+         value: '3', 
+         domain: 'localhost' 
+      }); 
+      console.log('Added 3 cookies'); 
+      console.log('Total cookies :'+phantom.cookies.length);  
+      
+      // will output the total cookies added to the url.    
+   } else { 
+      console.error('Cannot open file'); 
+      phantom.exit(1); 
+   } 
+}); 
+</pre>
+<h3>Example</h3>
+<p><b>a.html</b></p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Welcome to phantomjs test page&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+Added 3 cookies 
+Total cookies :3
+</pre>
+<p>The code comments are self-explanatory.</p>
+<h2>clearCookies</h2>
+<p>This method allows deleting all the cookies.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+phantom.clearCookies();
+</pre>
+<p>This concept works similar to deleting the browser cookies by selecting in the browser menu.</p>
+<h3>Example</h3>
+<p>Here is an example of the <b>clearCookies</b> method.</p>
+<pre class="prettyprint notranslate">
+var page = require('webpage').create(),url = 'http://localhost/tasks/a.html'; 
+page.open(url, function(status) { 
+   if (status === 'success') {     
+      phantom.addCookie({   //add name cookie1 with value = 1 
+         name: 'cookie1', 
+         value: '1', 
+         domain: 'localhost' 
+      }); 
+      phantom.addCookie({   // add cookie2 with value 2 
+         name: 'cookie2', 
+         value: '2', 
+         domain: 'localhost' 
+      }); 
+      phantom.addCookie({   // add cookie3 with value 3 
+         name: 'cookie3', 
+         value: '3', 
+         domain: 'localhost' 
+      }); 
+      console.log('Added 3 cookies'); 
+      console.log('Total cookies :'+phantom.cookies.length); 
+      phantom.clearCookies(); 
+      console.log(
+         'After clearcookies method total cookies :' +phantom.cookies.length); 
+      
+      phantom.exit();     
+   } else { 
+      console.error('Cannot open file'); 
+      phantom.exit(1); 
+   } 
+}); 
+</pre>
+<p><b>a.html</b></p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Welcome to phantomjs test page&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+      &lt;h1&gt;This is a test page&lt;/h1&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+Added 3 cookies 
+Total cookies :3 
+After clearcookies method total cookies :0 
+</pre>
+<h2>deleteCookie</h2>
+<p>Delete any cookie in the <b>CookieJar</b> with a ‘name' property matching cookieName. It will return <b>true</b>, if successfully deleted; otherwise <b>false</b>.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+phantom.deleteCookie(cookiename);
+</pre>
+<p>Let us understand <b>addcookie, clearcookies</b> and <b>deletecookie</b> with the help of an example.</p>
+<h3>Example</h3>
+<p>Here is an example to demonstrate the use of deleteCookie method &minus;</p>
+<p><b>File: cookie.js</b></p>
+<pre class="prettyprint notranslate">
+var page = require('webpage').create(),url = 'http://localhost/tasks/a.html'; 
+page.open(url, function(status) { 
+   if (status === 'success') {     
+      phantom.addCookie({   //add name cookie1 with value = 1 
+         name: 'cookie1', 
+         value: '1', 
+         domain: 'localhost' 
+      }); 
+      phantom.addCookie({   // add cookie2 with value 2 
+         name: 'cookie2', 
+         value: '2', 
+         domain: 'localhost' 
+      });
+      phantom.addCookie({   // add cookie3 with value 3 
+         name: 'cookie3', 
+         value: '3', 
+         domain: 'localhost' 
+      });  
+      console.log('Added 3 cookies'); 
+      console.log('Total cookies :'+phantom.cookies.length); 
+      
+      //will output the total cookies added to the url.    
+      console.log("Deleting cookie2"); 
+      phantom.deleteCookie('cookie2'); 
+      
+      console.log('Total cookies :'+phantom.cookies.length); 
+      phantom.clearCookies();
+      
+      console.log(
+         'After clearcookies method total cookies :' +phantom.cookies.length); 
+      phantom.exit(); 
+   } else { 
+      console.error('Cannot open file'); 
+      phantom.exit(1); 
+   } 
+});
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+phantomjs cookie.js
+Added 3 cookies
+Total cookies :3
+Deleting cookie2
+Total cookies :2
+After clearcookies method total cookies :0
+</pre>
+<h2>Exit</h2>
+<p>The phantom.exit method will exit the script which it had started. It exits the program with return value mentioned. It gives <b>‘0’</b>, if there is no value passed.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+phantom.exit(value);
+</pre>
+<p>In case you do not add <b>phantom.exit</b>, then the command line assumes that the execution is still on and will not complete.</p>
+<h3>Example</h3>
+<p>Let us look at an example to understand the use of the <b>exit</b> method.</p>
+<pre class="prettyprint notranslate">
+console.log('Welcome to phantomJs');  // outputs Welcome to phantomJS 
+var a = 1; 
+if (a === 1) { 
+   console.log('Exit 1'); //outputs Exit 1 
+   phantom.exit(); // Code exits. 
+} else { 
+   console.log('Exit 2'); 
+   phantom.exit(1); 
+}
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<p><b>phantomjs exit.js</b></p>
+<pre class="result notranslate">
+Welcome to phantomJs 
+Exit 1 
+</pre>
+<p>Any piece of code after phantom.exit will not be executed, since phantom.exit is a method to end the script.</p>
+<h2>injectJs</h2>
+<p>InjectJs is used to add <b>addtionaljs</b> files in phantom. If the file is not found in the current <b>directory librarypath</b>, then the phantom property (phantom.libraryPath) is used as an additional place to track the path. It returns <b>true</b> if the file addition is successful otherwise <b>false</b> for failure, incase if it is not able to locate the file.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+phantom.injectJs(filename);
+</pre>
+<h3>Example</h3>
+<p>Let us look at the following example to understand the use of <b>injectJs</b>.</p>
+<p><b>Filename: inject.js</b></p>
+<pre class="result notranslate">
+console.log(“Added file”); 
+</pre>
+<p><b>File name: addfile.js</b></p>
+<pre class="prettyprint notranslate">
+var addfile =  injectJs(inject.js);
+console.log(addfile);
+phantom.exit();
+</pre>
+<h3>Output</h3>
+<p><b>Command</b> &minus; C:\phantomjs\bin>phantomjs addfile.js</p>
+<pre class="result notranslate">
+Added file // coming from inject.js
+true
+</pre>
+<p>In the above example, <b>addfile.js</b> calls the file <b>inject.js</b> using injectJs. When you execute addfile.js, the console.log present in inject.js is shown in the output. It also shows true for addfile variable since the file inject.js was added successfully.</p>
+<h1>PhantomJS - Webpage Module Properties</h1>
+<p>PhantomJS provides quite a lot of properties and methods to help us to interact with the contents inside a webpage.</p>
+<p>The require("webpage").create() command creates a webpage object. We will use this object to manipulate the webpage with the help of properties and methods listed below.</p>
+<pre class="result notranslate">
+var wpage = require("webpage").create();
+</pre>
+<p>The following table has the list of all the webpage properties that we are going to discuss.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">S.No</th>
+<th style="text-align:center;">Properties &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/phantomjs/phantomjs_cangoback_property.htm">canGoBack</a>
+<p>This property returns <b>true</b> if there is previous page in the navigation history; if not, <b>false</b>.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/phantomjs/phantomjs_cangoforward_property.htm">canGoForward</a>
+<p>This property returns true if there is next page in the navigation history; if not, <b>false</b>.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/phantomjs/phantomjs_cliprect_property.htm">clipRect</a>
+<p>clipRect is an object with values top, left, width and height and used to take the image capture of the webpage when used by the render() method.</p>
+</td>
+</tr>
+<tr>
+<td class="ts" >4</td>
+<td><a href="/phantomjs/phantomjs_content_property.htm">Content</a>
+<p>This property contains the contents of webpage.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/phantomjs/phantomjs_cookies_property.htm">cookies</a>
+<p>With cookies, you can set /get the cookies available on the URL. It will also give you the cookies available on the URL and the new cookies set on the page.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/phantomjs/phantomjs_customheaders_property.htm">customHeaders</a>
+<p>customHeaders specifies additional HTTP request headers that will be send to server for every request issued by the page.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/phantomjs/phantomjs_event_property.htm">Event</a>
+<p>It gives long list of events i.e. modifier, keys details.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="/phantomjs/phantomjs_focusedframename_property.htm">focusedFrameName</a>
+<p>Returns the name of the currently focused frame.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="/phantomjs/phantomjs_framecontent_property.htm">frameContent</a>
+<p>This property gives the content of the frame which is active.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="/phantomjs/phantomjs_framename_property.htm">frameName</a>
+<p>Returns the name of the currently focused frame.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="/phantomjs/phantomjs_frameplaintext_property.htm">framePlainText</a>
+<p>This property also gives the contents of the current active frame but only contents without any html tags.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="/phantomjs/phantomjs_frametitle_property.htm">frameTitle</a>
+<p>Gives the title of the active frame.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="/phantomjs/phantomjs_frameurl_property.htm">frameUrl</a>
+<p>This property will give the url of the currently focused frame.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="/phantomjs/phantomjs_framescount_property.htm">framesCount</a>
+<p>Gives the count of the frames present on the page.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="/phantomjs/phantomjs_framesname_property.htm">framesName</a>
+<p>Gives array of frame names.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><a href="/phantomjs/phantomjs_librarypath_property.htm">libraryPath</a>
+<p>This property has the path, which is used by page.inectJs method.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><a href="/phantomjs/phantomjs_navigationlocked_property.htm">navigationLocked</a>
+<p>This property defines whether navigation of the page is allowed or not. If true it will be on current page url and clicking on page to go to next page will not be allowed.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><a href="/phantomjs/phantomjs_offlinestoragepath_property.htm">offlineStoragePath</a>
+<p>This property gives the path where the data is stored using window.localStorage.The path can be changed using --local-storage-path from command line.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">19</td>
+<td><a href="/phantomjs/phantomjs_offlinestoragequota_property.htm">offlineStorageQuota</a>
+<p>This property defines the maximum amount of data you can store in window.localStorage.The value is 5242880 bytes which is 5MB.This value can overwritten at command line using the following command --localstorage-quota = size over here.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">20</td>
+<td><a href="/phantomjs/phantomjs_ownspages_property.htm">ownsPages</a>
+<p>ownsPages returns true or false if the page opened by the webpage is a child of the webpage.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">21</td>
+<td><a href="/phantomjs/phantomjs_pageswindowname_property.htm">pagesWindowName</a>
+<p>PagesWindowName will give the names of the windows open using window.open</p>
+</td>
+</tr>
+<tr>
+<td class="ts">22</td>
+<td><a href="/phantomjs/phantomjs_pages_property.htm">pages</a>
+<p>The pages property will you give array of pages opened in a page using window.open. If the page is closed in url you referring the page will not be considered.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">23</td>
+<td><a href="/phantomjs/phantomjs_papersize_property.htm">paperSize</a>
+<p>This property gives the size ie dimensions of the webpage when needs to be used to convert the webpage in a pdf format.paperSize contains the dimensions required in an object.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">24</td>
+<td><a href="/phantomjs/phantomjs_plaintext_property.htm">plaintext</a>
+<p>This property also gives the contents of the current active frame but only contents without any html tags.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">25</td>
+<td><a href="/phantomjs/phantomjs_scrollposition_property.htm">scrollPosition</a>
+<p>This contains object indicating the scroll position. It gives left and top.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">26</td>
+<td><a href="/phantomjs/phantomjs_settings_property.htm">settings</a>
+<p>This property will give the settings of the webpage when page.open method is used. Once the page is loaded the changes in settings properties will not create any impact.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">27</td>
+<td><a href="/phantomjs/phantomjs_title_property.htm">title</a>
+<p>This property will give you the title of the page you are reading.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">28</td>
+<td><a href="/phantomjs/phantomjs_url_property.htm">url</a>
+<p>This property will give the page url.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">29</td>
+<td><a href="/phantomjs/phantomjs_viewportsize_property.htm">viewportSize</a>
+<p>This property allows to change the size of the window display. It contains width and height, which you can read or change it as per the needs.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">30</td>
+<td><a href="/phantomjs/phantomjs_windowname_property.htm">windowName</a>
+<p>Gives the name of the window.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">31</td>
+<td><a href="/phantomjs/phantomjs_zoomfactor_property.htm">zoomFactor</a>
+<p>This property specifies the zoom factor for render and renderBase64 methods. It helps to zoom a page and take a screen capture if required.</p>
+</td>
+</tr>
+</table>
+<h1>PhantomJS - Webpage Module Methods</h1>
+<p>The Web Page Module has methods for <b>Cookies, Frames, Page Navigation, Reload, Rendering</b> and <b>Uploading of Files</b>.</p>
+<p>Following are the methods available on the web page.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">S.No</th>
+<th style="text-align:center;">Methods &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/phantomjs/phantomjs_addcookie_method.htm">addCookie()</a>
+<p>addCookie method adds cookies to the page specified.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><b>childFramesCount()</b>
+<p>This method is deprecated as per <a href="http://phantomjs.org" target="_blank" rel="nofollow">http://phantomjs.org.</a></p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><b>childFramesName()</b>
+<p>This method is deprecated as per <a href="http://phantomjs.org" target="_blank" rel="nofollow">http://phantomjs.org.</a></p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/phantomjs/phantomjs_clearcookies_method.htm">clearCookies()</a>
+<p>Will delete all the cookies for the page specified.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/phantomjs/phantomjs_close_method.htm">close()</a>
+<p>This method is used to close the page and release the memory used. Any of the webpage methods or properties will not work once the close is called.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><b>currentFrameName()</b>
+<p>This method is deprecated as per <a href="http://phantomjs.org" target="_blank" rel="nofollow">http://phantomjs.org.</a></p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/phantomjs/phantomjs_deletecookie_method.htm">deleteCookie()</a>
+<p>This will delete a cookie with the name matching with the existing list of cookies present for a given page url.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="/phantomjs/phantomjs_evaluateaync_method.htm">evaluateAsync()</a>
+<p>Evaluate given function asynchronously within the page without blocking current execution. This function helps to execute certain scripts asynchronously.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="/phantomjs/phantomjs_evaluatejavascript_method.htm">evaluateJavascript()</a>
+<p>EvaluateJavaScript helps to execute the function passed to it as a string. Please note the string passed has to be a function only.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="/phantomjs/phantomjs_evaluate_method.htm">evaluate()</a>
+<p>Evaluate will execute the function passed to it. If the function contain console messages it is not displayed directly in the terminal. To display any console messages you need to use onConsoleMessage phantom callback.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="/phantomjs/phantomjs_getpage_method.htm">getPage()</a>
+<p>This will give you the child page that matches the windowname passed in getpage.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="/phantomjs/phantomjs_goback_method.htm">goBack()</a>
+<p>It gives the previous page in navigation history, if only the navigation is not locked.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="/phantomjs/phantomjs_goforward_method.htm">goForward()</a>
+<p>It gives the next page in navigation history, if only the navigation is not locked.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="/phantomjs/phantomjs_go_method.htm">go()</a>
+<p>This method allows you to navigate with the pages.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="/phantomjs/phantomjs_includejs_method.htm">includeJs()</a>
+<p>Includejs executes the external JS file on page and executes the callback function on completion.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><a href="/phantomjs/phantomjs_injectjs_method.htm">injectJs()</a>
+<p>InjectJs includes external script from a specified file into the page. If the file is not available in the current directory, then it used libraryPath for additional search of the file. It returns true if the file is injected, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><a href="/phantomjs/phantomjs_openurl_method.htm">openUrl()</a>
+<p>OpenUrl opens up a webpage. It is similar to open method of PhantomJS. OpenUrl has some additional parameters, which are httpConf, settings and callback functions.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><a href="/phantomjs/phantomjs_open_webpage_method.htm">open()</a>
+<p>Open is used to open up a webpage.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">19</td>
+<td><a href="/phantomjs/phantomjs_release_method.htm">release()</a>
+<p>Release will release the memory heap usage for the page. Do not use page instance methods after the release is called. This method is similar to the close method and the usage of it is deprecated. Instead use wpage.close().</p>
+</td>
+</tr>
+<tr>
+<td class="ts">20</td>
+<td><a href="/phantomjs/phantomjs_reload_method.htm">reload()</a>
+<p>Reload is used to reload the current page used.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">21</td>
+<td><a href="/phantomjs/phantomjs_renderbase64_method.htm">renderBase64()</a>
+<p>This method takes the screen capture and gives the image as a string in base46. Renderbase64 supports format like PNG, JPEG and JPG. It does not support gif as of now. You can use clipRect property to define the portion for image capture.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">22</td>
+<td><a href="/phantomjs/phantomjs_renderbuffer_method.htm">renderBuffer()</a>
+<p>RenderBuffer takes the capture of the webpage to an image buffer, which can be directly sent to the server. Formats supported are PNG, GIF and JPEG.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">23</td>
+<td><a href="/phantomjs/phantomjs_render_method.htm">render()</a>
+<p>Render helps to take the image buffer and save it as per the format specified.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">24</td>
+<td><a href="/phantomjs/phantomjs_sendevent_method.htm">sendEvent()</a>
+<p>It is used to send an event to the webpage. They are not dom events. Each of these events are sent to the webpage based on user interaction.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">25</td>
+<td><a href="/phantomjs/phantomjs_setcontent_method.htm">setContent()</a>
+<p>setcontent will change the page content of the specified url with the contents specified.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">26</td>
+<td><a href="/phantomjs/phantomjs_stop_method.htm">stop()</a>
+<p>It helps to stop loading of the page.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">27</td>
+<td><b>switchToChildFrame()</b>
+<p>It is deprecated to use switchToFrame();</p>
+</td>
+</tr>
+<tr>
+<td class="ts">28</td>
+<td><a href="/phantomjs/phantomjs_switchtofocusedframe_method.htm">switchToFocusedFrame()</a>
+<p>It selects the frame, which is in focus.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">29</td>
+<td><a href="/phantomjs/phantomjs_switchtoframe_method.htm">switchToFrame()</a>
+<p>Selects frame with the name specified and which is child of current frame.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">30</td>
+<td><a href="/phantomjs/phantomjs_switchtomainframe_method.htm">switchToMainFrame()</a>
+<p>Selects mainframe i.e. the root window.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">31</td>
+<td><a href="/phantomjs/phantomjs_switchtoparentframe_method.htm">switchToParentFrame()</a>
+<p>It takes the parent frame of the current child frame.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">32</td>
+<td><a href="/phantomjs/phantomjs_uploadfile_method.htm">uploadFile()</a>
+<p>This method is used to handle the file upload done using form in html. PhantomJS does not have a direct way to do so using forms the same can be achieved using uploadFile method. It takes html tag selector for file location and the destination where it has to be copied.</p>
+</td>
+</tr>
+</table>
+<h1>Webpage Module Events/Callbacks</h1>
+<p>The callbacks available with the webpage module are described in the following table.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">S.No</th>
+<th style="text-align:center;">Callbacks &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/phantomjs/phantomjs_onalert.htm">onAlert()</a>
+<p>This callback is called when there is an alert on the page; the callback takes a string and does not return anything.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/phantomjs/phantomjs_oncallback.htm">onCallback()</a>
+<p>OnCallback is used to pass values from webpage to webpage object and it is done using the window.callPhantom() method, which internally invokes the onCallback function.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/phantomjs/phantomjs_onclosing.htm">onClosing()</a>
+<p>This is called when the window is closed either by using the page.close() method or the window.close() method.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/phantomjs/phantomjs_onconfirm.htm">onConfirm()</a>
+<p>This callback is called when there is a confirmed message called with ok /cancel from the page.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/phantomjs/phantomjs_onconsolemessage.htm">onConsoleMessage()</a>
+<p>This callback is used when there are console messages used in the webpage. The onConsoleMessage method takes 3 arguments.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/phantomjs/phantomjs_onerror.htm">onError()</a>
+<p>It is called when there is JavaScript error. The arguments for onError are msg and stack trace, which is an array.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/phantomjs/phantomjs_onfilepicker.htm">onFilePicker()</a>
+<p>This is used for upload file the callback is called when user want to upload a file.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="/phantomjs/phantomjs_oninitialized.htm">onInitialized()</a>
+<p>This callback is invoked when the page is called before loading.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="/phantomjs/phantomjs_onloadfinished.htm">onLoadFinished()</a>
+<p>This function is called when the page opened is fully loaded. It has one argument, which tells when loading was a success or a failure.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="/phantomjs/phantomjs_onloadstarted.htm">onLoadStarted()</a>
+<p>This callback is invoked when the page starts loading.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="/phantomjs/phantomjs_onnavigationrequested.htm">onNavigationRequested()</a>
+<p>This callback tells when the navigation event is taking place.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="/phantomjs/phantomjs_onpagecreated.htm">onPageCreated()</a>
+<p>This callback is invoked when a new child window is opened by the page.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="/phantomjs/phantomjs_onprompt.htm">onPrompt()</a>
+<p>This callback is called when a prompt is called by the web page. It takes 2 arguments, message and the answer. The return value is a string.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="/phantomjs/phantomjs_onresourceerror.htm">onResourceError()</a>
+<p>This callback is called when the webpage is not able to upload the file.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="/phantomjs/phantomjs_onresourcereceived.htm">onResourceReceived()</a>
+<p>This callback is called when the resource requested by the page is received.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><a href="/phantomjs/phantomjs_onresourcerequested.htm">onResourceRequested()</a>
+<p>This function is invoked when page requests a resource.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><a href="/phantomjs/phantomjs_onresourcetimeout.htm">onResourceTimeout()</a>
+<p>This callback is called when the requested resource times out, when settings.resourceTimeout is used.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><a href="/phantomjs/phantomjs_onurlchanged.htm">onUrlChanged()</a>
+<p>This is called when the URL changes from the current one using navigation. It has one argument to the call back, which is a new URL targetUrl string.</p>
+</td>
+</tr>
+</table>
+<h1>Webpage Child Process Module</h1>
+<p>The Phantomjs Child process module helps to interact with the sub-processes and talk to them using <b>stdin /stdout/stderr</b>. The child processes can be used for tasks like <b>printing, sending mail</b> or to <b>invoke programs</b> written in another language. To create a child process module, you need references.</p>
+<p>For example &minus;</p>
+<pre class="result notranslate">
+var process = require("child_process");
+</pre>
+<h2>Spawn Method</h2>
+<p>With the spawn child process, you can subscribe to its <b>stdout</b> and <b>stderr</b> streams to get data real-time.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+var spawn = require('child_process').spawn;
+</pre>
+<h3>Example</h3>
+<p>Let us look at an example of the spawn method.</p>
+<pre class="prettyprint notranslate">
+var process = require("child_process")
+var spawn = process.spawn
+var child = spawn("cmd", ['/c', 'dir']);
+
+child.stdout.on("data", function (data) {
+   console.log("spawnSTDOUT---VALUE:", JSON.stringify(data))
+})
+child.stderr.on("data", function (data) {
+   console.log("spawnSTDERR:", JSON.stringify(data))
+})
+child.on("exit", function (code) {
+   console.log("spawnEXIT:", code)
+})
+</pre>
+<h3>Output</h3>
+<p>The above program generates the following output.</p>
+<pre class="result notranslate">
+spawnSTDOUT---VALUE: " Volume in drive C is OS\r\n"
+spawnSTDOUT---VALUE: " Volume Serial Number is 7682-9C1B\r\n\r\n Directory of C:
+\\phantomjs\\bin\r\n\r\n"
+spawnSTDOUT---VALUE: "20-05-2017  10:01
+&lt;DIR&gt;          .\r\n20-05-2017  10:01
+&lt;DIR&gt;          ..\r\n13-05-2017  20:48   12 a,txt.txt\r\n07-05-2017  08:51
+63 a.js\r\n06-05-2017  16:32           120,232 a.pdf\r\n13-05-2017  20:49 
+spawnEXIT: 0 
+</pre>
+<h1>PhantomJS - File System Module Properties</h1>
+<p>The File System Module has many APIs to deal with files and directories. You can create/write and delete a file/directory. To start using the file system module you must require a reference to the <b>fs module</b>.</p>
+<pre class="result notranslate">
+var fs = require('fs');
+</pre>
+<p>There are two properties available for file system module: <b>Separator</b> and <b>Working Directory</b>. Let us understand them in detail.</p>
+<h2>Separator</h2>
+<p>It tells you the separator used for the file paths.</p>
+<ul class="list">
+<li>For windows:<b>\</b></li>
+<li>For Linux: <b>/</b></li>
+</ul>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+fs.seperator
+</pre>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+var fs = require('fs');
+console.log(fs.seperator);
+phantom.exit();
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+undefined
+</pre>
+<h2>workingDirectory</h2>
+<p>The working directory is the directory in which PhantomJS executes.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+var fs = require('fs');
+fs.workingDirectory;
+</pre>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+var fs = require('fs');
+console.log(fs.workingDirectory);
+phantom.exit();
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+C:/phantomjs/bin
+</pre>
+<h1>PhantomJS - File System Module Methods</h1>
+<p>The following table has all the methods and their descriptions, which are available on the File System module.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">S.No</th>
+<th style="text-align:center;">Methods &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/phantomjs/phantomjs_absolute_method.htm">absolute</a>
+<p>This method gives the absolute path where PhantomJS runs.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/phantomjs/phantomjs_changeworkingdirectory_method.htm">changeWorkingDirectory</a>
+<p>This allows you to change the working directory and returns true, if it succeeds otherwise returns false.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/phantomjs/phantomjs_copytree_method.htm">copyTree</a>
+<p>copyTree will copy a directory from one path to another. The first parameter is a source folder and the second parameter is a destination folder.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/phantomjs/phantomjs_copy_method.htm">copy</a>
+<p>This method helps to copy file from one location to another. It takes two parameters. The first parameter is the source file and the second parameter is the file path, where it has to be copied. It will throw an error, if the source or destination file does not exist.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/phantomjs/phantomjs_exists_method.htm">exists</a>
+<p>It checks whether the given file path exists in the system. It returns true, if it is present, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/phantomjs/phantomjs_isabsolute_method.htm">isAbsolute</a>
+<p>This method will return true, if the file path is absolute and false, if relative.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><a href="/phantomjs/phantomjs_isdirectory_method.htm">isDirectory</a>
+<p>isDirectory tells if the given file is a directory or not. It returns true, if directory otherwise false. It gives false in case if the given path does not exist.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><a href="/phantomjs/phantomjs_isexecutable_method.htm">isExecutable</a>
+<p>This method will tell if the given file is executable or not. It returns true, if executable, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><a href="/phantomjs/phantomjs_isfile_method.htm">isFile</a>
+<p>This gives details whether the filepath given is a file or not. It returns true, if it is a file and false, if it is not.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><a href="/phantomjs/phantomjs_islink_method.htm">isLink</a>
+<p>This will give you true, if the file path is a symlink, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><a href="/phantomjs/phantomjs_isreadable_method.htm">isReadable</a>
+<p>It checks if the given file is readable or not. It gives true, if yes and false, if not.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><a href="/phantomjs/phantomjs_iswritable_method.htm">isWritable</a>
+<p>It tells whether if a given file is writable. Returns true, if yes, otherwise false.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><a href="/phantomjs/phantomjs_lastmodified_method.htm">lastModified</a>
+<p>Gives the details of the last modification done to the file. It tells the date and time of when the file was last modified.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><a href="/phantomjs/phantomjs_list_method.htm">list</a>
+<p>It gives all the files present in the directory.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><a href="/phantomjs/phantomjs_makedirectory_method.htm">makeDirectory</a>
+<p>Creates a new directory.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><a href="/phantomjs/phantomjs_maketree_method.htm">makeTree</a>
+<p>makeTree creates all necessary folders to be able to form final directories. This will return true, if the creation was successful, otherwise false. If the directory already exists, it will return true.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><a href="/phantomjs/phantomjs_move_method.htm">move</a>
+<p>It will move the file from one path to another.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><a href="/phantomjs/phantomjs_open_file_system_method.htm">open</a>
+<p>It is used to open up the file.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">19</td>
+<td><a href="/phantomjs/phantomjs_readlink_method.htm">readLink</a>
+<p>This will return the absolute path of a file or a folder pointed by a symlink (or shortcut on Windows). If the path is not a symlink or shortcut, it will return an empty string.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">20</td>
+<td><a href="/phantomjs/phantomjs_read_method.htm">read</a>
+<p>This will read the given file.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">21</td>
+<td><a href="/phantomjs/phantomjs_removedirectory_method.htm">removeDirectory</a>
+<p>This will remove the given directory.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">22</td>
+<td><a href="/phantomjs/phantomjs_removetree_method.htm">removeTree</a>
+<p>It will delete all the files and folders from the given folder and finally delete the folder itself. If there is any error while doing this process, it will throw an error – 'Unable to remove directory tree PATH' and hang execution.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">23</td>
+<td><a href="/phantomjs/phantomjs_remove_method.htm">remove</a>
+<p>It removes the given file.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">24</td>
+<td><a href="/phantomjs/phantomjs_size_method.htm">size</a>
+<p>It gives the size of the file.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">25</td>
+<td><a href="/phantomjs/phantomjs_touch_method.htm">touch</a>
+<p>It creates a given file.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">26</td>
+<td><a href="/phantomjs/phantomjs_write_method.htm">write</a>
+<p>Writes to a given file.</p>
+</td>
+</tr>
+</table>
+<h1>PhantomJS - System Module Properties</h1>
+<p>In this chapter, we will discuss regarding the various System Module Properties of PhantomJS.</p>
+<h2>args</h2>
+<p>The system module of PhantomJS has different properties, which help to pass arguments, get to know the file that is executed, etc.</p>
+<p>The args property basically returns the arguments passed at the command line. You can also pass the page-URL that you want to read. If you want to store the screen-capture pdf-file or upload file, the details can be passed to the command line and can be read using the <b>args</b> property.</p>
+<p>Let us find the length and the way to fetch each argument passed to the command line.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+var system = require('system'); 
+system.args;
+</pre>
+<h3>Example</h3>
+<p>Take a look at the following example to understand how this property works.</p>
+<pre class="prettyprint notranslate">
+var system = require('system');
+console.log(system.args.length);
+
+if (system.args.length>0) {
+   console.log(JSON.stringify(system.args));
+}
+phantom.exit();
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<p><b>Command</b> &minus; phantomsjs args.js <b>http://localhost/tasks/request.html</b></p>
+<pre class="result notranslate">
+2
+["args.js","http://localhost/tasks/request.html"]
+</pre>
+<p>The first value is the name of the file and next value is the URL passed. You can pass more arguments in the command line and fetch the same using <b>system.args</b>.</p>
+<h2>env</h2>
+<p>The <b>env</b> property returns the details of the system.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+var system = require('system'); 
+system.env;
+</pre>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+var system = require('system'); 
+console.log(JSON.stringify(system.env)); 
+phantom.exit();
+</pre>
+<p>The above program generates the following output.</p>
+<pre class="result notranslate">
+{"=::":"::\\","=C:":"C:\\phantomjs\\bin","=ExitCode":"00000000","ALLUSERSPROFILE":
+"C:\\ProgramData","APPDATA":"C:\\Users\\UserName\\AppData\\Roaming","COMPUTERNAME":
+"X","ComSpec":"C:\\Windows\\system32\\cmd.exe","CommonProgramFiles":
+"C:\\Program Files (x86)\\Common Files","CommonProgramFiles(x86)":
+"C:\\Program Files (x86)\\Common Files","CommonProgramW6432":
+"C:\\Program Files\\Common Files","FP_NO_HOST_CHECK":"NO","HOMEDRIVE":"C:",
+"HOMEPATH":"\\Users\\UserName","LOCALAPPDATA":
+"C:\\Users\\UserName\\AppData\\Local","LOGONSERVER":"\\\\MicrosoftAccount",
+"NUMBER_OF_PROCESSORS":"2","OS":"Windows_NT","PATHEXT":".COM;.EXE;.BAT;.CMD;.VBS ;
+.VBE;.JS;.JSE;.WSF;.WSH;.MSC","PROCESSOR_ARCHITECTURE":"x86","PROCESSOR_ARCHITEW64 32":
+"AMD64","PROCESSOR_IDENTIFIER":"Intel64 Family 6 Model 58Stepping9,GenuineIntel",
+"PROCESSOR_LEVEL":"6","PROCESSOR_REVISION":"3a09","PROMPT":
+"$P$G","PSModulePath":"C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\
+Modules\\" ,"PUBLIC":"C:\\Users\\Public","Path":
+"C:\\Program Files\\Dell\\DW WLAN Card;
+c:\\Program Files (x86)\\Intel\\iCLS Client\\;c:\\Program Files\\Intel\\iCLSClient\\;
+C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\ \Wbem;
+C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;
+C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;
+C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;
+C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;
+C:\\Program Files (x86)\\Intel\\Intel(R) 
+ManagementEngineComponents\\IPT;c:\\ProgramFiles\\WIDCOMM\\BluetoothSoftware\\;
+c:\\ProgramFiles\\WIDCOMM\\BluetoothSoftware\\syswow64;
+C:\\ProgramFiles(x86)\\WindowsLive\\Shared;C:\\ProgramFiles\\nodejs\\;
+C:\\ProgramFiles\\Git\\cmd;C:\\ProgramFiles\\ OpenVPN\\bin;
+C:\\ProgramFiles(x86)\\Skype\\Phone\\;C:\\Users\\UserName\\AppData\\Roaming
+\\npm","ProgramData":
+"C:\\ProgramData","ProgramFiles":"C:\\ProgramFiles(x86)", 
+"ProgramFiles(x86)":"C:\\ProgramFiles(x86)","ProgramW6432":
+"C:\\ProgramFiles","SESSIONNAME":"Console","SystemDrive":
+"C:","SystemRoot":"C:\\Windows","TEMP":"C:\\Users\ \Username~1\\AppData\\Local\\Temp",
+"TMP":"C:\\Users\\Username~1\\AppData\\Local\\Temp",
+"USERDOMAIN":"USER","USERDOMAIN_ROAMINGPROFILE":"USER","USERNAME":"X Y","USERPROFILE":
+"C:\\Users\\X Y","windir":"C:\\Windows"}
+</pre>
+<h2>OS</h2>
+<p>It returns the details of the operating system used. It returns an object with architecture, name of the OS, and version.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+var system = require('system');
+system.os;
+</pre>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+var system = require('system');
+console.log(JSON.stringify(system.os));
+phantom.exit();
+</pre>
+<p>The above program generates the following output.</p>
+<pre class="result notranslate">
+{"architecture":"32bit","name":"windows","version":"8.1"}
+</pre>
+<h2>pid</h2>
+<p>This property returns the process ID.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+var system = require('system');
+system.pid;
+</pre>
+<h3>Example</h3>
+<p>Let us look at an example of the <b>pid</b> property.</p>
+<pre class="prettyprint notranslate">
+var system = require('system');
+console.log(system.pid);
+phantom.exit();
+</pre>
+<p>The above program generates the following output.</p>
+<pre class="result notranslate">
+2160
+</pre>
+<h2>platform</h2>
+<p>This property returns the platform we are working on.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+var system = require('system');
+system.platform;
+</pre>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+var system = require('system');
+console.log(system.platform);
+phantom.exit();
+</pre>
+<p>The above program generates the following output.</p>
+<pre class="result notranslate">
+Phantomjs
+</pre>
+<h1>PhantomJS - Web Server Module Properties</h1>
+<p>PhantomJS uses an embedded web server called <b>mongoose</b>. Right now, PhantomJS cannot connect with any other production webserver. With respect to connection, it can deal with 10 connections at a time and more than 10 requests will be waiting in a queue.</p>
+<p>To start a webserver, we need to use the following syntax &minus;</p>
+<pre class="result notranslate">
+var webserver = require (‘webserver’);
+</pre>
+<p>Let us understand the <b>Port</b> property, which is used to listen to the requests that are sent to the webserver.</p>
+<h2>port</h2>
+<p>The Port property for a webserver is used to listen to the request that are sent to it.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+var server = require('webserver').create();
+var listening = server.listen(port, function (request, response) {});
+</pre>
+<h3>Example</h3>
+<p>Let us take an example to understand how the <b>port</b> property works.</p>
+<pre class="prettyprint notranslate">
+var webserver = require('webserver'); 
+var server = webserver.create(); 
+var service = server.listen(8080,function(request,response){  
+}); 
+if(service) console.log("server started - http://localhost:" + server.port); 
+</pre>
+<p>The above program generates the following output.</p>
+<pre class="result notranslate">
+server started - http://localhost:8080
+</pre>
+<h1>PhantomJS - Web Server Module Methods</h1>
+<p>In this chapter, we will discuss regarding the various methods of the Web Server Module of PhantomJS.</p>
+<h2>close</h2>
+<p>The <b>close</b> method is used to close the webserver.</p>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+var server = require('webserver').create();
+server.close();
+</pre>
+<h3>Example</h3>
+<p>The following example shows how you can use the <b>close</b> method.</p>
+<pre class="prettyprint notranslate">
+var webserver = require('webserver');
+var server = webserver.create();
+var service = server.listen(8080,function(request,response){
+});
+
+if(service) console.log("server started - http://localhost:" + server.port);
+console.log(server.port);
+server.close();
+console.log(server.port);
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+server started - http://localhost:8080 
+8080
+</pre>
+<p>Here, we have consoled <b>server.port</b> after closing the server. Hence, it will not respond, as the webserver is already closed.</p>
+<h2>listen</h2>
+<p>The <b>server.listen</b> method takes the port and callback function with two arguments, which are – <b>Request Object</b> and <b>Response Object</b>.</p>
+<p>The <b>Request Object</b> contains the following properties &minus;</p>
+<ul class="list">
+<li><p><b>Method</b> &minus; This defines the method GET /POST.</p></li>
+<li><p><b>URL</b> &minus; This displays the requested URL.</p></li>
+<li><p><b>httpVersion</b> &minus; This displays the actual http version.</p></li>
+<li><p><b>Headers</b> &minus; This displays all the headers with key value pairs.</p></li>
+<li><p><b>Post</b> &minus; Request body applicable only for the post method.</p></li>
+<li><p><b>postRaw</b> &minus; If the Content-Type header is set to 'application/x-www-formurlencoded', the original content of the post will be stored in this extra property (postRaw) and then that post will be automatically updated with a URL-decoded version of the data.</p></li>
+</ul>
+<p>The <b>Response Object</b> contains the following properties &minus;</p>
+<ul class="list">
+<li><p><b>Headers</b> &minus; Has all the HTTP headers as key-value pairs. It should be set before calling write for the first time.</p></li>
+<li><p><b>SetHeader</b> &minus; This sets a specific header.</p></li>
+<li><p><b>Header (name)</b> &minus; It returns the value of the given header.</p></li>
+<li><p><b>StatusCode</b> &minus; It sets the returned HTTP status code.</p></li>
+<li><p><b>SetEncoding (encoding)</b> &minus; This is used to convert data given to write(). By default, data will be converted to UTF-8. Indicate "binary" if data is a binary string. Not required if data is a Buffer (e.g. from page.renderBuffer).</p></li>
+<li><p><b>Write (data)</b> &minus; It sends data for the response body. Can be called multiple times.</p></li>
+<li><p><b>WriteHead (statusCode, headers)</b> &minus; It sends a response header to the request. The status code is a 3-digit HTTP status code (e.g. 404). The last arguments and headers are the response headers.</p></li>
+<li><p><b>Close</b> &minus; It closes the http connection.</p></li>
+<li><p><b>CloseGracefully</b> &minus; It is similar to close(), but it makes sure the response headers have been sent first.</p></li>
+</ul>
+<h3>Syntax</h3>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notranslate">
+var server = require('webserver').create(); 
+var listening = server.listen(8080, function (request, response) {} 
+</pre>
+<h3>Example</h3>
+<p>Let us take an example to understand how the <b>listen</b> method works.</p>
+<pre class="prettyprint notranslate">
+var page = require('webpage').create(); 
+var server = require('webserver').create(); 
+var port = 8080; 
+var listening = server.listen(8080, function (request, response) { 
+   console.log("GOT HTTP REQUEST"); 
+   console.log(JSON.stringify(request, null, 4)); 
+   
+   // we set the headers here 
+   response.statusCode = 200; 
+   response.headers = {"Cache": "no-cache", "Content-Type": "text/html"};  
+ 
+   // the headers above will now be sent implictly 
+   // now we write the body 
+   response.write("&lt;html&gt;&lt;head&gt;&lt;title&gt;Welcone to Phantomjs&lt;/title&gt;&lt;/head&gt;"); 
+   response.write("&lt;body&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"); 
+   response.close(); 
+}); 
+
+if (!listening) { 
+   console.log("could not create web server listening on port " + port); 
+   phantom.exit(); 
+} 
+
+var url = "http://localhost:" + port + "/foo/response.php"; 
+console.log("sending request to :" +url); 
+page.open(url, function (status) { 
+   if (status !== 'success') { 
+      console.log('page not opening'); 
+   } else { 
+      console.log("Getting response from the server:"); 
+      console.log(page.content); 
+   } 
+   
+   phantom.exit(); 
+});
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+sending request to :http://localhost:8080/foo/response.php 
+GOT HTTP REQUEST { 
+   "headers": {
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", 
+      "Accept-Encoding": "gzip, deflate", 
+      "Accept-Language": "en-IN,*", 
+      "Connection": "Keep-Alive", 
+      "Host": "localhost:8080", 
+      "User-Agent": "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 
+         (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1" 
+   }, 
+   "httpVersion": "1.1", 
+   "method": "GET", 
+   "url": "/foo/response.php" 
+} 
+Getting response from the server: 
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Welcone to Phantomjs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/body&gt;
+&lt;/html&gt; 
+</pre>
+<h1>PhantomJS - Command Line Interface</h1>
+<p>PhantomJS can be executed using the keyword "phantomjs" and the name of the file. For example, "phantomjs file.js".</p>
+<p>You can also pass arguments into "file.js" as follows &minus;</p>
+<pre class="result notranslate">
+phantomjs [options] file.js arg1 arg2 ...
+</pre>
+<p>Let us go through some of the options available at the command line.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">S.No</th>
+<th style="text-align:center;">Option &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>--help or –h</b></p>
+<p>Will display all the command line options. Halts immediately and will not run the script passed.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>--version or –v</b></p>
+<p>Prints the version of PhantomJS running. This will halt the execution of script to be run.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>--debug[true|false]</b></p>
+<p>Prints warnings and debug messages. By default, it is set to false. You can also use [yes|no].</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>--cookies-file = /path/to/cookies.txt</b></p>
+<p>File name to store persistent cookies.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>--diskcache=[true|false]</b></p>
+<p>Enables disk cache. It also takes values [yes|no]</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>--disk-cahe-path</b></p>
+<p>Path for disk cache.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>--ignore-sslerrors=[true|false]</b></p>
+<p>Ignore SSL errors. For example – Expired or self-signed certificate errors. Default is false. It also takes values [yes|no].</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>--loadimages=[true|false]</b></p>
+<p>Loads all inline images. Default value is true. It also takes [yes|no].</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>--local-storagepath=/some/path</b></p>
+<p>Path to save LocalStorage content and WebSQL content.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>--local-storagequota=number</b></p>
+<p>Maximum size to allow for data.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>--local-url-access</b></p>
+<p>Allows use of ‘file:///’ URLs (default is true).</p>
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><p><b>--local-to-remote-urlaccess=[true|false]</b></p>
+<p>Allows local content to access remote URL. Default is false. It also takes values [yes|no].</p>
+</td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><p><b>--max-disk-cachesize=size</b></p>
+<p>Limits the size of disk cache (in KB)</p>
+</td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><p><b>--offline-storage-path</b></p>
+<p>Specifies location for offline storage.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><p><b>--offline-storage-quota</b></p>
+<p>Sets the maximum size of the offline storage in KB.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><p><b>--outputencoding=encoding</b></p>
+<p>Sets the encoding used for terminal output. Default is utf-8.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><p><b>--proxy=address:port</b></p>
+<p>Specifies the proxy server to be used (For example – proxy=192.168.1.1:8080)</p>
+</td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><p><b>--proxytype=[http|socks5|none]</b></p>
+<p>Specifies the type of proxy server (default is http)</p>
+</td>
+</tr>
+<tr>
+<td class="ts">19</td>
+<td><p><b>--proxy-auth</b></p>
+<p>Authentication information for the proxy. For example –</p>
+<p>--proxy-auth=username:password</p>
+</td>
+</tr>
+<tr>
+<td class="ts">20</td>
+<td><p><b>--scriptencoding=encoding</b></p>
+<p>Sets the encoding used for the script. Default is utf8.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">21</td>
+<td><p><b>--script-language</b></p>
+<p>Sets the script language.</p>
+</td>
+</tr>
+</table>
+<h1>PhantomJS - Screen Capture</h1>
+<p>PhantomJS is very helpful in taking a screenshot of a webpage and converting a webpage into a PDF. We have given here a simple example to demonstrate how it works.</p>
+<h2>Example</h2>
+<pre class="prettyprint notranslate">
+var page = require('webpage').create();
+page.open('http://phantom.org/',function(status){
+   page.render('phantom.png');
+   phantom.exit();
+});
+</pre>
+<p>Execute the above program and the output will be saved as <b>phantom.png</b>.</p>
+<img src="/phantomjs/images/optimal_solution.jpg" alt="Optimal Solution" />
+<h2>Convert Webpages into PDFs</h2>
+<p>PhantomJS also helps to convert webpages into PDFs with header and footer added to it. Take a look at the following example to understand how it works.</p>
+<pre class="prettyprint notranslate">
+var wpage = require('webpage').create(); 
+var url = "https://en.wikipedia.org/wiki/Main_Page"; 
+var output = "test.pdf"; 
+
+wpage.paperSize = { 
+   width: screen.width+'px', 
+   height: '1500px', 
+   
+   margin: {
+      'top':'50px', 
+      'left':'50px', 
+      'rigtht':'50px' 
+   }, 
+   orientation:'portrait', 
+   header: { 
+      height: "1cm", 
+      contents: phantom.callback(function(pageNumber, nPages) { 
+         return "&lt;h5&gt;Header &lt;b&gt;" + pageNumber + " / " + nPages + "&lt;/b&gt;&lt;/h5&gt;"; 
+      }) 
+   }, 
+   footer: { 
+      height: "1cm", 
+      contents: phantom.callback(function(pageNumber, nPages) {   
+         return "&lt;h5&gt;Footer &lt;b&gt;" + pageNumber + " / " + nPages + "&lt;/b&gt;&lt;/h5&gt;"; 
+      }) 
+   } 
+} 
+wpage.open(url, function (status) { 
+   if (status !== 'success') { 
+      console.log('Page is not opening'); 
+      phantom.exit(); 
+   } else { 
+      wpage.render(output); 
+      phantom.exit();     
+   } 
+});
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+The above will convert the page into pdf and will be saved in test.pdf
+</pre>
+<h2>Convert a Canvas to an Image</h2>
+<p>Phantomjs can easily convert a Canvas to an Image. Take a look at the following example to understand how it works.</p>
+<pre class="prettyprint notranslate">
+var page = require('webpage').create(); 
+page.content = '&lt;html&gt;&lt;body&gt;&lt;canvas id="surface" width="400" height="400"&gt;&lt;/canvas&gt;&lt;/body&gt;&lt;/html&gt;'; 
+
+page.evaluate(function() {
+   var context,e1; 
+   el = document.getElementById('surface'); 
+   
+   context = el.getContext('2d'); 
+   context.font = "30px Comic Sans MS"; 
+   context.fillStyle = "red"; 
+   context.textAlign = "center"; 
+   context.fillText("Welcome to PhantomJS ", 200, 200); 
+   
+   document.body.style.backgroundColor = 'white'; 
+   document.body.style.margin = '0px'; 
+}); 
+page.render('canvas.png'); 
+phantom.exit(); 
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<img src="/phantomjs/images/welcome_phantomjs.jpg" alt="Welcome Phantomjs" />
+<h1>PhantomJS - Page Automation</h1>
+<p>PhantomJS, with the help of its webpage module APIs, can manipulate webpages and perform operations such as DOM manipulation, clicking on buttons, etc.</p>
+<h2>Fetch Images from a Page</h2>
+<p>The following program shows how you can use PhantomJS to fetch images from a page.</p>
+<pre class="prettyprint notranslate">
+var wpage = require('webpage').create();
+wpage.onConsoleMessage = function(str) {
+   console.log(str.length);
+}
+wpage.open("http://phantomjs.org", function(status) {
+   console.log(status);
+   var element = wpage.evaluate(function() {
+      var imgdata =  document.querySelectorAll('img');
+      var imgsrc = [];
+      
+      if (imgdata) {
+         for (var i in imgdata) {
+            imgsrc.push(imgdata[0].src);
+         }
+      }
+      return imgsrc;
+   });
+   console.log(JSON.stringify(element));
+});
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+Success 
+["http://phantomjs.org/img/phantomjslogo.png","http://phantomjs.org/img/phantom 
+js-logo.png","http://phantomjs.org/img/phantomjslogo.png","http://phantomjs.org 
+/img/phantomjs-logo.png"]
+</pre>
+<p>It is possible to include external JavaScript in a page using the <b>injectJS webpage method</b>. There are many properties and methods, which can help page automation and do many other things. You can refer the webpage module where the properties and methods are explained in detail.</p>
+<h1>PhantomJS - Network Monitoring</h1>
+<p>With help of PhantomJS, we can monitor the network and validate the behavior and performance of a particular webpage. There are callbacks in PhantomJS, i.e., <b>onResourceRequested</b> and <b>onResourceReceived</b>, which help in monitoring the traffic for a given page.</p>
+<h2>Example</h2>
+<p>The following example shows how you can use PhantomJS to monitor traffic for a given page.</p>
+<pre class="prettyprint notranslate">
+function createHAR(address, title, startTime, resources) {  
+   
+   // this function formats the data which is coming from 
+      onresourcerequest and onresourcereceived 
+   var entries = []; 
+   
+   resources.forEach(function (resource) { 
+      var request = resource.request, startReply = resource.startReply, 
+         endReply = resource.endReply;  
+      
+      if (!request || !startReply || !endReply) { 
+         return; 
+      }  
+      
+      // Exclude Data URI from HAR file because 
+      // they aren't included in specification 
+      if (request.url.match(/(^data:image\/.*)/i)) { 
+         return; 
+      }  
+      entries.push ({ 
+         startedDateTime: request.time.toISOString(), 
+         time: endReply.time - request.time, 
+         
+         request: { 
+            method: request.method, 
+            url: request.url, 
+            httpVersion: "HTTP/1.1", 
+            cookies: [], headers: request.headers, 
+            queryString: [], 
+            headersSize: -1, 
+            bodySize: -1 
+         }, 
+         response: { 
+            status: endReply.status, 
+            statusText: endReply.statusText, 
+            httpVersion: "HTTP/1.1", 
+            cookies: [], 
+            headers: endReply.headers, 
+            redirectURL: "", 
+            headersSize: -1, 
+            bodySize: startReply.bodySize, 
+            
+            content: { 
+               size: startReply.bodySize, 
+               mimeType: endReply.contentType 
+            } 
+         }, 
+         cache: {}, 
+         timings: { 
+            blocked: 0, 
+            dns: -1, 
+            connect: -1, 
+            send: 0, 
+            wait: startReply.time - request.time, 
+            receive: endReply.time - startReply.time, 
+            ssl: -1 
+         }, 
+         pageref: address 
+      }); 
+   });  
+   return { 
+      log: { 
+         version: '1.2', creator: { 
+            name: "PhantomJS", 
+            version: phantom.version.major + '.' + phantom.version.minor + 
+               '.' + phantom.version.patch 
+         }, 
+         pages: [{ 
+            startedDateTime: startTime.toISOString(), 
+            id: address, 
+            title: title, 
+            
+            pageTimings: { 
+               onLoad: page.endTime - page.startTime 
+            } 
+         }], 
+         entries: entries 
+      } 
+   }; 
+}  
+var page = require('webpage').create(), system = require('system'); 
+var fs = require('fs');   
+
+if (system.args.length === 1) { 
+   console.log('Usage: netsniff.js &lt;some URL&gt;'); 
+   phantom.exit(1); 
+} else { 
+   page.address = system.args[1]; 
+   page.resources = []; 
+   
+   page.onLoadStarted = function () {  // called when page is loaded 
+      page.startTime = new Date(); 
+   };  
+   page.onResourceRequested = function (req) {  
+      // called when any files are requested from given page url 
+      page.resources[req.id] = { 
+         request: req, 
+         startReply: null, 
+         endReply: null 
+      }; 
+   };  
+   page.onResourceReceived = function (res) {  
+      //called when any files are received. 
+      if (res.stage === 'start') { 
+         page.resources[res.id].startReply = res; 
+      } 
+      if (res.stage === 'end') { 
+         page.resources[res.id].endReply = res; 
+      } 
+   };  
+   page.open(page.address, function (status) {  // open given page url 
+      var har; 
+      
+      if (status !== 'success') { 
+         console.log('FAIL to load the address'); 
+         phantom.exit(1); 
+      } else { 
+         page.endTime = new Date(); 
+         
+         page.title = page.evaluate(function () { // gets the page title 
+            return document.title; 
+         });             
+         har = createHAR(page.address, page.title, page.startTime, page.resources);  
+         
+         // calls the function createHAR with page url, starttime, and page resources. 
+         // console.log(JSON.stringify(har, undefined, 4)); 
+         fs.write('log.txt', JSON.stringify(har, undefined, 4), 'w');  
+         
+         // logs are collected in log.txt file. 
+         phantom.exit(); 
+      } 
+   }); 
+}
+</pre> 
+<h2>Example of log.txt given to HAR preview</h2>
+<pre class="prettyprint notranslate">
+{ 
+   "log": { 
+      "version": "1.2", 
+      "creator": { 
+         "name": "PhantomJS", 
+         "version": "2.1.1" 
+      }, 
+      "pages": [ 
+         { 
+            "startedDateTime": "2017-05-21T13:41:21.824Z", 
+            "id": "http://www.sample.com", 
+            "title": "Free Sample Products – Sample.com &Gt; Free Samples, 
+               Free Product Samples, Product Test Marketing", 
+            "pageTimings": { 
+               "onLoad": 11081 
+            } 
+         } 
+      ], 
+      "entries": [ 
+         { 
+            "startedDateTime": "2017-05-21T13:41:21.815Z", 
+            "time": 1999, 
+            
+            "request": { 
+               "method": "GET", 
+               "url": "http://www.sample.com/", 
+               "httpVersion": "HTTP/1.1", 
+               "cookies": [], 
+               
+               "headers": [ 
+                  { 
+                     "name": "Accept", 
+                     "value": "text/html,application/xhtml+xml,
+                        application/xml;q = 0.9,*/*;q = 0.8" 
+                  }, 
+                  
+                  { 
+                     "name": "User-Agent", 
+                     "value": "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 
+                        (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"  
+                  } 
+               ], 
+               
+               "queryString": [], 
+               "headersSize": -1, 
+               "bodySize": -1 
+            }, 
+            "response": { 
+               "status": 301, 
+               "statusText": "Moved Permanently", 
+               "httpVersion": "HTTP/1.1", 
+               "cookies": [], 
+               
+               "headers": [ 
+                  { 
+                     "name": "Date", 
+                     "value": "Sun, 21 May 2017 13:41:25 GMT" 
+                  }, 
+                  
+                  { 
+                     "name": "Server", 
+                     "value": "Apache/2.2.14 (Ubuntu)" 
+                  }, 
+                  
+                  { 
+                     "name": "Location", 
+                     "value": "http://sample.com//" 
+                  }, 
+                  
+                  { 
+                     "name": "Vary", 
+                     "value": "Accept-Encoding" 
+                  }, 
+                  
+                  { 
+                     "name": "Content-Encoding", 
+                     "value": "gzip" 
+                  }, 
+                  
+                  { 
+                     "name": "Keep-Alive", 
+                     "value": "timeout = 15, max = 100" 
+                  },
+                  
+                  { 
+                     "name": "Connection", 
+                     "value": "Keep-Alive" 
+                  }, 
+                  
+                  { 
+                     "name": "Content-Type", 
+                     "value": "text/html; charset = iso-8859-1" 
+                  } 
+               ],  
+               "redirectURL": "", 
+               "headersSize": -1, 
+               "bodySize": 307, 
+               
+               "content": { 
+                  "size": 307, 
+                  "mimeType": "text/html; charset = iso-8859-1" 
+               } 
+            }, 
+            
+            "cache": {}, 
+            "timings": { 
+               "blocked": 0, 
+               "dns": -1, 
+               "connect": -1, 
+               "send": 0, 
+               "wait": 1999, 
+               "receive": 0, 
+               "ssl": -1 
+            }, 
+            "pageref": "http://www.sample.com" 
+         }, 
+      ]   
+      { 
+         "startedDateTime": "2017-05-21T13:41:24.898Z", 
+         "time": 885, 
+         
+         "request": { 
+            "method": "GET", 
+            "url": "http://sample.com/", 
+            "httpVersion": "HTTP/1.1", 
+            "cookies": [], 
+            
+            "headers": [ 
+               { 
+                  "name": "Accept", 
+                  "value": "text/html,application/xhtml+xml,
+                     application/xml;q = 0.9,*/*;q = 0.8" 
+               }, 
+               
+               { 
+                  "name": "User-Agent", 
+                  "value": "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 
+                     (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1" 
+               } 
+            ], 
+            "queryString": [], 
+            "headersSize": -1, 
+            "bodySize": -1 
+         }, 
+         "response": { 
+            "status": 200, 
+            "statusText": "OK", 
+            "httpVersion": "HTTP/1.1", 
+            "cookies": [], 
+            
+            "headers": [ 
+               { 
+                  "name": "Date", 
+                  "value": "Sun, 21 May 2017 13:41:27 GMT" 
+               }, 
+               
+               { 
+                  "name": "Server", 
+                  "value": "Apache/2.2.14 (Ubuntu)" 
+               }, 
+               
+               { 
+                  "name": "X-Powered-By", 
+                  "value": "PHP/5.3.2-1ubuntu4.29" 
+               }, 
+               
+               {
+                  "name": "X-Pingback", 
+                  "value": "http://sample.com/xmlrpc.php" 
+               }, 
+               
+               { 
+                  "name": "Link", 
+                  "value": "&lt;http://sample.com/wp-json/&gt;; 
+                     rel = \"https://api.w.org/\", &lt;http://wp.me/P6Jj5H-4&gt;; 
+                     rel = shortlink" 
+               }, 
+               
+               { 
+                  "name": "Vary", 
+                  "value": "Accept-Encoding"  
+               }, 
+               
+               { 
+                  "name": "Content-Encoding",
+                  "value": "gzip" 
+               },
+
+               { 
+                  "name": "Keep-Alive",
+                  "value": "timeout = 15, max = 99"
+               },
+
+               {
+                  "name": "Connection",
+                  "value": "Keep-Alive"
+               },
+
+               { 
+                  "name": "Content-Type",
+                  "value": "text/html; charset = UTF-8"
+               }
+            ],
+
+            "redirectURL": "",
+            "headersSize": -1,
+            "bodySize": 1969,
+
+            "content": {
+               "size": 1969,
+               "mimeType": "text/html; charset = UTF-8"
+            }
+         },
+
+         "cache": {},
+         "timings": {
+            "blocked": 0,
+            "dns": -1,
+            "connect": -1,
+            "send": 0,
+            "wait": 869,
+            "receive": 16,
+            "ssl": -1
+         },
+
+         "pageref": http://www.sample.com
+      },
+
+      {
+         "startedDateTime": "2017-05-21T13:41:25.767Z",
+         "time": 388,
+
+         "request": {
+            "method": "GET",
+            "url": "http://sample.com/wpcontent/themes/samplecom/style.css",
+            "httpVersion": "HTTP/1.1",
+            "cookies": [],
+
+            "headers": [
+               {
+                  "name": "Accept",
+                  "value": "text/css,*/*;q = 0.1"
+               },
+
+               {
+                  "name": "Referer",
+                  "value": "http://sample.com/"
+               },
+
+               {
+                  "name": "User-Agent",
+                  "value": "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 
+                     (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"
+               }
+            ],
+
+            "queryString": [],
+            "headersSize": -1,
+            "bodySize": -1
+         },
+
+         "response": {
+            "status": 200,
+            "statusText": "OK",
+            "httpVersion": "HTTP/1.1",
+            "cookies": [],
+
+            "headers": [
+               {
+                  "name": "Date",
+                  "value": "Sun, 21 May 2017 13:41:27 GMT"
+               },
+
+               {
+                  "name": "Server",
+                  "value": "Apache/2.2.14 (Ubuntu)"
+               },
+
+               {
+                  "name": "Last-Modified",
+                  "value": "Fri, 22 Apr 2011 00:32:22 GMT"
+               },
+
+               {
+                  "name": "ETag",
+                  "value": "\"e1d7-1836-4a176fdbbd180\""
+               },
+
+               {
+                  "name": "Accept-Ranges",
+                  "value": "bytes"
+               },
+
+               {
+                  "name": "Vary",
+                  "value": "Accept-Encoding"
+               },
+
+               {
+                  "name": "Content-Encoding",
+                  "value": "gzip"
+               },
+
+               {
+                  "name": "Keep-Alive",
+                  "value": "timeout = 15, max = 98"
+               },
+
+               {
+                  "name": "Connection",
+                  "value": "Keep-Alive"
+               },
+
+               {
+                  "name": "Content-Type",
+                  "value": "text/css"
+               }
+            ],
+
+            "redirectURL": "",
+            "headersSize": -1,
+            "bodySize": 3174,
+            
+            "content": {
+               "size": 3174,
+               "mimeType": "text/css"
+            }
+         },
+
+         "cache": {},
+         "timings": {
+            "blocked": 0,
+            "dns": -1,
+            "connect": -1,
+            "send": 0,
+            "wait": 388,
+            "receive": 0,
+            "ssl": -1
+         },
+         
+         "pageref": "http://www.sample.com"
+      }
+   }
+}
+</pre>
+<h2>Output</h2>
+<p>The above program generates the following output.</p>
+<img src="/phantomjs/images/har_preview.jpg" alt="Har Preview" />
+<p>All the logs are collected in a <b>.txt file</b> and later, the same is converted as above using the HAR preview, for example, (<a href="http://www.softwareishard.com/har/viewer/" target="_blank" rel="nofollow">http://www.softwareishard.com/har/viewer/)</a></p>
+<h1>PhantomJS - Testing</h1>
+<p><b>PhantomJS</b> has a lot of API for a webpage, which gives all the details. PhantomJS can be used to for testing like getting the content of a page, taking screen share, converting page into a pdf, etc. There are many popular testing libraries in the market, which can be used along with PhantomJS and can be used for testing.</p>
+<p>Some of the popular frameworks that can work with PhantomJS are as follows &minus;</p>
+<ul class="list">
+<li>Mocha</li>
+<li>Jasmine</li>
+<li>Qunit</li>
+<li>Hiro</li>
+<li>Laika</li>
+<li>Buster.JS</li>
+<li>WebDriver</li>
+</ul>
+<h2>Example – PhantomJS with Qunit</h2>
+<pre class="prettyprint notranslate">
+(function () {     
+   var url, timeout,args = require('system').args, page = require('webpage').create(); 
+   url = args[1]; 
+   timeout = parseInt(10, 10); 
+   
+   page.onConsoleMessage = function (msg) {  
+      //prints all the console messages 
+      console.log(msg); 
+   }; 
+   page.onInitialized = function () {  // called when page is initialized 
+      page.evaluate(callqunit); 
+   }; 
+   page.onCallback = function (message) { // called from  
+      var result, failed; 
+      
+      if (message) {  
+         if (message.name === 'QUnit.done') { 
+            result = message.data; 
+            failed = !result || !result.total || result.failed;  
+            
+            if (!result.total) { 
+               console.error('No tests were executed'); 
+            } 
+            pageexit(failed ? 1 : 0); 
+         } 
+      } 
+   };  
+   page.open(url, function (status) { // opening page  
+      if (status !== 'success') { 
+         console.error('Unable to access network: ' + status); 
+         pageexit(1); 
+
+      } else { 
+         var checkqunit = page.evaluate(function () { 
+            //evaluating page and chcking if qunit object 
+               is present on the given page url 
+            return (typeof QUnit === 'undefined' || !QUnit); 
+         }); 
+         
+         if (checkqunit) { 
+            console.error('Qunit scripts are not present on the page'); 
+            pageexit(1); 
+         }             
+         
+         //timeout of 10seconds is used otherwise message from console will get printed. 
+         setTimeout(function () { 
+            console.error('The specified timeout of ' + timeout + ' seconds has expired. 
+               Aborting...'); 
+            pageexit(1); 
+         }, timeout * 1000);           
+      } 
+   });  
+   function callqunit() {
+</pre>
+<h2>qunit.html</h2>
+<pre class="prettyprint notranslate">
+&lt;!DOCTYPE html&gt; 
+&lt;html&gt; 
+
+   &lt;head&gt; 
+      &lt;meta charset = "utf-8"&gt; 
+      &lt;meta name = "viewport" content = "width = device-width"&gt; 
+      &lt;title&gt;QUnit Example&lt;/title&gt; 
+      &lt;link rel = "stylesheet" href = "https://code.jquery.com/qunit/qunit-2.3.2.css"&gt; 
+   &lt;/head&gt; 
+
+   &lt;body&gt; 
+      &lt;div id = "qunit"&gt;&lt;/div&gt; 
+      &lt;div id = "qunit-fixture"&gt;&lt;/div&gt; 
+      &lt;script src = "https://code.jquery.com/qunit/qunit-2.3.2.js"&gt;&lt;/script&gt; 
+   &lt;/body&gt; 
+   
+&lt;/html&gt; 
+</pre>
+<h2>Output</h2>
+<p><b>Command</b> &minus; phantomjs qunit.js http://localhost/tasks/qunit.html</p>
+<p>The above program generates the following output.</p>
+<pre class="result notranslate">
+{"passed":3,"failed":2,"total":5,"runtime":23}
+Time taken is 23ms to run 5 tests.
+3 passed, 2 failed.
+</pre>
+<h1>PhantomJS - REPL</h1>
+<p><b>REPL</b> stands for <b>Read Eval Print Loop</b>. In PhantomJS, REPL is an interactive mode to test the JavaScript code. You can do the same thing, which is done in Google Chrome Inspector or Firebug to execute some piece of code directly on the console. REPL returns you the same platform to execute the scripts.</p>
+<p>The typed command is sent to the interpreter for immediate interpretation (EVAL) and to provide feedback (PRINT). Enter <b>PhantomJS</b> in the command line and it will take you to the interactive mode, where you can execute your code directly.</p>
+<h2>Syntax</h2>
+<p>Its syntax is as follows &minus;</p>
+<pre class="result notransalate">
+Phantomjs
+</pre>
+<h2>Example</h2>
+<p>The following example demonstrates how REPL works in PhantomJS.</p>
+<pre class="prettyprint notransalate">
+phantomjs&gt; console.log("Welcome to phantomjs");
+Welcome to phantomjs
+Undefined
+
+phantomjs&gt; window.navigator {
+   "appCodeName": "Mozilla",
+   "appName": "Netscape",
+   "appVersion": "5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko)
+      PhantomJS/2.1.1 Safari/538.1",
+   "cookieEnabled": true,
+   "language": "en-IN",
+
+   "mimeTypes": {
+      "length": 0
+   },
+   "onLine": false,
+   "platform": "Win32",
+
+   "plugins": {
+      "length": 0
+   },
+   "product": "Gecko
+   "productSub": "20030107",
+   "userAgent": "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko)
+      PhantomJS/2.1.1 Safari/538.1",
+   "vendor": "Apple Computer, Inc.",
+   "vendorSub": ""
+}
+
+phantomjs&gt;
+To find the version
+phantomjs&gt; phantom.version {
+   "major": 2,
+   "minor": 1,
+   "patch": 1
+}
+phantomjs&gt;
+</pre>
+<p>Each command is executed and the result is displayed. Use CTRL+C, CTRL+D or <b>phantom.exit()</b> to come out of the interactive mode.</p>
+<p>Use the <b>up/down</b> arrow keys to listen to the previously typed commands.</p>
+<p>There is another feature called <b>autocompletion</b>, which helps to remember the command. Just type "phantom" and hit the "Tab" button to get a list of available commands you can execute.</p>
+<h2>Output</h2>
+<p>The above program generates the following output.</p>
+<pre class="result notransalate">
+phantomjs&gt; phantom.&rarr;| 
+phantomjs&gt; phantom.cookies&rarr;| 
+phantomjs&gt; phantom.exit&rarr;| 
+phantomjs&gt; phantom.version&rarr;|
+</pre>
+<h1>PhantomJS - Examples</h1>
+<p>In this chapter, we are providing a few more practical examples to understand some important features of PhantomJS.</p>
+<h2>Example 1 - Find the Page Speed</h2>
+<p>In this example, we will use PhantomJS to find the <b>page speed</b> for any given page URL.</p>
+<pre class="prettyprint notranslate">
+var page = require('webpage').create(), 
+   system = require('system'), 
+   t, address;  
+
+if (system.args.length === 1) { 
+   console.log('Usage: loadspeed.js &lt;some URL&gt;'); 
+   phantom.exit(1); 
+} else { 
+   t = Date.now(); 
+   address = system.args[1]; 
+   
+   page.open(address, function (status) { 
+      if (status !== 'success') { 
+         console.log('FAIL to load the address'); 
+      } else { 
+         t = Date.now() - t; 
+         
+         console.log('Page title is ' + page.evaluate(function () { 
+            return document.title; 
+         })); 
+         console.log('Loading time ' + t + ' msec'); 
+      } 
+      phantom.exit(); 
+   }); 
+}
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<p><b>Command</b> &minus; phantomjs pagespeed.js <a href="http://www.google.com" target="_blank" rel="nofollow">http://www.google.com</a></p>
+<pre class="result notranslate">
+Page title is Google 
+Loading time 1396 msec 
+</pre>
+<h2>Example 2 - Send a Click Event to a Page</h2>
+<p>In the following example, we will use PhantomJS to send a <b>click event</b> to a page.</p>
+<pre class="prettyprint notranslate">
+var page = require('webpage').create(); 
+page.onConsoleMessage = function(str) { 
+   console.log(str); 
+} 
+page.open('http://phantomjs.org/api/phantom/', function(status) { 
+   page.render('beforeclick.png'); 
+   console.log(page.url); 
+   
+   var element = page.evaluate(function() {   
+      return document.querySelector('img[src = "http://phantomjs.org/img/phantomjslogo.png"]'); 
+   }); 
+   page.sendEvent('click', element.offsetLeft, element.offsetTop, 'left'); 
+   
+   window.setTimeout(function () { 
+      console.log(page.url); 
+      page.render('afterclick.png'); 
+      phantom.exit(); 
+   }, 5000); 
+   console.log('element is ' + element); 
+}); 
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+http://phantomjs.org/api/phantom/ 
+element is [object Object] 
+http://phantomjs.org/
+</pre>
+<p>Our program will create the following two <b>png</b> images in the <b>bin</b> folder. These two images show the difference before and after the execution of the above program.</p>
+<img src="/phantomjs/images/before_click.jpg" alt="Before Click" />
+<p></p>
+<img src="/phantomjs/images/optimal_solution.jpg" alt="Optimal Solution" />
+<h2>Example 3 - Submit a Form</h2>
+<p>The following example shows how to submit a form using PhantomJS.</p>
+<pre class="prettyprint notranslate">
+var wpage = require('webpage').create();  
+wpage.open("http://localhost/tasks/submitform.html", function(status) { 
+   console.log(status); 
+   wpage.uploadFile('input[name = fileToUpload]', 'output.png'); 
+   wpage.render("sform.png");  
+   
+   var element = wpage.evaluate(function() {   
+      return document.querySelector('input[type = "submit"]');   
+      // getting details of submit button using queryselector. 
+   }); 
+   wpage.sendEvent('click', element.offsetLeft, element.offsetTop, 'left');  
+   
+   // sendevent is used to send click event and also giving the left and top 
+      position of the submit button. 
+   
+   window.setTimeout(function () { 
+      console.log(wpage.url); 
+      wpage.render("submit.png");  // screenshot is saved in submit.png 
+      phantom.exit(); 
+   }, 5000);  
+   console.log('element is ' + element);  
+});
+</pre>
+<h3>submitform.html</h3>
+<p>The following code shows how to use the <b>submitform.html</b> file.</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt; 
+   &lt;head&gt;
+      &lt;title&gt;Window 2&lt;/title&gt;
+   &lt;/head&gt; 
+
+   &lt;body&gt;
+      &lt;form action = "submitform.php" method = "post" enctype = "multipart/form-data" 
+         id = "form1"&gt;  
+         &lt;input type = "file" name = "fileToUpload" id = "fileToUpload"&gt; 
+         &lt;input type = "submit" value = "Upload Image" name = "submit"&gt; 
+      &lt;/form&gt; 
+   &lt;/body&gt;  
+   
+&lt;/html&gt;
+</pre>
+<p>Once the form is submitted, it goes to <b>submitform.php</b>.</p>
+<h3>submitform.php</h3>
+<p>submitform.php is just printing the details of the files.</p>
+<pre class="prettyprint notranslate">
+&lt;?php 
+   print_r($_FILES); 
+?&gt; 
+</pre>
+<p>The above program generates the following <b>output</b>.</p>
+<pre class="result notranslate">
+Success 
+element is [object Object] 
+http://localhost/tasks/submitform.php 
+</pre>
+<h2>Images</h2>
+<p>Following are the images for <b>file upload</b> and <b>form submit</b>.</p>
+<img src="/phantomjs/images/file_upload.jpg" alt="File Upload" />
+<p></p>
+<img src="/phantomjs/images/form_submit.jpg" alt="Form Submit" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/phantomjs/phantomjs_examples.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/phantomjs/phantomjs_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

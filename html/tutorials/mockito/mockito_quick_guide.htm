@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Mockito - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Mockito - Quick Guide - Mocking is a way to test the functionality of a class in isolation. Mocking does not require a database connection or properties file read or file server read t"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/mockito/mockito_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#78a540;
+}
+a.demo {
+    background:#78a540;
+}
+li.heading {
+    background:#78a540;
+}
+.course-box{background:#78a540}
+.home-intro-sub p{color:#78a540}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/mockito/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/mockito/images/mockito-mini-logo.jpg" alt="Mockito Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Mockito Tutorial</li>
+<li><a href="/mockito/index.htm">Mockito - Home</a></li>
+<li><a href="/mockito/mockito_overview.htm">Mockito - Overview</a></li>
+<li><a href="/mockito/mockito_environment.htm">Mockito - Environment Setup</a></li>
+<li><a href="/mockito/mockito_first_application.htm">Mockito - First Application</a></li>
+<li><a href="/mockito/mockito_junit_integration.htm">Mockito - JUnit Integration</a></li>
+<li><a href="/mockito/mockito_adding_behavior.htm">Mockito - Adding Behavior</a></li>
+<li><a href="/mockito/mockito_verifying_behavior.htm">Mockito - Verifying Behavior</a></li>
+<li><a href="/mockito/mockito_expecting_calls.htm">Mockito - Expecting Calls</a></li>
+<li><a href="/mockito/mockito_varying_calls.htm">Mockito - Varying Calls</a></li>
+<li><a href="/mockito/mockito_exception_handling.htm">Mockito - Exception Handling</a></li>
+<li><a href="/mockito/mockito_create_mock.htm">Mockito - Create Mock</a></li>
+<li><a href="/mockito/mockito_ordered_verification.htm">Mockito - Ordered Verification</a></li>
+<li><a href="/mockito/mockito_callbacks.htm">Mockito - Callbacks</a></li>
+<li><a href="/mockito/mockito_spying.htm">Mockito - Spying</a></li>
+<li><a href="/mockito/mockito_resetting_mock.htm">Mockito - Resetting Mock</a></li>
+<li><a href="/mockito/mockito_bdd.htm">Behavior Driven Development</a></li>
+<li><a href="/mockito/mockito_timeouts.htm">Mockito - Timeouts</a></li>
+<li class="heading">Mockito Useful Resources</li>
+<li><a href="/mockito/mockito_quick_guide.htm">Mockito - Quick Guide</a></li>
+<li><a href="/mockito/mockito_useful_resources.htm">Mockito - Useful Resources</a></li>
+<li><a href="/mockito/mockito_discussion.htm">Mockito - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Mockito - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/mockito/mockito_timeouts.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/mockito/mockito_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>Mockito - Overview</h1>
+<h2>What is Mocking?</h2>
+<p>Mocking is a way to test the functionality of a class in isolation. Mocking does not require a database connection or properties file read or file server read to test a functionality. Mock objects do the mocking of the real service. A mock object returns a dummy data corresponding to some dummy input passed to it.</p>
+<h2>Mockito</h2>
+<p>Mockito facilitates creating mock objects seamlessly. It uses Java Reflection in order to create
+mock objects for a given interface. Mock objects are nothing but proxy for actual implementations.</p>
+<p>Consider a case of Stock Service which returns the price details of a stock. During development,
+the actual stock service cannot be used to get real-time data. So we need a dummy implementation of the stock service. Mockito can do the same very easily, as its name suggests.</p>
+<h2>Benefits of Mockito</h2>
+<ul class="list">
+<li><p><b>No Handwriting</b> &minus; No need to write mock objects on your own.</p></li>
+<li><p><b>Refactoring Safe</b> &minus; Renaming interface method names or reordering parameters will not break the test code as Mocks are created at runtime.</p></li>
+<li><p><b>Return value support</b> &minus; Supports return values.</p></li>
+<li><p><b>Exception support</b> &minus; Supports exceptions.</p></li>
+<li><p><b>Order check support</b> &minus; Supports check on order of method calls.</p></li>
+<li><p><b>Annotation support</b> &minus; Supports creating mocks using annotation.</p></li>
+</ul>
+<p>Consider the following code snippet.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.mock;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.*;
+
+public class PortfolioTester {
+   public static void main(String[] args){
+
+      //Create a portfolio object which is to be tested		
+      Portfolio portfolio = new Portfolio();
+
+      //Creates a list of stocks to be added to the portfolio
+      List&lt;Stock&gt; stocks = new ArrayList&lt;Stock&gt;();
+      Stock googleStock = new Stock("1","Google", 10);
+      Stock microsoftStock = new Stock("2","Microsoft",100);
+
+      stocks.add(googleStock);
+      stocks.add(microsoftStock);		
+
+      //Create the mock object of stock service
+      StockService stockServiceMock = mock(StockService.class);
+
+      // mock the behavior of stock service to return the value of various stocks
+      when(stockServiceMock.getPrice(googleStock)).thenReturn(50.00);
+      when(stockServiceMock.getPrice(microsoftStock)).thenReturn(1000.00);
+
+      //add stocks to the portfolio
+      portfolio.setStocks(stocks);
+
+      //set the stockService to the portfolio
+      portfolio.setStockService(stockServiceMock);
+
+      double marketValue = portfolio.getMarketValue();
+
+      //verify the market value to be 
+      //10*50.00 + 100* 1000.00 = 500.00 + 100000.00 = 100500
+      System.out.println("Market value of the portfolio: "+ marketValue);
+   }
+}
+</pre>
+<p>Let's understand the important concepts of the above program. The complete code is available in the chapter  <i><b>First Application</b></i>.</p>
+<ul class="list">
+<li><p><b>Portfolio</b> &minus; An object to carry a list of stocks and to get the market value computed using stock prices and stock quantity.</p></li>
+<li><p><b>Stock</b> &minus; An object to carry the details of a stock such as its id, name, quantity, etc.</p></li>
+<li><p><b>StockService</b> &minus; A stock service returns the current price of a stock.</p></li>
+<li><p><b>mock(...)</b> &minus; Mockito created a mock of stock service.</p></li>
+<li><p><b>when(...).thenReturn(...)</b> &minus; Mock implementation of getPrice method of stockService interface. For googleStock, return 50.00 as price.</p></li>
+<li><p><b>portfolio.setStocks(...)</b> &minus; The portfolio now contains a list of two stocks.</p></li>
+<li><p><b>portfolio.setStockService(...)</b> &minus; Assigns the stockService Mock object to the portfolio.</p></li>
+<li><p><b>portfolio.getMarketValue()</b> &minus; The portfolio returns the market value based on its stocks using the mock stock service.</p></li>
+</ul>
+<h1>Mockito - Environment Setup</h1>
+<p>Mockito is a framework for Java, so the very first requirement is to have JDK installed in your machine.</p>
+<h2>System Requirement</h2>
+<table class="table table-bordered">
+<tr>
+<th>JDK</th>
+<td>1.5 or above.</td>
+</tr>
+<tr>
+<th>Memory</th>
+<td>no minimum requirement.</td>
+</tr>
+<tr>
+<th>Disk Space</th>
+<td>no minimum requirement.</td>
+</tr>
+<tr>
+<th>Operating System</th>
+<td>no minimum requirement.</td>
+</tr>
+</table>
+<p><b>Step 1 &minus; Verify Java Installation on Your Machine</b></p>
+<p>Open the console and execute the following <b>java</b> command.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Task</th>
+<th>Command</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Open Command Console</td>
+<td>c:\&gt; java -version</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Open Command Terminal</td>
+<td>$ java -version</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>Open Terminal</td>
+<td>machine:&gt; joseph$ java -version</td>
+</tr>
+</table>
+<p>Let's verify the output for all the operating systems &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td><p>java version "1.6.0_21"</p><p>Java(TM) SE Runtime Environment (build 1.6.0_21-b07)</p><p>Java HotSpot(TM) Client VM (build 17.0-b17, mixed mode, sharing)</p></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td><p>java version "1.6.0_21"</p><p>Java(TM) SE Runtime Environment (build 1.6.0_21-b07)</p> <p>Java HotSpot(TM) Client VM (build 17.0-b17, mixed mode, sharing)</p></td>
+</tr>
+<tr>
+<td>Mac</td>
+<td><p>java version "1.6.0_21"</p><p>Java(TM) SE Runtime Environment (build 1.6.0_21-b07)</p><p>Java HotSpot(TM)64-Bit Server VM (build 17.0-b17, mixed mode, sharing)</p></td>
+</tr>
+</table>
+<p>If you do not have Java installed, To install the Java Software Development Kit (SDK) <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" rel="nofollow" target="_blank">click here.</a></p>
+<p>We assume you have Java 1.6.0_21 installed on your system for this tutorial.</p>
+<p><b>Step 2 &minus; Set JAVA Environment</b></p>
+<p>Set the <b>JAVA_HOME</b> environment variable to point to the base directory location where Java is installed on your machine. For example,</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable JAVA_HOME to C:\Program Files\Java\jdk1.6.0_21</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export JAVA_HOME=/usr/local/java-current</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export JAVA_HOME=/Library/Java/Home</td>
+</tr>
+</table>
+<p>Append the location of the Java compiler to your System Path.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Append the string ;C:\Program Files\Java\jdk1.6.0_21\bin to the end of the system variable, Path.</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export PATH=$PATH:$JAVA_HOME/bin/</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>not required</td>
+</tr>
+</table>
+<p>Verify Java Installation using the command <b>java -version</b> as explained above.</p>
+<p><b>Step 3 &minus; Download Mockito-All Archive</b></p>
+<p>To download the latest version of Mockito from Maven Repository <a href="http://mvnrepository.com/artifact/org.mockito/mockito-all/2.0.2-beta" rel="nofollow" target="_blank">click here.</a></p><p> Save the jar file on your C drive, let's say, C:\>Mockito.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Archive name</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>mockito-all-2.0.2-beta.jar</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>mockito-all-2.0.2-beta.jar</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>mockito-all-2.0.2-beta.jar</td>
+</tr>
+</table>
+<p><b>Step 4 &minus; Set Mockito Environment</b></p>
+<p>Set the <b>Mockito_HOME</b> environment variable to point to the base directory location where Mockito and dependency jars are stored on your machine. The following table shows how to set the environment variable on different operating systems, assuming we've extracted mockito-all-2.0.2-beta.jar onto C:\>Mockito folder.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable Mockito_HOME to C:\Mockito</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export Mockito_HOME=/usr/local/Mockito</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export Mockito_HOME=/Library/Mockito</td>
+</tr>
+</table>
+<p><b>Step 5 &minus; Set CLASSPATH Variable</b></p>
+<p>Set the <b>CLASSPATH</b> environment variable to point to the location where Mockito jar is stored. The following table shows how to set the CLASSPATH variable on different operating systems.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable CLASSPATH to %CLASSPATH%;%Mockito_HOME%\mockito-all-2.0.2-beta.jar;.;</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export CLASSPATH=$CLASSPATH:$Mockito_HOME/mockito-all-2.0.2-beta.jar:.</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export CLASSPATH=$CLASSPATH:$Mockito_HOME/mockito-all-2.0.2-beta.jar:.</td>
+</tr>
+</table>
+<p><b>Step 6 &minus; Download JUnit Archive</b></p>
+<p>Download the latest version of JUnit jar file from <a href="https://github.com/junit-team/junit/wiki/Download-and-Install" rel="nofollow" target="_blank">Github</a>. Save the folder at the location C:\&gt;Junit.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Archive name</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>junit4.11.jar, hamcrest-core-1.2.1.jar</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>junit4.11.jar, hamcrest-core-1.2.1.jar</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>junit4.11.jar, hamcrest-core-1.2.1.jar</td>
+</tr>
+</table>
+<p><b>Step 7 &minus; Set JUnit Environment</b></p>
+<p>Set the <b>JUNIT_HOME</b> environment variable to point to the base directory location where JUnit jars are stored on your machine. The following table shows how to set this environment variable on different operating systems, assuming we've stored junit4.11.jar and hamcrest-core-1.2.1.jar at C:\&gt;Junit.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable JUNIT_HOME to C:\JUNIT</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export JUNIT_HOME=/usr/local/JUNIT</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export JUNIT_HOME=/Library/JUNIT</td>
+</tr>
+</table>
+<p><b>Step 8 &minus; Set CLASSPATH Variable</b></p>
+<p>Set the CLASSPATH environment variable to point to the JUNIT jar location. The following table shows how it is done on different operating systems.</p>
+<table class="table table-bordered" style="font-size:12px;">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable CLASSPATH to %CLASSPATH%;%JUNIT_HOME%\junit4.11.jar;%JUNIT_HOME%\hamcrest-core-1.2.1.jar;.;</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export CLASSPATH=$CLASSPATH:$JUNIT_HOME/junit4.11.jar:$JUNIT_HOME/hamcrest-core-1.2.1.jar:.</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export CLASSPATH=$CLASSPATH:$JUNIT_HOME/junit4.11.jar:$JUNIT_HOME/hamcrest-core-1.2.1.jar:.</td>
+</tr>
+</table>
+<h1>Mockito - First Application</h1>
+<p>Before going into the details of the Mockito Framework, let's see an application in action. In this example, we've created a mock of Stock Service to get the dummy price of some stocks and unit tested a java class named Portfolio.</p>
+<p>The process is discussed below in a step-by-step manner.</p>
+<p><b>Step 1 &minus; Create a JAVA class to represent the Stock</b></p>
+<p><b><i>File: Stock.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class Stock {
+   private String stockId;
+   private String name;	
+   private int quantity;
+
+   public Stock(String stockId, String name, int quantity){
+      this.stockId = stockId;
+      this.name = name;		
+      this.quantity = quantity;		
+   }
+
+   public String getStockId() {
+      return stockId;
+   }
+
+   public void setStockId(String stockId) {
+      this.stockId = stockId;
+   }
+
+   public int getQuantity() {
+      return quantity;
+   }
+
+   public String getTicker() {
+      return name;
+   }
+}
+</pre>
+<p><b>Step 2 &minus; Create an interface StockService to get the price of a stock</b></p> 
+<p><b><i>File: StockService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface StockService {
+   public double getPrice(Stock stock);
+}
+</pre>
+<p><b>Step 3 &minus; Create a class Portfolio to represent the portfolio of any client</b></p> 
+<p><b><i>File: Portfolio.java</i></b></p>
+<pre class="prettyprint notranslate">
+import java.util.List;
+
+public class Portfolio {
+   private StockService stockService;
+   private List&lt;Stock&gt; stocks;
+
+   public StockService getStockService() {
+      return stockService;
+   }
+   
+   public void setStockService(StockService stockService) {
+      this.stockService = stockService;
+   }
+
+   public List&lt;Stock&gt; getStocks() {
+      return stocks;
+   }
+
+   public void setStocks(List&lt;Stock&gt; stocks) {
+      this.stocks = stocks;
+   }
+
+   public double getMarketValue(){
+      double marketValue = 0.0;
+      
+      for(Stock stock:stocks){
+         marketValue += stockService.getPrice(stock) * stock.getQuantity();
+      }
+      return marketValue;
+   }
+}
+</pre>
+<p><b>Step 4 &minus; Test the Portfolio class</b></p>
+<p>Let's test the Portfolio class, by injecting in it a mock of stockservice. Mock will be created by Mockito.</p>
+<p><b><i>File: PortfolioTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.mock;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.*;
+
+public class PortfolioTester {
+	
+   Portfolio portfolio;	
+   StockService stockService;
+	   
+   
+   public static void main(String[] args){
+      PortfolioTester tester = new PortfolioTester();
+      tester.setUp();
+      System.out.println(tester.testMarketValue()?"pass":"fail");
+   }
+   
+   public void setUp(){
+      //Create a portfolio object which is to be tested		
+      portfolio = new Portfolio();		
+  
+      //Create the mock object of stock service
+      stockService = mock(StockService.class);		
+
+      //set the stockService to the portfolio
+      portfolio.setStockService(stockService);
+   }
+   
+   public boolean testMarketValue(){
+    	   
+      //Creates a list of stocks to be added to the portfolio
+      List&lt;Stock&gt; stocks = new ArrayList&lt;Stock&gt;();
+      Stock googleStock = new Stock("1","Google", 10);
+      Stock microsoftStock = new Stock("2","Microsoft",100);	
+ 
+      stocks.add(googleStock);
+      stocks.add(microsoftStock);
+
+      //add stocks to the portfolio
+      portfolio.setStocks(stocks);
+
+      //mock the behavior of stock service to return the value of various stocks
+      when(stockService.getPrice(googleStock)).thenReturn(50.00);
+      when(stockService.getPrice(microsoftStock)).thenReturn(1000.00);		
+
+      double marketValue = portfolio.getMarketValue();		
+      return marketValue == 100500.0;
+   }
+}
+</pre>
+<p><b>Step 5 &minus; Verify the result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac Stock.java StockService.java Portfolio.java PortfolioTester.java
+</pre>
+<p>Now run the PortfolioTester to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java PortfolioTester
+</pre>
+<p>Verify the Output</p>
+<pre class="result notranslate">
+pass
+</pre>
+<h1>Mockito - JUnit Integration</h1>
+<p>In this chapter, we'll learn how to integrate JUnit and Mockito together. Here we will create a Math Application which uses CalculatorService to perform basic mathematical operations such as addition, subtraction, multiply, and division.</p>
+<p>We'll use Mockito to mock the dummy implementation of CalculatorService. In addition, we've made extensive use of annotations to showcase their compatibility with both JUnit and Mockito.</p>
+<p>The process is discussed below in a step-by-step manner.</p>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import static org.mockito.Mockito.when;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   //@InjectMocks annotation is used to create and inject the mock object
+   @InjectMocks 
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      when(calcService.add(10.0,20.0)).thenReturn(30.00);
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+   }
+}
+</pre>
+<p><b>Step 4 &minus; Create a class to execute to test cases </b></p>
+<p>Create a java class file named TestRunner in <b>C&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<p>To learn more about JUnit, please refer to JUnit Tutorial at Tutorials Point.</p>
+<h1>Mockito - Adding Behavior</h1>
+<p>Mockito adds a functionality to a mock object using the methods <b>when()</b>. Take a look at the following code snippet.</p>
+<pre class="result notranslate">
+//add the behavior of calc service to add two numbers
+when(calcService.add(10.0,20.0)).thenReturn(30.00);
+</pre>
+<p>Here we've instructed Mockito to give a behavior of adding 10 and 20 to the <b>add</b> method of <b>calcService</b> and as a result, to return the value of 30.00.</p>
+<p>At this point of time, Mock recorded the behavior and is a working mock object.</p>
+<pre class="result notranslate">
+//add the behavior of calc service to add two numbers
+when(calcService.add(10.0,20.0)).thenReturn(30.00);
+</pre>
+<h2>Example</h2>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import static org.mockito.Mockito.when;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   //@InjectMocks annotation is used to create and inject the mock object
+   @InjectMocks 
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      when(calcService.add(10.0,20.0)).thenReturn(30.00);
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+   }
+}
+</pre>
+<p><b>Step 4 &minus; Execute test cases</b></p>
+<p>Create a java class file named TestRunner in <b>C:\>Mockito_WORKSPACE</b> to execute the test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>Mockito - Verifying Behavior</h1>
+<p>Mockito can ensure whether a mock method is being called with reequired arguments or not. It is done using the <b>verify()</b> method. Take a look at the following code snippet.</p>
+<pre class="result notranslate">
+//test the add functionality
+Assert.assertEquals(calcService.add(10.0, 20.0),30.0,0);
+
+
+//verify call to calcService is made or not with same arguments.
+verify(calcService).add(10.0, 20.0);
+</pre>
+<h2>Example - verify() with same arguments</h2>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      //return calcService.add(input1, input2);
+      return input1 + input2;
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   //@InjectMocks annotation is used to create and inject the mock object
+   @InjectMocks 
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      when(calcService.add(10.0,20.0)).thenReturn(30.00);
+		
+      //test the add functionality
+      Assert.assertEquals(calcService.add(10.0, 20.0),30.0,0);
+
+       
+      //verify the behavior
+      verify(calcService).add(10.0, 20.0);
+   }
+}
+</pre>
+<p><b>Step 4 &minus; Execute test cases</b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h2>Example - verify() with different arguments</h2>
+<p><b>Step 1 &minus; Create an interface CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      //return calcService.add(input1, input2);
+      return input1 + input2;
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   //@InjectMocks annotation is used to create and inject the mock object
+   @InjectMocks 
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      when(calcService.add(10.0,20.0)).thenReturn(30.00);
+		
+      //test the add functionality
+      Assert.assertEquals(calcService.add(10.0, 20.0),30.0,0);
+
+       
+      //verify the behavior
+      verify(calcService).add(20.0, 30.0);
+   }
+}
+</pre>
+<p><b>Step 4 &minus; Execute test cases</b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+testAdd(MathApplicationTester): 
+Argument(s) are different! Wanted:
+calcService.add(20.0, 30.0);
+-&gt; at MathApplicationTester.testAdd(MathApplicationTester.java:32)
+Actual invocation has different arguments:
+calcService.add(10.0, 20.0);
+-&gt; at MathApplication.add(MathApplication.java:10)
+
+false
+</pre>
+<h1>Mockito - Expecting Calls</h1>
+<p>Mockito provides a special check on the number of calls that can be made on a particular method. Suppose MathApplication should call the CalculatorService.serviceUsed() method only once, then it should not be able to call CalculatorService.serviceUsed() more than once.</p>
+<pre class="result notranslate">
+//add the behavior of calc service to add two numbers
+when(calcService.add(10.0,20.0)).thenReturn(30.00);
+
+//limit the method call to 1, no less and no more calls are allowed
+verify(calcService, times(1)).add(10.0, 20.0);
+</pre>
+<p>Create CalculatorService interface as follows.</p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h2>Example</h2>
+<b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){		      
+      return calcService.add(input1, input2);		
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.never;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   //@InjectMocks annotation is used to create and inject the mock object
+   @InjectMocks 
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      when(calcService.add(10.0,20.0)).thenReturn(30.00);
+		
+      //add the behavior of calc service to subtract two numbers
+      when(calcService.subtract(20.0,10.0)).thenReturn(10.00);
+      
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+      
+      //test the subtract functionality
+      Assert.assertEquals(mathApplication.subtract(20.0, 10.0),10.0,0.0);
+      
+      //default call count is 1 
+      verify(calcService).subtract(20.0, 10.0);
+      
+      //check if add function is called three times
+      verify(calcService, times(3)).add(10.0, 20.0);
+      
+      //verify that method was never called on a mock
+      verify(calcService, never()).multiply(10.0,20.0);
+   }
+}
+
+</pre>
+<p><b>Step 4 &minus; Execute test cases</b></p>
+<p>Create a java class file named TestRunner in <b>C:\> Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>Mockito - Varying Calls</h1>
+<p>Mockito provides the following additional methods to vary the expected call counts.</p>
+<ul class="list">
+<li><p><b>atLeast (int min)</b>  &minus; expects min calls.</p></li>
+<li><p><b>atLeastOnce ()</b> &minus; expects at least one call.</p></li>
+<li><p><b>atMost (int max)</b> &minus; expects max calls.</p></li>
+</ul>
+<h2>Example</h2>
+<p><b>Step 1 &minus; Create an interface CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.atMost;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   //@InjectMocks annotation is used to create and inject the mock object
+   @InjectMocks 
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      when(calcService.add(10.0,20.0)).thenReturn(30.00);
+		
+      //add the behavior of calc service to subtract two numbers
+      when(calcService.subtract(20.0,10.0)).thenReturn(10.00);
+      
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+      
+      //test the subtract functionality
+      Assert.assertEquals(mathApplication.subtract(20.0, 10.0),10.0,0.0);
+      
+      //check a minimum 1 call count
+      verify(calcService, atLeastOnce()).subtract(20.0, 10.0);
+      
+      //check if add function is called minimum 2 times
+      verify(calcService, atLeast(2)).add(10.0, 20.0);
+      
+      //check if add function is called maximum 3 times
+      verify(calcService, atMost(3)).add(10.0,20.0);     
+   }
+}
+
+</pre>
+<p><b>Step 4 &minus; Execute test cases</b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s)</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>Mockito - Exception Handling</h1>
+<p>Mockito provides the capability to a mock to throw exceptions, so exception handling can be tested. Take a look at the following code snippet.</p>
+<pre class="result notranslate">
+//add the behavior to throw exception
+doThrow(new Runtime Exception("divide operation not implemented"))
+   .when(calcService).add(10.0,20.0);
+</pre>
+<p>Here we've added an exception clause to a mock object. MathApplication makes use of calcService using its add method and the mock throws a RuntimeException whenever calcService.add() method is invoked.</p>
+<h2>Example</h2>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import static org.mockito.Mockito.doThrow;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class 
+      which is going to use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test(expected = RuntimeException.class)
+   public void testAdd(){
+      //add the behavior to throw exception
+      doThrow(new RuntimeException("Add operation not implemented"))
+         .when(calcService).add(10.0,20.0);
+
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0); 
+   }
+}
+</pre>
+<p><b>Step 4 &minus; Execute test cases</b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+testAdd(MathApplicationTester): Add operation not implemented
+false
+</pre>
+<h1>Mockito - Create Mock</h1>
+<p>So far, we've used annotations to create mocks. Mockito provides various methods to create mock objects. mock() creates mocks without bothering about the order of method calls that the mock is going to make in due course of its action.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+calcService = mock(CalculatorService.class);
+</pre>
+<h2>Example</h2>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p>Here we've added two mock method calls, add() and subtract(), to the mock object via when(). However during testing, we've called subtract() before calling add(). When we create a mock object using create(), the order of execution of the method does not matter.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.mock;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   private MathApplication mathApplication;
+   private CalculatorService calcService;
+
+   @Before
+   public void setUp(){
+      mathApplication = new MathApplication();
+      calcService = mock(CalculatorService.class);
+      mathApplication.setCalculatorService(calcService);
+   }
+
+   @Test
+   public void testAddAndSubtract(){
+
+      //add the behavior to add numbers
+      when(calcService.add(20.0,10.0)).thenReturn(30.0);
+
+      //subtract the behavior to subtract numbers
+      when(calcService.subtract(20.0,10.0)).thenReturn(10.0);
+
+      //test the subtract functionality
+      Assert.assertEquals(mathApplication.subtract(20.0, 10.0),10.0,0);
+
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
+
+      //verify call to calcService is made or not
+      verify(calcService).add(20.0,10.0);
+      verify(calcService).subtract(20.0,10.0);
+   }
+}
+
+</pre>
+<p><b>Step 4 &minus; Execute test cases</b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>Mockito - Ordered Verification</h1>
+<p>Mockito provides Inorder class which takes care of the order of method calls that the mock is going to make in due course of its action.</p>
+<h2>Syntax</h2>
+<pre class="result notranslate">
+//create an inOrder verifier for a single mock
+InOrder inOrder = inOrder(calcService);
+
+//following will make sure that add is first called then subtract is called.
+inOrder.verify(calcService).add(20.0,10.0);
+inOrder.verify(calcService).subtract(20.0,10.0);
+</pre>
+<h2>Example</h2>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p>Here we've added two mock method calls, add() and subtract(), to the mock object via when(). However during testing, we've called subtract() before calling add(). When we create a mock object using Mockito, the order of execution of the method does not matter. Using InOrder class, we can ensure call order.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.inOrder;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InOrder;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   private MathApplication mathApplication;
+   private CalculatorService calcService;
+
+   @Before
+   public void setUp(){
+      mathApplication = new MathApplication();
+      calcService = mock(CalculatorService.class);
+      mathApplication.setCalculatorService(calcService);
+   }
+
+   @Test
+   public void testAddAndSubtract(){
+
+      //add the behavior to add numbers
+      when(calcService.add(20.0,10.0)).thenReturn(30.0);
+
+      //subtract the behavior to subtract numbers
+      when(calcService.subtract(20.0,10.0)).thenReturn(10.0);
+
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
+
+      //test the subtract functionality
+      Assert.assertEquals(mathApplication.subtract(20.0, 10.0),10.0,0);
+
+      //create an inOrder verifier for a single mock
+      InOrder inOrder = inOrder(calcService);
+
+      //following will make sure that add is first called then subtract is called.
+      inOrder.verify(calcService).subtract(20.0,10.0);
+      inOrder.verify(calcService).add(20.0,10.0);
+   }
+}
+
+</pre>
+<p><b>Step 4 &minus; Execute test cases </b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+testAddAndSubtract(MathApplicationTester): 
+Verification in order failure
+Wanted but not invoked:
+calculatorService.add(20.0, 10.0);
+-&gt; at MathApplicationTester.testAddAndSubtract(MathApplicationTester.java:48)
+Wanted anywhere AFTER following interaction:
+calculatorService.subtract(20.0, 10.0);
+-&gt; at MathApplication.subtract(MathApplication.java:13)
+false
+</pre>
+<h1>Mockito - Callbacks</h1>
+<p>Mockito provides a Answer interface which allows stubbing with generic interface.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+//add the behavior to add numbers
+when(calcService.add(20.0,10.0)).thenAnswer(new Answer&lt;Double&gt;() {
+   @Override
+   public Double answer(InvocationOnMock invocation) throws Throwable {
+      //get the arguments passed to mock
+      Object[] args = invocation.getArguments();
+      //get the mock 
+      Object mock = invocation.getMock();	
+      //return the result
+      return 30.0;
+   }
+});
+</pre>
+<h2>Example</h2>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p>Here we've added one mock method calls, add() to the mock object via when(). However during testing, we've called subtract() before calling add(). When we create a mock object using Mockito.createStrictMock(), the order of execution of the method does matter.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.inOrder;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InOrder;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   private MathApplication mathApplication;
+   private CalculatorService calcService;
+
+   @Before
+   public void setUp(){
+      mathApplication = new MathApplication();
+      calcService = mock(CalculatorService.class);
+      mathApplication.setCalculatorService(calcService);
+   }
+
+   @Test
+   public void testAdd(){
+
+      //add the behavior to add numbers
+      when(calcService.add(20.0,10.0)).thenAnswer(new Answer&lt;Double&gt;() {
+
+         @Override
+         public Double answer(InvocationOnMock invocation) throws Throwable {
+            //get the arguments passed to mock
+            Object[] args = invocation.getArguments();
+				
+            //get the mock 
+            Object mock = invocation.getMock();	
+				
+            //return the result
+            return 30.0;
+         }
+      });
+
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
+   }
+}
+</pre>
+<p><b>Step 4 &minus; Execute test cases </b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>Mockito - Spying</h1>
+<p>Mockito provides option to create spy on real objects. When spy is called, then actual method of real object is called.</p>
+<h2>Syntax</h2>
+<pre class="result notranslate">
+//create a spy on actual object
+calcService = spy(calculator);
+
+//perform operation on real object
+//test the add functionality
+Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
+</pre>
+<h2>Example</h2>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p>Here we've added one mock method calls, add() to the mock object via when(). However during testing, we've called subtract() before calling add(). When we create a mock object using Mockito.createStrictMock(), the order of execution of the method does matter.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+import static org.mockito.Mockito.spy;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   private MathApplication mathApplication;
+   private CalculatorService calcService;
+
+   @Before
+   public void setUp(){
+      mathApplication = new MathApplication();
+      Calculator calculator = new Calculator();
+      calcService = spy(calculator);
+      mathApplication.setCalculatorService(calcService);	     
+   }
+
+   @Test
+   public void testAdd(){
+
+      //perform operation on real object
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
+   }
+
+   class Calculator implements CalculatorService {
+      @Override
+      public double add(double input1, double input2) {
+         return input1 + input2;
+      }
+
+      @Override
+      public double subtract(double input1, double input2) {
+         throw new UnsupportedOperationException("Method not implemented yet!");
+      }
+
+      @Override
+      public double multiply(double input1, double input2) {
+         throw new UnsupportedOperationException("Method not implemented yet!");
+      }
+
+      @Override
+      public double divide(double input1, double input2) {
+         throw new UnsupportedOperationException("Method not implemented yet!");
+      }
+   }
+}
+</pre>
+<p><b>Step 4 &minus; Execute test cases </b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>Mockito - Resetting Mock</h1>
+<p>Mockito provides the capability to a reset a mock so that it can be reused later. Take a look at the following code snippet.</p>
+<pre class="result notranslate">
+//reset mock
+reset(calcService);
+</pre>
+<p>Here we've reset mock object. MathApplication makes use of calcService and after reset the mock, using mocked method will fail the test.</p>
+<h2>Example</h2>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.mock;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.reset;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   private MathApplication mathApplication;
+   private CalculatorService calcService;
+
+   @Before
+   public void setUp(){
+      mathApplication = new MathApplication();
+      calcService = mock(CalculatorService.class);
+      mathApplication.setCalculatorService(calcService);
+   }
+
+   @Test
+   public void testAddAndSubtract(){
+
+      //add the behavior to add numbers
+      when(calcService.add(20.0,10.0)).thenReturn(30.0);
+  
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
+
+      //reset the mock	  
+      reset(calcService);
+
+      //test the add functionality after resetting the mock
+      Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);   
+   }
+}
+</pre>
+<p><b>Step 4 &minus; Execute test cases</b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+testAddAndSubtract(MathApplicationTester): expected:&lt;0.0&gt; but was:&lt;30.0&gt;
+false
+</pre>
+<h1>Mockito - Behavior Driven Development</h1>
+<p>Behavior Driven Development is a style of writing tests uses <b>given</b>, <b>when</b> and <b>then</b> format as test methods. Mockito provides special methods to do so. Take a look at the following code snippet.</p>
+<pre class="result notranslate">
+//Given
+given(calcService.add(20.0,10.0)).willReturn(30.0);
+
+//when
+double result = calcService.add(20.0,10.0);
+
+//then
+Assert.assertEquals(result,30.0,0);	     
+</pre>
+<p>Here we're using <b>given</b> method of BDDMockito class instead of <b>when</b> method of .</p>
+<h2>Example</h2>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.mock;
+
+import static org.mockito.BDDMockito.*;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   private MathApplication mathApplication;
+   private CalculatorService calcService;
+
+   @Before
+   public void setUp(){
+      mathApplication = new MathApplication();
+      calcService = mock(CalculatorService.class);
+      mathApplication.setCalculatorService(calcService);
+   }
+
+   @Test
+   public void testAdd(){
+
+      //Given
+      given(calcService.add(20.0,10.0)).willReturn(30.0);
+
+      //when
+      double result = calcService.add(20.0,10.0);
+
+      //then
+      Assert.assertEquals(result,30.0,0);   
+   }
+}
+</pre>
+<p><b>Step 4 &minus; Execute test cases</b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>Mockito - Timeouts</h1>
+<p>Mockito provides a special Timeout option to test if a method is called within stipulated time frame.</p>
+<h2>Syntax</h2>
+<pre class="result notranslate">
+//passes when add() is called within 100 ms.
+verify(calcService,timeout(100)).add(20.0,10.0);
+</pre>
+<h2>Example</h2>
+<p><b>Step 1 &minus; Create an interface called CalculatorService to provide mathematical functions</b></p>
+<p><b><i>File: CalculatorService.java</i></b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<p><b>Step 2 &minus; Create a JAVA class to represent MathApplication</b></p>
+<p><b><i>File: MathApplication.java</i></b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<p><b>Step 3 &minus; Test the MathApplication class</b></p>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by Mockito.</p>
+<p><b><i>File: MathApplicationTester.java</i></b></p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.mock;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(MockitoJUnitRunner.class)
+public class MathApplicationTester {
+	
+   private MathApplication mathApplication;
+   private CalculatorService calcService;
+
+   @Before
+   public void setUp(){
+      mathApplication = new MathApplication();
+      calcService = mock(CalculatorService.class);
+      mathApplication.setCalculatorService(calcService);
+   }
+
+   @Test
+   public void testAddAndSubtract(){
+
+      //add the behavior to add numbers
+      when(calcService.add(20.0,10.0)).thenReturn(30.0);
+
+      //subtract the behavior to subtract numbers
+      when(calcService.subtract(20.0,10.0)).thenReturn(10.0);
+
+      //test the subtract functionality
+      Assert.assertEquals(mathApplication.subtract(20.0, 10.0),10.0,0);
+
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
+
+      //verify call to add method to be completed within 100 ms
+      verify(calcService, timeout(100)).add(20.0,10.0);
+	  
+      //invocation count can be added to ensure multiplication invocations
+      //can be checked within given timeframe
+      verify(calcService, timeout(100).times(1)).subtract(20.0,10.0);
+   }
+}
+
+</pre>
+<p><b>Step 4 &minus; Execute test cases</b></p>
+<p>Create a java class file named TestRunner in <b>C:\&gt; Mockito_WORKSPACE</b> to execute Test case(s).</p>
+<p><b><i>File: TestRunner.java</i></b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<p><b>Step 5 &minus; Verify the Result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;javac CalculatorService.java MathApplication.
+   java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result &minus;</p>
+<pre class="result notranslate">
+C:\Mockito_WORKSPACE&gt;java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/mockito/mockito_timeouts.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/mockito/mockito_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

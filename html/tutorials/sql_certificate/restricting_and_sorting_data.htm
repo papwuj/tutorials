@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Restricting and Sorting Data</title>
+<meta charset="utf-8">
+<meta name="description" content="Restricting and Sorting Data - The essential capabilities of SELECT statement are Selection, Projection and Joining. Displaying specific columns from a table is known as a project operation. "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/sql_certificate/restricting_and_sorting_data.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#08bab7;
+}
+a.demo {
+    background:#08bab7;
+}
+li.heading {
+    background:#08bab7;
+}
+.course-box{background:#08bab7}
+.home-intro-sub p{color:#08bab7}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/sql_certificate/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/sql_certificate/images/sql-fundamentals-mini-logo.jpg" alt="SQL Fundamentals Certification" />
+</div>
+<ul class="toc chapters">
+<li class="heading">SQL Certificate Study Material</li>
+<li><a target="_top" href="/sql_certificate/index.htm">SQL - Introduction</a></li>
+<li><a target="_top" href="/sql_certificate/sql_exams_syllabus.htm">SQL - SQL Exams Syllabus</a></li>
+<li><a target="_top" href="/sql_certificate/the_sql_select_statement.htm">SQL - The SQL SELECT Statement</a></li>
+<li><a target="_top" href="/sql_certificate/restricting_and_sorting_data.htm">SQL - Restricting and Sorting Data</a></li>
+<li><a target="_top" href="/sql_certificate/using_single_row_functions.htm">SQL - Using Single-Row Functions</a></li>
+<li><a target="_top" href="/sql_certificate/conversion_functions.htm">SQL - Conversion Functions</a></li>
+<li><a target="_top" href="/sql_certificate/conditional_expressions.htm">SQL - Conditional Expressions</a></li>
+<li><a target="_top" href="/sql_certificate/using_the_group_functions.htm">SQL - Using the Group Functions</a></li>
+<li><a target="_top" href="/sql_certificate/get_data_from_multiple_tables.htm">SQL - Get Data from Multiple Tables</a></li>
+<li><a target="_top" href="/sql_certificate/subqueries_to_solve_queries.htm">SQL - Subqueries to Solve Queries</a></li>
+<li><a target="_top" href="/sql_certificate/using_the_set_operators.htm">SQL - Using the Set Operators</a></li>
+<li><a target="_top" href="/sql_certificate/manipulating_data.htm">SQL - Manipulating Data</a></li>
+<li><a target="_top" href="/sql_certificate/using_ddl_statements.htm">SQL - Using DDL Statements</a></li>
+<li><a target="_top" href="/sql_certificate/creating_other_schema_objects.htm">SQL - Creating Other Schema Objects</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">SQL Certificate Questions Bank</li>
+<li><a target="_top" href="/sql_certificate/the_sql_select_statement_questions.htm">SQL - The SQL SELECT Statement</a></li>
+<li><a target="_top" href="/sql_certificate/restricting_and_sorting_data_questions.htm">SQL - Restricting and Sorting Data</a></li>
+<li><a target="_top" href="/sql_certificate/using_single_row_functions_questions.htm">SQL - Using Single-Row Functions</a></li>
+<li><a target="_top" href="/sql_certificate/conversion_functions_questions.htm">SQL - Conversion Functions</a></li>
+<li><a target="_top" href="/sql_certificate/conditional_expressions_questions.htm">SQL - Conditional Expressions</a></li>
+<li><a target="_top" href="/sql_certificate/using_the_group_functions_questions.htm">SQL - Using the Group Functions</a></li>
+<li><a target="_top" href="/sql_certificate/get_data_from_multiple_tables_questions.htm">SQL - Get Data from Multiple Tables</a></li>
+<li><a target="_top" href="/sql_certificate/subqueries_to_solve_queries_questions.htm">SQL - Subqueries to Solve Queries</a></li>
+<li><a target="_top" href="/sql_certificate/using_the_set_operators_questions.htm">SQL - Using the Set Operators</a></li>
+<li><a target="_top" href="/sql_certificate/manipulating_data_questions.htm">SQL - Manipulating Data</a></li>
+<li><a target="_top" href="/sql_certificate/using_ddl_statements_questions.htm">SQL - Using DDL Statements</a></li>
+<li><a target="_top" href="/sql_certificate/creating_other_schema_objects_questions.htm">SQL - Creating Other Schema Objects</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">SQL Certificate Mock Exams</li>
+<li><a target="_top" href="/sql_certificate/sql_certificate_mock_exams.htm">SQL Certificate - Mock Exams</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">SQL Certificate Useful Resources</li>
+<!--<li><a target="_top" href="/sql_certificate/sql_quick_guide.htm">SQL Certificate - Quick Guide</a></li>-->
+<li><a target="_top" href="/sql_certificate/sql_useful_resources.htm">SQL Certificate - Useful Resources</a></li>
+<li><a target="_top" href="/sql_certificate/sql_discussion.htm">SQL Certificate - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Restricting and Sorting Data</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/sql_certificate/the_sql_select_statement.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/sql_certificate/using_single_row_functions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>The essential capabilities of SELECT statement are Selection, Projection and Joining. Displaying specific columns from a table is known as a project operation. We will now focus on displaying specific rows of output.  This is known as a select operation. Specific rows can be selected by adding a WHERE clause to a SELECT query. As a matter of fact, the WHERE clause appears just after the FROM clause in SELECT query hierarchy. The sequence has to be maintained in all scenarios. If violated, Oracle raises an exception.</p>
+<h2>Syntax:</h2>
+<pre class="prettyprint notranslate">
+SELECT *|{[DISTINCT] column| expression [alias],&#46;&#46;}
+FROM table
+[WHERE condition(s)]
+</pre>
+<p>In the syntax,</p>
+<ul class="list">
+<li><p>WHERE clause is the keyword</p></li>
+<li><p>[condition] contains column names, expressions, constants, literals and a comparison operator. </p></li>
+</ul>
+<p>Suppose that your manager is working on the quarterly budget for your organization.  As part of this activity, it is necessary to produce a listing of each employee's essential details, but only for employees that are paid at least $25,000 annually.  The SQL query below accomplishes this task.  Note the use of the WHERE clause shown in bold text. </p>
+<pre class="prettyprint notranslate">
+SELECT Employee_ID, Last_Name, First_Name, Salary
+FROM employees
+WHERE Salary >= 25000;  
+
+EMPLOYEE_ID  LAST_NAME        FIRST_NAME       SALARY
+----------   ---------------  ---------------  -----------
+88303        Jones            Quincey          $30,550.00
+88404        Barlow           William          $27,500.00
+88505        Smith            Susan            $32,500.00
+
+3 rows selected </pre>
+<h2>Points to be noted - </h2>
+<ul class="list">
+<li><p>A SELECT clause can contain only one WHERE clause. However, multiple filter conditions can be appended to WHERE clause using AND or OR operator.</p></li>
+<li><p>The columns, literals or expressions in a predicate clause must be of similar or interconvertible data types.</p></li>
+<li><p>Column alias cannot be used in the WHERE clause.</p></li>
+<li><p>Character literals must be enclosed within single quotation marks and are case sensitive.</p></li>
+<li><p>Date literals must be enclosed within single quotation marks and are format sensitive. Default format is <B>DD-MON-RR</B>.</p></li>
+</ul>
+<h2>Comparison Operators</h2>
+<p>Comparison operators are used in predicates to compare one term or operand with another term. SQL offers comprehensive set of equality, inequality and miscellaneous operators. They can be used depending on the data and filter condition logic in the SELECT query. When you use comparison operators in a WHERE clause, the arguments (objects or values you are comparing) on both sides of the operator must be either a column name, or a specific value.  If a specific value is used, then the value must be either a numeric value or a literal string.  If the value is a character string or date, you must enter the value within single quotation marks (' '). </p>
+<p>Oracle has nine comparison operators to be used in equality or inequality conditions.</p>
+<pre class="prettyprint notranslate">
+<b>Operator</b>  <b>Meaning</b>
+&#61;         equal to 
+&#60;         less than
+&#62;         greater than
+&#62;&#61;        greater than or equal to
+&#60;&#61;        less than or equal to
+&#33;&#61;        not equal to
+&#60;&#62;        not equal to 
+</pre>
+<p>Other Oracle operators are BETWEEN..AND, IN, LIKE, and IS NULL. </p>
+<h2>The BETWEEN Operator</h2>
+<p>The BETWEEN operator can be used to compare a column value within a definite range. The specified range must have a lower and upper limit where both are inclusive during comparison. Its use is similar to composite inequality operator (&#60;&#61; and &#62;&#61;). It can be used with numeric, character and date type values.</p>
+<p>For example, the WHERE condition <B>SALARY BETWEEN 1500 AND 2500 </B>in a SELECT query will list those employees whose salary is between 1500 and 2500.</p>    
+<h2>The IN Operator</h2>
+<p>The IN operator is used to test a column value in a given set of value. If the column can be equated to any of the values from the given set, the condition is validated. The condition defined using the IN operator is also known as the membership condition.</p>
+<p>For example, the WHERE condition <B>SALARY IN (1500, 3000, 2500)</B> in a SELECT query will restrict the rows where salary is either of 1500, 3000 or 2500.</p>
+<h2>The LIKE Operator</h2>
+<p>The LIKE operator is used for pattern matching and wildcard searches in a SELECT query. If a portion of the column value is unknown, wildcard can be used to substitute the unknown part. It uses wildcard operators to build up the search string, thus search is known as Wildcard search. These two operators are Percentile ('%') and Underscore ('_'). Underscore ('_') substitutes a single character while percentile ('%') replaces more than one characters. They can be used in combination as well.</p>
+<p>For example, the below SELECT query lists the first names of those employees whose last name starts with 'SA'. </p>
+<pre class="prettyprint notranslate">
+SELECT first_name
+FROM employees
+WHERE last_name LIKE 'SA%';
+</pre>
+<h2>IS (NOT) NULL Conditions</h2>
+<p>To be noted, NULL values cannot be tested using equality operator. It is because NULL values are unknown and unassigned while equality operator tests for a definite value. The IS NULL operator serves as equality operator to check NULL values of a column. </p>
+<p>For example, the WHERE condition <B>COMMISSION_PCT IS NULL</B> in a SELECT query will list employees who don't have commission percentage.</p>
+<h2>Logical Operators</h2>
+<p>Multiple filter conditions can be added to the WHERE clause predicate. More than one condition can be combined together using logical operators AND, OR and NOT.</p>
+<ul class="list">
+<li><p>AND:	joins two or more conditions, and returns results only when all of the conditions are true.</p></li>
+<li><p>OR:	joins two or more conditions, and it returns results when any of the conditions are true.</p></li>
+<li><p>NOT:	negates the expression that follows it.</p></li>
+</ul>
+<p>The AND operator links two or more conditions in a WHERE clause and returns TRUE only if all the conditions are true. Suppose that a manager needs a list of female employees.  Further, the list should only include employees with last names that begin with the letter "E" or that come later in the alphabet.  Additionally, the result table should be sorted by employee last name.  There are two simple conditions to be met.  The WHERE clause may be written as:  WHERE Gender &#61; 'F' AND last_name &#62; 'E'.</p>
+<pre class="prettyprint notranslate">
+SELECT last_name "Last Name", first_name "First Name", Gender "Gender"
+FROM employees
+WHERE Gender = 'F' AND last_name &#62; 'E'
+ORDER BY last_name;
+</pre>
+<p>The OR operator links more than one condition in a WHERE clause and returns TRUE if either of the condition returns true. Suppose that your organizational manager's requirements change a bit. Another employee listing is needed, but in this listing the employees should: (1) be female or, (2) have a last name that begins with the letter "T" or a letter that comes later in the alphabet.  The result table should be sorted by employee last name.  In this situation either of the two conditions can be met in order to satisfy the query.  Female employees should be listed along with employees having a name that satisfies the second condition. </p>
+<p>The NOT operator is used to negate an expression or conition. </p>
+<h2>The ORDER BY Clause</h2>
+<p>When you display only a few rows of data, it may be unnecessary to sort the output; however, when you display numerous rows, managers may be aided in decision making by having the information sorted.  Output from a SELECT statement can be sorted by using the optional ORDER BY clause.  When you use the ORDER BY clause, the column name on which you are ordering must also be a column name that is specified in the SELECT clause.</p>
+<p>The below SQL query uses an ORDER BY clause to sort the result table by the last_name column in ascending order.  Ascending order is the default sort order.</p>
+<pre class="prettyprint notranslate">
+SELECT last_name, first_name
+FROM employees
+WHERE last_name >= 'J'
+ORDER BY last_name;
+
+last_name        first_name
+---------------  ---------------
+Jones            Quincey
+Klepper          Robert
+Quattromani      Toni
+Schultheis       Robert
+</pre>
+<p>Sorting can be based on numeric and date values also. Sorting can also be done based on multiple columns.</p>
+<p>By default, the ORDER BY clause will sort output rows in the result table in ascending order. We can use the keyword DESC (short for descending) to enable descending sort. The alternative default is ASC which sorts in ascending order, but the ASC keyword is rarely used since it is the default. When the ASC or DESC optional keyword is used, it must follow the column name on which you are sorting in the WHERE clause.  </p>
+<p><B>Positional Sorting </B> - Numeric position of the column in the selected column list can be given in ORDER BY clause, instead of column name. It is mainly used in UNION queries (discussed later). The Query orders the result set by salary since it appears 2nd in the column list.</p>
+<pre class="prettyprint notranslate">SELECT  first_name, salary
+FROM employees
+ORDER BY 2;</pre>
+<h2>Substitution Variables</h2>
+<p>When a SQL query has to be executed more than once for the different set of inputs, substitution variables can be used. Substitution variables can be used to prompt for user inputs before the query execution. They are widely used in query based report generation which takes data range from the users as input for the conditional filtering and data display. Substitution variables are prefixed by a single-ampersand (&#38;) symbol to temporarily store values. For example,</p>
+<pre class="prettyprint notranslate">SELECT EMPLOYEE_ID, LAST_NAME, SALARY
+FROM employees
+WHERE LAST_NAME = &#38;last_name
+OR EMPLOYEE_ID = &#38;EMPNO;</pre>
+<p>When the above SELECT query is executed, oracle identifies the '&#38;' as substitution variable. It prompts user to enter value for 'last_name' and 'EMPNO' as below.</p>
+<pre class="prettyprint notranslate">Enter value for last_name:
+Enter value for empno:</pre>
+<p>Once the user provides inputs to both the variables, values are substituted, query is verified and executed.</p>
+<h3>Points to be noted - </h3>
+<ul class="list">
+<li><p>If the variable is meant to substitute a character or date value, the literal needs to be enclosed in single quotes. A useful technique is to enclose the ampersand substitution variable in single quotes when dealing with character and date values.
+</p></li>
+<li><p>Both SQL Developer and SQL* Plus support the substitution variables and the DEFINE/UNDEFINE commands. Though SQL Developer or SQL* Plus does not support validation checks (except for data type) on user input.</p></li>
+<li><p>You can use the substitution variables not only in the WHERE clause of a SQL statement, but also as substitution for column names, expressions, or text. </p></li></ul>
+<h2>Using the Double-Ampersand Substitution Variable</h2>
+<p>When the same substitution variable is used at more than one place, then to avoid re-entering the same data again, we use double ampersand substitution. In such cases, value of the substitution variable, once entered, would be substituted at all instants of usage. </p>
+<pre class="prettyprint notranslate">SELECT first_name, HIRE_DATE, SEPARATION_DATE
+FROM employees
+WHERE HIRE_DATE LIKE '%&#38;DT%' AND SEPARATION_DATE '%&#38;&#38;DT%'</pre>
+<p>Note that the same value of &#38;DT is substituted twice in the above query. So, its value once given by the user will be substituted at two places.</p>
+<h2>The DEFINE and VERIFY Commands</h2>
+<p>Setting the definition of variables in a session is set by DEFINE feature of SQL* Plus. The variables can be defined in the session, so as to avoid halt during query execution. Oracle reads the same variable whenever encountered in an SQL query. It is in ON state by default. With the help of DEFINE clause, one can declare a variable in command line before query execution as <b>DEFINE variable=value;</b>.</p>
+<p>Verify command verifies the above substitution showing as OLD and NEW statement. It is OFF by default and can be set to ON using SET command.</p>
+<pre class="prettyprint notranslate">SQL> SET DEFINE ON
+SQL> SET VERIFY ON
+SQL> DEFINE NAME = MARTIN'
+SQL> SELECT first_name, SALARY 
+FROM employees
+WHERE first_name = '&#38;NAME';
+OLD   1: select first_name, sal from employee where first_name = '&#38;first_name'
+new   1: select first_name, sal from employee where first_name = 'MARTIN'
+
+first_name     SALARY
+-------        -------
+MARTIN         5000
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/sql_certificate/the_sql_select_statement.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/sql_certificate/using_single_row_functions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

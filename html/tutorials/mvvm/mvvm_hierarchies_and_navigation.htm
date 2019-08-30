@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>MVVM â Hierarchies & Navigation</title>
+<meta charset="utf-8">
+<meta name="description" content="MVVM â Hierarchies & Navigation - When building MVVM applications, you typically decompose complex screens of information into a set of parent and child views, where the child views are containe"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/mvvm/mvvm_hierarchies_and_navigation.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#e65d02;
+}
+a.demo {
+    background:#e65d02;
+}
+li.heading {
+    background:#e65d02;
+}
+.course-box{background:#e65d02}
+.home-intro-sub p{color:#e65d02}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/mvvm/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/mvvm/images/mvvm-mini-logo.jpg" alt="MVVM Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">MVVM Tutorial</li>
+<li><a href="/mvvm/index.htm">MVVM - Home</a></li>
+<li><a href="/mvvm/mvvm_introduction.htm">MVVM – Introduction</a></li>
+<li><a href="/mvvm/mvvm_advantages.htm">MVVM - Advantages</a></li>
+<li><a href="/mvvm/mvvm_responsibilities.htm">MVVM - Responsibilities</a></li>
+<li><a href="/mvvm/mvvm_first_application.htm">MVVM - First Application</a></li>
+<li><a href="/mvvm/mvvm_hooking_up_views.htm">MVVM - Hooking Up Views</a></li>
+<li><a href="/mvvm/mvvm_hooking_up_viewmodel.htm">MVVM - Hooking Up ViewModel</a></li>
+<li><a href="/mvvm/mvvm_wpf_data_bindings.htm">MVVM - WPF Data Bindings</a></li>
+<li><a href="/mvvm/mvvm_wpf_data_templates.htm">MVVM - WPF Data Templates</a></li>
+<li><a href="/mvvm/mvvm_view_viewmodel_communication.htm">MVVM - ViewModel Communication</a></li>
+<li><a href="/mvvm/mvvm_hierarchies_and_navigation.htm">MVVM - Hierarchies &amp; Navigation</a></li>
+<li><a href="/mvvm/mvvm_validations.htm">MVVM - Validations</a></li>
+<li><a href="/mvvm/mvvm_dependency_injection.htm">MVVM - Dependency Injection</a></li>
+<li><a href="/mvvm/mvvm_events.htm">MVVM - Events</a></li>
+<li><a href="/mvvm/mvvm_unit_testing.htm">MVVM - Unit Testing</a></li>
+<li><a href="/mvvm/mvvm_frameworks.htm">MVVM - Frameworks</a></li>
+<li><a href="/mvvm/mvvm_interview_questions.htm">MVVM - Interview Questions</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">MVVM Useful Resources</li>
+<li><a href="/mvvm/mvvm_quick_guide.htm">MVVM - Quick Guide</a></li>
+<li><a href="/mvvm/mvvm_useful_resources.htm">MVVM - Useful Resources</a></li>
+<li><a href="/mvvm/mvvm_discussion.htm">MVVM - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>MVVM – Hierarchies &amp; Navigation</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/mvvm/mvvm_view_viewmodel_communication.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/mvvm/mvvm_validations.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>When building MVVM applications, you typically decompose complex screens of information into a set of parent and child views, where the child views are contained within the parent views in panels or container controls, and forms a hierarchy of use themselves.</p>
+<ul class="list">
+<li><p>After decomposing the complex Views it doesn’t mean that each and every piece of child content that you separate into its own XAML file necessarily needs to be an MVVM view.</p></li>
+<li><p>The chunk of content just provides the structure to render something to the screen and does not support any input or manipulation by the user for that content.</p></li>
+<li><p>It may not need a separate ViewModel, but it could just be a chunk XAML that renders based on properties exposed by the parents ViewModel.</p></li>
+<li><p>Finally, if you have a hierarchy of Views and ViewModels, the parent ViewModel can become a hub for communications so that each child ViewModel can remain decoupled from the other child ViewModels and from their parent as much as possible.</p></li>
+</ul>
+<img src="/mvvm/images/mvvm_hierarchies_and_navigation.jpg" alt="MVVM Hierarchies and Navigation" />
+<p>Let’s take a look at an example in which we will define a simple hierarchy between different views. Create a new WPF Application project <b>MVVMHierarchiesDemo</b></p>
+<img src="/mvvm/images/wpf_application.jpg" alt="WPF Application" />
+<p><b>Step 1</b> &minus; Add the three folders (Model, ViewModel, and Views) into your project.</p>
+<img src="/mvvm/images/wpf_application_step1.jpg" alt="WPF Application Step1" />
+<p><b>Step 2</b> &minus; Add Customer and Order classes in Model folder, CustomerListView and OrderView in Views folder, and CustomerListViewModel and OrderViewModel in ViewModel folder as shown in the following image.</p>
+<img src="/mvvm/images/wpf_application_step2.jpg" alt="WPF Application Step2" />
+<p><b>Step 3</b> &minus; Add textblocks in both CustomerListView and OrderView. Here is CustomerListView.xaml file.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class="MVVMHierarchiesDemo.Views.CustomerListView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMHierarchiesDemo.Views" 
+   mc:Ignorable = "d" 
+   d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;Grid&gt; 
+      &lt;TextBlock Text = "Customer List View"/&gt; 
+   &lt;/Grid&gt; 
+	
+&lt;/UserControl&gt;
+</pre>
+<p>Following is the OrderView.xaml file.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class = "MVVMHierarchiesDemo.Views.OrderView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x ="http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc ="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d ="http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMHierarchiesDemo.Views" mc:Ignorable = "d" 
+   d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;Grid&gt; 
+      &lt;TextBlock Text = "Order View"/&gt; 
+   &lt;/Grid&gt; 
+	
+&lt;/UserControl&gt;
+</pre>
+<p>Now we need something to host these views, and a good place for that in our MainWindow because it is a simple application. We need a container control that we can place our views and switch them in a navigation fashion. For this purpose, we need to add ContentControl in our MainWindow.xaml file and we will be using its content property and bind that to a ViewModel reference.</p>
+<p>Now define the data templates for each view in a resource dictionary. Following is the MainWindow.xaml file. Note how each data template maps a data type (the ViewModel type) to a corresponding View.</p>
+<pre class="prettyprint notranslate">
+&lt;Window x:Class = "MVVMHierarchiesDemo.MainWindow" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:local = "clr-namespace:MVVMHierarchiesDemo" 
+   xmlns:views = "clr-namespace:MVVMHierarchiesDemo.Views" 
+   xmlns:viewModels = "clr-namespace:MVVMHierarchiesDemo.ViewModel" 
+   mc:Ignorable = "d" 
+   Title = "MainWindow" Height = "350" Width = "525"&gt; 
+   
+   &lt;Window.DataContext&gt; 
+      &lt;local:MainWindowViewModel/&gt; 
+   &lt;/Window.DataContext&gt;
+	
+   &lt;Window.Resources&gt; 
+      &lt;DataTemplate DataType = "{x:Type viewModels:CustomerListViewModel}"&gt;
+         &lt;views:CustomerListView/&gt; 
+      &lt;/DataTemplate&gt;
+		
+      &lt;DataTemplate DataType = "{x:Type viewModels:OrderViewModel}"&gt; 
+         &lt;views:OrderView/&gt; 
+      &lt;/DataTemplate&gt; 
+   &lt;/Window.Resources&gt;
+	
+   &lt;Grid&gt; 
+      &lt;ContentControl Content = "{Binding CurrentView}"/&gt; 
+   &lt;/Grid&gt; 
+	
+&lt;/Window&gt;
+</pre>
+<p>Anytime the current view model is set to an instance of a CustomerListViewModel, it will render out a CustomerListView with the ViewModel is hooked up. It’s an order ViewModel, it'll render out OrderView and so on.</p>
+<p>We now need a ViewModel that has a CurrentViewModel property and some logic and commanding to be able to switch the current reference of ViewModel inside the property.</p>
+<p>Let's create a ViewModel for this MainWindow called MainWindowViewModel. We can just create an instance of our ViewModel from XAML and use that to set the DataContext property of the window. For this, we need to create a base class to encapsulate the implementation of INotifyPropertyChanged for our ViewModels.</p>
+<p>The main idea behind this class is to encapsulate the INotifyPropertyChanged implementation and provide helper methods to the derived class so that they can easily trigger the appropriate notifications. Following is the implementation of BindableBase class.</p>
+<pre class="prettyprint notranslate">
+using System; 
+using System.Collections.Generic; 
+using System.ComponentModel; 
+using System.Linq; 
+using System.Runtime.CompilerServices; 
+using System.Text; 
+using System.Threading.Tasks;
+
+namespace MVVMHierarchiesDemo { 
+
+   class BindableBase : INotifyPropertyChanged { 
+	
+      protected virtual void SetProperty&lt;T&gt;(ref T member, T val,
+         [CallerMemberName] string propertyName = null) { 
+            if (object.Equals(member, val)) return;
+				
+            member = val;
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); 
+      }
+			
+      protected virtual void OnPropertyChanged(string propertyName) { 
+         PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); 
+      } 
+		
+      public event PropertyChangedEventHandler PropertyChanged = delegate { }; 
+   } 
+}
+</pre>
+<p>Now it's time to actually start doing some view switching using our CurrentViewModel property. We just need some way to drive the setting of this property. And we're going to make it so that the end user can command going to the customer list or to the order view. First add a new class in your project which will implement the ICommand interface. Following is the implementation of ICommand interface.</p>
+<pre class="prettyprint notranslate">
+using System; 
+using System.Windows.Input;
+
+namespace MVVMHierarchiesDemo { 
+
+   public class MyICommand&lt;T&gt; : ICommand { 
+	
+      Action&lt;T&gt; _TargetExecuteMethod; 
+      Func&lt;T, bool&gt; _TargetCanExecuteMethod;
+		
+      public MyICommand(Action&lt;T&gt; executeMethod) {
+         _TargetExecuteMethod = executeMethod; 
+      }
+		
+      public MyICommand(Action&lt;T&gt; executeMethod, Func&lt;T, bool&gt; canExecuteMethod) {
+         _TargetExecuteMethod = executeMethod;
+         _TargetCanExecuteMethod = canExecuteMethod; 
+      }
+
+      public void RaiseCanExecuteChanged() {
+         CanExecuteChanged(this, EventArgs.Empty); 
+      } 
+		
+      #region ICommand Members
+
+      bool ICommand.CanExecute(object parameter) { 
+		
+         if (_TargetCanExecuteMethod != null) { 
+            T tparm = (T)parameter; 
+            return _TargetCanExecuteMethod(tparm); 
+         } 
+			
+         if (_TargetExecuteMethod != null) { 
+            return true; 
+         } 
+			
+         return false; 
+      }
+		
+      // Beware - should use weak references if command instance lifetime is
+         longer than lifetime of UI objects that get hooked up to command 
+			
+      // Prism commands solve this in their implementation 
+
+      public event EventHandler CanExecuteChanged = delegate { };
+	
+      void ICommand.Execute(object parameter) { 
+         if (_TargetExecuteMethod != null) {
+            _TargetExecuteMethod((T)parameter); 
+         } 
+      } 
+		
+      #endregion 
+   } 
+}
+</pre>
+<p>We now need to set up some top level navigation to these to ViewModels and logic for that switching should belong inside MainWindowViewModel. For this we're going to use a method called on navigate that takes a string destination and returns the CurrentViewModel property.</p>
+<pre class="prettyprint notranslate">
+private void OnNav(string destination) {
+ 
+   switch (destination) { 
+      case "orders": 
+         CurrentViewModel = orderViewModelModel; 
+      break; 
+      case "customers": 
+      default: 
+         CurrentViewModel = custListViewModel; 
+      break; 
+   } 
+}
+</pre>
+<p>For navigation of these different Views, we need to add two buttons in our MainWindow.xaml file. Following is the complete XAML file implementation.</p>
+<pre class="prettyprint notranslate">
+&lt;Window x:Class = "MVVMHierarchiesDemo.MainWindow" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:local = "clr-namespace:MVVMHierarchiesDemo" 
+   xmlns:views = "clr-namespace:MVVMHierarchiesDemo.Views" 
+   xmlns:viewModels = "clr-namespace:MVVMHierarchiesDemo.ViewModel" 
+   mc:Ignorable = "d" 
+   Title = "MainWindow" Height = "350" Width = "525"&gt;
+
+   &lt;Window.DataContext&gt; 
+      &lt;local:MainWindowViewModel/&gt; 
+   &lt;/Window.DataContext&gt;
+	
+   &lt;Window.Resources&gt; 
+      &lt;DataTemplate DataType = "{x:Type viewModels:CustomerListViewModel}"&gt;
+         &lt;views:CustomerListView/&gt; 
+      &lt;/DataTemplate&gt; 
+		
+      &lt;DataTemplate DataType = "{x:Type viewModels:OrderViewModel}"&gt;
+         &lt;views:OrderView/&gt; 
+      &lt;/DataTemplate&gt; 
+   &lt;/Window.Resources&gt;
+	
+   &lt;Grid&gt;
+      &lt;Grid.RowDefinitions&gt; 
+         &lt;RowDefinition Height = "Auto" /&gt; 
+         &lt;RowDefinition Height = "*" /&gt; 
+      &lt;/Grid.RowDefinitions&gt; 
+	
+      &lt;Grid x:Name = "NavBar"&gt; 
+         &lt;Grid.ColumnDefinitions&gt; 
+            &lt;ColumnDefinition Width = "*" /&gt; 
+            &lt;ColumnDefinition Width = "*" /&gt; 
+            &lt;ColumnDefinition Width = "*" /&gt; 
+         &lt;/Grid.ColumnDefinitions&gt; 
+	
+         &lt;Button Content = "Customers" 
+            Command = "{Binding NavCommand}"
+            CommandParameter = "customers" 
+            Grid.Column = "0" /&gt;
+				
+         &lt;Button Content = "Order" 
+            Command = "{Binding NavCommand}" 
+            CommandParameter = "orders" 
+            Grid.Column = "2" /&gt;
+      &lt;/Grid&gt; 
+	
+      &lt;Grid x:Name = "MainContent" Grid.Row = "1"&gt; 
+         &lt;ContentControl Content = "{Binding CurrentViewModel}" /&gt; 
+      &lt;/Grid&gt; 
+		
+   &lt;/Grid&gt; 
+	
+&lt;/Window&gt;
+</pre>
+<p>Following is the complete MainWindowViewModel implementation.</p>
+<pre class="prettyprint notranslate">
+using MVVMHierarchiesDemo.ViewModel; 
+using MVVMHierarchiesDemo.Views; 
+
+using System; 
+using System.Collections.Generic; 
+using System.Linq; 
+using System.Text; 
+using System.Threading.Tasks;
+
+namespace MVVMHierarchiesDemo {
+ 
+   class MainWindowViewModel : BindableBase {
+	
+      public MainWindowViewModel() { 
+         NavCommand = new MyICommand&lt;string&gt;(OnNav); 
+      } 
+		
+      private CustomerListViewModel custListViewModel = new CustomerListViewModel(); 
+		
+      private OrderViewModel orderViewModelModel = new OrderViewModel();
+		
+      private BindableBase _CurrentViewModel; 
+		
+      public BindableBase CurrentViewModel { 
+         get {return _CurrentViewModel;} 
+         set {SetProperty(ref _CurrentViewModel, value);} 
+      }
+		
+      public MyICommand&lt;string&gt; NavCommand { get; private set; }
+
+      private void OnNav(string destination) {
+		
+         switch (destination) { 
+            case "orders": 
+               CurrentViewModel = orderViewModelModel; 
+               break; 
+            case "customers": 
+            default: 
+               CurrentViewModel = custListViewModel; 
+               break; 
+         } 
+      } 
+   } 
+}
+</pre>
+<p>Derive all of your ViewModels from BindableBase class. When the above code is compiled and executed, you will see the following output.</p>
+<img src="/mvvm/images/hierarchies_and_navigation_mainwindow1.jpg" alt="Hierarchies and Navigation MainWindow1" />
+<p>As you can see, we have added only two buttons and a CurrentViewModel on our MainWindow. If you click any button then it will navigate to that particular View. Let’s click on Customers button and you will see that the CustomerListView is displayed.</p>
+<img src="/mvvm/images/hierarchies_and_navigation_mainwindow2.jpg" alt="Hierarchies and Navigation MainWindow2" />
+<p>We recommend you to execute the above example in a step-by-step manner for better understanding.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/mvvm/mvvm_view_viewmodel_communication.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/mvvm/mvvm_validations.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

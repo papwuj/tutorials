@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Using Conversion Functions</title>
+<meta charset="utf-8">
+<meta name="description" content="Using Conversion Functions - Besides the SQL utility functions, Oracle inbuilt function library contains type conversion functions. There may be scenarios where the query expects input in a"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/sql_certificate/conversion_functions.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#08bab7;
+}
+a.demo {
+    background:#08bab7;
+}
+li.heading {
+    background:#08bab7;
+}
+.course-box{background:#08bab7}
+.home-intro-sub p{color:#08bab7}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/sql_certificate/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/sql_certificate/images/sql-fundamentals-mini-logo.jpg" alt="SQL Fundamentals Certification" />
+</div>
+<ul class="toc chapters">
+<li class="heading">SQL Certificate Study Material</li>
+<li><a target="_top" href="/sql_certificate/index.htm">SQL - Introduction</a></li>
+<li><a target="_top" href="/sql_certificate/sql_exams_syllabus.htm">SQL - SQL Exams Syllabus</a></li>
+<li><a target="_top" href="/sql_certificate/the_sql_select_statement.htm">SQL - The SQL SELECT Statement</a></li>
+<li><a target="_top" href="/sql_certificate/restricting_and_sorting_data.htm">SQL - Restricting and Sorting Data</a></li>
+<li><a target="_top" href="/sql_certificate/using_single_row_functions.htm">SQL - Using Single-Row Functions</a></li>
+<li><a target="_top" href="/sql_certificate/conversion_functions.htm">SQL - Conversion Functions</a></li>
+<li><a target="_top" href="/sql_certificate/conditional_expressions.htm">SQL - Conditional Expressions</a></li>
+<li><a target="_top" href="/sql_certificate/using_the_group_functions.htm">SQL - Using the Group Functions</a></li>
+<li><a target="_top" href="/sql_certificate/get_data_from_multiple_tables.htm">SQL - Get Data from Multiple Tables</a></li>
+<li><a target="_top" href="/sql_certificate/subqueries_to_solve_queries.htm">SQL - Subqueries to Solve Queries</a></li>
+<li><a target="_top" href="/sql_certificate/using_the_set_operators.htm">SQL - Using the Set Operators</a></li>
+<li><a target="_top" href="/sql_certificate/manipulating_data.htm">SQL - Manipulating Data</a></li>
+<li><a target="_top" href="/sql_certificate/using_ddl_statements.htm">SQL - Using DDL Statements</a></li>
+<li><a target="_top" href="/sql_certificate/creating_other_schema_objects.htm">SQL - Creating Other Schema Objects</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">SQL Certificate Questions Bank</li>
+<li><a target="_top" href="/sql_certificate/the_sql_select_statement_questions.htm">SQL - The SQL SELECT Statement</a></li>
+<li><a target="_top" href="/sql_certificate/restricting_and_sorting_data_questions.htm">SQL - Restricting and Sorting Data</a></li>
+<li><a target="_top" href="/sql_certificate/using_single_row_functions_questions.htm">SQL - Using Single-Row Functions</a></li>
+<li><a target="_top" href="/sql_certificate/conversion_functions_questions.htm">SQL - Conversion Functions</a></li>
+<li><a target="_top" href="/sql_certificate/conditional_expressions_questions.htm">SQL - Conditional Expressions</a></li>
+<li><a target="_top" href="/sql_certificate/using_the_group_functions_questions.htm">SQL - Using the Group Functions</a></li>
+<li><a target="_top" href="/sql_certificate/get_data_from_multiple_tables_questions.htm">SQL - Get Data from Multiple Tables</a></li>
+<li><a target="_top" href="/sql_certificate/subqueries_to_solve_queries_questions.htm">SQL - Subqueries to Solve Queries</a></li>
+<li><a target="_top" href="/sql_certificate/using_the_set_operators_questions.htm">SQL - Using the Set Operators</a></li>
+<li><a target="_top" href="/sql_certificate/manipulating_data_questions.htm">SQL - Manipulating Data</a></li>
+<li><a target="_top" href="/sql_certificate/using_ddl_statements_questions.htm">SQL - Using DDL Statements</a></li>
+<li><a target="_top" href="/sql_certificate/creating_other_schema_objects_questions.htm">SQL - Creating Other Schema Objects</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">SQL Certificate Mock Exams</li>
+<li><a target="_top" href="/sql_certificate/sql_certificate_mock_exams.htm">SQL Certificate - Mock Exams</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">SQL Certificate Useful Resources</li>
+<!--<li><a target="_top" href="/sql_certificate/sql_quick_guide.htm">SQL Certificate - Quick Guide</a></li>-->
+<li><a target="_top" href="/sql_certificate/sql_useful_resources.htm">SQL Certificate - Useful Resources</a></li>
+<li><a target="_top" href="/sql_certificate/sql_discussion.htm">SQL Certificate - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Using Conversion Functions</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/sql_certificate/using_single_row_functions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/sql_certificate/conditional_expressions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Besides the SQL utility functions, Oracle inbuilt function library contains type conversion functions. There may be scenarios where the query expects input in a specific data type, but it receives it in a different data type. In such cases, Oracle implicitly tries to convert the unexpected value to a compatible data type which can be substituted in place and application continuity is not compromised. Type conversion can be either implicitly done by Oracle or explicitly done by the programmer.</p>
+<p>Implicit data type conversion works based on a matrix which showcases the Oracle's support for internal type casting. Besides these rules, Oracle offers type conversion functions which can be used in the queries for explicit conversion and formatting. As a matter of fact, it is recommended to perform explicit conversion instead of relying on software intelligence. Though implicit conversion works well, but to eliminate the skew chances where bad inputs could be difficult to typecast internally.</p>
+<h2>Implicit Data Type Conversion</h2>
+<p>A VARCHAR2 or CHAR value can be implicitly converted to NUMBER or DATE type value by Oracle. Similarly, a NUMBER or DATA type value can be automatically converted to character data by Oracle server. Note that the impicit interconversion happens only when the character represents the a valid number or date type value respectively.</p>
+<p>For example, examine the below SELECT queries. Both the queries will give the same result because Oracle internally treats 15000 and '15000' as same.</p>
+<h3>Query-1</h3>
+<pre class="prettyprint notranslate">
+SELECT employee_id,first_name,salary
+FROM employees
+WHERE salary &#62; 15000;
+</pre>
+<h3>Query-2</h3>
+<pre class="prettyprint notranslate">
+SELECT employee_id,first_name,salary
+FROM employees
+WHERE salary &#62; '15000';
+</pre>
+<h2>Explicit Data Type Conversion</h2>
+<p>SQL Conversion functions are single row functions which are capable of typecasting column value, literal or an expression . TO_CHAR, TO_NUMBER and TO_DATE are the three functions which perform cross modification of data types.</p>
+<h2>TO_CHAR function</h2>
+<p>TO_CHAR function is used to typecast a numeric or date input to character type with a format model (optional).</p>
+<h3>Syntax </h3>
+<pre class="prettyprint notranslate">
+TO_CHAR(number1, [format], [nls_parameter])
+</pre>
+<p>For number to character conversion, nls parameters can be used to specify decimal characters, group separator, local currency model, or international currency model. It is an optional specification - if not available, session level nls settings will be used. For date to character conversion, the nls parameter can be used to specify the day and month names, as applicable.</p>
+<p>Dates can be formatted in multiple formats after converting to character types using TO_CHAR function. The TO_CHAR function is used to have Oracle 11g display dates in a particular format. Format models are case sensitive and must be enclosed within single quotes.</p>
+<p>Consider the below SELECT query. The query format the HIRE_DATE and SALARY columns of EMPLOYEES table using TO_CHAR function.</p>
+<pre class="prettyprint notranslate">
+SELECT first_name,
+       TO_CHAR (hire_date, 'MONTH DD, YYYY') HIRE_DATE,
+	   TO_CHAR (salary, '$99999.99') Salary
+FROM employees
+WHERE rownum &#60; 5;
+
+FIRST_NAME           HIRE_DATE          SALARY
+-------------------- ------------------ ----------
+Steven               JUNE      17, 2003  $24000.00
+Neena                SEPTEMBER 21, 2005  $17000.00
+Lex                  JANUARY   13, 2001  $17000.00
+Alexander            JANUARY   03, 2006   $9000.00
+</pre>
+<p>The first TO_CHAR is used to convert the hire date to the date format MONTH DD, YYYY i.e. month spelled out and padded with spaces, followed by the two-digit day of the month, and then the four-digit year. If you prefer displaying the month name in mixed case (that is, "December"), simply use this case in the format argument: ('Month DD, YYYY').</p>
+<p>The second TO_CHAR function in Figure 10-39 is used to format the SALARY to display the currency sign and two decimal positions. </p>
+<p>Oracle offers comprehensive set of format models. The below table shows the list of format models which can be used to typecast date and number values as character using TO_CHAR.</p> 
+<table class="table table-bordered">
+<tr><th style="width:20%;">Format Model</th><th>Description</th></tr>
+<tr><td>&#44;(comma)</td><td>It returns a comma in the specified position. You can specify multiple commas in a number format model. Restrictions:A comma element cannot begin a number format model. A comma cannot appear to the right of a decimal character or period in a number format model. </td></tr>
+<tr><td>.(period)</td><td>Returns a decimal point, which is a period (.) in the specified position. Restriction: You can specify only one period in a number format model</td></tr>
+<tr><td>$</td><td>Returns value with a leading dollar sign</td></tr>
+<tr><td>0</td><td>Returns leading zeros. Returns trailing zeros.</td></tr>
+<tr><td>9</td><td>Returns value with the specified number of digits with a leading space if positive or with a leading minus if negative. Leading zeros are blank, except for a zero value, which returns a zero for the integer part of the fixed-point number.</td></tr>
+<tr><td>B</td><td>Returns blanks for the integer part of a fixed-point number when the integer part is zero (regardless of "0"s in the format model).</td></tr>
+<tr><td>C</td><td>Returns in the specified position the ISO currency symbol (the current value of the NLS_ISO_CURRENCY parameter).</td></tr>
+<tr><td>D</td><td>Returns in the specified position the decimal character, which is the current value of the NLS_NUMERIC_CHARACTER parameter. The default is a period (.). 
+Restriction: You can specify only one decimal character in a number format model.</td></tr>
+<tr><td>EEE</td><td>Returns a value using in scientific notation.</td></tr>
+<tr><td>FM</td><td>Returns a value with no leading or trailing blanks.</td></tr>
+<tr><td>G</td><td>Returns in the specified position the group separator (the current value of the NLS_NUMERIC_CHARACTER parameter). You can specify multiple group separators in a number format model. Restriction: A group separator cannot appear to the right of a decimal character or period in a number format model</td></tr>
+<tr><td>L</td><td>Returns in the specified position the local currency symbol (the current value of the NLS_CURRENCY parameter).</td></tr>
+<tr><td>MI</td><td>Returns negative value with a trailing minus sign (-). Returns positive value with a trailing blank. Restriction: The MI format element can appear only in the last position of a number format model.</td></tr>
+<tr><td>PR</td><td>Returns negative value in . It can appear only in the end of a number format model.</td></tr>
+<tr><td>RN,rm</td><td>Returns a value as Roman numerals in uppercase.  Returns a value as Roman numerals in lowercase. 
+Value can be an integer between 1 and 3999.</td></tr>
+<tr><td>S</td><td>Returns negative value with a leading or trailing minus sign (-). Returns positive value with a leading or trailing plus sign (+). Restriction: The S format element can appear only in the first or last position of a number format model.</td></tr>
+<tr><td>TM</td><td>"Text minimum". Returns (in decimal output) the smallest number of characters possible. This element is case-insensitive. 
+</td></tr>
+<tr><td>U</td><td>Returns in the specified position the "Euro" (or other) dual currency symbol (the current value of the NLS_DUAL_CURRENCY parameter).</td></tr>
+<tr><td>V</td><td>Returns a value multiplied by 10n (and if necessary, round it up), where n is the number of 9's after the "V".</td></tr>
+<tr><td>X</td><td>Returns the hexadecimal value of the specified number of digits. </td></tr>
+</table>
+<h2>TO_NUMBER function</h2>
+<p>The TO_NUMBER function converts a character value to a numeric datatype. If the string being converted contains nonnumeric characters, the function returns an error.</p>
+<h3>Syntax</h3>
+<pre class="prettyprint notranslate">
+TO_NUMBER (string1, [format], [nls_parameter])
+</pre>
+<p>The below table shows the list of format models which can be used to typecast character values as number using TO_NUMBER.</p>
+<table class="table table-bordered">
+<tr><th style="width:20%;">Format Model</th><th>Description</th></tr>
+<tr><td>CC</td><td>Century</td></tr>
+<tr><td>SCC</td><td>Century BC prefixed with - </td></tr>
+<tr><td>YYYY</td><td>Year with 4 numbers </td></tr>
+<tr><td>SYYY</td><td>Year BC prefixed with - </td></tr>
+<tr><td>IYYY</td><td>ISO Year with 4 numbers </td></tr>
+<tr><td>YY</td><td>Year with 2 numbers </td></tr>
+<tr><td>RR</td><td>Year with 2 numbers with Y2k compatibility </td></tr>
+<tr><td>YEAR</td><td>Year in characters </td></tr>
+<tr><td>SYEAR</td><td>Year in characters, BC prefixed with - </td></tr>
+<tr><td>BC</td><td>BC/AD Indicator </td></tr>
+<tr><td>Q</td><td>Quarter in numbers (1,2,3,4) </td></tr>
+<tr><td>MM</td><td>Month of year 01, 02...12 </td></tr>
+<tr><td>MONTH</td><td>Month in characters (i.e. January) </td></tr>
+<tr><td>MON</td><td>JAN, FEB </td></tr>
+<tr><td>WW</td><td>Week number (i.e. 1) </td></tr>
+<tr><td>W</td><td>Week number of the month (i.e. 5) </td></tr>
+<tr><td>IW</td><td>Week number of the year in ISO standard. </td></tr>
+<tr><td>DDD</td><td>Day of year in numbers (i.e. 365) </td></tr>
+<tr><td>DD</td><td>Day of the month in numbers (i.e. 28) </td></tr>
+<tr><td>D</td><td>Day of week in numbers(i.e. 7) </td></tr>
+<tr><td>DAY</td><td>Day of the week in characters (i.e. Monday)</td></tr>
+<tr><td>FMDAY</td><td>Day of the week in characters (i.e. Monday)</td></tr>
+<tr><td>DY</td><td>Day of the week in short character description (i.e. SUN) </td></tr>
+<tr><td>J</td><td>Julian Day (number of days since January 1 4713 BC, where January 1 4713 BC is 1 in Oracle)</td></tr>
+<tr><td>HH,H12</td><td>Hour number of the day (1-12) </td></tr>
+<tr><td>HH24</td><td>Hour number of the day with 24Hours notation (0-23) </td></tr>
+<tr><td>AM, PM</td><td>AM or PM </td></tr>
+<tr><td>MI, SS</td><td>Number of minutes and seconds (i.e. 59) , </td></tr>
+<tr><td>SSSSS</td><td>Number of seconds this day. </td></tr>
+<tr><td>DS</td><td>Short date format. Depends on NLS-settings. Use only with timestamp. </td></tr>
+<tr><td>DL</td><td>Long date format. Depends on NLS-settings. Use only with timestamp. </td></tr>
+<tr><td>E</td><td>Abbreviated era name. Valid only for calendars: Japanese Imperial, ROC Official, Thai Buddha.</td></tr>
+<tr><td>EE</td><td>The full era name </td></tr>
+<tr><td>FF</td><td>The fractional seconds. Use with timestamp. </td></tr>
+<tr><td>FF1..FF9</td><td>The fractional seconds. Use with timestamp. The digit controls the number of decimal digits used for fractional seconds.</td></tr>
+<tr><td>FM</td><td>Fill Mode: suppresses blanks in output from conversion </td></tr>
+<tr><td>FX</td><td>Format Exact: requires exact pattern matching between data and format model. </td></tr>
+<tr><td>IYY OR IY OR I</td><td>The last 3,2,1 digits of the ISO standard year. Output only</td></tr>
+<tr><td>RM</td><td>The Roman numeral representation of the month (I .. XII) </td></tr>
+<tr><td>RR</td><td>The last 2 digits of the year. </td></tr>
+<tr><td>RRRR</td><td>The last 2 digits of the year when used for output. Accepts fout-digit years when used for input.</td></tr>
+<tr><td>SP</td><td>Spelled format. Can appear of the end of a number element. The result is always in english. For example month 10 in format MMSP returns "ten" </td></tr>
+<tr><td>SPTH</td><td>Spelled and ordinal format; 1 results in first. </td></tr>
+<tr><td>TH</td><td>Converts a number to it's ordinal format. For example 1 becoms 1st. </td></tr>
+<tr><td>TS</td><td>Short time format. Depends on NLS-settings. Use only with timestamp. </td></tr>
+<tr><td>TZD</td><td>Abbreviated time zone name. ie PST. </td></tr>
+<tr><td>TZH,TZM</td><td>Time zone hour/minute displacement. </td></tr>
+<tr><td>TZR</td><td>Time zone region </td></tr>
+<tr><td>X</td><td>Local radix character. In America this is a period (.) </td></tr>
+</table>
+<p>The SELECT queries below accept numbers as character inputs and prints them following the format specifier.</p>
+<pre class="prettyprint notranslate">
+SELECT  TO_NUMBER('121.23', '9G999D99') 
+FROM DUAL
+
+TO_NUMBER('121.23','9G999D99')
+------------------------------
+                        121.23
+
+SELECT  TO_NUMBER('1210.73', '9999.99') 
+FROM DUAL;
+
+TO_NUMBER('1210.73','9999.99')
+------------------------------
+                       1210.73
+</pre>
+<h2>TO_DATE function</h2>
+<p>The function takes character values as input and returns formatted date equivalent of the same. The TO_DATE function allows users to enter a date in any format, and then it converts the entry into the default format used by Oracle 11g.</p>
+<h3>Syntax:</h3>
+<pre class="prettyprint notranslate">
+TO_DATE( string1, [ format_mask ], [ nls_language ] )
+</pre>
+<p>A format_mask argument consists of a series of elements representing exactly what the data should look like and must be entered in single quotation marks.</p>
+<table class="table table-bordered">
+<tr><th style="width:20%;">Format Model</th><th>Description</th></tr>
+<tr><td>YEAR</td><td>Year, spelled out</td></tr>
+<tr><td>YYYY</td><td>4-digit year</td></tr>
+<tr><td>YYY,YY,Y</td><td>Last 3, 2, or 1 digit(s) of year.</td></tr>
+<tr><td>IYY,IY,I</td><td>Last 3, 2, or 1 digit(s) of ISO year.</td></tr>
+<tr><td>IYYY</td><td>4-digit year based on the ISO standard</td></tr>
+<tr><td>RRRR</td><td>Accepts a 2-digit year and returns a 4-digit year.</td></tr>
+<tr><td>Q</td><td>Quarter of year (1, 2, 3, 4; JAN-MAR = 1).</td></tr>
+<tr><td>MM</td><td>Month (01-12; JAN = 01).</td></tr>
+<tr><td>MON</td><td>Abbreviated name of month.</td></tr>
+<tr><td>MONTH</td><td>Name of month, padded with blanks to length of 9 characters.</td></tr>
+<tr><td>RM</td><td>Roman numeral month (I-XII; JAN = I).</td></tr>
+<tr><td>WW</td><td>Week of year (1-53) where week 1 starts on the first day of the year and continues to the seventh day of the year.</td></tr>
+<tr><td>W</td><td>Week of month (1-5) where week 1 starts on the first day of the month and ends on the seventh.</td></tr>
+<tr><td>IW</td><td>Week of year (1-52 or 1-53) based on the ISO standard.</td></tr>
+<tr><td>D</td><td>Day of week (1-7).</td></tr>
+<tr><td>DAY</td><td>Name of day.</td></tr>
+<tr><td>DD</td><td>Day of month (1-31).</td></tr>
+<tr><td>DDD</td><td>Day of year (1-366).</td></tr>
+<tr><td>DY</td><td>Abbreviated name of day.</td></tr>
+<tr><td>J</td><td>Julian day; the number of days since January 1, 4712 BC.</td></tr>
+<tr><td>HH12</td><td>Hour of day (1-12).</td></tr>
+<tr><td>HH24</td><td>Hour of day (0-23).</td></tr>
+<tr><td>MI,SS</td><td>Minute (0-59).</td></tr>
+<tr><td>SSSSS</td><td>Seconds past midnight (0-86399).</td></tr>
+<tr><td>FF</td><td>Fractional seconds. Use a value from 1 to 9 after FF to indicate the number of digits in the fractional seconds. For example, 'FF4'.</td></tr>
+<tr><td>AM,PM</td><td>Meridian indicator</td></tr>
+<tr><td>AD,BC</td><td>AD, BC indicator</td></tr>
+<tr><td>TZD</td><td>Daylight savings information. For example, 'PST'</td></tr>
+<tr><td>TZH,TZM,TZR</td><td>Time zone hour/minute/region.</td></tr>
+</table>
+<p>The following example converts a character string into a date:</p>
+<pre class="prettyprint notranslate">
+SELECT TO_DATE('January 15, 1989, 11:00 A.M.',  'Month dd, YYYY, HH:MI A.M.',  'NLS_DATE_LANGUAGE = American')
+FROM DUAL;
+
+TO_DATE('
+---------
+15-JAN-89
+</pre>
+<h2>General Functions</h2>
+<p>General functions are used to handle NULL values in database. The objective of the general NULL handling functions is to replace the NULL values with an alternate value. We shall briefly see through these functions below.</p>
+<h3>NVL</h3>
+<p>The NVL function substitutes an alternate value for a NULL value. </p>
+<h4>Syntax:</h4>
+<pre class="prettyprint notranslate">
+NVL( Arg1, replace_with )
+</pre>
+<p>In the syntax, both the parameters are mandatory. Note that NVL function works with all types of data types. And also that the data type of original string and the replacement must be in compatible state i.e. either same or implicitly convertible by Oracle.</p>
+<p>If arg1 is a character value, then oracle converts replacement string to the data type compatible with arg1 before comparing them and returns VARCHAR2 in the character set of expr1. If arg1 is numeric, then Oracle determines the argument with highest numeric precedence, implicitly converts the other argument to that data type, and returns that data type.</p>
+<p>The SELECT statement below will display 'n/a' if an employee has been not assigned to any job yet i.e. JOB_ID is NULL. Otherwise, it would display the actual JOB_ID value.</p>
+<pre class="prettyprint notranslate">
+SELECT  first_name, NVL(JOB_ID, 'n/a')
+FROM employees;
+</pre>
+<h3>NVL2</h3>
+<p>As an enhancement over NVL, Oracle introduced a function to substitute value not only for NULL columns values but also for NOT NULL columns. NVL2 function can be used to substitute an alternate value for NULL as well as non NULL value.</p>
+<h4>Syntax:</h4>
+<pre class="prettyprint notranslate">
+NVL2( string1, value_if_NOT_null, value_if_null )
+</pre>
+<p>The SELECT statement below would display 'Bench' if the JOB_CODE for an employee is NULL. For a definite not null value of JOB CODE, it would show constant value 'Job Assigned'.</p>
+<pre class="prettyprint notranslate">
+SQL> SELECT NVL2(JOB_CODE, 'Job Assigned', 'Bench')
+FROM employees;
+</pre>
+<h3>NULLIF</h3>
+<p>The NULLIF function compares two arguments expr1 and expr2. If expr1 and expr2 are equal, it returns NULL; else, it returns expr1. Unlike the other null handling function, first argument can't be NULL.</p>
+<h4>Syntax:</h4>
+<pre class="prettyprint notranslate">
+NULLIF (expr1, expr2)
+</pre>
+<p>Note that first argument can be an expression that evaluates to NULL, but it can't be the literal NULL. Both the parameters are mandatory for the function to execute.</p>
+<p>The below query returns NULL since both the input values, 12 are equal.</p>
+<pre class="prettyprint notranslate">
+SELECT	NULLIF (12, 12)
+FROM DUAL;
+</pre>
+<p>Similarly, below query return 'SUN' since both the strings are not equal.</p>
+<pre class="prettyprint notranslate">
+SELECT NULLIF ('SUN', 'MOON')
+FROM DUAL;
+</pre>
+<h3>COALESCE</h3>
+<p>COALESCE function, a more generic form of NVL, returns the first non-null expression in the argument list. It takes minimum two mandatory parameters but maximum arguments has no limit. </p>
+<h4>Syntax:</h4>
+<pre class="prettyprint notranslate">
+COALESCE (expr1, expr2, ... expr_n )
+</pre>
+<p>Consider the below SELECT query. It selects the first not null value fed into address fields for an employee.</p>
+<pre class="prettyprint notranslate">
+SELECT COALESCE (address1, address2, address3) Address
+FROM  employees;
+</pre>
+<p>Interestingly, the working of COALESCE function is similar to IF..ELSIF..ENDIF construct. The query above can be re-written as - </p>
+<pre class="prettyprint notranslate">
+IF address1 is not null THEN
+   result := address1;
+ELSIF address2 is not null THEN
+   result := address2;
+ELSIF address3 is not null THEN
+   result := address3;
+ELSE
+   result := null;
+END IF;
+</pre>
+<h2>Conditional Functions</h2>
+<p>Oracle provides conditional functions DECODE and CASE to impose conditions even in SQL statement.</p>
+<h3>The DECODE function</h3>
+<p>The function is the SQL equivalence of IF..THEN..ELSE conditional procedural statement. DECODE works with values/columns/expressions of all data types.</p>
+<h4>Syntax:</h4>
+<pre class="prettyprint notranslate">
+DECODE (expression, search, result [, search, result]... [, default])
+</pre>
+<p>DECODE function compares expression against each search value in order. If equality exists between expression and search argument, then it returns the corresponding result. In case of no match, default value is returned, if defined, else NULL. In case of any type compatibility mismatch, oracle internally does possible implicit conversion to return the results.</p>
+<p>As a matter of fact, Oracle considers two nulls to be equivalent while working with DECODE function.</p>
+<pre class="prettyprint notranslate">
+SELECT DECODE(NULL,NULL,'EQUAL','NOT EQUAL') 
+FROM DUAL;
+
+DECOD
+-----
+EQUAL
+</pre>
+<p>If expression is null, then Oracle returns the result of the first search that is also null. The maximum number of components in the DECODE function is 255.</p>
+<pre class="prettyprint notranslate">
+SELECT	first_name, salary, DECODE (hire_date, sysdate,'NEW JOINEE','EMPLOYEE')
+	FROM employees;
+</pre>
+<h3>CASE expression</h3>
+<p>CASE expressions works on the same concept as DECODE but differs in syntax and usage.</p>
+<h4>Syntax:</h4>
+<pre class="prettyprint notranslate">
+CASE  [ expression ]
+   WHEN condition_1 THEN result_1
+   WHEN condition_2 THEN result_2
+   ...
+   WHEN condition_n THEN result_n
+   ELSE result
+END
+</pre>
+<p>Oracle search starts from left and moves rightwards until it finds a true condition, and then returns result expression associated with it. If no condition is found to be true, and an ELSE clause exists, then Oracle returns result defined with else. Otherwise, Oracle returns null.</p>
+<p>The maximum number of arguments in a CASE expression is 255. All expressions count toward this limit, including the initial expression of a simple CASE expression and the optional ELSE expression. Each WHEN ... THEN pair counts as two arguments. To avoid exceeding this limit, you can nest CASE expressions so that the return_expr itself is a CASE expression.</p>
+<pre class="prettyprint notranslate">
+SELECT first_name, CASE	WHEN salary &#60; 200 THEN 'GRADE 1'
+			WHEN salary &#62; 200 AND salary &#60; 5000 THEN 'GRADE 2'
+			ELSE 'GRADE 3'
+		   END CASE
+FROM employees;	
+
+ENAM  	CASE
+----    -------
+JOHN    GRADE 2
+EDWIN   GRADE 3
+KING    GRADE 1
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/sql_certificate/using_single_row_functions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/sql_certificate/conditional_expressions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

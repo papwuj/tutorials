@@ -25,7 +25,7 @@ public class IndexConvert {
 
 
     public static void main(String[] args) throws Exception {
-        String filePath = "/Users/wujing/Workspaces/idea/tutorials/markdown/tutorials/all_list.txt";
+        String filePath = "/Users/wujing/Workspaces/idea/tutorials/markdown/data/all_list.txt";
         String toFilePath = "/Users/wujing/Workspaces/idea/tutorials/html/tutorials";
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
 

@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>D Programming - Ranges</title>
+<meta charset="utf-8">
+<meta name="description" content="D Programming - Ranges - Ranges are an abstraction of element access. This abstraction enables the use of great number of algorithms over great number of container types. Ranges emphasi"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/d_programming/d_programming_ranges.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#00a261;
+}
+a.demo {
+    background:#00a261;
+}
+li.heading {
+    background:#00a261;
+}
+.course-box{background:#00a261}
+.home-intro-sub p{color:#00a261}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/d_programming/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/d_programming/images/d-mini-logo.jpg" alt="D Programming Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">D Programming Basics</li>
+<li><a href="/d_programming/index.htm">D Programming - Home</a></li>
+<li><a href="/d_programming/d_programming_overview.htm">D Programming - Overview</a></li>
+<li><a href="/d_programming/d_programming_environment.htm">D Programming - Environment</a></li>
+<li><a href="/d_programming/d_programming_basic_syntax.htm">D Programming - Basic Syntax</a></li>
+<li><a href="/d_programming/d_programming_variables.htm">D Programming - Variables</a></li>
+<li><a href="/d_programming/d_programming_data_types.htm">D Programming - Data Types</a></li>
+<li><a href="/d_programming/d_programming_enums.htm">D Programming - Enums</a></li>
+<li><a href="/d_programming/d_programming_literals.htm">D Programming - Literals</a></li>
+<li><a href="/d_programming/d_programming_operators.htm">D Programming - Operators</a></li>
+<li><a href="/d_programming/d_programming_loops.htm">D Programming - Loops</a></li>
+<li><a href="/d_programming/d_programming_decisions.htm">D Programming -  Decisions</a></li>
+<li><a href="/d_programming/d_programming_functions.htm">D Programming - Functions</a></li>
+<li><a href="/d_programming/d_programming_characters.htm">D Programming - Characters</a></li>
+<li><a href="/d_programming/d_programming_strings.htm">D Programming - Strings</a></li>
+<li><a href="/d_programming/d_programming_arrays.htm">D Programming - Arrays</a></li>
+<li><a href="/d_programming/d_programming_associative_arrays.htm">D Programming - Associative Arrays</a></li>
+<li><a href="/d_programming/d_programming_pointers.htm">D Programming - Pointers</a></li>
+<li><a href="/d_programming/d_programming_tuples.htm">D Programming - Tuples</a></li>
+<li><a href="/d_programming/d_programming_structs.htm">D Programming - Structs</a></li>
+<li><a href="/d_programming/d_programming_unions.htm">D Programming - Unions</a></li>
+<li><a href="/d_programming/d_programming_ranges.htm">D Programming - Ranges</a></li>
+<li><a href="/d_programming/d_programming_aliases.htm">D Programming - Aliases</a></li>
+<li><a href="/d_programming/d_programming_mixins.htm">D Programming - Mixins</a></li>
+<li><a href="/d_programming/d_programming_modules.htm">D Programming - Modules</a></li>
+<li><a href="/d_programming/d_programming_templates.htm">D Programming - Templates</a></li>
+<li><a href="/d_programming/d_programming_immutable.htm">D Programming - Immutables</a></li>
+<li><a href="/d_programming/d_programming_file_io.htm">D Programming - File I/O</a></li>
+<li><a href="/d_programming/d_programming_concurrency.htm">D Programming - Concurrency</a></li>
+<li><a href="/d_programming/d_programming_exception_handling.htm">D Programming - Exception Handling</a></li>
+<li><a href="/d_programming/d_programming_contract_programming.htm">D Programming - Contract</a></li>
+<li><a href="/d_programming/d_programming_conditional_compilation.htm">D - Conditional Compilation</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">D Programming - Object Oriented</li>
+<li><a href="/d_programming/d_programming_classes_objects.htm">D Programming - Classes &amp; Objects</a></li>
+<li><a href="/d_programming/d_programming_inheritance.htm">D Programming - Inheritance</a></li>
+<li><a href="/d_programming/d_programming_overloading.htm">D Programming - Overloading</a></li>
+<li><a href="/d_programming/d_programming_encapsulation.htm">D Programming - Encapsulation</a></li>
+<li><a href="/d_programming/d_programming_interfaces.htm">D Programming - Interfaces</a></li>
+<li><a href="/d_programming/d_programming_abstract_classes.htm">D Programming - Abstract Classes</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">D Programming - Useful Resources</li>
+<!--<li><a href="/d_programming/d_programming_unit_testing.htm">D Programming - Unit Testing</a></li>-->
+<li><a href="/d_programming/d_programming_quick_guide.htm">D Programming - Quick Guide</a></li>
+<li><a href="/d_programming/d_programming_useful_resources.htm">D Programming - Useful Resources</a></li>
+<li><a href="/d_programming/d_programming_discussion.htm">D Programming - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>D Programming - Ranges</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/d_programming/d_programming_unions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/d_programming/d_programming_aliases.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Ranges are an abstraction of element access. This abstraction enables the use of great number of algorithms over great number of container types. Ranges emphasize how container elements are accessed, as opposed to how the containers are implemented. Ranges is a very simple concept that is based on whether a type defines certain sets of member functions.</p>
+<p>Ranges are an integral part of D. D's slices happen to be implementations of the most powerful range RandomAccessRange, and there are many range features in Phobos. Many Phobos algorithms return temporary range objects. For example, filter() chooses elements that are greater than 10 in the following code actually returns a range object, not an array.</p>
+<h2>Number ranges</h2>
+<p>Number ranges are quite commonly used and these number ranges is of type int. A few examples for number ranges is shown below &minus;</p>
+<pre class="result notranslate">
+// Example 1 
+foreach (value; 3..7)  
+
+// Example 2 
+int[] slice = array[5..10];
+</pre>
+<h2>Phobos Ranges</h2>
+<p>Ranges related to structs and class interfaces is phobos ranges. Phobos is the official runtime and standard library that comes with the D language compiler.</p>
+<p>There are various types of ranges which include &minus;</p>
+<ul class="list">
+<li>InputRange</li>
+<li>ForwardRange</li>
+<li>BidirectionalRange</li>
+<li>RandomAccessRange</li>
+<li>OutputRange</li>
+</ul>
+<h2>InputRange</h2>
+<p>The simplest range is the input range. The other ranges bring more requirements on top of the range that they are based on. There are three functions that InputRange requires &minus;</p>
+<ul class="list">
+<li><p><b>empty</b> &minus; It specifies whether the range is empty; it must return true when the range is considered to be empty; false otherwise.</p></li>
+<li><p><b>front</b> &minus; It provides access to the element at the beginning of the range.</p></li>
+<li><p><b>popFront()</b> &minus; It shortens the range from the beginning by removing the first element.</p></li>
+</ul>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/CJA7nf" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import std.stdio; 
+import std.string; 
+ 
+struct Student { 
+   string name; 
+   int number; 
+   
+   string toString() const { 
+      return format("%s(%s)", name, number); 
+   } 
+}
+  
+struct School { 
+   Student[] students; 
+}
+struct StudentRange {
+   Student[] students; 
+   
+   this(School school) { 
+      this.students = school.students; 
+   } 
+   @property bool empty() const { 
+      return students.length == 0; 
+   } 
+   @property ref Student front() { 
+      return students[0]; 
+   } 
+   void popFront() { 
+      students = students[1 .. $]; 
+   } 
+}
+
+void main() { 
+   auto school = School([ Student("Raj", 1), Student("John", 2), Student("Ram", 3)]);
+   auto range = StudentRange(school); 
+   writeln(range);  
+   
+   writeln(school.students.length);
+   
+   writeln(range.front); 
+   
+   range.popFront;  
+   
+   writeln(range.empty); 
+   writeln(range); 
+}
+</pre>
+<p>When the above code is compiled and executed, it produces the following result &minus;</p>
+<pre class="result notranslate">
+[Raj(1), John(2), Ram(3)] 
+3 
+Raj(1) 
+false 
+[John(2), Ram(3)]
+</pre>
+<h2>ForwardRange</h2>
+<p>ForwardRange additionally requires the save member function part from the other three function of InputRange and return a copy of the range when the save function is called.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/FBZEUi" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import std.array; 
+import std.stdio; 
+import std.string; 
+import std.range;
+
+struct FibonacciSeries { 
+   int first = 0; 
+   int second = 1; 
+   enum empty = false;   //  infinite range  
+   
+   @property int front() const { 
+      return first; 
+   } 
+   void popFront() { 
+      int third = first + second; 
+      first = second; 
+      second = third; 
+   }
+   @property FibonacciSeries save() const { 
+      return this; 
+   } 
+}
+  
+void report(T)(const dchar[] title, const ref T range) {
+   writefln("%s: %s", title, range.take(5)); 
+} 
+
+void main() { 
+   auto range = FibonacciSeries(); 
+   report("Original range", range);
+   
+   range.popFrontN(2); 
+   report("After removing two elements", range); 
+   
+   auto theCopy = range.save; 
+   report("The copy", theCopy);
+   
+   range.popFrontN(3); 
+   report("After removing three more elements", range); 
+   report("The copy", theCopy); 
+}
+</pre>
+<p>When the above code is compiled and executed, it produces the following result &minus;</p>
+<pre class="result notranslate">
+Original range: [0, 1, 1, 2, 3] 
+After removing two elements: [1, 2, 3, 5, 8] 
+The copy: [1, 2, 3, 5, 8] 
+After removing three more elements: [5, 8, 13, 21, 34] 
+The copy: [1, 2, 3, 5, 8]
+</pre>
+<h2>BidirectionalRange</h2>
+<p>BidirectionalRange additionally provides two member functions over the member functions of ForwardRange. The back function which is similar to front, provides access to the last element of the range. The popBack function is similar to popFront function and it removes the last element from the range.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/GCO3bd" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import std.array; 
+import std.stdio; 
+import std.string; 
+
+struct Reversed { 
+   int[] range; 
+   
+   this(int[] range) { 
+      this.range = range; 
+   } 
+   @property bool empty() const { 
+      return range.empty; 
+   }
+   @property int front() const { 
+      return range.back;  //  reverse 
+   }
+   @property int back() const { 
+      return range.front; // reverse 
+   } 
+   void popFront() { 
+      range.popBack(); 
+   }
+   void popBack() { 
+      range.popFront(); 
+   } 
+} 
+ 
+void main() { 
+   writeln(Reversed([ 1, 2, 3])); 
+} 
+</pre>
+<p>When the above code is compiled and executed, it produces the following result &minus;</p>
+<pre class="result notranslate">
+[3, 2, 1]
+</pre>
+<h2>Infinite RandomAccessRange</h2>
+<p>opIndex() is additionally required when compared to the ForwardRange. Also, the value of an empty function to be known at compile time as false. A simple example is explained with squares range is shown below.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/2YFuFG" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import std.array; 
+import std.stdio; 
+import std.string; 
+import std.range; 
+import std.algorithm; 
+
+class SquaresRange { 
+   int first;  
+   this(int first = 0) { 
+      this.first = first; 
+   }
+   enum empty = false; 
+   @property int front() const { 
+      return opIndex(0); 
+   }
+   void popFront() { 
+      ++first; 
+   }
+   @property SquaresRange save() const { 
+      return new SquaresRange(first); 
+   }
+   int opIndex(size_t index) const { 
+      /* This function operates at constant time */ 
+      immutable integerValue = first + cast(int)index; 
+      return integerValue * integerValue; 
+   } 
+}
+  
+bool are_lastTwoDigitsSame(int value) { 
+   /* Must have at least two digits */ 
+   if (value &lt; 10) { 
+      return false; 
+   } 
+   
+   /* Last two digits must be divisible by 11 */ 
+   immutable lastTwoDigits = value % 100; 
+   return (lastTwoDigits % 11) == 0; 
+} 
+ 
+void main() { 
+   auto squares = new SquaresRange(); 
+   
+   writeln(squares[5]);
+   
+   writeln(squares[10]); 
+   
+   squares.popFrontN(5); 
+   writeln(squares[0]); 
+   
+   writeln(squares.take(50).filter!are_lastTwoDigitsSame); 
+}
+</pre>
+<p>When the above code is compiled and executed, it produces the following result &minus;</p>
+<pre class="result notranslate">
+25 
+100 
+25 
+[100, 144, 400, 900, 1444, 1600, 2500]
+</pre>
+<h2>Finite RandomAccessRange</h2>
+<p>opIndex() and length are additionally required when compared to bidirectional range. This is explained with the help of detailed example that uses the Fibonacci series and Squares Range example used earlier. This example works well on normal D compiler but does not work on online compiler.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/awGryO" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import std.array; 
+import std.stdio; 
+import std.string; 
+import std.range; 
+import std.algorithm; 
+
+struct FibonacciSeries { 
+   int first = 0; 
+   int second = 1; 
+   enum empty = false;   //  infinite range  
+   
+   @property int front() const { 
+      return first;
+   }
+   void popFront() { 
+      int third = first + second; 
+      first = second; 
+      second = third; 
+   }
+   @property FibonacciSeries save() const { 
+      return this; 
+   } 
+}
+  
+void report(T)(const dchar[] title, const ref T range) { 
+   writefln("%40s: %s", title, range.take(5)); 
+}
+  
+class SquaresRange { 
+   int first;  
+   this(int first = 0) { 
+      this.first = first; 
+   } 
+   enum empty = false; 
+   @property int front() const { 
+      return opIndex(0); 
+   }
+   void popFront() { 
+      ++first; 
+   }
+   @property SquaresRange save() const { 
+      return new SquaresRange(first); 
+   } 
+   int opIndex(size_t index) const { 
+      /* This function operates at constant time */ 
+      immutable integerValue = first + cast(int)index; 
+      return integerValue * integerValue; 
+   } 
+}
+  
+bool are_lastTwoDigitsSame(int value) { 
+   /* Must have at least two digits */ 
+   if (value &lt; 10) { 
+      return false; 
+   }
+   
+   /* Last two digits must be divisible by 11 */ 
+   immutable lastTwoDigits = value % 100; 
+   return (lastTwoDigits % 11) == 0; 
+}
+  
+struct Together { 
+   const(int)[][] slices;  
+   this(const(int)[][] slices ...) { 
+      this.slices = slices.dup;  
+      clearFront(); 
+      clearBack(); 
+   }
+   private void clearFront() { 
+      while (!slices.empty &amp;&amp; slices.front.empty) { 
+         slices.popFront(); 
+      } 
+   } 
+   private void clearBack() { 
+      while (!slices.empty &amp;&amp; slices.back.empty) { 
+         slices.popBack(); 
+      } 
+   }
+   @property bool empty() const { 
+      return slices.empty; 
+   } 
+   @property int front() const { 
+      return slices.front.front; 
+   }
+   void popFront() { 
+      slices.front.popFront(); 
+      clearFront(); 
+   }
+   @property Together save() const { 
+      return Together(slices.dup); 
+   } 
+   @property int back() const { 
+      return slices.back.back; 
+   } 
+   void popBack() { 
+      slices.back.popBack(); 
+      clearBack(); 
+   }
+   @property size_t length() const { 
+      return reduce!((a, b) =&gt; a + b.length)(size_t.init, slices); 
+   }
+   int opIndex(size_t index) const { 
+      /* Save the index for the error message */ 
+      immutable originalIndex = index;  
+
+      foreach (slice; slices) { 
+         if (slice.length &gt; index) { 
+            return slice[index];  
+         } else { 
+            index -= slice.length; 
+         } 
+      } 
+      throw new Exception( 
+         format("Invalid index: %s (length: %s)", originalIndex, this.length));
+   } 
+}
+void main() { 
+   auto range = Together(FibonacciSeries().take(10).array, [ 777, 888 ],
+      (new SquaresRange()).take(5).array); 
+   writeln(range.save); 
+}
+</pre>
+<p>When the above code is compiled and executed, it produces the following result &minus;</p>
+<pre class="result notranslate">
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 777, 888, 0, 1, 4, 9, 16]
+</pre>
+<h2>OutputRange</h2>
+<p>OutputRange represents streamed element output, similar to sending characters to stdout. OutputRange requires support for the put(range, element) operation. put() is a function defined in the std.range module. It determines the capabilities of the range and the element at compile time and uses the most appropriate method to use to output the elements. A simple example is shown below.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/7dLSEb" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import std.algorithm; 
+import std.stdio; 
+ 
+struct MultiFile { 
+   string delimiter;
+   File[] files;
+   
+   this(string delimiter, string[] fileNames ...) { 
+      this.delimiter = delimiter; 
+
+      /* stdout is always included */ 
+      this.files ~= stdout; 
+
+      /* A File object for each file name */ 
+      foreach (fileName; fileNames) { 
+         this.files ~= File(fileName, "w"); 
+      } 
+   }
+   void put(T)(T element) { 
+      foreach (file; files) { 
+         file.write(element, delimiter); 
+      } 
+   }
+}
+void main() { 
+   auto output = MultiFile("\n", "output_0", "output_1"); 
+   copy([ 1, 2, 3], output);  
+   copy([ "red", "blue", "green" ], output); 
+} 
+</pre>
+<p>When the above code is compiled and executed, it produces the following result &minus;</p>
+<pre class="result notranslate">
+[1, 2, 3] 
+["red", "blue", "green"]
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/d_programming/d_programming_unions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/d_programming/d_programming_aliases.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

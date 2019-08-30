@@ -1,0 +1,2667 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>EasyMock - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="EasyMock - Quick Guide - Mocking is a way to test the functionality of a class in isolation. Mocking does not require a database connection or properties file read or file server read t"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/easymock/easymock_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#004580;
+}
+a.demo {
+    background:#004580;
+}
+li.heading {
+    background:#004580;
+}
+.course-box{background:#004580}
+.home-intro-sub p{color:#004580}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/easymock/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/easymock/images/easymock-mini-logo.jpg" alt="EasyMock Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">EasyMock Basics Tutorial</li>
+<li><a href="/easymock/index.htm">EasyMock - Home</a></li>
+<li><a href="/easymock/easymock_overview.htm">EasyMock - Overview</a></li>
+<li><a href="/easymock/easymock_environment_setup.htm">EasyMock - Environment Setup</a></li>
+<li><a href="/easymock/easymock_first_application.htm">EasyMock - First Application</a></li>
+<li><a href="/easymock/easymock_junit_integration.htm">EasyMock - JUnit Integration</a></li>
+<li><a href="/easymock/easymock_adding_behavior.htm">EasyMock - Adding Behavior</a></li>
+<li><a href="/easymock/easymock_verifying_behavior.htm">EasyMock - Verifying Behavior</a></li>
+<li><a href="/easymock/easymock_expecting_calls.htm">EasyMock - Expecting Calls</a></li>
+<li><a href="/easymock/easymock_varying_calls.htm">EasyMock - Varying Calls</a></li>
+<li><a href="/easymock/easymock_exception_handling.htm">EasyMock - Exception Handling</a></li>
+<li><a href="/easymock/easymock_createmock.htm">EasyMock - createMock</a></li>
+<li><a href="/easymock/easymock_createstrictmock.htm">EasyMock - createStrictMock</a></li>
+<li><a href="/easymock/easymock_createnicemock.htm">EasyMock - createNiceMock</a></li>
+<li><a href="/easymock/easymock_easymocksupport.htm">EasyMock - EasyMockSupport</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">EasyMock Resources</li>
+<li><a href="/easymock/easymock_quick_guide.htm">EasyMock - Quick Guide</a></li>
+<li><a href="/easymock/easymock_useful_resources.htm">EasyMock - Useful Resources</a></li>
+<li><a href="/easymock/easymock_discussion.htm">EasyMock - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>EasyMock - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/easymock/easymock_easymocksupport.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/easymock/easymock_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>EasyMock - Overview</h1>
+<h2>What is Mocking?</h2>
+<p>Mocking is a way to test the functionality of a class in isolation. Mocking does not require a database connection or properties file read or file server read to test a functionality. Mock objects do the mocking of the real service. A mock object returns a dummy data corresponding to some dummy input passed to it.</p>
+<h2>EasyMock</h2>
+<p>EasyMock facilitates creating mock objects seamlessly. It uses Java Reflection in order to create mock objects for a given interface. Mock objects are nothing but proxy for actual implementations. Consider a case of Stock Service which returns the price details of a stock. During development, the actual stock service cannot be used to get real-time data. So we need a dummy implementation of the stock service. EasyMock can do the same very easily as its name suggests.</p>
+<h2>Benefits of EasyMock</h2>
+<ul class="list">
+<li><p><b>No Handwriting</b> – No need to write mock objects on your own.</p></li>
+<li><p><b>Refactoring Safe</b> – Renaming interface method names or reordering parameters will not break the test code as Mocks are created at runtime.</p></li>
+<li><p><b>Return value support</b> – Supports return values.</p></li>
+<li><p><b>Exception support</b> – Supports exceptions.</p></li>
+<li><p><b>Order check support</b> – Supports check on order of method calls.</p></li>
+<li><p><b>Annotation support</b> – Supports creating mocks using annotation.</p></li>
+</ul>
+<p>Consider the following code snippet.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.mock;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.EasyMock.EasyMock;
+
+public class PortfolioTester {
+   public static void main(String[] args){
+
+      //Create a portfolio object which is to be tested		
+      Portfolio portfolio = new Portfolio();
+
+      //Creates a list of stocks to be added to the portfolio
+      List<Stock> stocks = new ArrayList<Stock>();
+      Stock googleStock = new Stock("1","Google", 10);
+      Stock microsoftStock = new Stock("2","Microsoft",100);
+
+      stocks.add(googleStock);
+      stocks.add(microsoftStock);		
+
+      //Create the mock object of stock service
+      StockService stockServiceMock =
+         EasyMock.createMock(StockService.class);
+
+      // mock the behavior of stock service to return the value of various stocks
+      EasyMock.expect(stockServiceMock.getPrice(googleStock)).andReturn(50.00);
+      EasyMock.expect(stockServiceMock.getPrice(microsoftStock))
+         .andReturn(1000.00);
+
+      EasyMock.replay(stockServiceMock);
+
+      //add stocks to the portfolio
+      portfolio.setStocks(stocks);
+
+      //set the stockService to the portfolio
+      portfolio.setStockService(stockServiceMock);
+
+      double marketValue = portfolio.getMarketValue();
+
+      //verify the market value to be 
+      //10*50.00 + 100* 1000.00 = 500.00 + 100000.00 = 100500
+      System.out.println("Market value of the portfolio: "+ marketValue);
+   }
+}
+</pre>
+<p>Let's understand the important concepts of the above program. The complete code is available in the chapter <a href="/easymock/easymock_first_application.htm">First Application.</a></p>
+<ul class="list">
+<li><p><b>Portfolio</b> – An object to carry a list of stocks and to get the market value computed using stock prices and stock quantity.</p></li>
+<li><p><b>Stock</b> – An object to carry the details of a stock such as its id, name, quantity, etc.</p></li>
+<li><p><b>StockService</b> – A stock service returns the current price of a stock.</p></li>
+<li><p><b>EasyMock.createMock(...)</b> – EasyMock created a mock of stock service.</p></li>
+<li><p><b>EasyMock.expect(...).andReturn(...)</b> – Mock implementation of getPrice method of stockService interface. For googleStock, return 50.00 as price.</p></li>
+<li><p><b>EasyMock.replay(...)</b> – EasyMock prepares the Mock object to be ready so that it can be used for testing.</p></li>
+<li><p><b>portfolio.setStocks(...)</b> – The portfolio now contains a list of two stocks.</p></li>
+<li><p><b>portfolio.setStockService(...)</b> - Assigns the stockService Mock object to the portfolio.</p></li>
+<li><p><b>portfolio.getMarketValue()()</b> – The portfolio returns the market value based on its stocks using the mock stock service.</p></li>
+</ul>
+<h1>EasyMock - Environment Setup</h1>
+<p>EasyMock is a framework for Java, so the very first requirement is to have JDK installed in your machine.</p>
+<h2>System Requirement</h2>
+<table class="table table-bordered">
+<tr>
+<th>JDK</th>
+<td>1.5 or above.</td>
+</tr>
+<tr>
+<th>Memory</th>
+<td>no minimum requirement.</td>
+</tr>
+<tr>
+<th>Disk Space</th>
+<td>no minimum requirement.</td>
+</tr>
+<tr>
+<th>Operating System</th>
+<td>no minimum requirement.</td>
+</tr>
+</table>
+<h2>Step 1 – Verify Java Installation on Your Machine</h2>
+<p>Open the console and execute the following <b>java</b> command.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Task</th>
+<th>Command</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Open Command Console</td>
+<td>c:\> java -version</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Open Command Terminal</td>
+<td>$ java -version</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>Open Terminal</td>
+<td>machine:~ joseph$ java -version</td>
+</tr>
+</table>
+<p>Let's verify the output for all the operating systems:</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td><p>java version "1.6.0_21"</p>
+<p>Java(TM) SE Runtime Environment (build 1.6.0_21-b07)</p>
+<p>Java HotSpot(TM) Client VM (build 17.0-b17, mixed mode, sharing)</p></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td><p>java version "1.6.0_21"</p>
+<p>Java(TM) SE Runtime Environment (build 1.6.0_21-b07)</p> 
+<p>Java HotSpot(TM) Client VM (build 17.0-b17, mixed mode, sharing)</p></td>
+</tr>
+<tr>
+<td>Mac</td>
+<td><p>java version "1.6.0_21"</p>
+<p>Java(TM) SE Runtime Environment (build 1.6.0_21-b07)</p>
+<p>Java HotSpot(TM)64-Bit Server VM (build 17.0-b17, mixed mode, sharing)</p></td>
+</tr>
+</table>
+<p>If you do not have Java installed, install the Java Software Development Kit (SDK) from <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html." rel="nofollow" target="_blank">http://www.oracle.com/technetwork/java/javase/downloads/index.html.</a></p>
+<p>We assume you have Java 1.6.0_21 installed on your system for this tutorial.</p>
+<h2>Step 2: Set JAVA Environment</h2>
+<p>Set the <b>JAVA_HOME</b> environment variable to point to the base directory location where Java is installed on your machine. For example,</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable JAVA_HOME to C:\Program Files\Java\jdk1.6.0_21</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export JAVA_HOME=/usr/local/java-current</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export JAVA_HOME=/Library/Java/Home</td>
+</tr>
+</table>
+<p>Append the location of the Java compiler to your System Path.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Append the string ;C:\Program Files\Java\jdk1.6.0_21\bin to the end of the system variable, Path.</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export PATH=$PATH:$JAVA_HOME/bin/</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>not required</td>
+</tr>
+</table>
+<p>Verify Java Installation using the command <b>java -version</b> as explained above.</p>
+<h2>Step 3: Download EasyMock Archive</h2>
+<p>Download the latest version of EasyMock from <a href=" http://sourceforge.net/projects/easymock/files/EasyMock/3.2/easymock-3.2.zip/download." rel="nofollow" target="_blank">http://sourceforge.net/projects/easymock/files/EasyMock/3.2/easymock-3.2.zip/download.</a> Save the zip folder on your C drive, let’s say, C:\>EasyMock.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Archive name</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>easymock-3.2.zip</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>easymock-3.2.zip</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>easymock-3.2.zip</td>
+</tr>
+</table>
+<h2>Step 4: Download EasyMock Dependencies</h2>
+<p>Download the latest version of cglib jar file from <a href=" https://github.com/cglib/cglib/releases" rel="nofollow" target="_blank">https://github.com/cglib/cglib/releases</a> and copy it onto C:\>EasyMock folder. At the time of writing this tutorial, the latest version was 3.1.</p>
+<p>Download the latest version of objenesis zip file from <a href="http://objenesis.org/download.html" rel="nofollow" target="_blank">http://objenesis.org/download.html</a> and copy it onto C:\>EasyMock folder. At the time of writing this tutorial, the latest version was 2.1. Extract objenesis-2.1.jar to C:\>EasyMock folder</p>
+<h2>Step 5: Set EasyMock Environment</h2>
+<p>Set the <b>EasyMock_HOME</b> environment variable to point to the base directory location where EasyMock and dependency jars are stored on your machine. The following table shows how to set the environment variable on different operating systems, assuming we've extracted easymock-3.2.jar, cglib-3.1.jar, and objenesis-2.1.jar onto C:\>EasyMock folder.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable EasyMock_HOME to C:\EasyMock</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export EasyMock_HOME=/usr/local/EasyMock</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export EasyMock_HOME=/Library/EasyMock</td>
+</tr>
+</table>
+<h2>Step 6: Set CLASSPATH Variable</h2>
+<p>Set the <b>CLASSPATH</b> environment variable to point to the location where EasyMock and dependency jars are stored. The following table shows how to set the CLASSPATH variable on different operating systems.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable CLASSPATH to %CLASSPATH%;%EasyMock_HOME%\easymock-3.2.jar;%EasyMock_HOME%\cglib-3.1.jar;%EasyMock_HOME%\objenesis-2.1.jar;.;</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export CLASSPATH=$CLASSPATH:$EasyMock_HOME/easymock-3.2.jar:$EasyMock_HOME/cglib-3.1.jar:$EasyMock_HOME/objenesis-2.1.jar:.</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export CLASSPATH=$CLASSPATH:$EasyMock_HOME/easymock-3.2.jar:$EasyMock_HOME/cglib-3.1.jar:$EasyMock_HOME/objenesis-2.1.jar:.</td>
+</tr>
+</table>
+<h2>Step 7: Download JUnit Archive</h2>
+<p>Download the latest version of JUnit jar file from <a href="https://github.com/junit-team/junit/wiki/Download-and-Install." rel="nofollow" target="_blank">https://github.com/junit-team/junit/wiki/Download-and-Install.</a>Save the folder at the location C:\>Junit.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Archive name</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>junit4.11.jar, hamcrest-core-1.2.1.jar</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>junit4.11.jar, hamcrest-core-1.2.1.jar</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>junit4.11.jar, hamcrest-core-1.2.1.jar</td>
+</tr>
+</table>
+<h2>Step 8: Set JUnit Environment</h2>
+<p>Set the <b>JUNIT_HOME</b> environment variable to point to the base directory location where JUnit jars are stored on your machine. The following table shows how to set this environment variable on different operating systems, assuming we've stored junit4.11.jar and hamcrest-core-1.2.1.jar at C:\>Junit.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable JUNIT_HOME to C:\JUNIT</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export JUNIT_HOME=/usr/local/JUNIT</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export JUNIT_HOME=/Library/JUNIT</td>
+</tr>
+</table>
+<h2>Step 9: Set CLASSPATH Variable</h2>
+<p>Set the CLASSPATH environment variable to point to the JUNIT jar location. The following table shows how it is done on different operating systems.</p>
+<table class="table table-bordered">
+<tr>
+<th>OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable CLASSPATH to %CLASSPATH%;%JUNIT_HOME%\junit4.11.jar;%JUNIT_HOME%
+\hamcrest-core-1.2.1.jar;.;</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export CLASSPATH=$CLASSPATH:$JUNIT_HOME/junit4.11.jar:$JUNIT_HOME
+/hamcrest-core-1.2.1.jar:.</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>export CLASSPATH=$CLASSPATH:$JUNIT_HOME/junit4.11.jar:$JUNIT_HOME
+/hamcrest-core-1.2.1.jar:.</td>
+</tr>
+</table>
+<h1>EasyMock - First Application</h1>
+<p>Before going into the details of the EasyMock Framework, let’s see an application in action. In this example, we've created a mock of Stock Service to get the dummy price of some stocks and unit tested a java class named Portfolio.</p>
+<p>The process is discussed below in a step-by-step manner.</p>
+<h2>Step 1: Create a JAVA class to represent the Stock</h2>
+<p><b>Stock.java</b></p>
+<pre class="prettyprint notranslate">
+public class Stock {
+   private String stockId;
+   private String name;	
+   private int quantity;
+
+   public Stock(String stockId, String name, int quantity){
+      this.stockId = stockId;
+      this.name = name;		
+      this.quantity = quantity;		
+   }
+
+   public String getStockId() {
+      return stockId;
+   }
+
+   public void setStockId(String stockId) {
+      this.stockId = stockId;
+   }
+
+   public int getQuantity() {
+      return quantity;
+   }
+
+   public String getTicker() {
+      return name;
+   }
+}
+</pre>
+<h2>Step 2: Create an interface StockService to get the price of a stock</h2> 
+<p><b>StockService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface StockService {
+   public double getPrice(Stock stock);
+}
+</pre>
+<h2>Step 3: Create a class Portfolio to represent the portfolio of any client</h2> 
+<p><b>Portfolio.java</b></p>
+<pre class="prettyprint notranslate">
+import java.util.List;
+public class Portfolio {
+   private StockService stockService;
+   private List<Stock> stocks;
+
+   public StockService getStockService() {
+      return stockService;
+   }
+   public void setStockService(StockService stockService) {
+      this.stockService = stockService;
+   }
+
+   public List<Stock> getStocks() {
+      return stocks;
+   }
+
+   public void setStocks(List<Stock> stocks) {
+      this.stocks = stocks;
+   }
+
+   public double getMarketValue(){
+      double marketValue = 0.0;
+      for(Stock stock:stocks){
+         marketValue += stockService.getPrice(stock) * stock.getQuantity();
+      }
+      return marketValue;
+   }
+}
+</pre>
+<h2>Step 4: Test the Portfolio class</h2>
+<p>Let's test the Portfolio class, by injecting in it a mock of stockservice. Mock will be created by EasyMock.</p>
+<p><b>PortfolioTester.java</b></p>
+<pre class="prettyprint notranslate">
+import java.util.ArrayList;
+import java.util.List;
+
+import org.easymock.EasyMock;
+public class PortfolioTester {
+   Portfolio portfolio;	
+   StockService stockService;
+
+   public static void main(String[] args){
+      PortfolioTester tester = new PortfolioTester();
+      tester.setUp();
+      System.out.println(tester.testMarketValue()?"pass":"fail");
+   }
+
+   public void setUp(){
+      //Create a portfolio object which is to be tested		
+      portfolio = new Portfolio();		
+      
+      //Create the mock object of stock service
+      stockService = EasyMock.createMock(StockService.class);		
+      
+      //set the stockService to the portfolio
+      portfolio.setStockService(stockService);
+   }
+
+   public boolean testMarketValue(){
+      //Creates a list of stocks to be added to the portfolio
+      List<Stock> stocks = new ArrayList&lt;Stock&gt;();
+      Stock googleStock = new Stock("1","Google", 10);
+      Stock microsoftStock = new Stock("2","Microsoft",100);		
+      stocks.add(googleStock);
+      stocks.add(microsoftStock);
+
+      //add stocks to the portfolio
+      portfolio.setStocks(stocks);
+
+      // mock the behavior of stock service to return the value of various stocks
+      EasyMock.expect(stockService.getPrice(googleStock)).andReturn(50.00);
+      EasyMock.expect(stockService.getPrice(microsoftStock)).andReturn(1000.00);		
+
+      // activate the mock
+      EasyMock.replay(stockService);		
+
+      double marketValue = portfolio.getMarketValue();		
+      return marketValue == 100500.0;
+   }
+}
+</pre>
+<h2>Step 5: Verify the result</h2>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac Stock.java StockService.java Portfolio.java PortfolioTester.java
+</pre>
+<p>Now run the PortfolioTester to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java PortfolioTester
+</pre>
+<p>Verify the Output</p>
+<pre class="result notranslate">
+pass
+</pre>
+<h1>EasyMock - JUnit Integration</h1>
+<p>In this chapter, we'll learn how to integrate JUnit and EasyMock together. For JUnit tutorial, please refer to <a href="/junit/index.htm">JUnit</a>. Here we will create a Math Application which uses CalculatorService to perform basic mathematical operations such as addition, subtraction, multiply, and division. We'll use EasyMock to mock the dummy implementation of CalculatorService. In addition, we've made extensive use of annotations to showcase their compatibility with both JUnit and EasyMock.</p>
+<p>The process is discussed below in a step-by-step manner.</p>
+<h2>Step 1: Create an interface called CalculatorService to provide mathematical functions</h2>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h2>Step 2: Create a JAVA class to represent MathApplication</h2>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h2>Step 3: Test the MathApplication class</h2>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to 
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+
+      //activate the mock
+      EasyMock.replay(calcService);	
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+   }
+}
+</pre>
+<h2>Step 4: Create a class to execute to test cases </h2>
+<p>Create a java class file named TestRunner in <b>C:\ > EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h2>Step 5: Verify the Result</h2>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac CalculatorService.java MathApplication.java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>EasyMock - Adding Behavior</h1>
+<p>EasyMock adds a functionality to a mock object using the methods <b>expect()</b> and <b>expectLassCall()</b>. Take a look at the following code snippet.</p>
+<pre class="prettyprint notranslate">
+//add the behavior of calc service to add two numbers
+EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+</pre>
+<p>Here we've instructed EasyMock to give a behavior of adding 10 and 20 to the add method of calcService and as a result, to return the value of 30.00.</p>
+<p>At this point of time, Mock simply recorded the behavior but it is not working as a mock object. After calling replay, it works as expected.</p>
+<pre class="prettyprint notranslate">
+//add the behavior of calc service to add two numbers
+EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+
+//activate the mock
+//EasyMock.replay(calcService);
+</pre>
+<h2>Example without EasyMock.Replay()</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+//@RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify the class which is going to 
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      
+      //add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+
+      //activate the mock
+      //EasyMock.replay(calcService);	
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\>EasyMock_WORKSPACE</b> to execute the test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac Calculator Service.java Math Application.java Math Application Tester.java Test Runner.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+testAdd(MathApplicationTester): expected:<0.0> but was:<30.0>
+false
+</pre>
+<h2>Example with EasyMock.Replay()</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions.</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication.</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to 
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   // @Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      
+      // add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+
+      //activate the mock
+      EasyMock.replay(calcService);	
+		
+      // test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\>EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac Calculator Service.java Math Application.java Math Application Tester.java Test Runner.java
+</pre>
+<p>Now run the Test Runner to see the result.</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>EasyMock - Verifying Behavior</h1>
+<p>EasyMock can ensure whether a mock is being used or not. It is done using the <b>verify()</b> method. Take a look at the following code snippet.</p>
+<pre class="prettyprint notranslate">
+//activate the mock
+EasyMock.replay(calcService);
+
+//test the add functionality
+Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+
+//verify call to calcService is made or not
+EasyMock.verify(calcService);
+</pre>
+<h2>Example without EasyMock.Verify()</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      //return calcService.add(input1, input2);
+      return input1 + input2;
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to 
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      
+      //add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+
+      //activate the mock
+      EasyMock.replay(calcService);	
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+
+      //verify call to calcService is made or not
+      //EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac Calculator Service.java Math Application.java Math Application Tester.java Test Runner.java
+</pre>
+<p>Now run the Test Runner to see the result</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h2>Example with EasyMock.Verify()</h2>
+<h3>Step 1: Create an interface CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      //return calcService.add(input1, input2);
+      return input1 + input2;
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to 
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+
+      //activate the mock
+      EasyMock.replay(calcService);	
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac Calculator Service.java Math Application.java Math Application Tester.java Test Runner.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+testAdd(MathApplicationTester): 
+   Expectation failure on verify:
+      CalculatorService.add(10.0, 20.0): expected: 1, actual: 0
+false
+</pre>
+<h1>EasyMock - Expecting Calls</h1>
+<p>EasyMock provides a special check on the number of calls that can be made on a particular method. Suppose MathApplication should call the CalculatorService.serviceUsed() method only once, then it should not be able to call CalculatorService.serviceUsed() more than once.</p>
+<pre class="prettyprint notranslate">
+//add the behavior of calc service to add two numbers and serviceUsed.
+EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+calcService.serviceUsed();
+
+//limit the method call to 1, no less and no more calls are allowed
+EasyMock.expectLastCall().times(1);
+</pre>
+<p>Create CalculatorService interface as follows.</p>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+   public void serviceUsed();
+}
+</pre>
+<h2>Example with calcService.serviceUsed() called once</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+   public void serviceUsed();
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){		
+      calcService.serviceUsed();
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to 
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   // @Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+      calcService.serviceUsed();
+      EasyMock.expectLastCall().times(1);
+      
+      //activate the mock
+      EasyMock.replay(calcService);	
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac Calculator Service.java Math Application.java Math Application Tester.java Test Runner.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h2>Example with calcService.serviceUsed() Called Twice</h2>
+<h3>Step 1: Create an interface CalculatorService to provide mathematical functions.</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+   public void serviceUsed();
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication.</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){		
+      calcService.serviceUsed();
+      calcService.serviceUsed();
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to 
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+	
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+      calcService.serviceUsed();
+      EasyMock.expectLastCall().times(1);
+      
+      //activate the mock
+      EasyMock.replay(calcService);	
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b>to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful()); 
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac CalculatorService.java MathApplication.java MathApplicationTester.java TestRunner.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+testAdd(com.tutorialspoint.mock.MathApplicationTester):  
+   Unexpected method call CalculatorService.serviceUsed():
+      CalculatorService.add(10.0, 20.0): expected: 1, actual: 0
+      CalculatorService.serviceUsed(): expected: 1, actual: 2
+false
+</pre>
+<h2>Example without Calling calcService.serviceUsed()</h2>
+<h3>Step 1: Create an interface Calculator Service to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+   public void serviceUsed();
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){		
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to 
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      
+      //add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+      calcService.serviceUsed();
+      EasyMock.expectLastCall().times(1);
+      
+      //activate the mock
+      EasyMock.replay(calcService);	
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac Calculator Service.java Math Application.java Math Application Tester.java Test Runner.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+testAdd(com.tutorialspoint.mock.MathApplicationTester): 
+   Expectation failure on verify:
+      CalculatorService.serviceUsed(): expected: 1, actual: 0
+false
+</pre>
+<h1>EasyMock - Varying Calls</h1>
+<p>EasyMock provides the following additional methods to vary the expected call counts.</p>
+<ul class="list">
+<li><p><b>times (int min, int max)</b> – expects between min and max calls.</p></li>
+<li><p><b>atLeastOnce ()</b> – expects at least one call.</p></li>
+<li><p><b>anyTimes ()</b> – expects an unrestricted number of calls.</p></li>
+</ul>
+<h2>Example with times (min,max)</h2>
+<h3>Step 1: Create an interface CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+   public void serviceUsed();
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      calcService.serviceUsed();
+      calcService.serviceUsed();
+      calcService.serviceUsed();   
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to 
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      //add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+      calcService.serviceUsed();
+      EasyMock.expectLastCall().times(1,3);
+      
+      //activate the mock
+      EasyMock.replay(calcService);	
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b> to execute Test case(s)</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac Calculator Service.java Math Application.java Math Application Tester.java Test Runner.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h2>Example with atLeastOnce</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+   public void serviceUsed();
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      calcService.serviceUsed();
+      calcService.serviceUsed(); 
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class </h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+      
+      //add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+      calcService.serviceUsed();
+      EasyMock.expectLastCall().atLeastOnce();
+      
+      //activate the mock
+      EasyMock.replay(calcService);	
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac Calculator Service.java Math Application.java Math Application Tester.java Test Runner.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h2>Example with anyTimes</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+   public void serviceUsed();
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      calcService.serviceUsed();
+      calcService.serviceUsed(); 
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to 
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test
+   public void testAdd(){
+    
+      //add the behavior of calc service to add two numbers
+      EasyMock.expect(calcService.add(10.0,20.0)).andReturn(30.00);
+      calcService.serviceUsed();
+      EasyMock.expectLastCall().anyTimes();
+      
+      //activate the mock
+      EasyMock.replay(calcService);	
+		
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac Calculator Service.java Math Application.java Math Application Tester.java Test Runner.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>EasyMock - Exception Handling</h1>
+<p>EasyMock provides the capability to a mock to throw exceptions, so exception handling can be tested. Take a look at the following code snippet.</p>
+<pre class="prettyprint notranslate">
+//add the behavior to throw exception
+
+EasyMock.expect(calc Service.add(10.0,20.0)).and Throw(new Runtime Exception("Add operation not implemented"));
+</pre>
+<p>Here we've added an exception clause to a mock object. MathApplication makes use of calcService using its add method and the mock throws a RuntimeException whenever calcService.add() method is invoked.</p>
+<h2>Example</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.easymock.Mock;
+import org.easymock.TestSubject;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+// @RunWith attaches a runner with the test class to initialize the test data
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   // @TestSubject annotation is used to identify class which is going to
+         use the mock object
+   @TestSubject
+   MathApplication mathApplication = new MathApplication();
+
+   //@Mock annotation is used to create the mock object to be injected
+   @Mock
+   CalculatorService calcService;
+
+   @Test(expected = RuntimeException.class)
+   public void testAdd(){
+      
+      //add the behavior to throw exception
+      EasyMock.expect(calcService.add(10.0,20.0)).andThrow(new
+         RuntimeException("Add operation not implemented"));	     
+      
+      //activate the mock
+      EasyMock.replay(calcService);			
+      
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(10.0, 20.0),30.0,0);
+      
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac MathApplicationTester.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>EasyMock - createMock</h1>
+<p>So far, we've used annotations to create mocks. EasyMock provides various methods to create mock objects. EasyMock.createMock() creates mocks without bothering about the order of method calls that the mock is going to make in due course of its action.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+calcService = EasyMock.createMock(CalculatorService.class);
+</pre>
+<h2>Example</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p>Here we've added two mock method calls, add() and subtract(), to the mock object via expect(). However during testing, we've called subtract() before calling add(). When we create a mock object using EasyMock.createMock(), the order of execution of the method does not matter.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   private MathApplication mathApplication;
+   private CalculatorService calcService;
+   
+   @Before
+   public void setUp(){
+      mathApplication = new MathApplication();
+      calcService = EasyMock.createMock(CalculatorService.class);
+      mathApplication.setCalculatorService(calcService);
+   }
+
+   @Test
+   public void testAddAndSubtract(){
+     
+      //add the behavior to add numbers
+      EasyMock.expect(calcService.add(20.0,10.0)).andReturn(30.0);
+      
+      //subtract the behavior to subtract numbers
+      EasyMock.expect(calcService.subtract(20.0,10.0)).andReturn(10.0);
+      
+      //activate the mock
+      EasyMock.replay(calcService);	
+	
+      //test the subtract functionality
+      Assert.assertEquals(mathApplication.subtract(20.0, 10.0),10.0,0);
+      
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
+      
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac MathApplicationTester.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>EasyMock - createStrictMock</h1>
+<p>EasyMock.createStrictMock() creates a mock and also takes care of the order of method calls that the mock is going to make in due course of its action.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+calcService = EasyMock.createStrictMock(CalculatorService.class);
+</pre>
+<h2>Example</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p>Here we've added two mock method calls, add() and subtract(), to the mock object via expect(). However during testing, we've called subtract() before calling add(). When we create a mock object using EasyMock.createStrictMock(), the order of execution of the method does matter.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   private MathApplication mathApplication;
+   private CalculatorService calcService;
+   
+   @Before
+   public void setUp(){
+      mathApplication = new MathApplication();
+      calcService = EasyMock.createStrictMock(CalculatorService.class);
+      mathApplication.setCalculatorService(calcService);
+   }
+
+   @Test
+   public void testAddAndSubtract(){
+      
+      //add the behavior to add numbers
+      EasyMock.expect(calcService.add(20.0,10.0)).andReturn(30.0);
+      
+      //subtract the behavior to subtract numbers
+      EasyMock.expect(calcService.subtract(20.0,10.0)).andReturn(10.0);
+      
+      //activate the mock
+      EasyMock.replay(calcService);	
+	
+      //test the subtract functionality
+      Assert.assertEquals(mathApplication.subtract(20.0, 10.0),10.0,0);
+      
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
+      
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases </h3>
+<p>Create a java class file named TestRunner in <b>C:\> EasyMock_WORKSPACE</b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac MathApplicationTester.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+testAddAndSubtract(com.tutorialspoint.mock.MathApplicationTester): 
+   Unexpected method call CalculatorService.subtract(20.0, 10.0):
+      CalculatorService.add(20.0, 10.0): expected: 1, actual: 0
+false
+</pre>
+<h1>EasyMock - createNiceMock</h1>
+<p>EasyMock.createNiceMock() creates a mock and sets the default implementation of each method of the mock. If EasyMock.createMock() is used, then invoking the mock method throws assertion error.</p>
+<h2>Syntax</h2>
+<pre class="prettyprint notranslate">
+calcService = EasyMock.createNiceMock(CalculatorService.class);
+</pre>
+<h2>Example</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions.</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p>Here we've added one mock method call, add(), via expect(). However during testing, we've called subtract() and other methods as well. When we create a mock object using EasyMock.createNiceMock(), the default implementation with default values are available.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMock;
+import org.easymock.EasyMockRunner;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester {
+	
+   private MathApplication mathApplication;
+   
+   private CalculatorService calcService;
+
+   @Before
+   public void setUp(){
+      mathApplication = new MathApplication();
+      calcService = EasyMock.createNiceMock(CalculatorService.class);
+      mathApplication.setCalculatorService(calcService);
+   }
+
+   @Test
+   public void testCalcService(){
+      
+      //add the behavior to add numbers
+      EasyMock.expect(calcService.add(20.0,10.0)).andReturn(30.0);
+      
+      //activate the mock
+      EasyMock.replay(calcService);	
+      
+      //test the add functionality
+      Assert.assertEquals(mathApplication.add(20.0, 10.0),30.0,0);
+      
+      //test the subtract functionality
+      Assert.assertEquals(mathApplication.subtract(20.0, 10.0),0.0,0);
+      
+      //test the multiply functionality
+      Assert.assertEquals(mathApplication.divide(20.0, 10.0),0.0,0);		
+      
+      //test the divide functionality
+      Assert.assertEquals(mathApplication.multiply(20.0, 10.0),0.0,0);
+
+      //verify call to calcService is made or not
+      EasyMock.verify(calcService);
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in<b>C:\> EasyMock_WORKSPACE </b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac MathApplicationTester.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<h1>EasyMock - EasyMockSupport</h1>
+<p>EasyMockSupport is a utility or helper class for test classes. It provides the following functionalities:</p>
+<ul class="list">
+<li><p><b>replayAll()</b> – Registers all the created mocks in one batch.</p></li>
+<li><p><b>verifyAll()</b> – Verifies all the mock operations in one batch.</p></li>
+<li><p><b>resetAll()</b> – Resets all the mock operations in one batch.</p></li>
+</ul>
+<h2>Example</h2>
+<h3>Step 1: Create an interface called CalculatorService to provide mathematical functions</h3>
+<p><b>CalculatorService.java</b></p>
+<pre class="prettyprint notranslate">
+public interface CalculatorService {
+   public double add(double input1, double input2);
+   public double subtract(double input1, double input2);
+   public double multiply(double input1, double input2);
+   public double divide(double input1, double input2);
+}
+</pre>
+<h3>Step 2: Create a JAVA class to represent MathApplication</h3>
+<p><b>MathApplication.java</b></p>
+<pre class="prettyprint notranslate">
+public class MathApplication {
+   private CalculatorService calcService;
+
+   public void setCalculatorService(CalculatorService calcService){
+      this.calcService = calcService;
+   }
+   public double add(double input1, double input2){
+      return calcService.add(input1, input2);		
+   }
+   public double subtract(double input1, double input2){
+      return calcService.subtract(input1, input2);
+   }
+   public double multiply(double input1, double input2){
+      return calcService.multiply(input1, input2);
+   }
+   public double divide(double input1, double input2){
+      return calcService.divide(input1, input2);
+   }
+}
+</pre>
+<h3>Step 3: Test the MathApplication class</h3>
+<p>Let's test the MathApplication class, by injecting in it a mock of calculatorService. Mock will be created by EasyMock.</p>
+<p><b>MathApplicationTester.java</b></p>
+<pre class="prettyprint notranslate">
+import org.easymock.EasyMockRunner;
+import org.easymock.EasyMockSupport;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+@RunWith(EasyMockRunner.class)
+public class MathApplicationTester extends EasyMockSupport {
+
+   private MathApplication mathApplication1;
+   private MathApplication mathApplication2;
+
+   private CalculatorService calcService1;
+   private CalculatorService calcService2;
+
+   @Before
+   public void setUp(){
+      mathApplication1 = new MathApplication();
+      mathApplication2 = new MathApplication();
+      calcService1 = createNiceMock(CalculatorService.class);
+      calcService2 = createNiceMock(CalculatorService.class);
+      mathApplication1.setCalculatorService(calcService1);
+      mathApplication2.setCalculatorService(calcService2);
+   }
+
+   @Test
+   public void testCalcService(){
+      
+      //activate all mocks
+      replayAll();	
+      
+      //test the add functionality
+      Assert.assertEquals(mathApplication1.add(20.0, 10.0),0.0,0);
+      
+      //test the subtract functionality
+      Assert.assertEquals(mathApplication1.subtract(20.0, 10.0),0.0,0);
+      
+      //test the multiply functionality
+      Assert.assertEquals(mathApplication1.divide(20.0, 10.0),0.0,0);		
+      //test the divide functionality
+      Assert.assertEquals(mathApplication1.multiply(20.0, 10.0),0.0,0);
+
+      //test the add functionality
+      Assert.assertEquals(mathApplication2.add(20.0, 10.0),0.0,0);
+      
+      //test the subtract functionality
+      Assert.assertEquals(mathApplication2.subtract(20.0, 10.0),0.0,0);
+      
+      //test the multiply functionality
+      Assert.assertEquals(mathApplication2.divide(20.0, 10.0),0.0,0);		
+      
+      //test the divide functionality
+      Assert.assertEquals(mathApplication2.multiply(20.0, 10.0),0.0,0);
+
+      //verify all the mocks
+      verifyAll();
+   }
+}
+</pre>
+<h3>Step 4: Execute test cases</h3>
+<p>Create a java class file named TestRunner in <b> C:\> EasyMock_WORKSPACE </b> to execute Test case(s).</p>
+<p><b>TestRunner.java</b></p>
+<pre class="prettyprint notranslate">
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(MathApplicationTester.class);
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+      System.out.println(result.wasSuccessful());
+   }
+}  	
+</pre>
+<h3>Step 5: Verify the Result</h3>
+<p>Compile the classes using javac compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>javac MathApplicationTester.java
+</pre>
+<p>Now run the Test Runner to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\EasyMock_WORKSPACE>java TestRunner
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+true
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/easymock/easymock_easymocksupport.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/easymock/easymock_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

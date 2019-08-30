@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Struts 2 & Tiles Integration</title>
+<meta charset="utf-8">
+<meta name="description" content="Struts 2 & Tiles Integration - In this chapter, let us go through the steps involved in integrating the Tiles framework with Struts2. Apache Tiles is a templating framework built to simplify "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/struts_2/struts_tiles.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#0c2444;
+}
+a.demo {
+    background:#0c2444;
+}
+li.heading {
+    background:#0c2444;
+}
+.course-box{background:#0c2444}
+.home-intro-sub p{color:#0c2444}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/struts_2/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/struts_2/images/struts-mini-logo.jpg" alt="Struts2 Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Struts 2 Tutorial</li>
+<li><a href="/struts_2/index.htm">Struts2 - Home</a></li>
+<li><a href="/struts_2/basic_mvc_architecture.htm">Struts2 - Basic MVC Architecture</a></li>
+<li><a href="/struts_2/struts_overview.htm">Struts2 - Overview</a></li>
+<li><a href="/struts_2/struts_environment_setup.htm">Struts2 - Environment Setup</a></li>
+<li><a href="/struts_2/struts_architecture.htm">Struts2 - Architecture</a></li>
+<li><a href="/struts_2/struts_examples.htm">Struts2 - Examples</a></li>
+<li><a href="/struts_2/struts_configuration.htm">Struts2 - Configuration</a></li>
+<li><a href="/struts_2/struts_actions.htm">Struts2 - Actions</a></li>
+<li><a href="/struts_2/struts_interceptors.htm">Struts2 - Interceptors</a></li>
+<li><a href="/struts_2/struts_result_types.htm">Struts2 - Result Types</a></li>
+<li><a href="/struts_2/struts_value_stack_ognl.htm">Struts2 - Value Stack/OGNL</a></li>
+<li><a href="/struts_2/struts_file_uploads.htm">Struts2 - File Uploads</a></li>
+<li><a href="/struts_2/struts_database_access.htm">Struts2 - Database Access</a></li>
+<li><a href="/struts_2/struts_sending_email.htm">Struts2 - Sending Email</a></li>
+<li><a href="/struts_2/struts_validations.htm">Struts2 - Validations</a></li>
+<li><a href="/struts_2/struts_localization.htm">Struts2 - Localization</a></li>
+<li><a href="/struts_2/struts_type_conversion.htm">Struts2 - Type Conversion</a></li>
+<li><a href="/struts_2/struts_themes_templates.htm">Struts2 - Themes/Templates</a></li>
+<li><a href="/struts_2/struts_exception_handling.htm">Struts2 - Exception Handling</a></li>
+<li><a href="/struts_2/struts_annotations.htm">Struts2 - Annotations</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Struts 2 Tags</li>
+<li><a href="/struts_2/struts_control_tags.htm">Struts2 - Control Tags</a></li>
+<li><a href="/struts_2/struts_data_tags.htm">Struts2 - Data Tags</a></li>
+<li><a href="/struts_2/struts_form_tags.htm">Struts2 - Form Tags</a></li>
+<li><a href="/struts_2/struts_ajax_tags.htm">Struts2 - Ajax Tags</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Struts 2 Integrations</li>
+<li><a href="/struts_2/struts_spring.htm">Struts2 - Spring</a></li>
+<li><a href="/struts_2/struts_tiles.htm">Struts2 - Tiles</a></li>
+<li><a href="/struts_2/struts_hibernate.htm">Struts2 - Hibernate</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Struts 2 Useful Resources</li>
+<li><a href="/struts_2/struts_questions_answers.htm">Struts2 - Questions and Answers</a></li>
+<li><a href="/struts_2/struts_quick_guide.htm">Struts2 - Quick Guide</a></li>
+<li><a href="/struts_2/struts_useful_resources.htm">Struts2 - Useful Resources</a></li>
+<li><a href="/struts_2/struts_discussion.htm">Struts2 - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Struts 2 &amp; Tiles Integration</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/struts_2/struts_spring.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/struts_2/struts_hibernate.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, let us go through the steps involved in integrating the Tiles framework with Struts2. Apache Tiles is a templating framework built to simplify the development of web application user  interfaces.</p>
+<p>First of all we need to download the tiles jar files from the <a target="_blank" rel="nofollow" href="https://tiles.apache.org/">Apache Tiles</a> website. You need to add the following jar files to the project's class path.</p>
+<ul class="list">
+<li>tiles-api-x.y.z.jar</li>
+<li>tiles-compat-x.y.z.jar</li>
+<li>tiles-core-x.y.z.jar</li>
+<li>tiles-jsp-x.y.z.jar</li>
+<li>tiles-servlet-x.y.z.jar</li>
+</ul>
+<p>In addition to the above, we have to copy the following jar files from the struts2 download in your <b>WEB-INF/lib</b>.</p>
+<ul class="list"> 
+<li>commons-beanutils-x.y.zjar</li>
+<li>commons-digester-x.y.jar</li>
+<li>struts2-tiles-plugin-x.y.z.jar</li>
+</ul>
+<p>Now let us setup the <b>web.xml</b> for the Struts-Tiles integration as given below. There are two important point to note here. First, we need to tell tiles, where to find tiles configuration file <b>tiles.xml</b>. In our case, it will be under <b>/WEB-INF</b> folder. Next we need to initiliaze the Tiles listener that comes with Struts2 download.</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" Encoding = "UTF-8"?&gt;
+&lt;web-app xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns = "http://java.sun.com/xml/ns/javaee" 
+   xmlns:web = "http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+   xsi:schemaLocation = "http://java.sun.com/xml/ns/javaee 
+   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+   id = "WebApp_ID" version = "2.5"&gt;
+   &lt;display-name&gt;Struts2Example15&lt;/display-name&gt;
+	
+   &lt;context-param&gt;
+      &lt;param-name&gt;
+         org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
+      &lt;/param-name&gt;
+      
+      &lt;param-value&gt;
+         /WEB-INF/tiles.xml
+      &lt;/param-value&gt;
+   &lt;/context-param&gt;
+
+   &lt;listener&gt;
+      &lt;listener-class&gt;
+         org.apache.struts2.tiles.StrutsTilesListener
+      &lt;/listener-class&gt;
+   &lt;/listener&gt;
+
+   &lt;filter&gt;
+      &lt;filter-name&gt;struts2&lt;/filter-name&gt;
+      &lt;filter-class&gt;
+         org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+      &lt;/filter-class&gt;
+   &lt;/filter&gt;
+
+   &lt;filter-mapping&gt;
+      &lt;filter-name&gt;struts2&lt;/filter-name&gt;
+      &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+   &lt;/filter-mapping&gt;
+
+   &lt;welcome-file-list&gt;
+      &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+   &lt;/welcome-file-list&gt;
+&lt;/web-app&gt;
+</pre>
+<p>Next let us create <b>tiles.xml</b> under /WEB-INF folder with the following contents &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" Encoding = "UTF-8" ?&gt;
+
+&lt;!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"&gt;
+
+&lt;tiles-definitions&gt;
+
+   &lt;definition name = "baseLayout" template="/baseLayout.jsp"&gt;
+      &lt;put-attribute name = "title"  value = "Template"/&gt;
+      &lt;put-attribute name = "banner" value = "/banner.jsp"/&gt;
+      &lt;put-attribute name = "menu"   value = "/menu.jsp"/&gt;
+      &lt;put-attribute name = "body"   value = "/body.jsp"/&gt;
+      &lt;put-attribute name = "footer"   value = "/footer.jsp"/&gt;
+   &lt;/definition&gt;
+
+   &lt;definition name = "tiger" extends = "baseLayout"&gt;
+      &lt;put-attribute name = "title"  value = "Tiger"/&gt;
+      &lt;put-attribute name = "body"   value = "/tiger.jsp"/&gt;      
+   &lt;/definition&gt;
+
+   &lt;definition name = "lion" extends = "baseLayout"&gt;
+      &lt;put-attribute name = "title"  value = "Lion"/&gt;
+      &lt;put-attribute name = "body"   value = "/lion.jsp"/&gt;      
+   &lt;/definition&gt;
+  
+&lt;/tiles-definitions&gt;
+</pre>
+<p>Next, we define a basic skeleton layout in the <b>baseLayout.jsp</b>. It has five reusable / overridable areas. Namely <b>title, banner, menu, body</b> and <b>footer</b>. We provide the default values for the baseLayout and then we create two customizations that extend from the default layout. The tiger layout is similar to the basic layout, except it uses the <b>tiger.jsp</b> as its body and the text "Tiger" as the title. Similarly, the lion layout is similar to the basic layout, except it uses the <b>lion.jsp</b> as its body and the text "Lion" as the title.</p>
+<p>Let us have a look at the individual jsp files. Following is the content of <b>baseLayout.jsp</b> file &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;%@ taglib uri = "http://tiles.apache.org/tags-tiles" prefix = "tiles"%&gt;
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd"&gt;
+
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta http-equiv="Content-Type" content="text/html; charset = UTF-8"&gt;
+      &lt;title&gt;
+         &lt;tiles:insertAttribute name = "title" ignore="true" /&gt;
+      &lt;/title&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;tiles:insertAttribute name = "banner" /&gt;&lt;br/&gt;
+      &lt;hr/&gt;
+      &lt;tiles:insertAttribute name = "menu" /&gt;&lt;br/&gt;
+      &lt;hr/&gt;
+      &lt;tiles:insertAttribute name = "body" /&gt;&lt;br/&gt;
+      &lt;hr/&gt;
+      &lt;tiles:insertAttribute name = "footer" /&gt;&lt;br/&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>Here, we just put together a basic HTML page that has the tiles attributes. We insert the tiles attributes in the places where we need them to be. Next, let us create a <b>banner.jsp</b> file with the following content &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;img src="http://www.tutorialspoint.com/images/tp-logo.gif"/&gt;
+</pre>
+<p>The <b>menu.jsp</b> file will have the following lines which are the links - to the TigerMenu.action and the LionMenu.action struts actions.</p>
+<pre class="prettyprint notranslate">
+&lt;%@taglib uri = "/struts-tags" prefix = "s"%&gt;
+
+&lt;a href = "&lt;s:url action = "tigerMenu"/&gt;" Tiger&lt;/a&gt;&lt;br&gt;
+&lt;a href = "&lt;s:url action = "lionMenu"/&gt;" Lion&lt;/a&gt;&lt;br&gt;
+</pre>
+<p>The <b>lion.jsp</b> file will have following content &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;img src="http://upload.wikimedia.org/wikipedia/commons/d/d2/Lion.jpg"/&gt;
+The lion
+</pre>
+<p>The <b>tiger.jsp</b> file will have following content &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;img src="http://www.freewebs.com/tigerofdarts/tiger.jpg"/&gt;
+The tiger
+</pre>
+<p>Next, let us create the action class file <b>MenuAction.java</b> which contains the following &minus;</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.struts2;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class MenuAction extends ActionSupport {
+   public String tiger() { return "tiger"; }
+   public String lion() { return "lion"; }
+}
+</pre>
+<p>This is a pretty straight forward class. We declared two methods tiger() and lion() that return tiger and lion as outcomes respectively. Let us put it all together in the <b>struts.xml</b> file &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
+
+&lt;struts&gt;
+   &lt;package name = "default" extends = "struts-default"&gt;
+      &lt;result-types&gt;
+         &lt;result-type name = "tiles" 
+         class="org.apache.struts2.views.tiles.TilesResult" /&gt;
+      &lt;/result-types&gt;
+
+      &lt;action name = "*Menu" method = "{1}" 
+         class = "com.tutorialspoint.struts2.MenuAction"&gt;
+         &lt;result name = "tiger" type = "tiles"&gt;tiger&lt;/result&gt;
+         &lt;result name = "lion" type = "tiles"&gt;lion&lt;/result&gt;
+      &lt;/action&gt;
+
+   &lt;/package&gt;
+&lt;/struts&gt;
+</pre>
+<p>Let us check what we did in above file. First of all, we declared a new result type called "tiles" as we are now using tiles instead of plain jsp for the view technology. Struts2 has its support for the Tiles View result type, so we create the result type "tiles" to be of the "org.apache.struts2.view.tiles.TilesResult" class.</p>
+<p>Next, we want to say if the request is for /tigerMenu.action take the user to the tiger tiles page and if the request is for /lionMenu.action take the user to the lion tiles page.</p>
+<p>We achieve this using a bit of regular expression. In our action definition, we say anything that matches the pattern "*Menu" will be handled by this action. The matching method will be invoked in the MenuAction class. That is, tigerMenu.action will invoke tiger() and lionMenu.action will invoke lion(). We then need to map the outcome of the result to the appropriate tiles pages.</p>
+<p>Now right click on the project name and click <b>Export &gt; WAR File</b> to create a War file. Then deploy this WAR in the Tomcat's webapps directory. Finally, start Tomcat server and try to access URL <b>http://localhost:8080/HelloWorldStruts2/tigerMenu.jsp</b>. This will produce the following screen &minus;</p>
+<img src="/struts_2/images/struts_tiles.gif" alt="Struts and Tiles Integration" />
+<p>Similarly, if you goto the lionMenu.action page, you will see the lion page which uses the same tiles layout.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/struts_2/struts_spring.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/struts_2/struts_hibernate.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

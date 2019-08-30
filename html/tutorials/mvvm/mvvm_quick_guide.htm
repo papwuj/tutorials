@@ -1,0 +1,2775 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>MVVM - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="MVVM - Quick Guide - The well-ordered and perhaps the most reusable way to organize your code is to use the 'MVVM' pattern. The Model, View, ViewModel (MVVM pattern) is all about gu"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/mvvm/mvvm_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#e65d02;
+}
+a.demo {
+    background:#e65d02;
+}
+li.heading {
+    background:#e65d02;
+}
+.course-box{background:#e65d02}
+.home-intro-sub p{color:#e65d02}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/mvvm/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/mvvm/images/mvvm-mini-logo.jpg" alt="MVVM Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">MVVM Tutorial</li>
+<li><a href="/mvvm/index.htm">MVVM - Home</a></li>
+<li><a href="/mvvm/mvvm_introduction.htm">MVVM – Introduction</a></li>
+<li><a href="/mvvm/mvvm_advantages.htm">MVVM - Advantages</a></li>
+<li><a href="/mvvm/mvvm_responsibilities.htm">MVVM - Responsibilities</a></li>
+<li><a href="/mvvm/mvvm_first_application.htm">MVVM - First Application</a></li>
+<li><a href="/mvvm/mvvm_hooking_up_views.htm">MVVM - Hooking Up Views</a></li>
+<li><a href="/mvvm/mvvm_hooking_up_viewmodel.htm">MVVM - Hooking Up ViewModel</a></li>
+<li><a href="/mvvm/mvvm_wpf_data_bindings.htm">MVVM - WPF Data Bindings</a></li>
+<li><a href="/mvvm/mvvm_wpf_data_templates.htm">MVVM - WPF Data Templates</a></li>
+<li><a href="/mvvm/mvvm_view_viewmodel_communication.htm">MVVM - ViewModel Communication</a></li>
+<li><a href="/mvvm/mvvm_hierarchies_and_navigation.htm">MVVM - Hierarchies &amp; Navigation</a></li>
+<li><a href="/mvvm/mvvm_validations.htm">MVVM - Validations</a></li>
+<li><a href="/mvvm/mvvm_dependency_injection.htm">MVVM - Dependency Injection</a></li>
+<li><a href="/mvvm/mvvm_events.htm">MVVM - Events</a></li>
+<li><a href="/mvvm/mvvm_unit_testing.htm">MVVM - Unit Testing</a></li>
+<li><a href="/mvvm/mvvm_frameworks.htm">MVVM - Frameworks</a></li>
+<li><a href="/mvvm/mvvm_interview_questions.htm">MVVM - Interview Questions</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">MVVM Useful Resources</li>
+<li><a href="/mvvm/mvvm_quick_guide.htm">MVVM - Quick Guide</a></li>
+<li><a href="/mvvm/mvvm_useful_resources.htm">MVVM - Useful Resources</a></li>
+<li><a href="/mvvm/mvvm_discussion.htm">MVVM - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>MVVM - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/mvvm/mvvm_interview_questions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/mvvm/mvvm_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>MVVM – Introduction</h1>
+<p>The well-ordered and perhaps the most reusable way to organize your code is to use the 'MVVM' pattern. The <b>Model, View, ViewModel (MVVM pattern)</b> is all about guiding you in how to organize and structure your code to write maintainable, testable and extensible applications.</p>
+<p><b>Model</b> &minus; It simply holds the data and has nothing to do with any of the business logic.</p>
+<p><b>ViewModel</b> &minus; It acts as the link/connection between the Model and View and makes stuff look pretty.</p>
+<p><b>View</b> &minus; It simply holds the formatted data and essentially delegates everything to the Model.</p>
+<img src="/mvvm/images/view_model.jpg" alt="View Model" />
+<h2>Separated Presentation</h2>
+<p>To avoid the problems caused by putting application logic in code-behind or XAML, it's best to use a technique known as separated presentation. We're trying to avoid this, where we will have XAML and code-behind with the minimum required for working with user interface objects directly. User interface classes also contain code for complex interaction behaviors, application logic, and everything else as shown in the following figure on the left side.</p>
+<img src="/mvvm/images/separated_presentation.jpg" alt="Separated Presentation" />
+<ul class="list">
+<li><p>With separated presentation, the user interface class is much simpler. It has the XAML of course, but the code behind does as little as is practical.</p></li>
+<li><p>The application logic belongs in a separate class, which is often referred to as the model.</p></li>
+<li><p>However, this is not the whole story. If you stop here, you're likely to repeat a very common mistake that will lead you down the path of data binding insanity.</p></li>
+<li><p>A lot of developers attempt to use data binding to connect elements in the XAML directly to properties in the model.</p></li>
+<li><p>Now sometimes this can be okay, but often it's not. The problem is the model is entirely concerned with matters of what the application does, and not with how the user interacts with the application.</p></li>
+<li><p>The way in which you present data is often somewhat different from how it's structured internally.</p></li>
+<li><p>Moreover, most user interfaces have some state that does not belong in the application model.</p></li>
+<li><p>For example, if your user interface uses a drag and drop, something needs to keep track of things like where the item being dragged is right now, how its appearance should change as it moves over possible drop targets, and how those drop targets might also change as the item is dragged over them.</p></li>
+<li><p>This sort of state can get surprisingly complex, and needs to be thoroughly tested.</p></li>
+<li><p>In practice, you normally want some other class sitting between the user interface and the model. This has two important roles.</p>
+<ul class="list">
+<li><p>First, it adapts your application model for a particular user interface view.</p></li>
+<li><p>Second, it's where any nontrivial interaction logic lives, and by that, I mean code required to get your user interface to behave in the way you want.</p></li>
+</ul>
+</li>
+</ul>
+<h1>MVVM – Advantages</h1>
+<p>MVVM pattern is ultimately the modern structure of the MVC pattern, so the main goal is still the same to provide a clear separation between domain logic and presentation layer. Here are some of the advantages and disadvantages of MVVM pattern.</p>
+<p>The key benefit is allowing true separation between the View and Model beyond achieving separation and the efficiency that you gain from having that. What that means in real terms is that when your model needs to change, it can be changed easily without the view needing to and vice-versa.</p>
+<p>There are three important key things that flow out of applying MVVM which are as follows.</p>
+<h2>Maintainability</h2>
+<ul class="list">
+<li><p>A clean separation of different kinds of code should make it easier to go into one or several of those more granular and focused parts and make changes without worrying.</p></li>
+<li><p>That means you can remain agile and keep moving out to new releases quickly.</p></li>
+</ul>
+<h2>Testability</h2>
+<ul class="list">
+<li><p>With MVVM each piece of code is more granular and if it is implemented right your external and internal dependences are in separate pieces of code from the parts with the core logic that you would like to test.</p></li>
+<li><p>That makes it a lot easier to write unit tests against a core logic.</p></li>
+<li><p>Make sure it works right when written and keeps working even when things change in maintenance.</p></li>
+</ul>
+<h2>Extensibility</h2>
+<ul class="list">
+<li><p>It sometimes overlaps with maintainability, because of the clean separation boundaries and more granular pieces of code.</p></li>
+<li><p>You have a better chance of making any of those parts more reusable.</p></li>
+<li><p>It has also the ability to replace or add new pieces of code that do similar things into the right places in the architecture.</p></li>
+</ul>
+<p>The obvious purpose of MVVM pattern is abstraction of the View which reduces the amount of business logic in code-behind. However, following are some other solid advantages &minus;</p>
+<ul class="list">
+<li>The ViewModel is easier to unit test than code-behind or event-driven code.</li>
+<li>You can test it without awkward UI automation and interaction.</li>
+<li>The presentation layer and the logic is loosely coupled.</li>
+</ul>
+<h2>Disadvantages</h2>
+<ul class="list">
+<li>Some people think that for simple UIs, MVVM can be overkill.</li>
+<li>Similarly in bigger cases, it can be hard to design the ViewModel.</li>
+<li>Debugging would be bit difficult when we have complex data bindings.</li>
+</ul>
+<h1>MVVM – Responsibilities</h1>
+<p>MVVM pattern consists of three parts &minus; Model, View, and ViewModel. Most of the developers at the start are little confused as to what a Model, View and ViewModel should or shouldn't contain and what are the responsibilities of each part.</p>
+<p>In this chapter we will learn the responsibilities of each part of the MVVM pattern so that you can clearly understand what kind of code goes where. MVVM is really a layered architecture for the client side as shown in the following figure.</p>
+<img src="/mvvm/images/mvvm_responsibilities.jpg" alt="MVVM Responsibilities" />
+<ul class="list">
+<li><p>The presentation layer is composed of the views.</p></li>
+<li><p>The logical layer are the view models.</p></li>
+<li><p>The presentation layer is the combination of the model objects.</p></li>
+<li><p>The client services that produce and persist them either directed access in a two-tier application or via service calls in and then to your application.</p></li>
+<li><p>The client services are not officially part of the MVVM pattern but it is often used with MVVM to achieve further separations and avoid duplicate code.</p></li>
+</ul>
+<h2>Model Responsibilities</h2>
+<p>In general, model is the simplest one to understand. It is the client side data model that supports the views in the application.</p>
+<ul class="list">
+<li><p>It is composed of objects with properties and some variables to contain data in memory.</p></li>
+<li><p>Some of those properties may reference other model objects and create the object graph which as a whole is the model objects.</p></li>
+<li><p>Model objects should raise property change notifications which in WPF means data binding.</p></li>
+<li><p>The last responsibility is validation which is optional, but you can embed the validation information on the model objects by using the WPF data binding validation features via interfaces like INotifyDataErrorInfo/IDataErrorInfo</p></li>
+</ul>
+<h2>View Responsibilities</h2>
+<p>The main purpose and responsibilities of views is to define the structure of what the user sees on the screen. The structure can contain static and dynamic parts.</p>
+<ul class="list">
+<li><p>Static parts are the XAML hierarchy that defines the controls and layout of controls that a view is composed of.</p></li>
+<li><p>Dynamic part is like animations or state changes that are defined as part of the View.</p></li>
+<li><p>The primary goal of MVVM is that there should be no code behind in the view.</p></li>
+<li><p>It’s impossible that there is no code behind in view. In view you at least need the constructor and a call to initialize component.</p></li>
+<li><p>The idea is that the event handling, action and data manipulation logic code shouldn’t be in the code behind in View.</p></li>
+<li><p>There are also other kinds of code that have to go in the code behind any code that's required to have a reference to UI element is inherently view code.</p></li>
+</ul>
+<h2>ViewModel Responsibilities</h2>
+<ul class="list">
+<li><p>ViewModel is the main point of MVVM application. The primary responsibility of the ViewModel is to provide data to the view, so that view can put that data on the screen.</p></li>
+<li><p>It also allows the user to interact with data and change the data.</p></li>
+<li><p>The other key responsibility of a ViewModel is to encapsulate the interaction logic for a view, but it does not mean that all of the logic of the application should go into ViewModel.</p></li>
+<li><p>It should be able to handle the appropriate sequencing of calls to make the right thing happen based on user or any changes on the view.</p></li>
+<li><p>ViewModel should also manage any navigation logic like deciding when it is time to navigate to a different view.</p></li>
+</ul>
+<h1>MVVM – First Application</h1>
+<p>In this chapter, we will learn how to use MVVM patterns for simple input screen and the WPF application that you may already be used to.</p>
+<p>Let’s have a look at a simple example in which we will be using MVVM approach.</p>
+<p><b>Step 1</b> &minus; Create a new WPF Application project MVVMDemo.</p>
+<img src="/mvvm/images/first_application_step1.jpg" alt="First Application Step 1" />
+<p><b>Step 2</b> &minus; Add the three folders (Model, ViewModel, and Views) into your project.</p>
+<img src="/mvvm/images/first_application_step2.jpg" alt="First Application Step 2" />
+<p><b>Step 3</b> &minus; Add a StudentModel class in the Model folder and paste the below code in that class</p>
+<pre class="prettyprint notranslate">
+using System.ComponentModel;
+
+namespace MVVMDemo.Model {
+ 
+   public class StudentModel {}
+	
+   public class Student : INotifyPropertyChanged {
+      private string firstName; 
+      private string lastName;
+		
+      public string FirstName { 
+         get { 
+            return firstName; 
+         }
+			
+         set { 
+            if (firstName != value) { 
+               firstName = value; 
+               RaisePropertyChanged("FirstName"); 
+               RaisePropertyChanged("FullName"); 
+            } 
+         } 
+      }
+		
+      public string LastName { 
+         get {return lastName; } 
+			
+         set {
+            if (lastName != value) { 
+               lastName = value;
+               RaisePropertyChanged("LastName");
+               RaisePropertyChanged("FullName"); 
+            } 
+         } 
+      }
+		
+      public string FullName { 
+         get { 
+            return firstName + " " + lastName; 
+         } 
+      }
+		
+      public event PropertyChangedEventHandler PropertyChanged;
+		
+      private void RaisePropertyChanged(string property) {
+         if (PropertyChanged != null) {
+            PropertyChanged(this, new PropertyChangedEventArgs(property));
+         } 
+      } 
+   } 
+}
+</pre>
+<p><b>Step 4</b> &minus; Add another StudentViewModel class into ViewModel folder and paste the following code.</p>
+<pre class="prettyprint notranslate">
+using MVVMDemo.Model; 
+using System.Collections.ObjectModel;
+
+namespace MVVMDemo.ViewModel { 
+
+   public class StudentViewModel { 
+	
+      public ObservableCollection&lt;Student&gt; Students { 
+         get; 
+         set; 
+      }
+		
+      public void LoadStudents() { 
+         ObservableCollection&lt;Student&gt; students = new ObservableCollection&lt;Student&gt;();
+				
+         students.Add(new Student { FirstName = "Mark", LastName = "Allain" }); 
+         students.Add(new Student { FirstName = "Allen", LastName = "Brown" }); 
+         students.Add(new Student { FirstName = "Linda", LastName = "Hamerski" }); 
+			
+         Students = students; 
+      } 
+   } 
+}
+</pre>
+<p><b>Step 5</b> &minus; Add a new User Control (WPF) by right click Views folder and Select Add &gt; New Item…</p>
+<img src="/mvvm/images/first_application_step5.jpg" alt="First Application Step 5" />
+<p><b>Step 6</b> &minus; Click Add button. Now you will see the XAML file. Add the following code into StudentView.xaml file which contains different UI elements.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class = "MVVMDemo.Views.StudentView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMDemo.Views" 
+   mc:Ignorable = "d" 
+   d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;Grid&gt; 
+      &lt;StackPanel HorizontalAlignment = "Left"&gt; 
+		
+         &lt;ItemsControl ItemsSource = "{Binding Path = Students}"&gt;
+			
+            &lt;ItemsControl.ItemTemplate&gt; 
+               &lt;DataTemplate&gt; 
+                  &lt;StackPanel Orientation = "Horizontal"&gt;
+                     &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+                        Width = "100" Margin = "3 5 3 5"/&gt;
+								
+                     &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+                        Width = "100" Margin = "0 5 3 5"/&gt;
+								
+                     &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+                        Margin = "0 5 3 5"/&gt;
+								
+                  &lt;/StackPanel&gt; 
+               &lt;/DataTemplate&gt; 
+            &lt;/ItemsControl.ItemTemplate&gt; 
+				
+         &lt;/ItemsControl&gt; 
+			
+      &lt;/StackPanel&gt; 
+   &lt;/Grid&gt; 
+	
+&lt;/UserControl&gt;
+</pre>
+<p><b>Step 7</b> &minus; Now add the StudentView into your MainPage.xaml file using the following code.</p>
+<pre class="prettyprint notranslate">
+&lt;Window x:Class = "MVVMDemo.MainWindow"
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008"
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:local = "clr-namespace:MVVMDemo"
+   xmlns:views = "clr-namespace:MVVMDemo.Views"
+   mc:Ignorable = "d"
+   Title = "MainWindow" Height = "350" Width = "525"&gt;
+	
+   &lt;Grid&gt;
+      &lt;views:StudentView x:Name = "StudentViewControl" Loaded = "StudentViewControl_Loaded"/&gt;
+   &lt;/Grid&gt;
+	
+&lt;/Window&gt;
+</pre>
+<p><b>Step 8</b> &minus; Here is the implementation for Loaded event in the MainPage.xaml.cs file, which will update the View from the ViewModel.</p>
+<pre class="prettyprint notranslate">
+using System.Windows;
+
+namespace MVVMDemo {
+
+   /// &lt;summary&gt;
+      /// Interaction logic for MainWindow.xaml
+   /// &lt;/summary&gt;
+	
+   public partial class MainWindow : Window {
+	
+      public MainWindow() {
+         InitializeComponent();
+      }
+		
+      private void StudentViewControl_Loaded(object sender, RoutedEventArgs e) {
+         MVVMDemo.ViewModel.StudentViewModel studentViewModelObject = 
+            new MVVMDemo.ViewModel.StudentViewModel();
+         studentViewModelObject.LoadStudents();
+			
+         StudentViewControl.DataContext = studentViewModelObject;
+      }
+   }
+}
+</pre>
+<p><b>Step 9</b> &minus; When the above code is compiled and executed, you will receive the following output on your main window.</p>
+<img src="/mvvm/images/first_application_step9.jpg" alt="First Application Step 9" />
+<p>We recommend you to execute the above example in a step-by-step manner for better understanding.</p>
+<h1>MVVM – Hooking Up Views</h1>
+<p>In this chapter, we will cover different ways in which you can get your views hooked up to ViewModel. First, let's have a look at View first construction where we can declare it in XAML. As we have seen the example in the last chapter where we have hooked up a view from the main window. Now we will see other ways to hook up views.</p>
+<p>We will be using the same example in this chapter as well. Following is the same Model class implementation.</p>
+<pre class="prettyprint notranslate">
+using System.ComponentModel;
+
+namespace MVVMDemo.Model {
+ 
+   public class StudentModel {} 
+	
+   public class Student : INotifyPropertyChanged { 
+      private string firstName; 
+      private string lastName;
+		
+      public string FirstName { 
+         get { return firstName; }
+			
+         set { 
+            if (firstName != value) { 
+               firstName = value; 
+               RaisePropertyChanged("FirstName");
+               RaisePropertyChanged("FullName"); 
+            } 
+         } 
+      }
+	
+      public string LastName {
+         get { return lastName; } 
+			
+         set { 
+            if (lastName != value) { 
+               lastName = value; 
+               RaisePropertyChanged("LastName");
+               RaisePropertyChanged("FullName"); 
+            } 
+         } 
+      }
+	
+      public string FullName { 
+         get { 
+            return firstName + " " + lastName; 
+         } 
+      }
+	
+      public event PropertyChangedEventHandler PropertyChanged;
+	
+      private void RaisePropertyChanged(string property) { 
+         if (PropertyChanged != null) { 
+            PropertyChanged(this, new PropertyChangedEventArgs(property)); 
+         } 
+      } 
+   }  
+}
+</pre>
+<p>Here is the ViewModel class implementation. This time LoadStudents method is called in the default constructor.</p>
+<pre class="prettyprint notranslate">
+using MVVMDemo.Model; 
+using System.Collections.ObjectModel;
+
+namespace MVVMDemo.ViewModel{ 
+
+   public class StudentViewModel { 
+	
+      public StudentViewModel() { 
+         LoadStudents(); 
+      } 
+		
+      public ObservableCollection&lt;Student&gt; Students { 
+         get; 
+         set; 
+      }
+		
+      public void LoadStudents() { 
+         ObservableCollection&lt;Student&gt; students = new ObservableCollection&lt;Student&gt;();
+			
+         students.Add(new Student { FirstName = "Mark", LastName = "Allain" }); 
+         students.Add(new Student { FirstName = "Allen", LastName = "Brown" }); 
+         students.Add(new Student { FirstName = "Linda", LastName = "Hamerski" }); 
+			
+         Students = students; 
+      } 
+   } 
+}
+</pre>
+<p>Whether the view is a Window, User Control or Page, parser generally works top to bottom and left to right. It calls the default constructor for each element as it encounters it. There are two ways to construct a view. You can use any on them.</p>
+<ul class="list">
+<li>View First Construction in XAML</li>
+<li>View First Construction in Code-behind</li>
+</ul>
+<h2>View First Construction in XAML</h2>
+<p>One way is to simply add your ViewModel as a nested element in the setter for the DataContext property as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl.DataContext&gt; 
+   &lt;viewModel:StudentViewModel/&gt; 
+&lt;/UserControl.DataContext&gt;
+</pre>
+<p>Here is the complete View XAML file.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class="MVVMDemo.Views.StudentView"
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008"
+   xmlns:local = "clr-namespace:MVVMDemo.Views"
+   xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModel"
+   mc:Ignorable = "d"
+   d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;UserControl.DataContext&gt;
+      &lt;viewModel:StudentViewModel/&gt;
+   &lt;/UserControl.DataContext&gt;
+	
+   &lt;Grid&gt; 
+      &lt;StackPanel HorizontalAlignment = "Left"&gt; 
+         &lt;ItemsControl ItemsSource = "{Binding Path = Students}"&gt;
+			
+            &lt;ItemsControl.ItemTemplate&gt; 
+               &lt;DataTemplate&gt; 
+					
+                  &lt;StackPanel Orientation = "Horizontal"&gt; 
+                     &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+                        Width = "100" Margin = "3 5 3 5"/&gt; 
+								
+                      &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+                        Width = "100" Margin = "0 5 3 5"/&gt;
+								
+                     &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+                        Margin = "0 5 3 5"/&gt; 
+								
+                  &lt;/StackPanel&gt; 
+						
+               &lt;/DataTemplate&gt; 
+            &lt;/ItemsControl.ItemTemplate&gt;
+				
+         &lt;/ItemsControl&gt; 
+      &lt;/StackPanel&gt; 
+   &lt;/Grid&gt; 
+	
+&lt;/UserControl&gt;
+</pre>
+<h2>View First Construction in Code-behind</h2>
+<p>Another way is that you can get View first construction is by simply constructing the view model yourself in the code behind of your View by setting the DataContext property there with the instance.</p>
+<p>Typically, the DataContext property is set in the constructor method of view, but you could also defer the construction until the Load event of the view fires.</p>
+<pre class="prettyprint notranslate">
+using System.Windows.Controls;
+
+namespace MVVMDemo.Views {
+ 
+   /// &lt;summary&gt; 
+      /// Interaction logic for StudentView.xaml 
+   /// &lt;/summary&gt; 
+	
+   public partial class StudentView : UserControl { 
+      public StudentView() { 
+         InitializeComponent(); 
+         this.DataContext = new MVVMDemo.ViewModel.StudentViewModel(); 
+      } 
+   } 
+}
+</pre>
+<p>One reason for constructing the view model in Code-behind instead of XAML is that the View model constructor takes parameters, but XAML parsing can only construct elements if defined in default constructor.</p>
+<p>Now in this case the XAML file of View will look like as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class = "MVVMDemo.Views.StudentView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMDemo.Views" 
+   mc:Ignorable = "d" 
+   d:DesignHeight = "300" 
+   d:DesignWidth = "300"&gt;
+	
+   &lt;Grid&gt; 
+      &lt;StackPanel HorizontalAlignment = "Left"&gt; 
+         &lt;ItemsControl ItemsSource = "{Binding Path = Students}"&gt; 
+			
+            &lt;ItemsControl.ItemTemplate&gt; 
+               &lt;DataTemplate&gt; 
+					
+                  &lt;StackPanel Orientation = "Horizontal"&lt;
+                     &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+                        Width = "100" Margin = "3 5 3 5"/&gt; 
+								
+                     &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+                        Width = "100" Margin = "0 5 3 5"/&gt; 
+								
+                     &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+                        Margin = "0 5 3 5"/&gt; 
+								
+                  &lt;/StackPanel&gt; 
+						
+               &lt;/DataTemplate&gt; 
+            &lt;/ItemsControl.ItemTemplate&gt;
+				
+         &lt;/ItemsControl&gt; 
+      &lt;/StackPanel&gt; 
+   &lt;/Grid&gt;
+	
+&lt;/UserControl&gt;
+</pre>
+<p>You can declare this View in the MainWindow as shown in the MainWindow.XAML file.</p>
+<pre class="prettyprint notranslate">
+&lt;Window x:Class = "MVVMDemo.MainWindow" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:local = "clr-namespace:MVVMDemo" 
+   xmlns:views = "clr-namespace:MVVMDemo.Views" 
+   mc:Ignorable = "d" 
+   Title = "MainWindow" Height = "350" Width = "525"&gt; 
+	
+   &lt;Grid&gt; 
+      &lt;views:StudentView x:Name = "StudentViewControl"/&gt; 
+   &lt;/Grid&gt; 
+	
+&lt;/Window&gt;
+</pre>
+<p>When the above code is compiled and executed, you will see the following output on your main window.</p>
+<img src="/mvvm/images/hooking_up_views_main_window.jpg" alt="Hooking Up Views Main Window" />
+<p>We recommend you to execute the above example in a step-by-step manner for better understanding.</p>
+<h1>MVVM – Hooking Up ViewModel</h1>
+<p>In this chapter, we will cover how to hook up ViewModel. It is a continuation of the last chapter in which we discussed the View first construction. Now, the next form of the first construction is a <b>meta-pattern</b> which is known as <b>ViewModelLocator</b>. It is a pseudo pattern and is layered on top of the MVVM pattern.</p>
+<ul class="list">
+<li><p>In MVVM each View needs to be hooked up to its ViewModel.</p></li>
+<li><p>The ViewModelLocator is a simple approach to centralize the code and decoupling the view more.</p></li>
+<li><p>It means that it does not have to explicitly know about ViewModel type and how to construct it.</p></li>
+<li><p>There are a number of different approaches to use ViewModelLocator, but here we use the most similar to the one that's part of the PRISM framework.</p></li>
+</ul>
+<p>ViewModelLocator provides a standard, consistent, declarative and loosely coupled way to do view first construction which automates the process of getting ViewModel hooked up to the View. The following figure represents the high level process of ViewModelLocator.</p>
+<img src="/mvvm/images/mvvm_hooking_up_viewmodel.jpg" alt="Hooking Up ViewModel" />
+<p><b>Step 1</b> &minus; Figure out which View type is being constructed.</p>
+<p><b>Step 2</b> &minus; Identify the ViewModel for that particular View type.</p>
+<p><b>Step 3</b> &minus; Construct that ViewModel.</p>
+<p><b>Step 4</b> &minus; Set the Views DataContext to the ViewModel.</p>
+<p>To understand the basic concept, let's have a look at the simple example of ViewModelLocator by continuing the same example from the last chapter. If you look at the StudentView.xaml file, you will see that we have statically hooked up the ViewModel.</p>
+<p>Now as shown in the following program, comment these XAML code also remove the code from Code-behind.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class = "MVVMDemo.Views.StudentView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMDemo.Views" 
+   xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModel" 
+   mc:Ignorable = "d" d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;!--&lt;UserControl.DataContext&gt; 
+      &lt;viewModel:StudentViewModel/&gt; 
+   &lt;/UserControl.DataContext&gt;--&gt;
+	
+   &lt;Grid&gt; 
+      &lt;StackPanel HorizontalAlignment = "Left"&gt; 
+         &lt;ItemsControl ItemsSource = "{Binding Path = Students}"&gt;
+            &lt;ItemsControl.ItemTemplate&gt; 
+               &lt;DataTemplate&gt; 
+					
+                  &lt;StackPanel Orientation = "Horizontal"&gt;
+                     &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+                        Width = "100" Margin = "3 5 3 5"/&gt; 
+								
+                     &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+                        Width = "100" Margin = "0 5 3 5"/&gt; 
+								
+                     &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+                        Margin = "0 5 3 5"/&gt; 
+								
+                  &lt;/StackPanel&gt; 
+						
+               &lt;/DataTemplate&gt; 
+            &lt;/ItemsControl.ItemTemplate&gt; 
+         &lt;/ItemsControl&gt; 
+      &lt;/StackPanel&gt; 
+   &lt;/Grid&gt;
+	
+&lt;/UserControl&gt;
+</pre>
+<p>Now let’s create a new folder VML and add a new public class ViewModelLocator which will contain a single attached property (dependency property) AutoHookedUpViewModel as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+public static bool GetAutoHookedUpViewModel(DependencyObject obj) { 
+   return (bool)obj.GetValue(AutoHookedUpViewModelProperty); 
+}
+
+public static void SetAutoHookedUpViewModel(DependencyObject obj, bool value) { 
+   obj.SetValue(AutoHookedUpViewModelProperty, value); 
+}
+
+// Using a DependencyProperty as the backing store for AutoHookedUpViewModel. 
+//This enables animation, styling, binding, etc...
+ 
+public static readonly DependencyProperty AutoHookedUpViewModelProperty =
+   DependencyProperty.RegisterAttached("AutoHookedUpViewModel",
+   typeof(bool), typeof(ViewModelLocator), new PropertyMetadata(false,
+   AutoHookedUpViewModelChanged));
+</pre>
+<p>And now you can see a basic attach property definition. To add behavior to the property, we need to add a changed event handler for this property which contains the automatic process of hooking up the ViewModel for View. The code to do this is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+private static void AutoHookedUpViewModelChanged(DependencyObject d, 
+   DependencyPropertyChangedEventArgs e) { 
+   if (DesignerProperties.GetIsInDesignMode(d)) return; 
+   var viewType = d.GetType(); 
+   string str = viewType.FullName; 
+   str = str.Replace(".Views.", ".ViewModel."); 
+	
+   var viewTypeName = str; 
+   var viewModelTypeName = viewTypeName + "Model"; 
+   var viewModelType = Type.GetType(viewModelTypeName); 
+   var viewModel = Activator.CreateInstance(viewModelType);
+   ((FrameworkElement)d).DataContext = viewModel; 
+}
+</pre>
+<p>Following is the complete implementation of ViewModelLocator class.</p>
+<pre class="prettyprint notranslate">
+using System; 
+using System.ComponentModel; 
+using System.Windows;
+
+namespace MVVMDemo.VML { 
+
+   public static class ViewModelLocator { 
+	
+      public static bool GetAutoHookedUpViewModel(DependencyObject obj) {
+         return (bool)obj.GetValue(AutoHookedUpViewModelProperty); 
+      }
+		
+      public static void SetAutoHookedUpViewModel(DependencyObject obj, bool value) { 
+         obj.SetValue(AutoHookedUpViewModelProperty, value); 
+      }
+		
+      // Using a DependencyProperty as the backing store for AutoHookedUpViewModel. 
+		
+      //This enables animation, styling, binding, etc...
+      public static readonly DependencyProperty AutoHookedUpViewModelProperty =
+         DependencyProperty.RegisterAttached("AutoHookedUpViewModel", 
+         typeof(bool), typeof(ViewModelLocator), new
+         PropertyMetadata(false, AutoHookedUpViewModelChanged));
+		
+      private static void AutoHookedUpViewModelChanged(DependencyObject d,
+         DependencyPropertyChangedEventArgs e) { 
+         if (DesignerProperties.GetIsInDesignMode(d)) return; 
+         var viewType = d.GetType(); 
+			
+         string str = viewType.FullName; 
+         str = str.Replace(".Views.", ".ViewModel."); 
+			
+         var viewTypeName = str; 
+         var viewModelTypeName = viewTypeName + "Model";
+         var viewModelType = Type.GetType(viewModelTypeName); 
+         var viewModel = Activator.CreateInstance(viewModelType);
+			
+        ((FrameworkElement)d).DataContext = viewModel; 
+      } 
+   } 
+}
+</pre>
+<p>First thing to do is to add a namespace so that we can get to that ViewModelLocator type in the root of our project. Then on route element which is a view type, add AutoHookedUpViewModel property and set it to true.</p>
+<pre class="prettyprint notranslate">
+xmlns:vml = "clr-namespace:MVVMDemo.VML"
+vml:ViewModelLocator.AutoHookedUpViewModel = "True"
+</pre>
+<p>Here is the complete implementation of StudentView.xaml file.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class = "MVVMDemo.Views.StudentView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMDemo.Views" 
+   xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModel" 
+   xmlns:vml = "clr-namespace:MVVMDemo.VML" 
+   vml:ViewModelLocator.AutoHookedUpViewModel = "True" 
+   mc:Ignorable = "d" d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+   
+   &lt;!--&lt;UserControl.DataContext&gt; 
+      &lt;viewModel:StudentViewModel/&gt; 
+   &lt;/UserControl.DataContext&gt;--&gt;
+
+   &lt;Grid&gt; 
+      &lt;StackPanel HorizontalAlignment = "Left"&gt; 
+         &lt;ItemsControl ItemsSource = "{Binding Path = Students}"&gt; 
+            &lt;ItemsControl.ItemTemplate&gt; 
+               &lt;DataTemplate&gt; 
+					
+                  &lt;StackPanel Orientation = "Horizontal"&gt; 
+                     &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+                        Width = "100" Margin = "3 5 3 5"/&gt; 
+								
+                     &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+                        Width = "100" Margin = "0 5 3 5"/&gt;
+								
+                     &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+                        Margin = "0 5 3 5"/&gt; 
+								
+                  &lt;/StackPanel&gt; 
+						
+               &lt;/DataTemplate&gt; 
+            &lt;/ItemsControl.ItemTemplate&gt; 
+         &lt;/ItemsControl&gt; 
+      &lt;/StackPanel&gt;
+   &lt;/Grid&gt; 
+	
+&lt;/UserControl&gt;
+</pre>
+<p>When the above code is compiled and executed, you will see that ViewModelLocator is hooking up the ViewModel for that particular View.</p>
+<img src="/mvvm/images/hooking_up_viewmode_main_window.jpg" alt="Hooking Up ViewModel Main Window" />
+<p>A key thing to notice about this is the view is no longer coupled in a way to what the type of its ViewModel is or how it gets constructed. That’s all been moved out to the central location inside the ViewModelLocator.</p>
+<h1>MVVM – WPF Data Bindings</h1>
+<p>In this chapter, we will be learn how data binding supports the MVVM pattern. Data binding is the key feature that differentiates MVVM from other UI separation patterns like MVC and MVP.</p>
+<ul class="list">
+<li><p>For data binding you need to have a view or set of UI elements constructed, and then you need some other object that the bindings are going to point to.</p></li>
+<li><p>The UI elements in a view are bound to the properties which are exposed by the ViewModel.</p></li>
+<li><p>The order that the View and ViewModel are constructed on depends on the situation, as we have covered the View first.</p></li>
+<li><p>A View and ViewModel get constructed and the DataContext of the View gets set to the ViewModel.</p></li>
+<li><p>Bindings can either be OneWay or TwoWay data bindings to flow data back and forth between the View and ViewModel.</p></li>
+</ul>
+<p>Let's take a look at data bindings in the same example. Below is the XAML code of StudentView.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class = "MVVMDemo.Views.StudentView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMDemo.Views" 
+   xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModel" 
+   xmlns:vml = "clr-namespace:MVVMDemo.VML" 
+   vml:ViewModelLocator.AutoHookedUpViewModel = "True" 
+   mc:Ignorable = "d" d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+
+   &lt;!--&lt;UserControl.DataContext&gt; 
+      &lt;viewModel:StudentViewModel/&gt; 
+   &lt;/UserControl.DataContext&gt;--&gt; 
+
+   &lt;Grid&gt; 
+      &lt;StackPanel HorizontalAlignment = "Left"&gt; 
+         &lt;ItemsControl ItemsSource = "{Binding Path = Students}"&gt; 
+            &lt;ItemsControl.ItemTemplate&gt;
+               &lt;DataTemplate&gt; 
+					
+                  &lt;StackPanel Orientation = "Horizontal"&gt; 
+                     &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+                        Width = "100" Margin = "3 5 3 5"/&gt;
+								
+                     &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+                        Width = "100" Margin = "0 5 3 5"/&gt; 
+								
+                     &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+                        Margin = "0 5 3 5"/&gt; 
+								
+                  &lt;/StackPanel&gt; 
+						
+               &lt;/DataTemplate&gt; 
+            &lt;/ItemsControl.ItemTemplate&gt; 
+         &lt;/ItemsControl&gt; 
+      &lt;/StackPanel&gt; 
+   &lt;/Grid&gt; 
+
+&lt;/UserControl&gt;
+</pre>
+<ul class="list">
+<li><p>If you look at the above XAML code you will see that ItemsControl is bound to the Students collection exposed by ViewModel.</p></li>
+<li><p>You can also see that the property of Student model has their own individual bindings as well, and these are bound to the Textboxes and TextBlock.</p></li>
+<li><p>The ItemSource of ItemsControl is able to bind to the Students property, because the overall DataContext for the View is set to ViewModel.</p></li>
+<li><p>The individual bindings of properties here are also DataContext bindings, but they're not binding against the ViewModel itself, because of the way an ItemSource works.</p></li>
+<li><p>When an item source binds to its collection it renders out a container for each item at rendering, and it sets the DataContext of that container to the item. So the overall DataContext for each textbox and textblock within a row is going to be an individual Student in the collection. And you can also see that these bindings for TextBoxes are TwoWay data binding and for TextBlock it is OneWay data binding as you can’t edit TextBlock.</p></li>
+</ul>
+<p>When you run this application again, you will see the following output.</p>
+<img src="/mvvm/images/wpf_data_bindings_main_window.jpg" alt="WPF Data Bindings Main Window" />
+<p>Let us now change the text in the second textbox of first row from Allain to Upston and press tab to lose focus. You will see that the TextBlock text is also updated.</p>
+<img src="/mvvm/images/updated_text_block.jpg" alt="Updated Text Block" />
+<p>This is because the bindings of the TextBoxes are set to TwoWay and it updates the Model as well, and from the model again the TextBlock is updated.</p>
+<h1>MVVM – WPF Data Templates</h1>
+<p>A template describes the overall look and visual appearance of the control. For each control there is a default template associated with it which gives the appearance to that control. In WPF application, you can easily create your own templates when you want to customize the visual behavior and visual appearance of a control. Connectivity between the logic and template can be achieved by data binding.</p>
+<p>In MVVM, there is another primary form which is known as ViewModel first construction.</p>
+<ul class="list">
+<li><p>ViewModel first construction approach leverages the capabilities of implicit data templates in WPF.</p></li>
+<li><p>Implicit data templates can automatically select an appropriate template from the current resource dictionary for an element that uses data binding. They do this based on the type of data object which is rendered by data binding. First, you need to have some element that is binding to a data object.</p></li>
+</ul>
+<p>Let’s take a look at our simple example again in which you will understand how you can do view model first leveraging data templates, specifically implicit data templates. Here is the implementation of our StudentViewModel class.</p>
+<pre class="prettyprint notranslate">
+using MVVMDemo.Model; 
+using System.Collections.ObjectModel;
+
+namespace MVVMDemo.ViewModel { 
+
+   public class StudentViewModel {
+	
+      public StudentViewModel() { 
+         LoadStudents(); 
+      } 
+		
+      public ObservableCollection&lt;Student&gt; Students { 
+         get; 
+         set; 
+      }
+		
+      public void LoadStudents() { 
+         ObservableCollection&lt;Student&gt; students = new ObservableCollection&lt;Student&gt;();
+			
+         students.Add(new Student { FirstName = "Mark", LastName = "Allain" }); 
+         students.Add(new Student { FirstName = "Allen", LastName = "Brown" }); 
+         students.Add(new Student { FirstName = "Linda", LastName = "Hamerski" }); 
+			
+         Students = students; 
+      } 
+   } 
+}
+</pre>
+<p>You can see that the above ViewModel is unchanged. We will continue with same example from the previous chapter. This ViewModel class just exposes the Students collection property and populates it on construction. Let's go to the StudentView.xaml file, remove the existing implementation and define a data template in Resources section.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl.Resources&gt; 
+   &lt;DataTemplate x:Key = "studentsTemplate"&gt;
+	
+      &lt;StackPanel Orientation = "Horizontal"&gt; 
+         &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+            Width = "100" Margin = "3 5 3 5"/&gt; 
+				
+         &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+            Width = "100" Margin = "0 5 3 5"/&gt; 
+				
+         &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+            Margin = "0 5 3 5"/&gt; 
+      &lt;/StackPanel&gt; 
+		
+   &lt;/DataTemplate&gt; 
+&lt;/UserControl.Resources&gt;
+</pre>
+<p>Now add a list box and data bind that list box to Students property as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+&lt;ListBox ItemsSource = "{Binding Students}" ItemTemplate = "{StaticResource studentsTemplate}"/&gt;
+</pre>
+<p>In the Resource section, the DataTemplate has a key of studentsTemplate and then to actually use that template, we need to use the ItemTemplate property of a ListBox. So now you can see that we instruct the listbox to go use that specific template for rendering out those Students. Following is the complete implementation of StudentView.xaml file.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class = "MVVMDemo.Views.StudentView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMDemo.Views" 
+   xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModel" 
+   xmlns:vml = "clr-namespace:MVVMDemo.VML" 
+   vml:ViewModelLocator.AutoHookedUpViewModel = "True" 
+   mc:Ignorable = "d" d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;UserControl.Resources&gt; 
+      &lt;DataTemplate x:Key = "studentsTemplate"&gt; 
+		
+         &lt;StackPanel Orientation = "Horizontal"&gt; 
+            &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+               Width = "100" Margin = "3 5 3 5"/&gt; 
+					
+            &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+               Width = "100" Margin = "0 5 3 5"/&gt; 
+					
+            &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+               Margin = "0 5 3 5"/&gt; 
+					
+         &lt;/StackPanel&gt; 
+			
+      &lt;/DataTemplate&gt; 
+   &lt;/UserControl.Resources&gt;
+	
+   &lt;Grid&gt; 
+      &lt;ListBox 
+         ItemsSource = "{Binding Students}" 
+         ItemTemplate = "{StaticResource studentsTemplate}"/&gt; 
+   &lt;/Grid&gt;
+	
+&lt;/UserControl&gt;
+</pre>
+<p>When the above code is compiled and executed, you will see the following window, which contains one ListBox. Each ListBoxItem contains the Student class object data which are displayed on TextBlock and Text boxes.</p>
+<img src="/mvvm/images/wpf_data_templates_main_window.jpg" alt="WPF Data Templates Main Window" />
+<p>To make this an implicit template, we need to remove the ItemTemplate property from a list box and add a DataType property in our template definition as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl.Resources&gt; 
+   &lt;DataTemplate DataType = "{x:Type data:Student}"&gt;
+	
+      &lt;StackPanel Orientation = "Horizontal"&gt; 
+         &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+            Width = "100" Margin = "3 5 3 5"/&gt; 
+				
+         &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+            Width = "100" Margin = "0 5 3 5"/&gt; 
+				
+         &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+            Margin = "0 5 3 5"/&gt; 
+				
+      &lt;/StackPanel&gt; 
+		
+   &lt;/DataTemplate&gt; 
+&lt;/UserControl.Resources&gt;
+ 
+&lt;Grid&gt; 
+   &lt;ListBox ItemsSource = "{Binding Students}"/&gt; 
+&lt;/Grid&gt;
+</pre>
+<p>In DataTemplate, the x:Type markup extension is very important which is like a type of operator in XAML. So, basically we need to point to the Student data type which is in MVVMDemo.Model namespace. Following is the updated complete XAML file.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class="MVVMDemo.Views.StudentView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMDemo.Views" 
+   xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModel" 
+   xmlns:data = "clr-namespace:MVVMDemo.Model" 
+   xmlns:vml = "clr-namespace:MVVMDemo.VML" 
+   vml:ViewModelLocator.AutoHookedUpViewModel = "True" 
+   mc:Ignorable = "d" d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;UserControl.Resources&gt; 
+      &lt;DataTemplate DataType = "{x:Type data:Student}"&gt; 
+		
+         &lt;StackPanel Orientation = "Horizontal"&gt; 
+            &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+               Width = "100" Margin = "3 5 3 5"/&gt; 
+					
+            &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+               Width = "100" Margin = "0 5 3 5"/&gt; 
+					
+            &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+               Margin = "0 5 3 5"/&gt; 
+					
+         &lt;/StackPanel&gt; 
+			
+      &lt;/DataTemplate&gt; 
+   &lt;/UserControl.Resources&gt;
+	
+   &lt;Grid&gt;
+      &lt;ListBox ItemsSource = "{Binding Students}"/&gt; 
+   &lt;/Grid&gt; 
+	
+&lt;/UserControl&gt;
+</pre>
+<p>When you run this application again, you will still get the same rendering of the Students with data template because it's automatically mapping the type of the object being rendered by locating the appropriate DataTemplate.</p>
+<img src="/mvvm/images/data_templates.jpg" alt="Data Templates" />
+<p>We recommend you to execute the above example in a step-by-step method for better understanding.</p>
+<h1>MVVM – View / ViewModel Communication</h1>
+<p>In this chapter, we will learn how to add interactivity to MVVM applications and how to cleanly call logic. You will also see that all of this is done by maintaining the loose coupling and good structuring which is the heart of the MVVM pattern. To understand all this, first let us learn about commands.</p>
+<h2>View / ViewModel Communication via Commands</h2>
+<p>The command pattern has been well documented and frequently uses design pattern for a couple of decades. In this pattern there are two main actors, the invoker and the receiver.</p>
+<img src="/mvvm/images/mvvm_view_viewmodel_communication.jpg" alt="View and ViewModel Communication" />
+<h3>Invoker</h3>
+<ul class="list">
+<li><p>The invoker is a piece of code which can execute some imperative logic.</p></li>
+<li><p>Typically, it is a UI element that the user interacts with, in the context of a UI framework.</p></li>
+<li><p>It could just be another chunk of logic code somewhere else in the application.</p></li>
+</ul>
+<h3>Receiver</h3>
+<ul class="list">
+<li><p>The receiver is the logic that is intended for execution when the invoker fires.</p></li>
+<li><p>In the context of MVVM, the receiver is typically a method in your ViewModel that needs to be called.</p></li>
+</ul>
+<p>In between these two, you have an obstruction layer, which implies the invoker and receiver do not have to explicitly know about each other. This is typically represented as an interface abstraction exposed to the invoker and a concrete implementation of that interface is capable of calling the receiver.</p>
+<p>Let’s have a look into a simple example in which you will learn the commands and how to use them to communicate Between View and ViewModel. In this chapter, we will continue with the same example from the last chapter.</p>
+<p>In StudentView.xaml file, we have a ListBox which hooks up the student data from a ViewModel. Now let’s add a button for deleting a student from the ListBox.</p>
+<p>The important thing is that working with commands on button is very easy because they have a command property to hook up to an ICommand.</p>
+<p>So, we can expose a property on our ViewModel that has an ICommand and binds to it from the button’s command property as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+&lt;Button Content = "Delete" 
+   Command = "{Binding DeleteCommand}" 
+   HorizontalAlignment = "Left" 
+   VerticalAlignment = "Top" 
+   Width = "75" /&gt;
+</pre>
+<p>Let’s add a new class in your project, which will implement the ICommand interface. Following is the implementation of ICommand interface.</p>
+<pre class="prettyprint notranslate">
+using System; 
+using System.Windows.Input;
+
+namespace MVVMDemo { 
+
+   public class MyICommand : ICommand { 
+      Action _TargetExecuteMethod; 
+      Func&lt;bool&gt; _TargetCanExecuteMethod;
+		
+      public MyICommand(Action executeMethod) {
+         _TargetExecuteMethod = executeMethod; 
+      }
+		
+      public MyICommand(Action executeMethod, Func&lt;bool&gt; canExecuteMethod){ 
+         _TargetExecuteMethod = executeMethod;
+         _TargetCanExecuteMethod = canExecuteMethod; 
+      }
+		
+      public void RaiseCanExecuteChanged() { 
+         CanExecuteChanged(this, EventArgs.Empty); 
+      }
+		
+      bool ICommand.CanExecute(object parameter) { 
+		
+         if (_TargetCanExecuteMethod != null) { 
+            return _TargetCanExecuteMethod(); 
+         } 
+			
+         if (_TargetExecuteMethod != null) { 
+            return true; 
+         } 
+			
+         return false; 
+      }
+		
+      // Beware - should use weak references if command instance lifetime 
+         is longer than lifetime of UI objects that get hooked up to command 
+			
+      // Prism commands solve this in their implementation 
+      public event EventHandler CanExecuteChanged = delegate { };
+		
+      void ICommand.Execute(object parameter) { 
+         if (_TargetExecuteMethod != null) {
+            _TargetExecuteMethod(); 
+         } 
+      } 
+   } 
+}
+</pre>
+<p>As you can see, this is a simple delegating implementation of ICommand where we have two delegates one for the executeMethod and one for the canExecuteMethod which can be passed in on construction.</p>
+<p>In the above implementation, there are two overloaded constructors, one for only executeMethod and one for both executeMethod and I can canExecuteMethod.</p>
+<p>Let’s add a property of MyICommand type in StudentView Model class. Now we need to construct an instance in the StudentViewModel. We will use the overloaded constructor of MyICommand that takes two parameters.</p>
+<pre class="prettyprint notranslate">
+public MyICommand DeleteCommand { get; set;} 
+
+public StudentViewModel() { 
+   LoadStudents(); 
+   DeleteCommand = new MyICommand(OnDelete, CanDelete); 
+}
+</pre>
+<p>Now add the implementation of OnDelete and CanDelete methods.</p>
+<pre class="prettyprint notranslate">
+private void OnDelete() { 
+   Students.Remove(SelectedStudent); 
+}
+
+private bool CanDelete() { 
+   return SelectedStudent != null; 
+}
+</pre>
+<p>We also need to add a new SelectedStudent so that the user can delete the Selected Item from ListBox.</p>
+<pre class="prettyprint notranslate">
+private Student _selectedStudent;
+ 
+public Student SelectedStudent { 
+   get { 
+      return _selectedStudent; 
+   } 
+	
+   set { 
+      _selectedStudent = value;
+      DeleteCommand.RaiseCanExecuteChanged(); 
+   } 
+}
+</pre>
+<p>Following is the complete implementation of ViewModel class.</p>
+<pre class="prettyprint notranslate">
+using MVVMDemo.Model; 
+
+using System.Collections.ObjectModel; 
+using System.Windows.Input; 
+using System;
+
+namespace MVVMDemo.ViewModel { 
+
+   public class StudentViewModel { 
+	
+      public MyICommand DeleteCommand { get; set;} 
+		
+      public StudentViewModel() { 
+         LoadStudents(); 
+         DeleteCommand = new MyICommand(OnDelete, CanDelete); 
+      }
+		
+      public ObservableCollection&lt;Student&gt; Students { 
+         get; 
+         set; 
+      }
+		
+      public void LoadStudents() { 
+         ObservableCollection&lt;Student&gt; students = new ObservableCollection&lt;Student&gt;();
+			
+         students.Add(new Student { FirstName = "Mark", LastName = "Allain" }); 
+         students.Add(new Student { FirstName = "Allen", LastName = "Brown" }); 
+         students.Add(new Student { FirstName = "Linda", LastName = "Hamerski" }); 
+			
+         Students = students; 
+      }
+		
+      private Student _selectedStudent; 
+		
+      public Student SelectedStudent { 
+         get {
+            return _selectedStudent; 
+         } 
+			
+         set { 
+            _selectedStudent = value;
+            DeleteCommand.RaiseCanExecuteChanged(); 
+         } 
+      }
+		
+      private void OnDelete() { 
+         Students.Remove(SelectedStudent); 
+      }
+		
+      private bool CanDelete() { 
+         return SelectedStudent != null; 
+      }
+   } 
+}
+</pre>
+<p>In StudentView.xaml, we need to add SelectedItem property in a ListBox which will bind to the SelectStudent property.</p>
+<pre class="prettyprint notranslate">
+&lt;ListBox ItemsSource = "{Binding Students}" SelectedItem = "{Binding SelectedStudent}"/&gt;
+</pre>
+<p>Following is the complete xaml file.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class = "MVVMDemo.Views.StudentView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMDemo.Views" 
+   xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModel" 
+   xmlns:data = "clr-namespace:MVVMDemo.Model" 
+   xmlns:vml = "clr-namespace:MVVMDemo.VML" 
+   vml:ViewModelLocator.AutoHookedUpViewModel = "True" 
+   mc:Ignorable = "d"
+   d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;UserControl.Resources&gt; 
+      &lt;DataTemplate DataType = "{x:Type data:Student}"&gt; 
+		
+         &lt;StackPanel Orientation = "Horizontal"&gt; 
+			
+            &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+               Width = "100" Margin = "3 5 3 5"/&gt; 
+					
+            &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+               Width = "100" Margin = "0 5 3 5"/&gt; 
+					
+            &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+               Margin = "0 5 3 5"/&gt; 
+					
+         &lt;/StackPanel&gt; 
+			
+      &lt;/DataTemplate&gt; 
+   &lt;/UserControl.Resources&gt;
+	
+   &lt;Grid&gt; 
+      &lt;StackPanel Orientation = "Horizontal"&gt; 
+         &lt;ListBox ItemsSource = "{Binding Students}" 
+            SelectedItem = "{Binding SelectedStudent}"/&gt; 
+				
+         &lt;Button Content = "Delete" 
+            Command = "{Binding DeleteCommand}"
+            HorizontalAlignment = "Left" 
+            VerticalAlignment = "Top" 
+            Width = "75" /&gt; 
+      &lt;/StackPanel&gt; 
+   &lt;/Grid&gt;
+	
+&lt;/UserControl&gt;
+</pre>
+<p>When the above code is compiled and executed, you will see the following window.</p>
+<img src="/mvvm/images/view_viewmodel_communication_mainwindow1.jpg" alt="View and ViewModel Communication MainWindow1" />
+<p>You can see that delete button is disabled. It will be enabled when you select any item.</p>
+<img src="/mvvm/images/view_viewmodel_communication_mainwindow2.jpg" alt="View and ViewModel Communication MainWindow2" />
+<p>When you select any item and press delete. You will see that the selected item list is deleted and the delete button again becomes disabled.</p>
+<img src="/mvvm/images/view_viewmodel_communication_mainwindow3.jpg" alt="View and ViewModel Communication MainWindow3" />
+<p>We recommend you to execute the above example in a step-by-step manner for better understanding.</p>
+<h1>MVVM – Hierarchies &amp; Navigation</h1>
+<p>When building MVVM applications, you typically decompose complex screens of information into a set of parent and child views, where the child views are contained within the parent views in panels or container controls, and forms a hierarchy of use themselves.</p>
+<ul class="list">
+<li><p>After decomposing the complex Views it doesn’t mean that each and every piece of child content that you separate into its own XAML file necessarily needs to be an MVVM view.</p></li>
+<li><p>The chunk of content just provides the structure to render something to the screen and does not support any input or manipulation by the user for that content.</p></li>
+<li><p>It may not need a separate ViewModel, but it could just be a chunk XAML that renders based on properties exposed by the parents ViewModel.</p></li>
+<li><p>Finally, if you have a hierarchy of Views and ViewModels, the parent ViewModel can become a hub for communications so that each child ViewModel can remain decoupled from the other child ViewModels and from their parent as much as possible.</p></li>
+</ul>
+<img src="/mvvm/images/mvvm_hierarchies_and_navigation.jpg" alt="MVVM Hierarchies and Navigation" />
+<p>Let’s take a look at an example in which we will define a simple hierarchy between different views. Create a new WPF Application project <b>MVVMHierarchiesDemo</b></p>
+<img src="/mvvm/images/wpf_application.jpg" alt="WPF Application" />
+<p><b>Step 1</b> &minus; Add the three folders (Model, ViewModel, and Views) into your project.</p>
+<img src="/mvvm/images/wpf_application_step1.jpg" alt="WPF Application Step1" />
+<p><b>Step 2</b> &minus; Add Customer and Order classes in Model folder, CustomerListView and OrderView in Views folder, and CustomerListViewModel and OrderViewModel in ViewModel folder as shown in the following image.</p>
+<img src="/mvvm/images/wpf_application_step2.jpg" alt="WPF Application Step2" />
+<p><b>Step 3</b> &minus; Add textblocks in both CustomerListView and OrderView. Here is CustomerListView.xaml file.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class="MVVMHierarchiesDemo.Views.CustomerListView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMHierarchiesDemo.Views" 
+   mc:Ignorable = "d" 
+   d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;Grid&gt; 
+      &lt;TextBlock Text = "Customer List View"/&gt; 
+   &lt;/Grid&gt; 
+	
+&lt;/UserControl&gt;
+</pre>
+<p>Following is the OrderView.xaml file.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class = "MVVMHierarchiesDemo.Views.OrderView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x ="http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc ="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d ="http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMHierarchiesDemo.Views" mc:Ignorable = "d" 
+   d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;Grid&gt; 
+      &lt;TextBlock Text = "Order View"/&gt; 
+   &lt;/Grid&gt; 
+	
+&lt;/UserControl&gt;
+</pre>
+<p>Now we need something to host these views, and a good place for that in our MainWindow because it is a simple application. We need a container control that we can place our views and switch them in a navigation fashion. For this purpose, we need to add ContentControl in our MainWindow.xaml file and we will be using its content property and bind that to a ViewModel reference.</p>
+<p>Now define the data templates for each view in a resource dictionary. Following is the MainWindow.xaml file. Note how each data template maps a data type (the ViewModel type) to a corresponding View.</p>
+<pre class="prettyprint notranslate">
+&lt;Window x:Class = "MVVMHierarchiesDemo.MainWindow" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:local = "clr-namespace:MVVMHierarchiesDemo" 
+   xmlns:views = "clr-namespace:MVVMHierarchiesDemo.Views" 
+   xmlns:viewModels = "clr-namespace:MVVMHierarchiesDemo.ViewModel" 
+   mc:Ignorable = "d" 
+   Title = "MainWindow" Height = "350" Width = "525"&gt; 
+   
+   &lt;Window.DataContext&gt; 
+      &lt;local:MainWindowViewModel/&gt; 
+   &lt;/Window.DataContext&gt;
+	
+   &lt;Window.Resources&gt; 
+      &lt;DataTemplate DataType = "{x:Type viewModels:CustomerListViewModel}"&gt;
+         &lt;views:CustomerListView/&gt; 
+      &lt;/DataTemplate&gt;
+		
+      &lt;DataTemplate DataType = "{x:Type viewModels:OrderViewModel}"&gt; 
+         &lt;views:OrderView/&gt; 
+      &lt;/DataTemplate&gt; 
+   &lt;/Window.Resources&gt;
+	
+   &lt;Grid&gt; 
+      &lt;ContentControl Content = "{Binding CurrentView}"/&gt; 
+   &lt;/Grid&gt; 
+	
+&lt;/Window&gt;
+</pre>
+<p>Anytime the current view model is set to an instance of a CustomerListViewModel, it will render out a CustomerListView with the ViewModel is hooked up. It’s an order ViewModel, it'll render out OrderView and so on.</p>
+<p>We now need a ViewModel that has a CurrentViewModel property and some logic and commanding to be able to switch the current reference of ViewModel inside the property.</p>
+<p>Let's create a ViewModel for this MainWindow called MainWindowViewModel. We can just create an instance of our ViewModel from XAML and use that to set the DataContext property of the window. For this, we need to create a base class to encapsulate the implementation of INotifyPropertyChanged for our ViewModels.</p>
+<p>The main idea behind this class is to encapsulate the INotifyPropertyChanged implementation and provide helper methods to the derived class so that they can easily trigger the appropriate notifications. Following is the implementation of BindableBase class.</p>
+<pre class="prettyprint notranslate">
+using System; 
+using System.Collections.Generic; 
+using System.ComponentModel; 
+using System.Linq; 
+using System.Runtime.CompilerServices; 
+using System.Text; 
+using System.Threading.Tasks;
+
+namespace MVVMHierarchiesDemo { 
+
+   class BindableBase : INotifyPropertyChanged { 
+	
+      protected virtual void SetProperty&lt;T&gt;(ref T member, T val,
+         [CallerMemberName] string propertyName = null) { 
+            if (object.Equals(member, val)) return;
+				
+            member = val;
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); 
+      }
+			
+      protected virtual void OnPropertyChanged(string propertyName) { 
+         PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); 
+      } 
+		
+      public event PropertyChangedEventHandler PropertyChanged = delegate { }; 
+   } 
+}
+</pre>
+<p>Now it's time to actually start doing some view switching using our CurrentViewModel property. We just need some way to drive the setting of this property. And we're going to make it so that the end user can command going to the customer list or to the order view. First add a new class in your project which will implement the ICommand interface. Following is the implementation of ICommand interface.</p>
+<pre class="prettyprint notranslate">
+using System; 
+using System.Windows.Input;
+
+namespace MVVMHierarchiesDemo { 
+
+   public class MyICommand&lt;T&gt; : ICommand { 
+	
+      Action&lt;T&gt; _TargetExecuteMethod; 
+      Func&lt;T, bool&gt; _TargetCanExecuteMethod;
+		
+      public MyICommand(Action&lt;T&gt; executeMethod) {
+         _TargetExecuteMethod = executeMethod; 
+      }
+		
+      public MyICommand(Action&lt;T&gt; executeMethod, Func&lt;T, bool&gt; canExecuteMethod) {
+         _TargetExecuteMethod = executeMethod;
+         _TargetCanExecuteMethod = canExecuteMethod; 
+      }
+
+      public void RaiseCanExecuteChanged() {
+         CanExecuteChanged(this, EventArgs.Empty); 
+      } 
+		
+      #region ICommand Members
+
+      bool ICommand.CanExecute(object parameter) { 
+		
+         if (_TargetCanExecuteMethod != null) { 
+            T tparm = (T)parameter; 
+            return _TargetCanExecuteMethod(tparm); 
+         } 
+			
+         if (_TargetExecuteMethod != null) { 
+            return true; 
+         } 
+			
+         return false; 
+      }
+		
+      // Beware - should use weak references if command instance lifetime is
+         longer than lifetime of UI objects that get hooked up to command 
+			
+      // Prism commands solve this in their implementation 
+
+      public event EventHandler CanExecuteChanged = delegate { };
+	
+      void ICommand.Execute(object parameter) { 
+         if (_TargetExecuteMethod != null) {
+            _TargetExecuteMethod((T)parameter); 
+         } 
+      } 
+		
+      #endregion 
+   } 
+}
+</pre>
+<p>We now need to set up some top level navigation to these to ViewModels and logic for that switching should belong inside MainWindowViewModel. For this we're going to use a method called on navigate that takes a string destination and returns the CurrentViewModel property.</p>
+<pre class="prettyprint notranslate">
+private void OnNav(string destination) {
+ 
+   switch (destination) { 
+      case "orders": 
+         CurrentViewModel = orderViewModelModel; 
+      break; 
+      case "customers": 
+      default: 
+         CurrentViewModel = custListViewModel; 
+      break; 
+   } 
+}
+</pre>
+<p>For navigation of these different Views, we need to add two buttons in our MainWindow.xaml file. Following is the complete XAML file implementation.</p>
+<pre class="prettyprint notranslate">
+&lt;Window x:Class = "MVVMHierarchiesDemo.MainWindow" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:local = "clr-namespace:MVVMHierarchiesDemo" 
+   xmlns:views = "clr-namespace:MVVMHierarchiesDemo.Views" 
+   xmlns:viewModels = "clr-namespace:MVVMHierarchiesDemo.ViewModel" 
+   mc:Ignorable = "d" 
+   Title = "MainWindow" Height = "350" Width = "525"&gt;
+
+   &lt;Window.DataContext&gt; 
+      &lt;local:MainWindowViewModel/&gt; 
+   &lt;/Window.DataContext&gt;
+	
+   &lt;Window.Resources&gt; 
+      &lt;DataTemplate DataType = "{x:Type viewModels:CustomerListViewModel}"&gt;
+         &lt;views:CustomerListView/&gt; 
+      &lt;/DataTemplate&gt; 
+		
+      &lt;DataTemplate DataType = "{x:Type viewModels:OrderViewModel}"&gt;
+         &lt;views:OrderView/&gt; 
+      &lt;/DataTemplate&gt; 
+   &lt;/Window.Resources&gt;
+	
+   &lt;Grid&gt;
+      &lt;Grid.RowDefinitions&gt; 
+         &lt;RowDefinition Height = "Auto" /&gt; 
+         &lt;RowDefinition Height = "*" /&gt; 
+      &lt;/Grid.RowDefinitions&gt; 
+	
+      &lt;Grid x:Name = "NavBar"&gt; 
+         &lt;Grid.ColumnDefinitions&gt; 
+            &lt;ColumnDefinition Width = "*" /&gt; 
+            &lt;ColumnDefinition Width = "*" /&gt; 
+            &lt;ColumnDefinition Width = "*" /&gt; 
+         &lt;/Grid.ColumnDefinitions&gt; 
+	
+         &lt;Button Content = "Customers" 
+            Command = "{Binding NavCommand}"
+            CommandParameter = "customers" 
+            Grid.Column = "0" /&gt;
+				
+         &lt;Button Content = "Order" 
+            Command = "{Binding NavCommand}" 
+            CommandParameter = "orders" 
+            Grid.Column = "2" /&gt;
+      &lt;/Grid&gt; 
+	
+      &lt;Grid x:Name = "MainContent" Grid.Row = "1"&gt; 
+         &lt;ContentControl Content = "{Binding CurrentViewModel}" /&gt; 
+      &lt;/Grid&gt; 
+		
+   &lt;/Grid&gt; 
+	
+&lt;/Window&gt;
+</pre>
+<p>Following is the complete MainWindowViewModel implementation.</p>
+<pre class="prettyprint notranslate">
+using MVVMHierarchiesDemo.ViewModel; 
+using MVVMHierarchiesDemo.Views; 
+
+using System; 
+using System.Collections.Generic; 
+using System.Linq; 
+using System.Text; 
+using System.Threading.Tasks;
+
+namespace MVVMHierarchiesDemo {
+ 
+   class MainWindowViewModel : BindableBase {
+	
+      public MainWindowViewModel() { 
+         NavCommand = new MyICommand&lt;string&gt;(OnNav); 
+      } 
+		
+      private CustomerListViewModel custListViewModel = new CustomerListViewModel(); 
+		
+      private OrderViewModel orderViewModelModel = new OrderViewModel();
+		
+      private BindableBase _CurrentViewModel; 
+		
+      public BindableBase CurrentViewModel { 
+         get {return _CurrentViewModel;} 
+         set {SetProperty(ref _CurrentViewModel, value);} 
+      }
+		
+      public MyICommand&lt;string&gt; NavCommand { get; private set; }
+
+      private void OnNav(string destination) {
+		
+         switch (destination) { 
+            case "orders": 
+               CurrentViewModel = orderViewModelModel; 
+               break; 
+            case "customers": 
+            default: 
+               CurrentViewModel = custListViewModel; 
+               break; 
+         } 
+      } 
+   } 
+}
+</pre>
+<p>Derive all of your ViewModels from BindableBase class. When the above code is compiled and executed, you will see the following output.</p>
+<img src="/mvvm/images/hierarchies_and_navigation_mainwindow1.jpg" alt="Hierarchies and Navigation MainWindow1" />
+<p>As you can see, we have added only two buttons and a CurrentViewModel on our MainWindow. If you click any button then it will navigate to that particular View. Let’s click on Customers button and you will see that the CustomerListView is displayed.</p>
+<img src="/mvvm/images/hierarchies_and_navigation_mainwindow2.jpg" alt="Hierarchies and Navigation MainWindow2" />
+<p>We recommend you to execute the above example in a step-by-step manner for better understanding.</p>
+<h1>MVVM – Validations</h1>
+<p>In this chapter, we will learn about validations. We will also look at a clean way to do validation with what WPF bindings already support but tying it into MVVM components.</p>
+<h2>Validation in MVVM</h2>
+<ul class="list">
+<li><p>When your application starts accepting data input from end users you need to consider validating that input.</p></li>
+<li><p>Make sure it conforms to your overall requirements.</p></li>
+<li><p>WPF has some great builds and features in the binding system for validating input and you can still leverage all those features when doing MVVM.</p></li>
+<li><p>Keep in mind that the logic that supports your validation and defines what rules exist for what properties should be part of the Model or the ViewModel, not the View itself.</p></li>
+</ul>
+<p>You can still use all the ways of expressing validation that are supported by WPF data binding including &minus;</p>
+<ul class="list">
+<li>Throwing exceptions on a property is set.</li>
+<li>Implementing the IDataErrorInfo interface.</li>
+<li>Implementing INotifyDataErrorInfo.</li>
+<li>Use WPF validation rules.</li>
+</ul>
+<p>In general, INotifyDataErrorInfo is recommended and was introduced to WPF .net 4.5 and it supports querying the object for errors associated with properties and it also fixes a couple of deficiencies with all the other options. Specifically, it allows asynchronous validation. It allows properties to have more than one error associated with them.</p>
+<h2>Adding Validation</h2>
+<p>Let’s take a look at an example in which we will add validation support to our input view, and in large application you will probably need this a number of places in your application. Sometimes on Views, sometimes on ViewModels and sometimes on these helper objects there are wrappers around model objects.</p>
+<p>It’s a good practice for putting the validation support in a common base class that you can then inherit from different scenarios.</p>
+<p>The base class will support INotifyDataErrorInfo so that that validation gets triggered when properties change.</p>
+<p>Create add a new class called ValidatableBindableBase. Since we already have a base class for a property change handling, let’s derive the base class from it and also implement the INotifyDataErrorInfo interface.</p>
+<p>Following is the implementation of ValidatableBindableBase class.</p>
+<pre class="prettyprint notranslate">
+using System; 
+using System.Collections.Generic; 
+using System.ComponentModel; 
+
+//using System.ComponentModel.DataAnnotations; 
+using System.Linq; 
+using System.Runtime.CompilerServices; 
+using System.Text;
+using System.Threading.Tasks; 
+using System.Windows.Controls;
+
+namespace MVVMHierarchiesDemo { 
+
+   public class ValidatableBindableBase : BindableBase, INotifyDataErrorInfo { 
+      private Dictionary&lt;string, List&lt;string&gt;&gt; _errors = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+
+      public event EventHandler&lt;DataErrorsChangedEventArgs&gt; 
+         ErrorsChanged = delegate { };
+
+      public System.Collections.IEnumerable GetErrors(string propertyName) {
+		
+         if (_errors.ContainsKey(propertyName)) 
+            return _errors[propertyName]; 
+         else 
+            return null; 
+      }
+      
+      public bool HasErrors { 
+         get { return _errors.Count &gt; 0; } 
+      }
+		
+      protected override void SetProperty&lt;T&gt;(ref T member, T val, 
+         [CallerMemberName] string propertyName = null) {
+		
+         base.SetProperty&lt;T&gt;(ref member, val, propertyName);
+         ValidateProperty(propertyName, val);
+      }
+		
+      private void ValidateProperty&lt;T&gt;(string propertyName, T value) {
+         var results = new List&lt;ValidationResult&gt;();
+			
+         //ValidationContext context = new ValidationContext(this); 
+         //context.MemberName = propertyName;
+         //Validator.TryValidateProperty(value, context, results);
+
+         if (results.Any()) {
+            //_errors[propertyName] = results.Select(c =&gt; c.ErrorMessage).ToList(); 
+         } else { 
+            _errors.Remove(propertyName); 
+         }
+			
+         ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName)); 
+      } 
+   } 
+}
+</pre>
+<p>Now add AddEditCustomerView and AddEditCustomerViewModel in respective folders. Following is the code of AddEditCustomerView.xaml.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class = "MVVMHierarchiesDemo.Views.AddEditCustomerView"
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMHierarchiesDemo.Views" 
+   mc:Ignorable = "d" 
+   d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+	
+   &lt;Grid&gt; 
+      &lt;Grid.RowDefinitions&gt; 
+         &lt;RowDefinition Height = "Auto" /&gt; 
+         &lt;RowDefinition Height = "Auto" /&gt;
+      &lt;/Grid.RowDefinitions&gt;
+		
+      &lt;Grid x:Name = "grid1" 
+         HorizontalAlignment = "Left" 
+         DataContext = "{Binding Customer}" 
+         Margin = "10,10,0,0" 
+         VerticalAlignment = "Top"&gt;
+			
+         &lt;Grid.ColumnDefinitions&gt; 
+            &lt;ColumnDefinition Width = "Auto" /&gt; 
+            &lt;ColumnDefinition Width = "Auto" /&gt; 
+         &lt;/Grid.ColumnDefinitions&gt;
+		
+         &lt;Grid.RowDefinitions&gt; 
+            &lt;RowDefinition Height = "Auto" /&gt; 
+            &lt;RowDefinition Height = "Auto" /&gt; 
+            &lt;RowDefinition Height = "Auto" /&gt; 
+            &lt;RowDefinition Height = "Auto" /&gt; 
+         &lt;/Grid.RowDefinitions&gt;
+		
+         &lt;Label Content = "First Name:" 
+            Grid.Column = "0" 
+            HorizontalAlignment = "Left" 
+            Margin = "3" 
+            Grid.Row = "0" 
+            VerticalAlignment = "Center" /&gt;
+			
+         &lt;TextBox x:Name = "firstNameTextBox" 
+            Grid.Column = "1" 
+            HorizontalAlignment = "Left" 
+            Height = "23" 
+            Margin = "3" 
+            Grid.Row = "0" 
+            Text = "{Binding FirstName, ValidatesOnNotifyDataErrors = True}"
+            VerticalAlignment = "Center" 
+            Width = "120" /&gt;
+			
+         &lt;Label Content = "Last Name:" 
+            Grid.Column = "0" 
+            HorizontalAlignment = "Left" 
+            Margin = "3" 
+            Grid.Row = "1" 
+            VerticalAlignment = "Center" /&gt; 
+			
+         &lt;TextBox x:Name = "lastNameTextBox"
+            Grid.Column = "1" 
+            HorizontalAlignment = "Left" 
+            Height = "23" 
+            Margin = "3" 
+            Grid.Row = "1" 
+            Text = "{Binding LastName, ValidatesOnNotifyDataErrors = True}"
+            VerticalAlignment = "Center" 
+            Width = "120" /&gt;
+			
+         &lt;Label Content = "Email:" 
+            Grid.Column = "0" 
+            HorizontalAlignment = "Left" 
+            Margin = "3" 
+            Grid.Row = "2" 
+            VerticalAlignment = "Center" /&gt;
+			
+         &lt;TextBox x:Name = "emailTextBox" 
+            Grid.Column = "1" 
+            HorizontalAlignment = "Left" 
+            Height = "23" 
+            Margin = "3" 
+            Grid.Row = "2" 
+            Text = "{Binding Email, ValidatesOnNotifyDataErrors = True}"
+            VerticalAlignment = "Center" 
+            Width = "120" /&gt;
+			
+         &lt;Label Content = "Phone:" 
+            Grid.Column = "0" 
+            HorizontalAlignment = "Left" 
+            Margin = "3" 
+            Grid.Row = "3" 
+            VerticalAlignment = "Center" /&gt;
+			
+         &lt;TextBox x:Name = "phoneTextBox" 
+            Grid.Column = "1" 
+            HorizontalAlignment = "Left" 
+            Height = "23" 
+            Margin = "3" 
+            Grid.Row = "3" 
+            Text = "{Binding Phone, ValidatesOnNotifyDataErrors = True}"
+            VerticalAlignment = "Center" 
+            Width = "120" /&gt;
+			
+      &lt;/Grid&gt; 
+
+      &lt;Grid Grid.Row = "1"&gt; 
+         &lt;Button Content = "Save" 
+            Command = "{Binding SaveCommand}" 
+            HorizontalAlignment = "Left" 
+            Margin = "25,5,0,0" 
+            VerticalAlignment = "Top" 
+            Width = "75" /&gt;
+		
+         &lt;Button Content = "Add" 
+            Command = "{Binding SaveCommand}" 
+            HorizontalAlignment = "Left" 
+            Margin = "25,5,0,0" 
+            VerticalAlignment = "Top" 
+            Width = "75" /&gt; 
+		
+         &lt;Button Content = "Cancel" 
+            Command = "{Binding CancelCommand}" 
+            HorizontalAlignment = "Left" 
+            Margin = "150,5,0,0" 
+            VerticalAlignment = "Top" 
+            Width = "75" /&gt; 
+      &lt;/Grid&gt;
+		
+   &lt;/Grid&gt; 
+	
+&lt;/UserControl&gt;
+</pre>
+<p>Following is the AddEditCustomerViewModel implementation.</p>
+<pre class="prettyprint notranslate">
+using MVVMHierarchiesDemo.Model;
+
+using System; 
+using System.Collections.Generic; 
+using System.Linq; 
+using System.Text; 
+using System.Threading.Tasks;
+
+namespace MVVMHierarchiesDemo.ViewModel { 
+
+   class AddEditCustomerViewModel : BindableBase { 
+	
+      public AddEditCustomerViewModel() {
+         CancelCommand = new MyIcommand(OnCancel); 
+         SaveCommand = new MyIcommand(OnSave, CanSave); 
+      } 
+		
+      private bool _EditMode; 
+		
+      public bool EditMode { 
+         get { return _EditMode; } 
+         set { SetProperty(ref _EditMode, value);} 
+      }
+		
+      private SimpleEditableCustomer _Customer;
+		
+      public SimpleEditableCustomer Customer { 
+         get { return _Customer; } 
+         set { SetProperty(ref _Customer, value);} 
+      }
+
+      private Customer _editingCustomer = null;
+		
+      public void SetCustomer(Customer cust) {
+         _editingCustomer = cust; 
+			
+         if (Customer != null) Customer.ErrorsChanged -= RaiseCanExecuteChanged; 
+         Customer = new SimpleEditableCustomer();
+         Customer.ErrorsChanged += RaiseCanExecuteChanged;
+         CopyCustomer(cust, Customer); 
+      }
+		
+      private void RaiseCanExecuteChanged(object sender, EventArgs e) { 
+         SaveCommand.RaiseCanExecuteChanged(); 
+      }
+
+      public MyIcommand CancelCommand { get; private set; }
+      public MyIcommand SaveCommand { get; private set; }
+
+      public event Action Done = delegate { };
+		
+      private void OnCancel() { 
+         Done(); 
+      }
+
+      private async void OnSave() { 
+         Done(); 
+      }
+		
+      private bool CanSave() { 
+         return !Customer.HasErrors; 
+      }  
+   } 
+}
+</pre>
+<p>Following is the implementation of SimpleEditableCustomer class.</p>
+<pre class="prettyprint notranslate">
+using System;
+using System.Collections.Generic; 
+using System.Linq; 
+using System.Text; 
+using System.Threading.Tasks;
+
+namespace MVVMHierarchiesDemo.Model { 
+
+   public class SimpleEditableCustomer : ValidatableBindableBase { 
+      private Guid _id; 
+		
+      public Guid Id { 
+         get { return _id; } 
+         set { SetProperty(ref _id, value); } 
+      }
+		
+      private string _firstName; 
+      [Required]
+		
+      public string FirstName { 
+         get { return _firstName; } 
+         set { SetProperty(ref _firstName, value); } 
+      }
+		
+      private string _lastName; 
+      [Required] 
+		
+      public string LastName {  
+         get { return _lastName; } 
+         set { SetProperty(ref _lastName, value); } 
+      }
+		
+      private string _email; 
+      [EmailAddress] 
+		
+      public string Email {
+         get { return _email; } 
+         set { SetProperty(ref _email, value); } 
+      }
+		
+      private string _phone; 
+      [Phone] 
+		
+      public string Phone { 
+         get { return _phone; } 
+         set { SetProperty(ref _phone, value); } 
+      } 
+   } 
+}
+</pre>
+<p>When the above code is compiled and executed, you will see the following window.</p>
+<img src="/mvvm/images/mvvm_validations_mainwindow1.jpg" alt="MVVM Validations MainWindow1" />
+<p>When you press the Add Customer button you will see the following view. When the user leaves any field empty, then it will become highlighted and the save button will become disabled.</p>
+<img src="/mvvm/images/mvvm_validations_mainwindow2.jpg" alt="MVVM Validations MainWindow2" />
+<h1>MVVM – Dependency Injection</h1>
+<p>In this chapter, we will briefly discuss about dependency injection. We have already covered data binding decouples Views and ViewModels from each other that allows them to communicate without knowing explicitly what is going on at the other end of the communication.</p>
+<p>Now we need something similar to decouple our ViewModel from the client services.</p>
+<p>In early days of object-oriented programming, developers have faced the issue of creating and retrieving instances of classes in applications. Various solutions have been proposed for this problem.</p>
+<p>For the past few years, dependency injection and inversion of control (IoC) have gained popularity among developers and have taken precedence over some older solutions such as the Singleton pattern.</p>
+<h2>Dependency Injection / IoC Containers</h2>
+<p>IoC and dependency injection are two design patterns that are closely related and the container is basically a chunk of infrastructure code that does both of those patterns for you.</p>
+<ul class="list">
+<li><p>IoC pattern is about delegating responsibility for construction and the dependency injection pattern is about providing dependencies to an object that's already been constructed.</p></li>
+<li><p>They can both be treated as a two-phase approach to constructing. When you use a container, the container takes several responsibilities which are as follows &minus;</p>
+<ul class="list">
+<li>It constructs an object when asked.</li>
+<li>The container will determine what that object depends on.</li>
+<li>Constructing those dependencies.</li>
+<li>Injecting them into the object being constructed.</li>
+<li>Recursively doing process.</li>
+</ul>
+</li>
+</ul>
+<p>Let's have a look at how we can use dependency injection to break decoupling between ViewModels and the client services. We will wire up the save handling AddEditCustomerViewModel form by using dependency injection related to that.</p>
+<p>First we need to create a new interface in our project in Services folder. If you don’t have a services folder in your project then create it first and add the following interface in the Services folder.</p>
+<pre class="prettyprint notranslate">
+using MVVMHierarchiesDemo.Model; 
+
+using System; 
+using System.Collections.Generic; 
+using System.Linq; 
+using System.Text; 
+using System.Threading.Tasks;
+
+namespace MVVMHierarchiesDemo.Services { 
+
+   public interface ICustomersRepository { 
+      Task&lt;List&lt;Customer&gt;&gt; GetCustomersAsync(); 
+      Task&lt;Customer&gt; GetCustomerAsync(Guid id); 
+      Task&lt;Customer&gt; AddCustomerAsync(Customer customer); 
+      Task&lt;Customer&gt; UpdateCustomerAsync(Customer customer); 
+      Task DeleteCustomerAsync(Guid customerId); 
+   } 
+}
+</pre>
+<p>Following is the implementation of ICustomersRepository.</p>
+<pre class="prettyprint notranslate">
+using MVVMHierarchiesDemo.Model; 
+
+using System; 
+using System.Collections.Generic; 
+using System.Linq; using System.Text; 
+using System.Threading.Tasks;
+
+namespace MVVMHierarchiesDemo.Services { 
+
+   public class CustomersRepository : ICustomersRepository {
+      ZzaDbContext _context = new ZzaDbContext();
+
+      public Task&lt;List&lt;Customer&gt;&gt; GetCustomersAsync() { 
+         return _context.Customers.ToListAsync(); 
+      }
+
+      public Task&lt;Customer&gt; GetCustomerAsync(Guid id) { 
+         return _context.Customers.FirstOrDefaultAsync(c =&gt; c.Id == id); 
+      }
+		
+      public async Task&lt;Customer&gt; AddCustomerAsync(Customer customer){ 
+         _context.Customers.Add(customer); 
+         await _context.SaveChangesAsync(); 
+         return customer;
+      }
+
+      public async Task&lt;Customer&gt; UpdateCustomerAsync(Customer customer) {
+		
+         if (!_context.Customers.Local.Any(c =&gt; c.Id == customer.Id)) { 
+            _context.Customers.Attach(customer); 
+         } 
+			
+         _context.Entry(customer).State = EntityState.Modified;
+         await _context.SaveChangesAsync(); 
+         return customer;
+			
+      }
+
+      public async Task DeleteCustomerAsync(Guid customerId) {
+         var customer = _context.Customers.FirstOrDefault(c =&gt; c.Id == customerId); 
+			
+         if (customer != null) {
+            _context.Customers.Remove(customer); 
+         }
+			
+         await _context.SaveChangesAsync(); 
+      } 
+   } 
+}
+</pre>
+<p>The simple way to do Save handling is to add a new instance of ICustomersRepository in AddEditCustomerViewModel and overload the AddEditCustomerViewModel and CustomerListViewModel constructor.</p>
+<pre class="prettyprint notranslate">
+private ICustomersRepository _repo; 
+
+public AddEditCustomerViewModel(ICustomersRepository repo) { 
+   _repo = repo; 
+   CancelCommand = new MyIcommand(OnCancel);
+   SaveCommand = new MyIcommand(OnSave, CanSave); 
+}
+</pre>
+<p>Update the OnSave method as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+private async void OnSave() { 
+   UpdateCustomer(Customer, _editingCustomer); 
+	
+   if (EditMode) 
+      await _repo.UpdateCustomerAsync(_editingCustomer); 
+   else 
+      await _repo.AddCustomerAsync(_editingCustomer); 
+   Done(); 
+} 
+
+private void UpdateCustomer(SimpleEditableCustomer source, Customer target) { 
+   target.FirstName = source.FirstName; 
+   target.LastName = source.LastName; 
+   target.Phone = source.Phone; 
+   target.Email = source.Email; 
+}
+</pre>
+<p>Following is the complete AddEditCustomerViewModel.</p>
+<pre class="prettyprint notranslate">
+using MVVMHierarchiesDemo.Model; 
+using MVVMHierarchiesDemo.Services; 
+
+using System; 
+using System.Collections.Generic; 
+using System.Linq; 
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MVVMHierarchiesDemo.ViewModel { 
+
+   class AddEditCustomerViewModel : BindableBase { 
+      private ICustomersRepository _repo; 
+		
+      public AddEditCustomerViewModel(ICustomersRepository repo) { 
+         _repo = repo;
+         CancelCommand = new MyIcommand(OnCancel); 
+         SaveCommand = new MyIcommand(OnSave, CanSave); 
+      } 
+		
+      private bool _EditMode; 
+		
+      public bool EditMode { 
+         get { return _EditMode; } 
+         set { SetProperty(ref _EditMode, value); } 
+      }
+
+      private SimpleEditableCustomer _Customer; 
+		
+      public SimpleEditableCustomer Customer { 
+         get { return _Customer; } 
+         set { SetProperty(ref _Customer, value); } 
+      }
+		
+      private Customer _editingCustomer = null;
+
+      public void SetCustomer(Customer cust) { 
+         _editingCustomer = cust; 
+			
+         if (Customer != null) Customer.ErrorsChanged -= RaiseCanExecuteChanged; 
+         Customer = new SimpleEditableCustomer();
+         Customer.ErrorsChanged += RaiseCanExecuteChanged;
+         CopyCustomer(cust, Customer); 
+      }
+
+      private void RaiseCanExecuteChanged(object sender, EventArgs e) { 
+         SaveCommand.RaiseCanExecuteChanged(); 
+      }
+
+      public MyIcommand CancelCommand { get; private set; } 
+      public MyIcommand SaveCommand { get; private set; }
+
+      public event Action Done = delegate { };
+		
+      private void OnCancel() { 
+         Done(); 
+      }
+
+      private async void OnSave() { 
+         UpdateCustomer(Customer, _editingCustomer); 
+			
+         if (EditMode) 
+            await _repo.UpdateCustomerAsync(_editingCustomer); 
+         else 
+            await _repo.AddCustomerAsync(_editingCustomer); 
+         Done(); 
+      }
+
+      private void UpdateCustomer(SimpleEditableCustomer source, Customer target) { 
+         target.FirstName = source.FirstName; 
+         target.LastName = source.LastName; 
+         target.Phone = source.Phone; 
+         target.Email = source.Email; 
+      }
+
+      private bool CanSave() { 
+         return !Customer.HasErrors; 
+      }
+		
+      private void CopyCustomer(Customer source, SimpleEditableCustomer target) { 
+         target.Id = source.Id; 
+			
+         if (EditMode) { 
+            target.FirstName = source.FirstName; 
+            target.LastName = source.LastName; 
+            target.Phone = source.Phone; 
+            target.Email = source.Email; 
+         }
+      } 
+   } 
+}
+</pre>
+<p>When the above code is compiled and executed, you will see the same output but now ViewModels are more loosely decoupled.</p>
+<img src="/mvvm/images/mvvm_dependency_injection_mainwindow1.jpg" alt="MVVM Dependency Injection MainWindow1" />
+<p>When you press the Add Customer button, you will see the following view. When the user leaves any field empty, then it will become highlighted and the save button will become disabled.</p>
+<img src="/mvvm/images/mvvm_dependency_injection_mainwindow2.jpg" alt="MVVM Dependency Injection MainWindow2" />
+<h1>MVVM – Events</h1>
+<p>An event is a programming construct that reacts to a change in state, notifying any endpoints that have registered for notification. Primarily, events are used to inform a user input via the mouse and keyboard, but their usefulness is not limited to that. Whenever a state change is detected, perhaps when an object has been loaded or initialized, an event can be fired to alert any interested third parties.</p>
+<ul class="list">
+<li><p>In a WPF application that uses the MVVM (Model-View-ViewModel) design pattern, the view model is the component that is responsible for handling the application's presentation logic and state.</p></li>
+<li><p>The view's code-behind file should contain no code to handle events that are raised from any User Interface (UI) element such as a Button or a ComboBox nor should it contain any domain specific logic.</p></li>
+<li><p>Ideally, the code-behind of a View contains only a constructor that calls the InitializeComponent method and perhaps some additional code to control or interact with the view layer that is difficult or inefficient to express in XAML, e.g. complex animations.</p></li>
+</ul>
+<p>Let’s take a look at a simple example of button click events in our application. Following is the XAML code of MainWindow.xaml file in which you will see two buttons.</p>
+<pre class="prettyprint notranslate">
+&lt;Window x:Class = "MVVMHierarchiesDemo.MainWindow" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:local = "clr-namespace:MVVMHierarchiesDemo" 
+   xmlns:views = "clr-namespace:MVVMHierarchiesDemo.Views" 
+   xmlns:viewModels = "clr-namespace:MVVMHierarchiesDemo.ViewModel" 
+   mc:Ignorable = "d" 
+   Title = "MainWindow" Height = "350" Width = "525"&gt;
+	
+   &lt;Window.DataContext&gt; 
+      &lt;local:MainWindowViewModel/&gt; 
+   &lt;/Window.DataContext&gt;
+	
+   &lt;Window.Resources&gt; 
+      &lt;DataTemplate DataType = "{x:Type viewModels:CustomerListViewModel}"&gt;
+         &lt;views:CustomerListView/&gt; 
+      &lt;/DataTemplate&gt;
+		 
+      &lt;DataTemplate DataType = "{x:Type viewModels:OrderViewModel}"&gt;
+         &lt;views:OrderView/&gt;
+      &lt;/DataTemplate&gt; 
+   &lt;/Window.Resources&gt; 
+
+   &lt;Grid&gt; 
+      &lt;Grid.RowDefinitions&gt; 
+         &lt;RowDefinition Height = "Auto" /&gt; 
+         &lt;RowDefinition Height = "*" /&gt; 
+      &lt;/Grid.RowDefinitions&gt; 
+		
+      &lt;Grid x:Name = "NavBar"&gt; 
+         &lt;Grid.ColumnDefinitions&gt; 
+            &lt;ColumnDefinition Width = "*" /&gt;
+            &lt;ColumnDefinition Width = "*" /&gt; 
+            &lt;ColumnDefinition Width = "*" /&gt; 
+         &lt;/Grid.ColumnDefinitions&gt;
+			
+         &lt;Button Content = "Customers" 
+            Command = "{Binding NavCommand}" 
+            CommandParameter = "customers" 
+            Grid.Column = "0" /&gt;
+				
+         &lt;Button Content = "Order" 
+            Command = "{Binding NavCommand}" 
+            CommandParameter = "orders" 
+            Grid.Column = "2" /&gt;
+      &lt;/Grid&gt;
+		
+      &lt;Grid x:Name = "MainContent" Grid.Row = "1"&gt; 
+         &lt;ContentControl Content = "{Binding CurrentViewModel}" /&gt;
+      &lt;/Grid&gt; 
+		
+   &lt;/Grid&gt; 
+
+&lt;/Window&gt;
+</pre>
+<p>You can see that the button Click property is not used in the above XAML file but Command and CommandParameter properties are used to load different Views when the button is pressed. Now you need to define the commands implementation in MainWindowViewModel.cs file but not in View file. Following is the complete MainWindowViewModel implementation.</p>
+<pre class="prettyprint notranslate">
+using MVVMHierarchiesDemo.ViewModel; 
+using MVVMHierarchiesDemo.Views; 
+
+using System; 
+using System.Collections.Generic; 
+using System.Linq; 
+using System.Text; 
+using System.Threading.Tasks;
+
+namespace MVVMHierarchiesDemo { 
+
+   class MainWindowViewModel : BindableBase { 
+	
+      public MainWindowViewModel() { 
+         NavCommand = new MyICommand&lt;string&gt;(OnNav); 
+      } 
+
+      private CustomerListViewModel custListViewModel = new CustomerListViewModel(); 
+      private OrderViewModel orderViewModelModel = new OrderViewModel();
+
+      private BindableBase _CurrentViewModel; 
+		
+      public BindableBase CurrentViewModel { 
+         get { return _CurrentViewModel; } 
+         set { SetProperty(ref _CurrentViewModel, value); } 
+      } 
+		
+      public MyICommand&lt;string&gt; NavCommand { get; private set; }
+
+      private void OnNav(string destination) { 
+		
+         switch (destination) { 
+            case "orders": 
+               CurrentViewModel = orderViewModelModel; 
+               break; 
+            case "customers":
+               default: 
+               CurrentViewModel = custListViewModel; 
+               break; 
+         } 
+      } 
+   }
+}
+</pre>
+<p>Derive all of your ViewModels from BindableBase class. When the above code is compiled and executed, you will see the following output.</p>
+<img src="/mvvm/images/mvvm_events_mainwindow1.jpg" alt="MVVM Events MainWindow1" />
+<p>As you can see, we have added only two buttons and a CurrentViewModel on our MainWindow. Now if you click the any button then it will navigate to that particular View. Let’s click on Customers button and you will see that the CustomerListView is displayed.</p>
+<img src="/mvvm/images/mvvm_events_mainwindow2.jpg" alt="MVVM Events MainWindow2" />
+<p>We recommend you to execute the above example in a step-by-step method for better understanding.</p>
+<h1>MVVM – Unit Testing</h1>
+<p>The idea behind unit testing is to take discrete chunks of code (units) and write test methods that use the code in an expected way, and then test to see if they get the expected results.</p>
+<ul class="list">
+<li><p>Being code themselves, unit tests are compiled just like the rest of the project.</p></li>
+<li><p>They are also executed by the test-running software, which can speed through each test, effectively giving the thumbs up or thumbs down to indicate whether the test has passed or failed, respectively.</p></li>
+</ul>
+<p>Let’s take a look at an example created earlier. Following is the implementation of Student Model.</p>
+<pre class="prettyprint notranslate">
+using System.ComponentModel;
+
+namespace MVVMDemo.Model {
+ 
+   public class StudentModel {}
+	
+   public class Student : INotifyPropertyChanged { 
+      private string firstName; 
+      private string lastName;
+
+      public string FirstName { 
+         get { return firstName; }
+			
+         set { 
+            if (firstName != value) { 
+               firstName = value; 
+               RaisePropertyChanged("FirstName");
+               RaisePropertyChanged("FullName"); 
+            } 
+         }
+      }
+
+      public string LastName { 
+         get { return lastName; } 
+			
+         set { 
+            if (lastName != value) { 
+               lastName = value; 
+               RaisePropertyChanged("LastName");
+               RaisePropertyChanged("FullName");
+            } 
+         } 
+      }
+
+      public string FullName { 
+         get { 
+            return firstName + " " + lastName; 
+         } 
+      }
+
+      public event PropertyChangedEventHandler PropertyChanged;
+
+      private void RaisePropertyChanged(string property) { 
+         if (PropertyChanged != null) { 
+            PropertyChanged(this, new PropertyChangedEventArgs(property)); 
+         } 
+      } 
+   } 
+}
+</pre>
+<p>Following is the implementation of StudentView.</p>
+<pre class="prettyprint notranslate">
+&lt;UserControl x:Class="MVVMDemo.Views.StudentView" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:local = "clr-namespace:MVVMDemo.Views" 
+   xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModel" 
+   xmlns:data = "clr-namespace:MVVMDemo.Model" 
+   xmlns:vml = "clr-namespace:MVVMDemo.VML" 
+   vml:ViewModelLocator.AutoHookedUpViewModel = "True" 
+   mc:Ignorable = "d" 
+   d:DesignHeight = "300" d:DesignWidth = "300"&gt;
+
+   &lt;UserControl.Resources&gt; 
+      &lt;DataTemplate DataType = "{x:Type data:Student}"&gt; 
+		
+         &lt;StackPanel Orientation = "Horizontal"&gt; 
+            &lt;TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+               Width = "100" Margin = "3 5 3 5"/&gt; 
+					
+            &lt;TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+               Width = "100" Margin = "0 5 3 5"/&gt; 
+					
+            &lt;TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+               Margin = "0 5 3 5"/&gt; 
+         &lt;/StackPanel&gt; 
+			
+      &lt;/DataTemplate&gt; 
+   &lt;/UserControl.Resources&gt;
+
+   &lt;Grid&gt; 
+      &lt;StackPanel Orientation = "Horizontal"&gt; 
+         &lt;ListBox ItemsSource = "{Binding Students}"
+            SelectedItem = "{Binding SelectedStudent}"/&gt; 
+				
+         &lt;Button Content = "Delete" 
+            Command = "{Binding DeleteCommand}" 
+            HorizontalAlignment = "Left" 
+            VerticalAlignment = "Top" 
+            Width = "75" /&gt; 
+      &lt;/StackPanel&gt; 
+   &lt;/Grid&gt;
+
+&lt;/UserControl&gt;
+</pre>
+<p>Following is the StudentViewModel implementation.</p>
+<pre class="prettyprint notranslate">
+using MVVMDemo.Model;
+ 
+using System.Collections.ObjectModel; 
+using System.Windows.Input; 
+using System;
+
+namespace MVVMDemo.ViewModel { 
+
+   public class StudentViewModel { 
+	
+      public MyICommand DeleteCommand { get; set;}
+		
+      public StudentViewModel() { 
+         LoadStudents(); 
+         DeleteCommand = new MyICommand(OnDelete, CanDelete); 
+      }
+
+      public ObservableCollection&lt;Student&gt; Students { 
+         get; 
+         set; 
+      }
+
+      public void LoadStudents() { 
+         ObservableCollection&lt;Student&gt; students = new ObservableCollection&lt;Student&gt;();
+
+         students.Add(new Student { FirstName = "Mark", LastName = "Allain" }); 
+         students.Add(new Student { FirstName = "Allen", LastName = "Brown" }); 
+         students.Add(new Student { FirstName = "Linda", LastName = "Hamerski" });
+			
+         Students = students; 
+      } 
+		
+      private Student _selectedStudent; 
+		
+      public Student SelectedStudent { 
+         get { 
+            return _selectedStudent; 
+         } 
+			
+         set { 
+            _selectedStudent = value;
+            DeleteCommand.RaiseCanExecuteChanged(); 
+         } 
+      } 
+		
+      private void OnDelete() { 
+         Students.Remove(SelectedStudent); 
+      }
+
+      private bool CanDelete() { 
+         return SelectedStudent != null; 
+      }
+		
+      public int GetStudentCount() { 
+         return Students.Count; 
+      } 
+   } 
+}
+</pre>
+<p>Following is the MainWindow.xaml file.</p>
+<pre class="prettyprint notranslate">
+&lt;Window x:Class = "MVVMDemo.MainWindow" 
+   xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:local = "clr-namespace:MVVMDemo" 
+   xmlns:views = "clr-namespace:MVVMDemo.Views" 
+   mc:Ignorable = "d" 
+   Title = "MainWindow" Height = "350" Width = "525"&gt;
+
+   &lt;Grid&gt; 
+      &lt;views:StudentView x:Name = "StudentViewControl"/&gt; 
+   &lt;/Grid&gt;
+ 
+&lt;/Window&gt;
+</pre>
+<p>Following is the MyICommand implementation, which implements the ICommand interface.</p>
+<pre class="prettyprint notranslate">
+using System; 
+using System.Windows.Input;
+
+namespace MVVMDemo { 
+
+   public class MyICommand : ICommand { 
+      Action _TargetExecuteMethod; 
+      Func&lt;bool&gt; _TargetCanExecuteMethod;
+
+      public MyICommand(Action executeMethod) { 
+         _TargetExecuteMethod = executeMethod; 
+      }
+
+      public MyICommand(Action executeMethod, Func&lt;bool&gt; canExecuteMethod) { 
+         _TargetExecuteMethod = executeMethod;
+         _TargetCanExecuteMethod = canExecuteMethod; 
+      }
+
+      public void RaiseCanExecuteChanged() {
+         CanExecuteChanged(this, EventArgs.Empty); 
+      }
+		
+      bool ICommand.CanExecute(object parameter) { 
+		
+         if (_TargetCanExecuteMethod != null) { 
+            return _TargetCanExecuteMethod();
+         } 
+			
+         if (_TargetExecuteMethod != null) { 
+            return true; 
+         } 
+			
+         return false; 
+      }
+		
+      // Beware - should use weak references if command instance lifetime
+         is longer than lifetime of UI objects that get hooked up to command
+			
+      // Prism commands solve this in their implementation
+		
+      public event EventHandler CanExecuteChanged = delegate { };
+
+      void ICommand.Execute(object parameter) { 
+         if (_TargetExecuteMethod != null) { 
+            _TargetExecuteMethod(); 
+         } 
+      } 
+   }
+}
+</pre>
+<p>When the above code is compiled and executed, you will see the following output on your main window.</p>
+<img src="/mvvm/images/mvvm_unit_testing_mainwindow.jpg" alt="MVVM Unit Testing MainWindow" />
+<p>To write a unit test for the above example, let’s add a new Test Project to the Solution.</p>
+<img src="/mvvm/images/add_new_project.jpg" alt="Add New Project" />
+<p>Add reference to the project by a right-click on References.</p>
+<img src="/mvvm/images/add_references.jpg" alt="Add New References" />
+<p>Select the existing project and click Ok.</p>
+<img src="/mvvm/images/reference_manager_mvvm_test.jpg" alt="Reference Manager MVVM Test" />
+<p>Let us now add a simple Test which will check the Student Count as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+using System; 
+
+using Microsoft.VisualStudio.TestTools.UnitTesting; 
+using MVVMDemo.ViewModel;
+
+namespace MVVMTest { 
+   [TestClass] 
+	
+   public class UnitTest1 { 
+      [TestMethod] 
+		
+      public void TestMethod1() { 
+         StudentViewModel sViewModel = new StudentViewModel(); 
+         int count = sViewModel.GetStudentCount();
+         Assert.IsTrue(count == 3); 
+      } 
+   } 
+}
+</pre>
+<p>To execute this test, select Test &rarr; Run &rarr; All Tests menu option.</p>
+<img src="/mvvm/images/execute_mvvm_test.jpg" alt="Execute MVVM Test" />
+<p>You can see in the Test Explorer that the Test is Passed, because in the StudentViewModel, three students are added. Change the count condition from 3 to 4 as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+using System; 
+
+using Microsoft.VisualStudio.TestTools.UnitTesting; 
+using MVVMDemo.ViewModel;
+
+namespace MVVMTest { 
+   [TestClass] 
+	
+   public class UnitTest1 { 
+      [TestMethod] public void TestMethod1() {
+         StudentViewModel sViewModel = new StudentViewModel(); 
+         int count = sViewModel.GetStudentCount();
+         Assert.IsTrue(count == 4);
+      } 
+   } 
+}
+</pre>
+<p>When the test plan is executed again, you will see that that the test failed because student count is not equal to 4.</p>
+<img src="/mvvm/images/mvvm_test_failed.jpg" alt="MVVM Test Failed" />
+<p>We recommend you to execute the above example in a step-by-step method for better understanding.</p>
+<h1>MVVM – Frameworks</h1>
+<p>In this chapter, we will discuss MVVM toolkits or frameworks that are available. You can also use these frameworks so that you don't have to write a bunch of repetitive code to implement the MVVM pattern yourself. Here are some of the most popular frameworks &minus;</p>
+<ul class="list">
+<li>Prism</li>
+<li>MVVM Light</li>
+<li>Caliburn Micro</li>
+</ul>
+<img src="/mvvm/images/mvvm_frameworks.jpg" alt="MVVM Frameworks" />
+<h2>Prism</h2>
+<p>Prism provides guidance in the form of samples and documentation that help you easily design and build rich, flexible, and easily maintained Windows Presentation Foundation (WPF) desktop applications. Rich Internet Applications (RIAs) built with the Microsoft Silverlight browser plug-in and Windows applications.</p>
+<ul class="list">
+<li><p>Prism uses design patterns that embody important architectural design principles, such as separation of concerns and loose coupling.</p></li>
+<li><p>Prism helps you design and build applications using loosely coupled components that can evolve independently but which can be easily and seamlessly integrated into the overall application.</p></li>
+<li><p>These types of applications are known as composite applications.</p></li>
+</ul>
+<p>Prism has a number of features out-of-the-box. Following are some of the important features of Prism.</p>
+<h3>MVVM Pattern</h3>
+<p>Prism has support for the MVVM pattern. It has a Bindablebase class similar to the one which is implemented in the earlier chapters.</p>
+<p>It has a flexible ViewModelLocator that has conventions to it but allows you to override those conventions and declaratively hook up your Views and ViewModels in a loosely coupled way.</p>
+<h3>Modularity</h3>
+<p>It is the ability to break up your code into totally loosely coupled class libraries in parts and bring them together at runtime into a cohesive whole for the end user, while the code remains fully decoupled.</p>
+<h3>UI Composition/Regions</h3>
+<p>It is the ability to plug views into containers without the View that's doing the plugging, needing to have an explicit reference to the UI container itself.</p>
+<h3>Navigation</h3>
+<p>Prism has navigation features that layer on top of regions, like forward and backward navigation and the navigation stack that allows your view models to participate in the navigation process directly.</p>
+<h3>Commands</h3>
+<p>Prism has commands so they have a delegate command that's very similar to the MyICommand we have used in earlier chapters except it's got some extra robustness to protect you from memory leaks.</p>
+<h3>Pub/Sub Events</h3>
+<p>Prism also has support for Pub/Sub events. These are loosely coupled events where the publisher and subscriber can have different lifetimes and do not have to have explicit references to each other to communicate through events.</p>
+<h2>MVVM Light</h2>
+<p>MVVM Light is produced by Laurent Bugnion and helps you separate your View from your Model, which creates applications that are cleaner and easier to maintain and extend.</p>
+<ul class="list">
+<li><p>It also creates testable applications and allows you to have a much thinner user interface layer (which is more difficult to test automatically).</p></li>
+<li><p>This toolkit places special emphasis on to open and edit the user interface into Blend, including the creation of design-time data to enable the Blend users to "see something" when they work with data controls.</p></li>
+</ul>
+<h2>Caliburn Micro</h2>
+<p>This is another small open-source framework that helps you implement the MVVM pattern and also supports a number of things out-of-the-box.</p>
+<ul class="list">
+<li><p>Caliburn Micro is a small, yet powerful framework, designed for building applications across all XAML platforms.</p></li>
+<li><p>With strong support for MVVM and other proven UI patterns, Caliburn Micro will enable you to build your solution quickly, without the need to sacrifice code quality or testability.</p></li>
+</ul>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/mvvm/mvvm_interview_questions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/mvvm/mvvm_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

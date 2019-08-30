@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Python Pandas - Indexing and Selecting Data</title>
+<meta charset="utf-8">
+<meta name="description" content="Python Pandas - Indexing and Selecting Data - In this chapter, we will discuss how to slice and dice the date and generally get the subset of pandas object."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/python_pandas/python_pandas_indexing_and_selecting_data.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#036db0;
+}
+a.demo {
+    background:#036db0;
+}
+li.heading {
+    background:#036db0;
+}
+.course-box{background:#036db0}
+.home-intro-sub p{color:#036db0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/python_pandas/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/python_pandas/images/python-pandas-mini-logo.jpg" alt="Python Pandas Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Python Pandas Tutorial</li>
+<li><a href="/python_pandas/index.htm">Python Pandas - Home</a></li>
+<li><a href="/python_pandas/python_pandas_introduction.htm">Python Pandas - Introduction</a></li>
+<li><a href="/python_pandas/python_pandas_environment_setup.htm">Python Pandas - Environment Setup</a></li>
+<li><a href="/python_pandas/python_pandas_introduction_to_data_structures.htm">Introduction to Data Structures</a></li>
+<li><a href="/python_pandas/python_pandas_series.htm">Python Pandas - Series</a></li>
+<li><a href="/python_pandas/python_pandas_dataframe.htm">Python Pandas - DataFrame</a></li>
+<li><a href="/python_pandas/python_pandas_panel.htm">Python Pandas - Panel</a></li>
+<li><a href="/python_pandas/python_pandas_basic_functionality.htm">Python Pandas - Basic Functionality</a></li>
+<li><a href="/python_pandas/python_pandas_descriptive_statistics.htm">Descriptive Statistics</a></li>
+<li><a href="/python_pandas/python_pandas_function_application.htm">Function Application</a></li>
+<li><a href="/python_pandas/python_pandas_reindexing.htm">Python Pandas - Reindexing</a></li>
+<li><a href="/python_pandas/python_pandas_iteration.htm">Python Pandas - Iteration</a></li>
+<li><a href="/python_pandas/python_pandas_sorting.htm">Python Pandas - Sorting</a></li>
+<li><a href="/python_pandas/python_pandas_working_with_text_data.htm">Working with Text Data</a></li>
+<li><a href="/python_pandas/python_pandas_options_and_customization.htm">Options &amp; Customization</a></li>
+<li><a href="/python_pandas/python_pandas_indexing_and_selecting_data.htm">Indexing &amp; Selecting Data</a></li>
+<li><a href="/python_pandas/python_pandas_statistical_functions.htm">Statistical Functions</a></li>
+<li><a href="/python_pandas/python_pandas_window_functions.htm">Python Pandas - Window Functions</a></li>
+<li><a href="/python_pandas/python_pandas_aggregations.htm">Python Pandas - Aggregations</a></li>
+<li><a href="/python_pandas/python_pandas_missing_data.htm">Python Pandas - Missing Data</a></li>
+<li><a href="/python_pandas/python_pandas_groupby.htm">Python Pandas - GroupBy</a></li>
+<li><a href="/python_pandas/python_pandas_merging_joining.htm">Python Pandas - Merging/Joining</a></li>
+<li><a href="/python_pandas/python_pandas_concatenation.htm">Python Pandas - Concatenation</a></li>
+<li><a href="/python_pandas/python_pandas_date_functionality.htm">Python Pandas - Date Functionality</a></li>
+<li><a href="/python_pandas/python_pandas_timedelta.htm">Python Pandas - Timedelta</a></li>
+<li><a href="/python_pandas/python_pandas_categorical_data.htm">Python Pandas - Categorical Data</a></li>
+<li><a href="/python_pandas/python_pandas_visualization.htm">Python Pandas - Visualization</a></li>
+<li><a href="/python_pandas/python_pandas_io_tool.htm">Python Pandas - IO Tools</a></li>
+<li><a href="/python_pandas/python_pandas_sparse_data.htm">Python Pandas - Sparse Data</a></li>
+<li><a href="/python_pandas/python_pandas_caveats_and_gotchas.htm">Python Pandas - Caveats &amp; Gotchas</a></li>
+<li><a href="/python_pandas/python_pandas_comparison_with_sql.htm">Comparison with SQL</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Python Pandas Useful Resources</li>
+<li><a href="/python_pandas/python_pandas_quick_guide.htm">Python Pandas - Quick Guide</a></li>
+<li><a href="/python_pandas/python_pandas_useful_resources.htm">Python Pandas - Useful Resources</a></li>
+<li><a href="/python_pandas/python_pandas_discussion.htm">Python Pandas - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Python Pandas - Indexing and Selecting Data</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/python_pandas/python_pandas_options_and_customization.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/python_pandas/python_pandas_statistical_functions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, we will discuss how to slice and dice the date and generally get the subset of pandas object.</p>
+<p>The Python and NumPy indexing operators "[ ]" and attribute operator "." provide quick and easy access to Pandas data structures across a wide range of use cases. However, since the type of the data to be accessed isn’t known in advance, directly using standard operators has some optimization limits. For production code, we recommend that you take advantage of the optimized pandas data access methods explained in this chapter.</p>
+<p>Pandas now supports three types of Multi-axes indexing; the three types are mentioned in the following table &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th width="10%">Sr.No</th>
+<th style="text-align:center;">Indexing &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>.loc()</b></p>
+<p>Label based</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>.iloc()</b></p>
+<p>Integer based</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>.ix()</b></p>
+<p>Both Label and Integer based</p></td>
+</tr>
+</table>
+<h2>.loc()</h2>
+<p>Pandas provide various methods to have purely <b>label based indexing</b>. When slicing, the start bound is also included. Integers are valid labels, but they refer to the label and not the position.</p>
+<p><b>.loc()</b> has multiple access methods like &minus;</p>
+<ul class="list">
+<li>A single scalar label</li>
+<li>A list of labels</li>
+<li>A slice object</li>
+<li>A Boolean array</li>
+</ul>
+<p><b>loc</b> takes two single/list/range operator separated by ','. The first one indicates the row and the second one indicates columns.</p>
+<h3>Example 1</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/gu1cbs" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+#import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4),
+index = ['a','b','c','d','e','f','g','h'], columns = ['A', 'B', 'C', 'D'])
+
+#select all rows for a specific column
+print df.loc[:,'A']
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+a   0.391548
+b  -0.070649
+c  -0.317212
+d  -2.162406
+e   2.202797
+f   0.613709
+g   1.050559
+h   1.122680
+Name: A, dtype: float64
+</pre>
+<h3>Example 2</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/LLWJv9" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+# import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4),
+index = ['a','b','c','d','e','f','g','h'], columns = ['A', 'B', 'C', 'D'])
+
+# Select all rows for multiple columns, say list[]
+print df.loc[:,['A','C']]
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+            A           C
+a    0.391548    0.745623
+b   -0.070649    1.620406
+c   -0.317212    1.448365
+d   -2.162406   -0.873557
+e    2.202797    0.528067
+f    0.613709    0.286414
+g    1.050559    0.216526
+h    1.122680   -1.621420
+</pre>
+<h3>Example 3</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/7CIW3D" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+# import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4),
+index = ['a','b','c','d','e','f','g','h'], columns = ['A', 'B', 'C', 'D'])
+
+# Select few rows for multiple columns, say list[]
+print df.loc[['a','b','f','h'],['A','C']]
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+           A          C
+a   0.391548   0.745623
+b  -0.070649   1.620406
+f   0.613709   0.286414
+h   1.122680  -1.621420
+</pre>
+<h3>Example 4</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/jHlY6f" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+# import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4),
+index = ['a','b','c','d','e','f','g','h'], columns = ['A', 'B', 'C', 'D'])
+
+# Select range of rows for all columns
+print df.loc['a':'h']
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+            A           B          C          D
+a    0.391548   -0.224297   0.745623   0.054301
+b   -0.070649   -0.880130   1.620406   1.419743
+c   -0.317212   -1.929698   1.448365   0.616899
+d   -2.162406    0.614256  -0.873557   1.093958
+e    2.202797   -2.315915   0.528067   0.612482
+f    0.613709   -0.157674   0.286414  -0.500517
+g    1.050559   -2.272099   0.216526   0.928449
+h    1.122680    0.324368  -1.621420  -0.741470
+</pre>
+<h3>Example 5</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/r10CMa" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+# import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4),
+index = ['a','b','c','d','e','f','g','h'], columns = ['A', 'B', 'C', 'D'])
+
+# for getting values with a boolean array
+print df.loc['a']>0
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+A  False
+B  True
+C  False
+D  False
+Name: a, dtype: bool
+</pre>
+<h2>.iloc()</h2>
+<p>Pandas provide various methods in order to get purely integer based indexing. Like python and numpy, these are <b>0-based</b> indexing.</p>
+<p>The various access methods are as follows &minus;</p>
+<ul class="list">
+<li>An Integer</li>
+<li>A list of integers</li>
+<li>A range of values</li>
+</ul>
+<h3>Example 1</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/z3hYiN" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+# import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+
+# select all rows for a specific column
+print df.iloc[:4]
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+           A          B           C           D
+0   0.699435   0.256239   -1.270702   -0.645195
+1  -0.685354   0.890791   -0.813012    0.631615
+2  -0.783192  -0.531378    0.025070    0.230806
+3   0.539042  -1.284314    0.826977   -0.026251
+</pre>
+<h3>Example 2</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/qaisRO" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+
+# Integer slicing
+print df.iloc[:4]
+print df.iloc[1:5, 2:4]
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+           A          B           C           D
+0   0.699435   0.256239   -1.270702   -0.645195
+1  -0.685354   0.890791   -0.813012    0.631615
+2  -0.783192  -0.531378    0.025070    0.230806
+3   0.539042  -1.284314    0.826977   -0.026251
+
+           C          D
+1  -0.813012   0.631615
+2   0.025070   0.230806
+3   0.826977  -0.026251
+4   1.423332   1.130568
+</pre>
+<h3>Example 3</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/ShjTIM" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+
+# Slicing through list of values
+print df.iloc[[1, 3, 5], [1, 3]]
+print df.iloc[1:3, :]
+print df.iloc[:,1:3]
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+           B           D
+1   0.890791    0.631615
+3  -1.284314   -0.026251
+5  -0.512888   -0.518930
+
+           A           B           C           D
+1  -0.685354    0.890791   -0.813012    0.631615
+2  -0.783192   -0.531378    0.025070    0.230806
+
+           B           C
+0   0.256239   -1.270702
+1   0.890791   -0.813012
+2  -0.531378    0.025070
+3  -1.284314    0.826977
+4  -0.460729    1.423332
+5  -0.512888    0.581409
+6  -1.204853    0.098060
+7  -0.947857    0.641358
+</pre>
+<h2>.ix()</h2>
+<p>Besides pure label based and integer based, Pandas provides a hybrid method for selections and subsetting the object using the .ix() operator.</p>
+<h3>Example 1</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/yAHWfV" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+
+# Integer slicing
+print df.ix[:4]
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+           A          B           C           D
+0   0.699435   0.256239   -1.270702   -0.645195
+1  -0.685354   0.890791   -0.813012    0.631615
+2  -0.783192  -0.531378    0.025070    0.230806
+3   0.539042  -1.284314    0.826977   -0.026251
+</pre>
+<h3>Example 2</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/GIRJkp" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+# Index slicing
+print df.ix[:,'A']
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0   0.699435
+1  -0.685354
+2  -0.783192
+3   0.539042
+4  -1.044209
+5  -1.415411
+6   1.062095
+7   0.994204
+Name: A, dtype: float64
+</pre>
+<h2>Use of Notations</h2>
+<p>Getting values from the Pandas object with Multi-axes indexing uses the following notation &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Object</th>
+<th style="text-align:center;">Indexers</th>
+<th style="text-align:center;">Return Type</th>
+</tr>
+<tr>
+<td>Series</td>
+<td>s.loc[indexer]</td>
+<td>Scalar value</td>
+</tr>
+<tr>
+<td>DataFrame</td>
+<td>df.loc[row_index,col_index]</td>
+<td>Series object</td>
+</tr>
+<tr>
+<td>Panel</td>
+<td>p.loc[item_index,major_index,
+minor_index]</td>
+<td>p.loc[item_index,major_index,
+minor_index]</td>
+</tr>
+</table>
+<p><b>Note &minus; .iloc() &amp; .ix()</b> applies the same indexing options and Return value.</p>
+<p>Let us now see how each operation can be performed on the DataFrame object. We will use the basic indexing operator '[ ]' &minus;</p>
+<h3>Example 1</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/wSPMk7" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+print df['A']
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0  -0.478893
+1   0.391931
+2   0.336825
+3  -1.055102
+4  -0.165218
+5  -0.328641
+6   0.567721
+7  -0.759399
+Name: A, dtype: float64
+</pre>
+<p><b>Note</b> &minus; We can pass a list of values to [ ] to select those columns.</p>
+<h3>Example 2</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/pKPgIJ" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+
+print df[['A','B']]
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+           A           B
+0  -0.478893   -0.606311
+1   0.391931   -0.949025
+2   0.336825    0.093717
+3  -1.055102   -0.012944
+4  -0.165218    1.550310
+5  -0.328641   -0.226363
+6   0.567721   -0.312585
+7  -0.759399   -0.372696
+</pre>
+<h3>Example 3</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/lSPofg" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate ">
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+print df[2:2]
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+Columns: [A, B, C, D]
+Index: []
+</pre>
+<h3>Attribute Access</h3>
+<p>Columns can be selected using the attribute operator '.'.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/6RvBky" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+
+print df.A
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+0   -0.478893
+1    0.391931
+2    0.336825
+3   -1.055102
+4   -0.165218
+5   -0.328641
+6    0.567721
+7   -0.759399
+Name: A, dtype: float64
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/python_pandas/python_pandas_options_and_customization.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/python_pandas/python_pandas_statistical_functions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

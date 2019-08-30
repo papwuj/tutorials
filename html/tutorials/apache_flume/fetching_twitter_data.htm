@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Apache Flume - Fetching Twitter Data</title>
+<meta charset="utf-8">
+<meta name="description" content="Apache Flume - Fetching Twitter Data - Using Flume, we can fetch data from various services and transport it to centralized stores (HDFS and HBase). This chapter explains how to fetch data from Twitt"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/apache_flume/fetching_twitter_data.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#246aaf;
+}
+a.demo {
+    background:#246aaf;
+}
+li.heading {
+    background:#246aaf;
+}
+.course-box{background:#246aaf}
+.home-intro-sub p{color:#246aaf}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/apache_flume/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/apache_flume/images/flume-mini-logo.jpg" alt="Apache Flume Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Apache Flume Tutorial</li>
+<li><a href="/apache_flume/index.htm">Apache Flume - Home</a></li>
+<li><a href="/apache_flume/apache_flume_introduction.htm">Apache Flume - Introduction</a></li>
+<li><a href="/apache_flume/data_transfer_in_hadoop.htm">Data Transfer in Hadoop</a></li>
+<li><a href="/apache_flume/apache_flume_architecture.htm">Apache Flume - Architecture</a></li>
+<li><a href="/apache_flume/apache_flume_data_flow.htm">Apache Flume - Data Flow</a></li>
+<li><a href="/apache_flume/apache_flume_environment.htm">Apache Flume - Environment</a></li>
+<li><a href="/apache_flume/apache_flume_configuration.htm">Apache Flume - configuration</a></li>
+<li><a href="/apache_flume/fetching_twitter_data.htm">Apache Flume - Fetching Twitter Data</a></li>
+<li><a href="/apache_flume/sequence_generator_source.htm">Sequence Generator Source</a></li>
+<li><a href="/apache_flume/apache_flume_netcat_source.htm">Apache Flume - NetCat Source</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Apache Flume Resources</li>
+<li><a href="/apache_flume/apache_flume_quick_guide.htm">Apache Flume - Quick Guide</a></li>
+<li><a href="/apache_flume/apache_flume_useful_resources.htm">Apache Flume - Useful Resources</a></li>
+<li><a href="/apache_flume/apache_flume_discussion.htm">Apache Flume - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Apache Flume - Fetching Twitter Data</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/apache_flume/apache_flume_configuration.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/apache_flume/sequence_generator_source.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Using Flume, we can fetch data from various services and transport it to centralized stores (HDFS and HBase). This chapter explains how to fetch data from Twitter service and store it in HDFS using Apache Flume.</p>
+<p>As discussed in Flume Architecture, a webserver generates log data and this data is collected by an agent in Flume. The channel buffers this data to a sink, which finally pushes it to centralized stores.</p>
+<p>In the example provided in this chapter, we will create an application and get the tweets from it using the experimental twitter source provided by Apache Flume. We will use the memory channel to buffer these tweets and HDFS sink to push these tweets into the HDFS.</p>
+<img src="/apache_flume/images/fetch_data.jpg" alt="Fetch Data" />
+<p>To fetch Twitter data, we will have to follow the steps given below &minus;</p>
+<ul class="list">
+<li>Create a twitter Application</li>
+<li>Install / Start HDFS</li>
+<li>Configure Flume</li>
+</ul>
+<h2>Creating a Twitter Application</h2>
+<p>In order to get the tweets from Twitter, it is needed to create a Twitter application. Follow the steps given below to create a Twitter application.</p>
+<h3>Step 1</h3>
+<p>To create a Twitter application, click on the following link <a target="_blank" rel="nofollow" href="https://apps.twitter.com/">https://apps.twitter.com/</a>. Sign in to your Twitter account. You will have a Twitter Application Management window where you can create, delete, and manage Twitter Apps.</p>
+<img src="/apache_flume/images/application_management_window.jpg " alt="Application Management window" />
+<h3>Step 2</h3>
+<p>Click on the <b>Create New App</b> button. You will be redirected to a window where you will get an application form in which you have to fill in your details in order to create the App. While filling the website address, give the complete URL pattern, for example, <a target="_blank" rel="nofollow" href="http://example.com/">http://example.com.</a></p>
+<img src="/apache_flume/images/create_an_application.jpg" alt="Create an Application" />
+<h3>Step 3</h3>
+<p>Fill in the details, accept the <b>Developer Agreement</b> when finished, click on the <b>Create your Twitter application button</b> which is at the bottom of the page. If everything goes fine, an App will be created with the given details as shown below.</p>
+<img src="/apache_flume/images/application_created.jpg" alt="Application created" />
+<h3>Step 4</h3>
+<p>Under <b>keys and Access Tokens</b> tab at the bottom of the page, you can observe a button named <b>Create my access token</b>. Click on it to generate the access token.</p>
+<img src="/apache_flume/images/key_access_tokens.jpg" alt="Key Access Tokens" />
+<h3>Step 5</h3>
+<p>Finally, click on the <b>Test OAuth</b> button which is on the right side top of the page. This will lead to a page which displays your <b>Consumer key, Consumer secret, Access token,</b> and <b>Access token secret</b>. Copy these details. These are useful to configure the agent in Flume.</p>
+<img src="/apache_flume/images/oauth_tool.jpg" alt="OAuth Tool" />
+<h2>Starting HDFS</h2>
+<p>Since we are storing the data in HDFS, we need to install / verify Hadoop. Start Hadoop and create a folder in it to store Flume data. Follow the steps given below before configuring Flume.</p>
+<h3>Step 1: Install / Verify Hadoop</h3>
+<p>Install <a target="_blank" rel="nofollow" href="http://www.tutorialspoint.com/hadoop/hadoop_enviornment_setup.htm">Hadoop</a>. If Hadoop is already installed in your system, verify the installation using Hadoop version command, as shown below.</p>
+<pre class="result notranslate">
+$ hadoop version 
+</pre>
+<p>If your system contains Hadoop, and if you have set the path variable, then you will get the following output &minus;</p>
+<pre class="result notranslate">
+Hadoop 2.6.0 
+Subversion https://git-wip-us.apache.org/repos/asf/hadoop.git -r 
+e3496499ecb8d220fba99dc5ed4c99c8f9e33bb1 
+Compiled by jenkins on 2014-11-13T21:10Z 
+Compiled with protoc 2.5.0 
+From source with checksum 18e43357c8f927c0695f1e9522859d6a 
+This command was run using /home/Hadoop/hadoop/share/hadoop/common/hadoop-common-2.6.0.jar
+</pre> 
+<h3>Step 2: Starting Hadoop</h3>
+<p>Browse through the <b>sbin</b> directory of Hadoop and start yarn and Hadoop dfs (distributed file system) as shown below.</p>
+<pre class="result notranslate">
+cd /$Hadoop_Home/sbin/ 
+$ start-dfs.sh 
+localhost: starting namenode, logging to
+   /home/Hadoop/hadoop/logs/hadoop-Hadoop-namenode-localhost.localdomain.out 
+localhost: starting datanode, logging to 
+   /home/Hadoop/hadoop/logs/hadoop-Hadoop-datanode-localhost.localdomain.out 
+Starting secondary namenodes [0.0.0.0] 
+starting secondarynamenode, logging to 
+   /home/Hadoop/hadoop/logs/hadoop-Hadoop-secondarynamenode-localhost.localdomain.out
+  
+$ start-yarn.sh 
+starting yarn daemons 
+starting resourcemanager, logging to 
+   /home/Hadoop/hadoop/logs/yarn-Hadoop-resourcemanager-localhost.localdomain.out 
+localhost: starting nodemanager, logging to 
+   /home/Hadoop/hadoop/logs/yarn-Hadoop-nodemanager-localhost.localdomain.out 
+</pre>
+<h3>Step 3: Create a Directory in HDFS</h3>
+<p>In Hadoop DFS, you can create directories using the command <b>mkdir</b>. Browse through it and create a directory with the name <b>twitter_data</b> in the required path as shown below.</p>
+<pre class="result notranslate">
+$cd /$Hadoop_Home/bin/ 
+$ hdfs dfs -mkdir hdfs://localhost:9000/user/Hadoop/twitter_data 
+</pre>
+<h2>Configuring Flume</h2>
+<p>We have to configure the source, the channel, and the sink using the configuration file in the <b>conf</b> folder. The example given in this chapter uses an experimental source provided by Apache Flume named <b>Twitter 1&#37; Firehose</b> Memory channel and HDFS sink.</p>
+<h3>Twitter 1&#37; Firehose Source</h3>
+<p>This source is highly experimental. It connects to the 1&#37; sample Twitter Firehose using streaming API and continuously downloads tweets, converts them to Avro format, and sends Avro events to a downstream Flume sink.</p>
+<p>We will get this source by default along with the installation of Flume. The <b>jar</b> files corresponding to this source can be located in the <b>lib</b> folder as shown below.</p>
+<img src="/apache_flume/images/twitter_jarfiles.jpg" alt="Twitter Jar Files" />
+<h3>Setting the classpath</h3>
+<p>Set the <b>classpath</b> variable to the <b>lib</b> folder of Flume in <b>Flume-env.sh</b> file as shown below.</p>
+<pre class="result notranslate">
+export CLASSPATH=$CLASSPATH:/FLUME_HOME/lib/* 
+</pre>
+<p>This source needs the details such as <b>Consumer key, Consumer secret, Access token,</b> and <b>Access token secret</b> of a Twitter application. While configuring this source, you have to provide values to the following properties &minus;</p>
+<ul class="list">
+<li><p><b>Channels</b></p></li>
+<li><p><b>Source type : org.apache.flume.source.twitter.TwitterSource</b></p></li>
+<li><p><b>consumerKey</b> &minus; The OAuth consumer key</p></li>
+<li><p><b>consumerSecret</b> &minus; OAuth consumer secret</b></p></li>
+<li><p><b>accessToken</b> &minus; OAuth access token</p></li>
+<li><p><b>accessTokenSecret</b> &minus; OAuth token secret</p></li>
+<li><p><b>maxBatchSize</b> &minus; Maximum number of twitter messages that should be in a twitter batch. The default value is 1000 (optional).</p></li>
+<li><p><b>maxBatchDurationMillis</b> &minus; Maximum number of milliseconds to wait before closing a batch. The default value is 1000 (optional).</p></li>
+</ul>
+<h3>Channel</h3>
+<p>We are using the memory channel. To configure the memory channel, you <i>must</i> provide value to the type of the channel.</p>
+<ul class="list">
+<li><p><b>type</b> &minus; It holds the type of the channel. In our example, the type is <b>MemChannel</b>.</p></li>
+<li><p><b>Capacity</b> &minus; It is the maximum number of events stored in the channel. Its default value is 100 (optional).</p></li>
+<li><p><b>TransactionCapacity</b> &minus; It is the maximum number of events the channel accepts or sends. Its default value is 100 (optional).</p></li>
+</ul>
+<h3>HDFS Sink</h3>
+<p>This sink writes data into the HDFS. To configure this sink, you <i>must</i> provide the following details.</p>
+<ul class="list">
+<li><p><b>Channel</b></p></li>
+<li><p><b>type</b> &minus; hdfs</p></li>
+<li><p><b>hdfs.path</b> &minus; the path of the directory in HDFS where data is to be stored.</p></li>
+</ul>
+<p>And we can provide some optional values based on the scenario. Given below are the optional properties of the HDFS sink that we are configuring in our application.</p>
+<ul class="list">
+<li><p><b>fileType</b> &minus; This is the required file format of our HDFS file. <b>SequenceFile, DataStream</b> and <b>CompressedStream</b> are the three types available with this stream. In our example, we are using the <b>DataStream</b>.</p></li>
+<li><p><b>writeFormat</b> &minus; Could be either text or writable.</p></li>
+<li><p><b>batchSize</b> &minus; It is the number of events written to a file before it is flushed into the HDFS. Its default value is 100.</p></li>
+<li><p><b>rollsize</b> &minus; It is the file size to trigger a roll. It default value is 100.</p></li>
+<li><p><b>rollCount</b> &minus; It is the number of events written into the file before it is rolled. Its default value is 10.</p></li>
+</ul>
+<h2>Example – Configuration File</h2>
+<p>Given below is an example of the configuration file. Copy this content and save as <b>twitter.conf</b> in the conf folder of Flume.</p>
+<pre class="result notranslate">
+# Naming the components on the current agent. 
+TwitterAgent.sources = Twitter 
+TwitterAgent.channels = MemChannel 
+TwitterAgent.sinks = HDFS
+  
+# Describing/Configuring the source 
+TwitterAgent.sources.Twitter.type = org.apache.flume.source.twitter.TwitterSource
+TwitterAgent.sources.Twitter.consumerKey = Your OAuth consumer key
+TwitterAgent.sources.Twitter.consumerSecret = Your OAuth consumer secret 
+TwitterAgent.sources.Twitter.accessToken = Your OAuth consumer key access token 
+TwitterAgent.sources.Twitter.accessTokenSecret = Your OAuth consumer key access token secret 
+TwitterAgent.sources.Twitter.keywords = tutorials point,java, bigdata, mapreduce, mahout, hbase, nosql
+  
+# Describing/Configuring the sink 
+
+TwitterAgent.sinks.HDFS.type = hdfs 
+TwitterAgent.sinks.HDFS.hdfs.path = hdfs://localhost:9000/user/Hadoop/twitter_data/
+TwitterAgent.sinks.HDFS.hdfs.fileType = DataStream 
+TwitterAgent.sinks.HDFS.hdfs.writeFormat = Text 
+TwitterAgent.sinks.HDFS.hdfs.batchSize = 1000
+TwitterAgent.sinks.HDFS.hdfs.rollSize = 0 
+TwitterAgent.sinks.HDFS.hdfs.rollCount = 10000 
+ 
+# Describing/Configuring the channel 
+TwitterAgent.channels.MemChannel.type = memory 
+TwitterAgent.channels.MemChannel.capacity = 10000 
+TwitterAgent.channels.MemChannel.transactionCapacity = 100
+  
+# Binding the source and sink to the channel 
+TwitterAgent.sources.Twitter.channels = MemChannel
+TwitterAgent.sinks.HDFS.channel = MemChannel 
+</pre>
+<h2>Execution</h2>
+<p>Browse through the Flume home directory and execute the application as shown below.</p>
+<pre class="result notranslate">
+$ cd $FLUME_HOME 
+$ bin/flume-ng agent --conf ./conf/ -f conf/twitter.conf 
+Dflume.root.logger=DEBUG,console -n TwitterAgent
+</pre>
+<p>If everything goes fine, the streaming of tweets into HDFS will start. Given below is the snapshot of the command prompt window while fetching tweets.</p>
+<img src="/apache_flume/images/fetching_tweets.jpg" alt="Fetching Tweets" />
+<h2>Verifying HDFS</h2>
+<p>You can access the Hadoop Administration Web UI using the URL given below.</p>
+<pre class="result notranslate">
+http://localhost:50070/ 
+</pre>
+<p>Click on the dropdown named <b>Utilities</b> on the right-hand side of the page. You can see two options as shown in the snapshot given below.</p>
+<img src="/apache_flume/images/verifying_the_hdfs.jpg" alt="Verifying HDFS" />
+<p>Click on <b>Browse the file system</b> and enter the path of the HDFS directory where you have stored the tweets. In our example, the path will be <b>/user/Hadoop/twitter_data/</b>.  Then, you can see the list of twitter log files stored in HDFS as given below.</p>
+<img src="/apache_flume/images/browse_file_system.jpg" alt="Browse the file system" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/apache_flume/apache_flume_configuration.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/apache_flume/sequence_generator_source.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Spring MVC - Multiple Resolver Mapping Example</title>
+<meta charset="utf-8">
+<meta name="description" content="Spring MVC - Multiple Resolver Mapping Example - In case you want to use a Multiple View Resolver in a Spring MVC application then priority order can be set using the order property. The following example show"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/springmvc/springmvc_multiple_resolver_mapping.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#387b2c;
+}
+a.demo {
+    background:#387b2c;
+}
+li.heading {
+    background:#387b2c;
+}
+.course-box{background:#387b2c}
+.home-intro-sub p{color:#387b2c}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/springmvc/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/springmvc/images/springmvc-mini-logo.jpg" alt="Spring MVC Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Spring MVC Basics</li>
+<li><a href="/springmvc/index.htm">Spring MVC - Home</a></li>
+<li><a href="/springmvc/springmvc_overview.htm">Spring MVC - Overview</a></li>
+<li><a href="/springmvc/springmvc_environment_setup.htm">Spring MVC - Environment Setup</a></li>
+<li><a href="/springmvc/springmvc_hello_world_example.htm">Spring MVC - Hello World Example</a></li>
+<li class="heading">Spring MVC - Form Handling</li>
+<li><a href="/springmvc/springmvc_form_handling.htm">Spring MVC - Form Handling</a></li>
+<li><a href="/springmvc/springmvc_page_redirection.htm">Spring MVC - Page Redirection</a></li>
+<li><a href="/springmvc/springmvc_static_pages.htm">Spring MVC - Static Pages</a></li>
+<li class="heading">Spring MVC - Form Tag library</li>
+<li><a href="/springmvc/springmvc_textbox.htm">Spring MVC - Textbox</a></li>
+<li><a href="/springmvc/springmvc_password.htm">Spring MVC - Password</a></li>
+<li><a href="/springmvc/springmvc_textarea.htm">Spring MVC - Textarea</a></li>
+<li><a href="/springmvc/springmvc_checkbox.htm">Spring MVC - Checkbox</a></li>
+<li><a href="/springmvc/springmvc_checkboxes.htm">Spring MVC - Checkboxes</a></li>
+<li><a href="/springmvc/springmvc_radiobutton.htm">Spring MVC - Radiobutton</a></li>
+<li><a href="/springmvc/springmvc_radiobuttons.htm">Spring MVC - Radiobuttons</a></li>
+<li><a href="/springmvc/springmvc_dropdown.htm">Spring MVC - Dropdown</a></li>
+<li><a href="/springmvc/springmvc_listbox.htm">Spring MVC - Listbox</a></li>
+<li><a href="/springmvc/springmvc_hidden.htm">Spring MVC - Hidden</a></li>
+<li><a href="/springmvc/springmvc_errors.htm">Spring MVC - Errors</a></li>
+<li><a href="/springmvc/springmvc_upload.htm">Spring MVC - Upload</a></li>
+<li class="heading">Spring MVC - Handler Mapping</li>
+<li><a href="/springmvc/springmvc_beannameurlhandlermapping.htm">Bean Name Url Handler Mapping</a></li>
+<li><a href="/springmvc/springmvc_controllerclassnamehandlermapping.htm">Controller Class Name Handler Mapping</a></li>
+<li><a href="/springmvc/springmvc_simpleurlhandlermapping.htm">Simple Url Handler Mapping</a></li>
+<li class="heading">Spring MVC - Controller</li>
+<li><a href="/springmvc/springmvc_multiactioncontroller.htm">Spring MVC - Multi Action Controller</a></li>
+<li><a href="/springmvc/springmvc_propertiesmethodnameresolver.htm">Properties Method Name Resolver</a></li>
+<li><a href="/springmvc/springmvc_parametermethodnameresolver.htm">Parameter Method Name Resolver</a></li>
+<li><a href="/springmvc/springmvc_parameterizableviewcontroller.htm">Parameterizable View Controller</a></li>
+<li class="heading">Spring MVC - View Resolver</li>
+<li><a href="/springmvc/springmvc_internalresourceviewresolver.htm">Internal Resource View Resolver</a></li>
+<li><a href="/springmvc/springmvc_xmlviewresolver.htm">Spring MVC - Xml View Resolver</a></li>
+<li><a href="/springmvc/springmvc_resourcebundleviewresolver.htm">Resource Bundle View Resolver</a></li>
+<li><a href="/springmvc/springmvc_multiple_resolver_mapping.htm">Multiple Resolver Mapping</a></li>
+<li class="heading">Spring MVC - Integration</li>
+<li><a href="/springmvc/springmvc_hibernate_validator.htm">Spring MVC - Hibernate Validator</a></li>
+<li><a href="/springmvc/springmvc_rss_feed.htm">Spring MVC - Generate RSS Feed</a></li>
+<li><a href="/springmvc/springmvc_xml.htm">Spring MVC - Generate XML</a></li>
+<li><a href="/springmvc/springmvc_json.htm">Spring MVC - Generate JSON</a></li>
+<li><a href="/springmvc/springmvc_excel.htm">Spring MVC - Generate Excel</a></li>
+<li><a href="/springmvc/springmvc_pdf.htm">Spring MVC - Generate PDF</a></li>
+<li><a href="/springmvc/springmvc_log4j.htm">Spring MVC - Using log4j</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Spring Questions and Answers</li>
+<li><a href="/spring/spring_questions_answers.htm">Spring - Questions and Answers</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Spring Useful Resources</li>
+<li><a href="/springmvc/springmvc_quick_guide.htm">Spring MVC - Quick Guide</a></li>
+<li><a href="/springmvc/springmvc_useful_resources.htm">Spring MVC - Useful Resources</a></li>
+<li><a href="/springmvc/springmvc_discussion.htm">Spring MVC - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Spring MVC - Multiple Resolver Mapping Example</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/springmvc/springmvc_resourcebundleviewresolver.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/springmvc/springmvc_hibernate_validator.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In case you want to use a Multiple View Resolver in a Spring MVC application then priority order can be set using the order property. The following example shows how to use the <b>ResourceBundleViewResolver</b> and the <b>InternalResourceViewResolver</b> in the Spring Web MVC Framework.</p>
+<h2>TestWeb-servlet.xml</h2>
+<pre class="prettyprint notranslate">
+&lt;bean class = "org.springframework.web.servlet.view.ResourceBundleViewResolver"&gt;
+   &lt;property name = "basename" value = "views" /&gt;
+   &lt;property name = "order" value = "0" /&gt;
+&lt;/bean&gt;
+&lt;bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+   &lt;property name = "prefix" value = "/WEB-INF/jsp/" /&gt;
+   &lt;property name = "suffix" value = ".jsp" /&gt;
+   &lt;property name = "order" value = "1" /&gt;
+&lt;/bean&gt;
+</pre>
+<p>Here, the order property defines the ranking of a view resolver. In this, 0 is the first resolver and 1 is the next resolver and so on.</p>
+<h2>views.properties</h2>
+<pre class="prettyprint notranslate">
+hello.(class) = org.springframework.web.servlet.view.JstlView
+hello.url = /WEB-INF/jsp/hello.jsp
+</pre>
+<p>For example, using the above configuration, if URI &minus;</p>
+<ul class="list">
+<li><p>/hello is requested, DispatcherServlet will forward the request to the hello.jsp defined by bean hello in views.properties.</p></li>
+</ul>
+<p>To start with, let us have a working Eclipse IDE in place and consider the following steps to develop a Dynamic Form based Web Application using the Spring Web Framework.</p>
+<table class="table table-bordered">
+<tr>
+<th class="ts">Step</th>
+<th class="ts">Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>Create a project with a name TestWeb under a package com.tutorialspoint as explained in the Spring MVC - Hello World chapter.</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>Create a Java class HelloController under the com.tutorialspointpackage.</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>Create a view file hello.jsp under the jsp sub-folder.</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>Create a properties file views.properties under the SRC folder.</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>Download the JSTL library <a target="_blank" rel="nofollow" href="https://mvnrepository.com/artifact/javax.servlet/jstl/1.2">jstl.jar</a>. Put it in your CLASSPATH.</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>The final step is to create the content of the source and configuration files and export the application as explained below.</td>
+</tr>
+</table>
+<h2>HelloController.java</h2>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.ModelMap;
+
+@Controller
+@RequestMapping("/hello")
+public class HelloController{
+ 
+   @RequestMapping(method = RequestMethod.GET)
+   public String printHello(ModelMap model) {
+      model.addAttribute("message", "Hello Spring MVC Framework!");
+
+      return "hello";
+   }
+
+}
+</pre>
+<h2>TestWeb-servlet.xml</h2>
+<pre class="prettyprint notranslate">
+&lt;beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "
+   http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+
+   &lt;context:component-scan base-package = "com.tutorialspoint" /&gt;
+
+   &lt;bean class = "org.springframework.web.servlet.view.ResourceBundleViewResolver"&gt;
+      &lt;property name = "basename" value = "views" /&gt;
+      &lt;property name = "order" value = "0" /&gt;
+   &lt;/bean&gt;
+   &lt;bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+      &lt;property name = "prefix" value = "/WEB-INF/jsp/" /&gt;
+      &lt;property name = "suffix" value = ".jsp" /&gt;
+      &lt;property name = "order" value = "1" /&gt;
+   &lt;/bean&gt;
+&lt;/beans&gt;
+</pre>
+<h2>views.properties</h2>
+<pre class="prettyprint notranslate">
+hello.(class) = org.springframework.web.servlet.view.JstlView
+hello.url = /WEB-INF/jsp/hello.jsp
+</pre>
+<h2>hello.jsp</h2>
+<pre class="prettyprint notranslate">
+&lt;%@ page contentType = "text/html; charset = UTF-8" %&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Hello World&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;h2&gt;${message}&lt;/h2&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre> 
+<p>Once you are done with creating source and configuration files, export your application. Right click on your application, use <b>Export &rarr; WAR File</b> option and save your <b>HelloWeb.war</b> file in Tomcat's webapps folder.</p>
+<p>Now, start the Tomcat server and make sure you are able to access other webpages from the webapps folder using a standard browser. Try to access the URL &minus; <b>http://localhost:8080/HelloWeb/hello</b>, if everything is fine with the Spring Web Application, we will see the following screen.</p>
+<img src="/springmvc/images/spring_internalresourceviewresolver.png" alt="Spring Internal Resource View Resolver" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/springmvc/springmvc_resourcebundleviewresolver.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/springmvc/springmvc_hibernate_validator.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

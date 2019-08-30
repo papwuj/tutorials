@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>RxJava - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="RxJava - Quick Guide - RxJava is a Java based extension of ReactiveX. It provides implementation or ReactiveX project in Java. Following are the key characteristics of RxJava."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/rxjava/rxjava_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#cb3132;
+}
+a.demo {
+    background:#cb3132;
+}
+li.heading {
+    background:#cb3132;
+}
+.course-box{background:#cb3132}
+.home-intro-sub p{color:#cb3132}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/rxjava/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<style>
+.ts {
+   text-align:center !important;
+   vertical-align:middle !important;
+}
+</style>
+<div class="mini-logo">
+<img src="/rxjava/images/rxjava-mini-logo.jpg" alt="RxJava Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">RxJava Tutorial</li>
+<li><a href="/rxjava/index.htm">RxJava - Home</a></li>
+<li><a href="/rxjava/rxjava_overview.htm">RxJava - Overview</a></li>
+<li><a href="/rxjava/rxjava_environment_setup.htm">RxJava - Environment Setup</a></li>
+<li class="heading">Observables</li>
+<li><a href="/rxjava/rxjava_how_observable_works.htm">RxJava - How Observable works</a></li>
+<li><a href="/rxjava/rxjava_creating_observables.htm">RxJava - Creating Observables</a></li>
+<li><a href="/rxjava/rxjava_single_observable.htm">RxJava - Single Observable</a></li>
+<li><a href="/rxjava/rxjava_maybe_observable.htm">RxJava - MayBe Observable</a></li>
+<li><a href="/rxjava/rxjava_completable_observable.htm">RxJava - Completable Observable</a></li>
+<li><a href="/rxjava/rxjava_compositedisposable.htm">RxJava - Using CompositeDisposable</a></li>
+<li class="heading">Operators</li>
+<li><a href="/rxjava/rxjava_creating_operators.htm">RxJava - Creating Operators</a></li>
+<li><a href="/rxjava/rxjava_transforming_operators.htm">RxJava - Transforming Operators</a></li>
+<li><a href="/rxjava/rxjava_filtering_operators.htm">RxJava - Filtering Operators</a></li>
+<li><a href="/rxjava/rxjava_combining_operators.htm">RxJava - Combining Operators</a></li>
+<li><a href="/rxjava/rxjava_utility_operators.htm">RxJava - Utility Operators</a></li>
+<li><a href="/rxjava/rxjava_conditional_operators.htm">RxJava - Conditional Operators</a></li>
+<li><a href="/rxjava/rxjava_mathematical_operators.htm">RxJava - Mathematical Operators</a></li>
+<li><a href="/rxjava/rxjava_connectable_operators.htm">RxJava - Connectable Operators</a></li>
+<li class="heading">Subjects</li>
+<li><a href="/rxjava/rxjava_subjects.htm">RxJava - Subjects</a></li>
+<li><a href="/rxjava/rxjava_publishsubject.htm">RxJava - PublishSubject</a></li>
+<li><a href="/rxjava/rxjava_behaviorsubject.htm">RxJava - BehaviorSubject</a></li>
+<li><a href="/rxjava/rxjava_replaysubject.htm">RxJava - ReplaySubject</a></li>
+<li><a href="/rxjava/rxjava_asyncsubject.htm">RxJava - AsyncSubject</a></li>
+<li class="heading">Schedulers</li>
+<li><a href="/rxjava/rxjava_schedulers.htm">RxJava - Schedulers</a></li>
+<li><a href="/rxjava/rxjava_trampoline_scheduler.htm">RxJava - Trampoline Scheduler</a></li>
+<li><a href="/rxjava/rxjava_newthread_scheduler.htm">RxJava - NewThread Scheduler</a></li>
+<li><a href="/rxjava/rxjava_computation_scheduler.htm">RxJava - Computation Scheduler</a></li>
+<li><a href="/rxjava/rxjava_io_scheduler.htm">RxJava - IO Scheduler</a></li>
+<li><a href="/rxjava/rxjava_from_scheduler.htm">RxJava - From Scheduler</a></li>
+<li class="heading">Miscellaneous</li>
+<li><a href="/rxjava/rxjava_buffering.htm">RxJava - Buffering</a></li>
+<li><a href="/rxjava/rxjava_windowing.htm">RxJava - Windowing</a></li>
+<li class="heading">RxJava Useful Resources</li>
+<li><a href="/rxjava/rxjava_quick_guide.htm">RxJava - Quick Guide</a></li>
+<li><a href="/rxjava/rxjava_useful_resources.htm">RxJava - Useful Resources</a></li>
+<li><a href="/rxjava/rxjava_discussion.htm">RxJava - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>RxJava - Quick Guide</h1>
+<hr/>
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/rxjava/rxjava_windowing.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/rxjava/rxjava_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>RxJava - Overview</h1>
+<p>RxJava is a Java based extension of ReactiveX. It provides implementation or ReactiveX project in Java. Following are the key characteristics of RxJava.</p>
+<ul class="list">
+<li><p>Extends the observer pattern.</p></li>
+<li><p>Support sequences of data/events.</p></li>
+<li><p>Provides operators to compose sequences together declaratively.</p></li>
+<li><p>Handles threading, synchronization, thread-safety and concurrent data structures internally.</p></li>
+</ul>
+<h2>What is ReactiveX?</h2>
+<p>ReactiveX is a project which aims to provide reactive programming concept to various programming languages. Reactive Programming refers to the scenario where program reacts as and when data appears. It is a event based programming concept and events can propagate to registers observers.</p>
+<p>As per the <b>Reactive</b>, they have combined the best of Observer pattern, Iterator pattern and functional pattern.</p>
+<p>The Observer pattern done right. ReactiveX is a combination of the best ideas from the Observer pattern, the Iterator pattern, and functional programming.</p>
+<h2>Functional Programming</h2>
+<p>Functional programming revolves around building the software using pure functions. A pure function do not depends upon previous state and always returns the same result for the same parameters passed. Pure functions helps avoiding problems associated with shared objects, mutable data and side effects often prevalent in multi-threading environments.</p>
+<h2>Reactive Programming</h2>
+<p>Reactive programming refers to event driven programming where data streams comes in asynchronous fashion and get processed when they are arrived.</p>
+<h2>Functional Reactive Programming</h2>
+<p>RxJava implements both the concepts together, where data of streams changes over time and consumer function reacts accordingly.</p>
+<h2>The Reactive Manifesto</h2>
+<p><a target="_blank" rel="nofollow" href="https://www.reactivemanifesto.org/">Reactive Manifesto</a> is an on-line document stating the high standard of application software systems. As per the manifesto, following are the key attributes of a reactive software &minus;</p>
+<ul class="list">
+<li><p><b>Responsive</b> &minus; Should always respond in a timely fashion.</p></li>
+<li><p><b>Message Driven</b> &minus; Should use asynchronous message-passing between components so that they maintain loose coupling.</p></li>
+<li><p><b>Elastic</b> &minus; Should stay responsive even under high load.</p></li>
+<li><p><b>Resilient</b> &minus; Should stay responsive even if any component(s) fail.</p></li>
+</ul>
+<h2>Key components of RxJava</h2>
+<p>RxJava have two key components: Observables and Observer.</p>
+<ul class="list">
+<li><p><b>Observable</b> &minus; It represents an object similar to Stream which can emit zero or more data, can send error message, whose speed can be controlled while emitting a set of data, can send finite as well as infinite data.</p></li>
+<li><p><b>Observer</b> &minus; It subscribes to Observable's data of sequence and reacts per item of the observables. Observers are notified whenever Observable emits a data. An Observer handles data one by one.</p></li>
+</ul>
+<p>An observer is never notified if items are not present or a callback is not returned for a previous item.</p>
+<h1>RxJava - Environment Setup</h1>
+<h2>Local Environment Setup</h2>
+<p>RxJava is a library for Java, so the very first requirement is to have JDK installed in your machine.</p>
+<h3>System Requirement</h3>
+<table class="table table-bordered">
+<tr>
+<th>JDK</th>
+<td>1.5 or above.</td>
+</tr>
+<tr>
+<th>Memory</th>
+<td>No minimum requirement.</td>
+</tr>
+<tr>
+<th>Disk Space</th>
+<td>No minimum requirement.</td>
+</tr>
+<tr>
+<th>Operating System</th>
+<td>No minimum requirement.</td>
+</tr>
+</table>
+<h2>Step 1 - Verify Java Installation in Your Machine</h2>
+<p>First of all, open the console and execute a java command based on the operating system you are working on.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:20%;">OS</th>
+<th>Task</th>
+<th>Command</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Open Command Console</td>
+<td>c:\&gt; java -version</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Open Command Terminal</td>
+<td>$ java -version</td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>Open Terminal</td>
+<td>machine:&lt; joseph$ java -version</td>
+</tr>
+</table>
+<p>Let's verify the output for all the operating systems &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:20%; text-align:center;">OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td class="ts">Windows</td>
+<td><p>java version "1.8.0_101"</p>
+<p>Java(TM) SE Runtime Environment (build 1.8.0_101)</p>
+</td>
+</tr>
+<tr>
+<td class="ts">Linux</td>
+<td><p>java version "1.8.0_101"</p>
+<p>Java(TM) SE Runtime Environment (build 1.8.0_101)</p>
+</td>
+</tr>
+<tr>
+<td class="ts">Mac</td>
+<td><p>java version "1.8.0_101"</p>
+<p>Java(TM) SE Runtime Environment (build 1.8.0_101)</p>
+</td>
+</tr>
+</table>
+<p>If you do not have Java installed on your system, then download the Java Software Development Kit (SDK) from the following link <a target="_blank" rel="nofollow" href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">https://www.oracle.com</a>. We are assuming Java 1.8.0_101 as the installed version for this tutorial.</p>
+<h2>Step 2 - Set JAVA Environment</h2>
+<p>Set the <b>JAVA_HOME</b> environment variable to point to the base directory location where Java is installed on your machine. For example.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:20%; text-align:center;">OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td style="text-align:center;">Windows</td>
+<td>Set the environment variable JAVA_HOME to C:\Program Files\Java\jdk1.8.0_101</td>
+</tr>
+<tr>
+<td style="text-align:center;">Linux</td>
+<td>export JAVA_HOME = /usr/local/java-current</td>
+</tr>
+<tr>
+<td style="text-align:center;">Mac</td>
+<td>export JAVA_HOME = /Library/Java/Home</td>
+</tr>
+</table>
+<p>Append Java compiler location to the System Path.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:20%; text-align:center;">OS</th>
+<th>Output</th>
+</tr>
+<tr>
+<td style="text-align:center;">Windows</td>
+<td>Append the string <b>C:\Program Files\Java\jdk1.8.0_101\bin</b> at the end of the system variable, <b>Path</b>.</td>
+</tr>
+<tr>
+<td style="text-align:center;">Linux</td>
+<td>export PATH = $PATH:$JAVA_HOME/bin/</td>
+</tr>
+<tr>
+<td style="text-align:center;">Mac</td>
+<td>not required</td>
+</tr>
+</table>
+<p>Verify Java installation using the command <b>java -version</b> as explained above.</p>
+<h2>Step 3 - Download RxJava2 Archive</h2>
+<p>Download the latest version of RxJava jar file from <a target="_blank" rel="nofollow" href="https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava">RxJava @ MVNRepository</a>
+and its dependency <a target="_blank" rel="nofollow" href="https://mvnrepository.com/artifact/org.reactivestreams/reactive-streams">Reactive Streams @ MVNRepository</a>
+. At the time of writing this tutorial, we have downloaded rxjava-2.2.4.jar, reactive-streams-1.0.2.jar and copied it into C:\&gt;RxJava folder.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:20%; text-align:center;">OS</th>
+<th>Archive name</th>
+</tr>
+<tr>
+<td style="text-align:center;">Windows</td>
+<td style="text-align:center;">rxjava-2.2.4.jar, reactive-streams-1.0.2.jar</td>
+</tr>
+<tr>
+<td style="text-align:center;">Linux</td>
+<td style="text-align:center;">rxjava-2.2.4.jar, reactive-streams-1.0.2.jar</td>
+</tr>
+<tr>
+<td style="text-align:center;">Mac</td>
+<td style="text-align:center;">rxjava-2.2.4.jar, reactive-streams-1.0.2.jar</td>
+</tr>
+</table>
+<h2>Step 4 - Set RxJava Environment</h2>
+<p>Set the <b>RX_JAVA</b> environment variable to point to the base directory location where RxJava jar is stored on your machine. Let’s assuming we've stored rxjava-2.2.4.jar and reactive-streams-1.0.2.jar in the RxJava folder.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:9%; text-align:center;">Sr.No</th>
+<th>OS &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Windows</b></p>
+<p>Set the environment variable RX_JAVA to C:\RxJava</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Linux</b></p>
+<p>export RX_JAVA = /usr/local/RxJava</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Mac</b></p>
+<p>export RX_JAVA = /Library/RxJava</p></td>
+</tr>
+</table>
+<h2>Step 5 - Set CLASSPATH Variable</h2>
+<p>Set the <b>CLASSPATH</b> environment variable to point to the RxJava jar location.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No</th>
+<th>OS &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Windows</b></p>
+<p>Set the environment variable CLASSPATH to %CLASSPATH%;%RX_JAVA%\rxjava-2.2.4.jar;%RX_JAVA%\reactive-streams-1.0.2.jar;.;</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Linux</b></p>
+<p>export CLASSPATH = $CLASSPATH:$RX_JAVA/rxjava-2.2.4.jar:reactive-streams-1.0.2.jar:.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Mac</b></p>
+<p>export CLASSPATH = $CLASSPATH:$RX_JAVA/rxjava-2.2.4.jar:reactive-streams-1.0.2.jar:.</p></td>
+</tr>
+</table>
+<h2>Step 6 - Test RxJava Setup</h2>
+<p>Create a class TestRx.java as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+import io.reactivex.Flowable;
+public class TestRx {
+   public static void main(String[] args) {
+      Flowable.just("Hello World!")
+         .subscribe(System.out::println);
+   }
+}
+</pre>
+<h2>Step 7 - Verify the Result</h2>
+<p>Compile the classes using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac Tester.java
+</pre>
+<p>Verify the output.</p>
+<pre class="result notranslate">
+Hello World!
+</pre>
+<h1>RxJava - How Observable works</h1>
+<p><b>Observables</b> represents the sources of data where as <b>Observers (Subscribers)</b> listen to them. In nutshell, an Observable emits items and a Subscriber then consumes these items.</p>
+<h2>Observable</h2>
+<ul class="list">
+<li><p>Observable provides data once subscriber starts listening.</p></li>
+<li><p>Observable can emit any number of items.</p></li>
+<li><p>Observable can emit only signal of completion as well with no item.</p></li>
+<li><p>Observable can terminate successfully.</p></li>
+<li><p>Observable may never terminate. e.g. a button can be clicked any number of times.</p></li>
+<li><p>Observable may throw error at any point of time.</p></li>
+</ul>
+<h2>Subscriber</h2>
+<ul class="list">
+<li><p>Observable can have multiple subscribers.</p></li>
+<li><p>When an Observable emits an item, each subscriber onNext() method gets invoked.</p></li>
+<li><p>When an Observable finished emitting items, each subscriber onComplete() method gets invoked.</p></li>
+<li><p>If an Observable emits error, each subscriber onError() method gets invoked.</p></li>
+</ul>
+<h1>RxJava - Creating Observables</h1>
+<p>Following are the base classes to create observables.</p>
+<ul class="list">
+<li><p><b>Flowable</b> &minus; 0..N flows, Emits 0 or n items. Supports Reactive-Streams and back-pressure.</p></li>
+<li><p><b>Observable</b> &minus; 0..N flows ,but no back-pressure.</p></li>
+<li><p><b>Single</b> &minus; 1 item or error. Can be treated as a reactive version of method call.</p></li>
+<li><p><b>Completable</b> &minus; No item emitted. Used as a signal for completion or error. Can be treated as a reactive version of Runnable.</p></li>
+<li><p><b>MayBe</b> &minus; Either No item or 1 item emitted. Can be treated as a reactive version of Optional.</p></li>
+</ul>
+<p>Following are the convenient methods to create observables in Observable class.</p>
+<ul class="list">
+<li><p><b>just(T item)</b> &minus; Returns an Observable that signals the given (constant reference) item and then completes.</p></li>
+<li><p><b>fromIterable(Iterable source)</b> &minus; Converts an Iterable sequence into an ObservableSource that emits the items in the sequence.</p></li>
+<li><p><b>fromArray(T... items)</b> &minus; Converts an Array into an ObservableSource that emits the items in the Array.</p></li>
+<li><p><b>fromCallable(Callable supplier)</b> &minus; Returns an Observable that, when an observer subscribes to it, invokes a function you specify and then emits the value returned from that function.</p></li>
+<li><p><b>fromFuture(Future future)</b> &minus; Converts a Future into an ObservableSource.</p></li>
+<li><p><b>interval(long initialDelay, long period, TimeUnit unit)</b> &minus; Returns an Observable that emits a 0L after the initialDelay and ever increasing numbers after each period of time thereafter.</p></li>
+</ul>
+<h1>RxJava - Single Observable</h1>
+<p>The Single class represents the single value response. Single observable can only emit either a single successful value or an error. It does not emit onComplete event.</p>
+<h2>Class Declaration</h2>
+<p>Following is the declaration for <b>io.reactivex.Single&lt;T&gt;</b> class &minus;</p>
+<pre class="result notranslate">
+public abstract class Single&lt;T&gt;
+   extends Object
+      implements SingleSource&lt;T&gt;
+</pre>
+<h2>Protocol</h2>
+<p>Following is the sequential protocol that Single Observable operates &minus;</p>
+<pre class="result notranslate">
+onSubscribe (onSuccess | onError)?
+</pre>
+<h2>Single Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Single;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
+
+public class ObservableTester  {
+   public static void main(String[] args)  throws InterruptedException {
+      //Create the observable
+      Single&lt;String&gt; testSingle = Single.just("Hello World");
+
+      //Create an observer
+      Disposable disposable = testSingle
+         .delay(2, TimeUnit.SECONDS, Schedulers.io())
+         .subscribeWith(
+         new DisposableSingleObserver&lt;String&gt;() {
+
+         @Override
+         public void onError(Throwable e) { 
+            e.printStackTrace();
+         }
+
+         @Override
+         public void onSuccess(String value) {
+            System.out.println(value);
+         }
+      }); 
+      Thread.sleep(3000);
+      //start observing
+      disposable.dispose();
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Hello World
+</pre>
+<h1>RxJava - MayBe Observable</h1>
+<p>The MayBe class represents deferred response. MayBe observable can emit either a single successful value or no value.</p>
+<h2>Class Declaration</h2>
+<p>Following is the declaration for <b>io.reactivex.Single&lt;T&gt;</b> class &minus;</p>
+<pre class="result notranslate">
+public abstract class Maybe&lt;T&gt;
+   extends Object
+      implements MaybeSource&lt;T&gt;
+</pre>
+<h2>Protocol</h2>
+<p>Following is the sequential protocol that MayBe Observable operates &minus;</p>
+<pre class="result notranslate">
+onSubscribe (onSuccess | onError | OnComplete)?
+</pre>
+<h2>MayBe Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Maybe;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableMaybeObserver;
+import io.reactivex.schedulers.Schedulers;
+
+public class ObservableTester {
+   public static void main(String[] args) throws InterruptedException {
+      //Create an observer
+      Disposable disposable = Maybe.just("Hello World")
+         .delay(2, TimeUnit.SECONDS, Schedulers.io())
+         .subscribeWith(new DisposableMaybeObserver&lt;String&gt;() {
+         @Override
+         public void onError(Throwable e) { 
+            e.printStackTrace();
+         }
+
+         @Override
+         public void onSuccess(String value) {
+            System.out.println(value);
+         }
+
+         @Override
+         public void onComplete() {
+            System.out.println("Done!");
+         }
+      }); 
+      Thread.sleep(3000);
+      //start observing
+      disposable.dispose();
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Hello World
+</pre>
+<h1>RxJava - Completable Observable</h1>
+<p>The Completable class represents deferred response. Completable observable can either indicate a successful completion or error.</p>
+<h2>Class Declaration</h2>
+<p>Following is the declaration for <b>io.reactivex.Completable</b> class &minus;</p>
+<pre class="result notranslate">
+public abstract class Completable
+extends Object
+implements CompletableSource
+</pre>
+<h2>Protocol</h2>
+<p>Following is the sequential protocol that Completable Observable operates &minus;</p>
+<pre class="result notranslate">
+onSubscribe (onError | onComplete)?
+</pre>
+<h2>Completable Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Completable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableCompletableObserver;
+import io.reactivex.schedulers.Schedulers;
+
+public class ObservableTester {
+   public static void main(String[] args) throws InterruptedException {
+
+      //Create an observer
+      Disposable disposable = Completable.complete()
+         .delay(2, TimeUnit.SECONDS, Schedulers.io())
+         .subscribeWith(new DisposableCompletableObserver() {
+         @Override
+         public void onError(Throwable e) { 
+            e.printStackTrace();
+         }
+         @Override
+         public void onStart() {
+            System.out.println("Started!");
+         }
+         @Override
+         public void onComplete() {
+            System.out.println("Done!");
+         }
+      }); 
+      Thread.sleep(3000);
+      //start observing
+      disposable.dispose();
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Started!
+Done!
+</pre>
+<h1>RxJava - Using CompositeDisposable</h1>
+<p>The CompositeDisposable class represents a container which can hold multiple disposable and offers O(1) complexity of adding and removing disposables.</p>
+<h2>Class Declaration</h2>
+<p>Following is the declaration for <b>io.reactivex.disposables.CompositeDisposable</b> class &minus;</p>
+<pre class="result notranslate">
+public final class CompositeDisposable
+extends Object
+implements Disposable, io.reactivex.internal.disposables.DisposableContainer
+</pre>
+<h2>CompositeDisposable Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Maybe;
+import io.reactivex.Single;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableMaybeObserver;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
+
+import java.util.concurrent.TimeUnit;
+
+public class ObservableTester  {
+   public static void main(String[] args)  throws InterruptedException {    
+      CompositeDisposable compositeDisposable = new CompositeDisposable();
+
+      //Create an Single observer 
+      Disposable disposableSingle = Single.just("Hello World")
+      .delay(2, TimeUnit.SECONDS, Schedulers.io())
+      .subscribeWith(
+      new DisposableSingleObserver&lt;String&gt;() {
+         @Override
+         public void onError(Throwable e) {
+            e.printStackTrace();
+         }
+
+         @Override
+         public void onSuccess(String value) {
+            System.out.println(value);
+         }
+      }); 
+
+      //Create an observer
+      Disposable disposableMayBe = Maybe.just("Hi")
+      .delay(2, TimeUnit.SECONDS, Schedulers.io())
+      .subscribeWith(new DisposableMaybeObserver&lt;String&gt;() {
+         @Override
+         public void onError(Throwable e) { 
+            e.printStackTrace();
+         }
+
+         @Override
+         public void onSuccess(String value) {
+            System.out.println(value);
+         }
+
+         @Override
+         public void onComplete() {
+            System.out.println("Done!");
+         }
+      }); 
+
+      Thread.sleep(3000);
+
+      compositeDisposable.add(disposableSingle);
+      compositeDisposable.add(disposableMayBe);
+
+      //start observing
+      compositeDisposable.dispose();
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Hello
+Hi
+</pre>
+<h1>RxJava - Creating Operators</h1>
+<p>Following are the operators which are used to create an Observable.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Operator &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Create</b></p>
+<p>Creates an Observable from scratch and allows observer method to call programmatically.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Defer</b></p>
+<p>Do not create an Observable until an observer subscribes. Creates a fresh observable for each observer.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Empty/Never/Throw</b></p>
+<p>Creates an Observable with limited behavior.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>From</b></p>
+<p>Converts an object/data structure into an Observable.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>Interval</b></p>
+<p>Creates an Observable emitting integers in sequence with a gap of specified time interval.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>Just</b></p>
+<p>Converts an object/data structure into an Observable to emit the same or same type of objects.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>Range</b></p>
+<p>Creates an Observable emitting integers in sequence of given range.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>Repeat</b></p>
+<p>Creates an Observable emitting integers in sequence repeatedly.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>Start</b></p>
+<p>Creates an Observable to emit the return value of a function.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>Timer</b></p>
+<p>Creates an Observable to emit a single item after given delay.</p>
+</td>
+</tr>
+</table>
+<h2>Creating Operator Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Observable;
+//Using fromArray operator to create an Observable
+public class ObservableTester  {
+   public static void main(String[] args) { 
+      String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+      final StringBuilder result = new StringBuilder();
+      Observable&lt;String&gt; observable = Observable.fromArray(letters);
+      observable
+         .map(String::toUpperCase)
+         .subscribe( letter -&gt; result.append(letter));
+      System.out.println(result);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+ABCDEFG
+</pre>
+<h1>RxJava - Transforming Operators</h1>
+<p>Following are the operators which are used to transform an item emitted from an Observable.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Operator &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Buffer</b></p>
+<p>Gathers items from Observable into bundles periodically and then emit the bundles rather than items.</p>
+</td>
+</tr>
+<tr><td class="ts">2</td>
+<td><p><b>FlatMap</b></p>
+<p>Used in nested observables. Transforms items into Observables. Then flatten the items into single Observable.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>GroupBy</b></p>
+<p>Divide an Observable into set of Observables organized by key to emit different group of items.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>Map</b></p>
+<p>Apply a function to each emitted item to transform it.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>Scan</b></p>
+<p>Apply a function to each emitted item, sequentially and then emit the successive value.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>Window</b></p>
+<p>Gathers items from Observable into Observable windows periodically and then emit the windows rather than items.</p></td>
+</tr>
+</table>
+<h2>Transforming Operator Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Observable;
+//Using map operator to transform an Observable
+public class ObservableTester  { 
+   public static void main(String[] args) {    
+      String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+      final StringBuilder result = new StringBuilder();
+      Observable&lt;String&gt; observable = Observable.fromArray(letters);
+      observable
+         .map(String::toUpperCase)
+         .subscribe( letter -&gt; result.append(letter));
+      System.out.println(result);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+ABCDEFG
+</pre>
+<h1>RxJava - Filtering Operators</h1>
+<p>Following are the operators which are used to selectively emit item(s) from an Observable.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Operator &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Debounce</b></p>
+<p>Emits items only when timeout occurs without emiting another item.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Distinct</b></p>
+<p>Emits only unique items.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>ElementAt</b></p>
+<p>emit only item at n index emitted by an Observable.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>Filter</b></p>
+<p>Emits only those items which pass the given predicate function.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>First</b></p>
+<p>Emits the first item or first item which passed the given criteria.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>IgnoreElements</b></p>
+<p>Do not emits any items from Observable but marks completion.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>Last</b></p>
+<p>Emits the last element from Observable.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>Sample</b></p>
+<p>Emits the most recent item with given time interval.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>Skip</b></p>
+<p>Skips the first n items from an Observable.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>SkipLast</b></p>
+<p>Skips the last n items from an Observable.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>Take</b></p>
+<p>takes the first n items from an Observable.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><p><b>TakeLast</b></p>
+<p>takes the last n items from an Observable.</p> 
+</td>
+</tr>
+</table>
+<h2>Filtering Operator Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Observable;
+//Using take operator to filter an Observable
+public class ObservableTester  {
+   public static void main(String[] args) {    
+      String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+      final StringBuilder result = new StringBuilder();
+      Observable&lt;String&gt; observable = Observable.fromArray(letters);
+      observable
+         .take(2)
+         .subscribe( letter -&gt; result.append(letter));
+      System.out.println(result);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+ab
+</pre>
+<h1>RxJava - Combining Operators</h1>
+<p>Following are the operators which are used to create a single Observable from multiple Observables.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Operator &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<b>And/Then/When</b>
+<p>Combine item sets using Pattern and Plan intermediaries.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<b>CombineLatest</b>
+<p>Combine the latest item emitted by each Observable via a specified function and emit resulted item.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<b>Join</b>
+<p>Combine items emitted by two Observables if emitted during time-frame of second Observable emitted item.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<b>Merge</b>
+<p>Combines the items emitted of Observables. </p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<b>StartWith</b>
+<p>Emit a specified sequence of items before starting to emit the items from the source Observable</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<b>Switch</b>
+<p>Emits the most recent items emitted by Observables.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<b>Zip</b>
+<p>Combines items of Observables based on function and emits the resulted items.</p> 
+</td>
+</tr>
+</table>
+<h2>Combining Operator Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Observable;
+//Using combineLatest operator to combine Observables
+public class ObservableTester {
+   public static void main(String[] args) {    
+      Integer[] numbers = { 1, 2, 3, 4, 5, 6};
+      String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+      final StringBuilder result = new StringBuilder();
+      Observable&lt;String&gt; observable1 = Observable.fromArray(letters);
+      Observable&lt;Integer&gt; observable2 = Observable.fromArray(numbers);
+      Observable.combineLatest(observable1, observable2, (a,b) -&gt; a + b)
+         .subscribe( letter -&gt; result.append(letter));
+      System.out.println(result);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+g1g2g3g4g5g6
+</pre>
+<h1>RxJava - Utility Operators</h1>
+<p>Following are the operators which are often useful with Observables.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Operator &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Delay</b></p>
+<p>Register action to handle Observable life-cycle events.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Materialize/Dematerialize</b></p>
+<p>Represents item emitted and notification sent.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>ObserveOn</b></p>
+<p>Specify the scheduler to be observed.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>Serialize</b></p>
+<p>Force Observable to make serialized calls.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>Subscribe</b></p>
+<p>Operate upon the emissions of items and notifications like complete from an Observable</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>SubscribeOn</b></p>
+<p>Specify the scheduler to be used by an Observable when it is subscribed to.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>TimeInterval</b></p>
+<p>Convert an Observable to emit indications of the amount of time elapsed between emissions.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>Timeout</b></p>
+<p>Issues error notification if specified time occurs without emitting any item.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>Timestamp</b></p>
+<p>Attach timestamp to each item emitted.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><b>Using</b></p>
+<p>Creates a disposable resource or same lifespan as that of Observable.</p> 
+</td>
+</tr>
+</table>
+<h2>Utility Operator Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Observable;
+//Using subscribe operator to subscribe to an Observable
+public class ObservableTester  {
+   public static void main(String[] args) {    
+      String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+      final StringBuilder result = new StringBuilder();
+      Observable&lt;String&gt; observable = Observable.fromArray(letters);
+      observable.subscribe( letter -&gt; result.append(letter));
+      System.out.println(result);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+abcdefg
+</pre>
+<h1>RxJava - Conditional Operators</h1>
+<p>Following are the operators which evaluates one or multiple Observables or items emitted.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Operator &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>All</b></p>
+<p>Evaluates all items emitted to meet given criteria.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>Amb</b></p>
+<p>Emits all items from the first Observable only given multiple Observables.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>Contains</b></p>
+<p>Checks if an Observable emits a particular item or not.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>DefaultIfEmpty</b></p>
+<p>Emits default item if Observable do not emit anything.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>SequenceEqual</b></p>
+<p>Checks if two Observables emit the same sequence of items.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>SkipUntil</b></p>
+<p>Discards items emitted by first Observable until a second Observable emits an item.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>SkipWhile</b></p>
+<p>Discard items emitted by an Observable until a given condition becomes false.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><b>TakeUntil</b></p>
+<p>Discards items emitted by an Observable after a second Observable emits an item or terminates.</p> 
+</td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td>
+<p><b>TakeWhile</b></p>
+<p>Discard items emitted by an Observable after a specified condition becomes false.</p> 
+</td>
+</tr>
+</table>
+<h2>Conditional Operator Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Observable;
+//Using defaultIfEmpty operator to operate on an Observable
+public class ObservableTester  {
+   public static void main(String[] args) {    
+      final StringBuilder result = new StringBuilder();
+      Observable.empty()
+      .defaultIfEmpty("No Data")
+      .subscribe(s -&gt; result.append(s));
+      System.out.println(result);
+      String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+      final StringBuilder result1 = new StringBuilder();
+      Observable.fromArray(letters)
+      .firstElement()
+      .defaultIfEmpty("No data")   
+      .subscribe(s -&gt; result1.append(s));
+      System.out.println(result1);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+No Data
+a
+</pre>
+<h1>RxJava - Mathematical Operators</h1>
+<p>Following are the operators which operates on entire items emitted by an Observable.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Operator &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Average</b></p>
+<p>Evaluates averages of all items and emit the result.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Concat</b></p>
+<p>Emits all items from multiple Observable without interleaving.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Count</b></p>
+<p>Counts all items and emit the result.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>Max</b>
+</p>
+<p>Evaluates max valued item of all items and emit the result.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>Min</b></p>
+<p>Evaluates min valued item of all items and emit the result.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>Reduce</b></p>
+<p>Apply a function on each item and return the result.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>Sum</b></p>
+<p>Evaluates sum of all items and emit the result.</p></td>
+</tr>
+</table>
+<h2>Mathematical Operator Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Observable;
+//Using concat operator to operate on multiple Observables
+public class ObservableTester  {
+   public static void main(String[] args)  throws InterruptedException {    
+      Integer[] numbers = { 1, 2, 3, 4, 5, 6};
+      String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+      final StringBuilder result = new StringBuilder();
+      Observable&lt;String&gt; observable1 = Observable.fromArray(letters);
+      Observable&lt;Integer&gt; observable2 = Observable.fromArray(numbers);
+      Observable.concat(observable1, observable2)
+         .subscribe( letter -&gt; result.append(letter));
+      System.out.println(result);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+abcdefg123456
+</pre>
+<h1>RxJava - Connectable Operators</h1>
+<p>Following are the operators which has more precisely control over subscription.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Operator &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Connect</b></p>
+<p>Instruct a connectable Observable to emit items to its subscribers.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Publish</b></p>
+<p>Converts an Observable to connectable Observable.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>RefCount</b></p>
+<p>Converts a connectable Observable to ordinary Observable.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>Replay</b></p>
+<p>Ensure same sequence of emitted items to be seen by each subscriber, even after the Observable has begun emitting items and subscribers subscribe later.</p>
+</td>
+</tr>
+</table>
+<h2>Connectable Operator Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Observable;
+import io.reactivex.observables.ConnectableObservable;
+//Using connect operator on a ConnectableObservable
+public class ObservableTester {
+   public static void main(String[] args) {
+      String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+      final StringBuilder result = new StringBuilder();
+      ConnectableObservable&lt;String&gt; connectable = Observable.fromArray(letters).publish();      
+      connectable.subscribe(letter -&gt; result.append(letter));
+      System.out.println(result.length());
+      connectable.connect();
+      System.out.println(result.length());
+      System.out.println(result);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+0
+7
+abcdefg
+</pre>
+<h1>RxJava - Subjects</h1>
+<p>As per the <a rel="nofollow" target="_blank" href="http://reactivex.io/documentation/subject.html"><b>Reactive</b></a>, a Subject can act as both Observable as well as Observer.</p>
+<blockquote>A Subject is a sort of bridge or proxy that is available in some implementations of ReactiveX that acts both as an observer and as an Observable. Because it is an observer, it can subscribe to one or more Observables, and because it is an Observable, it can pass through the items it observes by reemitting them, and it can also emit new items.</blockquote>
+<p>There are four types of Subjects &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Subject &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Publish Subject</b></p>
+<p>Emits only those items which are emitted after time of subscription.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<b>Replay Subject</b>
+<p>Emits all the items emitted by source Observable regardless of when it has subscribed the Observable.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Behavior Subject</b></p>
+<p>Upon subscription, emits the most recent item then continue to emit item emitted by the source Observable.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>Async Subject</b></p>
+<p>Emits the last item emitted by the source Observable after it's completes emission.</p>
+</td>
+</tr>
+</table>
+<h1>RxJava - PublishSubject</h1>
+<p>PublishSubject emits items to currently subscribed Observers and terminal events to current or late Observers.</p>
+<h2>Class Declaration</h2>
+<p>Following is the declaration for <b>io.reactivex.subjects.PublishSubject&lt;T&gt;</b> class &minus;</p>
+<pre class="result notranslate">
+public final class PublishSubject&lt;T&gt;
+extends Subject&lt;T&gt;
+</pre>
+<h2>PublishSubject Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.subjects.PublishSubject;
+public class ObservableTester  {
+   public static void main(String[] args) {   
+      final StringBuilder result1 = new StringBuilder();
+      final StringBuilder result2 = new StringBuilder();         
+
+      PublishSubject&lt;String&gt; subject = PublishSubject.create(); 
+      subject.subscribe(value -&gt; result1.append(value) ); 
+      subject.onNext("a"); 
+      subject.onNext("b"); 
+      subject.onNext("c"); 
+      subject.subscribe(value -&gt; result2.append(value)); 
+      subject.onNext("d"); 
+      subject.onComplete();
+
+      //Output will be abcd 
+      System.out.println(result1);
+      //Output will be d only
+      //as subscribed after c item emitted.
+      System.out.println(result2);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+abcd
+d
+</pre>
+<h1>RxJava - BehaviorSubject</h1>
+<p>BehaviorSubject emits the most recent item it has observed and then all subsequent observed items to each subscribed Observer.</p>
+<h2>Class Declaration</h2>
+<p>Following is the declaration for <b>io.reactivex.subjects.BehaviorSubject&lt;T&gt;</b> class &minus;</p>
+<pre class="result notranslate">
+public final class BehaviorSubject&lt;T&gt;
+extends Subject&lt;T&gt;
+</pre>
+<h2>BehaviorSubject Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.subjects.BehaviorSubject;
+public class ObservableTester  {
+   public static void main(String[] args) {   
+      final StringBuilder result1 = new StringBuilder();
+      final StringBuilder result2 = new StringBuilder();         
+      BehaviorSubject&lt;String&gt; subject =  BehaviorSubject.create(); 
+      subject.subscribe(value -&gt; result1.append(value) ); 
+      subject.onNext("a"); 
+      subject.onNext("b"); 
+      subject.onNext("c"); 
+      subject.subscribe(value -&gt; result2.append(value)); 
+      subject.onNext("d"); 
+      subject.onComplete();
+      //Output will be abcd
+      System.out.println(result1);
+      //Output will be cd being BehaviorSubject 
+      //(c is last item emitted before subscribe)
+      System.out.println(result2);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+abcd
+cd
+</pre>
+<h1>RxJava - ReplaySubject</h1>
+<p>ReplaySubject replays events/items to current and late Observers.</p>
+<h2>Class Declaration</h2>
+<p>Following is the declaration for <b>io.reactivex.subjects.ReplaySubject&lt;T&gt;</b> class &minus;</p>
+<pre class="result notranslate">
+public final class ReplaySubject&lt;T&gt;
+extends Subject&lt;T&gt;
+</pre>
+<h2>ReplaySubject Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.subjects.ReplaySubject;
+public class ObservableTester  {
+   public static void main(String[] args) {   
+      final StringBuilder result1 = new StringBuilder();
+      final StringBuilder result2 = new StringBuilder();         
+
+      ReplaySubject&lt;String&gt; subject = ReplaySubject.create(); 
+      subject.subscribe(value -&gt; result1.append(value) ); 
+      subject.onNext("a"); 
+      subject.onNext("b"); 
+      subject.onNext("c"); 
+      subject.subscribe(value -&gt; result2.append(value)); 
+      subject.onNext("d"); 
+      subject.onComplete();
+
+      //Output will be abcd
+      System.out.println(result1);
+      //Output will be abcd being ReplaySubject
+      //as ReplaySubject emits all the items
+      System.out.println(result2);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+abcd
+abcd
+</pre>
+<h1>RxJava - AsyncSubject</h1>
+<p>AsyncSubject emits the only last value followed by a completion event or the received error to Observers.</p>
+<h2>Class Declaration</h2>
+<p>Following is the declaration for <b>io.reactivex.subjects.AsyncSubject&lt;T&gt;</b> class &minus;</p>
+<pre class="result notranslate">
+public final class  AsyncSubject&lt;T&gt;
+extends Subject&lt;T&gt;
+</pre>
+<h2> AsyncSubject Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.subjects. AsyncSubject;
+public class ObservableTester  {
+   public static void main(String[] args) {   
+      final StringBuilder result1 = new StringBuilder();
+      final StringBuilder result2 = new StringBuilder();         
+
+      AsyncSubject&lt;String&gt; subject =  AsyncSubject.create(); 
+      subject.subscribe(value -&gt; result1.append(value) ); 
+      subject.onNext("a"); 
+      subject.onNext("b"); 
+      subject.onNext("c"); 
+      subject.subscribe(value -&gt; result2.append(value)); 
+      subject.onNext("d"); 
+      subject.onComplete();
+
+      //Output will be d being the last item emitted
+      System.out.println(result1);
+      //Output will be d being the last item emitted     
+      System.out.println(result2);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+d
+d
+</pre>
+<h1>RxJava - Schedulers</h1>
+<p>Schedulers are used in multi-threading environment to work with Observable operators. </p>
+<p>As per the <a target="_blank" rel="nofollow" href="http://reactivex.io/documentation/scheduler.html"><b>Reactive</b></a>,Scheduler are used to schedule how chain of operators will apply to different threads.</p>
+<p>By default, an Observable and the chain of operators that you apply to it will do its work, and will notify its observers, on the same thread on which its Subscribe method is called. The SubscribeOn operator changes this behavior by specifying a different Scheduler on which the Observable should operate. The ObserveOn operator specifies a different Scheduler that the Observable will use to send notifications to its observers.</p>
+<p>There are following types of Schedulers available in RxJava &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Scheduler &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Schedulers.computation()</b></p>
+<p>Creates and returns a Scheduler intended for computational work. Count of threads to be scheduled depends upon the CPUs present in the system. One thread is allowed per CPU. Best for event-loops or callback operations.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>Schedulers.io()</b></p>
+<p>Creates and returns a Scheduler intended for IO-bound work. Thread pool may extend as needed.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Schedulers.newThread()</b></p>
+<p>Creates and returns a Scheduler that creates a new Thread for each unit of work.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>Schedulers.trampoline()</b></p>
+<p>Creates and returns a Scheduler that queues work on the current thread to be executed after the current work completes.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>Schedulers.from(java.util.concurrent.Executor executor)</b></p>
+<p>Converts an Executor into a new Scheduler instance.</p>
+</td>
+</tr>
+</table>
+<h1>RxJava - Trampoline Scheduler</h1>
+<p>Schedulers.trampoline() method creates and returns a Scheduler that queues work on the current thread to be executed after the current work completes.</p>
+<h2>Schedulers.trampoline() Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import java.util.Random;
+
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
+
+public class ObservableTester  {
+   public static void main(String[] args) throws InterruptedException {
+      Observable.just("A", "AB", "ABC")
+         .flatMap(v -&gt; getLengthWithDelay(v)
+         .doOnNext(s -&gt; System.out.println("Processing Thread " 
+            + Thread.currentThread().getName()))
+         .subscribeOn(Schedulers.trampoline()))
+         .subscribe(length -&gt; System.out.println("Receiver Thread " 
+            + Thread.currentThread().getName() 
+            + ", Item length " + length));
+
+         Thread.sleep(10000);
+   }
+   protected static Observable&lt;Integer&gt; getLengthWithDelay(String v) {
+      Random random = new Random();
+      try {
+         Thread.sleep(random.nextInt(3) * 1000);
+         return Observable.just(v.length());
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Processing Thread main
+Receiver Thread main, Item length 1
+Processing Thread main
+Receiver Thread main, Item length 2
+Processing Thread main
+Receiver Thread main, Item length 3
+</pre>
+<h1>RxJava - NewThread Scheduler</h1>
+<p>Schedulers.newThread() method creates and returns a Scheduler that creates a new Thread for each unit of work.</p>
+<h2>Schedulers.newThread() Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import java.util.Random;
+
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
+
+public class ObservableTester  {
+   public static void main(String[] args) throws InterruptedException {
+      Observable.just("A", "AB", "ABC")
+         .flatMap(v -&gt; getLengthWithDelay(v)
+         .doOnNext(s -&gt; System.out.println("Processing Thread " 
+            + Thread.currentThread().getName()))
+         .subscribeOn(Schedulers.newThread()))
+         .subscribe(length -&gt; System.out.println("Receiver Thread " 
+            + Thread.currentThread().getName() 
+            + ", Item length " + length));
+
+         Thread.sleep(10000);
+   }
+   protected static Observable&lt;Integer&gt; getLengthWithDelay(String v) {
+      Random random = new Random();
+      try {
+         Thread.sleep(random.nextInt(3) * 1000);
+         return Observable.just(v.length());
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Processing Thread RxNewThreadScheduler-1
+Receiver Thread RxNewThreadScheduler-1, Item length 1
+Processing Thread RxNewThreadScheduler-2
+Receiver Thread RxNewThreadScheduler-2, Item length 2
+Processing Thread RxNewThreadScheduler-3
+Receiver Thread RxNewThreadScheduler-3, Item length 3
+</pre>
+<h1>RxJava - Computation Scheduler</h1>
+<p>Schedulers.computation() method creates and returns a Scheduler intended for computational work. Count of threads to be scheduled depends upon the CPUs present in the system. One thread is allowed per CPU. Best for event-loops or callback operations.</p>
+<h2>Schedulers.computation() Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import java.util.Random;
+
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
+
+public class ObservableTester  {
+   public static void main(String[] args) throws InterruptedException {
+      Observable.just("A", "AB", "ABC")
+         .flatMap(v -&gt; getLengthWithDelay(v)
+         .doOnNext(s -&gt; System.out.println("Processing Thread " 
+            + Thread.currentThread().getName()))
+         .subscribeOn(Schedulers.computation()))
+         .subscribe(length -&gt; System.out.println("Receiver Thread " 
+            + Thread.currentThread().getName() 
+            + ", Item length " + length));
+
+         Thread.sleep(10000);
+   }
+   protected static Observable&lt;Integer&gt; getLengthWithDelay(String v) {
+      Random random = new Random();
+      try {
+         Thread.sleep(random.nextInt(3) * 1000);
+         return Observable.just(v.length());
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Processing Thread RxComputationThreadPool-1
+Receiver Thread RxComputationThreadPool-1, Item length 1
+Processing Thread RxComputationThreadPool-2
+Receiver Thread RxComputationThreadPool-2, Item length 2
+Processing Thread RxComputationThreadPool-3
+Receiver Thread RxComputationThreadPool-3, Item length 3
+</pre>
+<h1>RxJava - IO Scheduler</h1>
+<p>Schedulers.io() method creates and returns a Scheduler intended for IO-bound work. Thread pool may extend as needed. Best for I/O intensive operations.</p>
+<h2>Schedulers.io() Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import java.util.Random;
+
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
+
+public class ObservableTester  {
+   public static void main(String[] args) throws InterruptedException {
+      Observable.just("A", "AB", "ABC")
+         .flatMap(v -&gt; getLengthWithDelay(v)
+         .doOnNext(s -&gt; System.out.println("Processing Thread " 
+            + Thread.currentThread().getName()))
+         .subscribeOn(Schedulers.io()))
+         .subscribe(length -&gt; System.out.println("Receiver Thread " 
+            + Thread.currentThread().getName() 
+            + ", Item length " + length));
+
+         Thread.sleep(10000);
+   }
+   protected static Observable&lt;Integer&gt; getLengthWithDelay(String v) {
+      Random random = new Random();
+      try {
+         Thread.sleep(random.nextInt(3) * 1000);
+         return Observable.just(v.length());
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Processing Thread RxCachedThreadScheduler-1
+Receiver Thread RxCachedThreadScheduler-1, Item length 1
+Processing Thread RxCachedThreadScheduler-1
+Receiver Thread RxCachedThreadScheduler-1, Item length 2
+Processing Thread RxCachedThreadScheduler-1
+Receiver Thread RxCachedThreadScheduler-1, Item length 3
+</pre>
+<h1>RxJava - From Scheduler</h1>
+<p>Schedulers.from(Executor) method converts an Executor into a new Scheduler instance.</p>
+<h2>Schedulers.from(Executor) Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import java.util.Random;
+import java.util.concurrent.Executors;
+
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
+
+public class ObservableTester  {
+   public static void main(String[] args) throws InterruptedException {
+      Observable.just("A", "AB", "ABC")
+         .flatMap(v -&gt; getLengthWithDelay(v)
+         .doOnNext(s -&gt; System.out.println("Processing Thread " 
+            + Thread.currentThread().getName()))
+         .subscribeOn(Schedulers.from(Executors.newFixedThreadPool(3))))
+         .subscribe(length -&gt; System.out.println("Receiver Thread " 
+            + Thread.currentThread().getName() 
+            + ", Item length " + length));
+
+         Thread.sleep(10000);
+   }
+   protected static Observable&lt;Integer&gt; getLengthWithDelay(String v) {
+      Random random = new Random();
+      try {
+         Thread.sleep(random.nextInt(3) * 1000);
+         return Observable.just(v.length());
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Processing Thread pool-1-thread-1
+Processing Thread pool-3-thread-1
+Receiver Thread pool-1-thread-1, Item length 1
+Processing Thread pool-4-thread-1
+Receiver Thread pool-4-thread-1, Item length 3
+Receiver Thread pool-3-thread-1, Item length 2
+</pre>
+<h1>RxJava - Buffering</h1>
+<p>Buffering operator allows to gather items emitted by an Observable into a list or bundles and emit those bundles instead of items. In the example below, we've created an Observable to emit 9 items and using buffering, 3 items will be emitted together.</p>
+<h2>Buffering Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+public class ObservableTester {
+   public static void main(String[] args) throws InterruptedException {
+      Observable&lt;Integer&gt; observable = Observable.just(1, 2, 3, 4,
+         5, 6, 7, 8, 9);
+
+      observable.subscribeOn(Schedulers.io())
+         .delay(2, TimeUnit.SECONDS, Schedulers.io())
+         .buffer(3)
+         .subscribe(new Observer&lt;List&lt;Integer&gt;&gt;() {
+            @Override
+            public void onSubscribe(Disposable d) {
+               System.out.println("Subscribed");
+            }
+            @Override
+            public void onNext(List&lt;Integer&gt; integers) {
+               System.out.println("onNext: ");
+               for (Integer value : integers) {
+                  System.out.println(value);
+               }
+            }
+            @Override
+            public void onError(Throwable e) {
+               System.out.println("Error");
+            }
+
+            @Override
+            public void onComplete() {
+               System.out.println("Done! ");
+            }
+         });
+      Thread.sleep(3000);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Subscribed
+onNext: 
+1
+2
+3
+onNext: 
+4
+5
+6
+onNext: 
+7
+8
+9
+Done! 
+</pre>
+<h1>RxJava - Windowing</h1>
+<p>Windowing operator works similar to buffer operator but it allows to gather items emitted by an Observable into another observable instead of collection and emit those Observables instead of collections. In the example below, we've created an Observable to emit 9 items and using window operator, 3 Observable will be emitted together.</p>
+<h2>Windowing Example</h2>
+<p>Create the following Java program using any editor of your choice in, say, C:\&gt; RxJava.</p>
+<h3>ObservableTester.java</h3>
+<pre class="prettyprint notranslate">
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
+import java.util.concurrent.TimeUnit;
+
+public class ObservableTester {
+   public static void main(String[] args) throws InterruptedException {
+      Observable&lt;Integer&gt; observable = Observable.just(1, 2, 3, 4,
+         5, 6, 7, 8, 9);
+
+      observable.subscribeOn(Schedulers.io())
+         .delay(2, TimeUnit.SECONDS, Schedulers.io())
+         .window(3)
+         .subscribe(new Observer&lt;Observable&lt;Integer&gt;&gt;() {
+            @Override
+            public void onSubscribe(Disposable d) {
+               System.out.println("Subscribed");
+            }
+            @Override
+            public void onNext(Observable&lt;Integer&gt; integers) {
+               System.out.println("onNext: ");
+               integers.subscribe(value -> System.out.println(value));
+            }
+            @Override
+            public void onError(Throwable e) {
+               System.out.println("Error");
+            }
+
+            @Override
+            public void onComplete() {
+               System.out.println("Done! ");
+            }
+         });
+      Thread.sleep(3000);
+   }
+}
+</pre>
+<h3>Verify the Result</h3>
+<p>Compile the class using <b>javac</b> compiler as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;javac ObservableTester.java
+</pre>
+<p>Now run the ObservableTester as follows &minus;</p>
+<pre class="result notranslate">
+C:\RxJava&gt;java ObservableTester
+</pre>
+<p>It should produce the following output &minus;</p>
+<pre class="result notranslate">
+Subscribed
+onNext: 
+1
+2
+3
+onNext: 
+4
+5
+6
+onNext: 
+7
+8
+9
+Done! 
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/rxjava/rxjava_windowing.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/rxjava/rxjava_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

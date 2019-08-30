@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Redux - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="Redux - Quick Guide - Redux is a predictable state container for JavaScript apps. As the application grows, it becomes difficult to keep it organized and maintain data flow. Redux so"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/redux/redux_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#764abc;
+}
+a.demo {
+    background:#764abc;
+}
+li.heading {
+    background:#764abc;
+}
+.course-box{background:#764abc}
+.home-intro-sub p{color:#764abc}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/redux/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/redux/images/redux-mini-logo.jpg" alt="Redux Tutorial" />
+</div>
+<ul class="toc chapters" >
+<li class="heading">Redux Tutorial</li>
+<li><a href="/redux/index.htm">Redux - Home</a></li>
+<li><a href="/redux/redux_overview.htm">Redux - Overview</a></li>
+<li><a href="/redux/redux_installation.htm">Redux - Installation</a></li>
+<li><a href="/redux/redux_core_concepts.htm">Redux - Core Concepts</a></li>
+<li><a href="/redux/redux_data_flow.htm">Redux - Data Flow</a></li>
+<li><a href="/redux/redux_store.htm">Redux - Store</a></li>
+<li><a href="/redux/redux_actions.htm">Redux - Actions</a></li>
+<li><a href="/redux/redux_pure_functions.htm">Redux - Pure Functions</a></li>
+<li><a href="/redux/redux_reducers.htm">Redux - Reducers</a></li>
+<li><a href="/redux/redux_middleware.htm">Redux - Middleware</a></li>
+<li><a href="/redux/redux_devtools.htm">Redux - Devtools</a></li>
+<li><a href="/redux/redux_testing.htm">Redux - Testing</a></li>
+<li><a href="/redux/redux_integrate_react.htm">Redux - Integrate React</a></li>
+<li><a href="/redux/redux_react_example.htm">Redux - React Example</a></li>
+<li class="heading">Redux Useful Resources</li>
+<li><a href="/redux/redux_quick_guide.htm">Redux - Quick Guide</a></li>
+<li><a href="/redux/redux_useful_resources.htm">Redux - Useful Resources</a></li>
+<li><a href="/redux/redux_discussion.htm">Redux - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Redux - Quick Guide</h1>
+<hr/>
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/redux/redux_react_example.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/redux/redux_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clear"></div>
+<h1>Redux - Overview</h1>
+<p>Redux is a predictable state container for JavaScript apps. As the application grows, it becomes difficult to keep it organized and maintain data flow. Redux solves this problem by managing application’s state with a single global object called Store. Redux fundamental principles help in maintaining consistency throughout your application, which makes debugging and testing easier.</p>
+<p>More importantly, it gives you live code editing combined with a time-travelling debugger. It is flexible to go with any view layer such as React, Angular, Vue, etc.</p>
+<h2>Principles of Redux</h2>
+<p>Predictability of Redux is determined by three most important principles as given below &minus;</p>
+<h3>Single Source of Truth</h3>
+<p>The state of your whole application is stored in an object tree within a single store. As whole application state is stored in a single tree, it makes debugging easy, and development faster.</p>
+<h3>State is Read-only</h3>
+<p>The only way to change the state is to emit an action, an object describing what happened. This means nobody can directly change the state of your application.</p>
+<h3>Changes are made with pure functions</h3>
+<p>To specify how the state tree is transformed by actions, you write pure reducers. A reducer is a central place where state modification takes place. Reducer is a function which takes state and action as arguments, and returns a newly updated state.</p>
+<h1>Redux - Installation</h1>
+<p>Before installing Redux, <b>we have to install Nodejs and NPM</b>. Below are the instructions that will help you install it. You can skip these steps if you already have Nodejs and NPM installed in your device.</p>
+<ul class="list">
+<li><p>Visit <a href="https://nodejs.org/" rel="nofollow" target="_blank">https://nodejs.org/</a> and install the package file.</p></li>
+<li><p>Run the installer, follow the instructions and accept the license agreement.</p></li>
+<li><p>Restart your device to run it.</p></li>
+<li><p>You can check successful installation by opening the command prompt and type node -v. This will show you the latest version of Node in your system.</p></li>
+<li><p>To check if npm is installed successfully, you can type npm –v which returns you the latest npm version.</p></li>
+</ul>
+<p>To install redux, you can follow the below steps &minus;</p>
+<p>Run the following command in your command prompt to install Redux.</p>
+<pre class="result notranslate">
+npm install --save redux
+</pre>
+<p>To use Redux with react application, you need to install an additional dependency as follows &minus;</p>
+<pre class="result notranslate">
+npm install --save react-redux
+</pre>
+<p>To install developer tools for Redux, you need to install the following as dependency &minus;</p>
+<p>Run the below command in your command prompt to install Redux dev-tools.</p>
+<pre class="result notranslate">
+npm install --save-dev redux-devtools
+</pre>
+<p>If you do not want to install Redux dev tools and integrate it into your project, you can install <b>Redux DevTools Extension</b> for Chrome and Firefox.</p>
+<h1>Redux - Core Concepts</h1>
+<p>Let us assume our application’s state is described by a plain object called <b>initialState</b> which is as follows &minus;</p>
+<pre class="result notranslate">
+const initialState = {
+   isLoading: false,
+   items: [],
+   hasError: false
+};
+</pre>
+<p>Every piece of code in your application cannot change this state. To change the state, you need to dispatch an action.</p>
+<h2>What is an action?</h2>
+<p>An action is a plain object that describes the intention to cause change with a type property. It must have a type property which tells what type of action is being performed. The command for action is as follows &minus;</p>
+<pre class="result notranslate">
+return {
+   type: 'ITEMS_REQUEST', //action type
+   isLoading: true //payload information
+}
+</pre>
+<p>Actions and states are held together by a function called Reducer. An action is dispatched with an intention to cause change. This change is performed by the reducer. Reducer is the only way to change states in Redux, making it more predictable, centralised and debuggable. A reducer function that handles the ‘ITEMS_REQUEST’ action is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+const reducer = (state = initialState, action) =&gt; { //es6 arrow function
+   switch (action.type) {
+      case 'ITEMS_REQUEST':
+         return Object.assign({}, state, {
+            isLoading: action.isLoading
+         })
+      default:
+         return state;
+   }
+}
+</pre>
+<p>Redux has a single store which holds the application state. If you want to split your code on the basis of data handling logic, you should start splitting your reducers instead of stores in Redux.</p>
+<p>We will discuss how we can split reducers and combine it with store later in this tutorial.</p>
+<p>Redux components are as follows &minus;</p>
+<img class="full-width" src="/redux/images/data_handling_logic.jpg" alt="Data Handling Logic" />
+<h1>Redux - Data Flow</h1>
+<div class="clear"></div>
+<p>Redux follows the unidirectional data flow. It means that your application data will follow in one-way binding data flow. As the application grows &amp; becomes complex, it is hard to reproduce issues and add new features if you have no control over the state of your application.</p>
+<p>Redux reduces the complexity of the code, by enforcing the restriction on how and when state update can happen. This way, managing updated states is easy. We already know about the restrictions as the three principles of Redux. Following diagram will help you understand Redux data flow better &minus;</p>
+<img class="full-width" src="/redux/images/data_flow.jpg" alt="Data Flow" />
+<ul class="list">
+<li><p>An action is dispatched when a user interacts with the application.</p></li>
+<li><p>The root reducer function is called with the current state and the dispatched action. The root reducer may divide the task among smaller reducer functions, which ultimately returns a new state.</p></li>
+<li><p>The store notifies the view by executing their callback functions.</p></li>
+<li><p>The view can retrieve updated state and re-render again.</p></li>
+</ul>
+<h1>Redux - Store</h1>
+<p>A store is an immutable object tree in Redux. A store is a state container which holds the application’s state. Redux can have only a single store in your application. Whenever a store is created in Redux, you need to specify the reducer.</p>
+<p>Let us see how we can create a store using the <b>createStore</b> method from Redux. One need to import the createStore package from the Redux library that supports the store creation process as shown below &minus;</p>
+<pre class="result notranslate">
+import { createStore } from 'redux';
+import reducer from './reducers/reducer'
+const store = createStore(reducer);
+</pre>
+<p>A createStore function can have three arguments. The following is the syntax &minus;</p>
+<pre class="result notranslate">
+createStore(reducer, [preloadedState], [enhancer])
+</pre>
+<p>A reducer is a function that returns the next state of app. A preloadedState is an optional argument and is the initial state of your app. An enhancer is also an optional argument. It will help you enhance store with third-party capabilities.</p>
+<p>A store has three important methods as given below &minus;</p>
+<h2>getState</h2>
+<p>It helps you retrieve the current state of your Redux store.</p>
+<p>The syntax for getState is as follows &minus;</p>
+<pre class="result notranslate">
+store.getState()
+</pre>
+<h2>dispatch</h2>
+<p>It allows you to dispatch an action to change a state in your application.</p>
+<p>The syntax for dispatch is as follows &minus;</p>
+<pre class="result notranslate">
+store.dispatch({type:'ITEMS_REQUEST'})
+</pre>
+<h2>subscribe</h2>
+<p>It helps you register a callback that Redux store will call when an action has been dispatched. As soon as the Redux state has been updated, the view will re-render automatically.</p>
+<p>The syntax for dispatch is as follows &minus;</p>
+<pre class="result notranslate">
+store.subscribe(()=&gt;{ console.log(store.getState());})
+</pre>
+<p>Note that subscribe function returns a function for unsubscribing the listener. To unsubscribe the listener, we can use the below code &minus;</p>
+<pre class="result notranslate">
+const unsubscribe = store.subscribe(()=&gt;{console.log(store.getState());});
+unsubscribe();
+</pre>
+<h1>Redux - Actions</h1>
+<p>Actions are the only source of information for the store as per Redux official documentation. It carries a payload of information from your application to store.</p>
+<p>As discussed earlier, actions are plain JavaScript object that must have a type attribute to indicate the type of action performed. It tells us what had happened. Types should be defined as string constants in your application as given below &minus;</p>
+<pre class="result notranslate">
+const ITEMS_REQUEST = 'ITEMS_REQUEST';
+</pre>
+<p>Apart from this type attribute, the structure of an action object is totally up to the developer. It is recommended to keep your action object as light as possible and pass only the necessary information.</p>
+<p>To cause any change in the store, you need to dispatch an action first by using store.dispatch() function. The action object is as follows &minus;</p>
+<pre class="result notranslate">
+{ type: GET_ORDER_STATUS , payload: {orderId,userId } }
+{ type: GET_WISHLIST_ITEMS, payload: userId }
+</pre>
+<h2>Actions Creators</h2>
+<p>Action creators are the functions that encapsulate the process of creation of an action object. These functions simply return a plain Js object which is an action. It promotes writing clean code and helps to achieve reusability.</p>
+<p>Let us learn about action creator which lets you dispatch an action, <b>‘ITEMS_REQUEST’</b> that requests for the product items list data from the server. Meanwhile, the <b>isLoading</b> state is made true in the reducer in ‘ITEMS_REQUEST’ action type to indicate that items are loading, and data is still not received from the server.</p>
+<p>Initially, the isLoading state was false in the <b>initialState</b> object assuming nothing is loading. When data is received at browser, isLoading state will be returned as false in ‘ITEMS_REQUEST_SUCCESS’ action type in the corresponding reducer. This state can be used as a prop in react components to display loader/message on your page while the request for data is on. The action creator is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+const ITEMS_REQUEST = ‘ITEMS_REQUEST’ ;
+const ITEMS_REQUEST_SUCCESS = ‘ITEMS_REQUEST_SUCCESS’ ;
+export function itemsRequest(bool,startIndex,endIndex) {
+   let payload = {
+      isLoading: bool,
+      startIndex,
+      endIndex
+   }
+   return {
+      type: ITEMS_REQUEST,
+      payload
+   }
+}
+export function itemsRequestSuccess(bool) {
+   return {
+      type: ITEMS_REQUEST_SUCCESS,
+      isLoading: bool,
+   }
+}
+</pre>
+<p>To invoke a dispatch function, you need to pass action as an argument to dispatch function.</p>
+<pre class="result notranslate">
+dispatch(itemsRequest(true,1, 20));
+dispatch(itemsRequestSuccess(false));
+</pre>
+<p>You can dispatch an action by directly using store.dispatch(). However, it is more likely that you access it with react-Redux helper method called <b>connect()</b>. You can also use <b>bindActionCreators()</b> method to bind many action creators with dispatch function.</p>
+<h1>Redux - Pure Functions</h1>
+<p>A function is a process which takes inputs called arguments, and produces some output known as return value. A function is called pure if it abides by the following rules &minus;</p>
+<ul class="list">
+<li><p>A function returns the same result for same arguments.</p></li>
+<li><p>Its evaluation has no side effects, i.e., it does not alter input data.</p></li>
+<li><p>No mutation of local &amp; global variables.</p></li>
+<li><p>It does not depend on the external state like a global variable.</p></li>
+</ul>
+<p>Let us take the example of a function which returns two times of the value passed as an input to the function. In general, it is written as, f(x) =&gt; x*2. If a function is called with an argument value 2, then the output would be 4, f(2) =&gt; 4.</p>
+<p>Let us write the definition of the function in JavaScript as shown below &minus;</p>
+<pre class="result notranslate">
+const double = x =&gt; x*2; // es6 arrow function
+console.log(double(2));  // 4
+</pre>
+<p><b>Here, double is a pure function.</b></p>
+<p>As per the three principles in Redux, changes must be made by a pure function, i.e., reducer in Redux. Now, a question arises as to why a reducer must be a pure function.</p>
+<p>Suppose, you want to dispatch an action whose type is <b>'ADD_TO_CART_SUCCESS'</b> to add an item to your shopping cart application by clicking add to cart button.</p>
+<p>Let us assume the reducer is adding an item to your cart as given below &minus;</p>
+<pre class="prettyprint notranslate">
+const initialState = {
+   isAddedToCart: false;
+}
+const addToCartReducer = (state = initialState, action) =&gt; { //es6 arrow function
+   switch (action.type) {
+      case 'ADD_TO_CART_SUCCESS' :
+         state.isAddedToCart = !state.isAddedToCart; //original object altered
+         return state;
+      default:
+         return state;
+   }
+}
+export default addToCartReducer ;
+</pre>
+<p>Let us suppose, <b>isAddedToCart</b> is a property on state object that allows you to decide when to disable ‘add to cart’ button for the item by returning a Boolean value <b>‘true or false’</b>. This prevents user to add same product multiple times. Now, instead of returning a new object, we are mutating isAddedToCart prop on the state like above. Now if we try to add an item to cart, nothing happens. Add to cart button will not get disabled.</p>
+<p>The reason for this behaviour is as follows &minus;</p>
+<p>Redux compares old and new objects by the memory location of both the objects. It expects a new object from reducer if any change has happened. And it also expects to get the old object back if no change occurs. In this case, it is the same. Due to this reason, Redux assumes that nothing has happened.</p>
+<p>So, it is necessary for a reducer to be a pure function in Redux. The following is a way to write it without mutation &minus;</p>
+<pre class="prettyprint notranslate">
+const initialState = {
+   isAddedToCart: false;
+}
+const addToCartReducer = (state = initialState, action) =&gt; { //es6 arrow function
+   switch (action.type) {
+      case 'ADD_TO_CART_SUCCESS' :
+         return {
+            ...state,
+            isAddedToCart: !state.isAddedToCart
+         }
+      default:
+         return state;
+   }
+}
+export default addToCartReducer;
+</pre>
+<h1>Redux - Reducers</h1>
+<p>Reducers are a pure function in Redux. Pure functions are predictable. Reducers are the only way to change states in Redux. It is the only place where you can write logic and calculations. Reducer function will accept the previous state of app and action being dispatched, calculate the next state and returns the new object.</p>
+<p>The following few things should never be performed inside the reducer &minus;</p>
+<ul class="list">
+<li>Mutation of functions arguments</li>
+<li>API calls &amp; routing logic</li>
+<li>Calling non-pure function e.g. Math.random()</li>
+</ul>
+<p>The following is the syntax of a reducer &minus;</p>
+<pre class="result notranslate">
+(state,action) =&gt; newState
+</pre>
+<p>Let us continue the example of showing the list of product items on a web page, discussed in the action creators module. Let us see below how to write its reducer.</p>
+<pre class="prettyprint notranslate">
+const initialState = {
+   isLoading: false,
+   items: []
+};
+const reducer = (state = initialState, action) =&gt; {
+   switch (action.type) {
+      case 'ITEMS_REQUEST':
+         return Object.assign({}, state, {
+            isLoading: action.payload.isLoading
+         })
+      case ‘ITEMS_REQUEST_SUCCESS':
+         return Object.assign({}, state, {
+            items: state.items.concat(action.items),
+            isLoading: action.isLoading
+         })
+      default:
+         return state;
+   }
+}
+export default reducer;
+</pre>
+<p>Firstly, if you do not set state to ‘initialState’, Redux calls reducer with the undefined state. In this code example, concat() function of JavaScript is used in ‘ITEMS_REQUEST_SUCCESS', which does not change the existing array; instead returns a new array.</p>
+<p>In this way, you can avoid mutation of the state. Never write directly to the state. In 'ITEMS_REQUEST', we have to set the state value from the action received.</p>
+<p>It is already discussed that we can write our logic in reducer and can split it on the logical data basis. Let us see how we can split reducers and combine them together as root reducer when dealing with a large application.</p>
+<p>Suppose, we want to design a web page where a user can access product order status and see wishlist information. We can separate the logic in different reducers files, and make them work independently. Let us assume that GET_ORDER_STATUS action is dispatched to get the status of order corresponding to some order id and user id.</p>
+<pre class="prettyprint notranslate">
+/reducer/orderStatusReducer.js
+import { GET_ORDER_STATUS } from ‘../constants/appConstant’;
+export default function (state = {} , action) {
+   switch(action.type) {
+      case GET_ORDER_STATUS:
+         return { ...state, orderStatusData: action.payload.orderStatus };
+      default:
+         return state;
+   }
+}
+</pre>
+<p>Similarly, assume GET_WISHLIST_ITEMS action is dispatched to get the user’s wishlist information respective of a user.</p>
+<pre class="prettyprint notranslate">
+/reducer/getWishlistDataReducer.js
+import { GET_WISHLIST_ITEMS } from ‘../constants/appConstant’;
+export default function (state = {}, action) {
+   switch(action.type) {
+      case GET_WISHLIST_ITEMS:
+         return { ...state, wishlistData: action.payload.wishlistData };
+      default:
+         return state;
+   }
+}
+</pre>
+<p>Now, we can combine both reducers by using Redux combineReducers utility. The combineReducers generate a function which returns an object whose values are different reducer functions. You can import all the reducers in index reducer file and combine them together as an object with their respective names.</p>
+<pre class="prettyprint notranslate">
+/reducer/index.js
+import { combineReducers } from ‘redux’;
+import OrderStatusReducer from ‘./orderStatusReducer’;
+import GetWishlistDataReducer from ‘./getWishlistDataReducer’;
+
+const rootReducer = combineReducers ({
+   orderStatusReducer: OrderStatusReducer,
+   getWishlistDataReducer: GetWishlistDataReducer
+});
+export default rootReducer;
+</pre>
+<p>Now, you can pass this rootReducer to the createStore method as follows &minus;</p>
+<pre class="result notranslate">
+const store = createStore(rootReducer);
+</pre>
+<h1>Redux - Middleware</h1>
+<p>Redux itself is synchronous, so how the <b>async</b> operations like <b>network request</b> work with Redux? Here middlewares come handy. As discussed earlier, reducers are the place where all the execution logic is written. Reducer has nothing to do with who performs it, how much time it is taking or logging the state of the app before and after the action is dispatched.</p>
+<p>In this case, Redux middleware function provides a medium to interact with dispatched action before they reach the reducer. Customized middleware functions can be created by writing high order functions (a function that returns another function), which wraps around some logic. Multiple middlewares can be combined together to add new functionality, and each middleware requires no knowledge of what came before and after. You can imagine middlewares somewhere between action dispatched and reducer.</p>
+<p>Commonly, middlewares are used to deal with asynchronous actions in your app. Redux provides with API called applyMiddleware which allows us to use custom middleware as well as Redux middlewares like redux-thunk and redux-promise. It applies middlewares to store. The syntax of using applyMiddleware API is &minus;</p>
+<pre class="result notranslate">
+applyMiddleware(...middleware)
+</pre>
+<p>And this can be applied to store as follows &minus;</p>
+<pre class="prettyprint notranslate">
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers/index';
+const store = createStore(rootReducer, applyMiddleware(thunk));
+</pre>
+<img class="full-width" src="/redux/images/middleware.jpg" alt="Middleware" />
+<p>Middlewares will let you write an action dispatcher which returns a function instead of an action object. Example for the same is shown below &minus;</p>
+<pre class="result notranslate">
+function getUser() {
+   return function() {
+      return axios.get('/get_user_details');
+   };
+}
+</pre>
+<p>Conditional dispatch can be written inside middleware. Each middleware receives store’s dispatch so that they can dispatch new action, and getState functions as arguments so that they can access the current state and return a function. Any return value from an inner function will be available as the value of dispatch function itself.</p>
+<p>The following is the syntax of a middleware &minus;</p>
+<pre class="result notranslate">
+({ getState, dispatch }) =&gt; next =&gt; action
+</pre>
+<p>The getState function is useful to decide whether new data is to be fetched or cache result should get returned, depending upon the current state.</p>
+<p>Let us see an example of a custom middleware logger function. It simply logs the action and new state.</p>
+<pre class="prettyprint notranslate">
+import { createStore, applyMiddleware } from 'redux'
+import userLogin from './reducers'
+
+function logger({ getState }) {
+   return next =&gt; action =&gt; {
+      console.log(‘action’, action);
+      const returnVal = next(action);
+      console.log('state when action is dispatched', getState()); 
+      return returnVal;
+   }
+}
+</pre>
+<p>Now apply the logger middleware to the store by writing the following line of code &minus;</p>
+<pre class="result notranslate">
+const store = createStore(userLogin , initialState=[ ] , applyMiddleware(logger));
+</pre>
+<p>Dispatch an action to check the action dispatched and new state using the below code &minus;</p>
+<pre class="result notranslate">
+store.dispatch({
+   type: 'ITEMS_REQUEST', 
+	isLoading: true
+})
+</pre>
+<p>Another example of middleware where you can handle when to show or hide the loader is given below. This middleware shows the loader when you are requesting any resource and hides it when resource request has been completed.</p>
+<pre class="prettyprint notranslate">
+import isPromise from 'is-promise';
+
+function loaderHandler({ dispatch }) {
+   return next =&gt; action =&gt; {
+      if (isPromise(action)) {
+         dispatch({ type: 'SHOW_LOADER' });
+         action
+            .then(() =&gt; dispatch({ type: 'HIDE_LOADER' }))
+            .catch(() =&gt; dispatch({ type: 'HIDE_LOADER' }));
+      }
+      return next(action);
+   };
+}
+const store = createStore(
+   userLogin , initialState = [ ] , 
+   applyMiddleware(loaderHandler)
+);
+</pre>
+<h1>Redux - Devtools</h1>
+<p>Redux-Devtools provide us debugging platform for Redux apps. It allows us to perform time-travel debugging and live editing. Some of the features in official documentation are as follows &minus;</p>
+<ul class="list">
+<li><p>It lets you inspect every state and action payload.</p></li>
+<li><p>It lets you go back in time by “cancelling” actions.</p></li>
+<li><p>If you change the reducer code, each “staged” action will be re-evaluated.</p></li>
+<li><p>If the reducers throw, we can identify the error and also during which action this happened.</p></li>
+<li><p>With persistState() store enhancer, you can persist debug sessions across page reloads.</p></li>
+</ul>
+<p>There are two variants of Redux dev-tools as given below &minus;</p>
+<p><b>Redux DevTools</b> &minus; It can be installed as a package and integrated into your application as given below &minus;</p>
+<p><a href="https://github.com/reduxjs/redux-devtools/blob/master/docs/Walkthrough.md#manual-integration" rel="nofollow" target="_blank">https://github.com/reduxjs/redux-devtools/blob/master/docs/Walkthrough.md#manual-integration</a></p>
+<p><b>Redux DevTools Extension</b> &minus; A browser extension that implements the same developer tools for Redux is as follows &minus;</p>
+<p><a href="https://github.com/zalmoxisus/redux-devtools-extension" rel="nofollow" target="_blank">https://github.com/zalmoxisus/redux-devtools-extension</a></p>
+<p>Now let us check how we can skip actions and go back in time with the help of Redux dev tool. Following screenshots explain about the actions we have dispatched earlier to get the listing of items. Here we can see the actions dispatched in the inspector tab. On the right, you can see the Demo tab which shows you the difference in the state tree.</p>
+<img class="full-width" src="/redux/images/inspectortab.jpg" alt="Inspector Tab" />
+<p>You will get familiar with this tool when you start using it. You can dispatch an action without writing the actual code just from this Redux plugin tool. A Dispatcher option in the last row will help you with this. Let us check the last action where items are fetched successfully.</p>
+<img class="full-width" src="/redux/images/fetched_successfully.jpg" alt="Fetched Successfully" />
+<p>We received an array of objects as a response from the server. All the data is available to display listing on our page. You can also track the store’s state at the same time by clicking on the state tab on the upper right side.</p>
+<img class="full-width" src="/redux/images/state_tab.jpg" alt="State Tab" />
+<p>In the previous sections, we have learnt about time travel debugging. Let us now check how to skip one action and go back in time to analyze the state of our app. As you click on any action type, two options: ‘Jump’ and ‘Skip’ will appear.</p>
+<p>By clicking on the skip button on a certain action type, you can skip particular action. It acts as if the action never happened. When you click on jump button on certain action type, it will take you to the state when that action occurred and skip all the remaining actions in sequence. This way you will be able to retain the state when a particular action happened. This feature is useful in debugging and finding errors in the application.</p>
+<img class="full-width" src="/redux/images/jump_button.jpg" alt="Jump Button" />
+<p>We skipped the last action, and all the listing data from background got vanished. It takes back to the time when data of the items has not arrived, and our app has no data to render on the page. It actually makes coding easy and debugging easier.</p>
+<h1>Redux - Testing</h1>
+<p>Testing Redux code is easy as we mostly write functions, and most of them are pure. So we can test it without even mocking them. Here, we are using JEST as a testing engine. It works in the node environment and does not access DOM.</p>
+<p>We can install JEST with the code given below &minus;</p>
+<pre class="result notranslate">
+npm install --save-dev jest
+</pre>
+<p>With babel, you need to install <b>babel-jest</b> as follows &minus;</p>
+<pre class="result notranslate">
+npm install --save-dev babel-jest
+</pre>
+<p>And configure it to use babel-preset-env features in the .babelrc file as follows &minus;</p>
+<pre class="prettyprint notranslate">
+{ 
+   "presets": ["@babel/preset-env"] 
+}
+And add the following script in your package.json:
+{ 
+   //Some other code 
+   "scripts": {
+      //code
+      "test": "jest", 
+      "test:watch": "npm test -- --watch" 
+   }, 
+   //code 
+}
+</pre>
+<p>Finally, <b>run npm test or npm run test</b>. Let us check how we can write test cases for action creators and reducers.</p>
+<h2>Test Cases for Action Creators</h2>
+<p>Let us assume you have action creator as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+export function itemsRequestSuccess(bool) {
+   return {
+      type: ITEMS_REQUEST_SUCCESS,
+      isLoading: bool,
+   }
+}
+</pre>
+<p>This action creator can be tested as given below &minus;</p>
+<pre class="prettyprint notranslate">
+import * as action from '../actions/actions';
+import * as types from '../../constants/ActionTypes';
+
+describe('actions', () =&gt; {
+   it('should create an action to check if item is loading', () =&gt; { 
+      const isLoading = true, 
+      const expectedAction = { 
+         type: types.ITEMS_REQUEST_SUCCESS, isLoading 
+      } 
+      expect(actions.itemsRequestSuccess(isLoading)).toEqual(expectedAction) 
+   })
+})
+</pre>
+<h2>Test Cases for Reducers</h2>
+<p>We have learnt that reducer should return a new state when action is applied. So reducer is tested on this behaviour.</p>
+<p>Consider a reducer as given below &minus;</p>
+<pre class="prettyprint notranslate">
+const initialState = {
+   isLoading: false
+};
+const reducer = (state = initialState, action) =&gt; {
+   switch (action.type) {
+      case 'ITEMS_REQUEST':
+         return Object.assign({}, state, {
+            isLoading: action.payload.isLoading
+         })
+      default:
+         return state;
+   }
+}
+export default reducer;
+</pre>
+<p>To test above reducer, we need to pass state and action to the reducer, and return a new state as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+import reducer from '../../reducer/reducer' 
+import * as types from '../../constants/ActionTypes'
+
+describe('reducer initial state', () =&gt; {
+   it('should return the initial state', () =&gt; {
+      expect(reducer(undefined, {})).toEqual([
+         {
+            isLoading: false,
+         }
+      ])
+   })
+   it('should handle ITEMS_REQUEST', () =&gt; {
+      expect(
+         reducer(
+            {
+               isLoading: false,
+            },
+            {
+               type: types.ITEMS_REQUEST,
+               payload: { isLoading: true }
+            }
+         )
+      ).toEqual({
+         isLoading: true
+      })
+   })
+})
+</pre>
+<p>If you are not familiar with writing test case, you can check the basics of <a href="https://jestjs.io/" rel="nofollow" target="_blank">JEST</a>.</p>
+<h1>Redux - Integrate React</h1>
+<p>In the previous chapters, we have learnt what is Redux and how it works. Let us now check the integration of view part with Redux. You can add any view layer to Redux. We will also discuss react library and Redux.</p>
+<p>Let us say if various react components need to display the same data in different ways without passing it as a prop to all the components from top-level component to the way down. It would be ideal to store it outside the react components. Because it helps in faster data retrieval as you need not pass data all the way down to different components.</p>
+<p>Let us discuss how it is possible with Redux. Redux provides the react-redux package to bind react components with two utilities as given below &minus;</p>
+<ul class="list">
+<li>Provider</li>
+<li>Connect</li>
+</ul>
+<p>Provider makes the store available to rest of the application. Connect function helps react component to connect to the store, responding to each change occurring in the store’s state.</p>
+<p>Let us have a look at the <b>root index.js</b> file which creates store and uses a provider that enables the store to the rest of the app in a react-redux app.</p>
+<pre class="prettyprint notranslate">
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux';
+import reducer from './reducers/reducer'
+import thunk from 'redux-thunk';
+import App from './components/app'
+import './index.css';
+
+const store = createStore(
+   reducer,
+   window.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__(),
+   applyMiddleware(thunk)
+)
+render(
+   &lt;Provider store = {store}&gt;
+      &lt;App /&gt;
+   &lt;/Provider&gt;,
+   document.getElementById('root')
+)
+</pre>
+<p>Whenever a change occurs in a react-redux app, mapStateToProps() is called. In this function, we exactly specify which state we need to provide to our react component.</p>
+<p>With the help of connect() function explained below, we are connecting these app’s state to react component. Connect() is a high order function which takes component as a parameter. It performs certain operations and returns a new component with correct data which we finally exported.</p>
+<p>With the help of mapStateToProps(), we provide these store states as prop to our react component. This code can be wrapped in a container component. The motive is to separate concerns like data fetching, rendering concern and reusability.</p>
+<pre class="prettyprint notranslate">
+import { connect } from 'react-redux'
+import Listing from '../components/listing/Listing' //react component
+import makeApiCall from '../services/services' //component to make api call
+
+const mapStateToProps = (state) =&gt; {
+   return {
+      items: state.items,
+      isLoading: state.isLoading
+   };
+};
+const mapDispatchToProps = (dispatch) =&gt; {
+   return {
+      fetchData: () =&gt; dispatch(makeApiCall())
+   };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Listing);
+</pre>
+<p>The definition of a component to make an api call in services.js file is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+import axios from 'axios'
+import { itemsLoading, itemsFetchDataSuccess } from '../actions/actions'
+
+export default function makeApiCall() {
+   return (dispatch) =&gt; {
+      dispatch(itemsLoading(true));
+      axios.get('http://api.tvmaze.com/shows')
+      .then((response) =&gt; {
+         if (response.status !== 200) {
+            throw Error(response.statusText);
+         }
+         dispatch(itemsLoading(false));
+         return response;
+      })
+      .then((response) =&gt; dispatch(itemsFetchDataSuccess(response.data)))
+   };
+}
+</pre>
+<p>mapDispatchToProps() function receives dispatch function as a parameter and returns you callback props as plain object that you pass to your react component.</p>
+<p>Here, you can access fetchData as a prop in your react listing component, which dispatches an action to make an API call. mapDispatchToProps() is used to dispatch an action to store. In react-redux, components cannot access the store directly. The only way is to use connect().</p>
+<p>Let us understand how the react-redux works through the below diagram &minus;</p>
+<img class="center" src="/redux/images/react_redux_work.jpg" alt="React Redux Work" />
+<p><b>STORE</b> &minus; Stores all your application state as a JavaScript object</p>
+<p><b>PROVIDER</b> &minus; Makes stores available</p>
+<p><b>CONTAINER</b> &minus; Get apps state & provide it as a prop to components</p>
+<p><b>COMPONENT</b> &minus; User interacts through view component</p>
+<p><b>ACTIONS</b> &minus; Causes a change in store, it may or may not change the state of your app</p>
+<p><b>REDUCER</b> &minus; Only way to change app state, accept state and action, and returns updated state.</p>
+<p>However, Redux is an independent library and can be used with any UI layer. React-redux is the official Redux, UI binding with the react. Moreover, it encourages a good react Redux app structure. React-redux internally implements performance optimization, so that component re-render occurs only when it is needed.</p>
+<p>To sum up, Redux is not designed to write shortest and the fastest code. It is intended to provide a predictable state management container. It helps us understand when a certain state changed, or where the data came from.</p>
+<h1>Redux - React Example</h1>
+<p>Here is a small example of react and Redux application. You can also try developing small apps. Sample code for increase or decrease counter is given below &minus;</p>
+<p>This is the root file which is responsible for the creation of store and rendering our react app component.</p>
+<pre class="prettyprint notranslate">
+/src/index.js
+
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux';
+import reducer from '../src/reducer/index'
+import App from '../src/App'
+import './index.css';
+
+const store = createStore(
+   reducer,
+   window.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; 
+   window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+render(
+   &lt;Provider store = {store}&gt;
+      &lt;App /&gt;
+   &lt;/Provider&gt;, document.getElementById('root')
+)
+</pre>
+<p>This is our root component of react. It is responsible for rendering counter container component as a child.</p>
+<pre class="prettyprint notranslate">
+/src/app.js
+
+import React, { Component } from 'react';
+import './App.css';
+import Counter from '../src/container/appContainer';
+
+class App extends Component {
+   render() {
+      return (
+         &lt;div className = "App"&gt;
+            &lt;header className = "App-header"&gt;
+               &lt;Counter/&gt;
+            &lt;/header&gt;
+         &lt;/div&gt;
+      );
+   }
+}
+export default App;
+</pre>
+<p>The following is the container component which is responsible for providing Redux’s state to react component &minus;</p>
+<pre class="prettyprint notranslate">
+/container/counterContainer.js
+
+import { connect } from 'react-redux'
+import Counter from '../component/counter'
+import { increment, decrement, reset } from '../actions';
+
+const mapStateToProps = (state) =&gt; {
+   return {
+      counter: state
+   };
+};
+const mapDispatchToProps = (dispatch) =&gt; {
+   return {
+      increment: () =&gt; dispatch(increment()),
+      decrement: () =&gt; dispatch(decrement()),
+      reset: () =&gt; dispatch(reset())
+   };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+</pre>
+<p>Given below is the react component responsible for view part &minus;</p>
+<pre class="prettyprint notranslate">
+/component/counter.js
+import React, { Component } from 'react';
+class Counter extends Component {
+   render() {
+      const {counter,increment,decrement,reset} = this.props;
+      return (
+         &lt;div className = "App"&gt;
+            &lt;div&gt;{counter}&lt;/div&gt;
+            &lt;div&gt;
+               &lt;button onClick = {increment}&gt;INCREMENT BY 1&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+               &lt;button onClick = {decrement}&gt;DECREMENT BY 1&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;button onClick = {reset}&gt;RESET&lt;/button&gt;
+         &lt;/div&gt;
+      );
+   }
+}
+export default Counter;
+</pre>
+<p>The following are the action creators responsible for creating an action &minus;</p>
+<pre class="prettyprint notranslate">
+/actions/index.js
+export function increment() {
+   return {
+      type: 'INCREMENT'
+   }
+}
+export function decrement() {
+   return {
+      type: 'DECREMENT'
+   }
+}
+export function reset() {
+   return { type: 'RESET' }
+}
+</pre>
+<p>Below, we have shown line of code for reducer file which is responsible for updating the state in Redux.</p>
+<pre class="prettyprint notranslate">
+reducer/index.js
+const reducer = (state = 0, action) => {
+   switch (action.type) {
+      case 'INCREMENT': return state + 1
+      case 'DECREMENT': return state - 1
+      case 'RESET' : return 0 default: return state
+   }
+}
+export default reducer;
+</pre>
+<p>Initially, the app looks as follows &minus;</p>
+<img class="full-width" src="/redux/images/app_look.jpg" alt="App Look" />
+<p>When I click increment two times, the output screen will be as shown below &minus;</p>
+<img class="full-width" src="/redux/images/output_screen.jpg" alt="Output Screen" />
+<p>When we decrement it once, it shows the following screen &minus;</p>
+<img class="full-width" src="/redux/images/decrement.jpg" alt="Decrement" />
+<p>And reset will take the app back to initial state which is counter value 0. This is shown below &minus;</p>
+<img class="full-width" src="/redux/images/initial_state.jpg" alt="Initial State" />
+<p>Let us understand what happens with Redux dev tools when the first increment action takes place &minus;</p>
+<img class="full-width" src="/redux/images/redux_devtool.jpg" alt="Redux Devtool" />
+<p>State of the app will be moved to the time when only increment action is dispatched and rest of the actions are skipped.</p>
+<p>We encourage to develop a small Todo App as an assignment by yourself and understand the Redux tool better.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/redux/redux_react_example.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/redux/redux_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

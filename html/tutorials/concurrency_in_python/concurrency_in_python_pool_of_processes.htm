@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Concurrency in Python - Pool of Processes</title>
+<meta charset="utf-8">
+<meta name="description" content="Concurrency in Python - Pool of Processes - Pool of process can be created and used in the same way as we have created and used the pool of threads. Process pool can be defined as the group of pre-instant"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/concurrency_in_python/concurrency_in_python_pool_of_processes.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#036db0;
+}
+a.demo {
+    background:#036db0;
+}
+li.heading {
+    background:#036db0;
+}
+.course-box{background:#036db0}
+.home-intro-sub p{color:#036db0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/concurrency_in_python/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/concurrency_in_python/images/concurrency-in-python-mini-logo.jpg" alt=" Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Concurrency in Python Tutorial</li>
+<li><a href="/concurrency_in_python/index.htm">Home</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_introduction.htm">Introduction</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_concurrency_vs_parallelism.htm">Concurrency vs Parallelism</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_system_and_memory_architecture.htm">System &amp; Memory Architecture</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_threads.htm">Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_implementation_of_threads.htm">Implementation of Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_synchronizing_threads.htm">Synchronizing Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_threads_intercommunication.htm">Threads Intercommunication</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_testing_thread_applications.htm">Testing Thread Applications</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_debugging_thread_applications.htm">Debugging Thread Applications</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_benchmarking_and_profiling.htm">Benchmarking &amp; Profiling</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_pool_of_threads.htm">Pool of Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_pool_of_processes.htm">Pool of Processes</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_multiprocessing.htm">Multiprocessing</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_processes_intercommunication.htm">Processes Intercommunication</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_eventdriven_programming.htm">Event-Driven Programming</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_reactive_programming.htm">Reactive Programming</a></li>
+<ul class="toc chapters">
+<li class="heading">Concurrency in Python Resources</li>
+<li><a href="/concurrency_in_python/concurrency_in_python_quick_guide.htm">Quick Guide</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_useful_resources.htm">Useful Resources</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_discussion.htm">Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Concurrency in Python - Pool of Processes</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/concurrency_in_python/concurrency_in_python_pool_of_threads.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/concurrency_in_python/concurrency_in_python_multiprocessing.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Pool of process can be created and used in the same way as we have created and used the pool of threads. Process pool can be defined as the group of pre-instantiated and idle processes, which stand ready to be given work. Creating process pool is preferred over instantiating new processes for every task when we need to do a large number of tasks.</p>
+<h2>Python Module – Concurrent.futures</h2>
+<p>Python standard library has a module called the <b>concurrent.futures</b>. This module was added in Python 3.2 for providing the developers a high-level interface for launching asynchronous tasks. It is an abstraction layer on the top of Python’s threading and multiprocessing modules for providing the interface for running the tasks using pool of thread or processes.</p>
+<p>In our subsequent sections, we will look at the different subclasses of the concurrent.futures module.</p>
+<h2>Executor Class</h2>
+<p><b>Executor</b> is an abstract class of the <b>concurrent.futures</b> Python module. It cannot be used directly and we need to use one of the following concrete subclasses &minus;</p>
+<ul class="list">
+<li>ThreadPoolExecutor</li>
+<li>ProcessPoolExecutor</li>
+</ul>
+<h3>ProcessPoolExecutor – A concrete subclass</h3>
+<p>It is one of the concrete subclasses of the Executor class. It uses multi-processing and we get a pool of processes for submitting the tasks. This pool assigns tasks to the available processes and schedule them to run.</p>
+<h3>How to create a ProcessPoolExecutor?</h3>
+<p>With the help of the <b>concurrent.futures</b> module and its concrete subclass <b>Executor</b>, we can easily create a pool of process. For this, we need to construct a <b>ProcessPoolExecutor</b> with the number of processes we want in the pool. By default, the number is 5. This is followed by submitting a task to the process pool.</p>
+<h3>Example</h3>
+<p>We will now consider the same example that we used while creating thread pool, the only difference being that now we will use <b>ProcessPoolExecutor</b> instead of <b>ThreadPoolExecutor</b> .</p>
+<pre class="prettyprint notranslate">
+from concurrent.futures import ProcessPoolExecutor
+from time import sleep
+def task(message):
+   sleep(2)
+   return message
+
+def main():
+   executor = ProcessPoolExecutor(5)
+   future = executor.submit(task, ("Completed"))
+   print(future.done())
+   sleep(2)
+   print(future.done())
+   print(future.result())
+if __name__ == '__main__':
+main()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+False
+False
+Completed
+</pre>
+<p>In the above example, a Process<b>PoolExecutor</b> has been constructed with 5 threads. Then a task, which will wait for 2 seconds before giving the message, is submitted to the process pool executor. As seen from the output, the task does not complete until 2 seconds, so the first call to <b>done()</b> will return False. After 2 seconds, the task is done and we get the result of the future by calling the <b>result()</b> method on it.</p>
+<h3>Instantiating ProcessPoolExecutor – Context Manager</h3>
+<p>Another way to instantiate ProcessPoolExecutor is with the help of context manager. It works similar to the method used in the above example. The main advantage of using context manager is that it looks syntactically good. The instantiation can be done with the help of the following code &minus;</p>
+<pre class="result notranslate">
+with ProcessPoolExecutor(max_workers = 5) as executor
+</pre>
+<h3>Example</h3>
+<p>For better understanding, we are taking the same example as used while creating thread pool. In this example, we need to start by importing the <b>concurrent.futures</b> module. Then a function named <b>load_url()</b> is created which will load the requested url. The <b>ProcessPoolExecutor</b> is then created with the 5 number of threads in the pool. The Process<b>PoolExecutor</b> has been utilized as context manager. We can get the result of the future by calling the <b>result()</b> method on it.</p>
+<pre class="prettyprint notranslate">
+import concurrent.futures
+from concurrent.futures import ProcessPoolExecutor
+import urllib.request
+
+URLS = ['http://www.foxnews.com/',
+   'http://www.cnn.com/',
+   'http://europe.wsj.com/',
+   'http://www.bbc.co.uk/',
+   'http://some-made-up-domain.com/']
+
+def load_url(url, timeout):
+   with urllib.request.urlopen(url, timeout = timeout) as conn:
+      return conn.read()
+
+def main():
+   with concurrent.futures.ProcessPoolExecutor(max_workers=5) as executor:
+      future_to_url = {executor.submit(load_url, url, 60): url for url in URLS}
+      for future in concurrent.futures.as_completed(future_to_url):
+      url = future_to_url[future]
+      try:
+         data = future.result()
+      except Exception as exc:
+         print('%r generated an exception: %s' % (url, exc))
+      else:
+         print('%r page is %d bytes' % (url, len(data)))
+
+if __name__ == '__main__':
+   main()
+</pre>
+<h3>Output</h3>
+<p>The above Python script will generate the following output &minus;</p>
+<pre class="result notranslate">
+'http://some-made-up-domain.com/' generated an exception: &lt;urlopen error [Errno 11004] getaddrinfo failed&gt;
+'http://www.foxnews.com/' page is 229476 bytes
+'http://www.cnn.com/' page is 165323 bytes
+'http://www.bbc.co.uk/' page is 284981 bytes
+'http://europe.wsj.com/' page is 967575 bytes
+</pre>
+<h3>Use of the Executor.map() function</h3>
+<p>The Python <b>map()</b> function is widely used to perform a number of tasks. One such task is to apply a certain function to every element within iterables. Similarly, we can map all the elements of an iterator to a function and submit these as independent jobs to the <b>ProcessPoolExecutor</b>. Consider the following example of Python script to understand this.</p>
+<h3>Example</h3>
+<p>We will consider the same example that we used while creating thread pool using the <b>Executor.map()</b> function. In the example givenbelow, the map function is used to apply <b>square()</b> function to every value in the values array.</p>
+<pre class="prettyprint notranslate">
+from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import as_completed
+values = [2,3,4,5]
+def square(n):
+   return n * n
+def main():
+   with ProcessPoolExecutor(max_workers = 3) as executor:
+      results = executor.map(square, values)
+   for result in results:
+      print(result)
+if __name__ == '__main__':
+   main()
+</pre>
+<h3>Output</h3>
+<p>The above Python script will generate the following output</p>
+<pre class="result notranslate">
+4
+9
+16
+25
+</pre>
+<h3>When to use ProcessPoolExecutor and ThreadPoolExecutor?</h3>
+<p>Now that we have studied about both the Executor classes – ThreadPoolExecutor and ProcessPoolExecutor, we need to know when to use which executor. We need to choose ProcessPoolExecutor in case of CPU-bound workloads and ThreadPoolExecutor in case of I/O-bound workloads.</p>
+<p>If we use <b>ProcessPoolExecutor</b>, then we do not need to worry about GIL because it uses multiprocessing. Moreover, the execution time will be less when compared to <b>ThreadPoolExecution</b>. Consider the following Python script example to understand this.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+import time
+import concurrent.futures
+
+value = [8000000, 7000000]
+
+def counting(n):
+   start = time.time()
+   while n &gt; 0:
+      n -= 1
+   return time.time() - start
+
+def main():
+   start = time.time()
+   with concurrent.futures.ProcessPoolExecutor() as executor:
+      for number, time_taken in zip(value, executor.map(counting, value)):
+         print('Start: {} Time taken: {}'.format(number, time_taken))
+   print('Total time taken: {}'.format(time.time() - start))
+
+if __name__ == '__main__':
+main()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Start: 8000000 Time taken: 1.5509998798370361
+Start: 7000000 Time taken: 1.3259999752044678
+Total time taken: 2.0840001106262207
+
+Example- Python script with ThreadPoolExecutor:
+import time
+import concurrent.futures
+
+value = [8000000, 7000000]
+
+def counting(n):
+   start = time.time()
+   while n &gt; 0:
+      n -= 1
+   return time.time() - start
+
+def main():
+   start = time.time()
+   with concurrent.futures.ThreadPoolExecutor() as executor:
+      for number, time_taken in zip(value, executor.map(counting, value)):
+         print('Start: {} Time taken: {}'.format(number, time_taken))
+      print('Total time taken: {}'.format(time.time() - start))
+
+if __name__ == '__main__':
+main()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Start: 8000000 Time taken: 3.8420000076293945
+Start: 7000000 Time taken: 3.6010000705718994
+Total time taken: 3.8480000495910645
+</pre>
+<p>From the outputs of both the programs above, we can see the difference of execution time while using <b>ProcessPoolExecutor</b> and <b>ThreadPoolExecutor</b>.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/concurrency_in_python/concurrency_in_python_pool_of_threads.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/concurrency_in_python/concurrency_in_python_multiprocessing.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

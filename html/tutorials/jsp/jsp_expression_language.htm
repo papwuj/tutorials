@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JSP - Expression Language (EL)</title>
+<meta charset="utf-8">
+<meta name="description" content="JSP - Expression Language (EL) - JSP Expression Language (EL) makes it possible to easily access application data stored in JavaBeans components. JSP EL allows you to create expressions both (a"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/jsp/jsp_expression_language.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#4bd863;
+}
+a.demo {
+    background:#4bd863;
+}
+li.heading {
+    background:#4bd863;
+}
+.course-box{background:#4bd863}
+.home-intro-sub p{color:#4bd863}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/jsp/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/jsp/images/jsp-mini-logo.jpg" alt="JSP Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Basic JSP Tutorial</li>
+<li><a href="/jsp/index.htm">JSP - Home</a></li>
+<li><a href="/jsp/jsp_overview.htm">JSP - Overview</a></li>
+<li><a href="/jsp/jsp_environment_setup.htm">JSP - Environment Setup</a></li>
+<li><a href="/jsp/jsp_architecture.htm">JSP - Architecture</a></li>
+<li><a href="/jsp/jsp_life_cycle.htm">JSP - Lifecycle</a></li>
+<li><a href="/jsp/jsp_syntax.htm">JSP - Syntax</a></li>
+<li><a href="/jsp/jsp_directives.htm">JSP - Directives</a></li>
+<li><a href="/jsp/jsp_actions.htm">JSP - Actions</a></li>
+<li><a href="/jsp/jsp_implicit_objects.htm">JSP - Implicit Objects</a></li>
+<li><a href="/jsp/jsp_client_request.htm">JSP - Client Request</a></li>
+<li><a href="/jsp/jsp_server_response.htm">JSP - Server Response</a></li>
+<li><a href="/jsp/jsp_http_status_codes.htm">JSP - Http Status Codes</a></li>
+<li><a href="/jsp/jsp_form_processing.htm">JSP - Form Processing</a></li>
+<li><a href="/jsp/jsp_writing_filters.htm">JSP - Writing Filters</a></li>
+<li><a href="/jsp/jsp_cookies_handling.htm">JSP - Cookies Handling</a></li>
+<li><a href="/jsp/jsp_session_tracking.htm">JSP - Session Tracking</a></li>
+<li><a href="/jsp/jsp_file_uploading.htm">JSP - File Uploading</a></li>
+<li><a href="/jsp/jsp_handling_date.htm">JSP - Handling Date</a></li>
+<li><a href="/jsp/jsp_page_redirect.htm">JSP - Page Redirect</a></li>
+<li><a href="/jsp/jsp_hits_counter.htm">JSP - Hits Counter</a></li>
+<li><a href="/jsp/jsp_auto_refresh.htm">JSP - Auto Refresh</a></li>
+<li><a href="/jsp/jsp_sending_email.htm">JSP - Sending Email</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Advanced JSP Tutorials</li>
+<li><a href="/jsp/jsp_standard_tag_library.htm">JSP - Standard Tag Library</a></li>
+<li><a href="/jsp/jsp_database_access.htm">JSP - Database Access</a></li>
+<li><a href="/jsp/jsp_xml_data.htm">JSP - XML Data</a></li>
+<li><a href="/jsp/jsp_java_beans.htm">JSP - Java Beans</a></li>
+<li><a href="/jsp/jsp_custom_tags.htm">JSP - Custom Tags</a></li>
+<li><a href="/jsp/jsp_expression_language.htm">JSP - Expression Language</a></li>
+<li><a href="/jsp/jsp_exception_handling.htm">JSP - Exception Handling</a></li>
+<li><a href="/jsp/jsp_debugging.htm">JSP - Debugging</a></li>
+<li><a href="/jsp/jsp_security.htm">JSP - Security</a></li>
+<li><a href="/jsp/jsp_internationalization.htm">JSP - Internationalization</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JSP Useful Resources</li>
+<li><a href="/jsp/jsp_questions_answers.htm">JSP - Questions and Answers</a></li>
+<li><a href="/jsp/jsp_quick_guide.htm">JSP - Quick Guide</a></li>
+<li><a href="/jsp/jsp_useful_resources.htm">JSP - Useful Resources</a></li>
+<li><a href="/jsp/jsp_discussion.htm">JSP - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>JSP - Expression Language (EL)</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/jsp/jsp_custom_tags.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/jsp/jsp_exception_handling.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>JSP Expression Language (EL) makes it possible to easily access application data stored in JavaBeans components. JSP EL allows you to create expressions both <b>(a)</b> arithmetic and <b>(b)</b> logical. Within a JSP EL expression, you can use <b>integers, floating point numbers, strings, the built-in constants true and false</b> for boolean values, and null.</p>
+<h2>Simple Syntax</h2>
+<p>Typically, when you specify an attribute value in a JSP tag, you simply use a string. For example &minus;</p>
+<pre class="result notranslate">
+&lt;jsp:setProperty name = "box" property = "perimeter" value = "100"/&gt;
+</pre>
+<p>JSP EL allows you to specify an expression for any of these attribute values. A simple syntax for JSP EL is as follows &minus;</p>
+<pre class="result notranslate">
+${expr}
+</pre> 
+<p>Here <b>expr</b> specifies the expression itself. The most common operators in JSP EL are <b>.</b> and <b>[]</b>. These two operators allow you to access various attributes of Java Beans and built-in JSP objects.</p>
+<p>For example, the above syntax <b>&lt;jsp:setProperty&gt;</b> tag can be written with an expression like &minus;</p>
+<pre class="result notranslate">
+&lt;jsp:setProperty name = "box" property = "perimeter" 
+   value = "${2*box.width+2*box.height}"/&gt;
+</pre>
+<p>When the JSP compiler sees the <b>${}</b> form in an attribute, it generates code to evaluate the expression and substitues the value of expresson.</p>
+<p>You can also use the JSP EL expressions within template text for a tag. For example, the <b>&lt;jsp:text&gt;</b> tag simply inserts its content within the body of a JSP. The following <b>&lt;jsp:text&gt;</b> declaration inserts <b>&lt;h1&gt;Hello JSP!&lt;/h1&gt;</b> into the JSP output &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;jsp:text&gt;
+   &lt;h1&gt;Hello JSP!&lt;/h1&gt;
+&lt;/jsp:text&gt;
+</pre>
+<p>You can now include a JSP EL expression in the body of a <b>&lt;jsp:text&gt;</b> tag (or any other tag) with the same <b>${}</b> syntax you use for attributes. For example &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;jsp:text&gt;
+   Box Perimeter is: ${2*box.width + 2*box.height}
+&lt;/jsp:text&gt;
+</pre>
+<p>EL expressions can use parentheses to group subexpressions. For example, <b>${(1 + 2) * 3} equals 9, but ${1 + (2 * 3)} equals 7</b>.</p>
+<p>To deactivate the evaluation of EL expressions, we specify the <b>isELIgnored</b> attribute of the page directive as below &minus;</p>
+<pre class="result notranslate">
+&lt;%@ page isELIgnored = "true|false" %&gt;
+</pre>
+<p>The valid values of this attribute are true and false. If it is true, EL expressions are ignored when they appear in static text or tag attributes. If it is false, EL expressions are evaluated by the container.</p>
+<h2>Basic Operators in EL</h2>
+<p>JSP Expression Language (EL) supports most of the arithmetic and logical operators supported by Java. Following table lists out the most frequently used operators &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:11%">S.No.</th>
+<th style="text-align:center;">Operator &amp; Description</th>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">1</td>
+<td><p><b>.</b></p>
+<p>Access a bean property or Map entry</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">2</td>
+<td><p><b>[]</b></p>
+<p>Access an array or List element</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">3</td>
+<td><p><b>( )</b></p>
+<p>Group a subexpression to change the evaluation order</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">4</td>
+<td><p><b>+</b></p>
+<p>Addition</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">5</td>
+<td><p><b>-</b></p>
+<p>Subtraction or negation of a value</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">6</td>
+<td><p><b>*</b></p>
+<p>Multiplication</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">7</td>
+<td><p><b>/ or div</b></p>
+<p>Division</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">8</td>
+<td><p><b>% or mod</b></p>
+<p>Modulo (remainder)</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">9</td>
+<td><p><b>== or eq</b></p>
+<p>Test for equality</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">10</td>
+<td><p><b>!= or ne</b></p>
+<p>Test for inequality</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">11</td>
+<td><p><b>&lt; or lt</b></p>
+<p>Test for less than</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">12</td>
+<td><p><b>&gt; or gt</b></p>
+<p>Test for greater than</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">13</td>
+<td><p><b>&lt;= or le</b></p>
+<p>Test for less than or equal</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">14</td>
+<td><p><b>&gt;= or ge</b></p>
+<p>Test for greater than or equal</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">15</td>
+<td><p><b>&amp;&amp; or and</b></p>
+<p>Test for logical AND</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">16</td>
+<td><p><b>|| or or</b></p>
+<p>Test for logical OR</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">17</td>
+<td><p><b>! or not</b></p>
+<p>Unary Boolean complement</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">18</td>
+<td><p><b>empty</b></p>
+<p>Test for empty variable values</p>
+</td>
+</table>
+<h2>Functions in JSP EL</h2>
+<p>JSP EL allows you to use functions in expressions as well. These functions must be defined in the custom tag libraries. A function usage has the following syntax &minus;</p>
+<pre class="result notranslate">
+${ns:func(param1, param2, ...)}
+</pre>
+<p>Where <b>ns</b> is the namespace of the function, <b>func</b> is the name of the function and <b>param1</b> is the first parameter value. For example, the function <b>fn:length</b>, which is part of the JSTL library. This function can be used as follows to get the length of a string.</p>
+<pre class="result notranslate">
+${fn:length("Get my length")}
+</pre>
+<p>To use a function from any tag library (standard or custom), you must install that library on your server and must include the library in your JSP using the <b>&lt;taglib&gt;</b> directive as explained in the JSTL chapter.</p>
+<h2>JSP EL Implicit Objects</h2>
+<p>The JSP expression language supports the following implicit objects &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:11%">S.No</th>
+<th style="text-align:center;">Implicit object &amp; Description</th>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">1</td>
+<td><p><b>pageScope</b></p>
+<p>Scoped variables from page scope</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">2</td>
+<td><p><b>requestScope</b></p>
+<p>Scoped variables from request scope</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">3</td>
+<td><p><b>sessionScope</b></p>
+<p>Scoped variables from session scope</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">4</td>
+<td><p><b>applicationScope</b></p>
+<p>Scoped variables from application scope</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">5</td>
+<td><p><b>param</b></p>
+<p>Request parameters as strings</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">6</td>
+<td><p><b>paramValues</b></p>
+<p>Request parameters as collections of strings</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">7</td>
+<td><p><b>header</b></p>
+<p>HTTP request headers as strings</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">8</td>
+<td><p><b>headerValues</b></p>
+<p>HTTP request headers as collections of strings</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">9</td>
+<td><p><b>initParam</b></p>
+<p>Context-initialization parameters</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">10</td>
+<td><p><b>cookie</b></p>
+<p>Cookie values</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">11</td>
+<td><p><b>pageContext</b></p>
+<p>The JSP PageContext object for the current page</p>
+</td>
+</tr>
+</table>
+<p>You can use these objects in an expression as if they were variables. The examples that follow will help you understand the concepts &minus;</p>
+<h2>The pageContext Object</h2>
+<p>The pageContext object gives you access to the pageContext JSP object. Through the pageContext object, you can access the request object. For example, to access the incoming query string for a request, you can use the following expression &minus;</p>
+<pre class="result notranslate">
+${pageContext.request.queryString}
+</pre>
+<h2>The Scope Objects</h2>
+<p>The <b>pageScope, requestScope, sessionScope</b>, and <b>applicationScope</b> variables provide access to variables stored at each scope level.</p>
+<p>For example, if you need to explicitly access the box variable in the application scope, you can access it through the applicationScope variable as <b>applicationScope.box</b>.</p>
+<h2>The param and paramValues Objects</h2>
+<p>The param and paramValues objects give you access to the parameter values normally available through the <b>request.getParameter</b> and <b>request.getParameterValues</b> methods.</p>
+<p>For example, to access a parameter named order, use the expression <b>${param.order}</b> or <b>${param["order"]}</b>.</p>
+<p>Following is the example to access a request parameter named username &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;%@ page import = "java.io.*,java.util.*" %&gt;
+&lt;%String title = "Accessing Request Param";%&gt;
+
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;&lt;% out.print(title); %&gt;&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;center&gt;
+         &lt;h1&gt;&lt;% out.print(title); %&gt;&lt;/h1&gt;
+      &lt;/center&gt;
+      
+      &lt;div align = "center"&gt;
+         &lt;p&gt;${param["username"]}&lt;/p&gt;
+      &lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The param object returns single string values, whereas the paramValues object returns string arrays.</p>
+<h2>header and headerValues Objects</h2>
+<p>The header and headerValues objects give you access to the header values normally available through the <b>request.getHeader</b> and the <b>request.getHeaders</b> methods.</p>
+<p>For example, to access a header named user-agent, use the expression <b>${header.user-agent}</b> or <b>${header["user-agent"]}</b>.</p>
+<p>Following is the example to access a header parameter named user-agent &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;%@ page import = "java.io.*,java.util.*" %&gt;
+&lt;%String title = "User Agent Example";%&gt;
+
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;&lt;% out.print(title); %&gt;&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;center&gt;
+         &lt;h1&gt;&lt;% out.print(title); %&gt;&lt;/h1&gt;
+      &lt;/center&gt;
+      
+      &lt;div align = "center"&gt;
+         &lt;p&gt;${header["user-agent"]}&lt;/p&gt;
+      &lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The output will somewhat be like the following &minus;</p>
+<pre class="result notranslate">
+<h1>User Agent Example</h1>
+<div align="center">
+<p>Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; 
+   SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; 
+   Media Center PC 6.0; HPNTDF; .NET4.0C; InfoPath.2)</p>
+</div>
+</pre>
+<p>The header object returns single string values, whereas the headerValues object returns string arrays.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/jsp/jsp_custom_tags.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/jsp/jsp_exception_handling.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<html>
+   <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">      
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> 
+		<script language="javascript" >
+			var states = ["ANDAMAN & NICOBAR ISLANDS","ANDHRA PRADESH", "ARUNACHAL PRADESH","ASSAM","BIHAR","CHATTISGARH","CHANDIGARH","DADRA & NAGAR HAVELI","DAMAN & DIU","DELHI","GOA","GUJARAT","HARYANA","HIMACHAL PRADESH","JAMMU & KASHMIR","JHARKHAND","KARNATAKA","KERALA","LAKSHADWEEP","MADHYA PRADESH","MAHARASHTRA","MANIPUR","MEGHALAYA","MIZORAM","NAGALAND","ODISHA","PONDICHERRY","PUNJAB","RAJASTHAN","SIKKIM","TAMIL NADU","TRIPURA","UTTAR PRADESH","UTTARAKHAND","WEST BENGAL"];
+			function populateStates(){
+				$.each(states, function (i, item) {
+					$('#states').append($('<option>', { 
+						value: item,
+						text : item 
+					}));
+				});
+			}
+			$(document).ready(function(){
+				populateStates();
+				$("#districtsDiv").hide();
+				$("#taluksDiv").hide();
+				$("#officesDiv").hide();
+				$("#pincodeDiv").hide();
+				$("#pincodeDiv1").hide();
+			});
+		</script>
+   </head>
+<body>
+   <!-- The drawer is always open in large screens. The header is always shown,  even in small screens. -->
+   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+      <header class="mdl-layout__header">
+         <!-- Tabs -->
+         <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#scroll-tab-1" class="mdl-layout__tab is-active">By State</a>
+            <a href="#scroll-tab-2" class="mdl-layout__tab">By Area</a>
+            <a href="#scroll-tab-3" class="mdl-layout__tab">By Pincode</a>     
+         </div>
+      </header>    
+      <main class="mdl-layout__content">
+         <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
+            <div class="page-content">
+			<div id="statesDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			<select class="mdl-textfield__input" id="states" name="states" onchange=
+			"showDistrictDropDown();">
+			<option value="" selected="selected" disabled></option>
+			</select>
+			<label class="mdl-textfield__label" for="states">Select State</label>
+			</div>
+			<div id="districtsDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			<select class="mdl-textfield__input" id="districts" name="districts" onchange=
+			"showTalukDropDown();">
+			</select>
+			<label class="mdl-textfield__label" for="districts">Select District</label>
+			</div>
+			<div id="taluksDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			<select class="mdl-textfield__input" id="taluks" name="taluks" onchange=
+			"showOfficeDropDown();">
+			</select>
+			<label class="mdl-textfield__label" for="taluks">Select Taluk</label>
+			</div>
+			<div id="officesDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			<select class="mdl-textfield__input" id="offices" name="offices" onchange="showPincode()"></select>
+			<label class="mdl-textfield__label" for="offices">Select Area</label>
+			</div>
+			<div id="pincodeDiv">
+			<div class="card-content">
+			<table id="pincodeTable" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+			 <thead>
+			<tr>
+			 <th>Pincode</th>
+			</tr>
+			 </thead>
+			 <tbody>
+			 </tbody>
+			</table>
+			</div>
+			</div>
+			</div>
+         </section>
+         <section class="mdl-layout__tab-panel" id="scroll-tab-2">
+            <div class="page-content">
+				<form action="#">
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<input class="mdl-textfield__input" type="text" id="txtOffice">
+						<label class="mdl-textfield__label" for="sample3">Enter Area</label>
+					</div>
+					<label class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored" onclick="showPincodeBasedOnArea();">
+					Get Pincode
+					</label>
+				</form>
+				<div id="pincodeDiv1">
+					<div class="card-content">
+						<table id="pincodeTable1" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+							<thead>
+							<tr>
+								<th>Pincode</th>   
+							</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+         </section>
+         <section class="mdl-layout__tab-panel" id="scroll-tab-3">
+            <div class="page-content">
+			<form action="#">
+			 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			<input class="mdl-textfield__input" type="text" id="txtPincode">
+			<label class="mdl-textfield__label" for="sample3">Enter Pincode</label>
+			 </div>
+			 <label class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored" onclick="showDetailsBasedOnPincode();">
+			 Get Details
+			</label>
+			</form>
+			<div id="detailsDiv">
+			<div class="card-content">
+			<h2 class="mdl-card__title-text">Details</h2>
+			<table id="detailsTable" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+			 <tbody>
+			 </tbody>
+			</table>
+			</div>
+			</div>
+			</div>
+         </section>
+      </main>
+   </div>
+ <script src="pincode.js"></script>
+ <script src="delhi.js"></script>
+ <script src="haryana.js"></script>   
+ <script src="andhra.js"></script>
+ <script src="arunachal.js"></script>
+ <script src="assam.js"></script>
+ <script src="bihar.js"></script>
+ <script src="chattisgarh.js"></script>
+ <script src="jammu.js"></script>
+ <script src="himachal.js"></script>
+ <script src="jharkhand.js"></script>
+ <script src="andaman.js"></script>
+ <script src="chandigarh.js"></script>
+ <script src="dadra.js"></script>
+ <script src="daman.js"></script>
+ <script src="goa.js"></script>
+ <script src="gujarat.js"></script>
+ <script src="karnataka.js"></script>
+ <script src="kerala.js"></script>
+ <script src="lakshadweep.js"></script>
+ <script src="madhyapradesh.js"></script>
+ <script src="maharashtra.js"></script>
+ <script src="manipur.js"></script>
+ <script src="meghalaya.js"></script>
+ <script src="mizoram.js"></script>
+ <script src="nagaland.js"></script>
+ <script src="odisha.js"></script>
+ <script src="pondicherry.js"></script>
+ <script src="punjab.js"></script>
+ <script src="rajasthan.js"></script>
+ <script src="sikkim.js"></script>
+ <script src="tamilnadu.js"></script>
+ <script src="telangana.js"></script>
+ <script src="tripura.js"></script>
+ <script src="uttarpradesh.js"></script>
+ <script src="uttarakhand.js"></script>
+ <script src="westbengal.js"></script>
+</body>
+</html>

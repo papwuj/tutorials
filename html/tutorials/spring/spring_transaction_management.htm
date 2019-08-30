@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Spring - Transaction Management</title>
+<meta charset="utf-8">
+<meta name="description" content="Spring - Transaction Management - A database transaction is a sequence of actions that are treated as a single unit of work. These actions should either complete entirely or take no effect at al"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/spring/spring_transaction_management.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#387b2c;
+}
+a.demo {
+    background:#387b2c;
+}
+li.heading {
+    background:#387b2c;
+}
+.course-box{background:#387b2c}
+.home-intro-sub p{color:#387b2c}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/spring/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/spring/images/spring-mini-logo.jpg" alt="Spring Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Spring Core Basics</li>
+<li><a href="/spring/index.htm">Spring - Home</a></li>
+<li><a href="/spring/spring_overview.htm">Spring - Overview</a></li>
+<li><a href="/spring/spring_architecture.htm">Spring - Architecture</a></li>
+<li><a href="/spring/spring_environment_setup.htm">Spring - Environment Setup</a></li>
+<li><a href="/spring/spring_hello_world_example.htm">Spring - Hello World Example</a></li>
+<li><a href="/spring/spring_ioc_containers.htm">Spring - IoC Containers</a></li>
+<li><a href="/spring/spring_bean_definition.htm">Spring - Bean Definition</a></li>
+<li><a href="/spring/spring_bean_scopes.htm">Spring - Bean Scopes</a></li>
+<li><a href="/spring/spring_bean_life_cycle.htm">Spring - Bean Life Cycle</a></li>
+<li><a href="/spring/spring_bean_post_processors.htm">Spring - Bean Post Processors</a></li>
+<li><a href="/spring/spring_bean_definition_inheritance.htm">Spring - Bean Definition Inheritance</a></li>
+<li><a href="/spring/spring_dependency_injection.htm">Spring - Dependency Injection</a></li>
+<li><a href="/spring/spring_injecting_inner_beans.htm">Spring - Injecting Inner Beans</a></li>
+<li><a href="/spring/spring_injecting_collection.htm">Spring - Injecting Collection</a></li>
+<li><a href="/spring/spring_beans_autowiring.htm">Spring - Beans Auto-Wiring</a></li>
+<li><a href="/spring/spring_annotation_based_configuration.htm">Annotation Based Configuration</a></li>
+<li><a href="/spring/spring_java_based_configuration.htm">Spring - Java Based Configuration</a></li>
+<li><a href="/spring/event_handling_in_spring.htm">Spring - Event Handling in Spring</a></li>
+<li><a href="/spring/custom_events_in_spring.htm">Spring - Custom Events in Spring</a></li>
+<li><a href="/spring/aop_with_spring.htm">Spring - AOP with Spring Framework</a></li>
+<li><a href="/spring/spring_jdbc_framework.htm">Spring - JDBC Framework</a></li>
+<li><a href="/spring/spring_transaction_management.htm">Spring - Transaction Management</a></li>
+<li><a href="/spring/spring_web_mvc_framework.htm">Spring - Web MVC Framework</a></li>
+<li><a href="/spring/logging_with_log4j.htm">Spring - Logging with Log4J</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Spring Questions and Answers</li>
+<li><a href="/spring/spring_questions_answers.htm">Spring - Questions and Answers</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Spring Useful Resources</li>
+<li><a href="/spring/spring_quick_guide.htm">Spring - Quick Guide</a></li>
+<li><a href="/spring/spring_useful_resources.htm">Spring - Useful Resources</a></li>
+<li><a href="/spring/spring_discussion.htm">Spring - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Spring - Transaction Management</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/spring/spring_jdbc_framework.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/spring/spring_web_mvc_framework.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>A database transaction is a sequence of actions that are treated as a single unit of work. These actions should either complete entirely or take no effect at all. Transaction management is an important part of RDBMS-oriented enterprise application to ensure data integrity and consistency. The concept of transactions can be described with the following four key properties described as <b>ACID</b> &minus;</p>
+<ul class="list">
+<li><p><b>Atomicity</b> &minus; A transaction should be treated as a single unit of operation, which means either the entire sequence of operations is successful or unsuccessful.</p></li>
+<li><p><b>Consistency</b> &minus; This represents the consistency of the referential integrity of the database, unique primary keys in tables, etc.</p></li>
+<li><p><b>Isolation</b> &minus; There may be many transaction processing with the same data set at the same time. Each transaction should be isolated from others to prevent data corruption.</p></li>
+<li><p><b>Durability</b> &minus; Once a transaction has completed, the results of this transaction have to be made permanent and cannot be erased from the database due to system failure.</p></li>
+</ul>
+<p>A real RDBMS database system will guarantee all four properties for each transaction. The simplistic view of a transaction issued to the database using SQL is as follows &minus;</p>
+<ul class="list">
+<li><p>Begin the transaction using <i>begin transaction</i> command.</p></li>
+<li><p>Perform various deleted, update or insert operations using SQL queries.</p></li>
+<li><p>If all the operation are successful then perform <i>commit</i> otherwise <i>rollback</i> all the operations.</p></li>
+</ul>
+<p>Spring framework provides an abstract layer on top of different underlying transaction management APIs. Spring's transaction support aims to provide an alternative to EJB transactions by adding transaction capabilities to POJOs. Spring supports both programmatic and declarative transaction management. EJBs require an application server, but Spring transaction management can be implemented without the need of an application server.</p>
+<h2>Local vs. Global Transactions</h2>
+<p>Local transactions are specific to a single transactional resource like a JDBC connection, whereas global transactions can span multiple transactional resources like transaction in a distributed system.</p>
+<p>Local transaction management can be useful in a centralized computing environment where application components and resources are located at a single site, and transaction management only involves a local data manager running on a single machine. Local transactions are easier to be implemented.</p>
+<p>Global transaction management is required in a distributed computing environment where all the resources are distributed across multiple systems. In such a case, transaction management needs to be done both at local and global levels. A distributed or a global transaction is executed across multiple systems, and its execution requires coordination between the global transaction management system and all the local data managers of all the involved systems.</p>
+<h2>Programmatic vs. Declarative</h2>
+<p>Spring supports two types of transaction management &minus;</p>
+<ul class="list">
+<li><p><a href="/spring/programmatic_management.htm">Programmatic transaction management</a> &minus; This means that you have to manage the transaction with the help of programming. That gives you extreme flexibility, but it is difficult to maintain.</p></li>
+<li><p><a href="/spring/declarative_management.htm">Declarative transaction management</a> &minus; This means you separate transaction management from the business code. You only use annotations or XML-based configuration to manage the transactions.</p></li>
+</ul>
+<p>Declarative transaction management is preferable over programmatic transaction management though it is less flexible than programmatic transaction management, which allows you to control transactions through your code. But as a kind of crosscutting concern, declarative transaction management can be modularized with the AOP approach. Spring supports declarative transaction management through the Spring AOP framework.</p>
+<h2>Spring Transaction Abstractions</h2>
+<p>The key to the Spring transaction abstraction is defined by the <i>org.springframework.transaction.PlatformTransactionManager</i> interface, which is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+public interface PlatformTransactionManager {
+   TransactionStatus getTransaction(TransactionDefinition definition);
+   throws TransactionException;
+   
+   void commit(TransactionStatus status) throws TransactionException;
+   void rollback(TransactionStatus status) throws TransactionException;
+}
+</pre>
+<p></p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center">Sr.No</th>
+<th style="text-align:center">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>TransactionStatus getTransaction(TransactionDefinition definition)</b></p>
+<p>This method returns a currently active transaction or creates a new one, according to the specified propagation behavior.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>void commit(TransactionStatus status)</b></p>
+<p>This method commits the given transaction, with regard to its status.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>void rollback(TransactionStatus status)</b></p>
+<p>This method performs a rollback of the given transaction.</p>
+</td>
+</tr>
+</table>
+<p>The <i>TransactionDefinition</i> is the core interface of the transaction support in Spring and it is defined as follows &minus;</p>
+<pre class="prettyprint notranslate">
+public interface TransactionDefinition {
+   int getPropagationBehavior();
+   int getIsolationLevel();
+   String getName();
+   int getTimeout();
+   boolean isReadOnly();
+}
+</pre>
+<p></p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center">Sr.No</th>
+<th style="text-align:center">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>int getPropagationBehavior()</b></p>
+<p>This method returns the propagation behavior. Spring offers all of the transaction propagation options familiar from EJB CMT.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>int getIsolationLevel()</b></p>
+<p>This method returns the degree to which this transaction is isolated from the work of other transactions.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>String getName()</b></p>
+<p>This method returns the name of this transaction.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>int getTimeout()</b></p>
+<p>This method returns the time in seconds in which the transaction must complete.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>boolean isReadOnly()</b></p>
+<p>This method returns whether the transaction is read-only.</p>
+</td>
+</tr>
+</table>
+<p>Following are the possible values for isolation level &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center">Sr.No</th>
+<th style="text-align:center">Isolation &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>TransactionDefinition.ISOLATION_DEFAULT</b></p>
+<p>This is the default isolation level.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>TransactionDefinition.ISOLATION_READ_COMMITTED</b></p>
+<p>Indicates that dirty reads are prevented; non-repeatable reads and phantom reads can occur.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>TransactionDefinition.ISOLATION_READ_UNCOMMITTED</b></p>
+<p>Indicates that dirty reads, non-repeatable reads, and phantom reads can occur.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>TransactionDefinition.ISOLATION_REPEATABLE_READ</b></p>
+<p>Indicates that dirty reads and non-repeatable reads are prevented; phantom reads can occur.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>TransactionDefinition.ISOLATION_SERIALIZABLE</b></p>
+<p>Indicates that dirty reads, non-repeatable reads, and phantom reads are prevented.</p>
+</td>
+</tr>
+</table>
+<p>Following are the possible values for propagation types &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center">Sr.No.</th>
+<th style="text-align:center">Propagation &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>TransactionDefinition.PROPAGATION_MANDATORY</b></p>
+<p>Supports a current transaction; throws an exception if no current transaction exists.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>TransactionDefinition.PROPAGATION_NESTED </b></p>
+<p>Executes within a nested transaction if a current transaction exists.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>TransactionDefinition.PROPAGATION_NEVER </b></p>
+<p>Does not support a current transaction; throws an exception if a current transaction exists.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>TransactionDefinition.PROPAGATION_NOT_SUPPORTED </b></p>
+<p>Does not support a current transaction; rather always execute nontransactionally.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>TransactionDefinition.PROPAGATION_REQUIRED</b></p>
+<p>Supports a current transaction; creates a new one if none exists.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>TransactionDefinition.PROPAGATION_REQUIRES_NEW</b></p>
+<p>Creates a new transaction, suspending the current transaction if one exists.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>TransactionDefinition.PROPAGATION_SUPPORTS</b></p>
+<p>Supports a current transaction; executes non-transactionally if none exists.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td>
+<p><b>TransactionDefinition.TIMEOUT_DEFAULT</b></p>
+<p>Uses the default timeout of the underlying transaction system, or none if timeouts are not supported.</p>
+</td>
+</tr>
+</table>
+<p>The <i>TransactionStatus</i> interface provides a simple way for transactional code to control transaction execution and query transaction status.</p>
+<pre class="prettyprint notranslate">
+public interface TransactionStatus extends SavepointManager {
+   boolean isNewTransaction();
+   boolean hasSavepoint();
+   void setRollbackOnly();
+   boolean isRollbackOnly();
+   boolean isCompleted();
+}
+</pre>
+<p></p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center">Sr.No.</th>
+<th style="text-align:center">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>boolean hasSavepoint()</b></p>
+<p>This method returns whether this transaction internally carries a savepoint, i.e., has been created as nested transaction based on a savepoint.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>boolean isCompleted()</b></p>
+<p>This method returns whether this transaction is completed, i.e., whether it has already been committed or rolled back.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>boolean isNewTransaction()</b></p>
+<p>This method returns true in case the present transaction is new.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>boolean isRollbackOnly()</b></p>
+<p>This method returns whether the transaction has been marked as rollback-only.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>void setRollbackOnly()</b></p>
+<p>This method sets the transaction as rollback-only.</p>
+</td>
+</tr>
+</table>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/spring/spring_jdbc_framework.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/spring/spring_web_mvc_framework.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

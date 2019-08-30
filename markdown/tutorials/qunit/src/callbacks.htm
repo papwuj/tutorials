@@ -1,0 +1,90 @@
+<html>
+   <head>
+      <meta charset = "utf-8">
+      <title>QUnit basic example</title>
+      <link rel = "stylesheet" href = "https://code.jquery.com/qunit/qunit-1.22.0.css">
+      <script src = "https://code.jquery.com/qunit/qunit-1.22.0.js"></script>
+   </head>
+   
+   <body>
+      <div id = "qunit"></div>
+      <div id = "qunit-fixture"></div> 
+      <script>
+         //Register a callback to fire whenever a testsuite starts.
+         QUnit.begin(function( details ) {
+            var data = document.getElementById("console").innerHTML;
+            document.getElementById("console").innerHTML = "<br/>" + 
+               "QUnit.begin- Test Suite Begins " + "<br/>" + 
+               "Total Test: " + details.totalTests;
+         });
+
+         //Register a callback to fire whenever a test suite ends.		 
+         QUnit.done(function( details ) {
+            var data = document.getElementById("console").innerHTML;
+            document.getElementById("console").innerHTML = data + "<br/><br/>" + 
+               "QUnit.done - Test Suite Finised" +  "<br/>" + "Total: " +  
+               details.total + " Failed: " + details.failed + " Passed: 
+               " + details.passed;
+         });
+		 
+         //Register a callback to fire whenever a module starts.
+            QUnit.moduleStart(function( details ) {
+               var data = document.getElementById("console").innerHTML;
+               document.getElementById("console").innerHTML = data + "<br/><br/>" + 
+                  "QUnit.moduleStart - Module Begins " +  "<br/>" + details.name;
+         });
+		 
+         //Register a callback to fire whenever a module ends.	  
+         QUnit.moduleDone(function( details ) {
+            var data = document.getElementById("console").innerHTML;
+            document.getElementById("console").innerHTML = data + "<br/><br/>" + 
+               "QUnit.moduleDone - Module Finished " +  "<br/>" + details.name + 
+               " Failed/total: " + details.failed +"/" + details.total ;
+         });
+		 
+         //Register a callback to fire whenever a test starts.
+         QUnit.testStart(function( details ) {
+            var data = document.getElementById("console").innerHTML;
+            document.getElementById("console").innerHTML = data + "<br/><br/>" + 
+               "QUnit.testStart - Test Begins " +  "<br/>" + details.module +" 
+               " + details.name;
+         });
+		 
+         //Register a callback to fire whenever a test ends.
+         QUnit.testDone(function( details ) {
+            var data = document.getElementById("console").innerHTML;
+            document.getElementById("console").innerHTML = data + "<br/><br/>" + 
+               "QUnit.testDone - Test Finished " +  "<br/>" + details.module +" " 
+               + details.name + "Failed/total: " + details.failed +" " + details.total+ 
+               " "+ details.duration;
+         });
+		 
+         QUnit.module( "Module A", {
+            beforeEach: function( assert ) {
+               assert.ok( true, "before test case" );
+            }, afterEach: function( assert ) {
+               assert.ok( true, "after test case" );
+            }
+         });
+         
+         QUnit.test( "test case 1", function( assert ) {
+            assert.ok( true, "Module A: in test case 1" );
+         });
+         
+         QUnit.test( "test case 2", function( assert ) {
+            assert.ok( true, "Module A: in test case 2" );
+         });
+		 		 
+         QUnit.module( "Module B" );		
+         QUnit.test( "test case 1", function( assert ) {
+            assert.ok( true, "Module B: in test case 1" );
+         });
+         
+         QUnit.test( "test case 2", function( assert ) {
+            assert.ok( true, "Module B: in test case 2" );
+         });	 
+      </script>
+
+      <div id = "console" ></div>
+   </body>
+</html>

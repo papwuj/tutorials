@@ -1,0 +1,3428 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Apache Pig - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="Apache Pig - Quick Guide - Apache Pig is an abstraction over MapReduce. It is a tool/platform which is used to analyze larger sets of data representing them as data flows. Pig is generall"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/apache_pig/apache_pig_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#eb3c00;
+}
+a.demo {
+    background:#eb3c00;
+}
+li.heading {
+    background:#eb3c00;
+}
+.course-box{background:#eb3c00}
+.home-intro-sub p{color:#eb3c00}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/apache_pig/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/apache_pig/images/apache-pig-mini-logo.jpg" alt="Apache Pig Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Apache Pig Tutorial</li>
+<li><a href="/apache_pig/index.htm">Apache Pig - Home</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Apache Pig Introduction</li>
+<li><a href="/apache_pig/apache_pig_overview.htm">Apache Pig - Overview</a></li>
+<li><a href="/apache_pig/apache_pig_architecture.htm">Apache Pig - Architecture</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Apache Pig Environment</li>
+<li><a href="/apache_pig/apache_pig_installation.htm">Apache Pig - Installation</a></li>
+<li><a href="/apache_pig/apache_pig_execution.htm">Apache Pig - Execution</a></li>
+<li><a href="/apache_pig/apache_pig_grunt_shell.htm">Apache Pig - Grunt Shell</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Pig Latin</li>
+<li><a href="/apache_pig/pig_latin_basics.htm">Pig Latin - Basics</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Load &amp; Store Operators</li>
+<li><a href="/apache_pig/apache_pig_reading_data.htm">Apache Pig - Reading Data</a></li>
+<li><a href="/apache_pig/apache_pig_storing_data.htm">Apache Pig - Storing Data</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Diagnostic Operators</li>
+<li><a href="/apache_pig/apache_pig_diagnostic_operators.htm">Apache Pig - Diagnostic Operator</a></li>
+<li><a href="/apache_pig/apache_pig_describe_operator.htm">Apache Pig - Describe Operator</a></li>
+<li><a href="/apache_pig/apache_pig_explain_operator.htm">Apache Pig - Explain Operator</a></li>
+<li><a href="/apache_pig/apache_pig_illustrate_operator.htm">Apache Pig - Illustrate Operator</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Grouping &amp; Joining</li>
+<li><a href="/apache_pig/apache_pig_group_operator.htm">Apache Pig - Group Operator</a></li>
+<li><a href="/apache_pig/apache_pig_cogroup_operator.htm">Apache Pig - Cogroup Operator</a></li>
+<li><a href="/apache_pig/apache_pig_join_operator.htm">Apache Pig - Join Operator</a></li>
+<li><a href="/apache_pig/apache_pig_cross_operator.htm">Apache Pig - Cross Operator</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Combining &amp; Splitting</li>
+<li><a href="/apache_pig/apache_pig_union_operator.htm">Apache Pig - Union Operator</a></li>
+<li><a href="/apache_pig/apache_pig_split_operator.htm">Apache Pig - Split Operator</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Filtering</li>
+<li><a href="/apache_pig/apache_pig_filter_operator.htm">Apache Pig - Filter Operator</a></li>
+<li><a href="/apache_pig/apache_pig_distinct_operator.htm">Apache Pig - Distinct Operator</a></li>
+<li><a href="/apache_pig/apache_pig_foreach_operator.htm">Apache Pig - Foreach Operator</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Sorting</li>
+<li><a href="/apache_pig/apache_pig_order_by.htm">Apache Pig - Order By</a></li>
+<li><a href="/apache_pig/apache_pig_limit_operator.htm">Apache Pig - Limit Operator</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Pig Latin Built-In Functions</li>
+<li><a href="/apache_pig/apache_pig_eval_functions.htm">Apache Pig - Eval Functions</a></li>
+<li><a href="/apache_pig/apache_pig_load_store_functions.htm">Load &amp; Store Functions</a></li>
+<li><a href="/apache_pig/apache_pig_bag_tuple_functions.htm">Apache Pig - Bag &amp; Tuple Functions</a></li>
+<li><a href="/apache_pig/apache_pig_string_functions.htm">Apache Pig - String Functions</a></li>
+<li><a href="/apache_pig/apache_pig_date_time_functions.htm">Apache Pig - date-time Functions</a></li>
+<li><a href="/apache_pig/apache_pig_math_functions.htm">Apache Pig - Math Functions</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Other Modes Of Execution</li>
+<li><a href="/apache_pig/apache_pig_user_defined_functions.htm">Apache Pig - User-Defined Functions</a></li>
+<li><a href="/apache_pig/apache_pig_running_scripts.htm">Apache Pig - Running Scripts</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Apache Pig Useful Resources</li>
+<li><a href="/apache_pig/apache_pig_quick_guide.htm">Apache Pig - Quick Guide</a></li>
+<li><a href="/apache_pig/apache_pig_useful_resources.htm">Apache Pig - Useful Resources</a></li>
+<li><a href="/apache_pig/apache_pig_discussion.htm">Apache Pig - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Apache Pig - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/apache_pig/apache_pig_running_scripts.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/apache_pig/apache_pig_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>Apache Pig - Overview</h1>
+<h2>What is Apache Pig?</h2>
+<p>Apache Pig is an abstraction over MapReduce. It is a tool/platform which is used to analyze larger sets of data representing them as data flows. Pig is generally used with <b>Hadoop</b>; we can perform all the data manipulation operations in Hadoop using Apache Pig.</p>
+<p>To write data analysis programs, Pig provides a high-level language known as <b>Pig Latin</b>. This language provides various operators using which programmers can develop their own functions for reading, writing, and processing data.</p>
+<p>To analyze data using <b>Apache Pig</b>, programmers need to write scripts using Pig Latin language. All these scripts are internally converted to Map and Reduce tasks. Apache Pig has a component known as <b>Pig Engine</b> that accepts the Pig Latin scripts as input and converts those scripts into MapReduce jobs.</p>
+<h2>Why Do We Need Apache Pig?</h2>
+<p>Programmers who are not so good at Java normally used to struggle working with Hadoop, especially while performing any MapReduce tasks. Apache Pig is a boon for all such programmers.</p>
+<ul class="list">
+<li><p>Using <b>Pig Latin</b>, programmers can perform MapReduce tasks easily without having to type complex codes in Java.</p></li>
+<li><p>Apache Pig uses <b>multi-query approach</b>, thereby reducing the length of codes. For example, an operation that would require you to type 200 lines of code (LoC) in Java can be easily done by typing as less as just 10 LoC in Apache Pig. Ultimately Apache Pig reduces the development time by almost 16 times.</p></li>
+<li><p>Pig Latin is <b>SQL-like language</b> and it is easy to learn Apache Pig when you are familiar with SQL.</p></li>
+<li><p>Apache Pig provides many built-in operators to support data operations like joins, filters, ordering, etc. In addition, it also provides nested data types like tuples, bags, and maps that are missing from MapReduce.</p></li>
+</ul>
+<h2>Features of Pig</h2>
+<p>Apache Pig comes with the following features &minus;</p>
+<ul class="list">
+<li><p><b>Rich set of operators</b> &minus;  It provides many operators to perform operations like join, sort, filer, etc.</p></li>
+<li><p><b>Ease of programming</b> &minus; Pig Latin is similar to SQL and it is easy to write a Pig script if you are good at SQL.</p></li>
+<li><p><b>Optimization opportunities</b> &minus; The tasks in Apache Pig optimize their execution automatically, so the programmers need to focus only on semantics of the language.</p></li>
+<li><p><b>Extensibility</b> &minus; Using the existing operators, users can develop their own functions to read, process, and write data.</p></li>
+<li><p><b>UDF’s</b> &minus; Pig provides the facility to create <b>User-defined Functions</b> in other programming languages such as Java and invoke or embed them in Pig Scripts.</p></li>
+<li><p><b>Handles all kinds of data</b> &minus; Apache Pig analyzes all kinds of data, both structured as well as unstructured. It stores the results in HDFS.</p></li>
+</ul>
+<h2>Apache Pig Vs MapReduce</h2>
+<p>Listed below are the major differences between Apache Pig and MapReduce.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Apache Pig</th>
+<th style="text-align:center;">MapReduce</th>
+</tr>
+<tr>
+<td>Apache Pig is a data flow language.</td>
+<td>MapReduce is a data processing paradigm.</td>
+</tr>
+<tr>
+<td>It is a high level language.</td>
+<td>MapReduce is low level and rigid.</td>
+</tr>
+<tr>
+<td>Performing a Join operation in Apache Pig is pretty simple.</td>
+<td>It is quite difficult in MapReduce to perform a Join operation between datasets.</td>
+</tr>
+<tr>
+<td>Any novice programmer with a basic knowledge of SQL can work conveniently with Apache Pig.</td>
+<td>Exposure to Java is must to work with MapReduce.</td>
+</tr>
+<tr>
+<td>Apache Pig uses multi-query approach, thereby reducing the length of the codes to a great extent.</td>
+<td>MapReduce will require almost 20 times more the number of lines to perform the same task.</td>
+</tr>
+<tr>
+<td>There is no need for compilation. On execution, every Apache Pig operator is converted internally into a MapReduce job.</td>
+<td>MapReduce jobs have a long compilation process.</td>
+</tr>
+</table>
+<h2>Apache Pig Vs SQL</h2>
+<p>Listed below are the major differences between Apache Pig and SQL.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:50%;text-align:center;">Pig</th>
+<th style="width:60%;text-align:center;">SQL</th>
+</tr>
+<tr>
+<td>Pig Latin is a <b>procedural</b> language.</td>
+<td>SQL is a <b>declarative</b> language.</td>
+</tr>
+<tr>
+<td>In Apache Pig, <b>schema</b> is optional. We can store data without designing a schema (values are stored as $01, $02 etc.)</td>
+<td>Schema is mandatory in SQL.</td>
+</tr>
+<tr>
+<td>The data model in Apache Pig is <b>nested relational</b>.</td>
+<td>The data model used in SQL <b>is flat relational</b>.</td>
+</tr>
+<tr>
+<td>Apache Pig provides limited opportunity for <b>Query optimization</b>.</td>
+<td>There is more opportunity for query optimization in SQL.</td>
+</tr>
+</table>
+<p>In addition to above differences, Apache Pig Latin &minus;</p>
+<ul class="list">
+<li>Allows splits in the pipeline.</li>
+<li>Allows developers to store data anywhere in the pipeline.</li>
+<li>Declares execution plans.</li>
+<li>Provides operators to perform ETL (Extract, Transform, and Load) functions.</li>
+</ul>
+<h2>Apache Pig Vs Hive</h2>
+<p>Both Apache Pig and Hive are used to create MapReduce jobs. And in some cases, Hive operates on HDFS in a similar way Apache Pig does. In the following table, we have listed a few significant points that set Apache Pig apart from Hive.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Apache Pig</th>
+<th style="text-align:center;">Hive</th>
+</tr>
+<tr>
+<td>Apache Pig uses a language called <b>Pig Latin</b>. It was originally created at <b>Yahoo</b>.</td>
+<td>Hive uses a language called <b>HiveQL</b>. It was originally created at <b>Facebook</b>.</td>
+</tr>
+<tr>
+<td>Pig Latin is a data flow language.</td>
+<td>HiveQL is a query processing language.</td>
+</tr>
+<tr>
+<td>Pig Latin is a procedural language and it fits in pipeline paradigm.</td>
+<td>HiveQL is a declarative language.</td>
+</tr>
+<tr>
+<td>Apache Pig can handle structured, unstructured, and semi-structured data.</td>
+<td>Hive is mostly for structured data.</td>
+</tr>
+</table>
+<h2>Applications of Apache Pig</h2>
+<p>Apache Pig is generally used by data scientists for performing tasks involving ad-hoc processing and quick prototyping. Apache Pig is used &minus;</p>
+<ul class="list">
+<li>To process huge data sources such as web logs.</li>
+<li>To perform data processing for search platforms.</li>
+<li>To process time sensitive data loads.</li>
+</ul>
+<h2>Apache Pig – History</h2>
+<p>In <b>2006</b>, Apache Pig was developed as a research project at Yahoo, especially to create and execute MapReduce jobs on every dataset. In <b>2007</b>, Apache Pig was open sourced via Apache incubator. In <b>2008</b>, the first release of Apache Pig came out. In <b>2010</b>, Apache Pig graduated as an Apache top-level project.</p>
+<h1>Apache Pig - Architecture</h1>
+<p>The language used to analyze data in Hadoop using Pig is known as <b>Pig Latin</b>. It is a highlevel data processing language which provides a rich set of data types and operators to perform various operations on the data.</p>
+<p>To perform a particular task Programmers using Pig, programmers need to write a Pig script using the Pig Latin language, and execute them using any of the execution mechanisms (Grunt Shell, UDFs, Embedded). After execution, these scripts will go through a series of transformations applied by the Pig Framework, to produce the desired output.</p>
+<p>Internally, Apache Pig converts these scripts into a series of MapReduce jobs, and thus, it makes the programmer’s job easy. The architecture of Apache Pig is shown below.</p>
+<img src="/apache_pig/images/apache_pig_architecture.jpg" alt="Apache Pig Architecture" />
+<h2>Apache Pig Components</h2>
+<p>As shown in the figure, there are various components in the Apache Pig framework. Let us take a look at the major components.</p>
+<h3>Parser</h3>
+<p>Initially the Pig Scripts are handled by the Parser. It checks the syntax of the script, does type checking, and other miscellaneous checks. The output of the parser will be a DAG (directed acyclic graph), which represents the Pig Latin statements and logical operators.</p>
+<p>In the DAG, the logical operators of the script are represented as the nodes and the data flows are represented as edges.</p>
+<h3>Optimizer</h3>
+<p>The logical plan (DAG) is passed to the logical optimizer, which carries out the logical optimizations such as projection and pushdown.</p>
+<h3>Compiler</h3>
+<p>The compiler compiles the optimized logical plan into a series of MapReduce jobs.</p>
+<h3>Execution engine</h3>
+<p>Finally the MapReduce jobs are submitted to Hadoop in a sorted order. Finally, these MapReduce jobs are executed on Hadoop producing the desired results.</p>
+<h2>Pig Latin Data Model</h2>
+<p>The data model of Pig Latin is fully nested and it allows complex non-atomic datatypes such as <b>map</b> and <b>tuple</b>. Given below is the diagrammatical representation of Pig Latin’s data model.</p>
+<img src="/apache_pig/images/data_model.jpg" alt="Data Model" />
+<h3>Atom</h3>
+<p>Any single value in Pig Latin, irrespective of their data, type is known as an <b>Atom</b>. It is stored as string and can be used as string and number. int, long, float, double, chararray, and bytearray are the atomic values of Pig. A piece of data or a simple atomic value is known as a <b>field</b>.</p>
+<p><b>Example</b> &minus; ‘raja’ or ‘30’</p>
+<h3>Tuple</h3>
+<p>A record that is formed by an ordered set of fields is known as a tuple, the fields can be of any type. A tuple is similar to a row in a table of RDBMS.</p>
+<p><b>Example</b> &minus; (Raja, 30)</p>
+<h3>Bag</h3>
+<p>A bag is an unordered set of tuples. In other words, a collection of tuples (non-unique) is known as a bag. Each tuple can have any number of fields (flexible schema). A bag is represented by ‘{}’. It is similar to a table in RDBMS, but unlike a table in RDBMS, it is not necessary that every tuple contain the same number of fields or that the fields in the same position (column) have the same type.</p>
+<p><b>Example</b> &minus; {(Raja, 30), (Mohammad, 45)}</p>
+<p>A bag can be a field in a relation; in that context, it is known as <b>inner bag</b>.</p>
+<p><b>Example</b> &minus; {Raja, 30, <b>{9848022338, raja@gmail.com,}</b>}</p>
+<h3>Map</h3>
+<p>A map (or data map) is a set of key-value pairs. The <b>key</b> needs to be of type chararray and should be unique. The <b>value</b> might be of any type. It is represented by ‘[]’</p>
+<p><b>Example</b> &minus; [name#Raja, age#30]</p>
+<h3>Relation</h3>
+<p>A relation is a bag of tuples.  The relations in Pig Latin are unordered (there is no guarantee that tuples are processed in any particular order).</p>
+<h1>Apache Pig - Installation</h1>
+<p>This chapter explains the how to download, install, and set up <b>Apache Pig</b> in your system.</p>
+<h2>Prerequisites</h2>
+<p>It is essential that you have Hadoop and Java installed on your system before you go for Apache Pig. Therefore, prior to installing Apache Pig, install Hadoop and Java by following the steps given in the following link &minus;</p>
+<p><a target="_blank" rel="nofollow" href="http://www.tutorialspoint.com/hadoop/hadoop_enviornment_setup.htm">http://www.tutorialspoint.com/hadoop/hadoop_enviornment_setup.htm</a></p>
+<h2>Download Apache Pig</h2>
+<p>First of all, download the latest version of Apache Pig from the following website &minus; <a target="_blank" rel="nofollow" href="https://pig.apache.org/">https://pig.apache.org/</a></p>
+<h3>Step 1</h3>
+<p>Open the homepage of Apache Pig website. Under the section <b>News,</b> click on the link <b>release page</b> as shown in the following snapshot.</p>
+<img src="/apache_pig/images/home_page.jpg" alt="Home Page" />
+<h3>Step 2</h3>
+<p>On clicking the specified link, you will be redirected to the <b>Apache Pig Releases</b> page. On this page, under the <b>Download</b> section, you will have two links, namely, <b>Pig 0.8 and later</b> and <b>Pig 0.7 and before</b>. Click on the link <b>Pig 0.8 and later</b>, then you will be redirected to the page having a set of mirrors.</p>
+<img src="/apache_pig/images/apache_pig_releases.jpg" alt="Apache Pig Releases" />
+<h3>Step 3</h3>
+<p>Choose and click any one of these mirrors as shown below.</p>
+<img src="/apache_pig/images/mirror_site.jpg" alt="Click Mirrors" />
+<h3>Step 4</h3>
+<p>These mirrors will take you to the <b>Pig Releases</b> page. This page contains various versions of Apache Pig. Click the latest version among them.</p>
+<img src="/apache_pig/images/pig_release.jpg" alt="Pig Release" />
+<h3>Step 5</h3>
+<p>Within these folders, you will have the source and binary files of Apache Pig in various distributions. Download the tar files of the source and binary files of Apache Pig 0.15, <b>pig0.15.0-src.tar.gz</b> and <b>pig-0.15.0.tar.gz.</b></p>
+<img src="/apache_pig/images/index.jpg" alt="Index" />
+<h2>Install Apache Pig</h2>
+<p>After downloading the Apache Pig software, install it in your Linux environment by following the steps given below.</p>
+<h3>Step 1</h3>
+<p>Create a directory with the name Pig in the same directory where the installation directories of <b>Hadoop, Java,</b> and other software were installed. (In our tutorial, we have created the Pig directory in the user named Hadoop).</p>
+<pre class="prettyprint notranslate">
+$ mkdir Pig
+</pre>
+<h3>Step 2</h3>
+<p>Extract the downloaded tar files as shown below.</p>
+<pre class="prettyprint notranslate">
+$ cd Downloads/ 
+$ tar zxvf pig-0.15.0-src.tar.gz 
+$ tar zxvf pig-0.15.0.tar.gz 
+</pre>
+<h3>Step 3</h3>
+<p>Move the content of <b>pig-0.15.0-src.tar.gz</b> file to the <b>Pig</b> directory created earlier as shown below.</p>
+<pre class="prettyprint notranslate">
+$ mv pig-0.15.0-src.tar.gz/* /home/Hadoop/Pig/
+</pre>
+<h2>Configure Apache Pig</h2>
+<p>After installing Apache Pig, we have to configure it. To configure, we need to edit two files &minus; <b>bashrc and pig.properties</b>.</p>
+<h3>.bashrc file</h3>
+<p>In the <b>.bashrc</b> file, set the following variables &minus;</p>
+<ul class="list">
+<li><p><b>PIG_HOME</b> folder to the Apache Pig’s installation folder,</p></li>
+<li><p><b>PATH</b> environment variable to the bin folder, and</p></li>
+<li><p><b>PIG_CLASSPATH</b> environment variable to the etc (configuration) folder of your Hadoop installations (the directory that contains the core-site.xml, hdfs-site.xml and mapred-site.xml files).</p></li>
+</ul>
+<pre class="result notranslate">
+export PIG_HOME = /home/Hadoop/Pig
+export PATH  = $PATH:/home/Hadoop/pig/bin
+export PIG_CLASSPATH = $HADOOP_HOME/conf
+</pre>
+<h3>pig.properties file</h3>
+<p>In the <b>conf</b> folder of Pig, we have a file named <b>pig.properties</b>. In the pig.properties file, you can set various parameters as given below.</p>
+<pre class="result notranslate">
+pig -h properties 
+</pre>
+<p>The following properties are supported &minus;</p>
+<pre class="result notranslate">
+Logging: verbose = true|false; default is false. This property is the same as -v
+       switch brief=true|false; default is false. This property is the same 
+       as -b switch debug=OFF|ERROR|WARN|INFO|DEBUG; default is INFO.             
+       This property is the same as -d switch aggregate.warning = true|false; default is true. 
+       If true, prints count of warnings of each type rather than logging each warning.		 
+		 
+Performance tuning: pig.cachedbag.memusage=&lt;mem fraction&gt;; default is 0.2 (20% of all memory).
+       Note that this memory is shared across all large bags used by the application.         
+       pig.skewedjoin.reduce.memusagea=&lt;mem fraction&gt;; default is 0.3 (30% of all memory).
+       Specifies the fraction of heap available for the reducer to perform the join.
+       pig.exec.nocombiner = true|false; default is false.
+           Only disable combiner as a temporary workaround for problems.         
+       opt.multiquery = true|false; multiquery is on by default.
+           Only disable multiquery as a temporary workaround for problems.
+       opt.fetch=true|false; fetch is on by default.
+           Scripts containing Filter, Foreach, Limit, Stream, and Union can be dumped without MR jobs.         
+       pig.tmpfilecompression = true|false; compression is off by default.             
+           Determines whether output of intermediate jobs is compressed.         
+       pig.tmpfilecompression.codec = lzo|gzip; default is gzip.
+           Used in conjunction with pig.tmpfilecompression. Defines compression type.         
+       pig.noSplitCombination = true|false. Split combination is on by default.
+           Determines if multiple small files are combined into a single map.         
+			  
+       pig.exec.mapPartAgg = true|false. Default is false.             
+           Determines if partial aggregation is done within map phase, before records are sent to combiner.         
+       pig.exec.mapPartAgg.minReduction=&lt;min aggregation factor&gt;. Default is 10.             
+           If the in-map partial aggregation does not reduce the output num records by this factor, it gets disabled.
+			  
+Miscellaneous: exectype = mapreduce|tez|local; default is mapreduce. This property is the same as -x switch
+       pig.additional.jars.uris=&lt;comma seperated list of jars&gt;. Used in place of register command.
+       udf.import.list=&lt;comma seperated list of imports&gt;. Used to avoid package names in UDF.
+       stop.on.failure = true|false; default is false. Set to true to terminate on the first error.         
+       pig.datetime.default.tz=&lt;UTC time offset&gt;. e.g. +08:00. Default is the default timezone of the host.
+           Determines the timezone used to handle datetime datatype and UDFs.
+Additionally, any Hadoop property can be specified.
+</pre>
+<h3>Verifying the Installation</h3>
+<p>Verify the installation of Apache Pig by typing the version command. If the installation is successful, you will get the version of Apache Pig as shown below.</p>
+<pre class="result notranslate">
+$ pig –version 
+ 
+Apache Pig version 0.15.0 (r1682971)  
+compiled Jun 01 2015, 11:44:35
+</pre>
+<h1>Apache Pig - Execution</h1>
+<p>In the previous chapter, we explained how to install Apache Pig. In this chapter, we will discuss how to execute Apache Pig.</p>
+<h2>Apache Pig Execution Modes</h2>
+<p>You can run Apache Pig in two modes, namely, <b>Local Mode</b> and <b>HDFS mode</b>.</p>
+<h3>Local Mode</h3>
+<p>In this mode, all the files are installed and run from your local host and local file system. There is no need of Hadoop or HDFS. This mode is generally used for testing purpose.</p>
+<h3>MapReduce Mode</h3>
+<p>MapReduce mode is where we load or process the data that exists in the Hadoop File System (HDFS) using Apache Pig. In this mode, whenever we execute the Pig Latin statements to process the data, a MapReduce job is invoked in the back-end to perform a particular operation on the data that exists in the HDFS.</p>
+<h2>Apache Pig Execution Mechanisms</h2>
+<p>Apache Pig scripts can be executed in three ways, namely, interactive mode, batch mode, and embedded mode.</p>
+<ul class="list">
+<li><p><b>Interactive Mode</b> (Grunt shell) &minus; You can run Apache Pig in interactive mode using the Grunt shell. In this shell, you can enter the Pig Latin statements and get the output (using Dump operator).</p></li>
+<li><p><b>Batch Mode</b> (Script) &minus; You can run Apache Pig in Batch mode by writing the Pig Latin script in a single file with <b>.pig</b> extension.</p></li>
+<li><p><b>Embedded Mode</b> (UDF) &minus; Apache Pig provides the provision of defining our own functions (<b>U</b>ser <b>D</b>efined <b>F</b>unctions) in programming languages such as Java, and using them in our script.</p></li>
+</ul>
+<h2>Invoking the Grunt Shell</h2>
+<p>You can invoke the Grunt shell in a desired mode (local/MapReduce) using the <b>&minus;x</b> option as shown below.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Local mode</th>
+<th style="text-align:center;">MapReduce mode</th>
+</tr>
+<tr>
+<td><p><b>Command &minus;</b></p>
+<p>$ ./pig –x local</p></td>
+<td><p><b>Command &minus;</b></p>
+<p>$ ./pig -x mapreduce</p></td>
+</tr>
+<tr>
+<td><p><b>Output</b> &minus;</p>
+<img src="/apache_pig/images/local_mode_output.jpg" alt="Local Mode Output" /></td>
+<td><p><b>Output</b> &minus;</p>
+<img src="/apache_pig/images/mapreduce_mode_output.jpg" alt="MapReduce Mode Output" /></td>
+</tr>
+</table>
+<p>Either of these commands gives you the Grunt shell prompt as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt;
+</pre>
+<p>You can exit the Grunt shell using <b>‘ctrl &plus; d’.</b></p>
+<p>After invoking the Grunt shell, you can execute a Pig script by directly entering the Pig Latin statements in it.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; customers = LOAD 'customers.txt' USING PigStorage(',');
+</pre>
+<h2>Executing Apache Pig in Batch Mode</h2>
+<p>You can write an entire Pig Latin script in a file and execute it using the <b>–x command</b>.  Let us suppose we have a Pig script in a file named <b>sample_script.pig</b> as shown below.</p>
+<h3>Sample_script.pig</h3>
+<pre class="prettyprint notranslate">
+student = LOAD 'hdfs://localhost:9000/pig_data/student.txt' USING
+   PigStorage(',') as (id:int,name:chararray,city:chararray);
+  
+Dump student;
+</pre>
+<p>Now, you can execute the script in the above file as shown below.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Local mode</th>
+<th style="text-align:center;">MapReduce mode</th>
+</tr>
+<tr>
+<td>$ pig -x local <b>Sample_script.pig</b></td>
+<td>$ pig -x mapreduce <b>Sample_script.pig</b></td>
+</tr>
+</table>
+<p><b>Note</b> &minus; We will discuss in detail how to run a Pig script in <b>Bach mode</b> and in <b>embedded mode</b> in subsequent chapters.</p>
+<h1>Apache Pig - Grunt Shell</h1>
+<p>After invoking the Grunt shell, you can run your Pig scripts in the shell. In addition to that, there are certain useful shell and utility commands provided by the Grunt shell. This chapter explains the shell and utility commands provided by the Grunt shell.</p>
+<p><b>Note</b> &minus; In some portions of this chapter, the commands like <b>Load</b> and <b>Store</b> are used. Refer the respective chapters to get in-detail information on them.</p>
+<h2>Shell Commands</h2>
+<p>The Grunt shell of Apache Pig is mainly used to write Pig Latin scripts. Prior to that, we can invoke any shell commands using <b>sh</b> and <b>fs</b>.</p>
+<h3>sh Command</h3>
+<p>Using <b>sh</b> command, we can invoke any shell commands from the Grunt shell. Using <b>sh</b> command from the Grunt shell, we cannot execute the commands that are a part of the shell environment (<b>ex</b> &minus; cd).</p>
+<p><b>Syntax</b></p>
+<p>Given below is the syntax of <b>sh</b> command.</p>
+<pre class="result notranslate">
+grunt&gt; sh shell command parameters
+</pre>
+<p><b>Example</b></p>
+<p>We can invoke the <b>ls</b> command of Linux shell from the Grunt shell using the <b>sh</b> option as shown below. In this example, it lists out the files in the <b>/pig/bin/</b> directory.</p>
+<pre class="result notranslate">
+<b>grunt&gt; sh ls</b>
+   
+pig 
+pig_1444799121955.log 
+pig.cmd 
+pig.py
+</pre>
+<h3>fs Command</h3>
+<p>Using the <b>fs</b> command, we can invoke any FsShell commands from the Grunt shell.</p>
+<p><b>Syntax</b></p>
+<p>Given below is the syntax of <b>fs</b> command.</p>
+<pre class="result notranslate">
+grunt> sh File System command parameters
+</pre>
+<p><b>Example</b></p>
+<p>We can invoke the ls command of HDFS from the Grunt shell using fs command. In the following example, it lists the files in the HDFS root directory.</p>
+<pre class="result notranslate">
+<b>grunt&gt; fs –ls</b>
+  
+Found 3 items
+drwxrwxrwx   - Hadoop supergroup          0 2015-09-08 14:13 Hbase
+drwxr-xr-x   - Hadoop supergroup          0 2015-09-09 14:52 seqgen_data
+drwxr-xr-x   - Hadoop supergroup          0 2015-09-08 11:30 twitter_data
+</pre>
+<p>In the same way, we can invoke all the other file system shell commands from the Grunt shell using the <b>fs</b> command.</p>
+<h2>Utility Commands</h2>
+<p>The Grunt shell provides a set of utility commands. These include utility commands such as <b>clear, help, history, quit,</b> and <b>set</b>; and commands such as <b>exec, kill,</b> and <b>run</b> to control Pig from the Grunt shell. Given below is the description of the utility commands provided by the Grunt shell.</p>
+<h3>clear Command</h3>
+<p>The <b>clear</b> command is used to clear the screen of the Grunt shell.</p>
+<p><b>Syntax</b></p>
+<p>You can clear the screen of the grunt shell using the <b>clear</b> command as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; clear
+</pre>
+<h3>help Command</h3>
+<p>The <b>help</b> command gives you a list of Pig commands or Pig properties.</p>
+<p><b>Usage</b></p>
+<p>You can get a list of Pig commands using the <b>help</b> command as shown below.</p>
+<pre class="result notranslate">
+<b>grunt&gt; help</b>
+
+Commands: &lt;pig latin statement&gt;; - See the PigLatin manual for details:
+http://hadoop.apache.org/pig
+  
+File system commands:fs &lt;fs arguments&gt; - Equivalent to Hadoop dfs  command:
+http://hadoop.apache.org/common/docs/current/hdfs_shell.html
+	 
+Diagnostic Commands:describe &lt;alias&gt;[::&lt;alias] - Show the schema for the alias.
+Inner aliases can be described as A::B.
+    explain [-script &lt;pigscript&gt;] [-out &lt;path&gt;] [-brief] [-dot|-xml] 
+       [-param &lt;param_name&gt;=&lt;pCram_value&gt;]
+       [-param_file &lt;file_name&gt;] [&lt;alias&gt;] - 
+       Show the execution plan to compute the alias or for entire script.
+       -script - Explain the entire script.
+       -out - Store the output into directory rather than print to stdout.
+       -brief - Don't expand nested plans (presenting a smaller graph for overview).
+       -dot - Generate the output in .dot format. Default is text format.
+       -xml - Generate the output in .xml format. Default is text format.
+       -param &lt;param_name - See parameter substitution for details.
+       -param_file &lt;file_name&gt; - See parameter substitution for details.
+       alias - Alias to explain.
+       dump &lt;alias&gt; - Compute the alias and writes the results to stdout.
+
+Utility Commands: exec [-param &lt;param_name&gt;=param_value] [-param_file &lt;file_name&gt;] &lt;script&gt; -
+       Execute the script with access to grunt environment including aliases.
+       -param &lt;param_name - See parameter substitution for details.
+       -param_file &lt;file_name&gt; - See parameter substitution for details.
+       script - Script to be executed.
+    run [-param &lt;param_name&gt;=param_value] [-param_file &lt;file_name&gt;] &lt;script&gt; -
+       Execute the script with access to grunt environment.
+		 -param &lt;param_name - See parameter substitution for details.         
+       -param_file &lt;file_name&gt; - See parameter substitution for details.
+       script - Script to be executed.
+    sh  &lt;shell command&gt; - Invoke a shell command.
+    kill &lt;job_id&gt; - Kill the hadoop job specified by the hadoop job id.
+    set &lt;key&gt; &lt;value&gt; - Provide execution parameters to Pig. Keys and values are case sensitive.
+       The following keys are supported:
+       default_parallel - Script-level reduce parallelism. Basic input size heuristics used 
+       by default.
+       debug - Set debug on or off. Default is off.
+       job.name - Single-quoted name for jobs. Default is PigLatin:&lt;script name&gt;     
+       job.priority - Priority for jobs. Values: very_low, low, normal, high, very_high.
+       Default is normal stream.skippath - String that contains the path.
+       This is used by streaming any hadoop property.
+    help - Display this message.
+    history [-n] - Display the list statements in cache.
+       -n Hide line numbers.
+    quit - Quit the grunt shell. 
+</pre>
+<h3>history Command</h3>
+<p>This command displays a list of statements executed / used so far since the Grunt sell is invoked.</p>
+<p><b>Usage</b></p>
+<p>Assume we have executed three statements since opening the Grunt shell.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; customers = LOAD 'hdfs://localhost:9000/pig_data/customers.txt' USING PigStorage(',');
+ 
+grunt&gt; orders = LOAD 'hdfs://localhost:9000/pig_data/orders.txt' USING PigStorage(',');
+ 
+grunt&gt; student = LOAD 'hdfs://localhost:9000/pig_data/student.txt' USING PigStorage(',');
+ 
+</pre>
+<p>Then, using the <b>history</b> command will produce the following output.</p>
+<pre class="result notranslate">
+<b>grunt&gt; history</b>
+
+customers = LOAD 'hdfs://localhost:9000/pig_data/customers.txt' USING PigStorage(','); 
+  
+orders = LOAD 'hdfs://localhost:9000/pig_data/orders.txt' USING PigStorage(',');
+   
+student = LOAD 'hdfs://localhost:9000/pig_data/student.txt' USING PigStorage(',');
+ 
+</pre>
+<h3>set Command</h3>
+<p>The <b>set</b> command is used to show/assign values to keys used in Pig.</p>
+<p><b>Usage</b></p>
+<p>Using this command, you can set values to the following keys.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Key</th>
+<th style="text-align:center;">Description and values </th>
+</tr>
+<tr>
+<td><b>default_parallel</b></td>
+<td>You can set the number of reducers for a map job by passing any whole number as a value to this key.</td>
+</tr>
+<tr>
+<td><b>debug</b></td>
+<td>You can turn off or turn on the debugging freature in Pig by passing on/off to this key.</td>
+</tr>
+<tr>
+<td><b>job.name</b></td>
+<td>You can set the Job name to the required job by passing a string value to this key.</td>
+</tr>
+<tr>
+<td><b>job.priority</b></td>
+<td><p>You can set the job priority to a job by passing one of the following values to this key &minus;</p>
+<ul class="list">
+<li>very_low</li>
+<li>low</li>
+<li>normal</li>
+<li>high</li>
+<li>very_high</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td><b>stream.skippath</b></td>
+<td>For streaming, you can set the path from where the data is not to be transferred, by passing the desired path in the form of a string to this key.</td>
+</tr>
+</table>
+<h3>quit Command</h3>
+<p>You can quit from the Grunt shell using this command.</p>
+<p><b>Usage</b></p>
+<p>Quit from the Grunt shell as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; quit
+</pre>
+<p>Let us now take a look at the commands using which you can control Apache Pig from the Grunt shell.</p>
+<h3>exec Command</h3>
+<p>Using the <b>exec</b> command, we can execute Pig scripts from the Grunt shell.</p>
+<p><b>Syntax</b></p>
+<p>Given below is the syntax of the utility command <b>exec</b>.</p>
+<pre class="result notranslate">
+grunt&gt; exec [–param param_name = param_value] [–param_file file_name] [script]
+</pre>
+<p><b>Example</b></p>
+<p>Let us assume there is a file named <b>student.txt</b> in the <b>/pig_data/</b> directory of HDFS with the following content.</p>
+<p><b>Student.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Hyderabad
+002,siddarth,Kolkata
+003,Rajesh,Delhi
+</pre>
+<p>And, assume we have a script file named <b>sample_script.pig</b> in the <b>/pig_data/</b> directory of HDFS with the following content.</p>
+<p><b>Sample_script.pig</b></p>
+<pre class="prettyprint notranslate">
+student = LOAD 'hdfs://localhost:9000/pig_data/student.txt' USING PigStorage(',') 
+   as (id:int,name:chararray,city:chararray);
+  
+Dump student;
+</pre>
+<p>Now, let us execute the above script from the Grunt shell using the <b>exec</b> command as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; exec /sample_script.pig
+</pre>
+<p><b>Output</b></p>
+<p>The <b>exec</b> command executes the script in the <b>sample_script.pig</b>. As directed in the script, it loads the <b>student.txt</b> file into Pig and gives you the result of the Dump operator displaying the following content.</p>
+<pre class="result notranslate">
+(1,Rajiv,Hyderabad)
+(2,siddarth,Kolkata)
+(3,Rajesh,Delhi) 
+</pre>
+<h3>kill Command</h3>
+<p>You can kill a job from the Grunt shell using this command.</p>
+<p><b>Syntax</b></p>
+<p>Given below is the syntax of the <b>kill</b> command.</p>
+<pre class="result notranslate">
+grunt&gt; kill JobId
+</pre>
+<p><b>Example</b></p>
+<p>Suppose there is a running Pig job having id <b>Id_0055</b>, you can kill it from the Grunt shell using the <b>kill</b> command, as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; kill Id_0055
+</pre>
+<h3>run Command</h3>
+<p>You can run a Pig script from the Grunt shell using the <b>run</b> command</p>
+<p><b>Syntax</b></p>
+<p>Given below is the syntax of the <b>run</b> command.</p>
+<pre class="result notranslate">
+grunt&gt; run [–param param_name = param_value] [–param_file file_name] script
+</pre>
+<p><b>Example</b></p>
+<p>Let us assume there is a file named <b>student.txt</b> in the <b>/pig_data/</b> directory of HDFS with the following content.</p>
+<p><b>Student.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Hyderabad
+002,siddarth,Kolkata
+003,Rajesh,Delhi
+</pre>
+<p>And, assume we have a script file named <b>sample_script.pig</b> in the local filesystem with the following content.</p>
+<p><b>Sample_script.pig</b></p>
+<pre class="prettyprint notranslate">
+student = LOAD 'hdfs://localhost:9000/pig_data/student.txt' USING
+   PigStorage(',') as (id:int,name:chararray,city:chararray);
+</pre>
+<p>Now, let us run the above script from the Grunt shell using the run command as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; run /sample_script.pig
+</pre>
+<p>You can see the output of the script using the <b>Dump operator</b> as shown below.</p>
+<pre class="result notranslate">
+<b>grunt&gt; Dump;</b>
+
+(1,Rajiv,Hyderabad)
+(2,siddarth,Kolkata)
+(3,Rajesh,Delhi)
+</pre>
+<p><b>Note</b> &minus; The difference between <b>exec</b> and the <b>run</b> command is that if we use <b>run</b>, the statements from the script are available in the command history.</p>
+<h1>Pig Latin – Basics</h1>
+<p>Pig Latin is the language used to analyze data in Hadoop using Apache Pig.  In this chapter, we are going to discuss the basics of Pig Latin such as Pig Latin statements, data types, general and relational operators, and Pig Latin UDF’s.</p>
+<h2>Pig Latin – Data Model</h2>
+<p>As discussed in the previous chapters, the data model of Pig is fully nested. A <b>Relation</b> is the outermost structure of the Pig Latin data model. And it is a <b>bag</b> where &minus;</p>
+<ul class="list">
+<li>A bag is a collection of tuples.</li>
+<li>A tuple is an ordered set of fields.</li>
+<li>A field is a piece of data.</li>
+</ul>
+<h2>Pig Latin – Statemets</h2>
+<p>While processing data using Pig Latin, <b>statements</b> are the basic constructs.</p>
+<ul class="list">
+<li><p>These statements work with <b>relations</b>. They include <b>expressions</b> and <b>schemas</b>.</p></li>
+<li><p>Every statement ends with a semicolon (;).</p></li>
+<li><p>We will perform various operations using operators provided by Pig Latin, through statements.</p></li>
+<li><p>Except LOAD and STORE, while performing all other operations, Pig Latin statements take a relation as input and produce another relation as output.</p></li>
+<li><p>As soon as you enter a <b>Load</b> statement in the Grunt shell, its semantic checking will be carried out. To see the contents of the schema, you need to use the <b>Dump</b> operator. Only after performing the <b>dump</b> operation, the MapReduce job for loading the data into the file system will be carried out.</p></li>
+</ul>
+<h3>Example</h3>
+<p>Given below is a Pig Latin statement, which loads data to Apache Pig.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Student_data = LOAD 'student_data.txt' USING PigStorage(',')as 
+   ( id:int, firstname:chararray, lastname:chararray, phone:chararray, city:chararray );
+</pre>
+<h2>Pig Latin – Data types</h2>
+<p>Given below table describes the Pig Latin data types.</p>
+<table class="table table-bordered">
+<tr>
+<th>S.N.</th>
+<th style="text-align:center;width:20%;">Data Type</th>
+<th>Description &amp; Example</th>
+</tr>
+<tr>
+<td>1</td>
+<td>int</td>
+<td><p>Represents a signed 32-bit integer.</p>
+<p><b>Example</b> : 8</p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>long</td>
+<td><p>Represents a signed 64-bit integer.</p> 
+<p><b>Example</b> : 5L</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>float</td>
+<td><p>Represents a signed 32-bit floating point.</p>
+<p><b>Example</b> : 5.5F</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>double</td>
+<td><p>Represents a 64-bit floating point.</p>
+<p><b>Example</b> : 10.5</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>chararray</td>
+<td><p>Represents a character array (string) in Unicode UTF-8 format.</p>
+<p><b>Example</b> : ‘tutorials point’</p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Bytearray</td>
+<td><p>Represents a Byte array (blob).</p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Boolean</td>
+<td><p>Represents a Boolean value.</p>
+<p><b>Example</b> : true/ false.</p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Datetime</td>
+<td><p>Represents a date-time.</p>
+<p><b>Example</b> : 1970-01-01T00:00:00.000+00:00</p>
+</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Biginteger</td>
+<td><p>Represents a Java BigInteger.</p>
+<p><b>Example</b> : 60708090709</p>
+</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Bigdecimal</td>
+<td><p>Represents a  Java BigDecimal</p>
+<p><b>Example</b> : 185.98376256272893883</p>
+</td>
+</tr>
+<tr>
+<th style="text-align:center;" colspan="3">Complex Types</th>
+</tr>
+<tr>
+<td>11</td>
+<td>Tuple</td>
+<td><p>A tuple is an ordered set of fields.</p>
+<p><b>Example</b> : (raja, 30)</p>
+</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Bag</td>
+<td><p>A bag is a collection of tuples.</p>
+<p><b>Example</b> : {(raju,30),(Mohhammad,45)}</p></td>
+</tr>
+<tr>
+<td>13</td>
+<td>Map</td>
+<td><p>A Map is a set of key-value pairs.</p>
+<p><b>Example</b> : [ ‘name’#’Raju’, ‘age’#30]</p></td>
+</tr>
+</table>
+<h2>Null Values</h2>
+<p>Values for all the above data types can be NULL. Apache Pig treats null values in a similar way as SQL does.</p>
+<p>A null can be an unknown value or a non-existent value. It is used as a placeholder for optional values. These nulls can occur naturally or can be the result of an operation.</p>
+<h2>Pig Latin – Arithmetic Operators</h2>
+<p>The following table describes the arithmetic operators of Pig Latin. Suppose a = 10 and b = 20.</p>
+<table class="table table-bordered">
+<tr>
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+<tr>
+<td style="text-align:center;">&plus;</td>
+<td><p><b>Addition</b> &minus; Adds values on either side of the operator</p></td>
+<td>a &plus; b will give 30</td>
+</tr>
+<tr>
+<td style="text-align:center;">&minus;</td>
+<td><p><b>Subtraction</b> &minus; Subtracts right hand operand from left hand operand</p></td>
+<td>a &minus; b will give &minus;10</td>
+</tr>
+<tr>
+<td style="text-align:center;">*</td>
+<td><p><b>Multiplication</b> &minus; Multiplies values on either side of the operator</p></td>
+<td>a * b will give 200</td>
+</tr>
+<tr>
+<td style="text-align:center;">/</td>
+<td><p><b>Division</b> &minus; Divides left hand operand by right hand operand</p></td>
+<td>b / a will give 2</td>
+</tr>
+<tr>
+<td style="text-align:center;">%</td>
+<td><p><b>Modulus</b> &minus; Divides left hand operand by right hand operand and returns remainder</p></td>
+<td>b % a will give 0</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">? :</td>
+<td><p><b>Bincond</b> &minus; Evaluates the Boolean operators. It has three operands as shown below.</p>
+<p>variable <b>x</b> = (expression) ? <b>value1</b> <i>if true</i> : <b>value2</b> <i>if false</i>.</p></td>
+<td><p>b = (a == 1)? 20: 30;</p>
+<p>if a=1 the value of b is 20.</p>
+<p>if a!=1 the value of b is 30.</p></td>
+</tr>
+<tr>
+<td style="text-align:center;"><p>CASE</p><p>WHEN</p><p>THEN</p><p>ELSE END</p></td>
+<td><p><b>Case</b> &minus; The case operator is equivalent to nested bincond operator.</p></td>
+<td><p>CASE f2 % 2</p>
+<p style="padding-left:16%;">WHEN 0 THEN 'even'</p>
+<p style="padding-left:16%;">WHEN 1 THEN 'odd'</p>
+<p>END</p></td>
+</tr>
+</table>
+<h2>Pig Latin – Comparison Operators</h2>
+<p>The following table describes the comparison operators of Pig Latin.</p>
+<table class="table table-bordered">
+<tr>
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+<tr>
+<td style="text-align:center;">==</td>
+<td><p><b>Equal</b> &minus; Checks if the values of two operands are equal or not; if yes, then the condition becomes true.</p></td>
+<td>(a = b) is not true</td>
+</tr>
+<tr>
+<td style="text-align:center;">!=</td>
+<td><p><b>Not Equal</b> &minus; Checks if the values of two operands are equal or not. If the values are not equal, then condition becomes true.</p></td>
+<td>(a != b) is true.</td>
+</tr>
+<tr>
+<td style="text-align:center;">&gt;</td>
+<td><p><b>Greater than</b> &minus; Checks if the value of the left operand is greater than the value of the right operand. If yes, then the condition becomes true.</p></td>
+<td>(a &gt; b) is not true.</td>
+</tr>
+<tr>
+<td style="text-align:center;">&lt;</td>
+<td><p><b>Less than</b> &minus; Checks if the value of the left operand is less than the value of the right operand. If yes, then the condition becomes true.</p></td>
+<td>(a &lt; b) is true.</td>
+</tr>
+<tr>
+<td style="text-align:center;">&gt;=</td>
+<td><p><b>Greater than or equal to</b> &minus; Checks if the value of the left operand is greater than or equal to the value of the right operand. If yes, then the condition becomes true.</p></td>
+<td>(a &gt;= b) is not true.</td>
+</tr>
+<tr>
+<td style="text-align:center;">&lt;=</td>
+<td><p><b>Less than or equal to</b> &minus; Checks if the value of the left operand is less than or equal to the value of the right operand. If yes, then the condition becomes true.</p></td>
+<td>(a &lt;= b) is true.</td>
+</tr>
+<tr>
+<td style="text-align:center;">matches</td>
+<td><p><b>Pattern matching</b> &minus; Checks whether the string in the left-hand side matches with the constant in the right-hand side.</p></td>
+<td>f1 matches '.*tutorial.*'</td>
+</tr>
+</table>
+<h2>Pig Latin – Type Construction Operators</h2>
+<p>The following table describes the Type construction operators of Pig Latin.</p>
+<table class="table table-bordered">
+<tr>
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+<tr>
+<td style="text-align:center;">()</td>
+<td><p><b>Tuple constructor operator</b> &minus; This operator is used to construct a tuple.</p></td>
+<td>(Raju, 30)</td>
+</tr>
+<tr>
+<td style="text-align:center;">{}</td>
+<td><p><b>Bag constructor operator</b> &minus; This operator is used to construct a bag.</p></td>
+<td>{(Raju, 30), (Mohammad, 45)}</td>
+</tr>
+<tr>
+<td style="text-align:center;">[]</td>
+<td><p><b>Map constructor operator</b> &minus; This operator is used to construct a tuple.</p></td>
+<td>[name#Raja, age#30]</td>
+</tr>
+</table>
+<h2>Pig Latin – Relational Operations</h2>
+<p>The following table describes the relational operators of Pig Latin.</p>
+<table class="table table-bordered">
+<tr>
+<th>Operator</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center;" colspan="2"><b>Loading and Storing</b></td>
+</tr>
+<tr>
+<td>LOAD</td>
+<td>To Load the data from the file system (local/HDFS) into a relation.</td>
+</tr>
+<tr>
+<td>STORE</td>
+<td>To save a relation to the file system (local/HDFS).</td>
+</tr>
+<tr>
+<th style="text-align:center;" colspan="2">Filtering</th>
+</tr>
+<tr>
+<td>FILTER</td>
+<td>To remove unwanted rows from a relation.</td>
+</tr>
+<tr>
+<td>DISTINCT</td>
+<td>To remove duplicate rows from a relation.</td>
+</tr>
+<tr>
+<td style="width:30%;">FOREACH, GENERATE</td>
+<td>To generate data transformations based on columns of data.</td>
+</tr>
+<tr>
+<td>STREAM</td>
+<td>To transform a relation using an external program.</td>
+</tr>
+<tr>
+<th style="text-align:center;" colspan="2">Grouping and Joining</th>
+</tr>
+<tr>
+<td>JOIN</td>
+<td>To join two or more relations.</td>
+</tr>
+<tr>
+<td>COGROUP</td>
+<td>To group the data in two or more relations.</td>
+</tr>
+<tr>
+<td>GROUP</td>
+<td>To group the data in a single relation.</td>
+</tr>
+<tr>
+<td>CROSS</td>
+<td>To create the cross product of two or more relations.</td>
+</tr>
+<tr>
+<th style="text-align:center;" colspan="2">Sorting</th>
+</tr>
+<tr>
+<td>ORDER</td>
+<td>To arrange a relation in a sorted order based on one or more fields (ascending or descending).</td>
+</tr>
+<tr>
+<td>LIMIT</td>
+<td>To get a limited number of tuples from a relation.</td>
+</tr>
+<tr>
+<th style="text-align:center;" colspan="2">Combining and Splitting</th>
+</tr>
+<tr>
+<td>UNION</td>
+<td>To combine two or more relations into a single relation.</td>
+</tr>
+<tr>
+<td>SPLIT</td>
+<td>To split a single relation into two or more relations.</td>
+</tr>
+<tr>
+<th style="text-align:center;" colspan="2">Diagnostic Operators</th>
+</tr>
+<tr>
+<td>DUMP</td>
+<td>To print the contents of a relation on the console.</td>
+</tr>
+<tr>
+<td>DESCRIBE</td>
+<td>To describe the schema of a relation.</td>
+</tr>
+<tr>
+<td>EXPLAIN</td>
+<td>To view the logical, physical, or MapReduce execution plans to compute a relation.</td>
+</tr>
+<tr>
+<td>ILLUSTRATE</td>
+<td>To view the step-by-step execution of a series of statements.</td>
+</tr>
+</table>
+<h1>Apache Pig - Reading Data</h1>
+<p>In general, Apache Pig works on top of Hadoop. It is an analytical tool that analyzes large datasets that exist in the <b>H</b>adoop <b>F</b>ile <b>S</b>ystem. To analyze data using Apache Pig, we have to initially load the data into Apache Pig. This chapter explains how to load data to Apache Pig from HDFS.</p>
+<h2>Preparing HDFS</h2>
+<p>In MapReduce mode, Pig reads (loads) data from HDFS and stores the results back in HDFS. Therefore, let us start HDFS and create the following sample data in HDFS.</p>
+<table class="table table-bordered">
+<tr>
+<th>Student ID</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Phone</th>
+<th>City</th>
+</tr>
+<tr>
+<td>001</td>
+<td>Rajiv</td>
+<td>Reddy</td>
+<td>9848022337</td>
+<td>Hyderabad</td>
+</tr>
+<tr>
+<td>002</td>
+<td>siddarth</td>
+<td>Battacharya</td>
+<td>9848022338</td>
+<td>Kolkata</td>
+</tr>
+<tr>
+<td>003</td>
+<td>Rajesh</td>
+<td>Khanna</td>
+<td>9848022339</td>
+<td>Delhi</td>
+</tr>
+<tr>
+<td>004</td>
+<td>Preethi</td>
+<td>Agarwal</td>
+<td>9848022330</td>
+<td>Pune</td>
+</tr>
+<tr>
+<td>005</td>
+<td>Trupthi</td>
+<td>Mohanthy</td>
+<td>9848022336</td>
+<td>Bhuwaneshwar</td>
+</tr>
+<tr>
+<td>006</td>
+<td>Archana</td>
+<td>Mishra</td>
+<td>9848022335</td>
+<td>Chennai</td>
+</tr>
+</table>
+<p>The above dataset contains personal details like id, first name, last name, phone number and city, of six students.</p>
+<h3>Step 1: Verifying Hadoop</h3>
+<p>First of all, verify the installation using Hadoop version command, as shown below.</p>
+<pre class="prettyprint notranslate">
+$ hadoop version
+</pre>
+<p>If your system contains Hadoop, and if you have set the PATH variable, then you will get the following output &minus;</p>
+<pre class="result notranslate">
+Hadoop 2.6.0 
+Subversion https://git-wip-us.apache.org/repos/asf/hadoop.git -r 
+e3496499ecb8d220fba99dc5ed4c99c8f9e33bb1 
+Compiled by jenkins on 2014-11-13T21:10Z 
+Compiled with protoc 2.5.0 
+From source with checksum 18e43357c8f927c0695f1e9522859d6a 
+This command was run using /home/Hadoop/hadoop/share/hadoop/common/hadoop
+common-2.6.0.jar
+</pre>
+<h3>Step 2: Starting HDFS</h3>
+<p>Browse through the <b>sbin</b> directory of Hadoop and start <b>yarn</b> and Hadoop dfs (distributed file system) as shown below.</p>
+<pre class="result notranslate">
+cd /$Hadoop_Home/sbin/ 
+<b>$ start-dfs.sh</b> 
+localhost: starting namenode, logging to /home/Hadoop/hadoop/logs/hadoopHadoop-namenode-localhost.localdomain.out 
+localhost: starting datanode, logging to /home/Hadoop/hadoop/logs/hadoopHadoop-datanode-localhost.localdomain.out 
+Starting secondary namenodes [0.0.0.0] 
+starting secondarynamenode, logging to /home/Hadoop/hadoop/logs/hadoop-Hadoopsecondarynamenode-localhost.localdomain.out
+ 
+<b>$ start-yarn.sh</b> 
+starting yarn daemons 
+starting resourcemanager, logging to /home/Hadoop/hadoop/logs/yarn-Hadoopresourcemanager-localhost.localdomain.out 
+localhost: starting nodemanager, logging to /home/Hadoop/hadoop/logs/yarnHadoop-nodemanager-localhost.localdomain.out
+</pre>
+<h3>Step 3: Create a Directory in HDFS</h3>
+<p>In Hadoop DFS, you can create directories using the command <b>mkdir</b>. Create a new directory in HDFS with the name <b>Pig_Data</b> in the required path as shown below.</p>
+<pre class="prettyprint notranslate">
+$cd /$Hadoop_Home/bin/ 
+$ hdfs dfs -mkdir hdfs://localhost:9000/Pig_Data 
+</pre>
+<h3>Step 4: Placing the data in HDFS</h3>
+<p>The input file of Pig contains each tuple/record in individual lines. And the entities of the record are separated by a delimiter (In our example we used <b>“,”</b>).</p>
+<p>In the local file system, create an input file <b>student_data.txt</b> containing data as shown below.</p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai.
+</pre>
+<p>Now, move the file from the local file system to HDFS using <b>put</b> command as shown below. (You can use <b>copyFromLocal</b> command as well.)</p>
+<pre class="prettyprint notranslate">
+$ cd $HADOOP_HOME/bin 
+$ hdfs dfs -put /home/Hadoop/Pig/Pig_Data/student_data.txt dfs://localhost:9000/pig_data/
+</pre>
+<h3>Verifying the file</h3>
+<p>You can use the <b>cat</b> command to verify whether the file has been moved into the HDFS, as shown below.</p>
+<pre class="prettyprint notranslate">
+$ cd $HADOOP_HOME/bin
+$ hdfs dfs -cat hdfs://localhost:9000/pig_data/student_data.txt
+</pre>
+<h3>Output</h3>
+<p>You can see the content of the file as shown below.</p>
+<pre class="result notranslate">
+15/10/01 12:16:55 WARN util.NativeCodeLoader: Unable to load native-hadoop
+library for your platform... using builtin-java classes where applicable
+  
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai
+</pre>
+<h2>The Load Operator</h2>
+<p>You can load data into Apache Pig from the file system (HDFS/ Local) using <b>LOAD</b> operator of <b>Pig Latin</b>.</p>
+<h3>Syntax</h3>
+<p>The load statement consists of two parts divided by the “=” operator. On the left-hand side, we need to mention the name of the relation <b>where</b> we want to store the data, and on the right-hand side, we have to define <b>how</b> we store the data. Given below is the syntax of the <b>Load</b> operator.</p>
+<pre class="result notranslate">
+Relation_name = LOAD 'Input file path' USING function as schema;
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>relation_name</b> &minus; We have to mention the relation in which we want to store the data.</p></li>
+<li><p><b>Input file path</b> &minus; We have to mention the HDFS directory where the file is stored. (In MapReduce mode)</p></li>
+<li><p><b>function</b> &minus; We have to choose a function from the set of load functions provided by Apache Pig (<b>BinStorage, JsonLoader, PigStorage, TextLoader</b>).</p></li>
+<li><p><b>Schema</b> &minus; We have to define the schema of the data. We can define the required schema as follows &minus;</p></li>
+</ul>
+<pre class="result notranslate">
+(column1 : data type, column2 : data type, column3 : data type);
+</pre>
+<p><b>Note</b> &minus; We load the data without specifying the schema. In that case, the columns will be addressed as $01, $02, etc… (check).</p>
+<h3>Example</h3>
+<p>As an example, let us load the data in <b>student_data.txt</b> in Pig under the schema named <b>Student</b> using the <b>LOAD</b> command.</p>
+<h3>Start the Pig Grunt Shell</h3>
+<p>First of all, open the Linux terminal. Start the Pig Grunt shell in MapReduce mode as shown below.</p>
+<pre class="prettyprint notranslate">
+$ Pig –x mapreduce
+</pre>
+<p>It will start the Pig Grunt shell as shown below.</p>
+<pre class="result notranslate">
+15/10/01 12:33:37 INFO pig.ExecTypeProvider: Trying ExecType : LOCAL
+15/10/01 12:33:37 INFO pig.ExecTypeProvider: Trying ExecType : MAPREDUCE
+15/10/01 12:33:37 INFO pig.ExecTypeProvider: Picked MAPREDUCE as the ExecType
+
+2015-10-01 12:33:38,080 [main] INFO  org.apache.pig.Main - Apache Pig version 0.15.0 (r1682971) compiled Jun 01 2015, 11:44:35
+2015-10-01 12:33:38,080 [main] INFO  org.apache.pig.Main - Logging error messages to: /home/Hadoop/pig_1443683018078.log
+2015-10-01 12:33:38,242 [main] INFO  org.apache.pig.impl.util.Utils - Default bootup file /home/Hadoop/.pigbootup not found
+  
+2015-10-01 12:33:39,630 [main]
+INFO org.apache.pig.backend.hadoop.executionengine.HExecutionEngine - Connecting to hadoop file system at: hdfs://localhost:9000
+ 
+grunt&gt;
+</pre>
+<h3>Execute the Load Statement</h3>
+<p>Now load the data from the file <b>student_data.txt</b> into Pig by executing the following Pig Latin statement in the Grunt shell.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student = LOAD 'hdfs://localhost:9000/pig_data/student_data.txt' 
+   USING PigStorage(',')
+   as ( id:int, firstname:chararray, lastname:chararray, phone:chararray, 
+   city:chararray );
+</pre>
+<p>Following is the description of the above statement.</p>
+<table class="table table-bordered">
+<tr>
+<td style="width:16%;">Relation name</td>
+<td>We have stored the data in the schema <b>student</b>.</td>
+</tr>
+<tr>
+<td>Input file path</td>
+<td>We are reading data from the file <b>student_data.txt,</b> which is in the /pig_data/ directory of HDFS.</td>
+</tr>
+<tr>
+<td>Storage function</td>
+<td>We have used the <b>PigStorage()</b> function. It loads and stores data as structured text files. It takes a delimiter using which each entity of a tuple is separated, as a parameter. By default, it takes ‘\t’ as a parameter.</td>
+</tr>
+<tr>
+<td>schema</td>
+<td><p>We have stored the data using the following schema.</p>
+<table class="table table-bordered">
+<tr>
+<td>column</td>
+<td>id</td>
+<td>firstname</td>
+<td>lastname</td>
+<td>phone</td>
+<td>city</td>
+</tr>
+<tr>
+<td>datatype</td>
+<td>int</td>
+<td>char array</td>
+<td>char array</td>
+<td>char array</td>
+<td>char array</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p><b>Note</b> &minus; The <b>load</b> statement will simply load the data into the specified relation in Pig. To verify the execution of the <b>Load</b> statement, you have to use the <b>Diagnostic Operators</b> which are discussed in the next chapters.</p>
+<h1>Apache Pig - Storing Data</h1>
+<p>In the previous chapter, we learnt how to load data into Apache Pig. You can store the loaded data in the file system using the <b>store</b> operator. This chapter explains how to store data in Apache Pig using the <b>Store</b> operator.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the Store statement.</p>
+<pre class="result notranslate">
+STORE Relation_name INTO ' required_directory_path ' [USING function];
+</pre>
+<h2>Example</h2>
+<p>Assume we have a file <b>student_data.txt</b> in HDFS with the following content.</p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai.
+</pre>
+<p>And we have read it into a relation <b>student</b> using the LOAD operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student = LOAD 'hdfs://localhost:9000/pig_data/student_data.txt' 
+   USING PigStorage(',')
+   as ( id:int, firstname:chararray, lastname:chararray, phone:chararray, 
+   city:chararray );
+</pre>
+<p>Now, let us store the relation in the HDFS directory <b>“/pig_Output/”</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; STORE student INTO ' hdfs://localhost:9000/pig_Output/ ' USING PigStorage (',');
+</pre>
+<h3>Output</h3>
+<p>After executing the <b>store</b> statement, you will get the following output. A directory is created with the specified name and the data will be stored in it.</p>
+<pre class="result notranslate">
+2015-10-05 13:05:05,429 [main] INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.
+MapReduceLau ncher - 100% complete
+2015-10-05 13:05:05,429 [main] INFO  org.apache.pig.tools.pigstats.mapreduce.SimplePigStats - 
+Script Statistics:
+   
+HadoopVersion    PigVersion    UserId    StartedAt             FinishedAt             Features 
+2.6.0            0.15.0        Hadoop    2015-10-0 13:03:03    2015-10-05 13:05:05    UNKNOWN  
+Success!  
+Job Stats (time in seconds): 
+JobId          Maps    Reduces    MaxMapTime    MinMapTime    AvgMapTime    MedianMapTime    
+job_14459_06    1        0           n/a           n/a           n/a           n/a
+MaxReduceTime    MinReduceTime    AvgReduceTime    MedianReducetime    Alias    Feature   
+     0                 0                0                0             student  MAP_ONLY 
+OutPut folder
+hdfs://localhost:9000/pig_Output/ 
+ 
+Input(s): Successfully read 0 records from: "hdfs://localhost:9000/pig_data/student_data.txt"  
+Output(s): Successfully stored 0 records in: "hdfs://localhost:9000/pig_Output"  
+Counters:
+Total records written : 0
+Total bytes written : 0
+Spillable Memory Manager spill count : 0 
+Total bags proactively spilled: 0
+Total records proactively spilled: 0
+  
+Job DAG: job_1443519499159_0006
+  
+2015-10-05 13:06:06,192 [main] INFO  org.apache.pig.backend.hadoop.executionengine
+.mapReduceLayer.MapReduceLau ncher - Success!
+</pre>
+<h2>Verification</h2>
+<p>You can verify the stored data as shown below.</p>
+<h3>Step 1</h3>
+<p>First of all, list out the files in the directory named <b>pig_output</b> using the <b>ls</b> command as shown below.</p>
+<pre class="result notranslate">
+<b>hdfs dfs -ls 'hdfs://localhost:9000/pig_Output/'</b>
+Found 2 items
+rw-r--r-   1 Hadoop supergroup          0 2015-10-05 13:03 hdfs://localhost:9000/pig_Output/_SUCCESS
+rw-r--r-   1 Hadoop supergroup        224 2015-10-05 13:03 hdfs://localhost:9000/pig_Output/part-m-00000
+</pre> 
+<p>You can observe that two files were created after executing the <b>store</b> statement.</p>
+<h3>Step 2</h3>
+<p>Using <b>cat</b> command, list the contents of the file named <b>part-m-00000</b> as shown below.</p>
+<pre class="result notranslate">
+<b>$ hdfs dfs -cat 'hdfs://localhost:9000/pig_Output/part-m-00000'</b> 
+1,Rajiv,Reddy,9848022337,Hyderabad
+2,siddarth,Battacharya,9848022338,Kolkata
+3,Rajesh,Khanna,9848022339,Delhi
+4,Preethi,Agarwal,9848022330,Pune
+5,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+6,Archana,Mishra,9848022335,Chennai 
+</pre>
+<h1>Apache Pig - Diagnostic Operators</h1>
+<p>The <b>load</b> statement will simply load the data into the specified relation in Apache Pig. To verify the execution of the <b>Load</b> statement, you have to use the <b>Diagnostic Operators</b>. Pig Latin provides four different types of diagnostic operators &minus;</p>
+<ul class="list">
+<li>Dump operator</li>
+<li>Describe operator</li>
+<li>Explanation operator</li>
+<li>Illustration operator</li>
+</ul>
+<p>In this chapter, we will discuss the Dump operators of Pig Latin.</p>
+<h2>Dump Operator</h2>
+<p>The <b>Dump</b> operator is used to run the Pig Latin statements and display the results on the screen. It is generally used for debugging Purpose.</p>
+<h3>Syntax</h3>
+<p>Given below is the syntax of the <b>Dump</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Dump Relation_Name
+</pre>
+<h3>Example</h3>
+<p>Assume we have a file <b>student_data.txt</b> in HDFS with the following content.</p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai.
+</pre>
+<p>And we have read it into a relation <b>student</b> using the LOAD operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student = LOAD 'hdfs://localhost:9000/pig_data/student_data.txt' 
+   USING PigStorage(',')
+   as ( id:int, firstname:chararray, lastname:chararray, phone:chararray, 
+   city:chararray );
+</pre>
+<p>Now, let us print the contents of the relation using the <b>Dump operator</b> as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; Dump student
+</pre>
+<p>Once you execute the above <b>Pig Latin</b> statement, it will start a MapReduce job to read data from HDFS. It will produce the following output.</p>
+<pre class="result notranslate">
+2015-10-01 15:05:27,642 [main]
+INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLauncher - 
+100% complete
+2015-10-01 15:05:27,652 [main]
+INFO  org.apache.pig.tools.pigstats.mapreduce.SimplePigStats - Script Statistics:   
+HadoopVersion  PigVersion  UserId    StartedAt             FinishedAt       Features             
+2.6.0          0.15.0      Hadoop  2015-10-01 15:03:11  2015-10-01 05:27     UNKNOWN
+                                                
+Success!  
+Job Stats (time in seconds):
+  
+JobId           job_14459_0004
+Maps                 1  
+Reduces              0  
+MaxMapTime          n/a    
+MinMapTime          n/a
+AvgMapTime          n/a 
+MedianMapTime       n/a
+MaxReduceTime        0
+MinReduceTime        0  
+AvgReduceTime        0
+MedianReducetime     0
+Alias             student 
+Feature           MAP_ONLY        
+Outputs           hdfs://localhost:9000/tmp/temp580182027/tmp757878456,
+
+Input(s): Successfully read 0 records from: "hdfs://localhost:9000/pig_data/
+student_data.txt"
+  
+Output(s): Successfully stored 0 records in: "hdfs://localhost:9000/tmp/temp580182027/
+tmp757878456"  
+
+Counters: Total records written : 0 Total bytes written : 0 Spillable Memory Manager 
+spill count : 0Total bags proactively spilled: 0 Total records proactively spilled: 0  
+
+Job DAG: job_1443519499159_0004
+  
+2015-10-01 15:06:28,403 [main]
+INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MapReduceLau ncher - Success!
+2015-10-01 15:06:28,441 [main] INFO  org.apache.pig.data.SchemaTupleBackend - 
+Key [pig.schematuple] was not set... will not generate code.
+2015-10-01 15:06:28,485 [main]
+INFO  org.apache.hadoop.mapreduce.lib.input.FileInputFormat - Total input paths 
+to process : 1
+2015-10-01 15:06:28,485 [main]
+INFO  org.apache.pig.backend.hadoop.executionengine.util.MapRedUtil - Total input paths
+to process : 1
+
+<b>(1,Rajiv,Reddy,9848022337,Hyderabad)
+(2,siddarth,Battacharya,9848022338,Kolkata)
+(3,Rajesh,Khanna,9848022339,Delhi)
+(4,Preethi,Agarwal,9848022330,Pune)
+(5,Trupthi,Mohanthy,9848022336,Bhuwaneshwar)
+(6,Archana,Mishra,9848022335,Chennai)</b>
+</pre>
+<h1>Apache Pig - Describe Operator</h1>
+<p>The <b>describe</b> operator is used to view the schema of a relation.</p>
+<h2>Syntax</h2>
+<p>The syntax of the <b>describe</b> operator is as follows &minus;</p>
+<pre class="result notranslate">
+grunt&gt; Describe Relation_name
+</pre>
+<h2>Example</h2>
+<p>Assume we have a file <b>student_data.txt</b> in HDFS with the following content.</p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai.
+</pre>
+<p>And we have read it into a relation <b>student</b> using the LOAD operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student = LOAD 'hdfs://localhost:9000/pig_data/student_data.txt' USING PigStorage(',')
+   as ( id:int, firstname:chararray, lastname:chararray, phone:chararray, city:chararray );
+</pre>
+<p>Now, let us describe the relation named <b>student</b> and verify the schema as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; describe student;
+</pre>
+<h2>Output</h2>
+<p>Once you execute the above <b>Pig Latin</b> statement, it will produce the following output.</p>
+<pre class="result notranslate">
+grunt&gt; student: { id: int,firstname: chararray,lastname: chararray,phone: chararray,city: chararray }
+</pre>
+<h1>Apache Pig - Explain Operator</h1>
+<p>The <b>explain</b> operator is used to display the logical, physical, and MapReduce execution plans of a relation.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the <b>explain</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; explain Relation_name;
+</pre>
+<h2>Example</h2>
+<p>Assume we have a file <b>student_data.txt</b> in HDFS with the following content.</p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai.
+</pre>
+<p>And we have read it into a relation <b>student</b> using the LOAD operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student = LOAD 'hdfs://localhost:9000/pig_data/student_data.txt' USING PigStorage(',')
+   as ( id:int, firstname:chararray, lastname:chararray, phone:chararray, city:chararray );
+</pre>
+<p>Now, let us explain the relation named student using the <b>explain</b> operator as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; explain student;
+</pre>
+<h2>Output</h2>
+<p>It will produce the following output.</p>
+<pre class="result notranslate">
+<b>$ explain student;</b>
+
+2015-10-05 11:32:43,660 [main]
+2015-10-05 11:32:43,660 [main] INFO  org.apache.pig.newplan.logical.optimizer
+.LogicalPlanOptimizer -
+{RULES_ENABLED=[AddForEach, ColumnMapKeyPrune, ConstantCalculator,
+GroupByConstParallelSetter, LimitOptimizer, LoadTypeCastInserter, MergeFilter, 
+MergeForEach, PartitionFilterOptimizer, PredicatePushdownOptimizer,
+PushDownForEachFlatten, PushUpFilter, SplitFilter, StreamTypeCastInserter]}  
+#-----------------------------------------------
+# New Logical Plan: 
+#-----------------------------------------------
+student: (Name: LOStore Schema:
+id#31:int,firstname#32:chararray,lastname#33:chararray,phone#34:chararray,city#
+35:chararray)
+| 
+|---student: (Name: LOForEach Schema:
+id#31:int,firstname#32:chararray,lastname#33:chararray,phone#34:chararray,city#
+35:chararray)
+    |   |
+    |   (Name: LOGenerate[false,false,false,false,false] Schema:
+id#31:int,firstname#32:chararray,lastname#33:chararray,phone#34:chararray,city#
+35:chararray)ColumnPrune:InputUids=[34, 35, 32, 33,
+31]ColumnPrune:OutputUids=[34, 35, 32, 33, 31]
+    |   |   | 
+    |   |   (Name: Cast Type: int Uid: 31) 
+    |   |   |     |   |   |---id:(Name: Project Type: bytearray Uid: 31 Input: 0 Column: (*))
+    |   |   |     
+    |   |   (Name: Cast Type: chararray Uid: 32)
+    |   |   | 
+    |   |   |---firstname:(Name: Project Type: bytearray Uid: 32 Input: 1
+Column: (*))
+    |   |   |
+    |   |   (Name: Cast Type: chararray Uid: 33)
+    |   |   |
+    |   |   |---lastname:(Name: Project Type: bytearray Uid: 33 Input: 2
+	 Column: (*))
+    |   |   | 
+    |   |   (Name: Cast Type: chararray Uid: 34)
+    |   |   |  
+    |   |   |---phone:(Name: Project Type: bytearray Uid: 34 Input: 3 Column:
+(*))
+    |   |   | 
+    |   |   (Name: Cast Type: chararray Uid: 35)
+    |   |   |  
+    |   |   |---city:(Name: Project Type: bytearray Uid: 35 Input: 4 Column:
+(*))
+    |   | 
+    |   |---(Name: LOInnerLoad[0] Schema: id#31:bytearray)
+    |   |  
+    |   |---(Name: LOInnerLoad[1] Schema: firstname#32:bytearray)
+    |   |
+    |   |---(Name: LOInnerLoad[2] Schema: lastname#33:bytearray)
+    |   |
+    |   |---(Name: LOInnerLoad[3] Schema: phone#34:bytearray)
+    |   | 
+    |   |---(Name: LOInnerLoad[4] Schema: city#35:bytearray)
+    |
+    |---student: (Name: LOLoad Schema: 
+id#31:bytearray,firstname#32:bytearray,lastname#33:bytearray,phone#34:bytearray
+,city#35:bytearray)RequiredFields:null 
+#-----------------------------------------------
+# Physical Plan: #-----------------------------------------------
+student: Store(fakefile:org.apache.pig.builtin.PigStorage) - scope-36
+| 
+|---student: New For Each(false,false,false,false,false)[bag] - scope-35
+    |   |
+    |   Cast[int] - scope-21
+    |   |
+    |   |---Project[bytearray][0] - scope-20
+    |   |  
+    |   Cast[chararray] - scope-24
+    |   |
+    |   |---Project[bytearray][1] - scope-23
+    |   | 
+    |   Cast[chararray] - scope-27
+    |   |  
+    |   |---Project[bytearray][2] - scope-26 
+    |   |  
+    |   Cast[chararray] - scope-30 
+    |   |  
+    |   |---Project[bytearray][3] - scope-29
+    |   |
+    |   Cast[chararray] - scope-33
+    |   | 
+    |   |---Project[bytearray][4] - scope-32
+    | 
+    |---student: Load(hdfs://localhost:9000/pig_data/student_data.txt:PigStorage(',')) - scope19
+2015-10-05 11:32:43,682 [main]
+INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MRCompiler - 
+File concatenation threshold: 100 optimistic? false
+2015-10-05 11:32:43,684 [main]
+INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.MultiQueryOp timizer - 
+MR plan size before optimization: 1 2015-10-05 11:32:43,685 [main]
+INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.
+MultiQueryOp timizer - MR plan size after optimization: 1 
+#--------------------------------------------------
+# Map Reduce Plan                                   
+#--------------------------------------------------
+MapReduce node scope-37
+Map Plan
+student: Store(fakefile:org.apache.pig.builtin.PigStorage) - scope-36
+|
+|---student: New For Each(false,false,false,false,false)[bag] - scope-35
+    |   |
+    |   Cast[int] - scope-21 
+    |   |
+    |   |---Project[bytearray][0] - scope-20
+    |   |
+    |   Cast[chararray] - scope-24
+    |   |
+    |   |---Project[bytearray][1] - scope-23
+    |   |
+    |   Cast[chararray] - scope-27
+    |   | 
+    |   |---Project[bytearray][2] - scope-26 
+    |   | 
+    |   Cast[chararray] - scope-30 
+    |   |  
+    |   |---Project[bytearray][3] - scope-29 
+    |   | 
+    |   Cast[chararray] - scope-33
+    |   | 
+    |   |---Project[bytearray][4] - scope-32 
+    |  
+    |---student:
+Load(hdfs://localhost:9000/pig_data/student_data.txt:PigStorage(',')) - scope
+19-------- Global sort: false
+ ---------------- 
+</pre>
+<h1>Apache Pig - Illustrate Operator</h1>
+<p>The <b>illustrate</b> operator gives you the step-by-step execution of a sequence of statements.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the <b>illustrate</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; illustrate Relation_name;
+</pre>
+<h2>Example</h2>
+<p>Assume we have a file <b>student_data.txt</b> in HDFS with the following content.</p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata 
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune 
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai.
+</pre>
+<p>And we have read it into a relation <b>student</b> using the LOAD operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student = LOAD 'hdfs://localhost:9000/pig_data/student_data.txt' USING PigStorage(',')
+   as ( id:int, firstname:chararray, lastname:chararray, phone:chararray, city:chararray );
+</pre>
+<p>Now, let us illustrate the relation named student as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; illustrate student;
+</pre>
+<h2>Output</h2>
+<p>On executing the above statement, you will get the following output.</p>
+<pre class="result notranslate">
+<b>grunt&gt; illustrate student;</b>
+
+INFO  org.apache.pig.backend.hadoop.executionengine.mapReduceLayer.PigMapOnly$M ap - Aliases
+being processed per job phase (AliasName[line,offset]): M: student[1,10] C:  R:
+---------------------------------------------------------------------------------------------
+|student | id:int | firstname:chararray | lastname:chararray | phone:chararray | city:chararray |
+--------------------------------------------------------------------------------------------- 
+|        | 002    | siddarth            | Battacharya        | 9848022338      | Kolkata        |
+---------------------------------------------------------------------------------------------
+</pre>
+<h1>Apache Pig - Group Operator</h1>
+<p>The <b>GROUP</b> operator is used to group the data in one or more relations. It collects the data having the same key.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the <b>group</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Group_data = GROUP Relation_name BY age;
+</pre>
+<h2>Example</h2>
+<p>Assume that we have a file named <b>student_details.txt</b> in the HDFS directory <b>/pig_data/</b> as shown below.</p>
+<p><b>student_details.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,21,9848022337,Hyderabad
+002,siddarth,Battacharya,22,9848022338,Kolkata
+003,Rajesh,Khanna,22,9848022339,Delhi
+004,Preethi,Agarwal,21,9848022330,Pune
+005,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar
+006,Archana,Mishra,23,9848022335,Chennai
+007,Komal,Nayak,24,9848022334,trivendram
+008,Bharathi,Nambiayar,24,9848022333,Chennai
+</pre>
+<p>And we have loaded this file into Apache Pig with the relation name <b>student_details</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student_details = LOAD 'hdfs://localhost:9000/pig_data/student_details.txt' USING PigStorage(',')
+   as (id:int, firstname:chararray, lastname:chararray, age:int, phone:chararray, city:chararray);
+</pre>
+<p>Now, let us group the records/tuples in the relation by age as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; group_data = GROUP student_details by age;
+</pre>
+<h2>Verification</h2>
+<p>Verify the relation <b>group_data</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; Dump group_data;
+</pre>
+<h2>Output</h2>
+<p>Then you will get output displaying the contents of the relation named <b>group_data</b> as shown below. Here you can observe that the resulting schema has two columns &minus;</p>
+<ul class="list">
+<li><p>One is <b>age</b>, by which we have grouped the relation.</p></li>
+<li><p>The other is a <b>bag</b>, which contains the group of tuples, student records with the respective age.</p></li>
+</ul>
+<pre class="result notranslate">
+(21,{(4,Preethi,Agarwal,21,9848022330,Pune),(1,Rajiv,Reddy,21,9848022337,Hydera bad)})
+(22,{(3,Rajesh,Khanna,22,9848022339,Delhi),(2,siddarth,Battacharya,22,984802233 8,Kolkata)})
+(23,{(6,Archana,Mishra,23,9848022335,Chennai),(5,Trupthi,Mohanthy,23,9848022336 ,Bhuwaneshwar)})
+(24,{(8,Bharathi,Nambiayar,24,9848022333,Chennai),(7,Komal,Nayak,24,9848022334, trivendram)})
+</pre>
+<p>You can see the schema of the table after grouping the data using the <b>describe</b> command as shown below.</p>
+<pre class="result notranslate">
+<b>grunt&gt; Describe group_data;</b>
+  
+group_data: {group: int,student_details: {(id: int,firstname: chararray,
+               lastname: chararray,age: int,phone: chararray,city: chararray)}}
+</pre>
+<p>In the same way, you can get the sample illustration of the schema using the <b>illustrate</b> command as shown below.</p>
+<pre class="prettyprint notranslate">
+$ Illustrate group_data;
+</pre>
+<p>It will produce the following output &minus;</p>
+<pre class="result notranslate">
+------------------------------------------------------------------------------------------------- 
+|group_data|  group:int | student_details:bag{:tuple(id:int,firstname:chararray,lastname:chararray,age:int,phone:chararray,city:chararray)}|
+------------------------------------------------------------------------------------------------- 
+|          |     21     | { 4, Preethi, Agarwal, 21, 9848022330, Pune), (1, Rajiv, Reddy, 21, 9848022337, Hyderabad)}| 
+|          |     2      | {(2,siddarth,Battacharya,22,9848022338,Kolkata),(003,Rajesh,Khanna,22,9848022339,Delhi)}| 
+-------------------------------------------------------------------------------------------------
+</pre>
+<h2>Grouping by Multiple Columns</h2>
+<p>Let us group the relation by age and city as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; group_multiple = GROUP student_details by (age, city);
+</pre>
+<p>You can verify the content of the relation named <b>group_multiple</b> using the Dump operator as shown below.</p>
+<pre class="result notranslate">
+<b>grunt&gt; Dump group_multiple;</b> 
+  
+((21,Pune),{(4,Preethi,Agarwal,21,9848022330,Pune)})
+((21,Hyderabad),{(1,Rajiv,Reddy,21,9848022337,Hyderabad)})
+((22,Delhi),{(3,Rajesh,Khanna,22,9848022339,Delhi)})
+((22,Kolkata),{(2,siddarth,Battacharya,22,9848022338,Kolkata)})
+((23,Chennai),{(6,Archana,Mishra,23,9848022335,Chennai)})
+((23,Bhuwaneshwar),{(5,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar)})
+((24,Chennai),{(8,Bharathi,Nambiayar,24,9848022333,Chennai)})
+(24,trivendram),{(7,Komal,Nayak,24,9848022334,trivendram)})
+</pre>
+<h2>Group All</h2>
+<p>You can group a relation by all the columns as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; <b>group_all</b> = GROUP <b>student_details</b> All;
+</pre>
+<p>Now, verify the content of the relation <b>group_all</b> as shown below.</p>
+<pre class="result notranslate">
+<b>grunt&gt; Dump group_all;</b>  
+  
+(all,{(8,Bharathi,Nambiayar,24,9848022333,Chennai),(7,Komal,Nayak,24,9848022334 ,trivendram), 
+(6,Archana,Mishra,23,9848022335,Chennai),(5,Trupthi,Mohanthy,23,9848022336,Bhuw aneshwar), 
+(4,Preethi,Agarwal,21,9848022330,Pune),(3,Rajesh,Khanna,22,9848022339,Delhi), 
+(2,siddarth,Battacharya,22,9848022338,Kolkata),(1,Rajiv,Reddy,21,9848022337,Hyd erabad)})
+</pre>
+<h1>Apache Pig - Cogroup Operator</h1>
+<p>The <b>COGROUP</b> operator works more or less in the same way as the <a href="/apache_pig/apache_pig_group_operator.htm">GROUP</a> operator. The only difference between the two operators is that the <b>group</b> operator is normally used with one relation, while the <b>cogroup</b> operator is used in statements involving two or more relations.</p>
+<h2>Grouping Two Relations using Cogroup</h2>
+<p>Assume that we have two files namely <b>student_details.txt</b> and <b>employee_details.txt</b> in the HDFS directory <b>/pig_data/</b> as shown below.</p>
+<p><b>student_details.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,21,9848022337,Hyderabad
+002,siddarth,Battacharya,22,9848022338,Kolkata
+003,Rajesh,Khanna,22,9848022339,Delhi
+004,Preethi,Agarwal,21,9848022330,Pune
+005,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar
+006,Archana,Mishra,23,9848022335,Chennai
+007,Komal,Nayak,24,9848022334,trivendram
+008,Bharathi,Nambiayar,24,9848022333,Chennai
+</pre>
+<p><b>employee_details.txt</b></p>
+<pre class="result notranslate">
+001,Robin,22,newyork 
+002,BOB,23,Kolkata 
+003,Maya,23,Tokyo 
+004,Sara,25,London 
+005,David,23,Bhuwaneshwar 
+006,Maggy,22,Chennai
+</pre>
+<p>And we have loaded these files into Pig with the relation names <b>student_details</b> and <b>employee_details</b> respectively, as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student_details = LOAD 'hdfs://localhost:9000/pig_data/student_details.txt' USING PigStorage(',')
+   as (id:int, firstname:chararray, lastname:chararray, age:int, phone:chararray, city:chararray); 
+  
+grunt&gt; employee_details = LOAD 'hdfs://localhost:9000/pig_data/employee_details.txt' USING PigStorage(',')
+   as (id:int, name:chararray, age:int, city:chararray);
+</pre>
+<p>Now, let us group the records/tuples of the relations <b>student_details</b> and <b>employee_details</b> with the key age, as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; cogroup_data = COGROUP student_details by age, employee_details by age;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>cogroup_data</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump cogroup_data;
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation named <b>cogroup_data</b> as shown below.</p>
+<pre class="result notranslate">
+(21,{(4,Preethi,Agarwal,21,9848022330,Pune), (1,Rajiv,Reddy,21,9848022337,Hyderabad)}, 
+   {    })  
+(22,{ (3,Rajesh,Khanna,22,9848022339,Delhi), (2,siddarth,Battacharya,22,9848022338,Kolkata) },  
+   { (6,Maggy,22,Chennai),(1,Robin,22,newyork) })  
+(23,{(6,Archana,Mishra,23,9848022335,Chennai),(5,Trupthi,Mohanthy,23,9848022336 ,Bhuwaneshwar)}, 
+   {(5,David,23,Bhuwaneshwar),(3,Maya,23,Tokyo),(2,BOB,23,Kolkata)}) 
+(24,{(8,Bharathi,Nambiayar,24,9848022333,Chennai),(7,Komal,Nayak,24,9848022334, trivendram)}, 
+   { })  
+(25,{   }, 
+   {(4,Sara,25,London)})
+</pre>
+<p>The <b>cogroup</b> operator groups the tuples from each relation according to age where each group depicts a particular age value.</p>
+<p>For example, if we consider the 1st tuple of the result, it is grouped by age 21. And it contains two bags &minus;</p>
+<ul class="list">
+<li><p>the first bag holds all the tuples from the first relation (<b>student_details</b> in this case) having age 21, and</p></li>
+<li><p>the second bag contains all the tuples from the second relation (<b>employee_details</b> in this case) having age 21. </p></li>
+</ul>
+<p>In case a relation doesn’t have tuples having the age value 21, it returns an empty bag.</p>
+<h1>Apache Pig - Join Operator</h1>
+<p>The <b>JOIN</b> operator is used to combine records from two or more relations. While performing a join operation, we declare one (or a group of) tuple(s) from each relation, as keys. When these keys match, the two particular tuples are matched, else the records are dropped. Joins can be of the following types &minus;</p>
+<ul class="list">
+<li>Self-join</li>
+<li>Inner-join</li>
+<li>Outer-join &minus; left join, right join, and full join</li>
+</ul>
+<p>This chapter explains with examples how to use the join operator in Pig Latin. Assume that we have two files namely <b>customers.txt</b> and <b>orders.txt</b> in the <b>/pig_data/</b> directory of HDFS as shown below.</p>
+<p><b>customers.txt</b></p>
+<pre class="result notranslate">
+1,Ramesh,32,Ahmedabad,2000.00
+2,Khilan,25,Delhi,1500.00
+3,kaushik,23,Kota,2000.00
+4,Chaitali,25,Mumbai,6500.00 
+5,Hardik,27,Bhopal,8500.00
+6,Komal,22,MP,4500.00
+7,Muffy,24,Indore,10000.00
+</pre>
+<p><b>orders.txt</b></p>
+<pre class="result notranslate">
+102,2009-10-08 00:00:00,3,3000
+100,2009-10-08 00:00:00,3,1500
+101,2009-11-20 00:00:00,2,1560
+103,2008-05-20 00:00:00,4,2060
+</pre>
+<p>And we have loaded these two files into Pig with the relations <b>customers</b> and <b>orders</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; customers = LOAD 'hdfs://localhost:9000/pig_data/customers.txt' USING PigStorage(',')
+   as (id:int, name:chararray, age:int, address:chararray, salary:int);
+  
+grunt&gt; orders = LOAD 'hdfs://localhost:9000/pig_data/orders.txt' USING PigStorage(',')
+   as (oid:int, date:chararray, customer_id:int, amount:int);
+</pre>
+<p>Let us now perform various Join operations on these two relations.</p>
+<h2>Self - join</h2>
+<p><b>Self-join</b> is used to join a table with itself as if the table were two relations, temporarily renaming at least one relation.</p>
+<p>Generally, in Apache Pig, to perform self-join, we will load the same data multiple times, under different aliases (names). Therefore let us load the contents of the file <b>customers.txt</b> as two tables as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; customers1 = LOAD 'hdfs://localhost:9000/pig_data/customers.txt' USING PigStorage(',')
+   as (id:int, name:chararray, age:int, address:chararray, salary:int);
+  
+grunt&gt; customers2 = LOAD 'hdfs://localhost:9000/pig_data/customers.txt' USING PigStorage(',')
+   as (id:int, name:chararray, age:int, address:chararray, salary:int); 
+</pre>
+<h3>Syntax</h3>
+<p>Given below is the syntax of performing <b>self-join</b> operation using the <b>JOIN</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Relation3_name = JOIN Relation1_name BY key, Relation2_name BY key ;
+</pre>
+<h3>Example</h3>
+<p>Let us perform <b>self-join</b> operation on the relation <b>customers</b>, by joining the two relations <b>customers1</b> and <b>customers2</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; customers3 = JOIN customers1 BY id, customers2 BY id;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>customers3</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump customers3;
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation <b>customers</b>.</p>
+<pre class="result notranslate">
+(1,Ramesh,32,Ahmedabad,2000,1,Ramesh,32,Ahmedabad,2000)
+(2,Khilan,25,Delhi,1500,2,Khilan,25,Delhi,1500)
+(3,kaushik,23,Kota,2000,3,kaushik,23,Kota,2000)
+(4,Chaitali,25,Mumbai,6500,4,Chaitali,25,Mumbai,6500)
+(5,Hardik,27,Bhopal,8500,5,Hardik,27,Bhopal,8500)
+(6,Komal,22,MP,4500,6,Komal,22,MP,4500)
+(7,Muffy,24,Indore,10000,7,Muffy,24,Indore,10000)
+</pre>
+<h2>Inner Join</h2>
+<p><b>Inner Join</b> is used quite frequently; it is also referred to as <b>equijoin</b>. An inner join returns rows when there is a match in both tables.</p>
+<p>It creates a new relation by combining column values of two relations (say A and B) based upon the join-predicate. The query compares each row of A with each row of B to find all pairs of rows which satisfy the join-predicate. When the join-predicate is satisfied, the column values for each matched pair of rows of A and B are combined into a result row.</p>
+<h3>Syntax</h3>
+<p>Here is the syntax of performing <b>inner join</b> operation using the <b>JOIN</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; result = JOIN relation1 BY columnname, relation2 BY columnname;
+</pre>
+<h3>Example</h3>
+<p>Let us perform <b>inner join</b> operation on the two relations <b>customers</b> and <b>orders</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; coustomer_orders = JOIN customers BY id, orders BY customer_id;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>coustomer_orders</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump coustomer_orders;
+</pre>
+<h3>Output</h3>
+<p>You will get the following output that will the contents of the relation named <b>coustomer_orders</b>.</p>
+<pre class="result notranslate">
+(2,Khilan,25,Delhi,1500,101,2009-11-20 00:00:00,2,1560)
+(3,kaushik,23,Kota,2000,100,2009-10-08 00:00:00,3,1500)
+(3,kaushik,23,Kota,2000,102,2009-10-08 00:00:00,3,3000)
+(4,Chaitali,25,Mumbai,6500,103,2008-05-20 00:00:00,4,2060)
+</pre>
+<p><b>Note</b> &minus;</p>
+<p><i>Outer Join</i>: Unlike inner join, <b>outer join</b> returns all the rows from at least one of the relations. An outer join operation is carried out in three ways &minus;</p>
+<ul class="list">
+<li>Left outer join</li>
+<li>Right outer join</li>
+<li>Full outer join</li>
+</ul>
+<h2>Left Outer Join</h2>
+<p>The <b>left outer Join</b> operation returns all rows from the left table, even if there are no matches in the right relation.</p>
+<h3>Syntax</h3>
+<p>Given below is the syntax of performing <b>left outer join</b> operation using the <b>JOIN</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Relation3_name = JOIN Relation1_name BY id LEFT OUTER, Relation2_name BY customer_id;
+</pre>
+<h3>Example</h3>
+<p>Let us perform left outer join operation on the two relations customers and orders as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; outer_left = JOIN customers BY id LEFT OUTER, orders BY customer_id;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>outer_left</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump outer_left;
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation <b>outer_left</b>.</p>
+<pre class="result notranslate">
+(1,Ramesh,32,Ahmedabad,2000,,,,)
+(2,Khilan,25,Delhi,1500,101,2009-11-20 00:00:00,2,1560)
+(3,kaushik,23,Kota,2000,100,2009-10-08 00:00:00,3,1500)
+(3,kaushik,23,Kota,2000,102,2009-10-08 00:00:00,3,3000)
+(4,Chaitali,25,Mumbai,6500,103,2008-05-20 00:00:00,4,2060)
+(5,Hardik,27,Bhopal,8500,,,,)
+(6,Komal,22,MP,4500,,,,)
+(7,Muffy,24,Indore,10000,,,,) 
+</pre>
+<h2>Right Outer Join</h2>
+<p>The <b>right outer join</b> operation returns all rows from the right table, even if there are no matches in the left table.</p>
+<h3>Syntax</h3>
+<p>Given below is the syntax of performing <b>right outer join</b> operation using the <b>JOIN</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; outer_right = JOIN customers BY id RIGHT, orders BY customer_id;
+</pre>
+<h3>Example</h3>
+<p>Let us perform <b>right outer join</b> operation on the two relations <b>customers</b> and <b>orders</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; outer_right = JOIN customers BY id RIGHT, orders BY customer_id;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>outer_right</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump outer_right
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation <b>outer_right</b>.</p>
+<pre class="result notranslate">
+(2,Khilan,25,Delhi,1500,101,2009-11-20 00:00:00,2,1560)
+(3,kaushik,23,Kota,2000,100,2009-10-08 00:00:00,3,1500)
+(3,kaushik,23,Kota,2000,102,2009-10-08 00:00:00,3,3000)
+(4,Chaitali,25,Mumbai,6500,103,2008-05-20 00:00:00,4,2060)
+</pre>
+<h2>Full Outer Join</h2>
+<p>The <b>full outer join</b> operation returns rows when there is a match in one of the relations.</p>
+<h3>Syntax</h3>
+<p>Given below is the syntax of performing <b>full outer join</b> using the <b>JOIN</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; outer_full = JOIN customers BY id FULL OUTER, orders BY customer_id;
+</pre>
+<h3>Example</h3>
+<p>Let us perform <b>full outer join</b> operation on the two relations <b>customers</b> and <b>orders</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; outer_full = JOIN customers BY id FULL OUTER, orders BY customer_id;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>outer_full</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grun&gt; Dump outer_full; 
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation <b>outer_full</b>.</p>
+<pre class="result notranslate">
+(1,Ramesh,32,Ahmedabad,2000,,,,)
+(2,Khilan,25,Delhi,1500,101,2009-11-20 00:00:00,2,1560)
+(3,kaushik,23,Kota,2000,100,2009-10-08 00:00:00,3,1500)
+(3,kaushik,23,Kota,2000,102,2009-10-08 00:00:00,3,3000)
+(4,Chaitali,25,Mumbai,6500,103,2008-05-20 00:00:00,4,2060)
+(5,Hardik,27,Bhopal,8500,,,,)
+(6,Komal,22,MP,4500,,,,)
+(7,Muffy,24,Indore,10000,,,,)
+</pre>
+<h2>Using Multiple Keys</h2>
+<p>We can perform JOIN operation using multiple keys.</p>
+<h3>Syntax</h3>
+<p>Here is how you can perform a JOIN operation on two tables using multiple keys.</p>
+<pre class="result notranslate">
+grunt&gt; Relation3_name = JOIN Relation2_name BY (key1, key2), Relation3_name BY (key1, key2);
+</pre>
+<p>Assume that we have two files namely <b>employee.txt</b> and <b>employee_contact.txt</b> in the <b>/pig_data/</b> directory of HDFS as shown below.</p>
+<p><b>employee.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,21,programmer,003
+002,siddarth,Battacharya,22,programmer,003
+003,Rajesh,Khanna,22,programmer,003
+004,Preethi,Agarwal,21,programmer,003
+005,Trupthi,Mohanthy,23,programmer,003
+006,Archana,Mishra,23,programmer,003
+007,Komal,Nayak,24,teamlead,002
+008,Bharathi,Nambiayar,24,manager,001
+</pre>
+<p><b>employee_contact.txt</b></p>
+<pre class="result notranslate">
+001,9848022337,Rajiv@gmail.com,Hyderabad,003
+002,9848022338,siddarth@gmail.com,Kolkata,003
+003,9848022339,Rajesh@gmail.com,Delhi,003
+004,9848022330,Preethi@gmail.com,Pune,003
+005,9848022336,Trupthi@gmail.com,Bhuwaneshwar,003
+006,9848022335,Archana@gmail.com,Chennai,003
+007,9848022334,Komal@gmail.com,trivendram,002
+008,9848022333,Bharathi@gmail.com,Chennai,001
+</pre>
+<p>And we have loaded these two files into Pig with relations <b>employee</b> and <b>employee_contact</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; employee = LOAD 'hdfs://localhost:9000/pig_data/employee.txt' USING PigStorage(',')
+   as (id:int, firstname:chararray, lastname:chararray, age:int, designation:chararray, jobid:int);
+  
+grunt&gt; employee_contact = LOAD 'hdfs://localhost:9000/pig_data/employee_contact.txt' USING PigStorage(',') 
+   as (id:int, phone:chararray, email:chararray, city:chararray, jobid:int);
+</pre>
+<p>Now, let us join the contents of these two relations using the <b>JOIN</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; emp = JOIN employee BY (id,jobid), employee_contact BY (id,jobid);
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>emp</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump emp; 
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation named <b>emp</b> as shown below.</p>
+<pre class="result notranslate">
+(1,Rajiv,Reddy,21,programmer,113,1,9848022337,Rajiv@gmail.com,Hyderabad,113)
+(2,siddarth,Battacharya,22,programmer,113,2,9848022338,siddarth@gmail.com,Kolka ta,113)  
+(3,Rajesh,Khanna,22,programmer,113,3,9848022339,Rajesh@gmail.com,Delhi,113)  
+(4,Preethi,Agarwal,21,programmer,113,4,9848022330,Preethi@gmail.com,Pune,113)  
+(5,Trupthi,Mohanthy,23,programmer,113,5,9848022336,Trupthi@gmail.com,Bhuwaneshw ar,113)  
+(6,Archana,Mishra,23,programmer,113,6,9848022335,Archana@gmail.com,Chennai,113)  
+(7,Komal,Nayak,24,teamlead,112,7,9848022334,Komal@gmail.com,trivendram,112)  
+(8,Bharathi,Nambiayar,24,manager,111,8,9848022333,Bharathi@gmail.com,Chennai,111)
+</pre>
+<h1>Apache Pig - Cross Operator</h1>
+<p>The <b>CROSS</b> operator computes the cross-product of two or more relations. This chapter explains with example how to use the cross operator in Pig Latin.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the <b>CROSS</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Relation3_name = CROSS Relation1_name, Relation2_name;
+</pre>
+<h2>Example</h2>
+<p>Assume that we have two files namely <b>customers.txt</b> and <b>orders.txt</b> in the <b>/pig_data/</b> directory of HDFS as shown below.</p>
+<p><b>customers.txt</b></p>
+<pre class="result notranslate">
+1,Ramesh,32,Ahmedabad,2000.00
+2,Khilan,25,Delhi,1500.00
+3,kaushik,23,Kota,2000.00
+4,Chaitali,25,Mumbai,6500.00
+5,Hardik,27,Bhopal,8500.00
+6,Komal,22,MP,4500.00
+7,Muffy,24,Indore,10000.00
+</pre>
+<p><b>orders.txt</b></p>
+<pre class="result notranslate">
+102,2009-10-08 00:00:00,3,3000
+100,2009-10-08 00:00:00,3,1500
+101,2009-11-20 00:00:00,2,1560
+103,2008-05-20 00:00:00,4,2060
+</pre>
+<p>And we have loaded these two files into Pig with the relations <b>customers</b> and <b>orders</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; customers = LOAD 'hdfs://localhost:9000/pig_data/customers.txt' USING PigStorage(',')
+   as (id:int, name:chararray, age:int, address:chararray, salary:int);
+  
+grunt&gt; orders = LOAD 'hdfs://localhost:9000/pig_data/orders.txt' USING PigStorage(',')
+   as (oid:int, date:chararray, customer_id:int, amount:int);
+</pre>
+<p>Let us now get the cross-product of these two relations using the <b>cross</b> operator on these two relations as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; cross_data = CROSS customers, orders;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>cross_data</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump cross_data;
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation <b>cross_data</b>.</p>
+<pre class="result notranslate">
+(7,Muffy,24,Indore,10000,103,2008-05-20 00:00:00,4,2060) 
+(7,Muffy,24,Indore,10000,101,2009-11-20 00:00:00,2,1560) 
+(7,Muffy,24,Indore,10000,100,2009-10-08 00:00:00,3,1500) 
+(7,Muffy,24,Indore,10000,102,2009-10-08 00:00:00,3,3000) 
+(6,Komal,22,MP,4500,103,2008-05-20 00:00:00,4,2060) 
+(6,Komal,22,MP,4500,101,2009-11-20 00:00:00,2,1560) 
+(6,Komal,22,MP,4500,100,2009-10-08 00:00:00,3,1500) 
+(6,Komal,22,MP,4500,102,2009-10-08 00:00:00,3,3000) 
+(5,Hardik,27,Bhopal,8500,103,2008-05-20 00:00:00,4,2060) 
+(5,Hardik,27,Bhopal,8500,101,2009-11-20 00:00:00,2,1560) 
+(5,Hardik,27,Bhopal,8500,100,2009-10-08 00:00:00,3,1500) 
+(5,Hardik,27,Bhopal,8500,102,2009-10-08 00:00:00,3,3000) 
+(4,Chaitali,25,Mumbai,6500,103,2008-05-20 00:00:00,4,2060) 
+(4,Chaitali,25,Mumbai,6500,101,2009-20 00:00:00,4,2060) 
+(2,Khilan,25,Delhi,1500,101,2009-11-20 00:00:00,2,1560) 
+(2,Khilan,25,Delhi,1500,100,2009-10-08 00:00:00,3,1500) 
+(2,Khilan,25,Delhi,1500,102,2009-10-08 00:00:00,3,3000) 
+(1,Ramesh,32,Ahmedabad,2000,103,2008-05-20 00:00:00,4,2060) 
+(1,Ramesh,32,Ahmedabad,2000,101,2009-11-20 00:00:00,2,1560) 
+(1,Ramesh,32,Ahmedabad,2000,100,2009-10-08 00:00:00,3,1500) 
+(1,Ramesh,32,Ahmedabad,2000,102,2009-10-08 00:00:00,3,3000)-11-20 00:00:00,2,1560) 
+(4,Chaitali,25,Mumbai,6500,100,2009-10-08 00:00:00,3,1500) 
+(4,Chaitali,25,Mumbai,6500,102,2009-10-08 00:00:00,3,3000) 
+(3,kaushik,23,Kota,2000,103,2008-05-20 00:00:00,4,2060) 
+(3,kaushik,23,Kota,2000,101,2009-11-20 00:00:00,2,1560) 
+(3,kaushik,23,Kota,2000,100,2009-10-08 00:00:00,3,1500) 
+(3,kaushik,23,Kota,2000,102,2009-10-08 00:00:00,3,3000) 
+(2,Khilan,25,Delhi,1500,103,2008-05-20 00:00:00,4,2060) 
+(2,Khilan,25,Delhi,1500,101,2009-11-20 00:00:00,2,1560) 
+(2,Khilan,25,Delhi,1500,100,2009-10-08 00:00:00,3,1500)
+(2,Khilan,25,Delhi,1500,102,2009-10-08 00:00:00,3,3000) 
+(1,Ramesh,32,Ahmedabad,2000,103,2008-05-20 00:00:00,4,2060) 
+(1,Ramesh,32,Ahmedabad,2000,101,2009-11-20 00:00:00,2,1560) 
+(1,Ramesh,32,Ahmedabad,2000,100,2009-10-08 00:00:00,3,1500) 
+(1,Ramesh,32,Ahmedabad,2000,102,2009-10-08 00:00:00,3,3000)  
+</pre>
+<h1>Apache Pig - Union Operator</h1>
+<p>The <b>UNION</b> operator of Pig Latin is used to merge the content of two relations. To perform UNION operation on two relations, their columns and domains must be identical.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the <b>UNION</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Relation_name3 = UNION Relation_name1, Relation_name2;
+</pre>
+<h2>Example</h2>
+<p>Assume that we have two files namely <b>student_data1.txt</b> and <b>student_data2.txt</b> in the <b>/pig_data/</b> directory of HDFS as shown below.</p>
+<p><b>Student_data1.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai.
+</pre>
+<p><b>Student_data2.txt</b></p>
+<pre class="result notranslate">
+7,Komal,Nayak,9848022334,trivendram.
+8,Bharathi,Nambiayar,9848022333,Chennai.
+</pre>
+<p>And we have loaded these two files into Pig with the relations <b>student1</b> and <b>student2</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student1 = LOAD 'hdfs://localhost:9000/pig_data/student_data1.txt' USING PigStorage(',') 
+   as (id:int, firstname:chararray, lastname:chararray, phone:chararray, city:chararray); 
+ 
+grunt&gt; student2 = LOAD 'hdfs://localhost:9000/pig_data/student_data2.txt' USING PigStorage(',') 
+   as (id:int, firstname:chararray, lastname:chararray, phone:chararray, city:chararray);
+</pre>
+<p>Let us now merge the contents of these two relations using the <b>UNION</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student = UNION student1, student2;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>student</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump student; 
+</pre>
+<h3>Output</h3>
+<p>It will display the following output, displaying the contents of the relation <b>student</b>.</p>
+<pre class="result notranslate">
+(1,Rajiv,Reddy,9848022337,Hyderabad) (2,siddarth,Battacharya,9848022338,Kolkata)
+(3,Rajesh,Khanna,9848022339,Delhi)
+(4,Preethi,Agarwal,9848022330,Pune) 
+(5,Trupthi,Mohanthy,9848022336,Bhuwaneshwar)
+(6,Archana,Mishra,9848022335,Chennai) 
+(7,Komal,Nayak,9848022334,trivendram) 
+(8,Bharathi,Nambiayar,9848022333,Chennai)
+</pre>
+<h1>Apache Pig - Split Operator</h1>
+<p>The <b>SPLIT</b> operator is used to split a relation into two or more relations.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the <b>SPLIT</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; SPLIT Relation1_name INTO Relation2_name IF (condition1), Relation2_name (condition2),
+</pre>
+<h2>Example</h2>
+<p>Assume that we have a file named <b>student_details.txt</b> in the HDFS directory <b>/pig_data/</b> as shown below.</p>
+<p><b>student_details.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,21,9848022337,Hyderabad
+002,siddarth,Battacharya,22,9848022338,Kolkata
+003,Rajesh,Khanna,22,9848022339,Delhi 
+004,Preethi,Agarwal,21,9848022330,Pune 
+005,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar 
+006,Archana,Mishra,23,9848022335,Chennai 
+007,Komal,Nayak,24,9848022334,trivendram 
+008,Bharathi,Nambiayar,24,9848022333,Chennai
+</pre>
+<p>And we have loaded this file into Pig with the relation name <b>student_details</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+student_details = LOAD 'hdfs://localhost:9000/pig_data/student_details.txt' USING PigStorage(',')
+   as (id:int, firstname:chararray, lastname:chararray, age:int, phone:chararray, city:chararray); 
+</pre>
+<p>Let us now split the relation into two, one listing the employees of age less than 23, and the other listing the employees having the age between 22 and 25.</p>
+<pre class="prettyprint notranslate">
+SPLIT student_details into student_details1 if age&lt;23, student_details2 if (22&lt;age and age&gt;25);
+</pre>
+<h3>Verification</h3>
+<p>Verify the relations <b>student_details1</b> and <b>student_details2</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump student_details1;  
+
+grunt&gt; Dump student_details2; 
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relations <b>student_details1</b> and <b>student_details2</b> respectively.</p>
+<pre class="result notranslate">
+<b>grunt&gt; Dump student_details1;</b> 
+(1,Rajiv,Reddy,21,9848022337,Hyderabad) 
+(2,siddarth,Battacharya,22,9848022338,Kolkata)
+(3,Rajesh,Khanna,22,9848022339,Delhi) 
+(4,Preethi,Agarwal,21,9848022330,Pune)
+  
+<b>grunt&gt; Dump student_details2;</b> 
+(5,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar) 
+(6,Archana,Mishra,23,9848022335,Chennai) 
+(7,Komal,Nayak,24,9848022334,trivendram) 
+(8,Bharathi,Nambiayar,24,9848022333,Chennai)
+</pre>
+<h1>Apache Pig - Filter Operator</h1>
+<p>The <b>FILTER</b> operator is used to select the required tuples from a relation based on a condition.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the <b>FILTER</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Relation2_name = FILTER Relation1_name BY (condition);
+</pre>
+<h2>Example</h2>
+<p>Assume that we have a file named <b>student_details.txt</b> in the HDFS directory <b>/pig_data/</b> as shown below.</p>
+<p><b>student_details.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,21,9848022337,Hyderabad
+002,siddarth,Battacharya,22,9848022338,Kolkata
+003,Rajesh,Khanna,22,9848022339,Delhi 
+004,Preethi,Agarwal,21,9848022330,Pune 
+005,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar 
+006,Archana,Mishra,23,9848022335,Chennai 
+007,Komal,Nayak,24,9848022334,trivendram 
+008,Bharathi,Nambiayar,24,9848022333,Chennai
+</pre>
+<p>And we have loaded this file into Pig with the relation name <b>student_details</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student_details = LOAD 'hdfs://localhost:9000/pig_data/student_details.txt' USING PigStorage(',')
+   as (id:int, firstname:chararray, lastname:chararray, age:int, phone:chararray, city:chararray);
+</pre>
+<p>Let us now use the Filter operator to get the details of the students who belong to the city Chennai.</p>
+<pre class="prettyprint notranslate">
+filter_data = FILTER student_details BY city == 'Chennai';
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>filter_data</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump filter_data;
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation <b>filter_data</b> as follows.</p>
+<pre class="result notranslate">
+(6,Archana,Mishra,23,9848022335,Chennai)
+(8,Bharathi,Nambiayar,24,9848022333,Chennai)
+</pre>
+<h1>Apache Pig - Distinct Operator</h1>
+<p>The <b>DISTINCT</b> operator is used to remove redundant (duplicate) tuples from a relation.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the <b>DISTINCT</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Relation_name2 = DISTINCT Relatin_name1;
+</pre>
+<h2>Example</h2>
+<p>Assume that we have a file named <b>student_details.txt</b> in the HDFS directory <b>/pig_data/</b> as shown below.</p>
+<p><b>student_details.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata 
+002,siddarth,Battacharya,9848022338,Kolkata 
+003,Rajesh,Khanna,9848022339,Delhi 
+003,Rajesh,Khanna,9848022339,Delhi 
+004,Preethi,Agarwal,9848022330,Pune 
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai 
+006,Archana,Mishra,9848022335,Chennai
+</pre>
+<p>And we have loaded this file into Pig with the relation name <b>student_details</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student_details = LOAD 'hdfs://localhost:9000/pig_data/student_details.txt' USING PigStorage(',') 
+   as (id:int, firstname:chararray, lastname:chararray, phone:chararray, city:chararray);
+</pre>
+<p>Let us now remove the redundant (duplicate) tuples from the relation named <b>student_details</b> using the <b>DISTINCT</b> operator, and store it as another relation named <b>distinct_data</b> as shown below.</p>
+<pre class="result notranslate">
+grunt&gt; distinct_data = DISTINCT student_details;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>distinct_data</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump distinct_data;
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation <b>distinct_data</b> as follows.</p>
+<pre class="result notranslate">
+(1,Rajiv,Reddy,9848022337,Hyderabad)
+(2,siddarth,Battacharya,9848022338,Kolkata) 
+(3,Rajesh,Khanna,9848022339,Delhi) 
+(4,Preethi,Agarwal,9848022330,Pune) 
+(5,Trupthi,Mohanthy,9848022336,Bhuwaneshwar)
+(6,Archana,Mishra,9848022335,Chennai)
+</pre>
+<h1>Apache Pig - Foreach Operator</h1>
+<p>The <b>FOREACH</b> operator is used to generate specified data transformations based on the column data.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of <b>FOREACH</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Relation_name2 = FOREACH Relatin_name1 GENERATE (required data);
+</pre>
+<h2>Example</h2>
+<p>Assume that we have a file named <b>student_details.txt</b> in the HDFS directory <b>/pig_data/</b> as shown below.</p>
+<p><b>student_details.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,21,9848022337,Hyderabad
+002,siddarth,Battacharya,22,9848022338,Kolkata
+003,Rajesh,Khanna,22,9848022339,Delhi 
+004,Preethi,Agarwal,21,9848022330,Pune 
+005,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar 
+006,Archana,Mishra,23,9848022335,Chennai 
+007,Komal,Nayak,24,9848022334,trivendram 
+008,Bharathi,Nambiayar,24,9848022333,Chennai
+</pre>
+<p>And we have loaded this file into Pig with the relation name <b>student_details</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student_details = LOAD 'hdfs://localhost:9000/pig_data/student_details.txt' USING PigStorage(',')
+   as (id:int, firstname:chararray, lastname:chararray,age:int, phone:chararray, city:chararray);
+</pre>
+<p>Let us now get the id, age, and city values of each student from the relation <b>student_details</b> and store it into another relation named <b>foreach_data</b> using the <b>foreach</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; foreach_data = FOREACH student_details GENERATE id,age,city;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>foreach_data</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump foreach_data;
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation <b>foreach_data</b>.</p>
+<pre class="result notranslate">
+(1,21,Hyderabad)
+(2,22,Kolkata)
+(3,22,Delhi)
+(4,21,Pune) 
+(5,23,Bhuwaneshwar)
+(6,23,Chennai) 
+(7,24,trivendram)
+(8,24,Chennai) 
+</pre>
+<h1>Apache Pig - Order By</h1>
+<p>The <b>ORDER BY</b> operator is used to display the contents of a relation in a sorted order based on one or more fields.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the <b>ORDER BY</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Relation_name2 = ORDER Relatin_name1 BY (ASC|DESC);
+</pre>
+<h2>Example</h2>
+<p>Assume that we have a file named <b>student_details.txt</b> in the HDFS directory <b>/pig_data/</b> as shown below.</p>
+<p><b>student_details.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,21,9848022337,Hyderabad
+002,siddarth,Battacharya,22,9848022338,Kolkata
+003,Rajesh,Khanna,22,9848022339,Delhi 
+004,Preethi,Agarwal,21,9848022330,Pune 
+005,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar 
+006,Archana,Mishra,23,9848022335,Chennai 
+007,Komal,Nayak,24,9848022334,trivendram 
+008,Bharathi,Nambiayar,24,9848022333,Chennai
+</pre>
+<p>And we have loaded this file into Pig with the relation name <b>student_details</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student_details = LOAD 'hdfs://localhost:9000/pig_data/student_details.txt' USING PigStorage(',')
+   as (id:int, firstname:chararray, lastname:chararray,age:int, phone:chararray, city:chararray);
+</pre>
+<p>Let us now sort the relation in a descending order based on the age of the student and store it into another relation named <b>order_by_data</b> using the <b>ORDER BY</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; order_by_data = ORDER student_details BY age DESC;
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>order_by_data</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump order_by_data; 
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation <b>order_by_data</b>.</p>
+<pre class="result notranslate">
+(8,Bharathi,Nambiayar,24,9848022333,Chennai)
+(7,Komal,Nayak,24,9848022334,trivendram)
+(6,Archana,Mishra,23,9848022335,Chennai) 
+(5,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar)
+(3,Rajesh,Khanna,22,9848022339,Delhi) 
+(2,siddarth,Battacharya,22,9848022338,Kolkata)
+(4,Preethi,Agarwal,21,9848022330,Pune) 
+(1,Rajiv,Reddy,21,9848022337,Hyderabad)
+</pre>
+<h1>Apache Pig - Limit Operator</h1>
+<p>The <b>LIMIT</b> operator is used to get a limited number of tuples from a relation.</p>
+<h2>Syntax</h2>
+<p>Given below is the syntax of the <b>LIMIT</b> operator.</p>
+<pre class="result notranslate">
+grunt&gt; Result = LIMIT Relation_name required number of tuples;
+</pre>
+<h2>Example</h2>
+<p>Assume that we have a file named <b>student_details.txt</b> in the HDFS directory <b>/pig_data/</b> as shown below.</p>
+<p><b>student_details.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,21,9848022337,Hyderabad
+002,siddarth,Battacharya,22,9848022338,Kolkata
+003,Rajesh,Khanna,22,9848022339,Delhi 
+004,Preethi,Agarwal,21,9848022330,Pune 
+005,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar 
+006,Archana,Mishra,23,9848022335,Chennai 
+007,Komal,Nayak,24,9848022334,trivendram 
+008,Bharathi,Nambiayar,24,9848022333,Chennai
+</pre>
+<p>And we have loaded this file into Pig with the relation name <b>student_details</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student_details = LOAD 'hdfs://localhost:9000/pig_data/student_details.txt' USING PigStorage(',')
+   as (id:int, firstname:chararray, lastname:chararray,age:int, phone:chararray, city:chararray);
+</pre>
+<p>Now, let’s sort the relation in descending order based on the age of the student and store it into another relation named <b>limit_data</b> using the <b>ORDER BY</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; limit_data = LIMIT student_details 4; 
+</pre>
+<h3>Verification</h3>
+<p>Verify the relation <b>limit_data</b> using the <b>DUMP</b> operator as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Dump limit_data; 
+</pre>
+<h3>Output</h3>
+<p>It will produce the following output, displaying the contents of the relation <b>limit_data</b> as follows.</p>
+<pre class="result notranslate">
+(1,Rajiv,Reddy,21,9848022337,Hyderabad) 
+(2,siddarth,Battacharya,22,9848022338,Kolkata) 
+(3,Rajesh,Khanna,22,9848022339,Delhi) 
+(4,Preethi,Agarwal,21,9848022330,Pune) 
+</pre>
+<h1>Apache Pig - Eval Functions</h1>
+<p>Apache Pig provides various built-in functions namely <b>eval, load, store, math, string, bag</b> and <b>tuple</b> functions.</p>
+<h2>Eval Functions</h2>
+<p>Given below is the list of <b>eval</b> functions provided by Apache Pig.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:10%;">S.N.</th>
+<th style="text-align:center;">Function &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><a href="/apache_pig/apache_pig_avg.htm">AVG()</a>
+<p>To compute the average of the numerical values within a bag.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="/apache_pig/apache_pig_bagtostring.htm">BagToString()</a>
+<p>To concatenate the elements of a bag into a string. While concatenating, we can place a delimiter between these values (optional).</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="/apache_pig/apache_pig_concat.htm">CONCAT()</a>
+<p>To concatenate two or more expressions of same type.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="/apache_pig/apache_pig_count.htm">COUNT()</a>
+<p>To get the number of elements in a bag, while counting the number of tuples in a bag.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="/apache_pig/apache_pig_count_star.htm">COUNT_STAR()</a>
+<p>It is similar to the <b>COUNT()</b> function. It is used to get the number of elements in a bag.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="/apache_pig/apache_pig_diff.htm">DIFF()</a>
+<p>To compare two bags (fields) in a tuple.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="/apache_pig/apache_pig_isempty.htm">IsEmpty()</a>
+<p>To check if a bag or map is empty.</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="/apache_pig/apache_pig_max.htm">MAX()</a>
+<p>To calculate the highest value for a column (numeric values or chararrays) in a single-column bag.</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="/apache_pig/apache_pig_min.htm">MIN()</a>
+<p>To get the minimum (lowest) value (numeric or chararray) for a certain column in a single-column bag.</p></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="/apache_pig/apache_pig_plucktuple.htm">PluckTuple()</a>
+<p>Using the Pig Latin <b>PluckTuple()</b> function, we can define a string Prefix and filter the columns in a relation that begin with the given prefix.</p></td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="/apache_pig/apache_pig_size.htm">SIZE()</a>
+<p>To compute the number of elements based on any Pig data type.</p></td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="/apache_pig/apache_pig_subtract.htm">SUBTRACT()</a>
+<p>To subtract two bags. It takes two bags as inputs and returns a bag which contains the tuples of the first bag that are not in the second bag.</p></td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="/apache_pig/apache_pig_sum.htm">SUM()</a>
+<p>To get the total of the numeric values of a column in a single-column bag.</p></td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="/apache_pig/apache_pig_tokenize.htm">TOKENIZE()</a>
+<p>To split a string (which contains a group of words) in a single tuple and return a bag which contains the output of the split operation.</p></td>
+</tr>
+</table>
+<h1>Apache Pig - Load &amp; Store Functions</h1>
+<p>The <b>Load</b> and <b>Store</b> functions in Apache Pig are used to determine how the data goes ad comes out of Pig. These functions are used with the load and store operators. Given below is the list of load and store functions available in Pig.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:10%;">S.N.</th>
+<th style="text-align:center;">Function &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><a href="/apache_pig/apache_pig_pigstore.htm">PigStorage()</a>
+<p>To load and store structured files.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="/apache_pig/apache_pig_textloader.htm">TextLoader()</a>
+<p>To load unstructured data into Pig.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="/apache_pig/apache_pig_binstorage.htm">BinStorage()</a>
+<p>To load and store data into Pig using machine readable format.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="/apache_pig/apache_pig_handling_compression.htm">Handling Compression</a>
+<p>In Pig Latin, we can load and store compressed data.</p></td>
+</tr>
+</table>
+<h1>Apache Pig - Bag &amp; Tuple Functions</h1>
+<p>Given below is the list of Bag and Tuple functions.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:10%;">S.N.</th>
+<th style="text-align:center;">Function &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><a href="/apache_pig/apache_pig_tobag.htm">TOBAG()</a>
+<p>To convert two or more expressions into a bag.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="/apache_pig/apache_pig_top.htm">TOP()</a>
+<p>To get the top <b>N</b> tuples of a relation.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="/apache_pig/apache_pig_totuple.htm">TOTUPLE()</a>
+<p>To convert one or more expressions into a tuple.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="/apache_pig/apache_pig_tomap.htm">TOMAP()</a>
+<p>To convert the key-value pairs into a Map.</p></td>
+</tr>
+</table>
+<h1>Apache Pig - String Functions</h1>
+<p>We have the following String functions in Apache Pig.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:10%;">S.N.</th>
+<th style="text-align:center;">Functions &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><a href="/apache_pig/apache_pig_endswith.htm">ENDSWITH(string, testAgainst)</a>
+<p>To verify whether a given string ends with a particular substring.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="/apache_pig/apache_pig_startswith.htm">STARTSWITH(string, substring)</a>
+<p>Accepts two string parameters and verifies whether the first string starts with the second.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="/apache_pig/apache_pig_substring.htm">SUBSTRING(string, startIndex, stopIndex)</a>
+<p>Returns a substring from a given string.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="/apache_pig/apache_pig_equalsignorecase.htm">EqualsIgnoreCase(string1, string2)</a>
+<p>To compare two stings ignoring the case.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="/apache_pig/apache_pig_indexof.htm">INDEXOF(string, ‘character’, startIndex)</a>
+<p>Returns the first occurrence of a character in a string, searching forward from a start index.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="/apache_pig/apache_pig_last_index_of.htm">LAST_INDEX_OF(expression)</a>
+<p>Returns the index of the last occurrence of a character in a string, searching backward from a start index.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="/apache_pig/apache_pig_lcfirst.htm">LCFIRST(expression)</a>
+<p>Converts the first character in a string to lower case.</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="/apache_pig/apache_pig_ucfirst.htm">UCFIRST(expression)</a>
+<p>Returns a string with the first character converted to upper case.</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="/apache_pig/apache_pig_upper.htm">UPPER(expression)</a>
+<p>UPPER(expression) Returns a string converted to upper case.</p></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="/apache_pig/apache_pig_lower.htm">LOWER(expression)</a>
+<p>Converts all characters in a string to lower case.</p></td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="/apache_pig/apache_pig_replace.htm">REPLACE(string, ‘oldChar’, ‘newChar’);</a>
+<p>To replace existing characters in a string with new characters.</p></td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="/apache_pig/apache_pig_strsplit.htm">STRSPLIT(string, regex, limit)</a>
+<p>To split a string around matches of a given regular expression.</p></td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="/apache_pig/apache_pig_strsplittobag.htm">STRSPLITTOBAG(string, regex, limit)</a>
+<p>Similar to the <b>STRSPLIT()</b> function, it splits the string by given delimiter and returns the result in a bag.</p></td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="/apache_pig/apache_pig_trim.htm">TRIM(expression)</a>
+<p>Returns a copy of a string with leading and trailing whitespaces removed.</p></td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="/apache_pig/apache_pig_ltrim.htm">LTRIM(expression)</a>
+<p>Returns a copy of a string with leading whitespaces removed.</p></td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="/apache_pig/apache_pig_rtrim.htm">RTRIM(expression)</a>
+<p>Returns a copy of a string with trailing whitespaces removed.</p></td>
+</tr>
+</table>
+<h1>Apache Pig - Date-time Functions</h1>
+<p>Apache Pig provides the following Date and Time functions &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>S.N.</th>
+<th style="text-align:center;">Functions &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><a href="/apache_pig/apache_pig_todate.htm">ToDate(milliseconds)</a>
+<p>This function returns a date-time object according to the given parameters. The other alternative for this function are ToDate(iosstring), ToDate(userstring, format), ToDate(userstring, format, timezone)</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="/apache_pig/apache_pig_currenttime.htm">CurrentTime()</a>
+<p>returns the date-time object of the current time.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="/apache_pig/apache_pig_getday.htm">GetDay(datetime)</a>
+<p>Returns the day of a month from the date-time object.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="/apache_pig/apache_pig_gethour.htm">GetHour(datetime)</a>
+<p>Returns the hour of a day from the date-time object.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="/apache_pig/apache_pig_getmillisecond.htm">GetMilliSecond(datetime)</a>
+<p>Returns the millisecond of a second from the date-time object.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="/apache_pig/apache_pig_getminute.htm">GetMinute(datetime)</a>
+<p>Returns the minute of an hour from the date-time object.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="/apache_pig/apache_pig_getmonth.htm">GetMonth(datetime)</a>
+<p>Returns the month of a year from the date-time object.</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="/apache_pig/apache_pig_getsecond.htm">GetSecond(datetime)</a>
+<p>Returns the second of a minute from the date-time object.</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="/apache_pig/apache_pig_getweek.htm">GetWeek(datetime)</a>
+<p>Returns the week of a year from the date-time object.</p></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="/apache_pig/apache_pig_getweekyear.htm">GetWeekYear(datetime)</a>
+<p>Returns the week year from the date-time object.</p></td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="/apache_pig/apache_pig_getyear.htm">GetYear(datetime)</a>
+<p>Returns the year from the date-time object.</p></td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="/apache_pig/apache_pig_addduration.htm">AddDuration(datetime, duration)</a>
+<p>Returns the result of a date-time object along with the duration object.</p></td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="/apache_pig/apache_pig_subtractduration.htm">SubtractDuration(datetime, duration)</a>
+<p>Subtracts the Duration object from the Date-Time object and returns the result.</p></td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="/apache_pig/apache_pig_daysbetween.htm">DaysBetween(datetime1, datetime2)</a>
+<p>Returns the number of days between the two date-time objects.</p></td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="/apache_pig/apache_pig_hoursbetween.htm">HoursBetween(datetime1, datetime2)</a>
+<p>Returns the number of hours between two date-time objects.</p></td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="/apache_pig/apache_pig_millisecondsbetween.htm">MilliSecondsBetween(datetime1, datetime2)</a>
+<p>Returns the number of milliseconds between two date-time objects.</p></td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="/apache_pig/apache_pig_minutesbetween.htm">MinutesBetween(datetime1, datetime2)</a>
+<p>Returns the number of minutes between two date-time objects.</p></td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="/apache_pig/apache_pig_monthsbetween.htm">MonthsBetween(datetime1, datetime2)</a>
+<p>Returns the number of months between two date-time objects.</p></td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="/apache_pig/apache_pig_secondsbetween.htm">SecondsBetween(datetime1, datetime2)</a>
+<p>Returns the number of seconds between two date-time objects.</p></td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="/apache_pig/apache_pig_weeksbetween.htm">WeeksBetween(datetime1, datetime2)</a>
+<p>Returns the number of weeks between two date-time objects.</p></td>
+</tr>
+<tr>
+<td>21</td>
+<td><a href="/apache_pig/apache_pig_yearsbetween.htm">YearsBetween(datetime1, datetime2)</a>
+<p>Returns the number of years between two date-time objects.</p></td>
+</tr>
+</table>
+<h1>Apache Pig - Math Functions</h1>
+<p>We have the following Math functions in Apache Pig &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>S.N.</th>
+<th style="text-align:center;">Functions &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><a href="/apache_pig/apache_pig_abs.htm">ABS(expression)</a>
+<p>To get the absolute value of an expression.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="/apache_pig/apache_pig_acos.htm">ACOS(expression)</a>
+<p>To get the arc cosine of an expression.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="/apache_pig/apache_pig_asin.htm">ASIN(expression)</a>
+<p>To get the arc sine of an expression.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="/apache_pig/apache_pig_atan.htm">ATAN(expression)</a>
+<p>This function is used to get the arc tangent of an expression.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="/apache_pig/apache_pig_cbrt.htm">CBRT(expression)</a>
+<p>This function is used to get the cube root of an expression.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="/apache_pig/apache_pig_ceil.htm">CEIL(expression)</a>
+<p>This function is used to get the value of an expression rounded up to the nearest integer.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="/apache_pig/apache_pig_cos.htm">COS(expression)</a>
+<p>This function is used to get the trigonometric cosine of an expression.</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="/apache_pig/apache_pig_cosh.htm">COSH(expression)</a>
+<p>This function is used to get the hyperbolic cosine of an expression.</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="/apache_pig/apache_pig_exp.htm">EXP(expression)</a>
+<p>This function is used to get the Euler’s number e raised to the power of x.</p></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="/apache_pig/apache_pig_floor.htm">FLOOR(expression)</a>
+<p>To get the value of an expression rounded down to the nearest integer.</p></td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="/apache_pig/apache_pig_log.htm">LOG(expression)</a>
+<p>To get the natural logarithm (base e) of an expression.</p></td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="/apache_pig/apache_pig_log10.htm">LOG10(expression)</a>
+<p>To get the base 10 logarithm of an expression.</p></td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="/apache_pig/apache_pig_random.htm">RANDOM( )</a>
+<p>To get a pseudo random number (type double) greater than or equal to 0.0 and less than 1.0.</p></td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="/apache_pig/apache_pig_round.htm">ROUND(expression)</a>
+<p>To get the value of an expression rounded to an integer (if the result type is float) or rounded to a long (if the result type is double).</p></td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="/apache_pig/apache_pig_sin.htm">SIN(expression)</a>
+<p>To get the sine of an expression.</p></td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="/apache_pig/apache_pig_sinh.htm">SINH(expression)</a>
+<p>To get the hyperbolic sine of an expression.</p></td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="/apache_pig/apache_pig_sqrt.htm">SQRT(expression)</a>
+<p>To get the positive square root of an expression.</p></td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="/apache_pig/apache_pig_tan.htm">TAN(expression)</a>
+<p>To get the trigonometric tangent of an angle.</p></td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="/apache_pig/apache_pig_tanh.htm">TANH(expression)</a>
+<p>To get the hyperbolic tangent of an expression.</p></td>
+</tr>
+</table>
+<h1>Apache Pig - User Defined Functions</h1>
+<p>In addition to the built-in functions, Apache Pig provides extensive support for <b>U</b>ser <b>D</b>efined <b>F</b>unctions (UDF’s). Using these UDF’s, we can define our own functions and use them. The UDF support is provided in six programming languages, namely, Java, Jython, Python, JavaScript, Ruby and Groovy.</p>
+<p>For writing UDF’s, complete support is provided in Java and limited support is provided in all the remaining languages. Using Java, you can write UDF’s involving all parts of the processing like data load/store, column transformation, and aggregation. Since Apache Pig has been written in Java, the UDF’s written using Java language work efficiently compared to other languages.</p>
+<p>In Apache Pig, we also have a Java repository for UDF’s named <b>Piggybank</b>. Using Piggybank, we can access Java UDF’s written by other users, and contribute our own UDF’s.</p>
+<h2>Types of UDF’s in Java</h2>
+<p>While writing UDF’s using Java, we can create and use the following three types of functions &minus;</p>
+<ul class="list">
+<li><p><b>Filter Functions</b> &minus; The filter functions are used as conditions in filter statements. These functions accept a Pig value as input and return a Boolean value.</p></li>
+<li><p><b>Eval Functions</b> &minus; The Eval functions are used in FOREACH-GENERATE statements. These functions accept a Pig value as input and return a Pig result.</p></li>
+<li><p><b>Algebraic Functions</b> &minus; The Algebraic functions act on inner bags in a FOREACHGENERATE statement. These functions are used to perform full MapReduce operations on an inner bag.</p></li>
+</ul>
+<h2>Writing UDF’s using Java</h2>
+<p>To write a UDF using Java, we have to integrate the jar file <b>Pig-0.15.0.jar</b>. In this section, we discuss how to write a sample UDF using Eclipse. Before proceeding further, make sure you have installed Eclipse and Maven in your system.</p>
+<p>Follow the steps given below to write a UDF function &minus;</p>
+<ul class="list">
+<li><p>Open Eclipse and create a new project (say <b>myproject</b>).</p></li>
+<li><p>Convert the newly created project into a Maven project.</p></li>
+<li><p>Copy the following content in the pom.xml. This file contains the Maven dependencies for Apache Pig and Hadoop-core jar files.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;project xmlns = "http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0http://maven.apache .org/xsd/maven-4.0.0.xsd"&gt; 
+	
+   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; 
+   &lt;groupId&gt;Pig_Udf&lt;/groupId&gt; 
+   &lt;artifactId&gt;Pig_Udf&lt;/artifactId&gt; 
+   &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+	
+   &lt;build&gt;    
+      &lt;sourceDirectory&gt;src&lt;/sourceDirectory&gt;    
+      &lt;plugins&gt;      
+         &lt;plugin&gt;        
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;        
+            &lt;version&gt;3.3&lt;/version&gt;        
+            &lt;configuration&gt;          
+               &lt;source&gt;1.7&lt;/source&gt;          
+               &lt;target&gt;1.7&lt;/target&gt;        
+            &lt;/configuration&gt;      
+         &lt;/plugin&gt;    
+      &lt;/plugins&gt;  
+   &lt;/build&gt;
+	
+   &lt;dependencies&gt; 
+	
+      &lt;dependency&gt;            
+         &lt;groupId&gt;org.apache.pig&lt;/groupId&gt;            
+         &lt;artifactId&gt;pig&lt;/artifactId&gt;            
+         &lt;version&gt;0.15.0&lt;/version&gt;     
+      &lt;/dependency&gt; 
+		
+      &lt;dependency&gt;        
+         &lt;groupId&gt;org.apache.hadoop&lt;/groupId&gt;            
+         &lt;artifactId&gt;hadoop-core&lt;/artifactId&gt;            
+         &lt;version&gt;0.20.2&lt;/version&gt;     
+      &lt;/dependency&gt; 
+      
+   &lt;/dependencies&gt;  
+	
+&lt;/project&gt;
+</pre>
+<ul class="list">
+<li><p>Save the file and refresh it. In the <b>Maven Dependencies</b> section, you can find the downloaded jar files.</p></li>
+<li><p>Create a new class file with name <b>Sample_Eval</b> and copy the following content in it.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+import java.io.IOException; 
+import org.apache.pig.EvalFunc; 
+import org.apache.pig.data.Tuple; 
+ 
+import java.io.IOException; 
+import org.apache.pig.EvalFunc; 
+import org.apache.pig.data.Tuple;
+
+public class Sample_Eval extends EvalFunc&lt;String&gt;{ 
+
+   public String exec(Tuple input) throws IOException {   
+      if (input == null || input.size() == 0)      
+      return null;      
+      String str = (String)input.get(0);      
+      return str.toUpperCase();  
+   } 
+}
+</pre>
+<p>While writing UDF’s, it is mandatory to inherit the EvalFunc class and provide implementation to <b>exec()</b> function. Within this function, the code required for the UDF is written. In the above example, we have return the code to convert the contents of the given column to uppercase.</p>
+<ul class="list">
+<li><p>After compiling the class without errors, right-click on the Sample_Eval.java file. It gives you a menu. Select <b>export</b> as shown in the following screenshot.</p></li>
+</ul>
+<img src="/apache_pig/images/select_export.jpg" alt="Select export" />
+<ul class="list">
+<li><p>On clicking <b>export</b>, you will get the following window. Click on <b>JAR file</b>.</p></li>
+</ul>
+<img src="/apache_pig/images/click_export.jpg" alt="Click on Export" />
+<ul class="list">
+<li><p>Proceed further by clicking <b>Next&gt;</b> button. You will get another window where you need to enter the path in the local file system, where you need to store the jar file.</p></li>
+</ul>
+<img src="/apache_pig/images/jar_export.jpg" alt="jar export" />
+<ul class="list">
+<li><p>Finally click the <b>Finish</b> button. In the specified folder, a Jar file <b>sample_udf.jar</b> is created. This jar file contains the UDF written in Java.</p></li>
+</ul>
+<h2>Using the UDF</h2>
+<p>After writing the UDF and generating the Jar file, follow the steps given below &minus;</p>
+<h3>Step 1: Registering the Jar file</h3> 
+<p>After writing UDF (in Java) we have to register the Jar file that contain the UDF using the Register operator. By registering the Jar file, users can intimate the location of the UDF to Apache Pig.</p>
+<p><b>Syntax</b></p>
+<p>Given below is the syntax of the Register operator.</p>
+<pre class="result notranslate">
+REGISTER path; 
+</pre>
+<p><b>Example</b></p>
+<p>As an example let us register the sample_udf.jar created earlier in this chapter.</p>
+<p>Start Apache Pig in local mode and register the jar file sample_udf.jar as shown below.</p>
+<pre class="result notranslate">
+$cd PIG_HOME/bin 
+$./pig –x local 
+
+REGISTER '/$PIG_HOME/sample_udf.jar'
+</pre>
+<p><b>Note</b> &minus; assume the Jar file in the path &minus; /$PIG_HOME/sample_udf.jar</p>
+<h3>Step 2: Defining Alias</h3>
+<p>After registering the UDF we can define an alias to it using the <b>Define</b> operator.</p>
+<p><b>Syntax</b></p>
+<p>Given below is the syntax of the Define operator.</p>
+<pre class="result notranslate">
+DEFINE alias {function | [`command` [input] [output] [ship] [cache] [stderr] ] }; 
+</pre>
+<p><b>Example</b></p>
+<p>Define the alias for sample_eval as shown below.</p>
+<pre class="result notranslate">
+DEFINE sample_eval sample_eval();
+</pre>
+<h3>Step 3: Using the UDF</h3>
+<p>After defining the alias you can use the UDF same as the built-in functions. Suppose there is a file named emp_data in the HDFS <b>/Pig_Data/</b> directory with the following content.</p>
+<pre class="result notranslate">
+001,Robin,22,newyork
+002,BOB,23,Kolkata
+003,Maya,23,Tokyo
+004,Sara,25,London 
+005,David,23,Bhuwaneshwar 
+006,Maggy,22,Chennai
+007,Robert,22,newyork
+008,Syam,23,Kolkata
+009,Mary,25,Tokyo
+010,Saran,25,London 
+011,Stacy,25,Bhuwaneshwar 
+012,Kelly,22,Chennai
+</pre>
+<p>And assume we have loaded this file into Pig as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; emp_data = LOAD 'hdfs://localhost:9000/pig_data/emp1.txt' USING PigStorage(',')
+   as (id:int, name:chararray, age:int, city:chararray);
+</pre>
+<p>Let us now convert the names of the employees in to upper case using the UDF <b>sample_eval</b>.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; Upper_case = FOREACH emp_data GENERATE sample_eval(name);
+</pre>
+<p>Verify the contents of the relation <b>Upper_case</b> as shown below.</p>
+<pre class="result notranslate">
+<b>grunt&gt; Dump Upper_case;</b>
+  
+(ROBIN)
+(BOB)
+(MAYA)
+(SARA)
+(DAVID)
+(MAGGY)
+(ROBERT)
+(SYAM)
+(MARY)
+(SARAN)
+(STACY)
+(KELLY)
+</pre>
+<h1>Apache Pig - Running Scripts</h1>
+<p>Here in this chapter, we will see how how to run Apache Pig scripts in batch mode.</p>
+<h2>Comments in Pig Script</h2>
+<p>While writing a script in a file, we can include comments in it as shown below.</p>
+<h3>Multi-line comments</h3>
+<p>We will begin the multi-line comments with '/*', end them with '*/'.</p>
+<pre class="result notranslate">
+/* These are the multi-line comments 
+  In the pig script */ 
+</pre>
+<h3>Single –line comments</h3>
+<p>We will begin the single-line comments with '--'.</p>
+<pre class="result notranslate">
+--we can write single line comments like this.
+</pre>
+<h2>Executing Pig Script in Batch mode</h2>
+<p>While executing Apache Pig statements in batch mode, follow the steps given below.</p>
+<h3>Step 1</h3>
+<p>Write all the required Pig Latin statements in a single file. We can write all the Pig Latin statements and commands in a single file and save it as <b>.pig</b> file.</p>
+<h3>Step 2</h3>
+<p>Execute the Apache Pig script. You can execute the Pig script from the shell (Linux) as shown below.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Local mode</th>
+<th style="text-align:center;">MapReduce mode</th>
+</tr>
+<tr>
+<td>$ pig -x local <b>Sample_script.pig</b></td>
+<td>$ pig -x mapreduce <b>Sample_script.pig</b></td>
+</tr>
+</table>
+<p>You can execute it from the Grunt shell as well using the exec command as shown below.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; exec /sample_script.pig
+</pre>
+<h3>Executing a Pig Script from HDFS</h3>
+<p>We can also execute a Pig script that resides in the HDFS. Suppose there is a Pig script with the name <b>Sample_script.pig</b> in the HDFS directory named <b>/pig_data/</b>. We can execute it as shown below.</p>
+<pre class="prettyprint notranslate">
+$ pig -x mapreduce hdfs://localhost:9000/pig_data/Sample_script.pig 
+</pre>
+<h3>Example</h3>
+<p>Assume we have a file <b>student_details.txt</b> in HDFS with the following content.</p>
+<p><b>student_details.txt</b></p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,21,9848022337,Hyderabad 
+002,siddarth,Battacharya,22,9848022338,Kolkata
+003,Rajesh,Khanna,22,9848022339,Delhi 
+004,Preethi,Agarwal,21,9848022330,Pune 
+005,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar 
+006,Archana,Mishra,23,9848022335,Chennai 
+007,Komal,Nayak,24,9848022334,trivendram 
+008,Bharathi,Nambiayar,24,9848022333,Chennai
+</pre>
+<p>We also have a sample script with the name <b>sample_script.pig</b>, in the same HDFS directory. This file contains statements performing operations and transformations on the <b>student</b> relation, as shown below.</p>
+<pre class="prettyprint notranslate">
+student = LOAD 'hdfs://localhost:9000/pig_data/student_details.txt' USING PigStorage(',')
+   as (id:int, firstname:chararray, lastname:chararray, phone:chararray, city:chararray);
+	
+student_order = ORDER student BY age DESC;
+  
+student_limit = LIMIT student_order 4;
+  
+Dump student_limit;
+</pre>
+<ul class="list">
+<li><p>The first statement of the script will load the data in the file named <b>student_details.txt</b> as a relation named <b>student</b>.</p></li>
+<li><p>The second statement of the script will arrange the tuples of the relation in descending order, based on age, and store it as <b>student_order</b>.</p></li>
+<li><p>The third statement of the script will store the first 4 tuples of <b>student_order</b> as <b>student_limit</b>.</p></li>
+<li><p>Finally the fourth statement will dump the content of the relation <b>student_limit</b>.</p></li>
+</ul>
+<p>Let us now execute the <b>sample_script.pig</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+$./pig -x mapreduce hdfs://localhost:9000/pig_data/sample_script.pig
+</pre>
+<p>Apache Pig gets executed and gives you the output with the following content.</p>
+<pre class="result notranslate">
+(7,Komal,Nayak,24,9848022334,trivendram)
+(8,Bharathi,Nambiayar,24,9848022333,Chennai) 
+(5,Trupthi,Mohanthy,23,9848022336,Bhuwaneshwar) 
+(6,Archana,Mishra,23,9848022335,Chennai)
+2015-10-19 10:31:27,446 [main] INFO  org.apache.pig.Main - Pig script completed in 12
+minutes, 32 seconds and 751 milliseconds (752751 ms)
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/apache_pig/apache_pig_running_scripts.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/apache_pig/apache_pig_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

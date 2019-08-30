@@ -1,0 +1,2757 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Espresso Testing Framework - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="Espresso Testing Framework - Quick Guide - In general, mobile automation testing is a difficult and challenging task. Android availability for different devices and platforms makes it things tedious for "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/espresso_testing/espresso_testing_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#4a372d;
+}
+a.demo {
+    background:#4a372d;
+}
+li.heading {
+    background:#4a372d;
+}
+.course-box{background:#4a372d}
+.home-intro-sub p{color:#4a372d}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/espresso_testing/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/espresso_testing/images/espresso-testing-framework-mini-logo.jpg" alt="Espresso Testing Framework Tutorial" />
+</div>
+<ul class="toc chapters" >
+<li class="heading">Espresso Testing Framework Tutorial</li>
+<li><a href="/espresso_testing/index.htm">Espresso Testing - Home</a></li>
+<li><a href="/espresso_testing/espresso_testing_introduction.htm">Introduction</a></li>
+<li><a href="/espresso_testing/espresso_testing_setup_instructions.htm">Setup Instructions</a></li>
+<li><a href="/espresso_testing/espresso_testing_running_tests_in_android_studio.htm">Running Tests In Android Studio</a></li>
+<li><a href="/espresso_testing/espresso_testing_overview_of_junit.htm">Overview of JUnit</a></li>
+<li><a href="/espresso_testing/espresso_testing_architecture.htm">Architecture</a></li>
+<li><a href="/espresso_testing/espresso_testing_view_matchers.htm">View Matchers</a></li>
+<li><a href="/espresso_testing/espresso_testing_custom_view_matchers.htm">Custom View Matchers</a></li>
+<li><a href="/espresso_testing/espresso_testing_view_assertions.htm">View Assertions</a></li>
+<li><a href="/espresso_testing/espresso_testing_view_actions.htm">View Actions</a></li>
+<li><a href="/espresso_testing/espresso_testing_adapterview.htm">Testing AdapterView</a></li>
+<li><a href="/espresso_testing/espresso_testing_webview.htm">Testing WebView</a></li>
+<li><a href="/espresso_testing/espresso_testing_asynchronous_operations.htm">Testing Asynchronous Operations</a></li>
+<li><a href="/espresso_testing/espresso_testing_intents.htm">Testing Intents</a></li>
+<li><a href="/espresso_testing/espresso_testing_ui_for_multiple_application.htm">Testing UI for Multiple Application</a></li>
+<li><a href="/espresso_testing/espresso_testing_test_recorder.htm">Test Recorder</a></li>
+<li><a href="/espresso_testing/espresso_testing_ui_performance.htm">Testing UI Performance</a></li>
+<li><a href="/espresso_testing/espresso_testing_accessibility.htm">Testing Accessibility</a></li>
+</ul>
+<ul class="toc chapters" >
+<li class="heading">Espresso Testing Resources</li>
+<li><a href="/espresso_testing/espresso_testing_quick_guide.htm">Espresso Testing - Quick Guide</a></li>
+<li><a href="/espresso_testing/espresso_testing_useful_resources.htm">Espresso Testing - Useful Resources</a></li>
+<li><a href="/espresso_testing/espresso_testing_discussion.htm">Espresso Testing - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Espresso Testing Framework - Quick Guide</h1>
+<hr/>
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/espresso_testing/espresso_testing_accessibility.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/espresso_testing/espresso_testing_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="mui-container-fluid button-borders">
+</div>
+<div class="clearer"></div>
+<h1>Espresso Testing Framework - Introduction</h1>
+<p>In general, mobile automation testing is a difficult and challenging task. Android availability for different devices and platforms makes it things tedious for mobile automation testing. To make it easier, Google took on the challenge and developed Espresso framework. It provides a very simple, consistent and flexible API to automate and test the user interfaces in an android application. Espresso tests can be written in both Java and Kotlin, a modern programming language to develop android application.</p>
+<p>The Espresso API is simple and easy to learn. You can easily perform Android UI tests without the complexity of multi-threaded testing. Google Drive, Maps and some other applications are currently using Espresso.</p>
+<h2>Features of Espresso</h2>
+<p>Some the salient features supported by Espresso are as follow,</p>
+<ul class="list">
+<li><p>Very simple API and so, easy to learn.</p></li>
+<li><p>Highly scalable and flexible.</p></li>
+<li><p>Provides separate module to test Android WebView component.</p></li>
+<li><p>Provides separate module to validate as well as mock Android Intents.</p></li>
+<li><p>Provides automatic synchronization between your application and tests.</p></li>
+</ul>
+<h2>Advantages of Espresso</h2>
+<p>Let us now what the benefits of Espresso are.</p>
+<ul class="list">
+<li><p>Backward compatibility</p></li>
+<li><p>Easy to setup.</p></li>
+<li><p>Highly stable test cycle.</p></li>
+<li><p>Supports testing activities outside application as well.</p></li>
+<li><p>Supports JUnit4</p></li>
+<li><p>UI automation suitable for writing black box tests.</p></li>
+</ul>
+<h1>Espresso Testing Framework - Setup Instructions</h1>
+<p>In this chapter, let us understand how to install espresso framework, configure it to write espresso tests and execute it in our android application.</p>
+<h2>Prerequisites</h2>
+<p>Espresso is a user interface-testing framework for testing android application developed in Java / Kotlin language using Android SDK. Therefore, espresso’s only requirement is to develop the application using Android SDK in either Java or Kotlin and it is advised to have the latest Android Studio.</p>
+<p>The list of items to be configured properly before we start working in espresso framework is as follows &minus;</p>
+<ul class="list">
+<li><p>Install latest Java JDK and configure JAVA_HOME environment variable.</p></li>
+<li><p>Install latest Android Studio (version 3.2. or higher).</p></li>
+<li><p>Install latest Android SDK using SDK Manager and configure ANDROID_HOME environment variable.</p></li>
+<li><p>Install latest Gradle Build Tool and configure GRADLE_HOME environment variable.</p></li>
+</ul>
+<h2>Configure EspressoTesting Framework</h2>
+<p>Initially, espresso testing framework is provided as part of the Android Support library. Later, the Android team provides a new Android library, AndroidX and moves the latest espresso testing framework development into the library. Latest development (Android 9.0, API level 28 or higher) of espresso testing framework will be done in AndroidX library.</p>
+<p>Including espresso testing framework in a project is as simple as setting the espresso testing framework as a dependency in the application gradle file, app/build.gradle. The complete configuration is as follow,</p>
+<p>Using Android support library,</p>
+<pre class="result notranslate">
+android {
+   defaultConfig {
+      testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+   }
+}
+dependencies {
+   testImplementation 'junit:junit:4.12'
+   androidTestImplementation 'com.android.support.test:runner:1.0.2'
+   androidTestImplementation 'com.android.support.test.espresso:espressocore:3.0.2'
+}
+</pre>
+<p>Using AndroidX library,</p>
+<pre class="result notranslate">
+android {
+   defaultConfig {
+      testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+   }
+}
+dependencies {
+   testImplementation 'junit:junit:4.12'
+   androidTestImplementation 'com.androidx.test:runner:1.0.2'
+   androidTestImplementation 'com.androidx.espresso:espresso-core:3.0.2'
+}
+</pre>
+<p><i>testInstrumentationRunner</i> in the <i>android/defaultConfig</i> sets <i>AndroidJUnitRunner</i> class to run the instrumentation tests. The first line in the <i>dependencies</i> includes the <i>JUnit</i> testing framework, the second line in the <i>dependencies</i> includes the test runner library to run the test cases and finally the third line in the <i>dependencies</i> includes the espresso testing framework.</p>
+<p>By default, Android studio sets the espresso testing framework (Android support library) as a dependency while creating the android project and gradle will download the necessary library from the Maven repository. Let us create a simple Hello world android application and check whether the espresso testing framework is configured properly.</p>
+<p>The steps to create a new Android application are described below &minus;</p>
+<ul class="list">
+<li><p>Start Android Studio.</p></li>
+<li><p>Select File &rarr; New &rarr; New Project.</p></li>
+<li><p>Enter <i>Application</i> Name (HelloWorldApp) and Company domain (espressosamples.tutorialspoint.com) and then click <i>Next</i>.</p></li>
+</ul>
+<img class="full-width" src="/espresso_testing/images/android_application.jpg" alt="Android Application" />
+<p>To create Android Project,</p>
+<ul class="list">
+<li><p>Select minimum API as API 15: Android 4.0.3 (IceCreamSandwich) and then click Next.</p></li>
+</ul>
+<img class="full-width" src="/espresso_testing/images/target_android_devices.jpg" alt="Target Android Devices" />
+<p>To target Android Devices,</p>
+<ul class="list">
+<li><p>Select <i>Empty Activity</i> and then click <i>Next</i>.</p></li>
+</ul>
+<img class="full-width" src="/espresso_testing/images/empty_activity.jpg" alt="Empty Activity" />
+<p>To add an activity to Mobile,</p>
+<ul class="list">
+<li><p>Enter name for main activity and then click <i>Finish</i>.</p></li>
+</ul>
+<img class="full-width" src="/espresso_testing/images/main_activity.jpg" alt="Main Activity" />
+<p>To configure Activity,</p>
+<ul class="list">
+<li><p>Once, a new project is created, open the <i>app/build.gradle</i> file and check its content. The content of the file is specified below,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+apply plugin: 'com.android.application'
+android {
+   compileSdkVersion 28
+   defaultConfig {
+      applicationId "com.tutorialspoint.espressosamples.helloworldapp"
+      minSdkVersion 15
+      targetSdkVersion 28
+      versionCode 1
+      versionName "1.0"
+      testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+   }
+   buildTypes {
+      release {
+         minifyEnabled false
+         proguardFiles getDefaultProguardFile('proguard-android.txt'),    'proguard-rules.pro'
+      }
+   }
+}
+dependencies {
+   implementation fileTree(dir: 'libs', include: ['*.jar'])
+   implementation 'com.android.support:appcompat-v7:28.0.0'
+   implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+   testImplementation 'junit:junit:4.12'
+   androidTestImplementation 'com.android.support.test:runner:1.0.2'
+   androidTestImplementation 'com.android.support.test.espresso:espressocore:3.0.2'
+}
+</pre>
+<p>The last line specifies the espresso testing framework dependency. By default, Android support library is configured. We can reconfigure the application to use <i>AndroidX</i> library by clicking <i>Refactor</i> &rarr; <i>Migrate</i> to <i>AndroidX</i> in the menu.</p>
+<img class="full-width" src="/espresso_testing/images/espresso_testing_framework.jpg" alt="Espresso Testing Framework" />
+<p>To migrate to Androidx,</p>
+<ul class="list">
+<li><p>Now, the <i>app/build.gradle</i> changes as specified below,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+apply plugin: 'com.android.application'
+android {
+   compileSdkVersion 28
+   defaultConfig {
+      applicationId "com.tutorialspoint.espressosamples.helloworldapp"
+      minSdkVersion 15
+      targetSdkVersion 28
+      versionCode 1
+      versionName "1.0"
+      testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+   }
+   buildTypes {
+      release {
+         minifyEnabled false
+         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      }
+   }
+}
+dependencies {
+   implementation fileTree(dir: 'libs', include: ['*.jar'])
+   implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+   implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+   testImplementation 'junit:junit:4.12'
+   androidTestImplementation 'androidx.test:runner:1.1.1'
+   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+}
+</pre>
+<p>Now, the last line includes espresso testing framework from AndroidX library.</p>
+<h2>Device Settings</h2>
+<p>During testing, it is recommended to turn off the animation on the Android device, which is used for testing. This will reduce the confusions while checking ideling resources.</p>
+<p>Let us see how to disable animation on Android devices – (Settings &rarr; Developer options),</p>
+<ul class="list">
+<li><p>Window animation scale</p></li>
+<li><p>Transition animation scale</p></li>
+<li><p>Animator duration scale</p></li>
+</ul>
+<p>If <i>Developer options</i> menu is not available in the <i>Settings</i> screen, then click <i>Build Number</i> available inside the <i>About Phone</i> option several times. This enables the <i>Developer Option</i> menu.</p>
+<h1>Running Tests In Android Studio</h1>
+<p>In this chapter, let us see how to run tests using Android studio.</p>
+<p>Every android application has two type of tests &minus;</p>
+<ul class="list">
+<li><p>Functional / Unit tests</p></li>
+<li><p>Instrumentation tests</p></li>
+</ul>
+<p>Functional test does not need the actual android application to be installed and launched in the device or emulator and test the functionality. It can be launched in the console itself without invoking the actual application. However, instrumentation tests need the actual application to be launched to test the functionality like user interface and user interaction. By default, Unit tests are written in <b><i>src/test/java/</i></b> folder and Instrumentation tests are written in <b><i>src/androidTest/java/</i></b> folder. Android studio provides <i>Run</i> context menu for the test classes to run the test written in the selected test classes. By default, an Android application has two classes &minus; <i>ExampleUnitTest</i> in <i>src/test</i> folder and <i>ExampleInstrumentedTest</i> in <i>src/androidTest</i> folder.</p>
+<p>To run the default unit test, select <i>ExampleUnitTest</i> in the Android studio, right-click on it and then click the <i>Run 'ExampleUnitTest'</i> as shown below,</p>
+<img class="center" src="/espresso_testing/images/android_studio.jpg" alt="Android Studio" />
+<h2>Run Unit Test</h2>
+<p>This will run the unit test and show the result in the console as in the following screenshot &minus;</p>
+<img class="full-width" src="/espresso_testing/images/test_and_show.jpg" alt="Test And Show" />
+<h2>Unit Test Success</h2>
+<p>To run the default instrumentation test, select ExampleInstrumentationTest in the android studio, right-click it and then click the Run 'ExampleInstrumentationTest' as shown below,</p>
+<img class="full-width" src="/espresso_testing/images/instrumentation_test.jpg" alt="Instrumentation Test" />
+<h2>Run Instrumentation Test</h2>
+<p>This will run the unit test by launching the application in either device or emulator and show the result in the console as in the following screenshot &minus;</p>
+<img class="full-width" src="/espresso_testing/images/unit_test.jpg" alt="Unit Test" />
+<p>The instrumentation test ran successful.</p>
+<h1>Espresso Testing Framework -  Overview of JUnit</h1>
+<p>In this chapter, let us understand the basics of <i>JUnit</i>, the popular unit-testing framework developed by the Java community upon which the espresso testing framework is build.</p>
+<p><i>JUnit</i> is the de facto standard for unit testing a Java application. Even though, it is popular for unit testing, it has complete support and provision for instrumentation testing as well. Espresso testing library extends the necessary JUnit classes to support the Android based instrumentation testing.</p>
+<h2>Write a Simple Unit Test</h2>
+<p>Let us create a Java class, <i>Computation</i> (Computation.java) and write simple mathematical operation, <i>Summation</i> and <i>Multiplication</i>. Then, we will write test cases using <i>JUnit</i> and check it by running the test cases.</p>
+<ul class="list">
+<li><p>Start Android Studio.</p></li>
+<li><p>Open <i>HelloWorldApp</i> created in the previous chapter.</p></li>
+<li><p>Create a file, <i>Computation.java</i> in <i>app/src/main/java/com/tutorialspoint/espressosamples/helloworldapp/</i> and write two functions – <i>Sum</i> and <i>Multiply</i> as specified below,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.helloworldapp;
+public class Computation {
+   public Computation() {}
+   public int Sum(int a, int b) {
+      return a + b;
+   }
+   public int Multiply(int a, int b) {
+      return a * b;
+   }
+}
+</pre>
+<ul class="list">
+<li><p>Create a file, ComputationUnitTest.java in app/src/test/java/com/tutorialspoint/espressosamples/helloworldapp and write unit test cases to test Sum and Multiply functionality as specified below</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.helloworldapp;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+public class ComputationUnitTest {
+   @Test
+   public void sum_isCorrect() {
+      Computation computation = new Computation();
+      assertEquals(4, computation.Sum(2,2));
+   }
+   @Test
+   public void multiply_isCorrect() {
+      Computation computation = new Computation();
+      assertEquals(4, computation.Multiply(2,2));
+   }
+}
+</pre>
+<p>Here, we have used two new terms – <i>@Test</i> and <i>assertEquals</i>. In general, JUnit uses Java annotation to identify the test cases in a class and information on how to execute the test cases. <i>@Test</i> is one such Java annotation, which specifies that the particular function is a junit test case. <i>assertEquals</i> is a function to assert that the first argument (expected value) and the second argument (computed value) are equal and same. <i>JUnit</i> provides a number of assertion methods for different test scenarios.</p>
+<ul class="list">
+<li><p>Now, run the <i>ComputationUnitTest</i> in the Android studio by right-clicking the class and invoking the Run <i>'ComputationUnitTest'</i> option as explained in the previous chapter. This will run the unit test cases and report success.</p></li>
+</ul>
+<p>Result of computation unit test is as shown below &minus;</p>
+<img src="/espresso_testing/images/computation_unit_test.jpg" alt="Computation Unit Test" />
+<h2>Annotations</h2>
+<p><i>The JUnit framework uses annotation extensively</i>. Some of the important annotations are as follows &minus;</p>
+<ul class="list">
+<li><p>@Test</p></li>
+<li><p>@Before</p></li>
+<li><p>@After</p></li>
+<li><p>@BeforeClass</p></li>
+<li><p>@AfterClass</p></li>
+<li><p>@Rule</p></li>
+</ul>
+<h3><i>@Test</i> annotation</h3>
+<p><i>@Test</i> is the very important annotation in the <i>JUnit</i> framework. <i>@Test</i> is used to differentiate a normal method from the test case method. Once a method is decorated with <i>@Test</i> annotation, then that particular method is considered as a <i>Test case</i> and will be run by <i>JUnit Runner</i>. <i>JUnit Runner</i> is a special class, which is used to find and run the <i>JUnit test cases</i> available inside the java classes. For now, we are using <i>Android Studio’s</i> build in option to run the unit tests (which in turn run the <i>JUnit Runner</i>). A sample code is as follows,</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.helloworldapp;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class ComputationUnitTest {
+   @Test
+   public void multiply_isCorrect() {
+      Computation computation = new Computation();
+      assertEquals(4, computation.Multiply(2,2));
+   }
+}
+</pre>
+<h3>@Before</h3>
+<p><i>@Before</i> annotation is used to refer a method, which needs to be invoked before running any test method available in a particular test class. For example in our sample, the <i>Computation</i> object can be created in a separate method and annotated with <i>@Before</i> so that it will run before both <i>sum_isCorrect</i> and <i>multiply_isCorrect</i> test case. The complete code is as follows,</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.helloworldapp;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class ComputationUnitTest {
+   Computation computation = null;
+   @Before
+   public void CreateComputationObject() {
+      this.computation = new Computation();
+   }
+   @Test
+   public void sum_isCorrect() {
+      assertEquals(4, this.computation.Sum(2,2));
+   }
+   @Test
+   public void multiply_isCorrect() {
+      assertEquals(4, this.computation.Multiply(2,2));
+   }
+}
+</pre>
+<h3>@After</h3>
+<p><i>@After</i> is similar to <i>@Before</i>, but the method annotated with <i>@After</i> will be called or executed after each test case is run. The sample code is as follows,</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.helloworldapp;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class ComputationUnitTest {
+   Computation computation = null;
+   @Before
+   public void CreateComputationObject() {
+      this.computation = new Computation();
+   }
+   @After
+   public void DestroyComputationObject() {
+      this.computation = null;
+   }
+   @Test
+   public void sum_isCorrect() {
+      assertEquals(4, this.computation.Sum(2,2));
+   }
+   @Test
+   public void multiply_isCorrect() {
+      assertEquals(4, this.computation.Multiply(2,2));
+   }
+}
+</pre>
+<h3>@BeforeClass</h3>
+<p><i>@BeforeClass</i> is similar to <i>@Before</i>, but the method annotated with <i>@BeforeClass</i> will be called or executed only once before running all test cases in a particular class. It is useful to create resource intensive object like database connection object. This will reduce the time to execute a collection of test cases. This method needs to be static in order to work properly. In our sample, we can create the computation object once before running all test cases as specified below,</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.helloworldapp;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class ComputationUnitTest {
+   private static Computation computation = null;
+   @BeforeClass
+   public static void CreateComputationObject() {
+      computation = new Computation();
+   }
+   @Test
+   public void sum_isCorrect() {
+      assertEquals(4, computation.Sum(2,2));
+   }
+   @Test
+   public void multiply_isCorrect() {
+      assertEquals(4, computation.Multiply(2,2));
+   }
+}
+</pre>
+<h3>@AfterClass</h3>
+<p><i>@AfterClass</i> is similar to <i>@BeforeClass</i>, but the method annotated with <i>@AfterClass</i> will be called or executed only once after all test cases in a particular class are run. This method also needs to be static to work properly. The sample code is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.helloworldapp;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class ComputationUnitTest {
+   private static Computation computation = null;
+   @BeforeClass
+   public static void CreateComputationObject() {
+      computation = new Computation();
+   }
+   @AfterClass
+   public static void DestroyComputationObject() {
+      computation = null;
+   }
+   @Test
+   public void sum_isCorrect() {
+      assertEquals(4, computation.Sum(2,2));
+   }
+   @Test
+   public void multiply_isCorrect() {
+      assertEquals(4, computation.Multiply(2,2));
+   }
+}
+</pre>
+<h3>@Rule</h3>
+<p><i>@Rule</i> annotation is one of the highlights of <i>JUnit</i>. It is used to add behavior to the test cases. We can only annotate the fields of type <i>TestRule</i>. It actually provides feature set provided by <i>@Before</i> and <i>@After</i> annotation but in an efficient and reusable way. For example, we may need a temporary folder to store some data during a test case. Normally, we need to create a temporary folder before running the test case (using either @Before or @BeforeClass annotation) and destroy it after the test case is run (using either @After or @AfterClass annotation). Instead, we can use <i>TemporaryFolder</i> (of type <i>TestRule</i>) class provided by <i>JUnit</i> framework to create a temporary folder for all our test cases and the temporary folder will be deleted as and when the test case is run. We need to create a new variable of type <i>TemporaryFolder</i> and need to annotate with <i>@Rule</i> as specified below,</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.helloworldapp;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+import java.io.File;
+import java.io.IOException;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
+
+public class ComputationUnitTest {
+   private static Computation computation = null;
+   @Rule
+   public TemporaryFolder folder = new TemporaryFolder();
+   @Test
+   public void file_isCreated() throws IOException {
+      folder.newFolder("MyTestFolder");
+      File testFile = folder.newFile("MyTestFile.txt");
+      assertTrue(testFile.exists());
+   }
+   @BeforeClass
+   public static void CreateComputationObject() {
+      computation = new Computation();
+   }
+   @AfterClass
+   public static void DestroyComputationObject() {
+      computation = null;
+   }
+   @Test
+   public void sum_isCorrect() {
+      assertEquals(4, computation.Sum(2,2));
+   }
+   @Test
+   public void multiply_isCorrect() {
+      assertEquals(4, computation.Multiply(2,2));
+   }
+}
+</pre>
+<h2>Order of Execution</h2>
+<p>In <i>JUnit</i>, the methods annotated with different annotation will be executed in specific order as shown below,</p>
+<ul class="list">
+<li><p>@BeforeClass</p></li>
+<li><p>@Rule</p></li>
+<li><p>@Before</p></li>
+<li><p>@Test</p></li>
+<li><p>@After</p></li>
+<li><p>@AfterClass</p></li>
+</ul>
+<h2>Assertion</h2>
+<p>Assertion is a way of checking whether the expected value of the test case matches the actual value of the test case result. <i>JUnit</i> provides assertion for different scenario; a few important assertions are listed below &minus;</p>
+<ul class="list">
+<li><p><b>fail()</b> &minus; To explicitly make a test case fail.</p></li>
+<li><p><b>assertTrue(boolean test_condition)</b> &minus; Checks that the test_condition is true</p></li>
+<li><p><b>assertFalse(boolean test_condition)</b> &minus; Checks that the test_condition is false</p></li>
+<li><p><b>assertEquals(expected, actual)</b> &minus; Checks that both values are equal</p></li>
+<li><p><b>assertNull(object)</b> &minus; Checks that the object is null</p></li>
+<li><p><b>assertNotNull(object)</b> &minus; Checks that the object is not null</p></li>
+<li><p><b>assertSame(expected, actual)</b> &minus; Checks that both refers same object.</p></li>
+<li><p><b>assertNotSame(expected, actual)</b> &minus; Checks that both refers different object.</p></li>
+</ul>
+<h1>Espresso Testing Framework - Architecture</h1>
+<p>In this chapter, let us learn the terms of espresso testing framework, how to write a simple espresso test case and the complete workflow or architecture of the espresso testing framework.</p>
+<h2>Overview</h2>
+<p>Espresso provides a large number of classes to test user interface and the user interaction of an android application. They can be grouped into five categories as specified below &minus;</p>
+<h3>JUnit runner</h3>
+<p>Android testing framework provides a runner, AndroidJUnitRunner to run the espresso test cases written in JUnit3 and JUnit4 style test cases. It is specific to android application and it transparently handles loading the espresso test cases and the application under test both in actual device or emulator, execute the test cases and report the result of the test cases. To use AndroidJUnitRunner in the test case, we need to annotate the test class using @RunWith annotation and then pass the AndroidJUnitRunner argument as specified below &minus;</p>
+<pre class="result notranslate">
+@RunWith(AndroidJUnit4.class)
+   public class ExampleInstrumentedTest {
+}
+</pre>
+<h3>JUnit rules</h3>
+<p>Android testing framework provides a rule, ActivityTestRule to launch an android activity before executing the test cases. It launches the activity before each method annotated with @Test` and @Before. It will terminate the activity after method annotated with @After. A sample code is as follows,</p>
+<pre class="result notranslate">
+@Rule
+public ActivityTestRule&lt;MainActivity&gt; mActivityTestRule = new ActivityTestRule&lt;&gt;(MainActivity.class);
+</pre>
+<p>Here, <i>MainActivity</i> is the activity to be launched before running a test case and destroyed after the particular test case is run.</p>
+<h2>ViewMatchers</h2>
+<p>Espresso provides large number of view matcher classes (in <i>androidx.test.espresso.matcher.ViewMatchers package</i>) to match and find UI elements / views in an android activity screen’s view hierarchy. Espresso’s method onView takes a single argument of type <i>Matcher</i> (View matchers), finds the corresponding UI view and returns corresponding <i>ViewInteraction</i> object. <i>ViewInteraction</i> object returned by <i>onView</i> method can be further used to invoke actions like click on the matched view or can be used to assert the matched view. A sample code to find the view with text, “Hello World!” is as follows,</p>
+<pre class="result notranslate">
+ViewInteraction viewInteraction = Espresso.onView(withText("Hello World!"));
+</pre>
+<p>Here, <i>withText</i> is a matcher, which can be used to match UI view having text “Hello World!”</p>
+<h2>ViewActions</h2>
+<p>Espresso provides large number of view action classes (in androidx.test.espresso.action.ViewActions) to invoke the different action on the selected / matched view. Once <i>onView</i> matches and returns <i>ViewInteraction</i> object, any action can be invoked by calling “perform” method of <i>ViewInteraction</i> object and pass it with proper view actions. A sample code to click the matched view is as follows,</p>
+<pre class="result notranslate">
+ViewInteraction viewInteraction = Espresso.onView(withText("Hello World!"));
+viewInteraction.perform(click());
+</pre>
+<p>Here, the click action of the matched view will be invoked.</p>
+<h2>ViewAssertions</h2>
+<p>Similar to view matchers and view actions, Espresso provides a large number of view assertion (in <i>androidx.test.espresso.assertion.ViewAssertions</i> package) to assert the matched view is what we expected. Once onView matches and returns the <i>ViewInteraction</i> object, any assert can be checked using check method of <i>ViewInteraction</i> by passing it with proper view assertion. A sample code to assert that the matched view is as follows,</p>
+<pre class="result notranslate">
+ViewInteraction viewInteraction = Espresso.onView(withText("Hello World!"));
+viewInteraction.check(matches(withId(R.id.text_view)));
+</pre>
+<p>Here, <i>matches</i> accept the view matcher and return view assertion, which can be checked by check method of <i>ViewInteraction</i>.</p>
+<h2>Workflow of Espresso Testing Framework</h2>
+<p>Let us understand how the espresso testing framework works and how it provides options to do any kind of user interaction in a simple and flexible way. Workflow of an espresso test case is as described below,</p>
+<ul class="list">
+<li><p>As we learned earlier, Android JUnit runner, <i>AndroidJUnit4</i> will run the android test cases. The espresso test cases need to be marked with <i>@RunWith(AndroidJUnut.class)</i>. First, <i>AndroidJUnit4</i> will prepare the environment to run the test cases. It starts either the connected android device or emulator, installs the application and makes sure the application to be tested is in ready state. It will run the test cases and report the results.</p></li>
+<li><p>Espresso needs at least a single <i>JUnit</i> rule of type <i>ActivityTestRule</i> to specify the activity. Android JUnit runner will start the activity to be launched using <i>ActivityTestRule</i>.</p></li>
+<li><p>Every test case needs a minimum of single <i>onView</i> or <i>onDate</i> (used to find data based views like <i>AdapterView</i>) method invocation to match and find the desired view. onView or onData returns <i>ViewInteraction</i> object.</p></li>
+<li><p>Once <i>ViewInteraction</i> object is returned, we can either invoke an action of the selected view or check the view for our expected view using assertion.</p></li>
+<li><p>Action can be invoked using perform method of <i>ViewInteraction</i> object by passing any one of the available view actions.</p></li>
+<li><p>Assertion can be invoked using check method of <i>ViewInteraction</i> object by passing any one of the available view assertions.</p></li>
+</ul>
+<p>The diagram representation of the <i>Workflow</i> is as follows,</p>
+<img src="/espresso_testing/images/workflow.jpg" alt="WorkFlow" />
+<h2>Example–view assertion</h2>
+<p>Let us write a simple test case to find the text view having “Hello World!” text in our “HelloWorldApp” application and then assert it using view assertion. The complete code is as follows,</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.helloworldapp;
+
+import android.content.Context;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static org.junit.Assert.*;
+/**
+   * Instrumented test, which will execute on an Android device.
+   *
+   * @see &lt;a href="http://d.android.com/tools/testing"&gt;Testing documentation&lt;/a&gt;
+*/
+@RunWith(AndroidJUnit4.class)
+public class ExampleInstrumentedTest {
+   @Rule
+   public ActivityTestRule&lt;MainActivity&gt; mActivityTestRule = new ActivityTestRule&lt;&gt;(MainActivity.class);
+   @Test
+   public void view_isCorrect() {
+      onView(withText("Hello World!")).check(matches(isDisplayed()));
+   }
+   @Test
+   public void useAppContext() {
+      // Context of the app under test.
+      Context appContext = InstrumentationRegistry.getTargetContext();
+      assertEquals("com.tutorialspoint.espressosamples.helloworldapp", appContext.getPackageName());
+   }
+}
+</pre>
+<p>Here, we have used <i>withText</i> view matchers to find the text view having “Hello World!” text and matches view assertion to assert that the text view is properly displayed. Once the test case is invoked in Android Studio, it will run the test case and report the success message as below.</p>
+<h3>view_isCorrect test case</h3>
+<img src="/espresso_testing/images/test_case.jpg" alt="Test Case" />
+<p></p>
+<h1>Espresso Testing Framework - View Matchers</h1>
+<p>Espresso framework provides many view matchers. The purpose of the matcher is to match a view using different attributes of the view like Id, Text, and availability of child view. Each matcher matches a particular attributes of the view and applies to particular type of view. For example, <i>withId</i> matcher matches the <i>Id</i> property of the view and applies to all view, whereas withText matcher matches the <i>Text</i> property of the view and applies to <i>TextView</i> only.</p>
+<p>In this chapter, let us learn the different matchers provided by espresso testing framework as well as learn the <i>Hamcrest</i> library upon which the espresso matchers are built.</p>
+<h2>Hamcrest Library</h2>
+<p><i>Hamcrest</i> library is an important library in the scope of espresso testing framework. <i>Hamcrest</i> is itself a framework for writing matcher objects. Espresso framework extensively uses the <i>Hamcrest</i> library and extend it whenever necessary to provide simple and extendable matchers.</p>
+<p><i>Hamcrest</i> provides a simple function <i>assertThat</i> and a collection of matchers to assert any objects. <i>assertThat</i> has three arguments and they are as shown below &minus;</p>
+<ul class="list">
+<li><p>String (description of the test, optional)</p></li>
+<li><p>Object (actual)</p></li>
+<li><p>Matcher (expected)</p></li>
+</ul>
+<p>Let us write a simple example to test whether a list object has expected value.</p>
+<pre class="prettyprint notranslate">
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.MatcherAssert.assertThat;
+@Test
+public void list_hasValue() {
+   ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
+   list.add("John");
+   assertThat("Is list has John?", list, hasItem("John"));
+}
+</pre>
+<p>Here, <i>hasItem</i> returns a matcher, which checks whether the actual list has specified value as one of the item.</p>
+<p><i>Hamcrest</i> has a lot of built-in matchers and also options to create new matchers. Some of the important built-in matchers useful in espresso testing framework are as follows &minus;</p>
+<h3>anything - always matchers</h3>
+<p>Logical based matchers</p>
+<ul class="list">
+<li><p><b>allOf</b> &minus; accept any number of matchers and matches only if all matchers are succeeded.</p></li>
+<li><p><b>anyOf</b> &minus; accept any number of matchers and matches if any one matcher succeeded.</p></li>
+<li><p><b>not</b> &minus; accept one matcher and matches only if the matcher failed and vice versa.</p></li>
+</ul>
+<h3>Text based matchers</h3>
+<ul class="list">
+<li><p><b>equalToIgnoringCase</b> &minus; used to test whether the actual input equals the expected string ignoring case.</p></li>
+<li><p><b>equalToIgnoringWhiteSpace</b> &minus; used to test whether the actual input equals the specified string ignoring case and white spaces.</p></li>
+<li><p><b>containsString</b> &minus; used to test whether the actual input contains specified string.</p></li>
+<li><p><b>endsWith</b> &minus; used to test whether the actual input starts with specified string.</p></li>
+<li><p><b>startsWith</b> &minus; used to test whether actual the input ends with specified string.</p></li>
+</ul>
+<h3>Number based matchers</h3>
+<ul class="list">
+<li><p><b>closeTo</b> &minus; used to test whether the actual input is close to the expected number.</p></li>
+<li><p><b>greaterThan</b> &minus; used to test whether the actual input is greater than the expected number.</p></li>
+<li><p><b>greaterThanOrEqualTo</b> &minus; used to test whether the actual input is greater than or equal to the expected number.</p></li>
+<li><p><b>lessThan</b> &minus; used to test whether the actual input is less than the expected number.</p></li>
+<li><p><b>lessThanOrEqualTo</b> &minus; used to test whether the actual input is less than or equal to the expected number.</p></li>
+</ul>
+<h3>Object based matchers</h3>
+<ul class="list">
+<li><p><b>equalTo</b> &minus; used to test whether the actual input is equals to the expected object</p></li>
+<li><p><b>hasToString</b> &minus; used to test whether the actual input has toString method.</p></li>
+<li><p><b>instanceOf</b> &minus; used to test whether the actual input is the instance of expected class.</p></li>
+<li><p><b>isCompatibleType</b> &minus; used to test whether the actual input is compatible with the expected type.</p></li>
+<li><p><b>notNullValue</b> &minus; used to test whether the actual input is not null.</p></li>
+<li><p><b>sameInstance</b> &minus; used to test whether the actual input and expected are of same instance.</p></li>
+<li><p><b>hasProperty</b> &minus; used to test whether the actual input has the expected property</p></li>
+</ul>
+<h3>is &minus; Sugar or short cut for <i>equalTo</i></h3>
+<h2>Matchers</h2>
+<p>Espresso provides the onView() method to match and find the views. It accepts view matchers and returns ViewInteraction object to interact with the matched view. The frequently used list of view matchers are described below &minus;</p>
+<h3>withId()</h3>
+<p><i>withId()</i> accepts an argument of type int and the argument refers the id of the view. It returns a matcher, which matches the view using the id of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withId(R.id.testView))
+</pre>
+<h3>withText()</h3>
+<p><i>withText()</i> accepts an argument of type <i>string</i> and the argument refers the value of the view’s text property. It returns a matcher, which matches the view using the text value of the view. It applies to <i>TextView</i> only. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withText("Hello World!"))
+</pre>
+<h3>withContentDescription()</h3>
+<p><i>withContentDescription()</i> accepts an argument of type <i>string</i> and the argument refers the value of the view’s content description property. It returns a matcher, which matches the view using the description of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withContentDescription("blah"))
+</pre>
+<p>We can also pass the resource id of the text value instead of the text itself.</p>
+<pre class="result notranslate">
+onView(withContentDescription(R.id.res_id_blah))
+</pre>
+<h3>hasContentDescription()</h3>
+<p><i>hasContentDescription()</i> has no argument. It returns a matcher, which matches the view that has any content description. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), hasContentDescription()))
+</pre>
+<h3>withTagKey()</h3>
+<p><i>withTagKey()</i> accepts an argument of type <i>string</i> and the argument refers the view’s tag key. It returns a matcher, which matches the view using its tag key. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withTagKey("blah"))
+</pre>
+<p>We can also pass the resource id of the tag name instead of the tag name itself.</p>
+<pre class="result notranslate">
+onView(withTagKey(R.id.res_id_blah))
+</pre>
+<h3>withTagValue()</h3>
+<p><i>withTagValue()</i> accepts an argument of type Matcher &lt;Object&gt; and the argument refers the view’s tag value. It returns a matcher, which matches the view using its tag value. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withTagValue(is((Object) "blah")))
+</pre>
+<p>Here, <i>is</i> is Hamcrest matcher.</p>
+<h3>withClassName()</h3>
+<p><i>withClassName()</i> accepts an argument of type Matcher&lt;String&gt; and the argument refers the view’s class name value. It returns a matcher, which matches the view using its class name. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withClassName(endsWith("EditText")))
+</pre>
+<p>Here, <i>endsWith</i> is Hamcrest matcher and return Matcher&lt;String&gt;</p>
+<h3>withHint()</h3>
+<p><i>withHint()</i> accepts an argument of type Matcher&lt;String&gt; and the argument refers the view’s hint value. It returns a matcher, which matches the view using the hint of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withClassName(endsWith("Enter name")))
+</pre>
+<h3>withInputType()</h3>
+<p><i>withInputType()</i> accepts an argument of type <i>int</i> and the argument refers the input type of the view. It returns a matcher, which matches the view using its input type. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withInputType(TYPE_CLASS_DATETIME))
+</pre>
+<p>Here, <i>TYPE_CLASS_DATETIME</i> refers edit view supporting dates and times.</p>
+<h3>withResourceName()</h3>
+<p><i>withResourceName()</i> accepts an argument of type Matcher&lt;String&gt; and the argument refers the view’s class name value. It returns a matcher, which matches the view using resource name of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withResourceName(endsWith("res_name")))
+</pre>
+<p>It accepts string argument as well. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withResourceName("my_res_name"))
+</pre>
+<h3>withAlpha()</h3>
+<p><i>withAlpha()</i> accepts an argument of type <i>float</i> and the argument refers the alpha value of the view. It returns a matcher, which matches the view using the alpha value of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withAlpha(0.8))
+</pre>
+<h3>withEffectiveVisibility()</h3>
+<p><i>withEffectiveVisibility()</i> accepts an argument of type <i>ViewMatchers.Visibility</i> and the argument refers the effective visibility of the view. It returns a matcher, which matches the view using the visibility of the view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withEffectiveVisibility(withEffectiveVisibility.INVISIBLE))
+</pre>
+<h3>withSpinnerText()</h3>
+<p><i>withSpinnerText()</i> accepts an argument of type Matcher&lt;String&gt; and the argument refers the Spinner’s current selected view’s value. It returns a matcher, which matches the the spinner based on it’s selected item’s toString value. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withSpinnerText(endsWith("USA")))
+</pre>
+<p>It accepts string argument or resource id of the string as well. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withResourceName("USA"))
+onView(withResourceName(R.string.res_usa))
+</pre>
+<h3>withSubstring()</h3>
+<p><i>withSubString()</i> is similar to <i>withText()</i> except it helps to test substring of the text value of the view.</p>
+<pre class="result notranslate">
+onView(withSubString("Hello"))
+</pre>
+<h3>hasLinks()</h3>
+<p><i>hasLinks()</i> has no arguments and it returns a matcher, which matches the view having links. It applies to TextView only. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withSubString("Hello"), hasLinks()))
+</pre>
+<p>Here, <i>allOf</i> is a Hamcrest matcher. <i>allOf</i> returns a matcher, which matches all the passed in matchers and here, it is used to match a view as well as check whether the view has links in its text value.</p>
+<h3>hasTextColor()</h3>
+<p><i>hasTextColor()</i> accepts a single argument of type int and the argument refers the resource id of the color. It returns a matcher, which matches the <i>TextView</i> based on its color. It applies to <i>TextView</i> only. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withSubString("Hello"), hasTextColor(R.color.Red)))
+</pre>
+<h3>hasEllipsizedText()</h3>
+<p><i>hasEllipsizedText()</i> has no argument. It returns a matcher, which matches the TextView that has long text and either ellipsized (first.. ten.. last) or cut off (first…). The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_text_view_id), hasEllipsizedText()))
+</pre>
+<h3>hasMultilineText()</h3>
+<p><i>hasMultilineText()</i> has no argument. It returns a matcher, which matches the TextView that has any multi line text. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_test_view_id), hasMultilineText()))
+</pre>
+<h3>hasBackground()</h3>
+<p><i>hasBackground()</i> accepts a single argument of type int and the argument refers the resource id of the background resource. It returns a matcher, which matches the view based on its background resources. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId("image"), hasBackground(R.drawable.your_drawable)))
+</pre>
+<h3>hasErrorText()</h3>
+<p><i>hasErrorText()</i> accepts an argument of type Matcher&lt;String&gt; and the argument refers the view’s (EditText) error string value. It returns a matcher, which matches the view using error string of the view. This applies to <i>EditText</i> only. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.editText_name), hasErrorText(is("name is required"))))
+</pre>
+<p>It accepts string argument as well. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.editText_name), hasErrorText("name is required")))
+</pre>
+<h3>hasImeAction()</h3>
+<p><i>hasImeAction()</i> accepts an argument of type Matcher&lt;Integer&gt; and the argument refers the view’s (EditText) supported input methods. It returns a matcher, which matches the view using supported input method of the view. This applies to <i>EditText</i> only. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.editText_name),
+hasImeAction(is(EditorInfo.IME_ACTION_GO))))
+</pre>
+<p>Here, EditorInfo.IME_ACTION_GO is on of the input methods options. <i>hasImeAction()</i> accepts integer argument as well. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.editText_name),
+hasImeAction(EditorInfo.IME_ACTION_GO)))
+</pre>
+<h3>supportsInputMethods()</h3>
+<p><i>supportsInputMethods()</i> has no argument. It returns a matcher, which matches the view if it supports input methods. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.editText_name), supportsInputMethods()))
+</pre>
+<h3>isRoot()</h3>
+<p><i>isRoot()</i> has no argument. It returns a matcher, which matches the root view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_root_id), isRoot()))
+</pre>
+<h3>isDisplayed()</h3>
+<p><i>isDisplayed()</i> has no argument. It returns a matcher, which matches the view that are currently displayed. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isDisplayed()))
+</pre>
+<h3>isDisplayingAtLeast()</h3>
+<p><i>isDisplayingAtLeast()</i> accepts a single argument of type int. It returns a matcher, which matches the view that are current displayed at least the specified percentage. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isDisplayingAtLeast(75)))
+</pre>
+<h3>isCompletelyDisplayed()</h3>
+<p><i>isCompletelyDisplayed()</i> has no argument. It returns a matcher, which matches the view that are currently displayed completely on the screen. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isCompletelyDisplayed()))
+</pre>
+<h3>isEnabled()</h3>
+<p><i>isEnabled()</i> has no argument. It returns a matcher, which matches the view that is enabled. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isEnabled()))
+</pre>
+<h3>isFocusable()</h3>
+<p><i>isFocusable()</i> has no argument. It returns a matcher, which matches the view that has focus option. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isFocusable()))
+</pre>
+<h3>hasFocus()</h3>
+<p><i>hasFocus()</i> has no argument. It returns a matcher, which matches the view that is currently focused. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), hasFocus()))
+</pre>
+<h3>isClickable()</h3>
+<p><i>isClickable()</i> has no argument. It returns a matcher, which matches the view that is click option. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isClickable()))
+</pre>
+<h3>isSelected()</h3>
+<p><i>isSelected()</i> has no argument. It returns a matcher, which matches the view that is currently selected. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isSelected()))
+</pre>
+<h3>isChecked()</h3>
+<p><i>isChecked()</i> has no argument. It returns a matcher, which matches the view that is of type CompoundButton (or subtype of it) and is in checked state. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isChecked()))
+</pre>
+<h3>isNotChecked()</h3>
+<p><i>isNotChecked()</i> is just opposite to isChecked. The sample code is as *follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_view_id), isNotChecked()))
+</pre>
+<h3>isJavascriptEnabled()</h3>
+<p><i>isJavascriptEnabled()</i> has no argument. It returns a matcher, which matches the WebView that is evaluating JavaScript. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.my_webview_id), isJavascriptEnabled()))
+</pre>
+<h3>withParent()</h3>
+<p><i>withParent()</i> accepts one argument of type Matcher&lt;View&gt;. The argument refers a view. It returns a matcher, which matches the view that specified view is parent view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.childView), withParent(withId(R.id.parentView))))
+</pre>
+<h3>hasSibling()</h3>
+<p><i>hasSibling()</i> accepts one argument of type Matcher&gt;View&lt;. The argument refers a view. It returns a matcher, which matches the view that passed-in view is one of its sibling view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(hasSibling(withId(R.id.siblingView)))
+</pre>
+<h3>withChild()</h3>
+<p><i>withChild()</i> accepts one argument of type Matcher&lt;View&gt;. The argument refers a view. It returns a matcher, which matches the view that passed-in view is child view. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.parentView), withChild(withId(R.id.childView))))
+</pre>
+<h3>hasChildCount()</h3>
+<p><i>hasChildCount()</i> accepts one argument of type int. The argument refers the child count of a view. It returns a matcher, which matches the view that has exactly the same number of child view as specified in the argument. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(hasChildCount(4))
+</pre>
+<h3>hasMinimumChildCount()</h3>
+<p><i>hasMinimumChildCount()</i> accepts one argument of type int. The argument refers the child count of a view. It returns a matcher, which matches the view that has at least the number of child view as specified in the argument. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(hasMinimumChildCount(4))
+</pre>
+<h3>hasDescendant()</h3>
+<p><i>hasDescendant()</i> accepts one argument of type Matcher&lt;View&gt;. The argument refers a view. It returns a matcher, which matches the view that passed-in view is one of the descendant view in the view hierarchy. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(hasDescendant(withId(R.id.descendantView)))
+</pre>
+<h3>isDescendantOfA()</h3>
+<p><i>isDescendantOfA()</i> accepts one argument of type Matcher&lt;View&gt;. The argument refers a view. It returns a matcher, which matches the view that passed-in view is one of the ancestor view in the view hierarchy. The sample code is as follows,</p>
+<pre class="result notranslate">
+onView(allOf(withId(R.id.myView), isDescendantOfA(withId(R.id.parentView))))
+</pre>
+<h1>Custom View Matchers</h1>
+<p>Espresso provides various options to create our own custom view matchers and it is based on <i>Hamcrest</i> matchers. Custom matcher is a very powerful concept to extend the framework and also to customize the framework to our taste. Some of the advantages of writing custom matchers are as follows,</p>
+<ul class="list">
+<li><p>To exploit the unique feature of our own custom views</p></li>
+<li><p>Custom matcher helps in the <i>AdapterView</i> based test cases to match with the different type of underlying data.</p></li>
+<li><p>To simplify the current matchers by combining features of multiple matcher</p></li>
+</ul>
+<p>We can create new matcher as and when the demand arises and it is quite easy. Let us create a new custom matcher, which returns a matcher to test both id and text of a <i>TextView</i>.</p>
+<p>Espresso provides the following two classes to write new matchers &minus;</p>
+<ul class="list">
+<li><p>TypeSafeMatcher</p></li>
+<li><p>BoundedMatcher</p></li>
+</ul>
+<p>Both classes are similar in nature except that the <i>BoundedMatcher</i> transparently handles the casting of the object to correct type without manually checking for the correct type. We will create a new matcher, <i>withIdAndText</i> using <i>BoundedMatcher</i> class. Let us check the steps to write new matchers.</p>
+<ul class="list">
+<li><p>Add the below dependency in the <i>app/build.gradle</i> file and sync it.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+dependencies {
+   implementation 'androidx.test.espresso:espresso-core:3.1.1'
+}
+</pre>
+<ul class="list">
+<li><p>Create a new class to include our matchers (methods) and mark it as <i>final</i></p></li>
+</ul>
+<pre class="prettyprint notranslate">
+public final class MyMatchers {
+}
+</pre>
+<ul class="list">
+<li><p>Declare a static method inside the new class with the necessary arguments and set Matcher&lt;View&gt; as return type.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+public final class MyMatchers {
+   @NonNull
+   public static Matcher&lt;View&gt; withIdAndText(final Matcher&lt;Integer&gt;
+   integerMatcher, final Matcher&lt;String&gt; stringMatcher) {
+   }
+}
+</pre>
+<ul class="list">
+<li><p>Create a new BoundedMatcher object (return value as well) with the below signature inside the static method,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+public final class MyMatchers {
+   @NonNull
+   public static Matcher&lt;View&gt; withIdAndText(final Matcher&lt;Integer&gt;
+   integerMatcher, final Matcher&lt;String&gt; stringMatcher) {
+      return new BoundedMatcher&lt;View, TextView&gt;(TextView.class) {
+      };
+   }
+}
+</pre>
+<ul class="list">
+<li><p>Override <i>describeTo</i> and <i>matchesSafely</i> methods in the <i>BoundedMatcher</i> object. describeTo has single argument of type <i>Description</i> with no return type and it is used to error information regarding matchers. <i>matchesSafely</i> has a single argument of type TextView with return type <i>boolean</i> and it is used to match the view.</p></li>
+</ul>
+<p>The final version of the code is as follows,</p>
+<pre class="prettyprint notranslate">
+public final class MyMatchers {
+   @NonNull
+   public static Matcher&lt;View&gt; withIdAndText(final Matcher&lt;Integer&gt;
+   integerMatcher, final Matcher&lt;String&gt; stringMatcher) {
+      return new BoundedMatcher&lt;View, TextView&gt;(TextView.class) {
+         @Override
+         public void describeTo(final Description description) {
+            description.appendText("error text: ");
+            stringMatcher.describeTo(description);
+            integerMatcher.describeTo(description);
+         }
+         @Override
+         public boolean matchesSafely(final TextView textView) {
+            return stringMatcher.matches(textView.getText().toString()) &&
+            integerMatcher.matches(textView.getId());
+         }
+      };
+   }
+}
+</pre>
+<ul class="list">
+<li><p>Finally, We can use our mew matcher to write the test case as sown below,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+@Test
+public void view_customMatcher_isCorrect() {
+   onView(withIdAndText(is((Integer) R.id.textView_hello), is((String) "Hello World!")))
+      .check(matches(withText("Hello World!")));
+}
+</pre>
+<h1>Espresso Testing Framework - View Assertions</h1>
+<p>As discussed earlier, view assertion is used to assert that both the actual view (found using view matchers) and expected views are the same. A sample code is as follows,</p>
+<pre class="result notranslate">
+onView(withId(R.id.my_view)) .check(matches(withText("Hello")))
+</pre>
+<p>Here,</p>
+<ul class="list">
+<li><p><i>onView()</i> returns <i>ViewInteration</i> object corresponding to matched view. <i>ViewInteraction</i> is used to interact with matched view.</p></li>
+<li><p><i>withId(R.id.my_view)</i> returns a view matcher that will match with the view (actual) having <i>id</i> attributes equals to <i>my_view</i>.</p></li>
+<li><p><i>withText(“Hello”)</i> also returns a view matcher that will match with the view (expected) having text attributes equals to <i>Hello</i>.</p></li>
+<li><p><i>check</i> is a method which accepts an argument of type <i>ViewAssertion</i> and do assertion using passed in <i>ViewAssertion</i> object.</p></li>
+<li><p><i>matches(withText(“Hello”))</i> returns a view assertion, which will do the <b>real job</b> of asserting that both actual view (found using <i>withId</i>) and expected view (found using <i>withText</i>) are one and the same.</p></li>
+</ul>
+<p>Let us learn some of the methods provided by espresso testing framework to assert view objects.</p>
+<h3>doesNotExist()</h3>
+<p>Returns a view assertion, which ensures that the view matcher does not find any matching view.</p>
+<pre class="result notranslate">
+onView(withText("Hello")) .check(doesNotExist());
+</pre>
+<p>Here, the test case ensures that there is no view with text Hello.</p>
+<h3>matches()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and matches with the view matched by the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.textView_hello)) .check(matches(withText("Hello World!")));
+</pre>
+<p>Here, the test case ensures that the view having id, R.id.textView_hello exists and matches with the target view with text Hello World!</p>
+<h3>isBottomAlignedWith()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is bottom aligned with the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isBottomAlignedWith(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, <i>R.id.view</i> exists and is bottom aligned with view having id, <i>R.id.target_view</i>.</p>
+<h3>isCompletelyAbove()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is positioned completely above the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isCompletelyAbove(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, R.id.view exists and is positioned completely above the view having id, <i>R.id.target_view</i></p>
+<h3>isCompletelyBelow()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is positioned completely below the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isCompletelyBelow(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, <i>R.id.view</i> exists and is positioned completely below the view having id, <i>R.id.target_view</i>.</p>
+<h3>isCompletelyLeftOf()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is positioned completely left of the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isCompletelyLeftOf(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, <i>R.id.view</i> exists and is positioned completely left of view having id, <i>R.id.target_view</i></p>
+<h3>isCompletelyRightOf()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is positioned completely right of the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isCompletelyRightOf(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, R.id.view exists and is positioned completely right of the view having id, R.id.target_view.</p>
+<h3>isLeftAlignedWith()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is left aligned with the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isLeftAlignedWith(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, <i>R.id.view</i> exists and is left aligned with view having id, <i>R.id.target_view</i></p>
+<h3>isPartiallyAbove()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is positioned partially above the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isPartiallyAbove(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, <i>R.id.view</i> exists and is positioned partially above the view having id, <i>R.id.target_view</i></p>
+<h3>isPartiallyBelow()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is positioned partially below the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isPartiallyBelow(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, <i>R.id.view</i> exists and is positioned partially below the view having id, <i>R.id.target_view</i>.</p>
+<h3>isPartiallyLeftOf()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is positioned partially left of the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isPartiallyLeftOf(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, <i>R.id.view</i> exists and is positioned partially left of view having id, <i>R.id.target_view</i>.</p>
+<h3>isPartiallyRightOf()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is positioned partially right of the target view matcher</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isPartiallyRightOf(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, <i>R.id.view</i> exists and is positioned partially right of view having id, <i>R.id.target_view</i>.</p>
+<h3>isRightAlignedWith()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is right aligned with the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isRightAlignedWith(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, <i>R.id.view</i> exists and is right aligned with view having id, <i>R.id.target_view</i>.</p>
+<h3>isTopAlignedWith()</h3>
+<p>Accepts a target view matcher and returns a view assertion, which ensures that the view matcher (actual) exists and is top aligned with the target view matcher.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(isTopAlignedWith(withId(R.id.target_view)))
+</pre>
+<p>Here, the test case ensures that the view having id, <i>R.id.view</i> exists and is top aligned with view having id, <i>R.id.target_view</i></p>
+<h3>noEllipsizedText()</h3>
+<p>Returns a view assertion, which ensures that the view hierarchy does not contain ellipsized or cut off text views.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(noEllipsizedText());
+</pre>
+<h3>noMultilineButtons()</h3>
+<p>Returns a view assertion, which ensures that the view hierarchy does not contain multi line buttons.</p>
+<pre class="result notranslate">
+onView(withId(R.id.view)) .check(noMultilineButtons());
+</pre>
+<h3>noOverlaps()</h3>
+<p>Returns a view assertion, which ensures that the descendant object assignable to TextView or ImageView does not overlap each other. It has another option, which accepts a target view matcher and returns a view assertion, which ensures that the descendant view matching the target view do not overlap.</p>
+<h1>Espresso Testing Framework - View Actions</h1>
+<p>As learned earlier, view actions automate all the possible actions performable by users in an android application. Espresso <i>onView</i> and “onData” provides the <i>perform</i> method, which accepts view actions and invokes/automates the corresponding user actions in the test environment. For example, “click()” is a view action, which when passed to the onView(<i>R.id.myButton</i>)<i>.perform(click())</i> method, will fire the click event of the button (with id: “myButton”) in the testing environment.</p>
+<p>In this chapter, let us learn about the view actions provided by espresso testing framework.</p>
+<h3>typeText()</h3>
+<p><i>typeText()</i> accepts one argument (text) of type <i>String</i> and returns a view action. The returned view action types the provided text into the view. Before placing the text, it taps the view once. The content may be placed at arbitrary position if it contains text already.</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(typeText("Hello World!"))
+</pre>
+<h3>typeTextIntoFocusedView()</h3>
+<p><i>typeTextIntoFocusedView()</i> is similar to <i>typeText()</i> except that it places the text right next to the cursor position in the view.</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(typeTextIntoFocusedView("Hello World!"))
+</pre>
+<h3>replaceText()</h3>
+<p><i>replaceText()</i> is similar to <i>typeText()</i> except that it replaces the content of the view.</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(typeTextIntoFocusedView("Hello World!"))
+</pre>
+<h3>clearText()</h3>
+<p><i>clearText()</i> has no arguments and returns a view action, which will clear the text in the view.</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(clearText())
+</pre>
+<h3>pressKey()</h3>
+<p><i>pressKey()</i> accepts key code (e.g KeyEvent.KEYCODE_ENTER) and returns a view action, which will press the key corresponds to the key code.</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(typeText(
+   "Hello World!", pressKey(KeyEvent.KEYCODE_ENTER))
+</pre>
+<h3>pressMenuKey()</h3>
+<p><i>pressMenuKey()</i> has no arguments and returns a view action, which will press the hardware menu key.</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(typeText(
+   "Hello World!", pressKey(KeyEvent.KEYCODE_ENTER), pressMenuKey())
+</pre>
+<h3>closeSoftKeyboard()</h3>
+<p><i>closeSoftKeyboard()</i> has no arguments and returns a view action, which will close the keyboard, if one is opened.</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(typeText(
+   "Hello World!", closeSoftKeyboard())
+</pre>
+<h3>click()</h3>
+<p><i>click()</i> has no arguments and returns a view action, which will invoke the click action of the view.</p>
+<pre class="result notranslate">
+onView(withId(R.id.button)).perform(click())
+</pre>
+<h3>doubleClick()</h3>
+<p><i>doubleClick()</i> has no arguments and returns a view action, which will invoke the double click action of the view.</p>
+<pre class="result notranslate">
+onView(withId(R.id.button)).perform(doubleClick())
+</pre>
+<h3>longClick()</h3>
+<p><i>longClick()</i> has no arguments and returns a view action, which will invoke the long click action of the view.</p>
+<pre class="result notranslate">
+onView(withId(R.id.button)).perform(longClick())
+</pre>
+<h3>pressBack()</h3>
+<p>pressBack() has no arguments and returns a view action, which will click the back button.</p>
+<pre class="result notranslate">
+onView(withId(R.id.button)).perform(pressBack())
+</pre>
+<h3>pressBackUnconditionally()</h3>
+<p><i>pressBackUnconditionally()</i> has no arguments and returns a view action, which will click the back button and does not throw an exception if the back button action exits the application itself.</p>
+<pre class="result notranslate">
+onView(withId(R.id.button)).perform(pressBack())
+</pre>
+<h3>openLink()</h3>
+<p><i>openLink()</i> has two arguments. The first argument (link text) is of type <i>Matcher</i> and refers the text of the HTML anchor tag. The second argument (url) is of the type <i>Matcher</i> and refers the url of the HTML anchor tag. It is applicable for <i>TextView</i> only. It returns a view action, which collects all the HTML anchor tags available in the content of the text view, finds the anchor tag matching the first argument (link text) and the second argument (url) and finally opens the corresponding url. Let us consider a text view having the content as &minus;</p>
+<pre class="result notranslate">
+&lt;a href="http://www.google.com/"&gt;copyright&lt;/a&gt;
+</pre>
+<p>Then, the link can be opened and tested using the below test case,</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(openLink(is("copyright"),
+   is(Uri.parse("http://www.google.com/"))))
+</pre>
+<p>Here, openLink will get the content of the text view, find the link having copyright as text, <a rel="nofollow" target="_blank" href="https://www.google.com/">www.google.com</a> as url and open the url in a browser.</p>
+<h3>openLinkWithText()</h3>
+<p><i>openLinkWithText()</i> has one argument, which may be either of type **String* or Matcher. It is simply a short cut to the <i>openLink</i> *method.</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(openLinkWithText("copyright"))
+</pre>
+<h3>openLinkWithUri()</h3>
+<p><i>openLinkWithUri()</i> has one argument, which may be either of type <i>String</i> or Matcher. It is <i>simply</i> a <i>short</i> cut to the <i>openLink</i>* method.</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(openLinkWithUri("http://www.google.com/"))
+</pre>
+<h3>pressImeActionButton()</h3>
+<p><i>pressImeActionButton()</i> has no arguments and returns a view action, which will execute the action set in <i>android:imeOptions</i> configuration. For example, if the <i>android:imeOptions</i> equals actionNext, this will move the cursor to next possible <i>EditText</i> view in the screen.</p>
+<pre class="result notranslate">
+onView(withId(R.id.text_view)).perform(pressImeActionButton())
+</pre>
+<h3>scrollTo()</h3>
+<p><i>scrollTo()</i> has no arguments and returns a view action, which will scroll the matched scrollView on the screen.</p>
+<pre class="result notranslate">
+onView(withId(R.id.scrollView)).perform(scrollTo())
+</pre>
+<h3>swipeDown()</h3>
+<p><i>swipeDown()</i> has no arguments and returns a view action, which will fire swipe down action on the screen.</p>
+<pre class="result notranslate">
+onView(withId(R.id.root)).perform(swipeDown())
+</pre>
+<h3>swipeUp()</h3>
+<p><i>swipeUp()</i> has no arguments and returns a view action, which will fire swipe up action on the screen.</p>
+<pre class="result notranslate">
+onView(withId(R.id.root)).perform(swipeUp())
+</pre>
+<h3>swipeRight()</h3>
+<p><i>swipeRight()</i> has no arguments and returns a view action, which will fire swipe right action on the screen.</p>
+<pre class="result notranslate">
+onView(withId(R.id.root)).perform(swipeRight())
+</pre>
+<h3>swipeLeft()</h3>
+<p><i>swipeLeft()</i> has no arguments and returns a view action, which will fire swipe left action on the screen.</p>
+<pre class="result notranslate">
+onView(withId(R.id.root)).perform(swipeLeft())
+</pre>
+<h1>Espresso Testing Framework - AdapterView</h1>
+<p><i>AdapterView</i> is a special kind of view specifically designed to render a collection of similar information like product list and user contacts fetched from an underlying data source using <i>Adapter</i>. The data source may be simple list to complex database entries. Some of the view derived from <i>AdapterView</i> are <i>ListView</i>, <i>GridView</i> and <i>Spinner</i>.</p>
+<p><i>AdapterView</i> renders the user interface dynamically depending on the amount of data available in the underlying data source. In addition, <i>AdapterView</i> renders only the minimum necessary data, which can be rendered in the available visible area of the screen. <i>AdapterView</i> does this to conserve memory and to make the user interface look smooth even if the underlying data is large.</p>
+<p>Upon analysis, the nature of the <i>AdapterView</i> architecture makes the <i>onView</i> option and its view matchers irrelevant because the particular view to be tested may not be rendered at all in the first place. Luckily, espresso provides a method, <i>onData(</i>), which accepts hamcrest matchers (relevant to the data type of the underlying data) to match the underlying data and returns object of type <i>DataInteraction</i> corresponding to the view o the matched data. A sample code is as follows,</p>
+<pre class="result notranslate">
+onData(allOf(is(instanceOf(String.class)), startsWith("Apple"))).perform(click())
+</pre>
+<p>Here, <i>onData()</i> matches entry “Apple”, if it is available in the underlying data (array list) and returns <i>DataInteraction</i> object to interact with the matched view (TextView corresponding to “Apple” entry).</p>
+<h2>Methods</h2>
+<p><i>DataInteraction</i> provides the below methods to interact with the view,</p>
+<h3>perform()</h3>
+<p>This accepts view actions and fires the passed in view actions.</p>
+<pre class="result notranslate">
+onData(allOf(is(instanceOf(String.class)), startsWith("Apple"))).perform(click())
+</pre>
+<h3>check()</h3>
+<p>This accepts view assertions and checks the passed in view assertions.</p>
+<pre class="result notranslate">
+onData(allOf(is(instanceOf(String.class)), startsWith("Apple")))
+   .check(matches(withText("Apple")))
+</pre>
+<h3>inAdapterView()</h3>
+<p>This accepts view matchers. It selects the particular <i>AdapterView</i> based on the passed in view matchers and returns <i>DataInteraction</i> object to interact with the matched <i>AdapterView</i></p>
+<pre class="result notranslate">
+onData(allOf())
+   .inAdapterView(withId(R.id.adapter_view))
+   .atPosition(5)
+   .perform(click())
+</pre>
+<h3>atPosition()</h3>
+<p>This accepts an argument of type integer and refers the position of the item in the underlying data. It selects the view corresponding to the passed in positional value of the data and returns <i>DataInteraction</i> object to interact with the matched view. It will be useful, if we know the correct order of the underlying data.</p>
+<pre class="result notranslate">
+onData(allOf())
+   .inAdapterView(withId(R.id.adapter_view))
+   .atPosition(5)
+   .perform(click())
+</pre>
+<h3>onChildView()</h3>
+<p>This accepts view matchers and matches the view inside the specific child view. For example, we can interact with specific items like <i>Buy</i> button in a product list based <i>AdapterView</i>.</p>
+<pre class="result notranslate">
+onData(allOf(is(instanceOf(String.class)), startsWith("Apple")))
+   .onChildView(withId(R.id.buy_button))
+   .perform(click())
+</pre>
+<h2>Write a Sample Application</h2>
+<p>Follow the steps shown below to write a simple application based on <i>AdapterView</i> and write a test case using the <i>onData()</i> method.</p>
+<ul class="list">
+<li><p>Start Android studio.</p></li>
+<li><p>Create new project as discussed earlier and name it, <i>MyFruitApp</i>.</p></li>
+<li><p>Migrate the application to AndroidX framework using <i>Refactor</i> &rarr; <i>Migrate</i> to <i>AndroidX</i> option menu.</p></li>
+<li><p>Remove default design in the main activity and add <i>ListView</i>. The content of the <i>activity_main.xml</i> is as follows,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "utf-8"?&gt;
+&lt;RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+   xmlns:app = "http://schemas.android.com/apk/res-auto"
+   xmlns:tools = "http://schemas.android.com/tools"
+   android:layout_width = "match_parent"
+   android:layout_height = "match_parent"
+   tools:context = ".MainActivity"&gt;
+   &lt;ListView
+      android:id = "@+id/listView"
+      android:layout_width = "wrap_content"
+      android:layout_height = "wrap_content" /&gt;
+&lt;/RelativeLayout&gt;
+</pre>
+<ul class="list">
+<li><p>Add new layout resource, <i>item.xml</i> to specify the item template of the list view. The content of the <i>item.xml</i> is as follows,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "utf-8"?&gt;
+&lt;TextView xmlns:android = "http://schemas.android.com/apk/res/android"
+   android:id = "@+id/name"
+   android:layout_width = "fill_parent"
+   android:layout_height = "fill_parent"
+   android:padding = "8dp"
+/&gt;
+</pre>
+<ul class="list">
+<li><p>Now, create an adapter having fruit array as underlying data and set it to the list view. This needs to be done in the <i>onCreate()</i> of <i>MainActivity</i> as specified below,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+   super.onCreate(savedInstanceState);
+   setContentView(R.layout.activity_main);
+   
+   // Find fruit list view
+   final ListView listView = (ListView) findViewById(R.id.listView);
+   
+   // Initialize fruit data
+   String[] fruits = new String[]{
+      "Apple", 
+      "Banana", 
+      "Cherry", 
+      "Dates", 
+      "Elderberry", 
+      "Fig", 
+      "Grapes", 
+      "Grapefruit", 
+      "Guava",
+      "Jack fruit", 
+      "Lemon",
+      "Mango", 
+      "Orange", 
+      "Papaya", 
+      "Pears", 
+      "Peaches", 
+      "Pineapple",
+      "Plums", 
+      "Raspberry",
+      "Strawberry", 
+      "Watermelon"
+   };
+   
+   // Create array list of fruits
+   final ArrayList&lt;String&gt; fruitList = new ArrayList&lt;String&gt;();
+   for (int i = 0; i &lt; fruits.length; ++i) {
+      fruitList.add(fruits[i]);
+   }
+   
+   // Create Array adapter
+   final ArrayAdapter adapter = new ArrayAdapter(this, R.layout.item, fruitList);
+   
+   // Set adapter in list view
+   listView.setAdapter(adapter);
+}
+</pre>
+<ul class="list">
+<li><p>Now, compile the code and run the application. The screenshot of the <i>My Fruit App</i> is as follows,</p></li>
+</ul>
+<img src="/espresso_testing/images/compile_the_code.jpg" alt="Compile The Code" />
+<ul class="list">
+<li><p>Now, open <i>ExampleInstrumentedTest.java</i> file and add <i>ActivityTestRule</i> as specified below,</p></li>
+</ul>
+<pre class="result notranslate">
+@Rule
+public ActivityTestRule&lt;MainActivity&gt; mActivityRule =
+   new ActivityTestRule&lt;MainActivity&gt;(MainActivity.class);
+</pre>
+<p>Also, make sure the test configuration is done in <i>app/build.gradle</i> &minus;</p>
+<pre class="prettyprint notranslate">
+dependencies {
+   testImplementation 'junit:junit:4.12'
+   androidTestImplementation 'androidx.test:runner:1.1.1'
+   androidTestImplementation 'androidx.test:rules:1.1.1'
+   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+}
+</pre>
+<ul class="list">
+<li><p>Add a new test case to test the list view as below,</p></li>
+</ul>
+<pre class="result notranslate">
+@Test
+public void listView_isCorrect() {
+   // check list view is visible
+   onView(withId(R.id.listView)).check(matches(isDisplayed()));
+   onData(allOf(is(instanceOf(String.class)), startsWith("Apple"))).perform(click());
+   onData(allOf(is(instanceOf(String.class)), startsWith("Apple")))
+      .check(matches(withText("Apple")));
+   // click a child item
+   onData(allOf())
+      .inAdapterView(withId(R.id.listView))
+      .atPosition(10)
+      .perform(click());
+}
+</pre>
+<ul class="list">
+<li><p>Finally, run the test case using android studio’s context menu and check whether all test cases are succeeding.</p></li>
+</ul>
+<h1>Espresso Testing Framework - WebView</h1>
+<p><i>WebView</i> is a special view provided by android to display web pages inside the application. <i>WebView</i> does not provide all the features of a full-fledged browser application like chrome and firefox. However, it provides complete control over the content to be shown and exposes all the android features to be invoked inside the web pages. It enables <i>WebView</i> and provides a special environment where the UI can be easily designed using HTML technology and native features like camera and dial a contact. This feature set enables a <i>WebView</i> to provide a new kind of application called <i>Hybrid application</i>, where the UI is done in HTML and business logic is done in either <i>JavaScript</i> or through an external API endpoint.</p>
+<p>Normally, testing a <i>WebView</i> needs to be a challenge because it uses HTML technology for its user interface elements rather than native user interface/views. Espresso excels in this area by providing a new set to web matchers and web assertions, which is intentionally similar to native view matchers and view assertions. At the same time, it provides a wellbalanced approach by including a web technology based testing environment as well.</p>
+<p>Espresso web is built upon <i>WebDriver</i> Atom framework, which is used to find and manipulate web elements. <i>Atom</i> is similar to view actions. Atom will do all the interaction inside a web page. <i>WebDriver</i> exposes a predefined set of methods, like <i>findElement()</i>, <i>getElement()</i> to find web elements and returns the corresponding atoms (to do action in the web page).</p>
+<p>A standard web testing statement looks like the below code,</p>
+<pre class="result notranslate">
+onWebView()
+   .withElement(Atom)
+   .perform(Atom)
+   .check(WebAssertion)
+</pre>
+<p>Here,</p>
+<ul class="list">
+<li><p><i>onWebView()</i> &minus; Similar to onView(), it exposes a set of API to test a WebView.</p></li>
+<li><p><i>withElement()</i> &minus; One of the several methods used to locate web elements inside a web page using Atom and returns WebInteration object, which is similar to ViewInteraction.</p></li>
+<li><p><i>perform()</i> &minus; Executes the action inside a web page using Atom and returns WebInteraction.</p></li>
+<li><p><i>check()</i> &minus; This does the necessary assertion using WebAssertion.</p></li>
+</ul>
+<p>A sample web testing code is as follows,</p>
+<pre class="result notranslate">
+onWebView()
+   .withElement(findElement(Locator.ID, "apple"))
+   .check(webMatches(getText(), containsString("Apple")))
+</pre>
+<p>Here,</p>
+<ul class="list">
+<li><p><i>findElement()</i> locate a element and returns an Atom</p></li>
+<li><p><i>webMatches</i> is similar to matches method</p></li>
+</ul>
+<h2>Write a Sample Application</h2>
+<p>Let us write a simple application based on WebView and write a test case using the <i>onWebView()</i> method. Follow these steps to write a sample application &minus;</p>
+<ul class="list">
+<li><p>Start Android studio.</p></li>
+<li><p>Create new project as discussed earlier and name it, <i>MyWebViewApp</i>.</p></li>
+<li><p>Migrate the application to AndroidX framework using <i>Refactor</i> &rarr; <i>Migrate</i> to <i>AndroidX</i> option menu.</p></li>
+<li><p>Add the below configuration option in the <i>AndroidManifest.xml</i> file to give permission to access Internet.</p></li>
+</ul>
+<pre class="result notranslate">
+&lt;uses-permission android:name = "android.permission.INTERNET" /&gt;
+</pre>
+<ul class="list">
+<li><p>Espresso web is provided as a separate plugin. So, add the dependency in the app/build.gradle and sync it.</p></li>
+</ul>
+<pre class="result notranslate">
+dependencies {
+   androidTestImplementation 'androidx.test:rules:1.1.1'
+   androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.1'
+}
+</pre>
+<ul class="list">
+<li><p>Remove default design in the main activity and add WebView. The content of the activity_main.xml is as follows,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "utf-8"?&gt;
+&lt;RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+   xmlns:app = "http://schemas.android.com/apk/res-auto"
+   xmlns:tools = "http://schemas.android.com/tools"
+   android:layout_width = "match_parent"
+   android:layout_height = "match_parent"
+   tools:context = ".MainActivity"&gt;
+   &lt;WebView
+      android:id = "@+id/web_view_test"
+      android:layout_width = "fill_parent"
+      android:layout_height = "fill_parent" /&gt;
+&lt;/RelativeLayout&gt;
+</pre>
+<ul class="list">
+<li><p>Create a new class, <i>ExtendedWebViewClient</i> extending <i>WebViewClient</i> and override <i>shouldOverrideUrlLoading</i> method to load link action in the same <i>WebView</i>; otherwise, it will open a new browser window outside the application. Place it in <i>MainActivity.java</i>.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+private class ExtendedWebViewClient extends WebViewClient {
+   @Override
+   public boolean shouldOverrideUrlLoading(WebView view, String url) {
+      view.loadUrl(url);
+      return true;
+   }
+}
+</pre>
+<ul class="list">
+<li><p>Now, add the below code in the onCreate method of <i>MainActivity</i>. The purpose of the code is to find the <i>WebView</i>, properly configure it and then finally load the target url.</p></li>
+</ul>
+<pre class="result notranslate">
+// Find web view
+WebView webView = (WebView) findViewById(R.id.web_view_test);
+
+// set web view client
+webView.setWebViewClient(new ExtendedWebViewClient());
+
+// Clear cache
+webView.clearCache(true);
+
+// load Url
+webView.loadUrl("http://&lt;your domain or IP&gt;/index.html");
+</pre>
+<p>Here,</p>
+<ul class="list">
+<li><p>The content of <i>index.html</i> is as follows &minus;</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Android Web View Sample&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;h1&gt;Fruits&lt;/h1&gt;
+      &lt;ol&gt;
+         &lt;li&gt;&lt;a href = "apple.html" id = "apple"&gt;Apple&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href = "banana.html" id = "banana"&gt;Banana&lt;/a&gt;&lt;/li&gt;
+         &lt;/ol&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<ul class="list">
+<li><p>The content of the <i>apple.html</i> file referred in <i>index.html</i> is as follows &minus;</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Android Web View Sample&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;h1&gt;Apple&lt;/h1&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<ul class="list">
+<li><p>The content of the <i>banana.html</i> file referred in <i>banana.html</i> is as follows,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;Android Web View Sample&lt;/title&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;h1&gt;Banana&lt;/h1&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<ul class="list">
+<li><p>Place index.html, apple.html and banana.html in a web server</p></li>
+<li><p>Replace the url in loadUrl method with your configured url.</p></li>
+<li><p>Now, run the application and manually check if everything is fine. Below is the screenshot of the <i>WebView sample application</i> &minus;</p></li>
+</ul>
+<img src="/espresso_testing/images/webview_sample.jpg" alt="WebView Sample" />
+<ul class="list">
+<li><p>Now, open the <i>ExampleInstrumentedTest.java</i> file and add the below rule &minus;</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+@Rule
+public ActivityTestRule&lt;MainActivity&gt; mActivityRule =
+   new ActivityTestRule&lt;MainActivity&gt;(MainActivity.class, false, true) {
+   @Override
+   protected void afterActivityLaunched() {
+      onWebView(withId(R.id.web_view_test)).forceJavascriptEnabled();
+   }
+};
+</pre>
+<p>Here, we found the <i>WebView</i> and enabled JavaScript of the <i>WebView</i> because espresso web testing framework works exclusively through JavaScript engine to identify and manipulate web element.</p>
+<ul class="list">
+<li><p>Now, add the test case to test our <i>WebView</i> and its behavior.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+@Test
+public void webViewTest(){
+   onWebView()
+      .withElement(findElement(Locator.ID, "apple"))
+      .check(webMatches(getText(), containsString("Apple")))
+      .perform(webClick())
+      .withElement(findElement(Locator.TAG_NAME, "h1"))
+      .check(webMatches(getText(), containsString("Apple")));
+}
+</pre>
+<p>Here, the testing was done in the following order,</p>
+<ul class="list">
+<li><p>found the link, <i>apple</i> using its id attribute through <i>findElement()</i> method and <i>Locator.ID</i> enumeration.</p></li>
+<li><p>checks the text of the link using <i>webMatches()</i> method</p></li>
+<li><p>performs click action on the link. It opens the <i>apple.html</i> page.</p></li>
+<li><p>again found the h1 element using findElement() methods and <i>Locator.TAG_NAME</i> enumeration.</p></li>
+<li><p>finally again checks the text of the <i>h1</i> tag using <i>webMatches()</i> method.</p></li>
+<li><p>Finally, run the test case using android studio context menu.</p></li>
+</ul>
+<h1>Asynchronous Operations</h1>
+<p>In this chapter, we will learn how to test asynchronous operations using Espresso Idling Resources.</p>
+<p>One of the challenges of the modern application is to provide smooth user experience. Providing smooth user experience involves lot of work in the background to make sure that the application process does not take longer than few milliseconds. Background task ranges from the simple one to costly and complex task of fetching data from remote API / database. To encounter the challenge in the past, a developer used to write costly and long running task in a background thread and sync up with the main <i>UIThread</i> once background thread is completed.</p>
+<p>If developing a multi-threaded application is complex, then writing test cases for it is even more complex. For example, we should not test an <i>AdapterView</i> before the necessary data is loaded from the database. If fetching the data is done in a separate thread, the test needs to wait until the thread completes. So, the test environment should be synced between background thread and UI thread. Espresso provides an excellent support for testing the multi-threaded application. An application uses thread in the following ways and espresso supports every scenario.</p>
+<h2>User Interface Threading</h2>
+<p>It is internally used by android SDK to provide smooth user experience with complex UI elements. Espresso supports this scenario transparently and does not need any configuration and special coding.</p>
+<h3>Async task</h3>
+<p>Modern programming languages support async programming to do light weight threading without the complexity of thread programming. Async task is also supported transparently by espresso framework.</p>
+<h3>User thread</h3>
+<p>A developer may start a new thread to fetch complex or large data from database. To support this scenario, espresso provides idling resource concept.</p>
+<p>Let use learn the concept of idling resource and how to to it in this chapter.</p>
+<h2>Overview</h2>
+<p>The concept of idling resource is very simple and intuitive. The basic idea is to create a variable (boolean value) whenever a long running process is started in a separate thread to identify whether the process is running or not and register it in the testing environment. During testing, the test runner will check the registered variable, if any found and then find its running status. If the running status is true, test runner will wait until the status become false.</p>
+<p>Espresso provides an interface, IdlingResources for the purpose of maintaining the running status. The main method to implement is isIdleNow(). If isIdleNow() returns true, espresso will resume the testing process or else wait until isIdleNow() returns false. We need to implement IdlingResources and use the derived class. Espresso also provides some of the built-in IdlingResources implementation to ease our workload. They are as follows,</p>
+<h3>CountingIdlingResource</h3>
+<p>This maintains an internal counter of running task. It exposes <i>increment()</i> and <i>decrement()</i> methods. <i>increment()</i> adds one to the counter and <i>decrement()</i> removes one from the counter. <i>isIdleNow()</i> returns true only when no task is active.</p>
+<h3>UriIdlingResource</h3>
+<p>This is similar to <i>CounintIdlingResource</i> except that the counter needs to be zero for extended period to take the network latency as well.</p>
+<h3>IdlingThreadPoolExecutor</h3>
+<p>This is a custom implementation of <i>ThreadPoolExecutor</i> to maintain the number active running task in the current thread pool.</p>
+<h3>IdlingScheduledThreadPoolExecutor</h3>
+<p>This is similar to <i>IdlingThreadPoolExecutor</i>, but it schedules a task as well and a custom implementation of ScheduledThreadPoolExecutor.</p>
+<p>If any one of the above implementation of <i>IdlingResources</i> or a custom one is used in the application, we need to register it to the testing environment as well before testing the application using <i>IdlingRegistry</i> class as below,</p>
+<pre class="result notranslate">
+IdlingRegistry.getInstance().register(MyIdlingResource.getIdlingResource());
+</pre>
+<p>Moreover, it can be removed once testing is completed as below &minus;</p>
+<pre class="result notranslate">
+IdlingRegistry.getInstance().unregister(MyIdlingResource.getIdlingResource());
+</pre>
+<p>Espresso provides this functionality in a separate package, and the package needs to be configured as below in the app.gradle.</p>
+<pre class="result notranslate">
+dependencies {
+   implementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
+   androidTestImplementation "androidx.test.espresso.idling:idlingconcurrent:3.1.1"
+}
+</pre>
+<h2>Sample Application</h2>
+<p>Let us create a simple application to list the fruits by fetching it from a web service in a separate thread and then, test it using idling resource concept.</p>
+<ul class="list">
+<li><p>Start Android studio.</p></li>
+<li><p>Create new project as discussed earlier and name it, MyIdlingFruitApp</p></li>
+<li><p><i>Migrate</i> the application to AndroidX framework using <i>Refactor</i> &rarr; Migrate to <i>AndroidX</i> option menu.</p></li>
+<li><p>Add espresso idling resource library in the <i>app/build.gradle</i> (and sync it) as specified below,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+dependencies {
+   implementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
+   androidTestImplementation "androidx.test.espresso.idling:idlingconcurrent:3.1.1"
+}
+</pre>
+<ul class="list">
+<li><p>Remove the default design in the main activity and add ListView. The content of the <i>activity_main.xml</i> is as follows,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "utf-8"?&gt;
+&lt;RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+   xmlns:app = "http://schemas.android.com/apk/res-auto"
+   xmlns:tools = "http://schemas.android.com/tools"
+   android:layout_width = "match_parent"
+   android:layout_height = "match_parent"
+   tools:context = ".MainActivity"&gt;
+   &lt;ListView
+      android:id = "@+id/listView"
+      android:layout_width = "wrap_content"
+      android:layout_height = "wrap_content" /&gt;
+&lt;/RelativeLayout&gt;
+</pre>
+<ul class="list">
+<li><p>Add new layout resource, <i>item.xml</i> to specify the item template of the list view. The content of the <i>item.xml</i> is as follows,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "utf-8"?&gt;
+&lt;TextView xmlns:android = "http://schemas.android.com/apk/res/android"
+   android:id = "@+id/name"
+   android:layout_width = "fill_parent"
+   android:layout_height = "fill_parent"
+   android:padding = "8dp"
+/&gt;
+</pre>
+<ul class="list">
+<li><p>Create a new class – <i>MyIdlingResource</i>. <i>MyIdlingResource</i> is used to hold our IdlingResource in one place and fetch it whenever necessary. We are going to use <i>CountingIdlingResource</i> in our example.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.myidlingfruitapp;
+import androidx.test.espresso.IdlingResource;
+import androidx.test.espresso.idling.CountingIdlingResource;
+
+public class MyIdlingResource {
+   private static CountingIdlingResource mCountingIdlingResource =
+      new CountingIdlingResource("my_idling_resource");
+   public static void increment() {
+      mCountingIdlingResource.increment();
+   }
+   public static void decrement() {
+      mCountingIdlingResource.decrement();
+   }
+   public static IdlingResource getIdlingResource() {
+      return mCountingIdlingResource;
+   }
+}
+</pre>
+<ul class="list">
+<li><p>Declare a global variable, <i>mIdlingResource</i> of type <i>CountingIdlingResource</i> in the <i>MainActivity</i> class as below,</p></li>
+</ul>
+<pre class="result notranslate">
+@Nullable
+private CountingIdlingResource mIdlingResource = null;
+</pre>
+<ul class="list">
+<li><p>Write a private method to fetch fruit list from the web as below,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+private ArrayList&lt;String&gt; getFruitList(String data) {
+   ArrayList&lt;String&gt; fruits = new ArrayList&lt;String&gt;();
+   try {
+      // Get url from async task and set it into a local variable
+      URL url = new URL(data);
+      Log.e("URL", url.toString());
+      
+      // Create new HTTP connection
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      
+      // Set HTTP connection method as "Get"
+      conn.setRequestMethod("GET");
+      
+      // Do a http request and get the response code
+      int responseCode = conn.getResponseCode();
+      
+      // check the response code and if success, get response content
+      if (responseCode == HttpURLConnection.HTTP_OK) {
+         BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+         String line;
+         StringBuffer response = new StringBuffer();
+         while ((line = in.readLine()) != null) {
+            response.append(line);
+         }
+         in.close();
+         JSONArray jsonArray = new JSONArray(response.toString());
+         Log.e("HTTPResponse", response.toString());
+         for(int i = 0; i &lt; jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            String name = String.valueOf(jsonObject.getString("name"));
+            fruits.add(name);
+         }
+      } else {
+         throw new IOException("Unable to fetch data from url");
+      }
+      conn.disconnect();
+   } catch (IOException | JSONException e) {
+      e.printStackTrace();
+   }
+   return fruits;
+}
+</pre>
+<ul class="list">
+<li><p>Create a new task in the <i>onCreate()</i> method to fetch the data from the web using our <i>getFruitList</i> method followed by the creation of a new adapter and setting it out to list view. Also, decrement the idling resource once our work is completed in the thread. The code is as follows,</p></li>
+</ul>
+<pre class="result notranslate">
+// Get data
+class FruitTask implements Runnable {
+   ListView listView;
+   CountingIdlingResource idlingResource;
+   FruitTask(CountingIdlingResource idlingRes, ListView listView) {
+      this.listView = listView;
+      this.idlingResource = idlingRes;
+   }
+   public void run() {
+      //code to do the HTTP request
+      final ArrayList&lt;String&gt; fruitList = getFruitList("http://&lt;your domain or IP&gt;/fruits.json");
+      try {
+         synchronized (this){
+            runOnUiThread(new Runnable() {
+               @Override
+               public void run() {
+                  // Create adapter and set it to list view
+                  final ArrayAdapter adapter = new
+                     ArrayAdapter(MainActivity.this, R.layout.item, fruitList);
+                  ListView listView = (ListView)findViewById(R.id.listView);
+                  listView.setAdapter(adapter);
+               }
+            });
+         }
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      if (!MyIdlingResource.getIdlingResource().isIdleNow()) {
+         MyIdlingResource.decrement(); // Set app as idle.
+      }
+   }
+}
+</pre>
+<p>Here, the fruit url is considered as <i>http://&lt;your domain or IP/fruits.json</i> and it is formated as JSON. The content is as follows,</p>
+<pre class="result notranslate">
+[ 
+   {
+      "name":"Apple"
+   },
+   {
+      "name":"Banana"
+   },
+   {
+      "name":"Cherry"
+   },
+   {
+      "name":"Dates"
+   },
+   {
+      "name":"Elderberry"
+   },
+   {
+      "name":"Fig"
+   },
+   {
+      "name":"Grapes"
+   },
+   {
+      "name":"Grapefruit"
+   },
+   {
+      "name":"Guava"
+   },
+   {
+      "name":"Jack fruit"
+   },
+   {
+      "name":"Lemon"
+   },
+   {
+      "name":"Mango"
+   },
+   {
+      "name":"Orange"
+   },
+   {
+      "name":"Papaya"
+   },
+   {
+      "name":"Pears"
+   },
+   {
+      "name":"Peaches"
+   },
+   {
+      "name":"Pineapple"
+   },
+   {
+      "name":"Plums"
+   },
+   {
+      "name":"Raspberry"
+   },
+   {
+      "name":"Strawberry"
+   },
+   {
+      "name":"Watermelon"
+   }
+]
+</pre>
+<p><b>Note</b> &minus; Place the file in your local web server and use it.</p>
+<ul class="list">
+<li><p>Now, find the view, create a new thread by passing <i>FruitTask</i>, increment the idling resource and finally start the task.</p></li>
+</ul>
+<pre class="result notranslate">
+// Find list view
+ListView listView = (ListView) findViewById(R.id.listView);
+Thread fruitTask = new Thread(new FruitTask(this.mIdlingResource, listView));
+MyIdlingResource.increment();
+fruitTask.start();
+</pre>
+<ul class="list">
+<li><p>The complete code of <i>MainActivity</i> is as follows,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.espressosamples.myidlingfruitapp;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.test.espresso.idling.CountingIdlingResource;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+   @Nullable
+   private CountingIdlingResource mIdlingResource = null;
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      
+      // Get data
+      class FruitTask implements Runnable {
+         ListView listView;
+         CountingIdlingResource idlingResource;
+         FruitTask(CountingIdlingResource idlingRes, ListView listView) {
+            this.listView = listView;
+            this.idlingResource = idlingRes;
+         }
+         public void run() {
+            //code to do the HTTP request
+            final ArrayList&lt;String&gt; fruitList = getFruitList(
+               "http://&lt;yourdomain or IP&gt;/fruits.json");
+            try {
+               synchronized (this){
+                  runOnUiThread(new Runnable() {
+                     @Override
+                     public void run() {
+                        // Create adapter and set it to list view
+                        final ArrayAdapter adapter = new ArrayAdapter(
+                           MainActivity.this, R.layout.item, fruitList);
+                        ListView listView = (ListView) findViewById(R.id.listView);
+                        listView.setAdapter(adapter);
+                     }
+                  });
+               }
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+            if (!MyIdlingResource.getIdlingResource().isIdleNow()) {
+               MyIdlingResource.decrement(); // Set app as idle.
+            }
+         }
+      }
+      // Find list view
+      ListView listView = (ListView) findViewById(R.id.listView);
+      Thread fruitTask = new Thread(new FruitTask(this.mIdlingResource, listView));
+      MyIdlingResource.increment();
+      fruitTask.start();
+   }
+   private ArrayList&lt;String&gt; getFruitList(String data) {
+      ArrayList&lt;String&gt; fruits = new ArrayList&lt;String&gt;();
+      try {
+         // Get url from async task and set it into a local variable
+         URL url = new URL(data);
+         Log.e("URL", url.toString());
+         
+         // Create new HTTP connection
+         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+         
+         // Set HTTP connection method as "Get"
+         conn.setRequestMethod("GET");
+         
+         // Do a http request and get the response code
+         int responseCode = conn.getResponseCode();
+         
+         // check the response code and if success, get response content
+         if (responseCode == HttpURLConnection.HTTP_OK) {
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            StringBuffer response = new StringBuffer();
+            while ((line = in.readLine()) != null) {
+               response.append(line);
+            }
+            in.close();
+            JSONArray jsonArray = new JSONArray(response.toString());
+            Log.e("HTTPResponse", response.toString());
+            
+            for(int i = 0; i &lt; jsonArray.length(); i++) {
+               JSONObject jsonObject = jsonArray.getJSONObject(i);
+               String name = String.valueOf(jsonObject.getString("name"));
+               fruits.add(name);
+            }
+         } else {
+            throw new IOException("Unable to fetch data from url");
+         }
+         conn.disconnect();
+      } catch (IOException | JSONException e) {
+         e.printStackTrace();
+      }
+      return fruits;
+   }
+}
+</pre>
+<ul class="list">
+<li><p>Now, add below configuration in the application manifest file, <i>AndroidManifest.xml</i></p></li>
+</ul>
+<pre class="result notranslate">
+&lt;uses-permission android:name = "android.permission.INTERNET" /&gt;
+</pre>
+<ul class="list">
+<li><p>Now, compile the above code and run the application. The screenshot of the <i>My Idling Fruit App</i> is as follows,</p></li>
+</ul>
+<img src="/espresso_testing/images/ldling_fruit_app.jpg" alt="Idling Fruit App" />
+<ul class="list">
+<li><p>Now, open the <i>ExampleInstrumentedTest.java</i> file and add ActivityTestRule as specified below,</p></li>
+</ul>
+<pre class="result notranslate">
+@Rule
+public ActivityTestRule&lt;MainActivity&gt; mActivityRule = 
+   new ActivityTestRule&lt;MainActivity&gt;(MainActivity.class);
+Also, make sure the test configuration is done in app/build.gradle
+dependencies {
+   testImplementation 'junit:junit:4.12'
+   androidTestImplementation 'androidx.test:runner:1.1.1'
+   androidTestImplementation 'androidx.test:rules:1.1.1'
+   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+   implementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
+   androidTestImplementation "androidx.test.espresso.idling:idlingconcurrent:3.1.1"
+}
+</pre>
+<ul class="list">
+<li><p>Add a new test case to test the list view as below,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+@Before
+public void registerIdlingResource() {
+   IdlingRegistry.getInstance().register(MyIdlingResource.getIdlingResource());
+}
+@Test
+public void contentTest() {
+   // click a child item
+   onData(allOf())
+   .inAdapterView(withId(R.id.listView))
+   .atPosition(10)
+   .perform(click());
+}
+@After
+public void unregisterIdlingResource() {
+   IdlingRegistry.getInstance().unregister(MyIdlingResource.getIdlingResource());
+}
+</pre>
+<ul class="list">
+<li><p>Finally, run the test case using android studio’s context menu and check whether all test cases are succeeding.</p></li>
+</ul>
+<h1>Espresso Testing Framework - Intents</h1>
+<p>Android Intent is used to open new activity, either internal (opening a product detail screen from product list screen) or external (like opening a dialer to make a call). Internal intent activity is handled transparently by the espresso testing framework and it does not need any specific work from the user side. However, invoking external activity is really a challenge because it goes out of our scope, the application under test. Once the user invokes an external application and goes out of the application under test, then the chances of user coming back to the application with predefined sequence of action is rather less. Therefore, we need to assume the user action before testing the application. Espresso provides two options to handle this situation. They are as follows,</p>
+<h3>intended</h3>
+<p>This allows the user to make sure the correct intent is opened from the application under test.</p>
+<h3>intending</h3>
+<p>This allows the user to mock an external activity like take a photo from the camera, dialing a number from the contact list, etc., and return to the application with predefined set of values (like predefined image from the camera instead of actual image).</p>
+<h2>Setup</h2>
+<p>Espresso supports the intent option through a plugin library and the library needs to be configured in the application’s gradle file. The configuration option is as follows,</p>
+<pre class="result notranslate">
+dependencies {
+   // ...
+   androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
+}
+</pre>
+<h2>intended()</h2>
+<p>Espresso intent plugin provides special matchers to check whether the invoked intent is the expected intent. The provided matchers and the purpose of the matchers are as follows,</p>
+<h3>hasAction</h3>
+<p>This accepts the intent action and returns a matcher, which matches the specified intent.</p>
+<h3>hasData</h3>
+<p>This accepts the data and returns a matcher, which matches the data provided to the intent while invoking it.</p>
+<h3>toPackage</h3>
+<p>This accepts the intent package name and returns a matcher, which matches the package name of the invoked intent.</p>
+<p>Now, let us create a new application and test the application for external activity using <i>intended()</i> to understand the concept.</p>
+<ul class="list">
+<li><p>Start Android studio.</p></li>
+<li><p>Create a new project as discussed earlier and name it, IntentSampleApp.</p></li>
+<li><p>Migrate the application to AndroidX framework using <i>Refactor &rarr; Migrate</i> to <i>AndroidX</i> option menu.</p></li>
+<li><p>Create a text box, a button to open contact list and another one to dial a call by changing the <i>activity_main.xml</i> as shown below,</p></li>
+</ul>
+<pre class="result notranslate">
+&lt;?xml version = "1.0" encoding = "utf-8"?&gt;
+&lt;RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+   xmlns:app = "http://schemas.android.com/apk/res-auto"
+   xmlns:tools = "http://schemas.android.com/tools"
+   android:layout_width = "match_parent"
+   android:layout_height = "match_parent"
+   tools:context = ".MainActivity"&gt;
+   &lt;EditText
+      android:id = "@+id/edit_text_phone_number"
+      android:layout_width = "wrap_content"
+      android:layout_height = "wrap_content"
+      android:layout_centerHorizontal = "true"
+      android:text = ""
+      android:autofillHints = "@string/phone_number"/&gt;
+   &lt;Button
+      android:id = "@+id/call_contact_button"
+      android:layout_width = "wrap_content"
+      android:layout_height = "wrap_content"
+      android:layout_centerHorizontal = "true"
+      android:layout_below = "@id/edit_text_phone_number"
+      android:text = "@string/call_contact"/&gt;
+   &lt;Button
+      android:id = "@+id/button"
+      android:layout_width = "wrap_content"
+      android:layout_height = "wrap_content"
+      android:layout_centerHorizontal = "true"
+      android:layout_below = "@id/call_contact_button"
+      android:text = "@string/call"/&gt;
+&lt;/RelativeLayout&gt;
+</pre>
+<ul class="list">
+<li><p>Also, add the below item in <i>strings.xml</i> resource file,</p></li>
+</ul>
+<pre class="result notranslate">
+&lt;string name = "phone_number"&gt;Phone number&lt;/string&gt;
+&lt;string name = "call"&gt;Call&lt;/string&gt;
+&lt;string name = "call_contact"&gt;Select from contact list&lt;/string&gt;
+</pre>
+<ul class="list">
+<li><p>Now, add the below code in the main activity (<i>MainActivity.java</i>) under the <i>onCreate</i> method.</p></li>
+</ul>
+<pre class="result notranslate">
+public class MainActivity extends AppCompatActivity {
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+      // ... code
+      // Find call from contact button
+      Button contactButton = (Button) findViewById(R.id.call_contact_button);
+      contactButton.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+            // Uri uri = Uri.parse("content://contacts");
+            Intent contactIntent = new Intent(Intent.ACTION_PICK,
+               ContactsContract.Contacts.CONTENT_URI);
+            contactIntent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+            startActivityForResult(contactIntent, REQUEST_CODE);
+         }
+      });
+      // Find edit view
+      final EditText phoneNumberEditView = (EditText)
+         findViewById(R.id.edit_text_phone_number);
+      // Find call button
+      Button button = (Button) findViewById(R.id.button);
+      button.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+            if(phoneNumberEditView.getText() != null) {
+               Uri number = Uri.parse("tel:" + phoneNumberEditView.getText());
+               Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+               startActivity(callIntent);
+            }
+         }
+      });
+   }
+   // ... code
+}
+</pre>
+<p>Here, we have programmed the button with id, <i>call_contact_button</i> to open the contact list and button with id, <i>button</i> to dial the call.</p>
+<ul class="list">
+<li><p>Add a static variable <i>REQUEST_CODE</i> in <i>MainActivity</i> class as shown below,</p></li>
+</ul>
+<pre class="result notranslate">
+public class MainActivity extends AppCompatActivity {
+   // ...
+   private static final int REQUEST_CODE = 1;
+   // ...
+}
+</pre>
+<ul class="list">
+<li><p>Now, add the <i>onActivityResult</i> method in the <i>MainActivity</i> class as below,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+public class MainActivity extends AppCompatActivity {
+   // ...
+   @Override
+   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+      if (requestCode == REQUEST_CODE) {
+         if (resultCode == RESULT_OK) {
+            // Bundle extras = data.getExtras();
+            // String phoneNumber = extras.get("data").toString();
+            Uri uri = data.getData();
+            Log.e("ACT_RES", uri.toString());
+            String[] projection = {
+               ContactsContract.CommonDataKinds.Phone.NUMBER, 
+               ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME };
+            Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+            cursor.moveToFirst();
+            
+            int numberColumnIndex =
+               cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+            String number = cursor.getString(numberColumnIndex);
+            
+            int nameColumnIndex = cursor.getColumnIndex(
+               ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+            String name = cursor.getString(nameColumnIndex);
+            Log.d("MAIN_ACTIVITY", "Selected number : " + number +" , name : "+name);
+            
+            // Find edit view
+            final EditText phoneNumberEditView = (EditText)
+               findViewById(R.id.edit_text_phone_number);
+            phoneNumberEditView.setText(number);
+         }
+      }
+   };
+   // ...
+}
+</pre>
+<p>Here, <i>onActivityResult</i> will be invoked when a user returns to the application after opening the contact list using the <i>call_contact_button</i> button and selecting a contact. Once the <i>onActivityResult</i> method is invoked, it gets the user selected contact, find the contact number and set it into the text box.</p>
+<ul class="list">
+<li><p>Run the application and make sure everything is fine. The final look of the <i>Intent sample Application</i> is as shown below,</p></li>
+</ul>
+<img src="/espresso_testing/images/sample_application.jpg" alt="Sample Application" />
+<ul class="list">
+<li><p>Now, configure the espresso intent in the application’s gradle file as shown below,</p></li>
+</ul>
+<pre class="result notranslate">
+dependencies {
+   // ...
+   androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
+}
+</pre>
+<ul class="list">
+<li><p>Click the <i>Sync</i> Now menu option provided by the Android Studio. This will download the intent test library and configure it properly.</p></li>
+<li><p>Open <i>ExampleInstrumentedTest.java</i> file and add the <i>IntentsTestRule</i> instead of normally used <i>AndroidTestRule</i>. <i>IntentTestRule</i> is a special rule to handle intent testing.</p></li>
+</ul>
+<pre class="result notranslate">
+public class ExampleInstrumentedTest {
+   // ... code
+   @Rule
+   public IntentsTestRule&lt;MainActivity&gt; mActivityRule =
+   new IntentsTestRule&lt;&gt;(MainActivity.class);
+   // ... code
+}
+</pre>
+<ul class="list">
+<li><p>Add two local variables to set the test phone number and dialer package name as below,</p></li>
+</ul>
+<pre class="result notranslate">
+public class ExampleInstrumentedTest {
+   // ... code
+   private static final String PHONE_NUMBER = "1 234-567-890";
+   private static final String DIALER_PACKAGE_NAME = "com.google.android.dialer";
+   // ... code
+}
+</pre>
+<ul class="list">
+<li><p>Fix the import issues by using Alt + Enter option provided by android studio or else include the below import statements,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+import android.content.Context;
+import android.content.Intent;
+
+import androidx.test.InstrumentationRegistry;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
+import androidx.test.runner.AndroidJUnit4;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.core.AllOf.allOf;
+import static org.junit.Assert.*;
+</pre>
+<ul class="list">
+<li><p>Add the below test case to test whether the dialer is properly called,</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+public class ExampleInstrumentedTest {
+   // ... code
+   @Test
+   public void validateIntentTest() {
+      onView(withId(R.id.edit_text_phone_number))
+         .perform(typeText(PHONE_NUMBER), closeSoftKeyboard());
+      onView(withId(R.id.button)) .perform(click());
+      intended(allOf(
+         hasAction(Intent.ACTION_DIAL),
+         hasData("tel:" + PHONE_NUMBER),
+         toPackage(DIALER_PACKAGE_NAME)));
+   }
+   // ... code
+}
+</pre>
+<p>Here, <i>hasAction</i>, <i>hasData</i> and <i>toPackage</i> matchers are used along with <i>allOf</i> matcher to succeed only if all matchers are passed.</p>
+<ul class="list">
+<li><p>Now, run the <i>ExampleInstrumentedTest</i> through content menu in Android studio.</p></li>
+</ul>
+<h2>intending()</h2>
+<p>Espresso provides a special method – <i>intending()</i> to mock an external intent action. <i>intending()</i> accept the package name of the intent to be mocked and provides a method <i>respondWith</i> to set how the mocked intent needs to be responded with as specified below,</p>
+<pre class="result notranslate">
+intending(toPackage("com.android.contacts")).respondWith(result);
+</pre>
+<p>Here, <i>respondWith()</i> accepts intent result of type <i>Instrumentation.ActivityResult</i>. We can create new stub intent and manually set the result as specified below,</p>
+<pre class="result notranslate">
+// Stub intent
+Intent intent = new Intent();
+intent.setData(Uri.parse("content://com.android.contacts/data/1"));
+Instrumentation.ActivityResult result =
+   new Instrumentation.ActivityResult(Activity.RESULT_OK, intent); 
+</pre>
+<p>The complete code to test whether a contact application is properly opened is as follows,</p>
+<pre class="result notranslate">
+@Test
+public void stubIntentTest() {
+   // Stub intent
+   Intent intent = new Intent();
+   intent.setData(Uri.parse("content://com.android.contacts/data/1"));
+   Instrumentation.ActivityResult result =
+      new Instrumentation.ActivityResult(Activity.RESULT_OK, intent);
+   intending(toPackage("com.android.contacts")).respondWith(result);
+   
+   // find the button and perform click action
+   onView(withId(R.id.call_contact_button)).perform(click());
+   
+   // get context
+   Context targetContext2 = InstrumentationRegistry.getInstrumentation().getTargetContext();
+   
+   // get phone number
+   String[] projection = { ContactsContract.CommonDataKinds.Phone.NUMBER,
+      ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME };
+   Cursor cursor =
+      targetContext2.getContentResolver().query(Uri.parse("content://com.android.cont
+      acts/data/1"), projection, null, null, null);
+   
+   cursor.moveToFirst();
+   int numberColumnIndex =
+      cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+   String number = cursor.getString(numberColumnIndex);
+   
+   // now, check the data
+   onView(withId(R.id.edit_text_phone_number))
+   .check(matches(withText(number)));
+}
+</pre>
+<p>Here, we have created a new intent and set the return value (when invoking the intent) as the first entry of the contact list, <i>content://com.android.contacts/data/1</i>. Then we have set the <i>intending</i> method to mock the newly created intent in place of contact list. It sets and calls our newly created intent when the package, <i>com.android.contacts</i> is invoked and the default first entry of the list is returned. Then, we fired the <i>click()</i> action to start the mock intent and finally checks whether the phone number from invoking the mock intent and number of the first entry in the contact list are same.</p>
+<p>It there is any missing import issue, then fix those import issues by using Alt + Enter option provided by android studio or else include the below import statements,</p>
+<pre class="prettyprint notranslate">
+import android.app.Activity;
+import android.app.Instrumentation;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
+
+import androidx.test.InstrumentationRegistry;
+import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
+import androidx.test.runner.AndroidJUnit4;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.Intents.intending;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.core.AllOf.allOf;
+import static org.junit.Assert.*;
+</pre>
+<p>Add the below rule in the test class to provide permission to read contact list &minus;</p>
+<pre class="result notranslate">
+@Rule
+public GrantPermissionRule permissionRule =
+GrantPermissionRule.grant(Manifest.permission.READ_CONTACTS);
+</pre>
+<p>Add the below option in the application manifest file, <i>AndroidManifest.xml</i> &minus;</p>
+<pre class="result notranslate">
+&lt;uses-permission android:name = "android.permission.READ_CONTACTS" /&gt;
+</pre>
+<p>Now, make sure the contact list has at least one entry and then run the test using context menu of the Android Studio.</p>
+<h1>UI for Multiple Application</h1>
+<p>Android supports user interface testing that involves more than one application. Let us consider our application have an option to move from our application to messaging application to send a message and then comes back to our application. In this scenario, <i>UI automator testing framework</i> helps us to test the application. <i>UI automator</i> can be considered as a good companion for espresso testing framework. We can exploit the <i>intending()</i> option in espresso testing framework before opting for <i>UI automator</i>.</p>
+<h2>Setup Instruction</h2>
+<p>Android provides UI automator as a separate plugin. It needs to be configured in the <i>app/build.gradle</i> as specified below,</p>
+<pre class="result notranslate">
+dependencies {
+   ...
+   androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+}
+</pre>
+<h2>Workflow for Writing Test Case</h2>
+<p>Let us understand how to write a <i>UI Automator</i> based test case,</p>
+<ul class="list">
+<li><p>Get <i>UiDevice</i> object by calling the <i>getInstance()</i> method and passing the <i>Instrumentation</i> object.</p></li>
+</ul>
+<pre class="result notranslate">
+myDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+myDevice.pressHome();
+</pre>
+<ul class="list">
+<li><p>Get <i>UiObject</i> object using the <i>findObject()</i> method. Before using this method, we can open the <i>uiautomatorviewer</i> application to inspect the target application UI components since understanding the target application enables us to write better test cases.</p></li>
+</ul>
+<pre class="result notranslate">
+UiObject button = myDevice.findObject(new UiSelector()
+   .text("Run")
+   .className("android.widget.Button"));
+</pre>
+<ul class="list">
+<li><p>Simulate user interaction by calling <i>UiObject’s</i> method. For example, <i>setText()</i> to edit a text field and <i>click()</i> to fire a click event of a button.</p></li>
+</ul>
+<pre class="result notranslate">
+if(button.exists() &amp;&amp; button.isEnabled()) {
+   button.click();
+}
+</pre>
+<ul class="list">
+<li><p>Finally, we check whether the UI reflects the expected state.</p></li>
+</ul>
+<h1>Espresso Testing Framework - Test Recorder</h1>
+<p>Writing test case is a tedious job. Even though espresso provides very easy and flexible API, writing test cases may be a lazy and time-consuming task. To overcome this, Android studio provides a feature to record and generate espresso test cases. <i>Record Espresso Test</i> is available under the <i>Run</i> menu.</p>
+<p>Let us record a simple test case in our <i>HelloWorldApp</i> by following the steps described below,</p>
+<ul class="list">
+<li><p>Open the Android studio followed by <i>HelloWorldApp</i> application.</p></li>
+<li><p>Click <i>Run</i> &rarr; <i>Record Espresso</i> test and select <i>MainActivity</i>.</p></li>
+<li><p>The <i>Recorder</i> screenshot is as follows,</p></li>
+</ul>
+<img src="/espresso_testing/images/recorder_screenshot.jpg" alt="Recorder Screenshot" />
+<ul class="list">
+<li><p>Click <i>Add Assertion</i>. It will open the application screen as shown below,</p></li>
+</ul>
+<img src="/espresso_testing/images/screen_as_shown.jpg" alt="Screen As Shown" />
+<ul class="list">
+<li><p>Click <i>Hello World!</i>. The <i>Recorder</i> screen to <i>Select text view</i> is as follows,</p></li>
+</ul>
+<img src="/espresso_testing/images/recorder_screen.jpg" alt="Recorder Screen" />
+<ul class="list">
+<li><p>Again click Save Assertion This will save the assertion and show it as follows,</p></li>
+</ul>
+<img src="/espresso_testing/images/assertion.jpg" alt="Assertion" />
+<ul class="list">
+<li><p>Click <i>OK</i>. It will open a new window and ask the name of the test case. The default name is <i>MainActivityTest</i></p></li>
+<li><p>Change the test case name, if necessary.</p></li>
+<li><p>Again, click <i>OK</i>. This will generate a file, <i>MainActivityTest</i> with our recorded test case. The complete coding is as follows,</p></li>
+</ul>
+<pre class="result notranslate">
+package com.tutorialspoint.espressosamples.helloworldapp;
+
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import androidx.test.espresso.ViewInteraction;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+
+@LargeTest
+@RunWith(AndroidJUnit4.class)
+public class MainActivityTest {
+   @Rule
+   public ActivityTestRule&lt;MainActivity&gt; mActivityTestRule = new ActivityTestRule&lt;&gt;(MainActivity.class);
+   @Test
+   public void mainActivityTest() {
+      ViewInteraction textView = onView(
+         allOf(withId(R.id.textView_hello), withText("Hello World!"),
+         childAtPosition(childAtPosition(withId(android.R.id.content),
+         0),0),isDisplayed()));
+      textView.check(matches(withText("Hello World!")));
+   }
+   private static Matcher&lt;View&gt; childAtPosition(
+      final Matcher&lt;View&gt; parentMatcher, final int position) {
+      return new TypeSafeMatcher&lt;View&gt;() {
+         @Override
+         public void describeTo(Description description) {
+            description.appendText("Child at position " + position + " in parent ");
+            parentMatcher.describeTo(description);
+         }
+         @Override
+         public boolean matchesSafely(View view) {
+            ViewParent parent = view.getParent();
+            return parent instanceof ViewGroup &amp;&amp;
+               parentMatcher.matches(parent)&amp;&amp; view.equals(((ViewGroup)
+               parent).getChildAt(position));
+         }
+      };
+   }
+}
+</pre>
+<ul class="list">
+<li><p>Finally, run the test using context menu and check whether the test case run.</p></li>
+</ul>
+<h1>Espresso Testing Framework - UI Performance</h1>
+<p>Positive User experience plays a very important role in the success of an application. User experience not only involves beautiful user interfaces but also how fast those beautiful user interfaces are rendered and what is the frame per second rate. User interface needs to run consistently at 60 frames per second to give good user experience.</p>
+<p>Let us learn some of the option available in the android to analyze UI performance in this chapter.</p>
+<h2>dumpsys</h2>
+<p><i>dumpsys</i> is an in-built tool available in the android device. It outputs current information about the system services. <i>dumpsys</i> has the option to dump information about particular category. Passing <i>gfxinfo</i> will provide animation information of the supplied package. The command is as follows,</p>
+<pre class="result notranslate">
+&gt; adb shell dumpsys gfxinfo &lt;PACKAGE_NAME&gt;
+</pre>
+<h2>framestats</h2>
+<p><i>framestats</i> is an option of the dumpsys command. Once <i>dumpsys</i> is invoked with <i>framestats</i>, it will dump detailed frame timing information of recent frames. The command is as follows,</p>
+<pre class="result notranslate">
+&gt; adb shell dumpsys gfxinfo &lt;PACKAGE_NAME&gt; framestats
+</pre>
+<p>It outputs the information as CSV (comma separated values). The output in CSV format helps to easily push the data into excel and subsequently extract useful information through excel formulas and charts.</p>
+<h2>systrace</h2>
+<p><i>systrace</i> is also an in-build tool available in the android device. It captures and displays execution times of the application processes. <i>systrace</i> can be run using the below command in the android studio’s terminal,</p>
+<pre class="result notranslate">
+python %ANDROID_HOME%/platform-tools/systrace/systrace.py --time=10 -o
+my_trace_output.html gfx view res
+</pre>
+<h1>Espresso Testing Framework - Accessibility</h1>
+<p>Accessibility feature is one of the key features for any application. The application developed by a vendor should support minimum accessibility guideline set by the android SDK to be a successful and useful application. Following the accessibility standard is very important and it is not an easy task. Android SDK provides great support by providing properly designed views to create accessible user interfaces.</p>
+<p>Similarly, Espresso testing framework does a great favour for both developer and end user by transparently supporting the accessibility testing features into the core-testing engine.</p>
+<p>In Espresso, a developer can enable and configure accessibility testing through the <i>AccessibilityChecks</i> class. The sample code is as follows,</p>
+<pre class="result notranslate">
+AccessibilityChecks.enable();
+</pre>
+<p>By default, the accessibility checks run when you perform any view action. The check includes the view on which the action is performed as well as all descendant views. You can check the entire view hierarchy of a screen using the following code &minus;</p>
+<pre class="result notranslate">
+AccessibilityChecks.enable().setRunChecksFromRootView(true);
+</pre>
+<h2>Conclusion</h2>
+<p>Espresso is a great tool for android developers to test their application completely in a very easy way and without putting extra efforts normally required by a testing framework. It even has recorder to create test case without writing the code manually. In addition, it supports all types of user interface testing. By using espresso testing framework, an android developer can confidently develop a great looking application as well as a successful application without any issues in a short period of time.</p>
+<div class="mui-container-fluid button-borders">
+</div>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/espresso_testing/espresso_testing_accessibility.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/espresso_testing/espresso_testing_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

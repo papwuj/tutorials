@@ -1,0 +1,3397 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JOGL - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="JOGL - Quick Guide - This chapter introduces OpenGL, its functions, the OpenGL bindings in java (GL4java, LWJGL, JOGL), and the advantages of JOGL over other OpenGL bindings."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/jogl/jogl_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#0271bd;
+}
+a.demo {
+    background:#0271bd;
+}
+li.heading {
+    background:#0271bd;
+}
+.course-box{background:#0271bd}
+.home-intro-sub p{color:#0271bd}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/jogl/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/jogl/images/jogl-mini-logo.jpg" alt="JOGL Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">JOGL Tutorial</li>
+<li><a href="/jogl/index.htm">JOGL - Home</a></li>
+<li><a href="/jogl/jogl_overview.htm">JOGL - Overview</a></li>
+<li><a href="/jogl/jogl_installation.htm">JOGL - Installation</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JOGL Basic Templates</li>
+<li><a href="/jogl/jogl_api_basic_template.htm">JOGL - API for Basic Templates</a></li>   
+<li><a href="/jogl/jogl_canvas_with_awt.htm">JOGL - Canvas with AWT</a></li>      
+<li><a href="/jogl/jogl_canvas_with_swing.htm">JOGL - Canvas with Swing</a></li>
+<li><a href="/jogl/jogl_gljpanel_class.htm">JOGL - GLJPanel Class</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JOGL Graphical Shapes</li>
+<li><a href="/jogl/jogl_drawing_basics.htm">JOGL - Drawing Basics</a></li>
+<li><a href="/jogl/drawing_with_gl_lines.htm">JOGL - Drawing with GL_Lines</a></li>
+<li><a href="/jogl/jogl_pre_defined_shapes.htm">JOGL - Pre-defined shapes</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JOGL Effects &amp; Transformation</li>
+<li><a href="/jogl/jogl_transformation.htm" >JOGL - Transformation</a></li>
+<li><a href="/jogl/jogl_coloring.htm" >JOGL - Coloring</a></li>
+<li><a href="/jogl/jogl_scaling.htm" >JOGL - Scaling</a></li>
+<li><a href="/jogl/jogl_rotation.htm" >JOGL - Rotation</a></li>
+<li><a href="/jogl/jogl_lighting.htm" >JOGL - Lighting</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JOGL 3D Graphics</li>
+<li><a href="/jogl/jogl_3d_basics.htm">JOGL - 3D Basics</a></li>
+<li><a href="/jogl/jogl_3d_triangle.htm">JOGL - 3D Triangle</a></li>
+<li><a href="/jogl/jogl_3d_cube.htm">JOGL - 3D Cube</a></li>
+<li><a href="/jogl/jogl_appendix.htm">JOGL - Appendix</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JOGL Useful Resources</li>
+<li><a href="/jogl/jogl_quick_guide.htm" >JOGL - Quick Guide</a></li>
+<li><a href="/jogl/jogl_useful_resources.htm" >JOGL - Useful Resources</a></li>
+<li><a href="/jogl/jogl_discussion.htm" >JOGL - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>JOGL - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/jogl/jogl_appendix.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/jogl/jogl_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>JOGL - Overview</h1>
+<p>This chapter introduces OpenGL, its functions, the OpenGL bindings in java (GL4java, LWJGL, JOGL), and the advantages of JOGL over other OpenGL bindings.</p>
+<p><b>J</b>ava binding for <b>O</b>pen<b>GL</b> (JOGL) is the recent binding for OpenGL graphics API in Java. It is a wrapper library, which can access OpenGL API, and it is designed to create 2D and 3D graphics applications coded in Java. JOGL is an open-source library initially developed by former MIT graduate students Ken Russell and Chris Kline. Later, it was adopted by the gaming group at Sun Microsystems, and now it is maintained by Java on Graphics Audio and Processing (JOGAMP). JOGL functions on various operating systems such as Windows, Solaris, Mac OS X, and Linux (on x86).</p>
+<h2>What is OpenGL?</h2>
+<p>OpenGL stands for Open Graphics Library, which is a collection of commands to create 2D and 3D graphics. With OpenGL, you can create complicated 3D shapes using very basic primitives such as points, lines, polygons, bitmaps, and images.</p>
+<p>Here are a few features of OpenGL &minus;</p>
+<ul class="list">
+<li><p>It can work on multiple platforms.</p></li>
+<li><p>It has bindings in several languages such as C++, Python, etc</p></li>
+<li><p>It can render 2D and 3D vector graphics.</p></li>
+<li><p>It interacts with Graphical Processing Unit (GPU) for achieving speedy and
+high quality rendering. Rendering is the process of creating an image from a 2D or 3D model.</p></li>
+<li><p>It is an industry standard API for writing 3D Graphics applications. For example, games, screensavers, etc.</p></li>
+<li><p>It contains around 150 commands, which programmers can use to specify objects and operations to develop applications.</p></li>
+<li><p>It contains OpenGL Utility Library (GLU) that provides various modeling features, such as quadric surfaces and NURBS curves. GLU is a standard component of OpenGL.</p></li>
+<li><p>The design of OpenGL is focused on efficiency, effectiveness, and its implementation on multiple platforms using multiple languages. To maintain simplicity of an OpenGL API, windowing tasks are not included.</p></li>
+</ul>
+<p>Therefore, OpenGL depends on other programming languages for windowing tasks.</p>
+<h2>Java Binding for OpenGL API</h2>
+<p>It is a Java Specification Request (JSR) API specification, which allows to use
+OpenGL on Java platform.</p>
+<table class="table table-bordered">
+<tr>
+<th>Specifications</th>
+<th>Details</th>
+</tr>
+<tr>
+<td>JSR 231</td>
+<td>This Java binding package supports Java SE platform.</td>
+</tr>
+<tr>
+<td>JSR 239</td>
+<td>This Java binding package supports Java ME platform.</td>
+</tr>
+</table>
+<p>There are various OpenGL bindings in Java. They are discussed below</p>
+<h3>GL4java</h3>
+<p>It is known as OpenGL for Java technology. It has links to OpenGL 1.3 and to nearly all vendor extensions. Also, it can be used with Abstract Window Toolkit (AWT) and Swings. It is a game focused OpenGL binding, which is a single window that displays full screen applications.</p>
+<h3>LWJGL</h3>
+<ul class="list">
+<li><p>Light Weight Java Game Library (LWJGL), uses OpenGL 1.5 and works with latest version of java.</p></li>
+<li><p>It can use full screen capabilities of JSE 1.4. It has limited support for AWT/ Swings.</p></li>
+<li><p>It is suitable for lightweight devices such as mobile phones, embedded devices, etc.</p></li>
+</ul>
+<h3>JOGL</h3>
+<ul class="list">
+<li><p>JOGL focuses only on 2D and 3D Rendering. The interfaces dealing with sound and input-output are not included in JOGL.</p></li>
+<li><p>It includes Graphics Utility Library (GLU), GL Utility toolkit (GLUT), and its own API - Native Windowing Toolkit (NEWT).</p></li>
+</ul>
+<h2>Why JOGL?</h2>
+<ul class="list">
+<li><p>It provides full access to the OpenGL APIs (version 1.0, 4.3, ES 1, ES 2 and
+ES 3) as well as nearly all the vendor extensions. Hence, all the features in OpenGL are included in JOGL.</p></li>
+<li><p>JOGL integrates with the AWT, Swing, and Standard Widget Toolkit (SWT).
+It also includes its own Native Windowing Toolkit (NEWT). Hence, it provides
+complete support for windowing.</p></li>
+</ul>
+<h2>History of JOGL</h2>
+<ul class="list">
+<li><p>1992 &minus; Silicon Graphics Inc. released the first OpenGL specification.</p></li>
+<li><p>2003 &minus; Java.net website was launched with new features and JOGL was published for the first time on the same website.</p></li>
+<li><p>2010 &minus; Since year 2010, it has been independent open source project under BSD license, which is a liberal license for computer software.</p></li>
+</ul>
+<h1>JOGL - Installation</h1>
+<p>This chapter covers setting up of the environment to use JOGL on your system
+using different Integrated Development Environments (IDEs).</p>
+<h2>Installing JOGL</h2>
+<p>For JOGL Installation, you need to have following system requirements &minus;</p>
+<h3>System Requirements</h3>
+<p>The first requirement is to have the Java Development Kit (JDK) installed on your machine.</p>
+<table class="table table-bordered">
+<tr>
+<th>Requirement</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>JDK Version</td>
+<td>1.4 or above</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>no minimum requirement</td>
+</tr>
+<tr>
+<td>Disk Space</td>
+<td>no minimum requirement</td>
+</tr>
+<tr>
+<td>Operating System</td>
+<td>no minimum requirement</td>
+</tr>
+</table>
+<p>You need to follow the given steps to setup your environment to start with JOGL
+application development &minus;</p>
+<h3>Step 1 - Verifying Java Installation on Your Machine</h3>
+<p>Open console of your system and execute the following java command &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Platform</th>
+<th>TASK</th>
+<th>COMMAND</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Open Command Console</td>
+<td>C:\>java-version</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Open Command terminal</td>
+<td>$ java -version</td>
+</tr>
+<tr>
+<td>MAC</td>
+<td>Open Terminal</td>
+<td>Machine:~ joseph$ java -version</td>
+</tr>
+</table>
+<p>Verify the output on the respective operating system.</p>
+<table class="table table-bordered">
+<tr>
+<th>Platform</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td><p><b>Java “1.6.0.21”</b></p>
+<p>java(TM) SE Runtime Environment(build 1..6.0_21-b07)Java HotSpot(TM) Client VM(build 17.0-b7, mixed mode, sharing)</p></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td><p><b>Java “1.6.0.21”</b></p>
+<p>java(TM) SE Runtime Environment(build 1..6.0_21-b07)Java HotSpot(TM) Client VM(build 17.0-b7, mixed mode, sharing)</p>
+</td>
+</tr>
+<tr>
+<td>MAC</td>
+<td><p><b>Java “1.6.0.21”</b></p>
+<p>java(TM) SE Runtime Environment(build 1..6.0_21-b07)Java HotSpot(TM) Client VM(build 17.0-b7, mixed mode, sharing)</p></td>
+</tr>
+</table>
+<h3>Step 2 – Setting up Java Development Kit (JDK)</h3>
+<p>If Java is not installed on your machine, then you need to install Java SDK from
+the Oracle website: <a rel="nofollow" target="_blank" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">
+Oracle</a>. You can find instructions for installing the JDK from the downloaded files. You need to follow the given instructions to install and configure the setup. Finally, set PATH and JAVA_HOME environment variables to refer to the directory that contains java.exe and javac.exe files, typically java_install_dir/bin and java_install_dir respectively.</p>
+<p>Set <b>Java-home</b> environment variable to point to the base directory location on the same path, where Java is installed on your machine.</p>
+<table class="table table-bordered">
+<tr>
+<th>Platform</th>
+<th>Command</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set the environment variable JAVA_HOME to C:\ProgramFiles\Java\Jdk1.6.0_21</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Export JAVA_HOME=/usr/local/java-current</td>
+</tr>
+<tr>
+<td>MAC</td>
+<td>Export JAVA_HOME=/Library/Java/Home</td>
+</tr>
+</table>
+<p>Append Java compiler location to System Path as follows &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Platform</th>
+<th>Command</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Append the string ;%JAVA_HOME% bin at the end of the system variable and path</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Export PATH=$PATH:$JAVA_HOME/bin/</td>
+</tr>
+<tr>
+<td>MAC</td>
+<td>Not required</td>
+</tr>
+</table>
+<h3>Step 3 – Downloading JOGL</h3>
+<ul class="list">
+<li><p>You can download latest version of JOGL from the website <a href="http://jogamp.org/" rel="nofollow" target="_blank">www.jogamp.org</a></p></li>
+<li><p>Go to the home page of <a rel="nofollow" target="_blank" href="http://jogamp.org/">www.jogamp.org</a></p></li>
+<li><p>Click on Builds/Downloads &gt; Current (zip).</p></li>
+</ul>
+<img src="/jogl/images/jogamp_home_page.jpg" alt="Jogamp Home Page" />
+<p>This takes you to the list of .jar files for all APIs maintained by the website.</p>
+<img src="/jogl/images/jar_files_list.jpg" alt="JAR Files List" />
+<ul class="list">
+<li><p>Download the library .jar file <b>jogamp-all-platforms.7z</b>, java documentations for OpenGL native library <b>glugen-javadoc.7z</b>, and JOGL <b>jogl-javadocs.7z.</b></p></li>
+<li><p>Extract the downloaded .jar files using any zip extracting software.</p></li>
+</ul>
+<p>When you open the extracted folder, you will find jar folder, source-codes, and
+other files.</p>
+<img src="/jogl/images/source_code_folder.jpg" alt="Source Code Folder" />
+<p>Get the source codes <b>gluegen-java-src.zip</b> and <b>jogl-java-src.zip</b> for supporting IDE. This is optional.</p>
+<ul class="list">
+<li><p>Inside the jar folder, there are multiple .jar files. This collection of files belongs to Glugen and JOGL.</p></li>
+<li><p>JOAMP provides native libraries that support various operating systems such as Windows, Solaris, Linux and Android. Hence, you need to take appropriate jar files which can execute on your desired platform. For example, if you are using Windows 64-bit operating system, then get the following .jar files from the jar folder &minus;</p>
+<ul class="list">
+<li>gluegenrt.jar</li>
+<li>jogl-all.jar</li>
+<li>gluegen-rt-natives-windows-amd64.jar</li>
+<li>jogl-all-natives-windowsamd64.jar</li>
+</ul>
+</li>
+</ul>
+<img src="/jogl/images/jar_files.jpg" alt="JAR Files" />
+<h2>Setting up JOGL for Eclipse 4.4</h2>
+<p>Follow the given procedure for setting up JOGL &minus;</p>
+<h3>Adding Libraries</h3>
+<p><b>Step 1</b> &minus; Open Eclipse.</p>
+<p><b>Step 2</b> &minus; Create a new project.</p>
+<p><b>Step 3</b> &minus; Create a new folder named <i>lib</i> in the project folder.</p>
+<p><b>Step 4</b> &minus; Copy the files <i>gluegen-rt-natives-windows-amd64.jar, gluegenrt.jar, jogl-all-natives-windowsamd64.jar</i> and <b>jogl-all.jar</b> into the <i>lib</i> folder.</p>
+<img src="/jogl/images/eclipse1.jpg" alt="Eclipse1" />
+<p><b>Step 5</b> &minus; Now select these files and right click your mouse button. A shortcut menu is displayed, which contains <b>Build Path &gt; Add to Build Path.</b></p>
+<img src="/jogl/images/eclipse2.jpg" alt="Eclipse2" />
+<p><b>Step 6</b> &minus; To make all .jar files available to other projects, go to main menu. Select Window &gt; Preferences. The Preferences window appears.</p>
+<img src="/jogl/images/eclipse3.jpg" alt="Eclipse3" />
+<img src="/jogl/images/eclipse4.jpg" alt="Eclipse4" />
+<ul class="list">
+<li><p>In preferences window, in the drop down menu on the left hand side, follow the hierarchy- Java &rarr; Build Path &rarr; User Libraries.</p></li>
+<li><p>Click on “New…” button.</p></li>
+<li><p>It opens up a dialog box. Enter the library name as jogl2.1.</p></li>
+<li><p>Add jar files <b>glugen-rt.jar</b> and <b>jogl-all.jar</b> using button “Add External JARs...”.</p></li>
+<li><p>It creates a new user library named <b>jogl2.1.</b></p></li>
+</ul>
+<p>In the same way, we can add java documentation and source code for the added.jar files.</p>
+<h3>Adding Native Libraries</h3>
+<p><b>Step 1</b> &minus; Expand the jogl-all.jar node, select Javadoc location (none).</p>
+<p><b>Step 2</b> &minus; Click on “New…” button. Enter the name for JOGL Java Document.</p>
+<p><b>Step 3</b> &minus; Click on “Add External JARs…” button.</p>
+<p><b>Step 4</b> &minus; It opens a dialog box where you need to select the location of JOGL Java documentation, which we already have downloaded earlier.</p>
+<h3>Adding source code</h3>
+<p><b>Step 1</b> &minus; Select the node Native library location: (None).</p>
+<p><b>Step 2</b> &minus; Click on “New…” button.</p>
+<p><b>Step 3</b> &minus; Enter name for native libraries and click “OK” button.</p>
+<p><b>Step 4</b> &minus; Click on “Add External JARs…” button.</p>
+<p><b>Step 5</b> &minus; Now select the path where native library files <i>('gluegen-rt-natives-windows-amd64.jar and joglall-natives-windows-amd64.jar')</i> are located.</p>
+<p><b>Step 6</b> &minus; Repeat the same procedure for source code.</p>
+<p><b>Step 7</b> &minus; We can set the locations for Javadoc, source code and jar files in the same way as given above for both native library files <b>glegen-rt.jar</b> and <b>glugen-natives-windows-amd64.jar.</b></p>
+<h2>Setting up JOGL for NetBeans 4.4</h2>
+<p>Let us go through the steps for setting up JOGL for NetBeans 4.4 &minus;</p>
+<h3>Adding Libraries</h3>
+<p><b>Step 1</b> &minus; In the main menu, select <b>Tools &gt; Libraries</b>.</p>
+<img src="/jogl/images/netbeans1.jpg" alt="NetBeans1" />
+<p><b>Step 2</b> &minus; It leads you to <b>Ant Library Manager</b>.</p>
+<img src="/jogl/images/netbeans2.jpg" alt="NetBeans2" />
+<p><b>Step 3</b> &minus; Under the <b>Classpath</b> tab, click <b>New Library</b> button located on the left lower corner. It opens a small dialog box.</p>
+<p><b>Step 4</b> &minus; Enter Library name as <b>JoGl2.0.</b></p>
+<p><b>Step 5</b> &minus; Click on “OK” button.</p>
+<img src="/jogl/images/netbeans3.jpg" alt="NetBeans3" />
+<p><b>Step 6</b> &minus; Click on “Add JAR/Folder…” button.</p>
+<p><b>Step 7</b> &minus; Select the path where .jar files <b>jogl.all.jar</b> and <b>gluegen-rt.jar</b> are located.</p>
+<p>To include JOGL library into each project, follow the steps given below &minus;</p>
+<p><b>Step 1</b> &minus; Right-click on the <b>project name</b>. It shows a short-cut menu.</p>
+<img src="/jogl/images/netbeans4.jpg" alt="NetBeans4" />
+<p><b>Step 2</b> &minus; Select <b>Properties.</b> It opens a window named <b>Project properties</b>.</p>
+<img src="/jogl/images/netbeans7.jpg" alt="NetBeans7" />
+<p><b>Step 3</b> &minus; Select <b>Libraries</b> from Categories on the left hand side.</p>
+<p><b>Step 4</b> &minus; Select <b>Compile tab</b> and click on “Add Library...” button. Add library dialog box comes up.</p>
+<p><b>Step 5</b> &minus; Now add JOGL2.0 library, which you created earlier.</p>
+<h3>Including Native Library in Each Project</h3>
+<p>Follow the given steps to include native library in each project &minus;</p>
+<p><b>Step 1</b> &minus; Right-click the project.</p>
+<p><b>Step 2</b> &minus; Select <b>Set Configuration &gt; Customize…</b></p>
+<img src="/jogl/images/netbeans8.jpg" alt="NetBeans8" />
+<p>It leads you to the <b>Project Properties</b> window.</p>
+<img src="/jogl/images/netbeans9.jpg" alt="NetBeans9" />
+<p><b>Step 3</b> &minus; On the right hand side, in <b>VM options,</b> click on “Customize” button.</p>
+<p><b>Step 4</b> &minus; Browse for the path that contains JOGL native libraries <b>gluegen-rtnatives-windows-amd64.jar''</b> and <b>'jogl-all-natives-windowsamd64.jar.</b></p>
+<h3>Adding Java Documentation of Native Libraries</h3>
+<p>You need to open Ant library manager again to make sources and Javadoc available for each project. Follow the given procedure &minus;</p>
+<p><b>Step 1</b> &minus; Open <b>main menu</b>.</p>
+<p><b>Step 2</b> &minus; Select <b>Tools &gt; Libraries</b>. This leads you to <b>Library manager</b>.</p>
+<p><b>Step 3</b> &minus; Under the <b>JavaDoc</b> tab, click on “New Library…” button.</p>
+<p><b>Step 4</b> &minus; Enter <b>JOGLJavadoc</b> name. (You can enter any desired name.)</p>
+<p><b>Step 5</b> &minus; Click on “Add jars/libraries…” button.</p>
+<p><b>Step 6</b> &minus; Select the path where unzipped <b>JOGL documentation</b> code is located.</p>
+<h3>Adding Source Code of Native Libraries</h3>
+<p><b>Step 1</b> &minus; Under <b>Sources</b> tab, click on “New Library…” button. Enter <b>JOGLsources</b> name.</p>
+<p><b>Step 2</b> &minus; Click on “Add jars/libraries…” button. Select the path where unzipped source code is located.</p>
+<h3>Customizing the JDK Editor</h3>
+<p><b>Step 1</b> &minus; Set <b>Classpath</b> for files <b>jogl.all.jar</b> and <b>gluegen-rt.jar.</b></p>
+<p><b>Step 2</b> &minus; Set path to native libraries <i>gluegen-rt-natives-windows-amd64.jar</i> and <i>joglall-natives-windowsamd64.jar</i> or copy all the jar files from the folder where you have downloaded them and paste them into the <b>jse lib</b> folder.</p>
+<h1>JOGL - API for Basic Template</h1>
+<p>Using JOGL programming, it is possible to draw various graphical shapes such as straight lines, triangles, 3D shapes including special effects such as rotation, lighting, colors, etc. To draw objects in JOGL first of all we have to construct a basic JOGL frame. Below given are the classes required to  construct a basic frame.</p>
+<h2>GLEventListener Interface</h2>
+<p>To make your program capable of using JOGL graphical API, you need to implement <b>GLEventListener</b> interface. You can find the <b>GLEventListener</b> interface in the <b>javax.media.opengl</b> package.</p>
+<p>The following table provides the details of various methods and descriptions of <b>GLEventListener</b> interface &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Methods and Descriptions</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>Void display(GLAutoDrawable drawable)</b></p>
+<p>It is called by the object of GLAutoDrawable interface to initiate OpenGL rendering by the client. i.e., this method contains the logic used to draw graphical elements using OpenGL API.</p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>Void dispose(GLAutoDrawable drawable)</b></p>
+<p>This method signals the listener to perform the release of all OpenGL resources per each GLContext, such as memory buffers and GLSL programs.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>Void init(GLAutoDrawble drawable)</b></p>
+<p>It is called by the object of GLAutoDrawable interface immediately after the OpenGL context is initialized.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>Void reshape(GLAutoDrawble drawble, int x, int y, int width, int height)</b></p>
+<p>It is called by the object of GLAutoDrawable interface during the first repaint after the component has been resized. It is also called whenever the position of the component on the window, is changed.</p>
+</td>
+</tr>
+</table>
+<p>All the methods of <b>GLEventListener</b> require object of <b>GLAutoDrawable</b> interface as a parameter.</p>
+<h2>GLAutoDrawable Interface</h2>
+<p>This interface supplies an event-based mechanism <b>(GLEventListener)</b> for performing OpenGL rendering. <b>GLAutoDrawable</b> automatically creates a primary rendering context which is associated with <b>GLAutoDrawable</b> for the lifetime of the object.</p>
+<p>The following table provides the details of various methods and descriptions of <b>GLAutoDrawable</b> interface &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No</th>
+<th>Methods and Descriptions</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>GL getGL()</b></p>
+<p>Returns the GL pipeline object that is used by the current object of GLAutoDrawable interface.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>void addGLEventListener(GLEventListener Listener)</b></p>
+<p>Adds the given listener to the end of current drawable queue.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>void addGLEventListener(int index, GLEventListener listener)</b></p>
+<p>Adds the given listener at the given index of this drawable queue.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>void destroy()</b></p>
+<p><b>Destroys</b> all resources associated with this object of GLAutoDrawable interface, including the GLContext.</p>
+</td>
+</tr>
+</table>
+<p><b>Note</b> &minus; There are other methods in this package. Only a few important methods pertaining to template are discussed in this interface.</p>
+<h2>GLCanvas Class</h2>
+<p><b>GLCanvas</b> and <b>GLJpanel</b> are the two main classes of JOGL GUI that implement <b>GLAutoDrawable</b> interface, which can be utilized as drawing surfaces for OpenGL commands.</p>
+<p>GLCanvas is a heavyweight AWT component which provides OpenGL rendering support. This is the primary implementation of an <b>AWTAutoGLDrawable</b> interface. It also inherits <b>java.awt.Canvas</b> class. Since it is a heavyweight component, in certain cases, <b>GLJCanvas</b> may not integrate with swing component correctly. Therefore, care must be taken while using it with Swing. Whenever you face problems with <b>GLJCanvas</b>, then you must use <b>GLJPanel</b> class.</p>
+<p>The hierarchical diagram of class <b>GLCanvas</b> can be as shown below &minus;</p>
+<img src="/jogl/images/canvas.jpg" alt="Canvas" />
+<ul class="list">
+<li><p><b>GLEventistener</b> interface works along with <b>GLCanvas</b> class. It responds to the changes in <b>GLCanvas</b> class and to the drawing requests made by them.</p></li>
+<li><p>Whenever <b>GLCanvas</b> class is instantiated, the <b>init()</b> method of <b>GLEventListener</b> is invoked. You can override this method to initialize the OpenGL state.</p></li>
+<li><p>Whenever <b>GLCanvas</b> is drawn initially (instantiated) or resized, the <b>reshape()</b> method of <b>GLEventListener</b> is executed. It is used to initialize the OpenGL viewport and projection matrix. It is also called whenever the component's location is changed.</p></li>
+<li><p>The display() method of <b>GLEventListener</b> contains the code for rendering 3D scene. It is invoked whenever display() method of <b>GLCanvas</b> is invoked.</p></li>
+</ul>
+<p>Below given are the constructors required to instantiate GLCanvas class.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No</th>
+<th>Constructor and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>GLCanvas()</b></p>
+<p>It creates a new GLCanvas component with a default set of OpenGL capabilities, using the default OpenGL capabilities selection mechanism, on the default screen device.</p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>GLCanvas(GLCapabilitiesImmutable)</b></p>
+<p>It creates a new GLCanvas component with the requested set of OpenGL capabilities using the default OpenGL capabilities selection mechanism on the default screen device.</p>
+</td>
+</tr>
+</table>
+<p>Below given are the methods used for event handling of GLCanvas class.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr. No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>void addGLEventListener(GLEventListener listener)</b></p>
+<p>Adds the given listener to the end of this drawable queue.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>void addGLEventListener(int indexGLEventListener listener)</b></p>
+<p>Adds the given listener at the given index of this drawable queue.</p></td>
+</tr>
+</table>
+<p>To instantiate <b>GLCanvas</b> class, you need the object of <b>GLCapabilitiesImmutable</b> interface, which specifies an immutable set of OpenGL capabilities.</p>
+<p>One of the ways to get an object of <b>CapabilitiesImmutable</b> interface is to instantiate <b>GLCapabilities</b> class, which implements the interface. An instance of <b>GLCapabilities</b> class can be used to serve the purpose.</p>
+<h2>GLCapabilities Class</h2>
+<p>This class specifies a set of OpenGL capabilities. It takes GLCapabilities object as a parameter. The <b>GLCapabilities</b> class describes the desired capabilities that a rendering context must support, such as the OpenGL profile.</p>
+<p>Below given is a constructor to instantiate GLCapabilities class</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:12%;">Sr. No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>GLCapabilities(GLProfile glprofile)</b></p>
+<p>It creates a GLCapabilities object.</p></td>
+</tr>
+</table>
+<p>To instantiate <b>GLCanvas</b> class, you need an object of GLCapabilitiesImmutable interface, which specifies an immutable set of OpenGL capabilities.</p>
+<p>One of the ways to get an object of <b>CapabilitiesImmutable</b> interface is to instantiate <b>GLCapabilities</b> class, which implements the interface. The instance of <b>GLCapabilities</b> class can be used to serve the purpose.</p>
+<p>The <b>GLCapabilities</b> class in turn requires a <b>GLProfile</b> object.</p>
+<h2>GLProfile Class</h2>
+<p>Since several versions of OpenGL API were released; you need to specify the exact version of OpenGL API being used in your program to your Java Virtual Machine (JVM). This is done using the <b>GLProfile</b> class.</p> 
+<p>The <b>get()</b> method of this class accepts different predefined <b>String</b> objects as parameters. Each String object is a name of an interface and each interface supports certain versions of OpenGL. If you initialize this class as static and singleton, it gives you singleton <b>GLProfile</b> objects for each available JOGL profile.</p>
+<p>Below given is the prototype of the get method of GLProfile class.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:12%;">Sr.No.</th>
+<th>Method and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>Static GLProfile get(String profile)</b></p>
+<p>Uses the default device.</p></td>
+</tr>
+</table>
+<p>As this is a static method, you need to invoke it using the class name, and it
+requires a predefined static string variable as parameter. There are 12 such variables in this class, each represents an individual implementation of GL interface.</p>
+<pre class="result notranslate">
+GLProfile.get(GLProfile.GL2);
+</pre>
+<h3>Parameters of get() method</h3>
+<section class="toggle">
+<label>The following table shows the String parameters of the <b>get()</b> method of <b>GLProfile</b> class &minus;</label>
+<div class="toggle-content">
+<table class="table table-bordered ">
+<tr>
+<th>Sr.No</th>
+<th>Predefined String value (Interface name) and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>GL2</b></p>
+<p>This interface contains all OpenGL [1.0 … 3.0] methods as well as most of its extensions defined at the time of this specification.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>GLES1</b></p>
+<p>This interface contains all OpenGL ES [1.0 ... 1.1] methods as well as most of its extensions defined at the time of this specification.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>GLES2</b></p>
+<p>This interface contains all OpenGL ES 2.0 methods as well as most of its extensions defined at the time of this specification.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>GLES3</b></p>
+<p>This interface contains all OpenGL ES 3.0 methods as well as most of its extensions defined at the time of this specification.</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td><p><b>GL2ES1</b></p>
+<p>This Interface contains the common subset of GL2 and GLES1.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><p><b>GL2ES2</b></p>
+<p>This Interface contains the common subset of GL3, GL2, and GLES2.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><p><b>GL2GL3</b></p>
+<p>This Interface contains the common subset of core GL3 (OpenGL 3.1+) and GL2.</p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td><p><b>GL3</b></p>
+<p>This interface contains all OpenGL [3.1 ... 3.3] <i>core</i> methods as well as most of its extensions defined at the time of this specification.</p>
+</td>
+</tr>
+<tr>
+<td>9</td>
+<td><p><b>GL3bc</b></p>
+<p>This interface contains all OpenGL [3.1 ... 3.3] <i>compatibility</i> methods, as well as most of its extensions defined at the time of this specification.</p></td>
+</tr>
+<tr>
+<td>10</td>
+<td><p><b>GL3ES3</b></p>
+<p>This interface contains the common subset of core GL3 (OpenGL 3.1+) and GLES3 (OpenGL ES 3.0).</p></td>
+</tr>
+<tr>
+<td>11</td>
+<td><p><b>GL4</b></p>
+<p>This interface contains all OpenGL [4.0 ... 4.3] <i>core</i> methods, as well as most of its extensions defined at the time of this specification.</p></td>
+</tr>
+<tr>
+<td>12</td>
+<td><p><b>GL4bc</b></p>
+<p>This interface contains all OpenGL [4.0 ... 4.3] <i>compatibility profile</i>, as <i>well as most of its extensions defined at the time of this specification.</i></p></td>
+</tr>
+<tr>
+<td>13</td>
+<td><p><b>GL4ES3</b></p>
+<p>Interface containing the common subset of core GL4 (OpenGL 4.0+) and GLES3 (OpenGL ES 3.0).</p></td>
+</tr>
+</table>
+</div>
+</section>
+<h2>GLJPanel Class</h2>
+<p>It is a lightweight Swing component which provides OpenGL rendering support. It
+is provided for compatibility with Swing.</p>
+<h3>GLJPanel Class Hierarchy</h3>
+<p>Below given is diagram represents the class hierarchey of GLJPanel class.</p>
+<img src="/jogl/images/gljpanel.jpg" alt="GJPanel" />
+<p>Below given are various constructors GLJPanel class.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:11%;">Sr. No.</th>
+<th>Constructors and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>GJPanel()</b></p>
+<p>It creates a new GLJPanel component with a default set of OpenGL capabilities.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>(GLCapabilitiesImmutable)</b></p>
+<p>It creates a new GLJPanel component with the requested set of OpenGL capabilities.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>GLJPanel(GLCapabilitiesImmutable userCapsRequest, GLCapabilitiesChooser chooser)</b></p>
+<p>It creates a new GLJPanel component.</p></td>
+</tr>
+</table>
+<p>Below given are the methods of GLJPanel class.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>void addGLEventListener(GLEventListener listener)</b></p>
+<p>This method adds the given listener to the end of this drawable queue.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>void addGLEventListener(int indexGLEventListener listener)</b></p>
+<p>This method adds the given listener at the given index of this drawable queue.</p>
+</td>
+</tr>
+</table>
+<h1>JOGL - Canvas with AWT</h1>
+<p>This chapter explains you how to draw a JOGL basic frame using Canvas with AWT frame. In here we will construct a AWT Frame and add the canvas object to the AWT frame using the <b>add()</b> method of the frame class.</p>
+<p>Below given are the steps to write a program which creates a JOGL basic frame with the combination of JOGL's Canvas class and AWT's Frame class.</p>
+<h2>Step1: Creating the Class</h2>
+<p>Initially create a class that implements <b>GlEventListener</b> interface and import the package javax.media.opengl. Implement all four methods <b>display(), dispose(),</b> <b>reshape(), init().</b> Since this is the basic frame, primitive tasks such as creating canvas class, adding it to frame were discussed. All the <b>GLEVentListener</b> interface methods were left unimplemented.</p>
+<h2>Step2: Preparing the Canvas</h2>
+<p><b>(a)</b> Constructing the <b>GLCanvas</b> class object</p>
+<pre class="result notranslate">
+final GLCanvas glcanvas = new GLCanvas( xxxxxxx );
+
+//here capabilities obj should be passed as parameter
+</pre>
+<p><b>(b)</b> Instantiating the <b>GLCapabilities</b> class</p>
+<pre class="result notranslate">
+GLCapabilities capabilities = new GLCapabilities( xxxxx );
+
+//here profile obj should be passed as parameter
+</pre>
+<p><b>(c)</b> Generating <b>GLProfile</b> object</p>
+<p>As it is the static method, it is invoked using class name. Since this tutorial is about JOGL2, let us generate GL2 interface object.</p>
+<pre class="result notranslate">
+final GLProfile profile = GLProfile.get( GLProfile.GL2 );
+
+// both, variable and method are static hence both are called using class name.
+</pre>
+<p>Let us see the code snippet for canvas.</p>
+<pre class="result notranslate">
+//getting the capabilities object of GL2 profile
+
+final GLProfile profile = GLProfile.get(GLProfile.GL2);
+GLCapabilities capabilities = new GLCapabilities(profile);
+
+// The canvas
+final GLCanvas glcanvas = new GLCanvas(capabilities);
+</pre>
+<p><b>(d)</b> Now add <b>GLEventListener</b> to the canvas using the method <b>addGLEventListener()</b>. This method needs object of <b>GLEventListener</b> interface as parameter. Hence, pass object of a class that implements <b>GLEventListener</b>.</p>
+<pre class="result notranslate">
+BasicFrame basicframe = newBasic Frame( );// class which implements
+GLEventListener interface
+glcanvas.addGLEventListener( basicframe );
+</pre>
+<p><b>(e)</b> Set size of the frame using setSize() method inherited by GLCanvas from javax.media.opengl.awt.AWTGLAutoDrawable.</p>
+<pre class="result notranslate">
+glcanvas.setSize( 400, 400 );
+</pre>
+<p>Now you are ready with <b>GLCanvas</b>.</p>
+<h2>Step3: Creating the Frame</h2>
+<p>Create the frame by instantiating the <b>Frame</b> class Object of JSE AWT frame component.</p>
+<p>Add canvas to it and make the frame visible.</p>
+<pre class="result notranslate">
+//creating frame
+final Frame frame = new frame( " Basic Frame" );
+
+//adding canvas to frame
+frame.add( glcanvas );
+frame.setVisible( true ); 
+</pre>
+<h2>Step 4: Viewing the Frame in Full Screen</h2>
+<p>To view the frame in full screen, get the default screen size using <b>java.awt.Toolkit</b> class. Now, using those default screen size dimensions, set the frame size using <b>setSize()</b> method.</p>
+<pre class="result notranslate">
+Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+frame.setSize(screenSize.width, screenSize.height);
+</pre>
+<p>Let us go through the program to generate the basic frame using AWT &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+
+import javax.swing.JFrame;
+
+public class BasicFrame implements GLEventListener {
+
+   @Override
+   public void display(GLAutoDrawable arg0) {
+      // method body
+   }
+	
+   @Override
+   public void dispose(GLAutoDrawable arg0) {
+      //method body
+   }
+	
+   @Override
+   public void init(GLAutoDrawable arg0) {
+      // method body
+   }
+	
+   @Override
+   public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
+      // method body
+   }
+	
+   public static void main(String[] args) {
+   
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get(GLProfile.GL2);
+      GLCapabilities capabilities = new GLCapabilities(profile);
+        
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas(capabilities);
+      BasicFrame b = new BasicFrame();
+      glcanvas.addGLEventListener(b);        
+      glcanvas.setSize(400, 400);
+        
+      //creating frame
+      final Frame frame = new Frame (" Basic Frame");
+        
+      //adding canvas to frame
+      frame.add(glcanvas);
+      frame.setSize( 640, 480 );
+      frame.setVisible(true);
+   }
+	
+}
+</pre>
+<p>If you compile and execute the above program, the following output is generated.
+It shows a basic frame formed when we use <b>GLCanvas</b> class with AWT &minus;</p>
+<img src="/jogl/images/basic_frame.jpg" alt="Basic Frame" />
+<h1>JOGL - Canvas with Swing</h1>
+<p>This chapter explains you how to draw a JOGL basic frame using <b>Canvas</b>, and <b>JFrame</b> class of javax.swing package. In here we will instantiate a JFrame and add the canvas object to the instance of JFrame using the <b>add()</b> method.</p>
+<p>Using Canvas with AWT gives you a graphical frame with heavyweight features. For having a lightweight graphical frame, you need to use <b>GLCanvas</b> with Swing. While using <b>GLCanvas</b> with Swing, you can place <b>GLCanvas</b> in the <b>JFrame</b> window directly, or you can add it to <b>JPanel</b>.</p>
+<p>Below given is the program which creates a JOGL basic frame with the combination of JOGL's <b>GLCanvas</b> class and <b>JFrame</b> class of the <i>javax.swing</i> package.</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+
+import javax.swing.JFrame;
+
+public class BasicFrame implements GLEventListener {
+
+   @Override
+   public void display(GLAutoDrawable arg0) {
+      // method body
+   }
+	
+   @Override
+   public void dispose(GLAutoDrawable arg0) {
+      //method body
+   }
+	
+   @Override
+   public void init(GLAutoDrawable arg0) {
+      // method body
+   } 
+	
+   @Override
+   public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
+      // method body
+   }
+	
+   public static void main(String[] args) {
+   
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get(GLProfile.GL2);
+      GLCapabilities capabilities = new GLCapabilities(profile);
+               
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas(capabilities);
+      BasicFrame b = new BasicFrame();
+      glcanvas.addGLEventListener(b);
+      glcanvas.setSize(400, 400);
+		
+      //creating frame
+      final JFrame frame = new JFrame (" Basic Frame");
+		
+      //adding canvas to it
+      frame.getContentPane().add(glcanvas);
+      frame.setSize(frame.getContentPane().getPreferredSize());
+      frame.setVisible(true);
+      
+   }//end of main
+	
+}//end of classimport          
+</pre>
+<p>If you compile and execute the above program, the following output is generated.
+It shows a basic frame formed when we use <b>GLCanvas</b> with Swing window.</p>
+<img src="/jogl/images/basic_frame.jpg" alt="Basic Frame" />
+<h1>JOGL - GLJPanel Class</h1>
+<p>This chapter explains you how to draw a JOGL basic frame using GLJpanel class. It is a lightweight Swing component which provides OpenGL rendering support. It is provided for compatibility with Swing. In here we will instantiate a JFrame and add the GLJpanel object to the instance of JFrame using the <b>add()</b> method.</p>
+<p>The following program generates a basic frame using <b>GLJPanel</b> with Swing window &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+
+import javax.swing.JFrame;
+
+public class BasicFrame implements GLEventListener {
+
+   @Override
+   public void display(GLAutoDrawable arg0) {
+      // method body
+   }
+   
+   @Override
+   public void dispose(GLAutoDrawable arg0) {
+      //method body
+   }
+   
+   @Override
+   public void init(GLAutoDrawable arg0) {
+      // method body
+   }
+   
+   @Override
+   public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
+      // method body
+   }
+   
+   public static void main(String[] args) {
+   
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get(GLProfile.GL2);
+      GLCapabilities capabilities = new GLCapabilities(profile);
+      
+      // The GLJpanel class
+      GLJPanel gljpanel = new GLJPanel( glcapabilities ); 
+      BasicFrame b = new BasicFrame();
+      gljpanel.addGLEventListener(b);
+      gljpanel.setSize(400, 400);
+      
+      //creating frame
+      final JFrame frame = new JFrame (" Basic Frame");
+      
+      //adding canvas to it
+      frame.getContentPane().add( gljpanel);
+      frame.setSize(frame.getContentPane().getPreferredSize());
+      frame.setVisible(true);
+      
+   }//end of main
+	
+}//end of classimport
+</pre>
+<p>If you compile and execute the above program, the following output is generated.
+It shows a basic frame formed when we use <b>GLJPanel</b> with swing window &minus;</p>
+<img src="/jogl/images/basic_frame.jpg" alt="Basic Frame" />
+<h1>JOGL - Drawing Basics</h1>
+<p>OpenGL API has provided primitive methods for drawing basic graphical elements such as point, vertex, line etc. Using these methods, you can develop shapes such as triangle, polygon and circle. In both, 2D and 3D dimensions. This chapter teaches you how to draw a basic line using JOGL in a Java program.</p>
+<h2>Drawing Objects</h2>
+<p>To access programs which are specific to a hardware and operating system platforms and where the libraries are written in other languages such as C and C++ (native applications), Java uses a programming framework called <b>Java Native Interface (JNI)</b>. JOGL uses this interface internally to access OpenGL functions as shown in the following diagram.</p>
+<img src="/jogl/images/jni.jpg" alt="JNI" />
+<p>All the four methods of <b>GLEventListener</b> interface have the code (java JOGL methods) to call OpenGL functions internally. Naming of those JOGL methods is also similar to the naming conventions of OpenGL. If the function name in OpenGL is <b>glBegin()</b>, it is used as <b>gl.glBegin()</b>.</p>
+<p>Whenever the <b>gl.glBegin()</b> method of java JOGL is called, it internally invokes the <b>glBegin()</b> method of OpenGL. This is the reason for installing native library files on the user system at the time of installing JOGL.</p>
+<h2>The Display() Method</h2>
+<p>This is an important method which holds the code for developing graphics. It
+requires the <b>GLAutoDrawable</b> interface object as its parameter.</p>
+<p>The <b>display()</b> method initially gets OpenGL context using the object of GL interface (GL inherits GLBase interface which contains methods to generate all OpenGL context objects). Since this tutorial is about JOGL2, let us generate a GL2 object.</p>
+<p>The following code snippet shows how to generate a GL2 Object &minus;</p>
+<pre class="result notranslate">
+//Generating GL object
+GL gl = drawable.getGL();
+GL gl = drawable.getGL();
+
+//Using this Getting the Gl2 Object
+//this can be written in a single line like
+final GL2 gl = drawable.getGL().getGL2();
+</pre>
+<p>Using the object of GL2 interface, one can access the members of this interface,
+which in turn provide access to OpenGL [1.0... 3.0] functions.</p>
+<h2>Drawing a Line</h2>
+<p>GL2 interface contains a huge list of methods but here three main important
+methods are discussed namely <b>glBegin()</b>, <b>glVertex()</b>, and <b>glEnd()</b>.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>glBegin()</b></p>
+<p>This method starts the process of drawing a line. It takes predefined string integer “GL_LINES” as a parameter, which is inherited from GL interface.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>glVertex3f()/glVertex2f()</b></p>
+<p>This method creates the vertex and we have to pass coordinates as parameters 3f and 2f, which denote 3-dimensional floating point coordinates and 2-dimensional floating point coordinates respectively.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>glEnd()</b></p>
+<p>ends the line</p></td>
+</tr>
+</table>
+<p>Below given is the program to draws a basic line using JOGL &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+
+import javax.swing.JFrame;
+
+public class Line implements GLEventListener{
+
+   @Override
+   public void display(GLAutoDrawable drawable) {
+      final GL2 gl = drawable.getGL().getGL2();
+            
+      gl.glBegin (GL2.GL_LINES);//static field
+      gl.glVertex3f(0.50f,-0.50f,0);
+      gl.glVertex3f(-0.50f,0.50f,0);
+      gl.glEnd();
+
+   }
+            
+   @Override
+   public void dispose(GLAutoDrawable arg0) {
+      //method body
+   }
+            
+   @Override
+   public void init(GLAutoDrawable arg0) {
+      // method body
+   }
+	
+   public static void main(String[] args) {
+
+      //getting the capabilities object of GL2 profile        
+      final GLProfile profile = GLProfile.get(GLProfile.GL2);
+      GLCapabilities capabilities = new GLCapabilities(profile);
+   
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas(capabilities);
+      Line l = new Line();
+      glcanvas.addGLEventListener(l);
+      glcanvas.setSize(400, 400);
+   
+      //creating frame
+      final JFrame frame = new JFrame ("straight Line");
+   
+      //adding canvas to frame
+      frame.getContentPane().add(glcanvas);
+                 
+      frame.setSize(frame.getContentPane().getPreferredSize());
+      frame.setVisible(true);
+      
+   }//end of main
+	
+}//end of classimport javax.media.opengl.GL2;
+</pre>
+<img src="/jogl/images/line.jpg" alt="Line" />
+<h1>JOGL - Drawing with GL Lines</h1>
+<p>In the Previous chapter we have learned how draw a basic line using JOGL. We draw lines by passing a predefined field, <b>Gl_lines</b> to <i>glBegin()</i> method.</p>
+<p>This chapter provides examples to draw shapes like triangle, rhombus and a house, using glBegin() method and GL_Lines.</p>
+<p>Let us go through a program to draw a triangle using GL_LINES &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+
+import javax.swing.JFrame;
+
+public class Triangle implements GLEventListener{
+
+   @Override
+   public void display(GLAutoDrawable drawable) {
+      final GL2 gl = drawable.getGL().getGL2();
+      gl.glBegin (GL2.GL_LINES);
+   
+      //drawing the base
+      gl.glBegin (GL2.GL_LINES);
+      gl.glVertex3f(-0.50f, -0.50f, 0);
+      gl.glVertex3f(0.50f, -0.50f, 0);
+      gl.glEnd();
+   
+      //drawing the right edge
+      gl.glBegin (GL2.GL_LINES);
+      gl.glVertex3f(0f, 0.50f, 0);
+      gl.glVertex3f(-0.50f, -0.50f, 0);
+      gl.glEnd();
+   
+      //drawing the lft edge
+      gl.glBegin (GL2.GL_LINES);
+      gl.glVertex3f(0f, 0.50f, 0);
+      gl.glVertex3f(0.50f, -0.50f, 0);
+      gl.glEnd();
+      gl.glFlush();
+   }
+   
+   @Override
+   public void dispose(GLAutoDrawable arg0) {
+      //method body
+   }
+   
+   @Override
+   public void init(GLAutoDrawable arg0) {
+      // method body
+   }
+   
+   @Override
+   public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
+      // method body
+   }
+   
+   public static void main(String[] args) {
+      
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get(GLProfile.GL2);
+      GLCapabilities capabilities = new GLCapabilities(profile);
+   
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas(capabilities);
+      Triangle l = new Triangle();
+      glcanvas.addGLEventListener(l);
+      glcanvas.setSize(400, 400);
+   
+      //creating frame
+      final JFrame frame = new JFrame ("Triangle");
+   
+      //adding canvas to frame
+      frame.getContentPane().add(glcanvas);
+          
+      frame.setSize(frame.getContentPane().getPreferredSize());
+      frame.setVisible(true);
+      
+   }//end of main
+	
+}//end of classimport javax.media.opengl.GL2;
+</pre>
+<p>If you compile and execute the above program, the following output is generated.
+It shows a triangle drawn using GL_LINES of <b>glBegin()</b> method.</p>
+<img src="/jogl/images/triangle.jpg" alt="Triangle" />
+<p>Let us go through a program to draw a rhombus using GL_LINES &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+
+import javax.swing.JFrame;
+
+public class Rhombus implements GLEventListener{
+
+   @Override
+   public void display( GLAutoDrawable drawable ) {
+      final GL2 gl = drawable.getGL().getGL2();
+      
+      //edge1  
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( 0.0f,0.75f,0 );
+      gl.glVertex3f( -0.75f,0f,0 );
+      gl.glEnd();
+      
+      //edge2
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( -0.75f,0f,0 );
+      gl.glVertex3f( 0f,-0.75f, 0 );
+      gl.glEnd();
+      
+      //edge3
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( 0f,-0.75f, 0 );
+      gl.glVertex3f( 0.75f,0f, 0 );
+      gl.glEnd();
+      
+      //edge4
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( 0.75f,0f, 0 );
+      gl.glVertex3f( 0.0f,0.75f,0 );
+      gl.glEnd();
+      gl.glFlush();
+   }
+	
+   @Override
+   public void dispose( GLAutoDrawable arg0 ) {
+      //method body
+   }
+	
+   @Override
+   public void init(GLAutoDrawable arg0 ) {
+      // method body
+   }
+	
+   @Override
+   public void reshape( GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4 ) {
+      // method body
+   }
+	
+   public static void main( String[] args ) {
+	
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get( GLProfile.GL2 );
+      GLCapabilities capabilities = new GLCapabilities(profile);
+      
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas( capabilities );
+      Rhombus rhombus = new Rhombus();
+      glcanvas.addGLEventListener( rhombus );
+      glcanvas.setSize( 400, 400 );
+      
+      //creating frame
+      final JFrame frame = new JFrame ( "Rhombus" );
+      
+      //adding canvas to frame
+      frame.getContentPane().add( glcanvas );
+      frame.setSize(frame.getContentPane().getPreferredSize() );
+      frame.setVisible( true );
+   }
+	
+}
+</pre>
+<p>If you compile and execute the above program, you get the following output. It shows a rhombus generated using GL_LINES of <b>glBegin()</b> method.</p>
+<img src="/jogl/images/rhombus.jpg" alt="Rhombus" />
+<p>Let us go through a program to draw a house using GL_LINES &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+
+import javax.swing.JFrame;
+
+public class House implements GLEventListener{
+
+   @Override
+   public void display( GLAutoDrawable drawable ) {
+      final GL2 gl = drawable.getGL().getGL2();
+      
+      //drawing top
+      gl.glBegin ( GL2.GL_LINES );
+      gl.glVertex3f( -0.3f, 0.3f, 0 );
+      gl.glVertex3f( 0.3f,0.3f, 0 );
+      gl.glEnd();
+      
+      //drawing bottom
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( -0.3f,-0.3f, 0 );
+      gl.glVertex3f( 0.3f,-0.3f, 0 );
+      gl.glEnd();
+      
+      //drawing the right edge
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( -0.3f,0.3f, 0 );
+      gl.glVertex3f( -0.3f,-0.3f, 0 );
+      gl.glEnd();
+      
+      //drawing the left edge
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( 0.3f,0.3f,0 );
+      gl.glVertex3f( 0.3f,-0.3f,0 );
+      gl.glEnd();
+      
+      //building roof
+      //building lft dia
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( 0f,0.6f, 0 );
+      gl.glVertex3f( -0.3f,0.3f, 0 );
+      gl.glEnd();
+      
+      //building rt dia
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( 0f,0.6f, 0 );
+      gl.glVertex3f( 0.3f,0.3f, 0 );
+      gl.glEnd();
+      
+      //building door
+      //drawing top
+      gl.glBegin ( GL2.GL_LINES );
+      gl.glVertex3f( -0.05f, 0.05f, 0 );
+      gl.glVertex3f( 0.05f, 0.05f, 0 );
+      gl.glEnd();
+      
+      //drawing the left edge
+      gl.glBegin ( GL2.GL_LINES );
+      gl.glVertex3f( -0.05f, 0.05f, 0 );
+      gl.glVertex3f( -0.05f, -0.3f, 0 );
+      gl.glEnd();
+      
+      //drawing the right edge
+      gl.glBegin ( GL2.GL_LINES );
+      gl.glVertex3f( 0.05f, 0.05f, 0 );
+      gl.glVertex3f( 0.05f, -0.3f, 0 );
+      gl.glEnd();
+   }
+      
+   @Override
+   public void dispose( GLAutoDrawable arg0 ) {
+      //method body
+   }
+   
+   @Override
+   public void init( GLAutoDrawable arg0 ) {
+      // method body
+   }       
+   
+   @Override
+   public void reshape( GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4 ) {
+      // method body
+   }
+	
+   public static void main( String[] args ) {
+   
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get( GLProfile.GL2 );
+      GLCapabilities capabilities = new GLCapabilities(profile);
+   
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas( capabilities );
+      House house = new House();
+      glcanvas.addGLEventListener( house );
+      glcanvas.setSize(400, 400);
+   
+      //creating frame
+      final JFrame frame = new JFrame( "House" );
+   
+      //adding canvas to frame
+      frame.getContentPane().add( glcanvas );
+      frame.setSize(frame.getContentPane().getPreferredSize() );
+      frame.setVisible( true );
+      
+   }//end of main
+	
+}//end of class
+</pre>
+<p>If you compile and execute the above program, you get the following output. It shows a house diagram generated using GL_LINES() method.</p>
+<img src="/jogl/images/house.jpg" alt="House" />
+<h1>JOGL - Pre Defined Shapes</h1>
+<p>In the Previous chapters we have learned how draw a shapes such as line, triangle, rhombus using JOGL. We draw lines by passing a predefined field, <b>Gl_lines</b> to <i>glBegin()</i> method.</p>
+<p>Other than <b>GL_LINES</b>, the <b>glBegin()</b> method accepts eight more parameters. You can use them to draw different shapes. These are used the same way as GL_LINES.</p>
+<p>The following table shows the <b>glBegin()</b> method parameters along with their description &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No</th>
+<th>Parameters and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>GL_LINES</b></p>
+<p>Creates each pair of vertices as an independent line segment.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>GL_LINE_STRIP</b></p>
+<p>Draws a connected group of line segments from the first vertex to the last.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>GL_LINE_LOOP</b></p>
+<p>Draws a connected group of line segments from the first vertex to the last, again back to the first.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>GL_TRIANGLES</b></p>
+<p>Treats each triplet of vertices as an independent triangle.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><p><b>GL_TRIANGLE_STRIP</b></p>
+<p>Draws a connected group of triangles. One triangle is defined for each vertex presented after the first two vertices.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><p><b>GL_TRIANGLE_FAN</b></p>
+<p>Draws a connected group of triangles. One triangle is defined for each vertex presented after the first two vertices.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><p><b>GL_QUADS</b></p>
+<p>Treats each group of four vertices as an independent quadrilateral.</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td><p><b>GL_QUAD_STRIP</b></p>
+<p>Draws a connected group of quadrilaterals. One quadrilateral is defined for each pair of vertices presented after the first pair.</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td><p><b>GL_POLYGON</b></p>
+<p>Draws a single, convex polygon. Vertices 1,…,n define this polygon.</p></td>
+</tr>
+</table>
+<p>Let us see some examples using <b>glBegin()</b> parameters.</p>
+<h3>Program to draw a Line Strip</h3>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+
+import javax.swing.JFrame;
+
+public class LineStrip implements GLEventListener{
+
+   @Override
+   public void display(GLAutoDrawable drawable) {
+   
+      final GL2 gl = drawable.getGL().getGL2();
+		
+      gl.glBegin (GL2.GL_LINE_STRIP);
+      gl.glVertex3f(-0.50f,-0.75f, 0);
+      gl.glVertex3f(0.7f,0.5f, 0);
+      gl.glVertex3f(0.70f,-0.70f, 0);
+      gl.glVertex3f(0f,0.5f, 0);
+      gl.glEnd();
+   }
+   
+   @Override
+   public void dispose(GLAutoDrawable arg0) {
+      //method body
+   }
+   
+   @Override
+   public void init(GLAutoDrawable arg0) {
+      // method body
+   }
+   
+   @Override
+   public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
+      // method body
+   }
+   
+   public static void main(String[] args) {
+   
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get(GLProfile.GL2);
+      GLCapabilities capabilities = new GLCapabilities(profile);
+      
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas(capabilities);
+      LineStrip r = new LineStrip();
+      glcanvas.addGLEventListener(r);
+      glcanvas.setSize(400, 400);
+      
+      //creating frame
+      final JFrame frame = new JFrame ("LineStrip");
+      
+      //adding canvas to frame
+      frame.getContentPane().add(glcanvas);
+            
+      frame.setSize(frame.getContentPane().getPreferredSize());
+      frame.setVisible(true);
+      
+   }//end of main
+	
+}//end of classimport javax.media.opengl.GL2;
+</pre>
+<p>If you compile and execute the above code, the following output is generated &minus;</p>
+<img src="/jogl/images/linestrip.jpg" alt="LineStrip" />
+<h3>Code snippet for display() method to draw a Line Loop</h3>
+<pre class="prettyprint notranslate">
+public void display(GLAutoDrawable drawable) {
+
+   final GL2 gl = drawable.getGL().getGL2();
+   
+   gl.glBegin (GL2.GL_LINE_LOOP);
+   
+   gl.glVertex3f( -0.50f, -0.75f, 0);
+   gl.glVertex3f(0.7f, .5f, 0);
+   gl.glVertex3f(0.70f, -0.70f, 0);
+   gl.glVertex3f(0f, 0.5f, 0);
+   
+   gl.glEnd();
+}
+</pre>
+<p>If you replace the <b>display()</b> method of any of the basic template programs with the above code, compile, and execute it, the following output is generated &minus;</p>
+<img src="/jogl/images/line_loop.jpg" alt="Line Loop" />
+<h3>Code snippet for display() method to draw a triangle using GL_TRIANGLES</h3>
+<pre class="prettyprint notranslate">
+public void display(GLAutoDrawable drawable) {
+
+   final GL2 gl = drawable.getGL().getGL2();
+   
+   gl.glBegin(GL2.GL_TRIANGLES);        // Drawing Using Triangles
+   
+   gl.glVertex3f(0.5f,0.7f,0.0f);       // Top
+   gl.glVertex3f(-0.2f,-0.50f,0.0f);    // Bottom Left
+   gl.glVertex3f(0.5f,-0.5f,0.0f);      // Bottom Right
+   
+   gl.glEnd();
+}
+</pre>
+<p>If you replace the <b>display()</b> method of any of the basic template programs with the above code, compile, and execute it, the following output is generated &minus;</p>
+<img src="/jogl/images/triangles.jpg" alt="Triangles" />
+<h3>Code snippet for display() method to draw a Triangle Strip</h3>
+<pre class="prettyprint notranslate">
+public void display(GLAutoDrawable drawable) {
+
+   final GL2 gl = drawable.getGL().getGL2();
+   
+   gl.glBegin (GL2.GL_TRIANGLE_STRIP);
+   
+   gl.glVertex3f(0f,0.5f,0);
+   gl.glVertex3f(-0.50f,-0.75f,0);
+   gl.glVertex3f(0.28f,0.06f,0);
+   gl.glVertex3f(0.7f,0.5f,0);
+   gl.glVertex3f(0.7f,-0.7f,0);
+   
+   gl.glEnd();
+}
+</pre>
+<p>If you replace the <b>display()</b> method of any of the basic template programs with the above code, compile and execute it, the following output is generated &minus;</p>
+<img src="/jogl/images/triangle_strip.jpg" alt="Triangle Strip" />
+<h3>Code snippet for display() method to draw a quadrilateral</h3>
+<pre class="prettyprint notranslate">
+public void display(GLAutoDrawable drawable) {
+
+   final GL2 gl = drawable.getGL().getGL2();
+   
+   gl.glBegin(GL2.GL_QUADS);
+   
+   gl.glVertex3f( 0.0f,0.75f,0);
+   gl.glVertex3f(-0.75f,0f,0);
+   gl.glVertex3f(0f,-0.75f,0);
+   gl.glVertex3f(0.75f,0f,0);
+   
+   gl.glEnd();
+}
+</pre>
+<p>If you replace the <b>display()</b> method of any of the basic template programs with the above code, compile, and execute it, the following output is generated &minus;</p>
+<img src="/jogl/images/quads.jpg" alt="Quads" />
+<h3>Code snippet for display() method to draw a polygon</h3>
+<pre class="prettyprint notranslate">
+public void display(GLAutoDrawable drawable) {
+
+   final GL2 gl = drawable.getGL().getGL2();
+   
+   gl.glBegin(GL2.GL_POLYGON);
+   
+   gl.glVertex3f(0f,0.5f,0f);
+   gl.glVertex3f(-0.5f,0.2f,0f);
+   gl.glVertex3f(-0.5f,-0.2f,0f);
+   gl.glVertex3f(0f,-0.5f,0f);
+   gl.glVertex3f(0f,0.5f,0f);
+   gl.glVertex3f(0.5f,0.2f,0f);
+   gl.glVertex3f(0.5f,-0.2f,0f);
+   gl.glVertex3f(0f,-0.5f,0f);
+   
+   gl.glEnd();
+}
+</pre>
+<p>If you replace <b>display()</b> method of any of the basic template programs with the above code, compile, and execute it, the following output is generated &minus;</p>
+<img src="/jogl/images/polygon.jpg" alt="Polygon" />
+<h1>JOGL - Transformation</h1>
+<p>OpenGL provides more features such as applying colors to an object, scaling, lighting, rotating an object, etc. This chapter describes some of the transformations on objects using JOGL.</p>
+<h2>Moving an Object on the Window</h2>
+<p>In earlier chapters, we discussed the programs for drawing a line and drawing various shapes using simple lines. The shapes created in this way can be displayed on any location within the window. It is done using the method <b>glTranslatef (float x, float y, float z)</b>.</p>
+<p>This method belongs to the <b>GLMatrixFunc</b> interface, which is in the <b>javax.media.opengl.fixedfunc</b> package.</p>
+<h3>GLMatrixFunc Interface</h3>
+<p><b>interface</b> &minus; GLMatrixFunc</p>
+<p><b>package</b> &minus; javax.media.opengl.fixedfunc</p>
+<p>The following table lists some important methods of this interface &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Methods and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>void glRotatef(float angle, float x, float y, float z)</b></p>
+<p>Rotates the current matrix.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>void glScalef(float x, float y, float z)</b></p>
+<p>Used to scale the current matrix.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>void glTranslatef(float x, float y,float z)</b></p>
+<p>Used to translate the current matrix.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>void glLoadIdentity()</b></p>
+<p>Loads the current matrix with identity matrix.</p></td>
+</tr>
+</table>
+<p>The <b>glTranslate()</b> method moves the origin of the coordinate system to the point specified by the parameters (x,y,z), passed to the <b>glTranslate()</b> method as</p>
+<p>argument. To save and restore the untranslated coordinate system, <b>glPushMatrix()</b> and <b>glPopMatrix()</b> methods are used.</p>
+<pre class="result notranslate">
+gl.glTranslatef(0f, 0f, -2.5f); 
+</pre>
+<p>Whenever <b>glTranslate()</b> is used, it changes the position of the component on the screen. Hence, the <b>reshape()</b> method of <b>GLEventListener</b> interface should be overridden and OpenGL viewport and projection matrix should be initialized.</p>
+<p>The following code shows the template to initialize a view port and projection matrix &minus;</p>
+<pre class="prettyprint notranslate">
+public void reshape(GLAutoDrawable drawable, int x,  int y, int width, int height) { 
+  
+   // TODO Auto-generated method stub 
+   final GL2 gl = drawable.getGL().getGL2();  
+            
+   // get the OpenGL 2 graphics object   
+   if(height &lt;=0) height = 1; 
+       
+   //preventing devided by 0 exception height = 1; 
+   final float h = (float) width / (float) height; 
+            
+   // display area to cover the entire window 
+   gl.glViewport(0, 0, width, height); 
+            
+   //transforming projection matrix 
+   gl.glMatrixMode(GL2.GL_PROJECTION); 
+   gl.glLoadIdentity(); 
+   glu.gluPerspective(45.0f, h, 1.0, 20.0); 
+      
+   //transforming model view gl.glLoadIdentity(); 
+   gl.glMatrixMode(GL2.GL_MODELVIEW); 
+   gl.glLoadIdentity(); 
+}
+</pre>
+<h1>JOGL - Coloring</h1>
+<p>This chapter teaches you how to apply colours to the objects using JOGL. To apply colour to an object, use the method <b>glColor()</b> of <b>GL2</b>. Below given is the syntax for using glColor method.</p>
+<h2>Syntax</h2>
+<pre class="result notranslate">
+gl.glColorXY(1f,0f,0f); 
+</pre>
+<p>where,</p>
+<ul class="list">
+<li><p>X denotes the number of colours used, 3 (red, green, blue) or 4(red, green, blue, alpha). To get various colour combinations, the values of these colours are passed as parameters. The sequence of the colour parameters must be maintained in that order.</p>
+<p><b>Example</b></p>
+<p>If you pass colour values as (1, 0, 0), then you get red colour. Similarly, (1, 1, 0) gives you yellow colour.</p></li>
+<li><p>Y denotes the data type which accepts parameters such as byte(b), double(d), float(f), int(i), short(s), ubyte(ub), uint(ui), and ushort(us).</p></li>
+</ul>
+<pre class="result notranslate">
+gl.glColor3f(1f,0f,0f);   //gives us red          
+gl.glColor3f(0f,1f,0f);   //gives us green            
+gl.glColor3f(0f,0f,1f);   //gives us blue
+</pre>
+<p>In case of triangle, you can apply different colors for each vertex.</p>
+<p>Let us go through the program to apply colors to a triangle &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2; 
+import javax.media.opengl.GLAutoDrawable; 
+import javax.media.opengl.GLCapabilities; 
+import javax.media.opengl.GLEventListener; 
+import javax.media.opengl.GLProfile; 
+import javax.media.opengl.awt.GLCanvas; 
+
+import javax.swing.JFrame; 
+ 
+public class TriangleColor implements GLEventListener { 
+
+   @Override 
+   public void display( GLAutoDrawable drawable ) { 
+   
+      final GL2 gl = drawable.getGL().getGL2(); 
+      gl.glBegin( GL2.GL_TRIANGLES );  
+      
+      // Drawing Using Triangles 
+    
+      gl.glColor3f( 1.0f, 0.0f, 0.0f );   // Red 
+      gl.glVertex3f( 0.5f,0.7f,0.0f );    // Top 
+		
+      gl.glColor3f( 0.0f,1.0f,0.0f );     // green 
+      gl.glVertex3f( -0.2f,-0.50f,0.0f ); // Bottom Left 
+		
+      gl.glColor3f( 0.0f,0.0f,1.0f );     // blue 
+      gl.glVertex3f( 0.5f,-0.5f,0.0f );   // Bottom Right 
+		
+      gl.glEnd();         
+   } 
+   
+   @Override 
+   public void dispose( GLAutoDrawable arg0 ) { 
+      //method body 
+   } 
+   
+   @Override 
+   public void init( GLAutoDrawable arg0 ) { 
+      // method body    
+   }
+   
+   @Override 
+   public void reshape( GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4 ) { 
+      // method body 
+   } 
+   
+   public static void main( String[] args ) {    
+   
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get( GLProfile.GL2 ); 
+      GLCapabilities capabilities = new GLCapabilities(profile);
+          
+      // The canvas  
+      final GLCanvas glcanvas = new GLCanvas( capabilities ); 
+      TriangleColor triangle = new TriangleColor(); 
+      glcanvas.addGLEventListener( triangle ); 
+      glcanvas.setSize( 400, 400 );   
+      
+      //creating frame 
+      final JFrame frame = new JFrame (" Colored Triangle"); 
+          
+      //adding canvas to it 
+      frame.getContentPane().add( glcanvas ); 
+      frame.setSize( frame.getContentPane().getPreferredSize()); 
+      frame.setVisible( true );   
+      
+   } //end of main
+	
+} //end of class 
+</pre>
+<p>When you compile and execute the above program, you get the following colored triangle &minus;</p>
+<img src="/jogl/images/triangle_color.jpg" alt="Triangle Color" />
+<h2>Applying Color to a Polygon</h2>
+<p>Let us go through the program to apply colors to a polygon &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2; 
+import javax.media.opengl.GLAutoDrawable; 
+import javax.media.opengl.GLCapabilities; 
+import javax.media.opengl.GLEventListener; 
+import javax.media.opengl.GLProfile; 
+import javax.media.opengl.awt.GLCanvas; 
+
+import javax.swing.JFrame; 
+
+public class PolygonColor implements GLEventListener { 
+
+   @Override 
+   public void display( GLAutoDrawable drawable ) { 
+   
+      final GL2 gl = drawable.getGL().getGL2(); 
+      gl.glColor3f( 1f,0f,0f ); //applying red  
+  
+      gl.glBegin( GL2.GL_POLYGON ); 
+      
+      gl.glVertex3f( 0f,0.5f,0f  ); 
+      gl.glVertex3f( -0.5f,0.2f,0f ); 
+      gl.glVertex3f( -0.5f,-0.2f,0f ); 
+      gl.glVertex3f( 0f,-0.5f,0f ); 
+      gl.glVertex3f( 0f,0.5f,0f ); 
+      gl.glVertex3f( 0.5f,0.2f,0f ); 
+      gl.glVertex3f( 0.5f,-0.2f,0f ); 
+      gl.glVertex3f( 0f,-0.5f,0f ); 
+      
+      gl.glEnd(); 
+   }
+   
+   @Override 
+   public void dispose( GLAutoDrawable arg0 ) { 
+      //method body 
+   } 
+   
+   @Override 
+   public void init( GLAutoDrawable arg0 ) {   
+      // method body 
+   } 
+   
+   @Override 
+   public void reshape( GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4 ) {    
+      // method body 
+   } 
+   
+   public static void main( String[] args ) { 
+   
+      //getting the capabilities object of GL2 profile  
+      final GLProfile profile = GLProfile.get( GLProfile.GL2 ); 
+      GLCapabilities capabilities = new GLCapabilities(profile); 
+      
+      // The canvas  
+      final GLCanvas glcanvas = new GLCanvas( capabilities ); 
+      PolygonColor polygon = new PolygonColor(); 
+      glcanvas.addGLEventListener( polygon ); 
+      glcanvas.setSize( 400, 400 ); 
+      
+      //creating frame 
+      final JFrame frame = new JFrame ( "Colored Polygon" ); 
+      
+      //adding canvas to frame 
+      frame.getContentPane().add( glcanvas ); 
+      frame.setSize(frame.getContentPane().getPreferredSize() ); 
+      frame.setVisible( true );    
+      
+   } //end of main 
+	
+ } //end of class 
+</pre>
+<p>When you compile and execute the above program, you get the following coloured Polygon &minus;</p>
+<img src="/jogl/images/colored_polygon.jpg" alt="Polygon Color" />
+<h1>JOGL - Scaling</h1>
+<p>This chapter teaches you how to scale an object ie., increase or decrease the size of an object using JOGL.</p>
+<p>Scaling an object is done by using the <b>glScalef(float x, float y, float z)</b> method of <b>GLMatrixFunc</b> interface. This method accepts three floating point parameters, using which we specify the scale factors along the x, y, and z axes respectively.</p>
+<p>For example, in the following program, a triangle is diminished to 50%. Here, the value 50 is passed as parameter along all the axes.</p>
+<p>Let us go through the program to scale a triangle &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2; 
+import javax.media.opengl.GLAutoDrawable; 
+import javax.media.opengl.GLCapabilities; 
+import javax.media.opengl.GLEventListener; 
+import javax.media.opengl.GLProfile; 
+import javax.media.opengl.awt.GLCanvas; 
+
+import javax.swing.JFrame;
+ 
+public class Scaling implements GLEventListener {
+ 
+   @Override 
+	
+   public void display( GLAutoDrawable drawable ) { 
+   
+      final GL2 gl = drawable.getGL().getGL2(); 
+      gl.glScalef( 0.50f,0.25f,0.50f ); 
+      gl.glBegin( GL2.GL_TRIANGLES );
+		
+      // Drawing Using Triangles 
+      gl.glColor3f( 1.0f, 0.0f, 0.0f );   // Red 
+      gl.glVertex3f( 0.5f,0.7f,0.0f );    // Top 
+		
+      gl.glColor3f( 0.0f,1.0f,0.0f );     // blue 
+      gl.glVertex3f( -0.2f,-0.50f,0.0f ); // Bottom Left 
+		
+      gl.glColor3f( 0.0f,0.0f,1.0f );     // green 
+      gl.glVertex3f( 0.5f,-0.5f,0.0f );   // Bottom Right 
+		
+      gl.glEnd(); 
+   }
+   
+   @Override 
+   public void dispose( GLAutoDrawable arg0 ) { 
+      //method body 
+   } 
+   
+   @Override 
+   public void init( GLAutoDrawable arg0 ) { 
+      // method body 
+   } 
+   
+   @Override 
+   public void reshape( GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4 ) { 
+      // method body 
+   }
+   
+   public static void main( String[] args ) {   
+   
+      //getting the capabilities object of GL2 profile 
+      final GLProfile profile = GLProfile.get( GLProfile.GL2 ); 
+      GLCapabilities capabilities = new GLCapabilities(profile);
+        
+      // The canvas  
+      final GLCanvas glcanvas = new GLCanvas( capabilities ); 
+      Scaling scaling = new Scaling(); 
+      glcanvas.addGLEventListener( scaling ); 
+      glcanvas.setSize( 400, 400 );  
+
+      //creating frame 
+      final JFrame frame  = new JFrame (" Dimnished Triangle (Scaling )");   
+
+      //adding canvas to it 
+      frame.getContentPane().add(glcanvas); 
+      frame.setSize(frame.getContentPane().getPreferredSize()); 
+      frame.setVisible(true);         
+      
+   } //end of main 
+	
+} //end of classimport javax.media.opengl.GL2; 
+</pre>
+<p>On compiling and executing the above program, we get the following output. Here, you can observe a diminished triangle as compared to the original triangle produced by TriangleColor.java &minus;</p>
+<img src="/jogl/images/scaling.jpg" alt="Scaling" />
+<h1>JOGL - Rotation</h1>
+<p>In this chapter we explained you how to rotate an object using JOGL. Rotation of objects can be done along any of the three axes, using the <b>glRotatef(float angle, float x, float y, float z)</b> method of <b>GLMatrixFunc</b> interface. You need to pass an angle of rotation and x, y, z axes as parameters to this method.</p>
+<p>The following steps guide you to rotate an object successfully &minus;</p>
+<ul class="list">
+<li><p>Clear the color buffer and depth buffer initially using <b>gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT)</b> method. This method erases the previous state of the object and makes the view clear.</p></li>
+<li><p>Reset the projection matrix using the <b>glLoadIdentity()</b> method.</p></li>
+</ul>
+<p>Instantiate the animator class and start the animator using the <b>start()</b> method.</p>
+<h2>FPSAnimator Class</h2>
+<p>Below given ar the various constructors of FPSAnimator class.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Methods and Descriptions</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>FPSAnimator(GLAutoDrawable drawable, int fps)</b></p>
+<p>It creates an FPSAnimator with a given target frames-per-second value and an initial drawable to animate.</p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>FPSAnimator(GLAutoDrawable drawable, int fps, boolean cheduleAtFixedRate)</b></p>
+<p>It creates an FPSAnimator with a given target frames-per-second value, an initial drawable to animate, and a flag indicating whether to use fixed-rate scheduling.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>FPSAnimator(int fps)</b></p>
+<p>It creates an FPSAnimator with a given target frames-per-second value.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td>It creates an FPSAnimator with a given target frames-per-second value and a flag indicating whether to use fixed rate scheduling.</td>
+</tr>
+</table>
+<p>It creates an FPSAnimator with a given target frames-per-second value and a flag indicating whether to use fixed rate scheduling.</p>
+<p><b>start()</b> and <b>stop()</b> are the two important methods in this class. The following program shows how to rotate a triangle using FPSAnimator class &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2; 
+import javax.media.opengl.GLAutoDrawable; 
+import javax.media.opengl.GLCapabilities; 
+import javax.media.opengl.GLEventListener; 
+import javax.media.opengl.GLProfile; 
+import javax.media.opengl.awt.GLCanvas; 
+
+import javax.swing.JFrame; 
+
+import com.jogamp.opengl.util.FPSAnimator; 
+
+public class TriangleRotation implements GLEventListener { 
+   private float rtri;  //for angle of rotation
+      
+   @Override 
+   public void display( GLAutoDrawable drawable ) {
+   
+      final GL2 gl = drawable.getGL().getGL2(); 
+      gl.glClear (GL2.GL_COLOR_BUFFER_BIT |  GL2.GL_DEPTH_BUFFER_BIT );  
+      
+      // Clear The Screen And The Depth Buffer 
+      gl.glLoadIdentity();  // Reset The View     
+              
+      //triangle rotation      
+      gl.glRotatef( rtri, 0.0f, 1.0f, 0.0f );  
+              
+      // Drawing Using Triangles 
+      gl.glBegin( GL2.GL_TRIANGLES );          
+      
+      gl.glColor3f( 1.0f, 0.0f, 0.0f );   // Red 
+      gl.glVertex3f( 0.5f,0.7f,0.0f );    // Top 
+      gl.glColor3f( 0.0f,1.0f,0.0f );     // blue 
+      gl.glVertex3f( -0.2f,-0.50f,0.0f ); // Bottom Left 
+      gl.glColor3f( 0.0f,0.0f,1.0f );     // green 
+      gl.glVertex3f( 0.5f,-0.5f,0.0f );   // Bottom Right 
+      
+      gl.glEnd();    
+      gl.glFlush(); 
+      
+      rtri +=0.2f;  //assigning the angle               
+   } 
+	
+   @Override 
+   public void dispose( GLAutoDrawable arg0 ) { 
+      //method body 
+   } 
+   
+   @Override 
+   public void init( GLAutoDrawable arg0 ) { 
+      // method body 
+   }
+   
+   @Override 
+   public void reshape( GLAutoDrawable drawable, int x, int y, int width, int height ) { 
+   
+      public static void main( String[] args ) {
+		
+         //getting the capabilities object of GL2 profile
+         final GLProfile profile  = GLProfile.get(GLProfile.GL2 ); 
+         GLCapabilities capabilities  = new GLCapabilities( profile );
+
+         // The canvas  
+         final GLCanvas glcanvas = new GLCanvas( capabilities); 
+         TriangleRotation triangle = new TriangleRotation(); 
+         glcanvas.addGLEventListener( triangle ); 
+         glcanvas.setSize( 400, 400 );  
+
+         // creating frame 
+         final JFrame frame = new JFrame ("Rotating Triangle");
+
+         // adding canvas to it 
+         frame.getContentPane().add( glcanvas ); 
+         frame.setSize(frame.getContentPane() .getPreferredSize());                 
+         frame.setVisible( true ); 
+                
+         //Instantiating and Initiating Animator 
+         final FPSAnimator animator = new FPSAnimator(glcanvas, 300,true); 
+         animator.start(); 
+      }
+		
+   } //end of main
+	
+} //end of class 
+</pre>
+<p>If you compile and execute the above program, it generates the following output. Here, you can observe various snapshots of a rotating the colored triangle around the x-axis.</p>
+<img src="/jogl/images/triangle_rotation.jpg" alt="Triangle Rotation" />
+<h1>JOGL - Lighting</h1>
+<p>This chapter explains you how to apply lighting effect to an object using JOGL.</p>
+<p>To set lighting, initially enable lighting using the <b>glEnable()</b> method. Then apply lighting for the objects, using the <b>glLightfv(int light, int pname, float[] params, int params_offset)</b> method of <b>GLLightingFunc</b> interface. This method takes four parameters.</p>
+<p>The following table describes the parameters of <b>gllightfv()</b> method.</p>
+<table class="table table-bordered ">
+<tr>
+<th>Sr.No.</th>
+<th>Parameter Name and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>Light</b></p>
+<p>Specifies a light. The number of lights depends on the implementation, but at least eight lights are supported. It accepts ten values, those parameters are discussed in a separate table named Light Source Parameters given below.</p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>Pname</b></p>
+<p>Specifies a single valued light source parameter. For light source, there are ten parameters as discussed below.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>Params</b></p>
+<p>Specifies a pointer to the value or values that is set to the parameter <i>pname</i> of light source <i>light</i>.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>Light source parameter</b></p>
+<p>You can use any of the light source parameters given below.</p>
+</td>
+</tr>
+</table>
+<h2>Light source parameters</h2>
+<section class="toggle">
+<label>The following table shows the Light source parameters &minus;</label>
+<div class="toggle-content">
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th>Parameter and Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>GL_AMBIENT</b></p>
+<p>It contains the parameters that specify the ambient intensity of the light.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>GL_DIFFUSE</b></p>
+<p>It contains the parameters that specify the diffuse intensity of the light.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>GL_SPECULAR</b></p>
+<p>It contains the parameters that specify the specular intensity of the light.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>GL_POSITION</b></p>
+<p>It contains four integer or floating-point values that specify the position of the light in homogeneous object coordinates.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><p><b>GL_SPOT_DIRECTION</b></p>
+<p>It contains parameters that specify the direction of light in homogeneous object coordinates.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><p><b>GL_SPOT_EXPONENT</b></p>
+<p>Its parameters specify the intensity distribution of light.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><p><b>GL_SPOT_CUTOFF</b></p>
+<p>The single parameter of this specifies the maximum spread angle of the light.</p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td><p><b>GL_CONSTANT_ATTENUATION or GL_LINEAR_ATTENUATION or GL_QUADRATIC_ATTENUATION </b></p>
+<p>You can use any of these attenuation factors, which is represented by a single value.</p>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<p>Lighting is enabled or disabled using <b>glEnable()</b> and <b>glDisable</b> () methods with the argument <b>GL_LIGHTING</b>.</p>
+<p>The following template is given for lighting &minus;</p>
+<pre class="result notranslate">
+gl.glEnable(GL2.GL_LIGHTING); 
+gl.glEnable(GL2.GL_LIGHT0);  
+gl.glEnable(GL2.GL_NORMALIZE); 
+
+float[] ambientLight = { 0.1f, 0.f, 0.f,0f };  // weak RED ambient 
+gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_AMBIENT, ambientLight, 0); 
+
+float[] diffuseLight = { 1f,2f,1f,0f };  // multicolor diffuse 
+gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_DIFFUSE, diffuseLight, 0); 
+</pre>
+<h2>Applying Light to a Rotating Polygon</h2>
+<p>Follow the given steps for applying light to a rotating polygon.</p>
+<h3>Rotate the polygon using glRotate() method</h3>
+<pre class="result notranslate">
+gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT); 
+  
+// Clear The Screen And The Depth Buffer  
+gl.glLoadIdentity();  
+                 
+// Reset The View  
+gl.glRotatef(rpoly, 0.0f, 1.0f, 0.0f); 
+</pre>
+<p>Let us go through the program to apply light to a rotating polygon &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2; 
+import javax.media.opengl.GLAutoDrawable; 
+import javax.media.opengl.GLCapabilities; 
+import javax.media.opengl.GLEventListener; 
+import javax.media.opengl.GLProfile; 
+import javax.media.opengl.awt.GLCanvas; 
+
+import javax.swing.JFrame; 
+
+import com.jogamp.opengl.util.FPSAnimator; 
+ 
+public class PolygonLighting implements GLEventListener { 
+   private float rpoly;
+	
+   @Override 
+	
+   public void display( GLAutoDrawable drawable ) {
+   
+      final GL2 gl = drawable.getGL().getGL2(); 
+      gl.glColor3f(1f,0f,0f); //applying red
+      
+      // Clear The Screen And The Depth Buffer 
+      gl.glClear( GL2.GL_COLOR_BUFFER_BIT |  
+      GL2.GL_DEPTH_BUFFER_BIT );   
+      gl.glLoadIdentity();       // Reset The View    
+      gl.glRotatef( rpoly, 0.0f, 1.0f, 0.0f ); 
+		
+      gl.glBegin( GL2.GL_POLYGON ); 
+      
+      gl.glVertex3f( 0f,0.5f,0f ); 
+      gl.glVertex3f( -0.5f,0.2f,0f ); 
+      gl.glVertex3f( -0.5f,-0.2f,0f ); 
+      gl.glVertex3f( 0f,-0.5f,0f ); 
+      gl.glVertex3f( 0f,0.5f,0f ); 
+      gl.glVertex3f( 0.5f,0.2f,0f ); 
+      gl.glVertex3f( 0.5f,-0.2f,0f ); 
+      gl.glVertex3f( 0f,-0.5f,0f ); 
+      
+      gl.glEnd(); 
+		
+      gl.glFlush(); 
+      
+      rpoly += 0.2f;  //assigning the angle 
+      
+      gl.glEnable( GL2.GL_LIGHTING );  
+      gl.glEnable( GL2.GL_LIGHT0 );  
+      gl.glEnable( GL2.GL_NORMALIZE );  
+
+      // weak RED ambient 
+      float[] ambientLight = { 0.1f, 0.f, 0.f,0f };  
+      gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_AMBIENT, ambient-Light, 0);  
+
+      // multicolor diffuse 
+      float[] diffuseLight = { 1f,2f,1f,0f };  
+      gl.glLightfv( GL2.GL_LIGHT0, GL2.GL_DIFFUSE, diffuse-Light, 0 ); 
+   }  
+      
+   @Override 
+   public void dispose( GLAutoDrawable arg0 ) { 
+      //method body  
+   } 
+  
+   @Override 
+   public void init( GLAutoDrawable arg0 ) { 
+      // method body     
+   } 
+	
+   @Override 
+   public void reshape( GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4 ) { 
+      // method body 
+   } 
+	
+   public static void main( String[] args ) { 
+   
+      //getting the capabilities object of GL2 profile 
+      final GLProfile profile = GLProfile.get( GLProfile.GL2 ); 
+      GLCapabilities capabilities = new GLCapabilities( profile);
+
+      // The canvas  
+      final GLCanvas glcanvas = new GLCanvas( capabilities ); 
+      PolygonLighting polygonlighting = new PolygonLighting(); 
+      glcanvas.addGLEventListener( polygonlighting ); 
+      glcanvas.setSize( 400, 400 ); 
+
+      //creating frame 
+      final JFrame frame = new JFrame (" Polygon lighting ");  
+
+      //adding canvas to it 
+      frame.getContentPane().add( glcanvas ); 
+      frame.setSize( frame.getContentPane().getPreferredSize()); 
+      frame.setVisible( true );  
+                    
+      //Instantiating and Initiating Animator 
+      final FPSAnimator animator = new FPSAnimator(glcanvas, 300,true ); 
+      animator.start();                     
+      
+   } //end of main 
+	
+} //end of class 
+</pre>
+<p>If you compile and execute the above program, it generates the following output. Here, you can observe various snapshots of a rotating polygon with lighting.</p>
+<img src="/jogl/images/polygon_lighting.jpg" alt="Polygon Lighting" />
+<h1>JOGL - 3D Basics</h1>
+<p>In previous chapters we have seen how to create 2d objects, apply effects to it, and transform the object. This chapter teaches you how to draw a line with 3rd dimension, and some shapes.</p>
+<p>Let us draw a simple line with z-axis and see the difference between 2D and 3D lines. Draw a simple line first, then draw the second line 3 units into the window.</p>
+<p>Let us go through the program to draw a 3D line &minus;</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+import javax.media.opengl.glu.GLU;
+
+import javax.swing.JFrame;
+   
+public class Line3d implements GLEventListener {
+   private GLU glu = new GLU();
+	
+   @Override
+   
+   public void display( GLAutoDrawable drawable ) {
+      final GL2 gl = drawable.getGL().getGL2();
+      gl.glTranslatef( 0f, 0f, -2.5f );
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( -0.75f,0f,0 );
+      gl.glVertex3f( 0f,-0.75f, 0 );
+      gl.glEnd();
+      
+      //3d line
+      gl.glBegin( GL2.GL_LINES );
+      gl.glVertex3f( -0.75f,0f,3f );// 3 units into the window
+      gl.glVertex3f( 0f,-0.75f,3f );
+      gl.glEnd();
+   }
+   
+   @Override
+   public void dispose( GLAutoDrawable arg0 ) {
+      //method body
+   }
+   
+   @Override
+   public void init( GLAutoDrawable arg0 ) {
+      // method body
+   }
+   
+   @Override
+   public void reshape( GLAutoDrawable drawable, int x, int y, int width, int height ) {
+	
+      GL2 gl = drawable.getGL().getGL2();
+      
+      if( height &lt;= 0 )
+         height = 1;
+			
+      final float h = ( float ) width / ( float ) height;
+      gl.glViewport( 0, 0, width, height );
+      gl.glMatrixMode( GL2.GL_PROJECTION );
+      gl.glLoadIdentity();
+		
+      glu.gluPerspective( 45.0f, h, 1.0, 20.0 );
+      gl.glMatrixMode( GL2.GL_MODELVIEW );
+      gl.glLoadIdentity();
+   }
+   
+   public static void main( String[] args ) {
+	
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get( GLProfile.GL2 );
+      GLCapabilities capabilities = new GLCapabilities(profile);
+          
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas( capabilities );
+      Line3d line3d = new Line3d();
+      glcanvas.addGLEventListener( line3d );
+      glcanvas.setSize( 400, 400 );
+       
+      //creating frame
+      final JFrame frame = new JFrame (" 3d line");
+          
+      //adding canvas to it
+      frame.getContentPane().add( glcanvas );
+      frame.setSize(frame.getContentPane().getPreferredSize() );
+      frame.setVisible( true );
+   }//end of main
+	
+}//end of class
+</pre>
+<p>When you compile and execute the above program, the following output is
+generated &minus;</p>
+<img src="/jogl/images/3d_line.jpg" alt="3D Line" />
+<p>3D shapes can be drawn by giving non-zero values to z quadrant of the <b>glVertex3f()</b> method, which generates the above view. Now joining the remaining lines will lead to a 3D edge.</p>
+<p>Now in the same way let us develop an edge with 3rd dimension.</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+import javax.media.opengl.glu.GLU;
+
+import javax.swing.JFrame;
+
+public class Edge1 implements GLEventListener {
+   private GLU glu = new GLU();
+	
+   @Override
+   public void display(GLAutoDrawable drawable) {
+   
+      // TODO Auto-generated method stub
+      final GL2 gl = drawable.getGL().getGL2();
+      gl.glTranslatef(0f, 0f, -2.5f);
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(-0.75f,0f,0);
+      gl.glVertex3f(0f,-0.75f, 0);
+      gl.glEnd();
+
+      //3d line
+      gl.glBegin(GL2.GL_LINES);
+
+      //3 units in to the window
+      gl.glVertex3f(-0.75f,0f,3f);
+      gl.glVertex3f(0f,-0.75f,3f);
+      gl.glEnd();
+
+      //top
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(-0.75f,0f,0);
+      gl.glVertex3f(-0.75f,0f,3f);
+      gl.glEnd();
+
+      //bottom
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(0f,-0.75f, 0);
+      gl.glVertex3f(0f,-0.75f,3f);
+      gl.glEnd();
+   }
+
+   @Override
+   public void dispose(GLAutoDrawable arg0) {
+      //method body
+   }
+	
+   @Override
+   public void init(GLAutoDrawable arg0) {
+      // method body
+   }
+   
+   @Override
+   public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+	
+      // TODO Auto-generated method stubfinal
+      GL2 gl = drawable.getGL().getGL2();
+      if(height &lt;= 0)
+         height = 1;
+			
+      final float h = (float) width / (float) height;
+      gl.glViewport(0, 0, width, height);
+      gl.glMatrixMode(GL2.GL_PROJECTION);
+      gl.glLoadIdentity();
+		
+      glu.gluPerspective(45.0f, h, 1.0, 20.0);
+      gl.glMatrixMode(GL2.GL_MODELVIEW);
+      gl.glLoadIdentity();
+
+   }
+   
+   public static void main(String[] args) {
+   
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get(GLProfile.GL2);
+      GLCapabilities capabilities = new GLCapabilities(profile);
+
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas(capabilities);
+      Edge1 b = new Edge1();
+      glcanvas.addGLEventListener(b);
+      glcanvas.setSize(400, 400);
+
+      //creating frame
+      final JFrame frame = new JFrame (" 3d edge");
+
+      //adding canvas to it
+      frame.getContentPane().add(glcanvas);
+      frame.setSize(frame.getContentPane().getPreferredSize());
+      frame.setVisible(true);
+   }//end of main
+	
+}//end of class
+</pre>
+<p>When you compile and execute the above program, the following output is generated &minus;</p>
+<img src="/jogl/images/3d_edge.jpg" alt="3D Edge" />
+<p>In the same way, by developing 3D edges to corresponding sides of any 2D quadrilateral and joining the adjacent vertices, you can get a 3D quadrilateral.</p>
+<p>Below given is a program to draw a rhombus using JOGL.</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+import javax.media.opengl.glu.GLU;
+
+import javax.swing.JFrame;
+
+public class Rhombus implements GLEventListener {
+   private GLU glu = new GLU();
+    
+   @Override
+   public void display(GLAutoDrawable drawable) {
+	
+      final GL2 gl = drawable.getGL().getGL2();
+      gl.glTranslatef(0f, 0f, -2.5f);
+
+      //drawing edge1.....
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(-0.75f,0f,0);
+      gl.glVertex3f(0f,-0.75f, 0);
+      gl.glEnd();
+		
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(-0.75f,0f,3f); // 3 units into the window
+      gl.glVertex3f(0f,-0.75f,3f);
+      gl.glEnd();
+
+      //top
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(-0.75f,0f,0);
+      gl.glVertex3f(-0.75f,0f,3f);
+      gl.glEnd();
+
+      // bottom
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(0f,-0.75f, 0);
+      gl.glVertex3f(0f,-0.75f,3f);
+      gl.glEnd();
+   
+      // edge 2....
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(0f,-0.75f, 0);
+      gl.glVertex3f(0.75f,0f, 0);
+      gl.glEnd();
+		
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(0f,-0.75f, 3f);
+      gl.glVertex3f(0.75f,0f, 3f);
+      gl.glEnd();
+		
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(0f,-0.75f, 0);
+      gl.glVertex3f(0f,-0.75f, 3f);
+      gl.glEnd();
+		
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(0.75f,0f, 0);
+      gl.glVertex3f(0.75f,0f, 3f);
+      gl.glEnd();
+
+      //Edge 3.............
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f( 0.0f,0.75f,0);
+      gl.glVertex3f(-0.75f,0f,0);
+      gl.glEnd();
+		
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f( 0.0f,0.75f,3f);
+      gl.glVertex3f(-0.75f,0f,3f);
+      gl.glEnd();
+		
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f( 0.0f,0.75f,0);
+      gl.glVertex3f( 0.0f,0.75f,3f);
+      gl.glEnd();
+		
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(-0.75f,0f,0);
+      gl.glVertex3f(-0.75f,0f,3f);
+      gl.glEnd();
+
+      //final edge
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(0.75f,0f, 0);
+      gl.glVertex3f( 0.0f,0.75f,0);
+      gl.glEnd();
+		
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(0.75f,0f,3f);
+      gl.glVertex3f( 0.0f,0.75f,3f);
+      gl.glEnd();
+		
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f(0.75f,0f, 0);
+      gl.glVertex3f(0.75f,0f,3f);
+      gl.glEnd();
+		
+      gl.glBegin(GL2.GL_LINES);
+      gl.glVertex3f( 0.0f,0.75f,0);
+      gl.glVertex3f( 0.0f,0.75f,3f);
+      gl.glEnd();
+   }
+   
+   @Override
+   public void dispose(GLAutoDrawable arg0) {
+      //method body
+   }
+	
+   @Override
+   public void init(GLAutoDrawable arg0) {
+      // method body
+   }
+	
+   @Override
+   public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+   
+      // TODO Auto-generated method stub final
+      GL2 gl = drawable.getGL().getGL2();
+      if(height lt;= 0)
+         height = 1;
+			
+      final float h = (float) width / (float) height;
+      gl.glViewport(3, 6, width, height);
+      gl.glMatrixMode(GL2.GL_PROJECTION);
+      gl.glLoadIdentity();
+		
+      glu.gluPerspective(45.0f, h, 1.0, 20.0);
+      gl.glMatrixMode(GL2.GL_MODELVIEW);
+      gl.glLoadIdentity();
+   }
+   
+   public static void main(String[] args) {
+	
+      //getting the capabilities object of GL2 profile
+      final GLProfile profile = GLProfile.get(GLProfile.GL2);
+      GLCapabilities capabilities = new GLCapabilities(profile);
+
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas(capabilities);
+      Rhombus b = new Rhombus();
+      glcanvas.addGLEventListener(b);
+      glcanvas.setSize(400, 400);
+
+      //creating frame
+      final JFrame frame = new JFrame (" Rhombus 3d");
+
+      //adding canvas to it
+      frame.getContentPane().add(glcanvas);
+      frame.setSize(frame.getContentPane().getPreferredSize());
+      frame.setVisible(true);
+   }//end of main
+	
+}//end of classimport javax.media.opengl.GL2;
+</pre>
+<p>When you compile and execute the above program, the following output is
+generated. It shows a rhombus drawn using 3D lines.</p>
+<img src="/jogl/images/rhombus_3d.jpg" alt="Rhombus 3D" />
+<p>The predefined parameters of <b>glBegin()</b> method can be used for drawing 3D shapes.</p>
+<h1>JOGL - 3D Triangle</h1>
+<p>In previous chapter we have seen how to draw 3d shapes, this chapter teaches you how to draw 3d triangle and rotate it.</p>
+<p>Below given is the program to draw a 3d triangle an rotate it.</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+import javax.media.opengl.glu.GLU;
+
+import javax.swing.JFrame;
+
+import com.jogamp.opengl.util.FPSAnimator;
+
+public class Triangle3d implements GLEventListener {
+
+   private GLU glu = new GLU();
+   private float rtri = 0.0f;
+      
+   @Override
+   public void display(GLAutoDrawable drawable) {
+      final GL2 gl = drawable.getGL().getGL2();
+
+      // Clear The Screen And The Depth Buffer
+      gl.glClear( GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT );
+      gl.glLoadIdentity(); // Reset The View
+      gl.glTranslatef( -0.5f, 0.0f, -6.0f ); // Move the triangle
+      gl.glRotatef( rtri, 0.0f, 1.0f, 0.0f );
+      gl.glBegin( GL2.GL_TRIANGLES ); 
+        
+      //drawing triangle in all dimensions
+      // Front
+      gl.glColor3f( 1.0f, 0.0f, 0.0f ); // Red
+      gl.glVertex3f( 1.0f, 2.0f, 0.0f ); // Top Of Triangle (Front)
+		
+      gl.glColor3f( 0.0f, 1.0f, 0.0f ); // Green
+      gl.glVertex3f( -1.0f, -1.0f, 1.0f ); // Left Of Triangle (Front)
+		
+      gl.glColor3f( 0.0f, 0.0f, 1.0f ); // Blue
+      gl.glVertex3f( 1.0f, -1.0f, 1.0f ); // Right Of Triangle (Front)
+        
+      // Right
+      gl.glColor3f( 1.0f, 0.0f, 0.0f ); // Red
+      gl.glVertex3f( 1.0f, 2.0f, 0.0f ); // Top Of Triangle (Right)
+		
+      gl.glColor3f( 0.0f, 0.0f, 1.0f ); // Blue
+      gl.glVertex3f( 1.0f, -1.0f, 1.0f ); // Left Of Triangle (Right)
+		
+      gl.glColor3f( 0.0f, 1.0f, 0.0f ); // Green
+      gl.glVertex3f( 1.0f, -1.0f, -1.0f ); // Right Of Triangle (Right)
+        
+      // Left
+      gl.glColor3f( 1.0f, 0.0f, 0.0f ); // Red
+      gl.glVertex3f( 1.0f, 2.0f, 0.0f ); // Top Of Triangle (Back)
+		
+      gl.glColor3f( 0.0f, 1.0f, 0.0f ); // Green
+      gl.glVertex3f( 1.0f, -1.0f, -1.0f ); // Left Of Triangle (Back)
+		
+      gl.glColor3f( 0.0f, 0.0f, 1.0f ); // Blue
+      gl.glVertex3f( -1.0f, -1.0f, -1.0f ); // Right Of Triangle (Back)
+        
+      //left
+      gl.glColor3f( 0.0f, 1.0f, 0.0f ); // Red
+      gl.glVertex3f( 1.0f, 2.0f, 0.0f ); // Top Of Triangle (Left)
+		
+      gl.glColor3f( 0.0f, 0.0f, 1.0f ); // Blue
+      gl.glVertex3f( -1.0f, -1.0f, -1.0f ); // Left Of Triangle (Left)
+		
+      gl.glColor3f( 0.0f, 1.0f, 0.0f ); // Green
+      gl.glVertex3f( -1.0f, -1.0f, 1.0f ); // Right Of Triangle (Left)
+		
+      gl.glEnd(); // Done Drawing 3d triangle (Pyramid)
+      gl.glFlush();
+      rtri += 0.2f;
+   }
+   
+   @Override
+   public void dispose( GLAutoDrawable drawable ) {
+      //method body
+   }
+   
+   @Override
+   public void init( GLAutoDrawable drawable ) {
+      //method body
+   }
+   
+   @Override
+   public void reshape( GLAutoDrawable drawable, int x, int y, int width, int height ) {
+	
+      // TODO Auto-generated method stub
+      final GL2 gl = drawable.getGL().getGL2();
+      if(height lt;=;)
+         height = 1;
+			
+      final float h = ( float ) width / ( float ) height;
+      gl.glViewport( 0, 0, width, height );
+      gl.glMatrixMode( GL2.GL_PROJECTION );
+      gl.glLoadIdentity();
+		
+      glu.gluPerspective( 45.0f, h, 1.0, 20.0 );
+      gl.glMatrixMode( GL2.GL_MODELVIEW );
+      gl.glLoadIdentity();
+   }
+   
+   public static void main( String[] args ) {
+   
+      // TODO Auto-generated method stub
+      final GLProfile profile = GLProfile.get( GLProfile.GL2 );
+      GLCapabilities capabilities = new GLCapabilities( profile );
+         
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas( capabilities );
+      Triangle3d triangle = new Triangle3d();
+		
+      glcanvas.addGLEventListener( triangle );
+      glcanvas.setSize( 400, 400 );
+		
+      final JFrame frame = new JFrame ( "3d Triangle (shallow)" );
+		
+      frame.getContentPane().add( glcanvas );
+      frame.setSize( frame.getContentPane().getPreferredSize() );
+      frame.setVisible( true );
+		
+      final FPSAnimator animator = new FPSAnimator(glcanvas,300,true);
+      animator.start();
+   }
+	
+}
+</pre>
+<p>When you compile and execute the above program, the following output is generated. Here, you have the snapshots of rotating 3D triangle. Since this program does not includes depth test, the triangle is generated hollow.</p>
+<img src="/jogl/images/triangle_3d.jpg" alt="Triangle 3D" />
+<p>To make the triangle solid, you need to enable depth test by using <b>glEnable(GL_DEPTH_TEST)</b>. Enabling the depth buffer gives you a blank
+screen. This can be cleared by clearing the color using <b>glClear(GL_COLOR_BUFFERBIT | GL_DEPTH_BUFFER_BIT)</b> method. To enable depth test in the init() method or in the <b>glDisplay()</b> method, write the following code &minus;</p>
+<pre class="prettyprint notranslate">
+public void init(GLAutoDrawable drawable) {
+   final GL2 gl = drawable.getGL().getGL2();
+	
+   gl.glShadeModel(GL2.GL_SMOOTH);
+   gl.glClearColor(0f, 0f, 0f, 0f);
+   gl.glClearDepth(1.0f);
+   gl.glEnable(GL2.GL_DEPTH_TEST);
+   gl.glDepthFunc(GL2.GL_LEQUAL);
+   gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST);
+ }
+</pre>
+<p>Below given is the Program to draw a 3D triangle with depth test.</p>
+<pre class="prettyprint notranslate">
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+import javax.media.opengl.glu.GLU;
+
+import javax.swing.JFrame;
+
+import com.jogamp.opengl.util.FPSAnimator;
+
+public class Triangledepthtest implements GLEventListener {
+
+   private GLU glu = new GLU();
+   private float rtri = 0.0f; 
+	
+   @Override
+   public void display( GLAutoDrawable drawable ) {
+	
+      final GL2 gl = drawable.getGL().getGL2();
+		
+      gl.glShadeModel( GL2.GL_SMOOTH );
+      gl.glClearColor( 0f, 0f, 0f, 0f );
+      gl.glClearDepth( 1.0f );
+      gl.glEnable( GL2.GL_DEPTH_TEST );
+      gl.glDepthFunc( GL2.GL_LEQUAL );
+      gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST);
+
+      // Clear The Screen And The Depth Buffer
+      gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT); 
+      gl.glLoadIdentity(); // Reset The View
+      gl.glTranslatef( -0.5f,0.0f,-6.0f ); // Move the triangle
+      gl.glRotatef( rtri, 0.0f, 1.0f, 0.0f );
+      gl.glBegin( GL2.GL_TRIANGLES ); 
+
+      //drawing triangle in all dimensions
+      //front
+      gl.glColor3f( 1.0f, 0.0f, 0.0f ); // Red
+      gl.glVertex3f( 1.0f, 2.0f, 0.0f ); // Top
+		
+      gl.glColor3f( 0.0f, 1.0f, 0.0f ); // Green
+      gl.glVertex3f( -1.0f, -1.0f, 1.0f ); // Left
+		
+      gl.glColor3f( 0.0f, 0.0f, 1.0f ); // Blue
+      gl.glVertex3f( 1.0f, -1.0f, 1.0f ); // Right)
+
+      //right
+      gl.glColor3f( 1.0f, 0.0f, 0.0f );
+      gl.glVertex3f( 1.0f, 2.0f, 0.0f ); // Top
+		
+      gl.glColor3f( 0.0f, 0.0f, 1.0f );
+      gl.glVertex3f( 1.0f, -1.0f, 1.0f ); // Left
+		
+      gl.glColor3f( 0.0f, 1.0f, 0.0f );
+      gl.glVertex3f( 1.0f, -1.0f, -1.0f ); // Right
+
+      //left
+      gl.glColor3f( 1.0f, 0.0f, 0.0f );
+      gl.glVertex3f( 1.0f, 2.0f, 0.0f ); // Top
+		
+      gl.glColor3f( 0.0f, 1.0f, 0.0f );
+      gl.glVertex3f( 1.0f, -1.0f, -1.0f ); // Left 
+		
+      gl.glColor3f( 0.0f, 0.0f, 1.0f );
+      gl.glVertex3f( -1.0f, -1.0f, -1.0f ); // Right 
+
+      //top
+      gl.glColor3f( 0.0f, 1.0f, 0.0f );
+      gl.glVertex3f( 1.0f, 2.0f, 0.0f ); // Top
+		
+      gl.glColor3f( 0.0f, 0.0f, 1.0f );
+      gl.glVertex3f( -1.0f, -1.0f, -1.0f ); // Left
+		
+      gl.glColor3f( 0.0f, 1.0f, 0.0f );
+      gl.glVertex3f( -1.0f, -1.0f, 1.0f ); // Right
+		
+      gl.glEnd(); // Done Drawing 3d triangle (Pyramid)
+
+      gl.glFlush();
+      rtri += 0.2f;
+   }
+      
+   @Override
+   public void dispose( GLAutoDrawable drawable ) {
+   }
+   
+   @Override
+   public void init( GLAutoDrawable drawable ) {
+	
+      final GL2 gl = drawable.getGL().getGL2();
+		
+      gl.glShadeModel( GL2.GL_SMOOTH );
+      gl.glClearColor( 0f, 0f, 0f, 0f );
+      gl.glClearDepth( 1.0f );
+      gl.glEnable( GL2.GL_DEPTH_TEST );
+      gl.glDepthFunc( GL2.GL_LEQUAL );
+      gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST );
+   }
+   
+   @Override
+   public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height ) {
+	
+      // TODO Auto-generated method stub
+      final GL2 gl = drawable.getGL().getGL2();
+      if( height &lt;= 0 ) 
+         height = 1;
+			
+      final float h = ( float ) width / ( float ) height;
+      gl.glViewport( 0, 0, width, height );
+      gl.glMatrixMode( GL2.GL_PROJECTION );
+      gl.glLoadIdentity();
+		
+      glu.gluPerspective( 45.0f, h, 1.0, 20.0 );
+      gl.glMatrixMode( GL2.GL_MODELVIEW );
+      gl.glLoadIdentity();
+   }
+      
+   public static void main( String[] args ) {
+	
+      // TODO Auto-generated method stub
+      final GLProfile profile = GLProfile.get( GLProfile.GL2 );
+      GLCapabilities capabilities = new GLCapabilities( profile );
+		
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas( capabilities );
+      Triangledepthtest triangledepthtest = new Triangledepthtest();
+		
+      glcanvas.addGLEventListener( triangledepthtest );
+      glcanvas.setSize( 400, 400 );
+		
+      final JFrame frame = new JFrame ( "3d Triangle (solid)" );
+      frame.getContentPane().add(glcanvas);
+      frame.setSize( frame.getContentPane().getPreferredSize() );
+      frame.setVisible( true );
+      final FPSAnimator animator = new FPSAnimator( glcanvas, 300,true);
+		
+      animator.start();
+   }
+	
+}
+</pre>
+<p>When you compile and execute the above program, the following output is generated.</p>
+<p>Here, you can see the snapshots of a rotating 3D triangle. Since this program includes code for depth test, the triangle is generated solid.</p>
+<img src="/jogl/images/triangle_depth_test.jpg" alt="Triangle Depth Test" />
+<h1>JOGL - 3D Cube</h1>
+<p>In the previous chapters we have seen how to draw 3d triangle and rotate it. Now in this chapter you can learn how to a 3d cube, how to rotate it, how to attach an image on it. In the same way, This chapter provides examples to draw a 3D cube and apply colours to it and attach image to it.</p>
+<p>Below given is the program to draw a 3d cube and apply colours to it.</p>
+<pre class="prettyprint notranslate">
+import java.awt.DisplayMode;
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+import javax.media.opengl.glu.GLU;
+
+import javax.swing.JFrame;
+
+import com.jogamp.opengl.util.FPSAnimator;
+
+public class Cube implements GLEventListener {
+
+   public static DisplayMode dm, dm_old;
+   private GLU glu = new GLU();
+   private float rquad = 0.0f;
+      
+   @Override
+   public void display( GLAutoDrawable drawable ) {
+	
+      final GL2 gl = drawable.getGL().getGL2();
+      gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT );
+      gl.glLoadIdentity();
+      gl.glTranslatef( 0f, 0f, -5.0f ); 
+
+      // Rotate The Cube On X, Y &amp; Z
+      gl.glRotatef(rquad, 1.0f, 1.0f, 1.0f); 
+ 
+      //giving different colors to different sides
+      gl.glBegin(GL2.GL_QUADS); // Start Drawing The Cube
+      gl.glColor3f(1f,0f,0f); //red color
+      gl.glVertex3f(1.0f, 1.0f, -1.0f); // Top Right Of The Quad (Top)
+      gl.glVertex3f( -1.0f, 1.0f, -1.0f); // Top Left Of The Quad (Top)
+      gl.glVertex3f( -1.0f, 1.0f, 1.0f ); // Bottom Left Of The Quad (Top)
+      gl.glVertex3f( 1.0f, 1.0f, 1.0f ); // Bottom Right Of The Quad (Top)
+		
+      gl.glColor3f( 0f,1f,0f ); //green color
+      gl.glVertex3f( 1.0f, -1.0f, 1.0f ); // Top Right Of The Quad
+      gl.glVertex3f( -1.0f, -1.0f, 1.0f ); // Top Left Of The Quad
+      gl.glVertex3f( -1.0f, -1.0f, -1.0f ); // Bottom Left Of The Quad
+      gl.glVertex3f( 1.0f, -1.0f, -1.0f ); // Bottom Right Of The Quad 
+
+      gl.glColor3f( 0f,0f,1f ); //blue color
+      gl.glVertex3f( 1.0f, 1.0f, 1.0f ); // Top Right Of The Quad (Front)
+      gl.glVertex3f( -1.0f, 1.0f, 1.0f ); // Top Left Of The Quad (Front)
+      gl.glVertex3f( -1.0f, -1.0f, 1.0f ); // Bottom Left Of The Quad
+      gl.glVertex3f( 1.0f, -1.0f, 1.0f ); // Bottom Right Of The Quad 
+
+      gl.glColor3f( 1f,1f,0f ); //yellow (red + green)
+      gl.glVertex3f( 1.0f, -1.0f, -1.0f ); // Bottom Left Of The Quad
+      gl.glVertex3f( -1.0f, -1.0f, -1.0f ); // Bottom Right Of The Quad
+      gl.glVertex3f( -1.0f, 1.0f, -1.0f ); // Top Right Of The Quad (Back)
+      gl.glVertex3f( 1.0f, 1.0f, -1.0f ); // Top Left Of The Quad (Back)
+
+      gl.glColor3f( 1f,0f,1f ); //purple (red + green)
+      gl.glVertex3f( -1.0f, 1.0f, 1.0f ); // Top Right Of The Quad (Left)
+      gl.glVertex3f( -1.0f, 1.0f, -1.0f ); // Top Left Of The Quad (Left)
+      gl.glVertex3f( -1.0f, -1.0f, -1.0f ); // Bottom Left Of The Quad
+      gl.glVertex3f( -1.0f, -1.0f, 1.0f ); // Bottom Right Of The Quad 
+
+      gl.glColor3f( 0f,1f, 1f ); //sky blue (blue +green)
+      gl.glVertex3f( 1.0f, 1.0f, -1.0f ); // Top Right Of The Quad (Right)
+      gl.glVertex3f( 1.0f, 1.0f, 1.0f ); // Top Left Of The Quad
+      gl.glVertex3f( 1.0f, -1.0f, 1.0f ); // Bottom Left Of The Quad
+      gl.glVertex3f( 1.0f, -1.0f, -1.0f ); // Bottom Right Of The Quad
+      gl.glEnd(); // Done Drawing The Quad
+      gl.glFlush();
+      rquad -= 0.15f;
+   }
+   
+   @Override
+   public void dispose( GLAutoDrawable drawable ) {
+      // TODO Auto-generated method stub
+   }
+   
+   @Override
+   public void init( GLAutoDrawable drawable ) {
+	
+      final GL2 gl = drawable.getGL().getGL2();
+      gl.glShadeModel( GL2.GL_SMOOTH );
+      gl.glClearColor( 0f, 0f, 0f, 0f );
+      gl.glClearDepth( 1.0f );
+      gl.glEnable( GL2.GL_DEPTH_TEST );
+      gl.glDepthFunc( GL2.GL_LEQUAL );
+      gl.glHint( GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST );
+   }
+      
+   @Override
+   public void reshape( GLAutoDrawable drawable, int x, int y, int width, int height ) {
+	
+      // TODO Auto-generated method stub
+      final GL2 gl = drawable.getGL().getGL2();
+      if( height lt;= 0 )
+         height = 1;
+			
+      final float h = ( float ) width / ( float ) height;
+      gl.glViewport( 0, 0, width, height );
+      gl.glMatrixMode( GL2.GL_PROJECTION );
+      gl.glLoadIdentity();
+		
+      glu.gluPerspective( 45.0f, h, 1.0, 20.0 );
+      gl.glMatrixMode( GL2.GL_MODELVIEW );
+      gl.glLoadIdentity();
+   }
+      
+   public static void main( String[] args ) {
+	
+      final GLProfile profile = GLProfile.get( GLProfile.GL2 );
+      GLCapabilities capabilities = new GLCapabilities( profile );
+      
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas( capabilities );
+      Cube cube = new Cube();
+		
+      glcanvas.addGLEventListener( cube );
+      glcanvas.setSize( 400, 400 );
+		
+      final JFrame frame = new JFrame ( " Multicolored cube" );
+      frame.getContentPane().add( glcanvas );
+      frame.setSize( frame.getContentPane().getPreferredSize() );
+      frame.setVisible( true );
+      final FPSAnimator animator = new FPSAnimator(glcanvas, 300,true);
+		
+      animator.start();
+   }
+	
+}
+</pre>
+<p>When you compile and execute the above program, the following output is
+generated. It shows a colored 3D cube.</p>
+<img src="/jogl/images/multicolored_cube.jpg" alt="Multicolored Cube" />
+<h2>Applying Texture to the Cube</h2>
+<p>The following steps are given to apply texture to a cube &minus;</p>
+<ul class="list">
+<li><p>You can bind required texture to the cube using the
+<b>gl.glBindTexture(GL2.GL_TEXTURE_2D.texture)</b> method of the Drawable interface.</p></li>
+<li><p>This method requires texture (int) argument along with <b>GL2.GL_TEXTURE_2D(int)</b>.</p></li>
+<li><p>Before you execute <b>Display()</b>, you need to create texture variable</p></li>
+<li><p>In the <b>init()</b> method or in the starting lines of <b>glDisplay()</b> method, enable the texture <b>using gl.glEnable(GL2.GL_TEXTURE_2D)</b> method.</p></li>
+<li><p>Create the texture object, which needs a file object as a parameter, which
+in turn needs the path of the image used as the texture to the object.</p></li>
+</ul>
+<pre class="result notranslate">
+File file = new File(“c:\\pictures\\boy.jpg”);
+Texture t = textureIO.newTexture(file, true);
+texture = t.getTextureObject(gl);
+</pre>
+<ul class="list">
+<li>Handle the ‘file not found’ exception</li>
+</ul>
+<p>Below given is the program to attach image on a cube.</p>
+<pre class="prettyprint notranslate">
+import java.awt.DisplayMode;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
+import javax.media.opengl.glu.GLU;
+
+import javax.swing.JFrame;
+
+import com.jogamp.opengl.util.FPSAnimator;
+import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureIO;
+
+public class CubeTexture implements GLEventListener {
+
+   public static DisplayMode dm, dm_old;
+   private GLU glu = new GLU();
+   private float xrot,yrot,zrot;
+   private int texture;
+   
+   @Override
+   public void display(GLAutoDrawable drawable) {
+   
+      // TODO Auto-generated method stub
+      final GL2 gl = drawable.getGL().getGL2();
+      gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
+      gl.glLoadIdentity(); // Reset The View
+      gl.glTranslatef(0f, 0f, -5.0f);
+		
+      gl.glRotatef(xrot, 1.0f, 1.0f, 1.0f);
+      gl.glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+      gl.glRotatef(zrot, 0.0f, 0.0f, 1.0f);
+		
+      gl.glBindTexture(GL2.GL_TEXTURE_2D, texture);
+      gl.glBegin(GL2.GL_QUADS);
+
+      // Front Face
+      gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f(-1.0f, -1.0f, 1.0f);
+      gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f, -1.0f, 1.0f);
+      gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f, 1.0f, 1.0f);
+      gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f, 1.0f, 1.0f);
+
+      // Back Face
+      gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f(-1.0f, -1.0f, -1.0f);
+      gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f(-1.0f, 1.0f, -1.0f);
+      gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f( 1.0f, 1.0f, -1.0f);
+      gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f( 1.0f, -1.0f, -1.0f);
+
+      // Top Face
+      gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f, 1.0f, -1.0f);
+      gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f(-1.0f, 1.0f, 1.0f);
+      gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f, 1.0f, 1.0f);
+      gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f, 1.0f, -1.0f);
+
+      // Bottom Face
+      gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f(-1.0f, -1.0f, -1.0f);
+      gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f( 1.0f, -1.0f, -1.0f);
+      gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f( 1.0f, -1.0f, 1.0f);
+      gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f(-1.0f, -1.0f, 1.0f);
+
+      // Right face
+      gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f, -1.0f, -1.0f);
+      gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f, 1.0f, -1.0f);
+      gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f( 1.0f, 1.0f, 1.0f);
+      gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f( 1.0f, -1.0f, 1.0f);
+
+      // Left Face
+      gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f(-1.0f, -1.0f, -1.0f);
+      gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f(-1.0f, -1.0f, 1.0f);
+      gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f(-1.0f, 1.0f, 1.0f);
+      gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f, 1.0f, -1.0f);
+      gl.glEnd();
+      gl.glFlush();
+
+      //change the speeds here
+      xrot += .1f;
+      yrot += .1f;
+      zrot += .1f;
+   }
+   
+   @Override
+   public void dispose(GLAutoDrawable drawable) {
+      // method body
+   }
+   
+   @Override
+   public void init(GLAutoDrawable drawable) {
+	
+      final GL2 gl = drawable.getGL().getGL2();
+		
+      gl.glShadeModel(GL2.GL_SMOOTH);
+      gl.glClearColor(0f, 0f, 0f, 0f);
+      gl.glClearDepth(1.0f);
+      gl.glEnable(GL2.GL_DEPTH_TEST);
+      gl.glDepthFunc(GL2.GL_LEQUAL);
+      gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST);
+      
+      //
+      gl.glEnable(GL2.GL_TEXTURE_2D);
+      try{
+		
+         File im = new File("E:\\office\\boy.jpg ");
+         Texture t = TextureIO.newTexture(im, true);
+         texture= t.getTextureObject(gl);
+          
+      }catch(IOException e){
+         e.printStackTrace();
+      }
+   }
+      
+   @Override
+   public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+   
+      // TODO Auto-generated method stub
+      final GL2 gl = drawable.getGL().getGL2();
+      if(height lt;= 0)
+         height = 1;
+			
+      final float h = (float) width / (float) height;
+      gl.glViewport(0, 0, width, height);
+      gl.glMatrixMode(GL2.GL_PROJECTION);
+      gl.glLoadIdentity();
+		
+      glu.gluPerspective(45.0f, h, 1.0, 20.0);
+      gl.glMatrixMode(GL2.GL_MODELVIEW);
+      gl.glLoadIdentity();
+   }
+   
+   public static void main(String[] args) {
+   
+      // TODO Auto-generated method stub
+      final GLProfile profile = GLProfile.get(GLProfile.GL2);
+      GLCapabilities capabilities = new GLCapabilities(profile);
+      
+      // The canvas
+      final GLCanvas glcanvas = new GLCanvas(capabilities);
+      CubeTexture r = new CubeTexture();
+		
+      glcanvas.addGLEventListener(r);
+      glcanvas.setSize(400, 400);
+		
+      final JFrame frame = new JFrame (" Textured Cube");
+      frame.getContentPane().add(glcanvas);
+      frame.setSize(frame.getContentPane().getPreferredSize());
+      frame.setVisible(true);
+      final FPSAnimator animator = new FPSAnimator(glcanvas, 300, true);
+		
+      animator.start();
+   }
+	
+}
+</pre>
+<p>When you compile and execute the above program, the following output is generated. You can see a 3D cube with desired texture applied on it.</p>
+<img src="/jogl/images/textured_cube.jpg" alt="Texture Cube" />
+<h1>JOGL - Appendix</h1>
+<p><b>GPU</b> &minus; Graphical processing unit, it is a special electronic device that accelerates the rendering of images.</p>
+<p><b>JNI</b> &minus; Java Native Interface. Using which, java access native methods.</p>
+<p><b>Model</b> &minus; They are the objects constructed from basic graphics primitives such as points, lines and polygons.</p>
+<p><b>Pixel</b> &minus; Smallest unit of display seen on the screen.</p>
+<p><b>Projection</b> &minus; The method of mapping the coordinates of an object to a two-dimensional plane is called projection.</p>
+<p><b>Projection matrix</b> &minus; It is a linear transformation of an object on the 2D surface.</p>
+<p><b>Rendering</b> &minus; A process by which computer creates images from models.</p>
+<p><b>Viewport</b> &minus; A viewport is a viewing region on the screen in computer graphics.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/jogl/jogl_appendix.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/jogl/jogl_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

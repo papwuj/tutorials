@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Concurrency in Python - Threads</title>
+<meta charset="utf-8">
+<meta name="description" content="Concurrency in Python - Threads - In general, as we know that thread is a very thin twisted string usually of the cotton or silk fabric and used for sewing clothes and such. The same term thread"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/concurrency_in_python/concurrency_in_python_threads.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#036db0;
+}
+a.demo {
+    background:#036db0;
+}
+li.heading {
+    background:#036db0;
+}
+.course-box{background:#036db0}
+.home-intro-sub p{color:#036db0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/concurrency_in_python/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/concurrency_in_python/images/concurrency-in-python-mini-logo.jpg" alt=" Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Concurrency in Python Tutorial</li>
+<li><a href="/concurrency_in_python/index.htm">Home</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_introduction.htm">Introduction</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_concurrency_vs_parallelism.htm">Concurrency vs Parallelism</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_system_and_memory_architecture.htm">System &amp; Memory Architecture</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_threads.htm">Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_implementation_of_threads.htm">Implementation of Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_synchronizing_threads.htm">Synchronizing Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_threads_intercommunication.htm">Threads Intercommunication</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_testing_thread_applications.htm">Testing Thread Applications</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_debugging_thread_applications.htm">Debugging Thread Applications</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_benchmarking_and_profiling.htm">Benchmarking &amp; Profiling</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_pool_of_threads.htm">Pool of Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_pool_of_processes.htm">Pool of Processes</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_multiprocessing.htm">Multiprocessing</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_processes_intercommunication.htm">Processes Intercommunication</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_eventdriven_programming.htm">Event-Driven Programming</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_reactive_programming.htm">Reactive Programming</a></li>
+<ul class="toc chapters">
+<li class="heading">Concurrency in Python Resources</li>
+<li><a href="/concurrency_in_python/concurrency_in_python_quick_guide.htm">Quick Guide</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_useful_resources.htm">Useful Resources</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_discussion.htm">Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Concurrency in Python - Threads</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/concurrency_in_python/concurrency_in_python_system_and_memory_architecture.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/concurrency_in_python/concurrency_in_python_implementation_of_threads.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In general, as we know that thread is a very thin twisted string usually of the cotton or silk fabric and used for sewing clothes and such. The same term thread is also used in the world of computer programming. Now, how do we relate the thread used for sewing clothes and the thread used for computer programming? The roles performed by the two threads is similar here. In clothes, thread hold the cloth together and on the other side, in computer programming, thread hold the computer program and allow the program to execute sequential actions or many actions at once.</p>
+<p><b>Thread</b> is the smallest unit of execution in an operating system. It is not in itself a program but runs within a program. In other words, threads are not independent of one other and share code section, data section, etc. with other threads. These threads are also known as lightweight processes.</p>
+<h2>States of Thread</h2>
+<p>To understand the functionality of threads in depth, we need to learn about the lifecycle of the threads or the different thread states. Typically, a thread can exist in five distinct states. The different states are shown below &minus;</p>
+<h3>New Thread</h3>
+<p>A new thread begins its life cycle in the new state. However, at this stage, it has not yet started and it has not been allocated any resources. We can say that it is just an instance of an object.</p>
+<h3>Runnable</h3>
+<p>As the newly born thread is started, the thread becomes runnable i.e. waiting to run. In this state, it has all the resources but still task scheduler have not scheduled it to run.</p>
+<h3>Running</h3>
+<p>In this state, the thread makes progress and executes the task, which has been chosen by task scheduler to run. Now, the thread can go to either the dead state or the non-runnable/ waiting state.</p>
+<h3>Non-running/waiting</h3>
+<p>In this state, the thread is paused because it is either waiting for the response of some I/O request or waiting for the completion of the execution of other thread.</p>
+<h3>Dead</h3>
+<p>A runnable thread enters the terminated state when it completes its task or otherwise terminates.</p>
+<p>The following diagram shows the complete life cycle of a thread &minus;</p>
+<img src="/concurrency_in_python/images/dead.jpg" alt="Dead" />
+<h2>Types of Thread</h2>
+<p>In this section, we will see the different types of thread. The types are described below &minus;</p>
+<h3>User Level Threads</h3>
+<p>These are user-managed threads.</p>
+<p>In this case, the thread management kernel is not aware of the existence of threads. The thread library contains code for creating and destroying threads, for passing message and data between threads, for scheduling thread execution and for saving and restoring thread contexts. The application starts with a single thread.</p>
+<p>The examples of user level threads are &minus;</p>
+<ul class="list">
+<li>Java threads</li>
+<li>POSIX threads</li>
+</ul>
+<img src="/concurrency_in_python/images/user_level.jpg" alt="Dead" />
+<h3>Advantages of User level Threads</h3>
+<p>Following are the different advantages of user level threads &minus;</p>
+<ul class="list">
+<li>Thread switching does not require Kernel mode privileges.</li>
+<li>User level thread can run on any operating system.</li>
+<li>Scheduling can be application specific in the user level thread.</li>
+<li>User level threads are fast to create and manage.</li>
+</ul>
+<h3>Disadvantages of User level Threads</h3>
+<p>Following are the different disadvantages of user level threads &minus;</p>
+<ul class="list">
+<li>In a typical operating system, most system calls are blocking.</li>
+<li>Multithreaded application cannot take advantage of multiprocessing.</li>
+</ul>
+<h3>Kernel Level Threads</h3>
+<p>Operating System managed threads act on kernel, which is an operating system core.</p>
+<p>In this case, the Kernel does thread management. There is no thread management code in the application area. Kernel threads are supported directly by the operating system. Any application can be programmed to be multithreaded. All of the threads within an application are supported within a single process.</p>
+<p>The Kernel maintains context information for the process as a whole and for individual threads within the process. Scheduling by the Kernel is done on a thread basis. The Kernel performs thread creation, scheduling and management in Kernel space. Kernel threads are generally slower to create and manage than the user threads. The examples of kernel level threads are Windows, Solaris.</p>
+<img src="/concurrency_in_python/images/kernal.jpg" alt="Dead" />
+<h3>Advantages of Kernel Level Threads</h3>
+<p>Following are the different advantages of kernel level threads &minus;</p>
+<ul class="list">
+<li><p>Kernel can simultaneously schedule multiple threads from the same process on multiple processes.</p></li>
+<li><p>If one thread in a process is blocked, the Kernel can schedule another thread of the same process.</p></li>
+<li><p>Kernel routines themselves can be multithreaded.</p></li>
+</ul>
+<h3>Disadvantages of Kernel Level Threads</h3>
+<ul class="list">
+<li><p>Kernel threads are generally slower to create and manage than the user threads.</p></li>
+<li><p>Transfer of control from one thread to another within the same process requires a mode switch to the Kernel.</p></li>
+</ul>
+<h2>Thread Control Block - TCB</h2>
+<p>Thread Control Block (TCB) may be defined as the data structure in the kernel of operating system that mainly contains information about thread. Thread-specific information stored in TCB would highlight some important information about each process.</p>
+<p>Consider the following points related to the threads contained in TCB &minus;</p>
+<ul class="list">
+<li><p><b>Thread identification</b> &minus; It is the unique thread id (tid) assigned to every new thread.</p></li>
+<li><p><b>Thread state</b> &minus; It contains the information related to the state (Running, Runnable, Non-Running, Dead) of the thread.</p></li>
+<li><p><b>Program Counter (PC)</b> &minus; It points to the current program instruction of the thread.</p></li>
+<li><p><b>Register set</b> &minus; It contains the thread’s register values assigned to them for computations.</p></li>
+<li><p><b>Stack Pointer</b> &minus; It points to the thread’s stack in the process. It contains the local variables under thread’s scope.</p></li>
+<li><p><b>Pointer to PCB</b> &minus; It contains the pointer to the process that created that thread.</p></li>
+</ul>
+<img src="/concurrency_in_python/images/pcb.jpg" alt="pcb" />
+<h2>Relation between process &amp; thread</h2>
+<p>In multithreading, process and thread are two very closely related terms having the same goal to make computer able to do more than one thing at a time. A process can contain one or more threads but on the contrary, thread cannot contain a process. However, they both remain the two basic units of execution. A program, executing a series of instructions, initiates process and thread both.</p>
+<p>The following table shows the comparison between process and thread &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Process</th>
+<th style="text-align:center;">Thread</th>
+</tr>
+<tr>
+<td>Process is heavy weight or resource intensive.</td>
+<td>Thread is lightweight which takes fewer resources than a process.</td>
+</tr>
+<tr>
+<td>Process switching needs interaction with operating system.</td>
+<td>Thread switching does not need to interact with operating system.</td>
+</tr>
+<tr>
+<td>In multiple processing environments, each process executes the same code but has its own memory and file resources.</td>
+<td style="vertical-align:middle;">All threads can share same set of open files, child processes.</td>
+</tr>
+<tr>
+<td>If one process is blocked, then no other process can execute until the first process is unblocked.</td>
+<td>While one thread is blocked and waiting, a second thread in the same task can run.</td>
+</tr>
+<tr>
+<td>Multiple processes without using threads use more resources.</td>
+<td>Multiple threaded processes use fewer resources.</td>
+</tr>
+<tr>
+<td>In multiple processes, each process operates independently of the others.</td>
+<td style="vertical-align:middle;">One thread can read, write or change another thread's data.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">If there would be any change in the parent process then it does not affect the child processes.</td>
+<td>If there would be any change in the main thread then it may affect the behavior of other threads of that process.</td>
+</tr>
+<tr>
+<td>To communicate with sibling processes, processes must use inter-process communication.</td>
+<td style="vertical-align:middle;">Threads can directly communicate with other threads of that process.</td>
+</tr>
+</table>
+<h2>Concept of Multithreading</h2>
+<p>As we have discussed earlier that Multithreading is the ability of a CPU to manage the use of operating system by executing multiple threads concurrently. The main idea of multithreading is to achieve parallelism by dividing a process into multiple threads. In a more simple way, we can say that multithreading is the way of achieving multitasking by using the concept of threads.</p>
+<p>The concept of multithreading can be understood with the help of the following example.</p>
+<h3>Example</h3>
+<p>Suppose we are running a process. The process could be for opening MS word for writing something. In such process, one thread will be assigned to open MS word and another thread will be required to write. Now, suppose if we want to edit something then another thread will be required to do the editing task and so on.</p>
+<p>The following diagram helps us understand how multiple threads exist in memory &minus;</p>
+<img src="/concurrency_in_python/images/multithreading.jpg" alt="Multithreading" />
+<p>We can see in the above diagram that more than one thread can exist within one process where every thread contains its own register set and local variables. Other than that, all the threads in a process share global variables.</p>
+<h2>Pros of Multithreading</h2>
+<p>Let us now see a few advantages of multithreading. The advantages are as follows &minus;</p>
+<ul class="list">
+<li><p><b>Speed of communication</b> &minus; Multithreading improves the speed of computation because each core or processor handles separate threads concurrently.</p></li>
+<li><p><b>Program remains responsive</b> &minus; It allows a program to remain responsive because one thread waits for the input and another runs a GUI at the same time.</p></li>
+<li><p><b>Access to global variables</b> &minus; In multithreading, all the threads of a particular process can access the global variables and if there is any change in global variable then it is visible to other threads too.</p></li>
+<li><p><b>Utilization of resources</b> &minus; Running of several threads in each program makes better use of CPU and the idle time of CPU becomes less.</p></li>
+<li><p><b>Sharing of data</b> &minus; There is no requirement of extra space for each thread because threads within a program can share same data.</p></li>
+</ul>
+<h2>Cons of Multithreading</h2>
+<p>Let us now see a few disadvantages of multithreading. The disadvantages are as follows &minus;</p>
+<ul class="list">
+<li><p><b>Not suitable for single processor system</b> &minus; Multithreading finds it difficult to achieve performance in terms of speed of computation on single processor system as compared with the performance on multi-processor system.</p></li>
+<li><p><b>Issue of security</b> &minus; As we know that all the threads within a program share same data, hence there is always an issue of security because any unknown thread can change the data.</p></li>
+<li><p><b>Increase in complexity</b> &minus; Multithreading can increase the complexity of the program and debugging becomes difficult.</p></li>
+<li><p><b>Lead to deadlock state</b> &minus; Multithreading can lead the program to potential risk of attaining the deadlock state.</p></li>
+<li><p><b>Synchronization required</b> &minus; Synchronization is required to avoid mutual exclusion. This leads to more memory and CPU utilization.</p></li>
+</ul>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/concurrency_in_python/concurrency_in_python_system_and_memory_architecture.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/concurrency_in_python/concurrency_in_python_implementation_of_threads.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

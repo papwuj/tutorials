@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Matplotlib - Axes Class - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Matplotlib - Axes Class - Axes object is the region of the image with the data space. A given figure can contain many Axes, but a given Axes object can only be in one Figure. The Axes co"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/matplotlib/matplotlib_axes_class.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#ff7f2b;
+}
+a.demo {
+    background:#ff7f2b;
+}
+li.heading {
+    background:#ff7f2b;
+}
+.course-box{background:#ff7f2b}
+.home-intro-sub p{color:#ff7f2b}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/matplotlib/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/matplotlib/images/matplotlib-mini-logo.jpg" alt="Matplotlib Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Matplotlib Tutorial</li>
+<li><a href="/matplotlib/index.htm">Matplotlib - Home</a></li>
+<li><a href="/matplotlib/matplotlib_introduction.htm">Matplotlib - Introduction</a></li>
+<li><a href="/matplotlib/matplotlib_environment_setup.htm">Matplotlib - Environment Setup</a></li>
+<li><a href="/matplotlib/matplotlib_anaconda_distribution.htm">Matplotlib - Anaconda distribution</a></li>
+<li><a href="/matplotlib/matplotlib_jupyter_notebook.htm">Matplotlib - Jupyter Notebook</a></li>
+<li><a href="/matplotlib/matplotlib_pyplot_api.htm">Matplotlib - Pyplot API</a></li>
+<li><a href="/matplotlib/matplotlib_simple_plot.htm">Matplotlib - Simple Plot</a></li>
+<li><a href="/matplotlib/matplotlib_pylab_module.htm">Matplotlib - PyLab module</a></li>
+<li><a href="/matplotlib/matplotlib_object_oriented_interface.htm">Object-oriented Interface</a></li>
+<li><a href="/matplotlib/matplotlib_figure_class.htm">Matplotlib - Figure Class</a></li>
+<li><a href="/matplotlib/matplotlib_axes_class.htm">Matplotlib - Axes Class</a></li>
+<li><a href="/matplotlib/matplotlib_multiplots.htm">Matplotlib - Multiplots</a></li>
+<li><a href="/matplotlib/matplotlib_subplots_function.htm">Matplotlib - Subplots() Function</a></li>
+<li><a href="/matplotlib/matplotlib_subplot2grid_function.htm">Matplotlib - Subplot2grid() Function</a></li>
+<li><a href="/matplotlib/matplotlib_grids.htm">Matplotlib - Grids</a></li>
+<li><a href="/matplotlib/matplotlib_formatting_axes.htm">Matplotlib - Formatting Axes</a></li>
+<li><a href="/matplotlib/matplotlib_setting_limits.htm">Matplotlib - Setting Limits</a></li>
+<li><a href="/matplotlib/matplotlib_setting_ticks_and_tick_labels.htm">Setting Ticks and Tick Labels</a></li>
+<li><a href="/matplotlib/matplotlib_twin_axes.htm">Matplotlib - Twin Axes</a></li>
+<li><a href="/matplotlib/matplotlib_bar_plot.htm">Matplotlib - Bar Plot</a></li>
+<li><a href="/matplotlib/matplotlib_histogram.htm">Matplotlib - Histogram</a></li>
+<li><a href="/matplotlib/matplotlib_pie_chart.htm">Matplotlib - Pie Chart</a></li>
+<li><a href="/matplotlib/matplotlib_scatter_plot.htm">Matplotlib - Scatter Plot</a></li>
+<li><a href="/matplotlib/matplotlib_contour_plot.htm">Matplotlib - Contour Plot</a></li>
+<li><a href="/matplotlib/matplotlib_quiver_plot.htm">Matplotlib - Quiver Plot</a></li>
+<li><a href="/matplotlib/matplotlib_box_plot.htm">Matplotlib - Box Plot</a></li>
+<li><a href="/matplotlib/matplotlib_violin_plot.htm">Matplotlib - Violin Plot</a></li>
+<li><a href="/matplotlib/matplotlib_three_dimensional_plotting.htm">Three-dimensional Plotting</a></li>
+<li><a href="/matplotlib/matplotlib_3d_contour_plot.htm">Matplotlib - 3D Contour Plot</a></li>
+<li><a href="/matplotlib/matplotlib_3d_wireframe_plot.htm">Matplotlib - 3D Wireframe plot</a></li>
+<li><a href="/matplotlib/matplotlib_3d_surface_plot.htm">Matplotlib - 3D Surface plot</a></li>
+<li><a href="/matplotlib/matplotlib_working_with_text.htm">Matplotlib - Working With Text</a></li>
+<li><a href="/matplotlib/matplotlib_mathematical_expressions.htm">Mathematical Expressions</a></li>
+<li><a href="/matplotlib/matplotlib_working_with_images.htm">Matplotlib - Working with Images</a></li>
+<li><a href="/matplotlib/matplotlib_transforms.htm">Matplotlib - Transforms</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Matplotlib Useful Resources</li>
+<li><a href="/matplotlib/matplotlib_quick_guide.htm">Matplotlib - Quick Guide</a></li>
+<li><a href="/matplotlib/matplotlib_useful_resources.htm">Matplotlib - Useful Resources</a></li>
+<li><a href="/matplotlib/matplotlib_discussion.htm">Matplotlib - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Matplotlib - Axes Class</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/matplotlib/matplotlib_figure_class.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/matplotlib/matplotlib_multiplots.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Axes object is the region of the image with the data space. A given figure can contain many Axes, but a given Axes object can only be in one Figure. The Axes contains two (or three in the case of 3D) Axis objects. The Axes class and its member functions are the primary entry point to working with the OO interface.</p>
+<p>Axes object is added to figure by calling the add_axes() method. It returns the axes object and adds an axes at position rect [left, bottom, width, height] where all quantities are in fractions of figure width and height.</p>
+<h2>Parameter</h2>
+<p>Following is the parameter for the Axes class &minus;</p>
+<ul class="list">
+<li><p>rect &minus; A 4-length sequence of [left, bottom, width, height] quantities.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+ax=fig.add_axes([0,0,1,1])
+</pre>
+<p>The following member functions of axes class add different elements to plot &minus;</p>
+<h2>Legend</h2>
+<p>The <b>legend()</b> method of axes class adds a legend to the plot figure. It takes three parameters &minus;</p>
+<pre class="prettyprint notranslate">
+ax.legend(handles, labels, loc)
+</pre>
+<p>Where labels is a sequence of strings and handles a sequence of Line2D or Patch instances. loc can be a string or an integer specifying the legend location.</p>
+<table style="width:50%; margin:auto" class="table table-bordered">
+<tr>
+<th>Location string</th>
+<th>Location code</th>
+</tr>
+<tr>
+<td>Best</td>
+<td>0</td>
+</tr>
+<tr>
+<td>upper right</td>
+<td>1</td>
+</tr>
+<tr>
+<td>upper left</td>
+<td>2</td>
+</tr>
+<tr>
+<td>lower left</td>
+<td>3</td>
+</tr>
+<tr>
+<td>lower right</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Right</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Center left</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Center right</td>
+<td>7</td>
+</tr>
+<tr>
+<td>lower center</td>
+<td>8</td>
+</tr>
+<tr>
+<td>upper center</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Center</td>
+<td>10</td>
+</tr>
+</table>
+<h2>axes.plot()</h2>
+<p>This is the basic method of axes class that plots values of one array versus another as lines or markers. The plot() method can have an optional format string argument to specify color, style and size of line and marker.</p>
+<h2>Color codes</h2>
+<table style="width:50%; margin:auto" class="table table-bordered">
+<tr>
+<th>Character</th>
+<th>Color</th>
+</tr>
+<tr>
+<td>‘b’</td>
+<td>Blue</td>
+</tr>
+<tr>
+<td>‘g’</td>
+<td>Green</td>
+</tr>
+<tr>
+<td>‘r’</td>
+<td>Red</td>
+</tr>
+<tr>
+<td>‘b’</td>
+<td>Blue</td>
+</tr>
+<tr>
+<td>‘c’</td>
+<td>Cyan</td>
+</tr>
+<tr>
+<td>‘m’</td>
+<td>Magenta</td>
+</tr>
+<tr>
+<td>‘y’</td>
+<td>Yellow</td>
+</tr>
+<tr>
+<td>‘k’</td>
+<td>Black</td>
+</tr>
+<tr>
+<td>‘b’</td>
+<td>Blue</td>
+</tr>
+<tr>
+<td>‘w’</td>
+<td>White</td>
+</tr>
+</table>
+<h2>Marker codes</h2>
+<table style="width:50%; margin:auto" class="table table-bordered">
+<tr>
+<th>Character</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>‘.’</td>
+<td>Point marker</td>
+</tr>
+<tr>
+<td>‘o’</td>
+<td>Circle marker</td>
+</tr>
+<tr>
+<td>‘x’</td>
+<td>X marker</td>
+</tr>
+<tr>
+<td>‘D’</td>
+<td>Diamond marker</td>
+</tr>
+<tr>
+<td>‘H’</td>
+<td>Hexagon marker</td>
+</tr>
+<tr>
+<td>‘s’</td>
+<td>Square marker</td>
+</tr>
+<tr>
+<td>‘+’</td>
+<td>Plus marker</td>
+</tr>
+</table>
+<h2>Line styles</h2>
+<table style="width:50%; margin:auto" class="table table-bordered">
+<tr>
+<th>Character</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>‘-‘</td>
+<td>Solid line</td>
+</tr>
+<tr>
+<td>‘—‘</td>
+<td>Dashed line</td>
+</tr>
+<tr>
+<td>‘-.’</td>
+<td>Dash-dot line</td>
+</tr>
+<tr>
+<td>‘:’</td>
+<td>Dotted line</td>
+</tr>
+<tr>
+<td>‘H’</td>
+<td>Hexagon marker</td>
+</tr>
+</table>
+<p>Following example shows the advertisement expenses and sales figures of TV and smartphone in the form of line plots. Line representing TV is a solid line with yellow colour and square markers whereas smartphone line is a dashed line with green colour and circle marker.</p>
+<pre class="prettyprint notranslate">
+import matplotlib.pyplot as plt
+y = [1, 4, 9, 16, 25,36,49, 64]
+x1 = [1, 16, 30, 42,55, 68, 77,88]
+x2 = [1,6,12,18,28, 40, 52, 65]
+fig = plt.figure()
+ax = fig.add_axes([0,0,1,1])
+l1 = ax.plot(x1,y,'ys-') # solid line with yellow colour and square marker
+l2 = ax.plot(x2,y,'go--') # dash line with green colour and circle marker
+ax.legend(labels = ('tv', 'Smartphone'), loc = 'lower right') # legend placed at lower right
+ax.set_title("Advertisement effect on sales")
+ax.set_xlabel('medium')
+ax.set_ylabel('sales')
+plt.show()
+</pre>
+<p>When the above line of code is executed, it produces the following plot &minus;</p>
+<img src="/matplotlib/images/advertisement_effect.jpg" alt="Advertisement Effect" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/matplotlib/matplotlib_figure_class.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/matplotlib/matplotlib_multiplots.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

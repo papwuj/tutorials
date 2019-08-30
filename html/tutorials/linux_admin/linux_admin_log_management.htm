@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Linux Admin - Log Management</title>
+<meta charset="utf-8">
+<meta name="description" content="Linux Admin - Log Management - systemd has changed the way system logging is managed for CentOS Linux. Instead of every daemon on the system placing logs into individual locations than using "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/linux_admin/linux_admin_log_management.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#dfa018;
+}
+a.demo {
+    background:#dfa018;
+}
+li.heading {
+    background:#dfa018;
+}
+.course-box{background:#dfa018}
+.home-intro-sub p{color:#dfa018}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/linux_admin/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/linux_admin/images/linux-admin-mini-logo.jpg" alt="Linux Admin Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Tutorial</li>
+<li><a href="/linux_admin/index.htm">Linux Admin - Home</a></li>
+<li><a href="/linux_admin/linux_admin_centos_overview.htm">CentOS Overview</a></li>
+<li><a href="/linux_admin/basic_centos_linux_commands.htm">Basic CentOS Linux Commands</a></li>
+<li><a href="/linux_admin/linux_admin_file_folder_management.htm">File / Folder Management</a></li>
+<li><a href="/linux_admin/linux_admin_user_management.htm">User Management</a></li>
+<li><a href="/linux_admin/linux_admin_quota_management.htm">Quota Management</a></li>
+<li><a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Systemd Services Start and Stop</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Resource Mgmt with systemctl</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Resource Mgmt with crgoups</a></li>
+<li><a href="/linux_admin/linux_admin_process_management.htm">Process Management</a></li>
+<li><a href="/linux_admin/linux_admin_firewall_setup.htm">Firewall Setup</a></li>
+<li><a href="/linux_admin/configure_php_in_centos_linux.htm">Configure PHP in CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_python_with_centos_linux.htm">Set Up Python with CentOS Linux</a></li>
+<li><a href="/linux_admin/configure_ruby_on_centos_linux.htm">Configure Ruby on CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_perl_for_centos_linux.htm">Set Up Perl for CentOS Linux</a></li>
+<li><a href="/linux_admin/install_and_configure_open_ldap.htm">Install and Configure Open LDAP</a></li>
+<li><a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Create SSL Certificates</a></li>
+<li><a href="/linux_admin/linux_admin_install_apache_web_server_centos_7.htm">Install Apache Web Server CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">MySQL Setup On CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_set_up_postfix_mta_and_imap_pop3.htm">Set Up Postfix MTA and IMAP/POP3</a></li>
+<li><a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Install Anonymous FTP</a></li>
+<li><a href="/linux_admin/linux_admin_remote_management.htm">Remote Management</a></li>
+<li><a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm">Traffic Monitoring in CentOS</a></li>
+<li><a href="/linux_admin/linux_admin_log_management.htm">Log Management</a></li>
+<li><a href="/linux_admin/linux_admin_backup_and_recovery.htm">Backup and Recovery</a></li>
+<li><a href="/linux_admin/linux_admin_system_updates.htm">System Updates</a></li>
+<li><a href="/linux_admin/linux_admin_shell_scripting.htm">Shell Scripting</a></li>
+<li><a href="/linux_admin/linux_admin_package_management.htm">Package Management</a></li>
+<li><a href="/linux_admin/linux_admin_volume_management.htm">Volume Management</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Useful Resources</li>
+<li><a href="/linux_admin/linux_admin_quick_guide.htm">Linux Admin - Quick Guide</a></li>
+<li><a href="/linux_admin/linux_admin_useful_resources.htm">Linux Admin - Useful Resources</a></li>
+<li><a href="/linux_admin/linux_admin_discussion.htm">Linux Admin - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Linux Admin - Log Management</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_backup_and_recovery.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>systemd has changed the way system logging is managed for CentOS Linux. Instead of every daemon on the system placing logs into individual locations than using tools such as <i>tail</i> or <i>grep</i> as the primary way of sorting and filtering log entries, <b>journald</b> has brought a single point of administration to analyzing system logs.</p>
+<p>The main components behind <i>systemd</i> logging are: journal, jounralctl, and journald.conf</p>
+<p><i>journald</i> is the main logging daemon and is configured by editing <i>journald.conf</i> while <i>journalctl</i> is used to analyze events logged by <i>journald</i>.</p>
+<p>Events logged by <i>journald</i> include: kernel events, user processes, and daemon services.</p>
+<h2>Set the Correct System Time Zone</h2>
+<p>Before using <i>journalctl</i>, we need to make sure our system time is set to the correct time. To do this, we want to use <i>timedatectl</i>.</p>
+<p>Let's check the current system time.</p>
+<pre class="result notranslate">
+[root@centos rdc]# timedatectl status 
+Local time: Mon 2017-03-20 00:14:49 MDT 
+Universal time: Mon 2017-03-20 06:14:49 UTC 
+RTC time: Mon 2017-03-20 06:14:49 
+Time zone: America/Denver (MDT, -0600) 
+NTP enabled: yes 
+NTP synchronized: yes 
+RTC in local TZ: no 
+DST active: yes 
+Last DST change: DST began at 
+              Sun 2017-03-12 01:59:59 MST 
+              Sun 2017-03-12 03:00:00 MDT 
+Next DST change: DST ends (the clock jumps one hour backwards) at 
+              Sun 2017-11-05 01:59:59 MDT 
+              Sun 2017-11-05 01:00:00 MST
+              
+[root@centos rdc]#
+</pre>
+<p>Currently, the system is correct to the local time zone. If your system is not, let's set the correct time zone. After changing the settings, CentOS will automatically calculate the time zone offset from the current time zone, adjusting the system clock right away.</p>
+<p>Let's list all the time zones with <i>timedatectl</i> &minus;</p>
+<pre class="result notranslate">
+[root@centos rdc]# timedatectl list-timezones 
+Africa/Abidjan
+Africa/Accra
+Africa/Addis_Ababa
+Africa/Algiers
+Africa/Asmara
+Africa/Bamako
+Africa/Bangui
+Africa/Banjul
+Africa/Bissau
+</pre>
+<p>That is the contended output from <i>timedatectl list-timezones</i>. To find a specific local time-zone, the grep command can be used &minus;</p>
+<pre class="result notranslate">
+[root@centos rdc]# timedatectl list-timezones | grep -i "america/New_York" 
+America/New_York
+[root@centos rdc]#
+</pre>
+<p>The label used by CentOS is usually Country/Region with an underscore instead of space (New_York versus "New York").</p>
+<p>Now let's set our time zone &minus;</p>
+<pre class="result notranslate">
+[root@centos rdc]# timedatectl set-timezone "America/New_York"
+
+[root@centos rdc]# date 
+Mon Mar 20 02:28:44 EDT 2017
+
+[root@centos rdc]#
+</pre>
+<p>Your system clock should automatically adjust the time.</p>
+<h2>Use journalctl to Analyze Logs</h2>
+<p>Common command line switches when using <i>journalctl</i> &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:10%">Switch</th>
+<th style="text-align:center;">Action</th>
+</tr>
+<tr>
+<td style="text-align:center;">-k</td>
+<td>Lists only kernel messages</td>
+</tr>
+<tr>
+<td style="text-align:center;">-u</td>
+<td>Lists by specific unit (httpd, sshd, etc...)</td>
+</tr>
+<tr>
+<td style="text-align:center;">-b</td>
+<td>Boots the label offset</td>
+</tr>
+<tr>
+<td style="text-align:center;">-o</td>
+<td>Logs the output format</td>
+</tr>
+<tr>
+<td style="text-align:center;">-p</td>
+<td>Filters by log type (either name or number)</td>
+</tr>
+<tr>
+<td style="text-align:center;">-F</td>
+<td>Fieldname or fieldnamevalue</td>
+</tr>
+<tr>
+<td style="text-align:center;">--utc</td>
+<td>Time in UTC offset</td>
+</tr>
+<tr>
+<td style="text-align:center;">--since</td>
+<td>Filter by timeframe</td>
+</tr>
+</table>
+<h3>Examine Boot Logs</h3>
+<p>First, we will examine and configure the boot logs in CentOS Linux. The first thing you will notice is that CentOS, by default, doesn't store boot logging that is persistent across reboots.</p>
+<p>To check boot logs per reboot instance, we can issue the following command &minus;</p>
+<pre class="result notranslate">
+[root@centos rdc]# journalctl --list-boots 
+-4 bca6380a31a2463aa60ba551698455b5 Sun 2017-03-19 22:01:57 MDT—Sun 2017-03-19 22:11:02 MDT
+-3 3aaa9b84f9504fa1a68db5b49c0c7208 Sun 2017-03-19 22:11:09 MDT—Sun 2017-03-19 22:15:03 MDT
+-2 f80b231272bf48ffb1d2ce9f758c5a5f Sun 2017-03-19 22:15:11 MDT—Sun 2017-03-19 22:54:06 MDT
+-1 a071c1eed09d4582a870c13be5984ed6 Sun 2017-03-19 22:54:26 MDT—Mon 2017-03-20 00:48:29 MDT
+ 0 9b4e6cdb43b14a328b1fa6448bb72a56 Mon 2017-03-20 00:48:38 MDT—Mon 2017-03-20 01:07:36 MDT
+
+[root@centos rdc]#  
+</pre>
+<p>After rebooting the system, we can see another entry.</p>
+<pre class="result notranslate">
+[root@centos rdc]# journalctl --list-boots 
+-5 bca6380a31a2463aa60ba551698455b5 Sun 2017-03-19 22:01:57 MDT—Sun 2017-03-19 22:11:02 MDT
+-4 3aaa9b84f9504fa1a68db5b49c0c7208 Sun 2017-03-19 22:11:09 MDT—Sun 2017-03-19 22:15:03 MDT
+-3 f80b231272bf48ffb1d2ce9f758c5a5f Sun 2017-03-19 22:15:11 MDT—Sun 2017-03-19 22:54:06 MDT
+-2 a071c1eed09d4582a870c13be5984ed6 Sun 2017-03-19 22:54:26 MDT—Mon 2017-03-20 00:48:29 MDT
+-1 9b4e6cdb43b14a328b1fa6448bb72a56 Mon 2017-03-20 00:48:38 MDT—Mon 2017-03-20 01:09:57 MDT
+ 0 aa6aaf0f0f0d4fcf924e17849593d972 Mon 2017-03-20 01:10:07 MDT—Mon 2017-03-20 01:12:44 MDT
+ 
+[root@centos rdc]#
+</pre>
+<p>Now, let's examine the last boot logging instance &minus;</p>
+<pre class="result notranslate">
+root@centos rdc]# journalctl -b -5 
+-- Logs begin at Sun 2017-03-19 22:01:57 MDT, end at Mon 2017-03-20 01:20:27 MDT. --
+Mar 19 22:01:57 localhost.localdomain systemd-journal[97]: Runtime journal is using 8.0M 
+(max allowed 108.4M
+Mar 19 22:01:57 localhost.localdomain kernel: Initializing cgroup subsys cpuset
+Mar 19 22:01:57 localhost.localdomain kernel: Initializing cgroup subsys cpu
+Mar 19 22:01:57 localhost.localdomain kernel: Initializing cgroup subsys cpuacct
+Mar 19 22:01:57 localhost.localdomain kernel: Linux version 3.10.0514.6.2.el7.x86_64 
+(builder@kbuilder.dev.
+Mar 19 22:01:57 localhost.localdomain kernel: Command line: 
+BOOT_IMAGE=/vmlinuz-3.10.0-514.6.2.el7.x86_64 ro
+Mar 19 22:01:57 localhost.localdomain kernel: Disabled fast string operations
+Mar 19 22:01:57 localhost.localdomain kernel: e820: BIOS-provided physical RAM map:
+</pre>
+<p>Above is the condensed output from our last boot. We could also refer back to a boot log from hours, days, weeks, months, and even years. However, by default CentOS doesn't store persistent boot logs. To enable persistently storing boot logs, we need to make a few configuration changes &minus;</p>
+<ul class="list">
+<li>Make central storage points for boot logs</li>
+<li>Give proper permissions to a new log folder</li>
+<li>Configure journald.conf for persistent logging</li>
+</ul>
+<h3>Configure Boot Location for Persistent Boot Logs</h3>
+<p>The initial place <i>journald</i> will want to store persistent boot logs is <i>/var/log/journal</i>. Since this doesn't exist by default, let's create it &minus;</p>
+<pre class="result notranslate">
+[root@centos rdc]# mkdir /var/log/journal
+</pre>
+<p>Now, let's give the directory proper permissions <i>journald</i> daemon access &minus;</p>
+<pre class="result notranslate">
+systemd-tmpfiles --create --prefix /var/log/journal
+</pre>
+<p>Finally, let's tell <i>journald</i> it should store persistent boot logs. In <i>vim</i> or your favorite text editor, open <i>/etc/systemd/jounrald.conf"</i>.</p>
+<pre class="result notranslate">
+# See journald.conf(5) for details.  
+[Journal]=Storage=peristent
+</pre>
+<p>The line we are concerned with is, <i>Storage=</i>. First remove the comment <i>#</i>, then change to <b>Storage = persistent</b> as depicted above. Save and reboot your CentOS system and take care that there should be multiple entries when running <i>journalctl list-boots</i>.</p>
+<p><b>Note</b> &minus; A constantly changing <i>machine-id</i> like that from a VPS provider can cause <i>journald</i> to fail at storing persistent boot logs. There are many workarounds for such a scenario. It is best to peruse the current fixes posted to CentOS Admin forums, than follow the trusted advice from those who have found plausible VPS workarounds.</p>
+<p>To examine a specific boot log, we simply need to get each offset using <i>journald --list-boots</i> the offset with the <i>-b</i> switch. So to check the second boot log we'd use &minus;</p>
+<pre class="result notranslate">
+journalctl -b -2
+</pre>
+<p>The default for <i>-b</i> with no boot log offset specified will always be the current boot log after the last reboot.</p>
+<h2>Analyze Logs by Log Type</h2>
+<p>Events from <i>journald</i> are numbered and categorized into 7 separate types &minus;</p>
+<pre class="result notranslate">
+0 - emerg   :: System is unusable 
+1 - alert   :: Action must be taken immediatly    
+2 - crit    :: Action is advised to be taken immediatly 
+3 - err     :: Error effecting functionality of application 
+4 - warning :: Usually means a common issue that can affect security or usilbity 
+5 - info    :: logged informtation for common operations 
+6 - debug   :: usually disabled by default to troubleshoot functionality
+</pre>
+<p>Hence, if we want to see all warnings the following command can be issued via <i>journalctl</i> &minus;</p>
+<pre class="result notranslate">
+[root@centos rdc]# journalctl -p 4
+-- Logs begin at Sun 2017-03-19 22:01:57 MDT, end at Wed 2017-03-22 22:33:42 MDT. --
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: RSDP 00000000000f6a10 00024
+(v02 PTLTD )
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: XSDT 0000000095eea65b 0005C
+(v01 INTEL  440BX    06040000 VMW  01
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: FACP 0000000095efee73 000F4
+(v04 INTEL  440BX    06040000 PTL  00
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: DSDT 0000000095eec749 1272A
+(v01 PTLTD  Custom   06040000 MSFT 03
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: FACS 0000000095efffc0 00040
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: BOOT 0000000095eec721 00028
+(v01 PTLTD  $SBFTBL$ 06040000  LTP 00
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: APIC 0000000095eeb8bd 00742
+(v01 PTLTD  ? APIC   06040000  LTP 00 
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: MCFG 0000000095eeb881 0003C
+(v01 PTLTD  $PCITBL$ 06040000  LTP 00 
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: SRAT 0000000095eea757 008A8
+(v02 VMWARE MEMPLUG  06040000 VMW  00 
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: HPET 0000000095eea71f 00038
+(v01 VMWARE VMW HPET 06040000 VMW  00 
+Mar 19 22:01:57 localhost.localdomain kernel: ACPI: WAET 0000000095eea6f7 00028
+(v01 VMWARE VMW WAET 06040000 VMW  00 
+Mar 19 22:01:57 localhost.localdomain kernel: Zone ranges: 
+Mar 19 22:01:57 localhost.localdomain kernel:   DMA      [mem 0x000010000x00ffffff] 
+Mar 19 22:01:57 localhost.localdomain kernel:   DMA32    [mem 0x010000000xffffffff] 
+Mar 19 22:01:57 localhost.localdomain kernel:   Normal   empty 
+Mar 19 22:01:57 localhost.localdomain kernel: Movable zone start for each node 
+Mar 19 22:01:57 localhost.localdomain kernel: Early memory node ranges 
+Mar 19 22:01:57 localhost.localdomain kernel:   node   0: [mem 0x000010000x0009dfff] 
+Mar 19 22:01:57 localhost.localdomain kernel:   node   0: [mem 0x001000000x95edffff] 
+Mar 19 22:01:57 localhost.localdomain kernel:   node   0: [mem 0x95f000000x95ffffff] 
+Mar 19 22:01:57 localhost.localdomain kernel: Built 1 zonelists in Node order,
+mobility grouping on.  Total pages: 60 
+Mar 19 22:01:57 localhost.localdomain kernel: Policy zone: DMA32 
+Mar 19 22:01:57 localhost.localdomain kernel: ENERGY_PERF_BIAS: Set to
+'normal', was 'performance'
+</pre>
+<p>The above shows all warnings for the past 4 days on the system.</p>
+<p>The new way of viewing and perusing logs with systemd does take little practice and research to become familiar with. However, with different output formats and particular notice to making all packaged daemon logs universal, it is worth embracing. <i>journald</i> offers great flexibility and efficiency over traditional log analysis methods.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_backup_and_recovery.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

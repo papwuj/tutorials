@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Compiler Design - Syntax Analysis - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Compiler Design - Syntax Analysis - Syntax analysis or parsing is the second phase of a compiler. In this chapter, we shall learn the basic concepts used in the construction of a parser."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/compiler_design/compiler_design_syntax_analysis.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#02ad73;
+}
+a.demo {
+    background:#02ad73;
+}
+li.heading {
+    background:#02ad73;
+}
+.course-box{background:#02ad73}
+.home-intro-sub p{color:#02ad73}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/compiler_design/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/compiler_design/images/compiler-design-mini-logo.jpg" alt="Compiler Design Tutorial" />
+</div>
+<ul class="toc chapters">
+<li><a class="videolink" href="/compiler_design/index.asp" target="_blank"><img src="/compiler_design/images/compiler-design-video-tutorials.jpg" alt="Compiler Design Video Tutorials" /></a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Compiler Design Tutorial</li>
+<li><a target="_top" href="/compiler_design/index.htm">Compiler Design - Home</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_overview.htm">Compiler Design - Overview</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_architecture.htm">Compiler Design - Architecture</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_phases_of_compiler.htm">Compiler Design - Phases of Compiler</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_lexical_analysis.htm">Compiler Design - Lexical Analysis</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_regular_expressions.htm">Compiler - Regular Expressions</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_finite_automata.htm">Compiler Design - Finite Automata</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_syntax_analysis.htm">Compiler Design - Syntax Analysis</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_types_of_parsing.htm">Compiler Design - Types of Parsing</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_top_down_parser.htm">Compiler Design - Top-Down Parser</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_bottom_up_parser.htm">Compiler Design - Bottom-Up Parser</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_error_recovery.htm">Compiler Design - Error Recovery</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_semantic_analysis.htm">Compiler Design - Semantic Analysis</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_runtime_environment.htm">Compiler - Run-time Environment</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_symbol_table.htm">Compiler Design - Symbol Table</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_intermediate_code_generations.htm">Compiler - Intermediate Code</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_code_generation.htm">Compiler Design - Code Generation</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_code_optimization.htm">Compiler Design - Code Optimization</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Compiler Design Useful Resources</li>
+<li><a target="_top" href="/compiler_design/compiler_design_quick_guide.htm">Compiler Design - Quick Guide</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_useful_resources.htm">Compiler Design - Useful Resources</a></li>
+<li><a target="_top" href="/compiler_design/compiler_design_discussion.htm">Compiler Design - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Compiler Design - Syntax Analysis</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/compiler_design/compiler_design_finite_automata.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/compiler_design/compiler_design_types_of_parsing.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Syntax analysis or parsing is the second phase of a compiler. In this chapter, we shall learn the basic concepts used in the construction of a parser.</p>
+<p>We have seen that a lexical analyzer can identify tokens with the help of regular expressions and pattern rules. But a lexical analyzer cannot check the syntax of a given sentence due to the limitations of the regular expressions. Regular expressions cannot check balancing tokens, such as parenthesis. Therefore, this phase uses context-free grammar (CFG), which is recognized by push-down automata.</p>
+<p>CFG, on the other hand, is a superset of Regular Grammar, as depicted below:</p>
+<img src="/compiler_design/images/CFG_regular_grammar.jpg" alt="Relation of CFG and Regular Grammar" />
+<p>It implies that every Regular Grammar is also context-free, but there exists some problems, which are  beyond the scope of Regular Grammar. CFG is a helpful tool in describing the syntax of programming languages.</p>
+<h2>Context-Free Grammar</h2>
+<p>In this section, we will first see the definition of context-free grammar and introduce terminologies used in parsing technology.</p>
+<p>A context-free grammar has four components:</p>
+<ul class="list">
+<li><p>A set of <b>non-terminals</b> (V). Non-terminals are syntactic variables that denote sets of strings. The non-terminals define sets of strings that help define the language generated by the grammar.</p></li>
+<li><p>A set of tokens, known as <b>terminal symbols</b> (Σ). Terminals are the basic symbols from which strings are formed.</p></li>
+<li><p>A set of <b>productions</b> (P). The productions of a grammar specify the manner in which the terminals and non-terminals can be combined to form strings. Each production consists of a <b>non-terminal</b> called the left side of the production, an arrow, and a sequence of tokens and/or <b>on- terminals</b>, called the right side of the production.</p></li>
+<li><p>One of the non-terminals is designated as the start symbol (S); from where the production begins.</p></li>
+</ul>
+<p>The strings are derived from the start symbol by repeatedly replacing a non-terminal (initially the start symbol) by the right side of a production, for that non-terminal.</p>
+<h3>Example</h3>
+<p>We take the problem of palindrome language, which cannot be described by means of Regular Expression. That is, L = { w | w = w<sup>R</sup> } is not a regular language. But it can be described by means of CFG, as illustrated below:</p>
+<pre class="result notranslate">
+G = ( V, Σ, P, S )
+</pre>
+<p>Where:</p>
+<pre class="result notranslate">
+V = { Q, Z, N }
+Σ = { 0, 1 }
+P = { Q → Z | Q → N | Q → ℇ | Z → 0Q0 | N → 1Q1 }
+S = { Q }
+</pre>
+<p>This grammar describes palindrome language, such as: 1001, 11100111, 00100, 1010101, 11111, etc.</p>
+<h2>Syntax Analyzers</h2>
+<p>A syntax analyzer or parser takes the input from a lexical analyzer in the form of token streams. The parser analyzes the source code (token stream) against the production rules to detect any errors in the code. The output of this phase is a <b>parse tree</b>.</p>
+<img src="/compiler_design/images/syntax_analyzer.jpg" alt="Syntax Analyzer" />
+
+<p>This way, the parser accomplishes two tasks, i.e., parsing the code, looking for errors and generating a parse tree as the output of the phase.</p>
+<p>Parsers are expected to parse the whole code even if some errors exist in the program. Parsers use error recovering strategies, which we will learn later in this chapter.</p>
+<h2>Derivation</h2>
+<p>A derivation is basically a sequence of production rules, in order to get the input string. During parsing, we take two decisions for some sentential form of input:</p>
+<ul class="list">
+<li>Deciding the non-terminal which is to be replaced.</li>
+<li>Deciding the production rule, by which, the non-terminal will be replaced.</li>
+</ul>
+<p>To decide which non-terminal to be replaced with production rule, we can have two options.</p>
+<h3>Left-most Derivation</h3>
+<p>If the sentential form of an input is scanned and replaced from left to right, it is called left-most derivation. The sentential form derived by the left-most derivation is called the left-sentential form.</p>
+<h3>Right-most Derivation</h3>
+<p>If we scan and replace the input with production rules, from right to left, it is known as right-most derivation. The sentential form derived from the right-most derivation is called the right-sentential form.</p>
+<p><b>Example</b></p>
+<p>Production rules:</p>
+<pre class="prettyprint notranslate">
+E → E + E
+E → E * E
+E → id 
+</pre>
+<p>Input string: id + id * id</p>
+<p>The left-most derivation is:</p>
+<pre class="prettyprint notranslate">
+E → E * E
+E → E + E * E
+E → id + E * E
+E → id + id * E
+E → id + id * id
+</pre>
+<p>Notice that the left-most side non-terminal is always processed first.</p>
+<p>The right-most derivation is:</p>
+<pre class="prettyprint notranslate">
+E → E + E
+E → E + E * E
+E → E + E * id
+E → E + id * id
+E → id + id * id
+</pre>
+<h2>Parse Tree</h2>
+<p>A parse tree is a graphical depiction of a derivation. It is convenient to see how strings are derived from the start symbol. The start symbol of the derivation becomes the root of the parse tree. Let us see this by an example from the last topic.</p>
+<p>We take the left-most derivation of a + b * c</p>
+<p>The left-most derivation is:</p>
+<pre class="prettyprint notranslate">
+E → E * E
+E → E + E * E
+E → id + E * E
+E → id + id * E
+E → id + id * id
+</pre>
+<p>Step 1:</p>
+<table class="table table-bordered">
+<tr><td width="50%" style="vertical-align:middle">E → E * E</td><td><img src="/compiler_design/images/parse_tree_step_1.jpg" alt="Parse Tree Construction" /></td></tr>
+</table>
+
+<p>Step 2:</p>
+<table class="table table-bordered">
+<tr><td width="50%" style="vertical-align:middle">E → E + E * E</td><td><img src="/compiler_design/images/parse_tree_step_2.jpg" alt="Parse Tree Construction" /></td></tr>
+</table>
+
+<p>Step 3:</p>
+<table class="table table-bordered">
+<tr><td width="50%" style="vertical-align:middle">E → id + E * E</td><td><img src="/compiler_design/images/parse_tree_step_3.jpg" alt="Parse Tree Construction" /></td></tr>
+</table>
+
+<p>Step 4:</p>
+<table class="table table-bordered">
+<tr><td width="50%" style="vertical-align:middle">E → id + id * E</td><td><img src="/compiler_design/images/parse_tree_step_4.jpg" alt="Parse Tree Construction" /></td></tr>
+</table>
+
+<p>Step 5:</p>
+<table class="table table-bordered">
+<tr><td width="50%" style="vertical-align:middle">E → id + id * id</td><td><img src="/compiler_design/images/parse_tree_step_5.jpg" alt="Parse Tree Construction" /></td></tr>
+</table>
+
+<p>In a parse tree:</p>
+<ul class="list">
+<li>All leaf nodes are terminals.</li>
+<li>All interior nodes are non-terminals.</li>
+<li>In-order traversal gives original input string.</li>
+</ul>
+<p>A parse tree depicts associativity and precedence of operators. The deepest sub-tree is traversed first, therefore the operator in that sub-tree gets precedence over the operator which is in the parent nodes.</p>
+<h2>Ambiguity</h2>
+<p>A grammar G is said to be ambiguous if it has more than one parse tree (left or right derivation) for at least one string.</p>
+<p><b>Example</b></p>
+<pre class="prettyprint notranslate">
+E → E + E
+E → E – E
+E → id
+</pre>
+<p>For the string id + id – id, the above grammar generates two parse trees:</p>
+<img src="/compiler_design/images/parse_tree_ambiguity.jpg" alt="Parse Tree Construction" />
+   
+<p>The language generated by an ambiguous grammar is said to be <b>inherently ambiguous</b>. Ambiguity in grammar is not good for a compiler construction. No method can detect and remove ambiguity automatically, but it can be removed by either re-writing the whole grammar without ambiguity, or by setting and following associativity and precedence constraints.</p>
+<h2>Associativity</h2>
+<p>If an operand has operators on both sides, the side on which the operator takes this operand is decided by the associativity of those operators. If the operation is left-associative, then the operand will be taken by the left operator or if the operation is right-associative, the right operator will take the operand.</p>
+<p><b>Example</b></p>
+<p>Operations such as Addition, Multiplication, Subtraction, and Division are left associative. If the expression contains:</p>
+<pre class="prettyprint notranslate">
+id op id op id
+</pre>
+<p>it will be evaluated as:</p>
+<pre class="prettyprint notranslate">
+(id op id) op id
+</pre>
+<p>For example, (id + id) + id</p>
+<p>Operations like Exponentiation are right associative, i.e., the order of evaluation in the same expression will be:</p>
+<pre class="prettyprint notranslate">
+id op (id op id)
+</pre>
+<p>For example, id ^ (id ^ id)</p>
+<h2>Precedence</h2> 
+<p>If two different operators share a common operand, the precedence of operators decides which will take the operand. That is, 2+3*4 can have two different parse trees, one corresponding to (2+3)*4 and another corresponding to 2+(3*4). By setting precedence among operators, this problem can be easily removed. As in the previous example, mathematically * (multiplication) has precedence over + (addition), so the expression 2+3*4 will always be interpreted as:</p>
+<pre class="prettyprint notranslate">
+2 + (3 * 4)
+</pre>
+<p>These methods decrease the chances of ambiguity in a language or its grammar.</p>
+<h2>Left Recursion</h2>
+<p>A grammar becomes left-recursive if it has any non-terminal ‘A’ whose derivation contains ‘A’ itself as the left-most symbol. Left-recursive grammar is considered to be a problematic situation for top-down parsers. Top-down parsers start parsing from the Start symbol, which in itself is non-terminal. So, when the parser encounters the same non-terminal in its derivation, it becomes hard for it to judge when to stop parsing the left non-terminal and it goes into an infinite loop.</p>
+<p><b>Example:</b></p>
+<pre class="result notranslate">
+(1) A => Aα | β
+
+(2) S => Aα | β 
+    A => Sd 
+</pre>
+<p>(1) is an example of immediate left recursion, where A is any non-terminal symbol and α represents a string of non-terminals.</p>
+<p>(2) is an example of indirect-left recursion.</p>
+<img src="/compiler_design/images/left_recursion.jpg" alt="Left Recursion" />
+<p>A top-down parser will first parse the A, which in-turn will yield a string consisting of A itself and the parser may go into a loop forever.</p>
+<h3>Removal of Left Recursion</h3>
+<p>One way to remove left recursion is to use the following technique:</p>
+<p>The production</p>
+<pre class="result notranslate">
+A => Aα | β
+</pre>
+<p>is converted into following productions</p>
+<pre class="result notranslate">
+A => βA'
+A'=> αA' | &epsilon;
+</pre>
+<p>This does not impact the strings derived from the grammar, but it removes immediate left recursion.</p>
+<p>Second method is to use the following algorithm, which should eliminate all direct and indirect left recursions.</p>
+<pre class="result notranslate">
+START
+
+Arrange non-terminals in some order like A1, A2, A3,…, A<sub>n</sub>
+
+   for each i from 1 to n
+      {
+      for each j from 1 to i-1
+         {
+         replace each production of form A<sub>i</sub> ⟹Aj𝜸
+         with A<sub>i</sub> ⟹ δ1𝜸  | δ2𝜸 | δ3𝜸 |…| 𝜸 
+         where A<sub>j</sub> ⟹ δ<sub>1</sub> | δ<sub>2</sub>|…| δ<sub>n</sub>  are current A<sub>j</sub> productions
+         }
+      }
+   eliminate immediate left-recursion
+   
+END
+</pre>
+<p><b>Example</b></p>
+<p>The production set</p>
+<pre class="result notranslate">
+S => Aα | β 
+A => Sd
+</pre>
+<p>after applying the above algorithm, should become</p>
+<pre class="result notranslate">
+S => Aα | β 
+A => Aαd | βd
+</pre>
+<p>and then, remove immediate left recursion using the first technique.</p>
+<pre class="result notranslate">
+A  => βdA'
+A' => αdA' | &epsilon;
+</pre>
+<p>Now none of the production has either direct or indirect left recursion.</p>
+<h2>Left Factoring</h2>
+<p>If more than one grammar production rules has a common prefix string, then the top-down parser cannot make a choice as to which of the production it should take to parse the string in hand.</p>
+<p><b>Example</b></p>
+<p>If a top-down parser encounters a production like</p>
+<pre class="result notranslate">
+A ⟹ αβ | α𝜸 | …
+</pre>
+<p>Then it cannot determine which production to follow to parse the string as both productions are starting from the same terminal (or non-terminal). To remove this confusion, we use a technique called left factoring.</p>
+<p>Left factoring transforms the grammar to make it useful for top-down parsers. In this technique, we make one production for each common prefixes and the rest of the derivation is added by new productions.</p>
+<p><b>Example</b></p>
+<p>The above productions can be written as</p>
+<pre class="result notranslate">
+A => αA'
+A'=> β | 𝜸 | … 
+</pre>
+<p>Now the parser has only one production per prefix which makes it easier to take decisions.</p>
+<h2>First and Follow Sets</h2>
+<p>An important part of parser table construction is to create first and follow sets.  These sets can provide the actual position of any terminal in the derivation. This is done to create the parsing table where the decision of replacing T[A, t] = α with some production rule.</p>
+<h3>First Set</h3>
+<p>This set is created to know what terminal symbol is derived in the first position by a non-terminal. For example,</p>
+<pre class="result notranslate">
+α → t β
+</pre>
+<p>That is α derives t (terminal) in the very first position. So, t ∈ FIRST(α).</p>
+<h4>Algorithm for calculating First set</h4>
+<p>Look at the definition of FIRST(α) set:</p>
+<ul class="list">
+<li>if α is a terminal, then FIRST(α) = { α }.</li>
+<li>if α is a non-terminal and α → ℇ is a production, then FIRST(α) = { ℇ }.</li>
+<li>if α is a non-terminal and α →  𝜸1 𝜸2 𝜸3 … 𝜸n and any FIRST(𝜸) contains t then t is in FIRST(α).</li>
+</ul>
+<p>First set can be seen as:</p>
+<img src="/compiler_design/images/first_formula.jpg">   
+<h3>Follow Set</h3>
+<p>Likewise, we calculate what terminal symbol immediately follows a non-terminal α in production rules. We do not consider what the non-terminal can generate but instead, we see what would be the next terminal symbol that follows the productions of a non-terminal.</p>
+<h4>Algorithm for calculating Follow set:</h4>
+<ul class="list">
+<li><p>if α is a start symbol, then FOLLOW() = $</p></li>
+<li><p>if α is a non-terminal and has a production α → AB, then FIRST(B) is in FOLLOW(A) except ℇ.</p></li>
+<li><p>if α is a non-terminal and has a production α → AB, where B  ℇ, then FOLLOW(A) is in FOLLOW(α).</p></li>
+</ul>
+<p>Follow set can be seen as: FOLLOW(α) = { t | S   *αt*}</p>
+   
+<h2>Limitations of Syntax Analyzers</h2>
+<p>Syntax analyzers receive their inputs, in the form of tokens, from lexical analyzers. Lexical analyzers are responsible for the validity of a token supplied by the syntax analyzer. Syntax analyzers have the following drawbacks -</p>
+<ul class="list">
+<li>it cannot determine if a token is valid,</li>
+<li>it cannot determine if a token is declared before it is being used,</li>
+<li>it cannot determine if a token is initialized before it is being used,</li>
+<li>it cannot determine if an operation performed on a token type is valid or not.</li>
+</ul>
+   
+<p>These tasks are accomplished by the semantic analyzer, which we shall study in Semantic Analysis.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/compiler_design/compiler_design_finite_automata.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/compiler_design/compiler_design_types_of_parsing.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

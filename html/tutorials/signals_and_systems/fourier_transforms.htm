@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Fourier Transforms</title>
+<meta charset="utf-8">
+<meta name="description" content="Fourier Transforms - The main drawback of Fourier series is, it is only applicable to periodic signals. There are some naturally produced signals such as nonperiodic or aperiodic, w"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/signals_and_systems/fourier_transforms.htm" />
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+"HTML-CSS": {
+  linebreaks: { automatic: true, width: "container" }          
+}              
+});
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#016652;
+}
+a.demo {
+    background:#016652;
+}
+li.heading {
+    background:#016652;
+}
+.course-box{background:#016652}
+.home-intro-sub p{color:#016652}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/signals_and_systems/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/signals_and_systems/images/signals-systems-mini-logo.jpg" alt="Signals and Systems Tutorial" />
+</div>
+<ul class="toc chapters">
+<li><a class="videolink" href="/signals_and_systems/index.asp" target="_blank"><img src="/signals_and_systems/images/signals-and-systems-video-tutorials.jpg" alt="Signals and Systems Video Tutorials" /></a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Signals and Systems Tutorial</li>
+<li><a href="/signals_and_systems/index.htm">Signals &amp; Systems Home</a></li>
+<li><a href="/signals_and_systems/signals_and_systems_overview.htm">Signals &amp; Systems Overview</a></li>
+<li><a href="/signals_and_systems/signals_basic_types.htm">Signals Basic Types</a></li>
+<li><a href="/signals_and_systems/signals_classification.htm">Signals Classification</a></li>
+<li><a href="/signals_and_systems/signals_basic_operations.htm">Signals Basic Operations</a></li>
+<li><a href="/signals_and_systems/systems_classification.htm">Systems Classification</a></li>
+<li><a href="/signals_and_systems/signals_analysis.htm">Signals Analysis</a></li>
+<li><a href="/signals_and_systems/fourier_series.htm">Fourier Series</a></li>
+<li><a href="/signals_and_systems/fourier_series_properties.htm">Fourier Series Properties</a></li>
+<li><a href="/signals_and_systems/fourier_series_types.htm">Fourier Series Types</a></li>
+<li><a href="/signals_and_systems/fourier_transforms.htm">Fourier Transforms</a></li>
+<li><a href="/signals_and_systems/fourier_transforms_properties.htm">Fourier Transforms Properties</a></li>
+<li><a href="/signals_and_systems/distortion_less_transmission.htm">Distortion Less Transmission</a></li>
+<li><a href="/signals_and_systems/hilbert_transform.htm">Hilbert Transform</a></li>
+<li><a href="/signals_and_systems/convolution_and_correlation.htm">Convolution and Correlation</a></li>
+<li><a href="/signals_and_systems/signals_sampling_theorem.htm">Signals Sampling Theorem</a></li>
+<li><a href="/signals_and_systems/signals_sampling_techniques.htm">Signals Sampling Techniques</a></li>
+<li><a href="/signals_and_systems/laplace_transforms.htm">Laplace Transforms</a></li>
+<li><a href="/signals_and_systems/laplace_transforms_properties.htm">Laplace Transforms Properties</a></li>
+<li><a href="/signals_and_systems/region_of_convergence.htm">Region of Convergence</a></li>
+<li><a href="/signals_and_systems/z_transforms.htm">Z-Transforms (ZT)</a></li>
+<li><a href="/signals_and_systems/z_transforms_properties.htm">Z-Transforms Properties</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Signals and Systems Resources</li>
+<!--<li><a href="/signals_and_systems/signals_and_systems_quick_guide.htm">Signals and Systems - Quick Guide</a></li>-->
+<li><a href="/signals_and_systems/signals_and_systems_resources.htm">Signals and Systems - Resources</a></li>
+<li><a href="/signals_and_systems/signals_and_systems_discussion.htm">Signals and Systems - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Fourier Transforms</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/signals_and_systems/fourier_series_types.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/signals_and_systems/fourier_transforms_properties.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>The main drawback of Fourier series is, it is only applicable to periodic signals. There are some naturally produced signals such as nonperiodic or aperiodic, which we cannot represent using Fourier series. To overcome this shortcoming, Fourier developed a mathematical model to transform signals between time (or spatial) domain to frequency domain & vice versa, which is called 'Fourier transform'.</p>
+<p>Fourier transform has many applications in physics and engineering such as analysis of LTI systems, RADAR, astronomy, signal processing etc.</p>
+<h2>Deriving Fourier transform from Fourier series</h2>
+<p>Consider a periodic signal f(t) with period T. The complex Fourier series representation of f(t) is given as</p>
+<p style="font-size: 125%">$$ f(t)  = \sum_{k=-\infty}^{\infty} a_k  e^{jk\omega_0 t} $$</p>
+<p style="font-size: 125%">$$ \quad \quad \quad \quad \quad = \sum_{k=-\infty}^{\infty} a_k  e^{j {2\pi \over T_0}  kt} ... ... (1)  $$</p>
+<p>Let ${1 \over T_0}  = \Delta f$, then equation 1 becomes </p>
+<p  style="font-size: 125%">$f(t)  =  \sum_{k=-\infty}^{\infty} a_k  e^{j2\pi k \Delta ft} ... ... (2) $ </p>
+<p> but you know that  </p>
+<ul class="list">
+    <p  style="font-size: 125%">$a_k = {1\over T_0}  \int_{t_0}^{t_0+T} f(t) e^{-j k\omega_0 t} dt$</p>    
+</ul>
+<p>Substitute in equation 2.</p>
+<p>(2) <span style="font-size: 125%">$ \Rightarrow f(t)  = \Sigma_{k=-\infty}^{\infty} {1 \over T_0} \int_{t_0}^{t_0+T}  f(t) e^{-j k\omega_0 t} dt\, e^{j2\pi k \Delta ft} $</span></p>
+<p>Let $t_0={T\over2}$</p>
+<p style="font-size: 125%">$ = \Sigma_{k=-\infty}^{\infty} [ \int_{-T\over2}^{T\over2} f(t) e^{-j2 \pi k \Delta ft} dt ] \, e^{j2 \pi k \Delta ft}.\Delta f $</p>
+<p>In the limit as $T \to \infty, \Delta f$ approaches differential $df, k \Delta f$ becomes a continuous variable $f$, and summation becomes integration</p>
+
+<p style="font-size: 125%">$$ f(t) = lim_{T \to \infty} ⁡\left\{ \Sigma_{k=-\infty}^{\infty} [ \int_{-T\over2}^{T\over2} f(t) e^{-j2 \pi k \Delta ft} dt ] \, e^{j2 \pi k \Delta ft}.\Delta f \right\} $$</p>
+
+<p style="font-size: 125%">$$ = \int_{-\infty}^{\infty} [ \int_{-\infty}^{\infty}\,f(t) e^{-j2\pi ft} dt]  e^{j2\pi ft} df $$</p>
+
+<p style="font-size: 125%">$$f(t)   = \int_{-\infty}^{\infty}\,  F[\omega]  e^{j\omega t} d \omega$$</p>
+
+<p style="font-size: 125%">$\text{Where}\,F[\omega] = [ \int_{-\infty}^{\infty}\, f(t) e^{-j2 \pi ft} dt]$</p>
+
+<div style="border: solid 1px #aaa; text-align: center; font-size: 125%">
+    <p>Fourier transform of a signal $$f(t) = F[\omega] = [\int_{-\infty}^{\infty}\, f(t) e^{-j\omega t} dt]$$ </p>
+<p>Inverse Fourier Transform is $$f(t)   = \int_{-\infty}^{\infty}\,F[\omega]  e^{j\omega t} d \omega$$</p>
+</div>
+<h2>Fourier Transform of Basic Functions</h2>
+<p> Let us go through Fourier Transform of basic functions:</p>
+<h3>FT of GATE Function</h3>
+<img src="/signals_and_systems/images/ft_of_gate_system.png" alt="F.T. of Gate System">
+    <p style="border: solid 1px #aaa; width:50%; margin: 0 auto;"> $$F[\omega] = AT Sa({\omega T \over 2})$$ </p>
+</br>
+<h3>FT of Impulse Function</h3>
+<p>$FT [\omega(t) ] = [\int_{- \infty}^{\infty} \delta (t) e^{-j\omega t} dt] $ </p>
+<p>$\quad \quad \quad \quad =  e^{-j\omega t}\, |\, t = 0 $</p>
+<p>$\quad \quad \quad \quad = e^{0} = 1 $</p>
+    <p style="border: solid 1px #aaa; width:30%;">$\quad \therefore  \delta (\omega) = 1 $</p>
+</br>
+<h3>FT of Unit Step Function:</h3>
+<p>$U(\omega) = \pi \delta (\omega)+1/j\omega$</p>
+</br>    
+<h3>FT of Exponentials</h3>
+<p>$ e^{-at}u(t) \stackrel{\mathrm{F.T}}{\longleftrightarrow} 1/(a+jω)$</p>
+<p>$ e^{-at}u(t) \stackrel{\mathrm{F.T}}{\longleftrightarrow} 1/(a+j\omega )$</p>
+<p>$ e^{-a\,|\,t\,|} \stackrel{\mathrm{F.T}}{\longleftrightarrow} {2a \over {a^2+ω^2}}$</p>
+<p>$ e^{j \omega_0 t} \stackrel{\mathrm{F.T}}{\longleftrightarrow} \delta (\omega - \omega_0)$</p>
+</br>    
+<h3>FT of Signum Function </h3>
+<p>$ sgn(t) \stackrel{\mathrm{F.T}}{\longleftrightarrow} {2 \over j \omega }$</p>
+<h2>Conditions for Existence of Fourier Transform</h2>
+    <p>Any function f(t) can be represented by using Fourier transform only when the function satisfies Dirichlet’s conditions. i.e.</p>
+<ul class="list">
+    <li><p>The function f(t) has finite number of maxima and minima.</p></li>
+    <li><p>There must be finite number of discontinuities in the signal f(t),in the given interval of time.</p></li>
+    <li><p>It must be absolutely integrable in the given interval of time i.e.</p>
+    <p>$ \int_{-\infty}^{\infty}\, |\, f(t) | \, dt < \infty $</p>
+    </li>
+</ul>
+<h2>Discrete Time Fourier Transforms (DTFT)</h2>
+<p>The discrete-time Fourier transform (DTFT) or the Fourier transform of a discrete–time sequence x[n] is a representation of the sequence in terms of the complex exponential sequence $e^{j\omega n}$.</p>
+<p>The DTFT sequence x[n] is given by</p>
+<p>$$ X(\omega) = \Sigma_{n= -\infty}^{\infty} x(n)e^{-j \omega n} \,\, ...\,... (1) $$</p>
+<p>Here, X(&omega;) is a complex function of real frequency variable &omega; and it can be written as</p>
+<p>$$ X(\omega) = X_{re}(\omega) + jX_{img}(\omega) $$</p>
+<p>Where X<sub>re</sub>(&omega;), X<sub>img</sub>(&omega;) are real and imaginary parts of X(&omega;) respectively.</p>
+<p>$$ X_{re}(\omega) = |\, X(\omega) |  \cos\theta(\omega) $$</p>
+<p>$$ X_{img}(\omega) = |\, X(\omega) |  \sin\theta(\omega) $$</p>
+<p>$$ |X(\omega) |^2 = |\, X_{re} (\omega)  |^2+ |\,X_{im} (\omega)  |^2 $$</p>
+<p>And X(&omega;) can also be represented as $ X(\omega) = |\,X(\omega) | e^{j\theta (ω)} $ </p>
+<p style="margin-left:4em">Where $\theta(\omega) = arg{X(\omega) } $</p>
+<p style="margin-left:4em">$|\,X(\omega) |, \theta(\omega)$ are called magnitude and phase spectrums of X(&omega;). </p>
+<h2>Inverse Discrete-Time Fourier Transform</h2>
+<p>$$ x(n) = { 1 \over 2\pi} \int_{-\pi}^{\pi} X(\omega) e^{j \omega n} d\omega \,\, ...\,... (2)$$</p>
+<h3>Convergence Condition:</h3>
+<p>The infinite series in equation 1 may be converges or may not. x(n) is absolutely summable.</p> 
+<p>$$ \text{when}\,\, \sum_{n=-\infty}^{\infty} |\, x(n)|\, < \infty $$</p>
+<p>An absolutely summable sequence has always a finite energy but a finite-energy sequence is not necessarily to be absolutely summable.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/signals_and_systems/fourier_series_types.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/signals_and_systems/fourier_transforms_properties.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

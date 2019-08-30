@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Jackson - ObjectMapper Class</title>
+<meta charset="utf-8">
+<meta name="description" content="Jackson - ObjectMapper Class - ObjectMapper is the main actor class of Jackson library. ObjectMapper class ObjectMapper provides functionality for reading and writing JSON, either to and from"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/jackson/jackson_objectmapper.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#0C6AC4;
+}
+a.demo {
+    background:#0C6AC4;
+}
+li.heading {
+    background:#0C6AC4;
+}
+.course-box{background:#0C6AC4}
+.home-intro-sub p{color:#0C6AC4}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/jackson/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/jackson/images/jackson-mini-logo.jpg" alt="Jackson Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Jackson Tutorial</li>
+<li><a href="/jackson/index.htm">Jackson - Home</a></li>
+<li><a href="/jackson/jackson_overview.htm">Jackson - Overview</a></li>
+<li><a href="/jackson/jackson_environment.htm">Jackson - Environment Setup</a></li>
+<li><a href="/jackson/jackson_first_application.htm">Jackson - First Application</a></li>
+<li><a href="/jackson/jackson_objectmapper.htm">Jackson - ObjectMapper Class</a></li>
+<li><a href="/jackson/jackson_object_serialization.htm">Object Serialization</a></li>
+<li><a href="/jackson/jackson_data_binding.htm">Jackson - Data Binding</a></li>
+<li><a href="/jackson/jackson_tree_model.htm">Jackson - Tree Model</a></li>
+<li><a href="/jackson/jackson_streaming_api.htm">Jackson - Streaming API</a></li>
+<li class="heading">Jackson Useful Resources</li>
+<li><a href="/jackson/jackson_quick_guide.htm">Jackson - Quick Guide</a></li>
+<li><a href="/jackson/jackson_useful_resources.htm">Jackson - Useful Resources</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Jackson - ObjectMapper Class</h1>
+<hr>
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/jackson/jackson_first_application.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/jackson/jackson_object_serialization.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h2>Introduction</h2>
+<p>ObjectMapper is the main actor class of Jackson library. ObjectMapper class ObjectMapper provides functionality for reading and writing JSON, either to and from basic POJOs (Plain Old Java Objects), or to and from a general-purpose JSON Tree Model (JsonNode), as well as related functionality for performing conversions. It is also highly customizable to work both with different styles of JSON content, and to support more advanced Object concepts such as polymorphism and Object identity. ObjectMapper also acts as a factory for more advanced ObjectReader and ObjectWriter classes.</p>
+<h2>Class Declaration</h2>
+<p>Following is the declaration for <b>com.fasterxml.jackson.databind.ObjectMapper</b> class &minus;</p>
+<pre class="prettyprint notranslate ">
+public class ObjectMapper
+   extends ObjectCodec
+      implements Versioned, Serializable
+</pre>
+<h2>Nested Classes</h2>
+<table class="src"> 
+<tr>
+<th>S.No.</th>
+<th>Class &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><b>static class ObjectMapper.DefaultTypeResolverBuilder</b>
+<p>Customized TypeResolverBuilder that provides type resolver builders used with so-called "default typing" (see enableDefaultTyping() for details).</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><b>static class ObjectMapper.DefaultTyping</b>
+<p>Enumeration used with enableDefaultTyping() to specify what kind of types (classes) default typing should be used for.</p></td>
+</tr>
+</table>
+<h2>Fields</h2>
+<ul class="list">
+<li><p><b>protected DeserializationConfig _deserializationConfig</b> - Configuration object that defines basic global settings for the serialization process.</p></li>
+<li><p><b>protected DefaultDeserializationContext _deserializationContext</b> - Blueprint context object; stored here to allow custom sub-classes.</p></li>
+<li><p><b>protected InjectableValues _injectableValues</b> - Provider for values to inject in deserialized POJOs.</p></li>
+<li><p><b>protected JsonFactory _jsonFactory</b> - Factory used to create JsonParser and JsonGenerator instances as necessary.</p></li>
+<li><p><b>protected SimpleMixInResolver _mixIns</b> - Mapping that defines how to apply mix-in annotations: key is the type to received additional annotations, and value is the type that has annotations to "mix in".</p></li>
+<li><p><b>protected ConfigOverrides _propertyOverrides</b> - Currently active per-type configuration overrides, accessed by declared type of property.</p></li>
+<li><p><b>protected Set&lt;Object&gt; _registeredModuleTypes</b> - Set of module types (as per Module.getTypeId() that have been registered; kept track of iff MapperFeature.IGNORE_DUPLICATE_MODULE_REGISTRATIONS is enabled, so that duplicate registration calls can be ignored (to avoid adding same handlers multiple times, mostly).</p></li>
+<li><p><b>protected ConcurrentHashMap&lt;JavaType,JsonDeserializer&lt;Object&gt;&gt; _rootDeserializers</b> - We will use a separate main-level Map for keeping track of root-level deserializers.</p></li>
+<li><p><b>protected SerializationConfig _serializationConfig</b> - Configuration object that defines basic global settings for the serialization process.</p></li>
+<li><p><b>protected SerializerFactory _serializerFactory</b> - Serializer factory used for constructing serializers.
+<li><p><b>protected DefaultSerializerProvider _serializerProvider</b> - Object that manages access to serializers used for serialization, including caching.</p></li>
+<li><p><b>protected SubtypeResolver _subtypeResolver</b> - Thing used for registering sub-types, resolving them to super/sub-types as needed.</p></li>
+<li><p><b>protected TypeFactory _typeFactory</b> - Specific factory used for creating JavaType instances; needed to allow modules to add more custom type handling (mostly to support types of non-Java JVM languages).</p></li>
+<li><p><b>protected static AnnotationIntrospector DEFAULT_ANNOTATION_INTROSPECTOR </b> </p></li>
+<li><p><b>protected static BaseSettings DEFAULT_BASE</b> - Base settings contain defaults used for all ObjectMapper instances.</p></li>
+<li><p><b>protected static VisibilityChecker&lt;?&gt; STD_VISIBILITY_CHECKER </b></p></li>
+</ul>
+<h2>Constructors</h2>
+<table class="src"> 
+<tr><th>S.No.</th><th>Constructor &amp; Description</th></tr>
+<tr><td>1</td><td><b>ObjectMapper()</b><p>Default constructor, which will construct the default JsonFactory as necessary, use SerializerProvider as its SerializerProvider, and BeanSerializerFactory as its SerializerFactory.</p></td></tr>
+<tr><td>2</td><td><b>ObjectMapper(JsonFactory jf)</b><p>Constructs instance that uses specified JsonFactory for constructing necessary JsonParsers and/or JsonGenerators.</p></td></tr>
+<tr><td>3</td><td><b>ObjectMapper(JsonFactory jf, SerializerProvider sp, DeserializerProvider dp)</b><p>Constructs instance that uses specified JsonFactory for constructing necessary JsonParsers and/or JsonGenerators, and uses given providers for accessing serializers and deserializers.</p></td></tr>
+<tr><td>4</td><td><b>protected ObjectMapper(ObjectMapper src)</b><p>Copy-constructor, mostly used to support copy().</p></td></tr>            
+</table>
+<h2>Methods</h2>
+<table class="src"> 
+<tr><td>1</td><td><b>protected void _checkInvalidCopy(Class&lt;?&gt; exp) </b> </p></li>
+<tr><td>2</td><td><b>protected void _configAndWriteValue(JsonGenerator g, Object value)</b> - Method called to configure the generator as necessary and then call write functionality</td></tr>
+<tr><td>3</td><td><b>protected Object _convert(Object fromValue, JavaType toValueType)</b> - Actual conversion implementation: instead of using existing read and write methods, much of code is inlined.</td></tr>
+<tr><td>4</td><td><b>protected JsonDeserializer&lt;Object&gt; _findRootDeserializer(DeserializationContext ctxt, JavaType valueType)</b> - Method called to locate deserializer for the passed root-level value.</td></tr>
+<tr><td>5</td><td><b>protected JsonToken _initForReading(JsonParser p)</b> - Method called to ensure that given parser is ready for reading content for data binding.</td></tr>
+<tr><td>6</td><td><b>protected ObjectReader _newReader(DeserializationConfig config)</b> - Factory method sub-classes must override, to produce ObjectReader instances of proper sub-type</td></tr>
+<tr><td>7</td><td><b>protected ObjectReader _newReader(DeserializationConfig config, JavaType valueType, Object valueToUpdate, FormatSchema schema, InjectableValues injectableValues)</b> - Factory method sub-classes must override, to produce ObjectReader instances of proper sub-type</td></tr>
+<tr><td>8</td><td><b>protected ObjectWriter _newWriter(SerializationConfig config)</b> - Factory method sub-classes must override, to produce ObjectWriter instances of proper sub-type</td></tr>
+<tr><td>9</td><td><b>protected ObjectWriter _newWriter(SerializationConfig config, FormatSchema schema)</b> - Factory method sub-classes must override, to produce ObjectWriter instances of proper sub-type</td></tr>
+<tr><td>10</td><td><b>protected ObjectWriter _newWriter(SerializationConfig config, JavaType rootType, PrettyPrinter pp)</b> - Factory method sub-classes must override, to produce ObjectWriter instances of proper sub-type.</td></tr>
+<tr><td>11</td><td><b>protected Object _readMapAndClose(JsonParser p0, JavaType valueType) </b> </td></tr> 
+<tr><td>12</td><td><b>protected Object _readValue(DeserializationConfig cfg, JsonParser p, JavaType valueType)</b> -
+Actual implementation of value reading+binding operation.</td></tr>
+<tr><td>13</td><td><b>protected DefaultSerializerProvider _serializerProvider(SerializationConfig config)</b></td></tr>
+Overridable helper method used for constructing SerializerProvider to use for serialization.
+<tr><td>14</td><td><b>protected Object _unwrapAndDeserialize(JsonParser p, DeserializationContext ctxt, DeserializationConfig config, JavaType rootType, JsonDeserializer&lt;Object&gt; deser) </b></td></tr>
+<tr><td>15</td><td><b>protected void _verifySchemaType(FormatSchema schema) </b></td></tr>
+<tr><td>16</td><td><b>void acceptJsonFormatVisitor(Class&lt;?&gt; type, JsonFormatVisitorWrapper visitor)</b> - Method for visiting type hierarchy for given type, using specified visitor.</td></tr>
+<tr><td>17</td><td><b>void acceptJsonFormatVisitor(JavaType type, JsonFormatVisitorWrapper visitor)</b> - Method for visiting type hierarchy for given type, using specified visitor.</td></tr>
+<tr><td>18</td><td><b>ObjectMapper addHandler(DeserializationProblemHandler h)</b> - Method for adding specified DeserializationProblemHandler to be used for handling specific problems during deserialization.</td></tr>
+<tr><td>19</td><td><b>ObjectMapper addMixIn(Class&lt;?&gt; target, Class&lt;?&gt; mixinSource)</b> - Method to use for adding mix-in annotations to use for augmenting specified class or interface.</td></tr>
+void addMixInAnnotations(Class&lt;?&gt; target, Class&lt;?&gt; mixinSource)</b> - Deprecated. Since 2.5: replaced by a fluent form of the method; addMixIn(Class, Class).</td></tr>
+<tr><td>20</td><td><b>boolean canDeserialize(JavaType type)</b> - Method that can be called to check whether mapper thinks it could deserialize an Object of given type.</td></tr>
+<tr><td>21</td><td><b>boolean canDeserialize(JavaType type, AtomicReference&lt;Throwable&gt; cause)</b> - Method similar to canDeserialize(JavaType) but that can return actual Throwable that was thrown when trying to construct serializer: this may be useful in figuring out what the actual problem is.</td></tr>
+<tr><td>22</td><td><b>boolean canSerialize(Class&lt;?&gt; type)</b> - Method that can be called to check whether mapper thinks it could serialize an instance of given Class.</td></tr>
+<tr><td>23</td><td><b>boolean canSerialize(Class&lt;?&gt; type, AtomicReference&lt;Throwable&gt; cause)</b> - Method similar to canSerialize(Class) but that can return actual Throwable that was thrown when trying to construct serializer: this may be useful in figuring out what the actual problem is.</td></tr>
+<tr><td>24</td><td><b>ObjectMapper clearProblemHandlers()</b> - Method for removing all registered DeserializationProblemHandlers instances from this mapper.</td></tr>
+<tr><td>25</td><td><b>MutableConfigOverride configOverride(Classlt;?&gt; type)</b> - Accessor for getting a mutable configuration override object for given type, needed to add or change per-type overrides applied to properties of given type.</td></tr>
+<tr><td>26</td><td><b>ObjectMapper configure(DeserializationFeature f, boolean state)</b> - Method for changing state of an on/off deserialization feature for this object mapper.</td></tr>
+<tr><td>27</td><td><b>ObjectMapper configure(JsonGenerator.Feature f, boolean state)</b> - Method for changing state of an on/off JsonGenerator feature for generator instances this object mapper creates.</td></tr>
+<tr><td>28</td><td><b>ObjectMapper configure(JsonParser.Feature f, boolean state)</b> - Method for changing state of specified JsonParser.Features for parser instances this object mapper creates.</td></tr>
+<tr><td>29</td><td><b>ObjectMapper configure(MapperFeature f, boolean state)</b> - Method for changing state of an on/off mapper feature for this mapper instance.</td></tr>
+<tr><td>30</td><td><b>ObjectMapper configure(SerializationFeature f, boolean state)</b> - Method for changing state of an on/off serialization feature for this object mapper.</td></tr>
+<tr><td>31</td><td><b>JavaType constructType(Type t)</b> - Convenience method for constructing JavaType out of given type (typically java.lang.Class), but without explicit context.</td></tr>
+<tr><td>32</td><td><b>&lt;T&gt; T convertValue(Object fromValue, Class&lt;T&gt; toValueType)</b> - Convenience method for doing two-step conversion from given value, into instance of given value type, if (but only if!) conversion is needed.</td></tr>
+<tr><td>33</td><td><b>&lt;T&gt; T convertValue(Object fromValue, JavaType toValueType)</b> - See convertValue(Object, Class)</td></tr>
+<tr><td>34</td><td><b>&lt;T&gt; T convertValue(Object fromValue, TypeReference&lt;?&gt; toValueTypeRef)</b> - See convertValue(Object, Class)</td></tr>
+<tr><td>35</td><td><b>ObjectMapper copy()</b> - Method for creating a new ObjectMapper instance that has same initial configuration as this instance.</td></tr>
+<tr><td>36</td><td><b>ArrayNode createArrayNode()</b> - Note: return type is co-variant, as basic ObjectCodec abstraction can not refer to concrete node types (as it's part of core package, whereas impls are part of mapper package)</td></tr>
+protected DefaultDeserializationContext  createDeserializationContext(JsonParser p, DeserializationConfig cfg)</b> - Internal helper method called to create an instance of DeserializationContext for deserializing a single root value.</td></tr>
+<tr><td>37</td><td><b>ObjectNode createObjectNode()</b> - Note: return type is co-variant, as basic ObjectCodec abstraction can not refer to concrete node types (as it's part of core package, whereas impls are part of mapper package)</td></tr>
+<tr><td>38</td><td><b>protected ClassIntrospector
+defaultClassIntrospector()</b> - Overridable helper method used to construct default ClassIntrospector to use.</td></tr>
+<tr><td>39</td><td><b>ObjectMapper disable(DeserializationFeature feature)</b> - Method for enabling specified DeserializationConfig features.</td></tr>
+<tr><td>40</td><td><b>ObjectMapper disable(DeserializationFeature first, DeserializationFeature... f)</b> - Method for enabling specified DeserializationConfig features.</td></tr>
+<tr><td>41</td><td><b>ObjectMapper disable(JsonGenerator.Feature... features)</b> - Method for disabling specified JsonGenerator.Features for parser instances this object mapper creates.</td></tr>
+<tr><td>42</td><td><b>ObjectMapper disable(JsonParser.Feature... features)</b> - Method for disabling specified JsonParser.Features for parser instances this object mapper creates.</td></tr>
+<tr><td>43</td><td><b>ObjectMapper disable(MapperFeature... f)</b> - Method for enabling specified DeserializationConfig features.</td></tr>
+<tr><td>44</td><td><b>ObjectMapper disable(SerializationFeature f)</b> - Method for enabling specified DeserializationConfig features.</td></tr>
+<tr><td>45</td><td><b>ObjectMapper disable(SerializationFeature first, SerializationFeature... f)</b> - Method for enabling specified DeserializationConfig features.</td></tr>
+<tr><td>46</td><td><b>ObjectMapper disableDefaultTyping()</b> - Method for disabling automatic inclusion of type information; if so, only explicitly annotated types (ones with JsonTypeInfo) will have additional embedded type information.</td></tr>
+<tr><td>47</td><td><b>ObjectMapper enable(DeserializationFeature feature)</b> - Method for enabling specified DeserializationConfig features.</td></tr>
+<tr><td>48</td><td><b>ObjectMapper enable(DeserializationFeature first, DeserializationFeature... f)</b> - Method for enabling specified DeserializationConfig features.</td></tr>
+<tr><td>49</td><td><b>ObjectMapper enable(JsonGenerator.Feature... features)</b> - Method for enabling specified JsonGenerator.Features for parser instances this object mapper creates.</td></tr>
+<tr><td>50</td><td><b>ObjectMapper enable(JsonParser.Feature... features)</b> - Method for enabling specified JsonParser.Features for parser instances this object mapper creates.</td></tr>
+<tr><td>51</td><td><b>ObjectMapper enable(MapperFeature... f)</b> - Method for enabling specified MapperConfig features.</td></tr>
+<tr><td>52</td><td><b>ObjectMapper enable(SerializationFeature f)</b> - Method for enabling specified DeserializationConfig feature.</td></tr>
+<tr><td>53</td><td><b>ObjectMapper enable(SerializationFeature first, SerializationFeature... f)</b> - Method for enabling specified DeserializationConfig features. 
+<tr><td>54</td><td><b>ObjectMapper enableDefaultTyping()</b> - Convenience method that is equivalent to calling</td></tr>
+<tr><td>55</td><td><b>ObjectMapper enableDefaultTyping(ObjectMapper.DefaultTyping dti)</b> - Convenience method that is equivalent to calling</td></tr>
+<tr><td>56</td><td><b>ObjectMapper enableDefaultTyping(ObjectMapper.DefaultTyping applicability, JsonTypeInfo.As includeAs)</b> - Method for enabling automatic inclusion of type information, needed for proper deserialization of polymorphic types (unless types have been annotated with JsonTypeInfo).</td></tr>
+<tr><td>57</td><td><b>ObjectMapper enableDefaultTypingAsProperty(ObjectMapper.DefaultTyping applicability, String propertyName)</b> - Method for enabling automatic inclusion of type information -- needed for proper deserialization of polymorphic types (unless types have been annotated with JsonTypeInfo) -- using "As.PROPERTY" inclusion mechanism and specified property name to use for inclusion (default being "@class" since default type information always uses class name as type identifier)</td></tr>
+<tr><td>58</td><td><b>ObjectMapper findAndRegisterModules()</b> - Convenience method that is functionally equivalent to: mapper.registerModules(mapper.findModules());</td></tr>
+<tr><td>59</td><td><b>Class&lt;?&gt; findMixInClassFor(Class&lt;?&gt; cls) </b> </td></tr>
+<tr><td>60</td><td><b>static List&lt;Module&gt; findModules()</b> - Method for locating available methods, using JDK ServiceLoader facility, along with module-provided SPI.</td></tr>
+<tr><td>61</td><td><b>static List&lt;Module&gt; findModules(ClassLoader classLoader)</b> - Method for locating available methods, using JDK ServiceLoader facility, along with module-provided SPI.</td></tr>
+JsonSchema generateJsonSchema(Class&lt;?&gt; t)</b> - Deprecated. Since 2.6 use external JSON Schema generator (https://github.com/FasterXML/jackson-module-jsonSchema) (which under the hood calls acceptJsonFormatVisitor(JavaType, JsonFormatVisitorWrapper))</td></tr>
+<tr><td>62</td><td><b>DateFormat getDateFormat() </b> </td></tr>
+<tr><td>63</td><td><b>DeserializationConfig getDeserializationConfig()</b> - Method that returns the shared default DeserializationConfig object that defines configuration settings for deserialization.</td></tr>
+<tr><td>64</td><td><b>DeserializationContext getDeserializationContext()</b> - Method for getting current DeserializationContext.</td></tr>
+<tr><td>65</td><td><b>JsonFactory getFactory()</b> - Method that can be used to get hold of JsonFactory that this mapper uses if it needs to construct JsonParsers and/or JsonGenerators.</td></tr>
+<tr><td>66</td><td><b>InjectableValues getInjectableValues() </b> </td></tr>
+<tr><td>67</td><td><b>JsonFactory getJsonFactory()</b> - Deprecated. Since 2.1: Use getFactory() instead</td></tr>
+<tr><td>68</td><td><b>JsonNodeFactory getNodeFactory()</b> - Method that can be used to get hold of JsonNodeFactory that this mapper will use when directly constructing root JsonNode instances for Trees.</td></tr>
+<tr><td>69</td><td><b>PropertyNamingStrategy getPropertyNamingStrategy()</b> </td></tr>
+<tr><td>70</td><td><b>SerializationConfig getSerializationConfig()</b> - Method that returns the shared default SerializationConfig object that defines configuration settings for serialization.</td></tr>
+<tr><td>71</td><td><b>SerializerFactory getSerializerFactory()</b> - Method for getting current SerializerFactory.</td></tr>
+<tr><td>72</td><td><b>SerializerProvider getSerializerProvider()</b> - Accessor for the "blueprint" (or, factory) instance, from which instances are created by calling DefaultSerializerProvider.createInstance(com.fasterxml.jackson.databind.SerializationConfig, com.fasterxml.jackson.databind.ser.SerializerFactory).</td></tr>
+<tr><td>73</td><td><b>SerializerProvider getSerializerProviderInstance()</b> - Accessor for constructing and returning a SerializerProvider instance that may be used for accessing serializers.</td></tr>
+<tr><td>74</td><td><b>SubtypeResolver getSubtypeResolver()</b> - Method for accessing subtype resolver in use.</td></tr>
+<tr><td>75</td><td><b>TypeFactory getTypeFactory() </b> - Accessor for getting currently configured TypeFactory instance.</td></tr>
+<tr><td>76</td><td><b>VisibilityChecker&lt;?&gt; getVisibilityChecker()</b> - Method for accessing currently configured visibility checker; object used for determining whether given property element (method, field, constructor) can be auto-detected or not.</td></tr>
+<tr><td>77</td><td><b>boolean isEnabled(DeserializationFeature f)</b> - Method for checking whether given deserialization-specific feature is enabled.</td></tr>
+<tr><td>78</td><td><b>boolean isEnabled(JsonFactory.Feature f)</b> - Convenience method, equivalent to:</td></tr>
+<tr><td>79</td><td><b>boolean isEnabled(JsonGenerator.Feature f) </b></td></tr>
+<tr><td>80</td><td><b>boolean isEnabled(JsonParser.Feature f) </b> </td></tr>
+<tr><td>81</td><td><b>boolean isEnabled(MapperFeature f)</b> - Method for checking whether given MapperFeature is enabled.</td></tr>
+<tr><td>82</td><td><b>boolean isEnabled(SerializationFeature f)</b> - Method for checking whether given serialization-specific feature is enabled.</td></tr>
+<tr><td>83</td><td><b>int mixInCount() </b> </td></tr>
+<tr><td>84</td><td><b>ObjectReader reader()</b> - Factory method for constructing ObjectReader with default settings.</td></tr>
+<tr><td>85</td><td><b>ObjectReader reader(Base64Variant defaultBase64)</b> - Factory method for constructing ObjectReader that will use specified Base64 encoding variant for Base64-encoded binary data.</td></tr>
+<tr><td>86</td><td><b>ObjectReader reader(Class&lt;?&gt; type)</b> - Deprecated. Since 2.5, use readerFor(Class) instead</td></tr>
+<tr><td>87</td><td><b>ObjectReader reader(ContextAttributes attrs)</b> - Factory method for constructing ObjectReader that will use specified default attributes.</td></tr>
+<tr><td>88</td><td><b>ObjectReader reader(DeserializationFeature feature)</b> - Factory method for constructing ObjectReader with specified feature enabled (compared to settings that this mapper instance has).</td></tr>
+<tr><td>89</td><td><b>ObjectReader reader(DeserializationFeature first, DeserializationFeature... other)</b> - Factory method for constructing ObjectReader with specified features enabled (compared to settings that this mapper instance has).</td></tr>
+<tr><td>90</td><td><b>ObjectReader reader(FormatSchema schema)</b> - Factory method for constructing ObjectReader that will pass specific schema object to JsonParser used for reading content.</td></tr>
+<tr><td>91</td><td><b>ObjectReader reader(InjectableValues injectableValues)</b> - Factory method for constructing ObjectReader that will use specified injectable values.</td></tr>
+<tr><td>92</td><td><b>ObjectReader reader(JavaType type)</b> - Deprecated. Since 2.5, use readerFor(JavaType) instead</td></tr>
+<tr><td>93</td><td><b>ObjectReader reader(JsonNodeFactory f)</b> - Factory method for constructing ObjectReader that will use specified JsonNodeFactory for constructing JSON trees.
+<tr><td>94</td><td><b>ObjectReader reader(TypeReference&lt;?&gt; type)</b> - Deprecated. Since 2.5, use readerFor(TypeReference) instead</td></tr>
+<tr><td>95</td><td><b>ObjectReader readerFor(Class&lt;?&gt; type)</b> - Factory method for constructing ObjectReader that will read or update instances of specified type</td></tr>
+<tr><td>96</td><td><b>ObjectReader readerFor(JavaType type)</b> - Factory method for constructing ObjectReader that will read or update instances of specified type</td></tr>
+<tr><td>97</td><td><b>ObjectReader readerFor(TypeReference&lt;?&gt; type)</b> - Factory method for constructing ObjectReader that will read or update instances of specified type</td></tr>
+<tr><td>98</td><td><b>ObjectReader readerForUpdating(Object valueToUpdate)</b> - Factory method for constructing ObjectReader that will update given Object (usually Bean, but can be a Collection or Map as well, but NOT an array) with JSON data.</td></tr>
+<tr><td>99</td><td><b>ObjectReader readerWithView(Class&lt;?&gt; view)</b> - Factory method for constructing ObjectReader that will deserialize objects using specified JSON View (filter).</td></tr>
+<tr><td>100</td><td><b>JsonNode readTree(byte[] content)</b> - Method to deserialize JSON content as tree expressed using set of JsonNode instances.</td></tr>
+<tr><td>101</td><td><b>JsonNode readTree(File file)</b> - Method to deserialize JSON content as tree expressed using set of JsonNode instances.</td></tr>
+<tr><td>102</td><td><b>JsonNode readTree(InputStream in)</b> - Method to deserialize JSON content as tree expressed using set of JsonNode instances.</td></tr>
+<tr><td>103</td><td><b>&lt;T extends TreeNode&gt; T readTree(JsonParser p)</b> - Method to deserialize JSON content as tree expressed using set of JsonNode instances.</td></tr>
+<tr><td>104</td><td><b>JsonNode readTree(Reader r)</b> - Method to deserialize JSON content as tree expressed using set of JsonNode instances.</td></tr>
+<tr><td>105</td><td><b>JsonNode readTree(String content)</b> - Method to deserialize JSON content as tree expressed using set of JsonNode instances.</td></tr>
+<tr><td>106</td><td><b>JsonNode readTree(URL source)</b> - Method to deserialize JSON content as tree expressed using set of JsonNode instances.</td></tr>
+<tr><td>107</td><td><b>&lt;T&gt; T readValue(byte[] src, Class&lt;T&gt; valueType) </b> </td></tr>
+<tr><td>108</td><td><b>&lt;T&gt; T readValue(byte[] src, int offset, int len, Class&lt;T&gt; valueType)</b> </td></tr>
+<tr><td>109</td><td><b>&lt;T&gt; T readValue(byte[] src, int offset, int len, JavaType valueType) </b> </td></tr>
+<tr><td>110</td><td><b>&lt;T&gt; T readValue(byte[] src, int offset, int len, TypeReference valueTypeRef) </b> </td></tr>
+<tr><td>111</td><td><b>&lt;T&gt; T readValue(byte[] src, JavaType valueType) </b> </td></tr>
+<tr><td>112</td><td><b>&lt;T&gt; T readValue(byte[] src, TypeReference valueTypeRef) </b> </td></tr>
+<tr><td>113</td><td><b>&lt;T&gt; T readValue(DataInput src, Class&lt;T&gt; valueType) </b> </td></tr>
+<tr><td>114</td><td><b>&lt;T&gt; T readValue(DataInput src, JavaType valueType) </b> </td></tr>
+<tr><td>115</td><td><b>&lt;T&gt; T readValue(File src, Class&lt;T&gt; valueType)</b> - Method to deserialize JSON content from given file into given Java type.</td></tr>
+<tr><td>116</td><td><b>&lt;T&gt; T readValue(File src, JavaType valueType)</b> - Method to deserialize JSON content from given file into given Java type.</td></tr>
+<tr><td>117</td><td><b>&lt;T&gt; T readValue(File src, TypeReference valueTypeRef)</b> - Method to deserialize JSON content from given file into given Java type.</td></tr>
+<tr><td>118</td><td><b>&lt;T&gt; T readValue(InputStream src, Class&lt;T&gt; valueType) </b> </td></tr>
+<tr><td>119</td><td><b>&lt;T&gt; T readValue(InputStream src, JavaType valueType) </b></td></tr>
+<tr><td>120</td><td><b>&lt;T&gt; T readValue(InputStream src, TypeReference valueTypeRef) </b> </td></tr>
+<tr><td>121</td><td><b>&lt;T&gt; T readValue(JsonParser p, Class&lt;T&gt; valueType) <b> - Method to deserialize JSON content into a non-container type (it can be an array type, however): typically a bean, array or a wrapper type (like Boolean).</td></tr>
+<tr><td>122</td><td><b>&lt;T&gt; T readValue(JsonParser p, JavaType valueType)</b> - Type-safe overloaded method, basically alias for readValue(JsonParser, Class).</td></tr>
+<tr><td>123</td><td><b>&lt;T&gt; T readValue(JsonParser p, ResolvedType valueType)</b> - Method to deserialize JSON content into a Java type, reference to which is passed as argument.</td></tr>
+<tr><td>124</td><td><b>&lt;T&gt; T readValue(JsonParser p, TypeReference&lt;?&gt; valueTypeRef)</b> - Method to deserialize JSON content into a Java type, reference to which is passed as argument.</td></tr>
+<tr><td>125</td><td><b>&lt;T&gt; T readValue(Reader src, Class&lt;T&gt; valueType) </b> - <tr><td>1</td><td><b>&lt;T&gt; T readValue(Reader src, JavaType valueType) </td></tr>
+<tr><td>126</td><td><b>&lt;T&gt; T readValue(Reader src, TypeReference valueTypeRef) </b> </td></tr>
+<tr><td>127</td><td><b>&lt;T&gt; T readValue(String content, Class&lt;T&gt; valueType)</b> - Method to deserialize JSON content from given JSON content String.</td></tr>
+<tr><td>128</td><td><b>&lt;T&gt; T readValue(String content, JavaType valueType)</b> - Method to deserialize JSON content from given JSON content String.</td></tr>
+<tr><td>129</td><td><b>&lt;T&gt; T readValue(String content, TypeReference valueTypeRef)</b> - Method to deserialize JSON content from given JSON content String.</td></tr>
+<tr><td>130</td><td><b>&lt;T&gt; T readValue(URL src, Class&lt;T&gt; valueType)</b> - Method to deserialize JSON content from given resource into given Java type.</td></tr>
+<tr><td>131</td><td><b>&lt;T&gt; T readValue(URL src, JavaType valueType) </b> </td></tr>
+<tr><td>132</td><td><b>&lt;T&gt; T readValue(URL src, TypeReference valueTypeRef)</b> - Method to deserialize JSON content from given resource into given Java type.</td></tr>
+<tr><td>133</td><td><b>&lt;T&gt; MappingIterator&lt;T&gt;
+readValues(JsonParser p, Class&lt;T&gt; valueType)</b> - Convenience method, equivalent in function to:</td></tr>
+<tr><td>134</td><td><b>&lt;T&gt; MappingIterator&lt;T&gt;
+readValues(JsonParser p, JavaType valueType)</b> - Convenience method, equivalent in function to:</td></tr>
+<tr><td>135</td><td><b>&lt;T&gt; MappingIterator&lt;T&gt;
+readValues(JsonParser p, ResolvedType valueType)</b> - Convenience method, equivalent in function to:</td></tr>
+<tr><td>136</td><td><b>&lt;T&gt; MappingIterator&lt;T&gt;
+readValues(JsonParser p, TypeReference&lt;?&gt;valueTypeRef)</b> - Method for reading sequence of Objects from parser stream.</td></tr>
+<tr><td>137</td><td><b>ObjectMapper registerModule(Module module)</b> - Method for registering a module that can extend functionality provided by this mapper; for example, by adding providers for custom serializers and deserializers.</td></tr>
+<tr><td>138</td><td><b>ObjectMapper registerModules(Iterable&lt;Module&gt; modules)</b> - Convenience method for registering specified modules in order; functionally equivalent to:</td></tr>
+<tr><td>139</td><td><b>ObjectMapper registerModules(Module... modules)</b> - Convenience method for registering specified modules in order; functionally equivalent to:</td></tr>
+void registerSubtypes(Class&lt;?&gt;... classes)</b> - Method for registering specified class as a subtype, so that typename-based resolution can link supertypes to subtypes (as an alternative to using annotations).</td></tr>
+<tr><td>140</td><td><b>void registerSubtypes(NamedType... types)</b> - Method for registering specified class as a subtype, so that typename-based resolution can link supertypes to subtypes (as an alternative to using annotations).</td></tr>
+<tr><td>141</td><td><b>ObjectMapper setAnnotationIntrospector(AnnotationIntrospector ai)</b> - Method for setting AnnotationIntrospector used by this mapper instance for both serialization and deserialization.</td></tr>
+<tr><td>142</td><td><b>ObjectMapper setAnnotationIntrospectors(AnnotationIntrospector serializerAI, AnnotationIntrospector deserializerAI)</b> - Method for changing AnnotationIntrospector instances used by this mapper instance for serialization and deserialization, specifying them separately so that different introspection can be used for different aspects.</td></tr>
+<tr><td>143</td><td><b>ObjectMapper setBase64Variant(Base64Variant v)</b> - Method that will configure default Base64Variant that byte[] serializers and deserializers will use.</td></tr>
+<tr><td>144</td><td><b>ObjectMapper setConfig(DeserializationConfig config)</b> - Method that allows overriding of the underlying DeserializationConfig object.</td></tr>
+<tr><td>145</td><td><b>ObjectMapper setConfig(SerializationConfig config)</b> - Method that allows overriding of the underlying SerializationConfig object, which contains serialization-specific configuration settings.
+<tr><td>146</td><td><b>ObjectMapper setDateFormat(DateFormat dateFormat)</b> - 
+Method for configuring the default DateFormat to use when serializing time values as Strings, and deserializing from JSON Strings.</td></tr>
+<tr><td>147</td><td><b>ObjectMapper setDefaultPrettyPrinter(PrettyPrinter pp)</b> - Method for specifying PrettyPrinter to use when "default pretty-printing" is enabled (by enabling SerializationFeature.INDENT_OUTPUT)</td></tr>
+<tr><td>148</td><td><b>ObjectMapper setDefaultTyping(TypeResolverBuilder&lt;?&gt; typer)</b> - Method for enabling automatic inclusion of type information, using specified handler object for determining which types this affects, as well as details of how information is embedded.</td></tr>
+<tr><td>149</td><td><b>ObjectMapper setFilterProvider(FilterProvider filterProvider)</b> - Method for configuring this mapper to use specified FilterProvider for mapping Filter Ids to actual filter instances.</td></tr>
+void setFilters(FilterProvider filterProvider)</b> - Deprecated. Since 2.6, use setFilterProvider(com.fasterxml.jackson.databind.ser.FilterProvider) instead (allows chaining)</td></tr>
+<tr><td>150</td><td><b>Object setHandlerInstantiator(HandlerInstantiator hi)</b> - Method for configuring HandlerInstantiator to use for creating instances of handlers (such as serializers, deserializers, type and type id resolvers), given a class.</td></tr>
+<tr><td>151</td><td><b>ObjectMapper setInjectableValues(InjectableValues injectableValues)</b> - Method for configuring InjectableValues which used to find values to inject.</td></tr>
+<tr><td>152</td><td><b>ObjectMapper setLocale(Locale l)</b> - Method for overriding default locale to use for formatting.</td></tr>
+<tr><td>153</td><td><b>void setMixInAnnotations(Map&lt;Class&lt;?&gt;,Class&lt;?&gt;&gt; sourceMixins)</b> - Deprecated. Since 2.5: replaced by a fluent form of the method; setMixIns(java.util.Map&lt;java.lang.Class&lt;?&gt;, java.lang.Class&lt;?&gt;&gt;).</td></tr>
+<tr><td>154</td><td><b>ObjectMapper setMixInResolver(ClassIntrospector.MixInResolver resolver)</b> - Method that can be called to specify given resolver for locating mix-in classes to use, overriding directly added mappings.</td></tr>
+<tr><td>155</td><td><b>ObjectMapper setMixIns(Map&lt;Class&lt;?&gt;,Class&lt;?&gt;&gt; sourceMixins)</b> - Method to use for defining mix-in annotations to use for augmenting annotations that processable (serializable / deserializable) classes have.</td></tr>
+<tr><td>156</td><td><b>ObjectMapper setNodeFactory(JsonNodeFactory f)</b> - Method for specifying JsonNodeFactory to use for constructing root level tree nodes (via method createObjectNode()</td></tr>
+<tr><td>157</td><td><b>ObjectMapper setPropertyInclusion(JsonInclude.Value incl)</b> - Method for setting default POJO property inclusion strategy for serialization.</td></tr>
+<tr><td>158</td><td><b>ObjectMapper setPropertyNamingStrategy(PropertyNamingStrategy s)</b> - Method for setting custom property naming strategy to use.</td></tr>
+<tr><td>159</td><td><b>ObjectMapper setSerializationInclusion(JsonInclude.Include incl)</b> - Convenience method, equivalent to calling:</td></tr>
+<tr><td>160</td><td><b>ObjectMapper setSerializerFactory(SerializerFactory f)</b> - Method for setting specific SerializerFactory to use for constructing (bean) serializers.</td></tr>
+<tr><td>161</td><td><b>ObjectMapper setSerializerProvider(DefaultSerializerProvider p)</b> - Method for setting "blueprint" SerializerProvider instance to use as the base for actual provider instances to use for handling caching of JsonSerializer instances.</td></tr>
+<tr><td>162</td><td><b>ObjectMapper setSubtypeResolver(SubtypeResolver str)</b> - Method for setting custom subtype resolver to use.</td></tr>
+<tr><td>163</td><td><b>ObjectMapper setTimeZone(TimeZone tz)</b> - Method for overriding default TimeZone to use for formatting.</td></tr>
+<tr><td>164</td><td><b>ObjectMapper setTypeFactory(TypeFactory f)</b> - Method that can be used to override TypeFactory instance used by this mapper.</td></tr>
+<tr><td>165</td><td><b>ObjectMapper setVisibility(PropertyAccessor forMethod, JsonAutoDetect.Visibility visibility)</b> - Convenience method that allows changing configuration for underlying VisibilityCheckers, to change details of what kinds of properties are auto-detected.</td></tr>
+<tr><td>166</td><td><b>ObjectMapper setVisibility(VisibilityChecker&lt;?&gt; vc)</b> - Method for setting currently configured VisibilityChecker, object used for determining whether given property element (method, field, constructor) can be auto-detected or not.</td></tr>
+<tr><td>167</td><td><b>void setVisibilityChecker(VisibilityChecker&lt;?&gt; vc)</b> - Deprecated. Since 2.6 use setVisibility(VisibilityChecker) instead.</td></tr>
+<tr><td>168</td><td><b>JsonParser treeAsTokens(TreeNode n)</b> - Method for constructing a JsonParser out of JSON tree representation.</td></tr>
+<tr><td>169</td><td><b>&lt;T&gt; T treeToValue(TreeNode n, Class&lt;T&gt; valueType)</b> - Convenience conversion method that will bind data given JSON tree contains into specific value (usually bean) type.</td></tr>
+<tr><td>170</td><td><b>&lt;T extends JsonNode&gt; T valueToTree(Object fromValue)</b> - Reverse of treeToValue(com.fasterxml.jackson.core.TreeNode, java.lang.Class&lt;T&gt;); given a value (usually bean), will construct equivalent JSON Tree representation.</td></tr>
+<tr><td>171</td><td><b>Version version()</b> - Method that will return version information stored in and read from jar that contains this class.</td></tr>
+<tr><td>172</td><td><b>ObjectWriter writer()</b> - Convenience method for constructing ObjectWriter with default settings.</td></tr>
+<tr><td>173</td><td><b>ObjectWriter writer(Base64Variant defaultBase64)</b> - Factory method for constructing ObjectWriter that will use specified Base64 encoding variant for Base64-encoded binary data.</td></tr>
+<tr><td>174</td><td><b>ObjectWriter writer(CharacterEscapes escapes)</b> -</td></tr> 
+Factory method for constructing ObjectReader that will use specified character escaping details for output.</td></tr>
+<tr><td>175</td><td><b>ObjectWriter writer(ContextAttributes attrs)</b> - Factory method for constructing ObjectWriter that will use specified default attributes.</td></tr>
+<tr><td>176</td><td><b>ObjectWriter writer(DateFormat df)</b> - Factory method for constructing ObjectWriter that will serialize objects using specified DateFormat; or, if null passed, using timestamp (64-bit number.</td></tr>
+<tr><td>177</td><td><b>ObjectWriter writer(FilterProvider filterProvider)</b> - Factory method for constructing ObjectWriter that will serialize objects using specified filter provider.</td></tr>
+<tr><td>178</td><td><b>ObjectWriter writer(FormatSchema schema)</b> - Factory method for constructing ObjectWriter that will pass specific schema object to JsonGenerator used for writing content.</td></tr>
+<tr><td>179</td><td><b>ObjectWriter writer(PrettyPrinter pp)</b> - Factory method for constructing ObjectWriter that will serialize objects using specified pretty printer for indentation (or if null, no pretty printer)</td></tr>
+<tr><td>180</td><td><b>ObjectWriter writer(SerializationFeature feature)</b> - Factory method for constructing ObjectWriter with specified feature enabled (compared to settings that this mapper instance has).</td></tr>
+<tr><td>181</td><td><b>ObjectWriter writer(SerializationFeature first, SerializationFeature... other)</b> - Factory method for constructing ObjectWriter with specified features enabled (compared to settings that this mapper instance has).</td></tr>
+<tr><td>182</td><td><b>ObjectWriter writerFor(Class&lt;?&gt; rootType)</b> - Factory method for constructing ObjectWriter that will serialize objects using specified root type, instead of actual runtime type of value.</td></tr>
+<tr><td>183</td><td><b>ObjectWriter writerFor(JavaType rootType)</b> - Factory method for constructing ObjectWriter that will serialize objects using specified root type, instead of actual runtime type of value.</td></tr>
+<tr><td>184</td><td><b>ObjectWriter writerFor(TypeReference&lt;?&gt; rootType)</b> - Factory method for constructing ObjectWriter that will serialize objects using specified root type, instead of actual runtime type of value.</td></tr>
+<tr><td>185</td><td><b>ObjectWriter writerWithDefaultPrettyPrinter()</b> - Factory method for constructing ObjectWriter that will serialize objects using the default pretty printer for indentation.</td></tr>
+<tr><td>186</td><td><b>ObjectWriter writerWithType(Class&lt;?&gt; rootType)</b> - Deprecated. Since 2.5, use writerFor(Class) instead.</td></tr>
+<tr><td>187</td><td><b>ObjectWriter writerWithType(JavaType rootType)</b> - Deprecated. Since 2.5, use writerFor(JavaType) instead.</td></tr>
+<tr><td>188</td><td><b>ObjectWriter writerWithType(TypeReference&lt;?&gt; rootType)</b> - Deprecated. Since 2.5, use writerFor(TypeReference) instead.</td></tr>
+<tr><td>189</td><td><b>ObjectWriter writerWithView(Class&lt;?&gt; serializationView)</b> - Factory method for constructing ObjectWriter that will serialize objects using specified JSON View (filter).</td></tr>
+<tr><td>190</td><td><b>void writeTree(JsonGenerator jgen, JsonNode rootNode)</b> - Method to serialize given JSON Tree, using generator provided.</td></tr>
+<tr><td>191</td><td><b>void writeTree(JsonGenerator jgen, TreeNode rootNode) </b> </td></tr> 
+<tr><td>192</td><td><b>void writeValue(DataOutput out, Object value) </b> </td></tr>
+<tr><td>193</td><td><b>void writeValue(File resultFile, Object value)</b> - Method that can be used to serialize any Java value as JSON output, written to File provided.</td></tr>
+<tr><td>194</td><td><b>void writeValue(JsonGenerator g, Object value)</b> - Method that can be used to serialize any Java value as JSON output, using provided JsonGenerator.</td></tr>
+<tr><td>195</td><td><b>void writeValue(OutputStream out, Object value)</b> - Method that can be used to serialize any Java value as JSON output, using output stream provided (using encoding JsonEncoding.UTF8).</td></tr>
+<tr><td>196</td><td><b>void writeValue(Writer w, Object value)</b> - Method that can be used to serialize any Java value as JSON output, using Writer provided.</td></tr>
+<tr><td>197</td><td><b>byte[] writeValueAsBytes(Object value)</b> - Method that can be used to serialize any Java value as a byte array.</td></tr>
+<tr><td>198</td><td><b>String writeValueAsString(Object value)</b> - Method that can be used to serialize any Java value as a String.</td></tr>
+</table>
+<h2>Methods inherited</h2>
+<p>This class inherits methods from the following classes:</p>
+<ul class="list">
+<li><p>java.lang.Object</p></li>
+</ul>
+<h2>ObjectMapper Example</h2>
+<p>Create the following java program using any editor of your choice in say <b>C:/&gt; Jackson_WORKSPACE</b></p>
+<p><i>File: JacksonTester.java</i></p>
+<pre class="prettyprint tryit">
+import java.io.IOException;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JacksonTester {
+   public static void main(String args[]){
+   
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonString = "{\"name\":\"Mahesh\", \"age\":21}";
+      
+      //map json to student
+      try{
+         Student student = mapper.readValue(jsonString, Student.class);
+         
+         System.out.println(student);
+         
+         jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student);
+         
+         System.out.println(jsonString);
+      }
+      catch (JsonParseException e) { e.printStackTrace();}
+      catch (JsonMappingException e) { e.printStackTrace(); }
+      catch (IOException e) { e.printStackTrace(); }
+   }
+}
+
+class Student {
+   private String name;
+   private int age;
+   public Student(){}
+   public String getName() {
+      return name;
+   }
+   public void setName(String name) {
+      this.name = name;
+   }
+   public int getAge() {
+      return age;
+   }
+   public void setAge(int age) {
+      this.age = age;
+   }
+   public String toString(){
+      return "Student [ name: "+name+", age: "+ age+ " ]";
+   }
+}
+</pre>
+<p><b>Verify the result</b></p>
+<p>Compile the classes using <b>javac</b> compiler as follows:</p>
+<pre class="prettyprint notranslate">
+C:\Jackson_WORKSPACE>javac JacksonTester.java
+</pre>
+<p>Now run the jacksonTester to see the result:</p>
+<pre class="prettyprint notranslate">
+C:\Jackson_WORKSPACE>java JacksonTester
+</pre>
+<p>Verify the Output</p>
+<pre class="result notranslate">
+Student [ name: Mahesh, age: 21 ]
+{
+  "name" : "Mahesh",
+  "age" : 21
+}
+</pre>
+<a href="/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/jackson/jackson_first_application.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/jackson/jackson_object_serialization.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

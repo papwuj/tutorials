@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Linux Admin - Quota Management</title>
+<meta charset="utf-8">
+<meta name="description" content="Linux Admin - Quota Management - CentOS disk quotas can be enabled both; alerting the system administrator and denying further disk-storage-access to a user before disk capacity is exceeded. Wh"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/linux_admin/linux_admin_quota_management.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#dfa018;
+}
+a.demo {
+    background:#dfa018;
+}
+li.heading {
+    background:#dfa018;
+}
+.course-box{background:#dfa018}
+.home-intro-sub p{color:#dfa018}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/linux_admin/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/linux_admin/images/linux-admin-mini-logo.jpg" alt="Linux Admin Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Tutorial</li>
+<li><a href="/linux_admin/index.htm">Linux Admin - Home</a></li>
+<li><a href="/linux_admin/linux_admin_centos_overview.htm">CentOS Overview</a></li>
+<li><a href="/linux_admin/basic_centos_linux_commands.htm">Basic CentOS Linux Commands</a></li>
+<li><a href="/linux_admin/linux_admin_file_folder_management.htm">File / Folder Management</a></li>
+<li><a href="/linux_admin/linux_admin_user_management.htm">User Management</a></li>
+<li><a href="/linux_admin/linux_admin_quota_management.htm">Quota Management</a></li>
+<li><a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Systemd Services Start and Stop</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Resource Mgmt with systemctl</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Resource Mgmt with crgoups</a></li>
+<li><a href="/linux_admin/linux_admin_process_management.htm">Process Management</a></li>
+<li><a href="/linux_admin/linux_admin_firewall_setup.htm">Firewall Setup</a></li>
+<li><a href="/linux_admin/configure_php_in_centos_linux.htm">Configure PHP in CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_python_with_centos_linux.htm">Set Up Python with CentOS Linux</a></li>
+<li><a href="/linux_admin/configure_ruby_on_centos_linux.htm">Configure Ruby on CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_perl_for_centos_linux.htm">Set Up Perl for CentOS Linux</a></li>
+<li><a href="/linux_admin/install_and_configure_open_ldap.htm">Install and Configure Open LDAP</a></li>
+<li><a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Create SSL Certificates</a></li>
+<li><a href="/linux_admin/linux_admin_install_apache_web_server_centos_7.htm">Install Apache Web Server CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">MySQL Setup On CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_set_up_postfix_mta_and_imap_pop3.htm">Set Up Postfix MTA and IMAP/POP3</a></li>
+<li><a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Install Anonymous FTP</a></li>
+<li><a href="/linux_admin/linux_admin_remote_management.htm">Remote Management</a></li>
+<li><a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm">Traffic Monitoring in CentOS</a></li>
+<li><a href="/linux_admin/linux_admin_log_management.htm">Log Management</a></li>
+<li><a href="/linux_admin/linux_admin_backup_and_recovery.htm">Backup and Recovery</a></li>
+<li><a href="/linux_admin/linux_admin_system_updates.htm">System Updates</a></li>
+<li><a href="/linux_admin/linux_admin_shell_scripting.htm">Shell Scripting</a></li>
+<li><a href="/linux_admin/linux_admin_package_management.htm">Package Management</a></li>
+<li><a href="/linux_admin/linux_admin_volume_management.htm">Volume Management</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Useful Resources</li>
+<li><a href="/linux_admin/linux_admin_quick_guide.htm">Linux Admin - Quick Guide</a></li>
+<li><a href="/linux_admin/linux_admin_useful_resources.htm">Linux Admin - Useful Resources</a></li>
+<li><a href="/linux_admin/linux_admin_discussion.htm">Linux Admin - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Linux Admin - Quota Management</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_user_management.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>CentOS disk quotas can be enabled both; alerting the system administrator and denying further disk-storage-access to a user before disk capacity is exceeded. When a disk is full, depending on what resides on the disk, an entire system can come to a screeching halt until recovered.</p>
+<p>Enabling Quota Management in CentOS Linux is basically a 4 step process &minus;</p>
+<ul class="list">
+<li><p><b>Step 1</b> &minus; Enable quota management for groups and users in /etc/fstab.</p></li>
+<li><p><b>Step 2</b> &minus; Remount the filesystem.</p></li>
+<li><p><b>Step 3</b> &minus; Create Quota database and generate disk usage table.</p></li>
+<li><p><b>Step 4</b> &minus; Assign quota policies.</p></li>
+</ul>
+<h2>Enable Quota Management in /etc/fstab</h2>
+<p>First, we want to backup our /etc/fstab filen &minus;</p>
+<pre class="result notranslate">
+[root@centosLocal centos]# cp -r /etc/fstab ./
+</pre>
+<p>We now have a copy of our <i>known working</i> /etc/fstab in the current working directory.</p>
+<pre class="result notranslate">
+# 
+# /etc/fstab 
+# Created by anaconda on Sat Dec 17 02:44:51 2016 
+# 
+# Accessible filesystems, by reference, are maintained under '/dev/disk' 
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+# 
+/dev/mapper/cl-root        /         xfs     defaults                      0 0
+UUID = 4b9a40bc-9480-4     /boot     xfs     defaults                      0 0
+
+/dev/mapper/cl-home        /home     xfs     defaults,usrquota,grpquota    0 0
+
+/dev/mapper/cl-swap        swap      swap    defaults                      0 0
+</pre>
+<p>We made the following changes in the options section of <i>/etc/fstab</i> for the volume or Label to where quotas are to be applied for users and groups.</p>
+<ul class="list">
+<li>usrquota</li>
+<li>grpquota</li>
+</ul>
+<p>As you can see, we are using the <b><i>xfs</i></b> filesystem. When using xfs there are extra manual steps involved. <b><i>/home</i></b> is on the same disk as /. Further investigation shows / is set for <i>noquota</i>, which is a kernel level mounting option. We must re-configure our kernel boot options.</p>
+<pre class="result notranslate">
+root@localhost rdc]# mount | grep ' / ' 
+/dev/mapper/cl-root on / type xfs (rw,relatime,seclabel,attr2,inode64,noquota)
+
+[root@localhost rdc]#
+</pre>
+<h3>Reconfiguring Kernel Boot Options for XFS File Systems</h3>
+<p>This step is only necessary under two conditions &minus;</p>
+<ul class="list">
+<li>When the disk/partition we are enabling quotas on, is using the xfs file system</li>
+<li>When the kernel is passing noquota parameter to /etc/fstab at boot time</li>
+</ul>
+<p><b>Step 1</b> &minus; Make a backup of /etc/default/grub.</p>
+<pre class="result notranslate">
+cp /etc/default/grub ~/
+</pre>
+<p><b>Step 2</b> &minus; Modify <i>/etc/default/grub</i>.</p>
+<p>Here is the default file.</p>
+<pre class="result notranslate">
+GRUB_TIMEOUT=5 
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)" 
+GRUB_DEFAULT=saved 
+GRUB_DISABLE_SUBMENU=true 
+GRUB_TERMINAL_OUTPUT="console" 
+GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=cl/root rd.lvm.lv=cl/swap rhgb quiet" 
+GRUB_DISABLE_RECOVERY="true"
+</pre>
+<p>We want to modify the following line &minus;</p>
+<pre class="result notranslate">
+GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=cl/root rd.lvm.lv=cl/swap rhgb quiet" 
+</pre>
+<p>to</p>
+<pre class="result notranslate">
+GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=cl/root rd.lvm.lv 
+=cl/swap rhgb quiet rootflags=usrquota,grpquota"
+</pre>
+<p><b>Note</b> &minus; It is important we copy these changes verbatim. After we reconfigure grub.cfg, our system will fail to boot if any errors were made in the configuration. Please, try this part of the tutorial on a non-production system.</p>
+<p><b>Step 3</b> &minus; Backup your working grub.cfg</p>
+<pre class="result notranslate">
+cp /boot/grub2/grub.cfg /boot/grub2/grub.cfg.bak
+</pre>
+<p>Make a new <i>grub.cfg</i></p>
+<pre class="result notranslate">
+[root@localhost rdc]# grub2-mkconfig -o /boot/grub2/grub.cfg 
+Generating grub configuration file ... 
+Found linux image: /boot/vmlinuz-3.10.0-514.el7.x86_64 
+Found initrd image: /boot/initramfs-3.10.0-514.el7.x86_64.img 
+Found linux image: /boot/vmlinuz-0-rescue-dbba7fa47f73457b96628ba8f3959bfd 
+Found initrd image: /boot/initramfs-0-rescuedbba7fa47f73457b96628ba8f3959bfd.img 
+done
+
+[root@localhost rdc]#
+</pre>
+<p>Reboot</p>
+<pre class="result notranslate">
+[root@localhost rdc]#reboot
+</pre>
+<p>If all modifications were precise, we should not have the availability to add quotas to the <i>xfs</i> file system.</p>
+<pre class="result notranslate">
+[rdc@localhost ~]$ mount | grep ' / ' 
+/dev/mapper/cl-root on / type xfs (rw,relatime,seclabel,attr2,inode64,usrquota,grpquota)
+ 
+[rdc@localhost ~]$
+</pre>
+<p>We have passed the <i>usrquota</i> and <i>grpquota</i> parameters via grub.</p>
+<p>Now, again edit <i>/etc/fstab</i> to include / since <i>/homeon</i> the same physical disk.</p>
+<pre class="result notranslate">
+/dev/mapper/cl-root/xfs
+defaults,usrquota,grpquota        0 0
+</pre>
+<p>Now let's enable the quota databases.</p>
+<pre class="result notranslate">
+[root@localhost rdc]# quotacheck -acfvugM
+</pre>
+<p>Make sure Quotas are enabled.</p>
+<pre class="result notranslate">
+[root@localhost rdc]# quotaon -ap 
+group quota on / (/dev/mapper/cl-root) is on 
+user quota on / (/dev/mapper/cl-root) is on 
+group quota on /home (/dev/mapper/cl-home) is on 
+user quota on /home (/dev/mapper/cl-home) is on 
+[root@localhost rdc]#
+</pre>
+<h2>Remount the File System</h2>
+<p>If the partition or disk is separate from the actively booted partition, we can remount without rebooting. If the quota was configured on a disk/partition booted in the root directory /, we may need to reboot the operating system. Forcing the remount and applying changes, the need to remount the filesystem may vary.</p>
+<pre class="result notranslate">
+[rdc@localhost ~]$ df 
+Filesystem              1K-blocks     Used      Available      Use%     Mounted on
+/dev/mapper/cl-root     22447404      4081860   18365544       19%         /
+devtmpfs                903448        0         903448         0%          /dev
+tmpfs                   919308        100       919208         1%          /dev/shm
+tmpfs                   919308        9180      910128         1%          /run
+tmpfs                   919308        0         919308         0%          /sys/fs/cgroup
+/dev/sda2               1268736       176612    1092124        14%         /boot
+/dev/mapper/cl-var      4872192       158024    4714168        4%          /var
+/dev/mapper/cl-home     18475008      37284     18437724       1%          /home
+tmpfs                   183864        8         183856         1%          /run/user/1000
+
+[rdc@localhost ~]$
+</pre>
+<p>As we can see, LVM volumes are in use. So it's simple to just reboot. This will remount <i>/home</i> and load the <i>/etc/fstab</i> configuration changes into active configuration.</p>
+<h2>Create Quota Database Files</h2>
+<p>CentOS is now capable of working with disk quotas on /home. To enable full quota supprt, we must run the <b>quotacheck</b> command.</p>
+<p>quotacheck will create two files &minus;</p>
+<ul class="list">
+<li>aquota.user</li>
+<li>aquota.group</li>
+</ul>
+<p>These are used to store quota information for the quota enabled disks/partitions.</p>
+<p>Following are the common quotacheck switches.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:10%">Switch</th>
+<th style="text-align:center;">Action</th>
+</tr>
+<tr>
+<td style="text-align:center;">-u</td>
+<td>Checks for user quotas</td>
+</tr>
+<tr>
+<td style="text-align:center;">-g</td>
+<td>Checks for group quotas</td>
+</tr>
+<tr>
+<td style="text-align:center;">-c</td>
+<td>Quotas should be enabled for each file system with enables quotas</td>
+</tr>
+<tr>
+<td style="text-align:center;">-v</td>
+<td>Displays verbose output</td>
+</tr>
+</table>
+<h2>Add Quota Limits Per User</h2>
+<p>For this, we will use the edquota command, followed by the username &minus;</p>
+<pre class="result notranslate">
+[root@localhost rdc]# edquota centos
+
+Disk quotas for user centos (uid 1000):  
+Filesystem                   blocks       soft       hard     inodes     soft     hard 
+/dev/mapper/cl-root              12          0          0         13        0        0  
+/dev/mapper/cl-home            4084          0          0        140        0        0
+</pre>
+<p>Let's look at each column.</p>
+<ul class="list">
+<li><p><b>Filesystem</b> &minus; It is the filesystem quotas for the user applied to</p></li>
+<li><p><b>blocks</b> &minus; How many blocks the user is currently using on each filesystem</p></li>
+<li><p><b>soft</b> &minus; Set blocks for a soft limit. Soft limit allows the user to carry quota for a given time period</p></li>
+<li><p><b>hard</b> &minus; Set blocks for a hard limit. Hard limit is total allowable quota</p></li>
+<li><p><b>inodes</b> &minus; How many inodes the user is currently using</p></li>
+<li><p><b>soft</b> &minus; Soft inode limit</p></li>
+<li><p><b>hard </b> &minus; Hard inode limit</p></li>
+</ul>
+<p>To check our current quota as a user &minus;</p>
+<pre class="result notranslate">
+[centos@localhost ~]$ quota 
+Disk quotas for user centos (uid 1000):  
+Filesystem             blocks     quota      limit grace    files   quota   limit   grace 
+/dev/mapper/cl-home    6052604    56123456   61234568       475     0       0       [centos@localhost ~]$
+</pre>
+<p>Following is an error given to a user when the hard quota limit has exceeded.</p>
+<pre class="result notranslate">
+[centos@localhost Downloads]$ cp CentOS-7-x86_64-LiveKDE-1611.iso.part ../Desktop/
+
+cp: cannot create regular file ‘../Desktop/CentOS-7-x86_64-LiveKDE-
+1611.iso.part’: Disk quota exceeded
+
+[centos@localhost Downloads]$
+</pre>
+<p>As we can see, we are closely within this user's disk quota. Let's set a soft limit warning. This way, the user will have advance notice before quota limits expire. From experience, you will get end-user complaints when they come into work and need to spend 45 minutes clearing files to actually get to work.</p>
+<p>As an Administrator, we can check quota usage with the <b>repquota</b> command.</p>
+<pre class="result notranslate">
+[root@localhost Downloads]# repquota  /home  
+                    Block limits                            File limits  
+User            used     soft     hard     grace       used     soft     hard     grace 
+----------------------------------------------------------------------------------------
+root      --       0         0        0                   3        0        0        
+centos    -+ 6189824  56123456 61234568                 541      520      540      6days 
+
+[root@localhost Downloads]#
+</pre>
+<p>As we can see, the user centos has exceeded their hard block quota and can no longer use any more disk space on <i>/home</i>.</p>
+<p>-+denotes a hard quota has been exceeded on the filesystem.</p>
+<p>When planning quotas, it is necessary to do a little math. What an Administrator needs to know is:How many users are on the system? How much free space to allocate amongst users/groups? How many bytes make up a block on the file system?</p>
+<p>Define quotas in terms of blocks as related to free disk-space.It is recommended to leave a "safe" buffer of free-space on the file system that will remain in worst case scenario: all quotas are simultaneously exceeded. This is especially on a partition that is used by the system for writing logs.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_user_management.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

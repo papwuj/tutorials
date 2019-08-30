@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>WebRTC - Text Demo</title>
+<meta charset="utf-8">
+<meta name="description" content="WebRTC - Text Demo - In this chapter, we are going to build a client application that allows two users on separate devices to send messages each other using WebRTC. Our application "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/webrtc/webrtc_text_demo.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#df711d;
+}
+a.demo {
+    background:#df711d;
+}
+li.heading {
+    background:#df711d;
+}
+.course-box{background:#df711d}
+.home-intro-sub p{color:#df711d}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/webrtc/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/webrtc/images/webrtc-mini-logo.jpg" alt="WebRTC Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">WebRTC Tutorial</li>
+<li><a href="/webrtc/index.htm">WebRTC - Home</a></li>
+<li><a href="/webrtc/webrtc_overview.htm">WebRTC - Overview</a></li>
+<li><a href="/webrtc/webrtc_architecture.htm">WebRTC - Architecture</a></li>
+<li><a href="/webrtc/webrtc_environment.htm">WebRTC - Environment</a></li>
+<li><a href="/webrtc/webrtc_media_stream_apis.htm">WebRTC - MediaStream APIs</a></li>
+<li><a href="/webrtc/webrtc_rtcpeerconnection_apis.htm">WebRTC - RTCPeerConnection APIs</a></li>
+<li><a href="/webrtc/webrtc_rtcdatachannel_apis.htm">WebRTC - RTCDataChannel APIs</a></li>
+<li><a href="/webrtc/webrtc_sending_messages.htm">WebRTC - Sending Messages</a></li>
+<li><a href="/webrtc/webrtc_signaling.htm">WebRTC - Signaling</a></li>
+<li><a href="/webrtc/webrtc_browser_support.htm">WebRTC - Browser Support</a></li>
+<li><a href="/webrtc/webrtc_mobile_support.htm">WebRTC - Mobile Support</a></li>
+<li><a href="/webrtc/webrtc_video_demo.htm">WebRTC - Video Demo</a></li>
+<li><a href="/webrtc/webrtc_voice_demo.htm">WebRTC - Voice Demo</a></li>
+<li><a href="/webrtc/webrtc_text_demo.htm">WebRTC - Text Demo</a></li>
+<li><a href="/webrtc/webrtc_security.htm">WebRTC - Security</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">WebRTC Resources</li>
+<li><a href="/webrtc/webrtc_quick_guide.htm">WebRTC - Quick Guide</a></li>
+<li><a href="/webrtc/webrtc_useful_resources.htm">WebRTC - Useful Resources</a></li>
+<li><a href="/webrtc/webrtc_discussion.htm">WebRTC - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>WebRTC - Text Demo</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/webrtc/webrtc_voice_demo.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/webrtc/webrtc_security.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, we are going to build a client application that allows two users on separate devices to send messages each other using WebRTC. Our application will have two pages. One for login and the other for sending messages to another user.</p>
+<img src="/webrtc/images/text_demo.jpg" alt="Login and send message page" />
+<p>The two pages will be the <i>div</i> tags. Most input is done through simple event handlers.</p>
+<h2>Signaling Server</h2>
+<p>To create a WebRTC connection clients have to be able to transfer messages without using a WebRTC peer connection. This is where we will use HTML5 WebSockets &minus; a bidirectional socket connection between two endpoints &minus; a web server and a web browser. Now let's start using the WebSocket library. Create the <i>server.js</i> file and insert the following code &minus;</p>
+<pre class="prettyprint notranslate">
+//require our websocket library 
+var WebSocketServer = require('ws').Server; 
+
+//creating a websocket server at port 9090 
+var wss = new WebSocketServer({port: 9090});
+  
+//when a user connects to our sever 
+wss.on('connection', function(connection) { 
+   console.log("user connected"); 
+	
+   //when server gets a message from a connected user 
+   connection.on('message', function(message) { 
+      console.log("Got message from a user:", message); 
+   }); 
+	
+   connection.send("Hello from server"); 
+});
+</pre>
+<p>The first line requires the WebSocket library which we have already installed. Then we create a socket server on the port 9090. Next, we listen to the <i>connection</i> event. This code will be executed when a user makes a WebSocket connection to the server. We then listen to any messages sent by the user. Finally, we send a response to the connected user saying “Hello from server”.</p>
+<p>In our signaling server, we will use a string-based username for each connection so we know where to send messages. Let's change our <i>connection</i> handler a bit &minus;</p>
+<pre class="prettyprint notranslate">
+connection.on('message', function(message) { 
+   var data; 
+	
+   //accepting only JSON messages 
+   try { 
+      data = JSON.parse(message); 
+   } catch (e) { 
+      console.log("Invalid JSON");
+      data = {}; 
+   } 
+});
+</pre>
+<p>This way we accept only JSON messages. Next, we need to store all connected users somewhere. We will use a simple Javascript object for it. Change the top of our file &minus;</p>
+<pre class="prettyprint notranslate">
+//require our websocket library 
+var WebSocketServer = require('ws').Server; 
+
+//creating a websocket server at port 9090 
+var wss = new WebSocketServer({port: 9090}); 
+
+//all connected to the server users 
+var users = {};
+</pre>
+<p>We are going to add a <i>type</i> field for every message coming from the client. For example if a user wants to login, he sends the <i>login</i> type message. Let's define it &minus;</p>
+<pre class="prettyprint notranslate">
+connection.on('message', function(message) { 
+   var data; 
+	
+   //accepting only JSON messages 
+   try { 
+      data = JSON.parse(message); 
+   } catch (e) { 
+      console.log("Invalid JSON"); 
+      data = {}; 
+   }
+	
+   //switching type of the user message 
+   switch (data.type) { 
+      //when a user tries to login 
+      case "login": 
+         console.log("User logged:", data.name); 
+			
+         //if anyone is logged in with this username then refuse 
+         if(users[data.name]) { 
+            sendTo(connection, { 
+               type: "login", 
+               success: false
+            }); 
+         } else { 
+            //save user connection on the server 
+            users[data.name] = connection; 
+            connection.name = data.name; 
+				
+            sendTo(connection, { 
+               type: "login", 
+               success: true 
+            }); 
+         } 
+			
+         break;
+			
+      default: 
+         sendTo(connection, { 
+            type: "error", 
+            message: "Command no found: " + data.type 
+         }); 
+			
+         break;
+   } 
+});
+</pre>
+<p>If the user sends a message with the <i>login</i> type, we &minus;</p>
+<ul class="list">
+<li>Check if anyone has already logged in with this username.</li>
+<li>If so, then tell the user that he hasn't successfully logged in.</li>
+<li>If no one is using this username, we add username as a key to the connection object.</li>
+<li>If a command is not recognized we send an error.</li>
+</ul>
+<p>The following code is a helper function for sending messages to a connection. Add it to the <i>server.js</i> file &minus;</p>
+<pre class="prettyprint notranslate">
+function sendTo(connection, message) { 
+   connection.send(JSON.stringify(message)); 
+}
+</pre>
+<p>When the user disconnects we should clean up its connection. We can delete the user when the <i>close</i> event is fired. Add the following code to the <i>connection</i> handler &minus;</p>
+<pre class="prettyprint notranslate">
+connection.on("close", function() { 
+   if(connection.name) { 
+      delete users[connection.name]; 
+   } 
+});
+</pre>
+<p>After successful login the user wants to call another. He should make an <i>offer</i> to another user to achieve it. Add the <i>offer</i> handler &minus;</p>
+<pre class="prettyprint notranslate">
+case "offer": 
+   //for ex. UserA wants to call UserB 
+   console.log("Sending offer to: ", data.name); 
+	
+   //if UserB exists then send him offer details 
+   var conn = users[data.name]; 
+	
+   if(conn != null){ 
+   //setting that UserA connected with UserB 
+   connection.otherName = data.name; 
+	
+      sendTo(conn, { 
+         type: "offer", 
+         offer: data.offer, 
+         name: connection.name 
+      }); 
+     
+   break;
+</pre>
+<p>Firstly, we get the <i>connection</i> of the user we are trying to call. If it exists we send him <i>offer</i> details. We also add <i>otherName</i> to the <i>connection</i> object. This is made for the simplicity of finding it later.</p>
+<p>Answering to the response has a similar pattern that we used in the <i>offer</i> handler. Our server just passes through all messages as <i>answer</i> to another user. Add the following code after the <i>offer</i> handler &minus;</p>
+<pre class="prettyprint notranslate">
+case "answer": 
+   console.log("Sending answer to: ", data.name); 
+	
+   //for ex. UserB answers UserA 
+   var conn = users[data.name]; 
+	
+   if(conn != null) { 
+      connection.otherName = data.name;
+      sendTo(conn, { 
+         type: "answer", 
+         answer: data.answer 
+      }); 
+   } 
+	
+   break;
+</pre>
+<p>The final part is handling ICE candidate between users. We use the same technique just passing messages between users. The main difference is that candidate messages might happen multiple times per user in any order. Add the <i>candidate</i> handler &minus;</p>
+<pre class="prettyprint notranslate">
+case "candidate": 
+   console.log("Sending candidate to:",data.name); 
+   var conn = users[data.name];
+	
+   if(conn != null) { 
+      sendTo(conn, { 
+         type: "candidate", 
+         candidate: data.candidate 
+      }); 
+   } 
+	
+   break;
+</pre>
+<p>To allow our users to disconnect from another user we should implement the hanging up function. It will also tell the server to delete all user references. Add the <i>leave</i> handler &minus;</p>
+<pre class="prettyprint notranslate">
+case "leave": 
+   console.log("Disconnecting from", data.name); 
+   var conn = users[data.name]; 
+   conn.otherName = null;
+	
+   //notify the other user so he can disconnect his peer connection 
+   if(conn != null) { 
+      sendTo(conn, { 
+         type: "leave" 
+      }); 
+   }
+	
+   break; 
+</pre>
+<p>This will also send the other user the <i>leave</i> event so he can disconnect his peer connection accordingly. We should also handle the case when a user drops his connection from the signaling server. Let's modify our <i>close</i> handler &minus;</p>
+<pre class="prettyprint notranslate">
+connection.on("close", function() { 
+
+   if(connection.name) { 
+      delete users[connection.name]; 
+		
+      if(connection.otherName) { 
+         console.log("Disconnecting from ", connection.otherName); 
+         var conn = users[connection.otherName]; 
+         conn.otherName = null;  
+			
+         if(conn != null) { 
+            sendTo(conn, { 
+               type: "leave" 
+            }); 
+         }  
+      } 
+   } 
+});
+</pre>
+<p>The following is the entire code of our signaling server &minus;</p>
+<pre class="prettyprint notranslate">
+//require our websocket library 
+var WebSocketServer = require('ws').Server;
+ 
+//creating a websocket server at port 9090 
+var wss = new WebSocketServer({port: 9090}); 
+
+//all connected to the server users 
+var users = {};
+  
+//when a user connects to our sever 
+wss.on('connection', function(connection) {
+  
+   console.log("User connected");
+	 
+   //when server gets a message from a connected user 
+   connection.on('message', function(message) {
+	 
+      var data; 
+      //accepting only JSON messages 
+      try { 
+         data = JSON.parse(message); 
+      } catch (e) { 
+         console.log("Invalid JSON"); 
+         data = {}; 
+      }
+		  
+      //switching type of the user message 
+      switch (data.type) { 
+         //when a user tries to login 
+         case "login": 
+            console.log("User logged", data.name); 
+            //if anyone is logged in with this username then refuse 
+            if(users[data.name]) { 
+               sendTo(connection, { 
+                  type: "login", 
+                  success: false 
+               }); 
+            } else { 
+               //save user connection on the server 
+               users[data.name] = connection; 
+               connection.name = data.name; 
+					
+               sendTo(connection, { 
+                  type: "login", 
+                  success: true 
+               }); 
+            }
+				
+            break;
+				
+         case "offer": 
+            //for ex. UserA wants to call UserB 
+            console.log("Sending offer to: ", data.name); 
+				
+            //if UserB exists then send him offer details 
+            var conn = users[data.name]; 
+				
+            if(conn != null) { 
+               //setting that UserA connected with UserB 
+               connection.otherName = data.name; 
+					
+               sendTo(conn, { 
+                  type: "offer", 
+                  offer: data.offer, 
+                  name: connection.name 
+               }); 
+            } 
+				
+            break;
+				
+         case "answer": 
+            console.log("Sending answer to: ", data.name); 
+            //for ex. UserB answers UserA 
+            var conn = users[data.name]; 
+				
+            if(conn != null) { 
+               connection.otherName = data.name; 
+               sendTo(conn, { 
+                  type: "answer", 
+                  answer: data.answer 
+               }); 
+            } 
+				
+            break;
+				
+         case "candidate": 
+            console.log("Sending candidate to:",data.name);
+            var conn = users[data.name];  
+				
+            if(conn != null) { 
+               sendTo(conn, { 
+                  type: "candidate", 
+                  candidate: data.candidate 
+               }); 
+            } 
+				
+            break;
+				
+         case "leave": 
+            console.log("Disconnecting from", data.name); 
+            var conn = users[data.name]; 
+            conn.otherName = null; 
+				
+            //notify the other user so he can disconnect his peer connection 
+            if(conn != null) { 
+               sendTo(conn, { 
+                  type: "leave"
+               });
+            }  
+				
+            break;
+				
+         default: 
+            sendTo(connection, { 
+               type: "error", 
+               message: "Command not found: " + data.type 
+            }); 
+				
+            break;
+				
+      }  
+   });
+	
+   //when user exits, for example closes a browser window 
+   //this may help if we are still in "offer","answer" or "candidate" state 
+   connection.on("close", function() { 
+	
+      if(connection.name) { 
+         delete users[connection.name]; 
+			
+         if(connection.otherName) { 
+            console.log("Disconnecting from ", connection.otherName); 
+            var conn = users[connection.otherName]; 
+            conn.otherName = null;
+				
+            if(conn != null) { 
+               sendTo(conn, { 
+                  type: "leave" 
+               }); 
+            }  
+         } 
+      } 
+   });
+	
+   connection.send("Hello world");
+	
+});
+  
+function sendTo(connection, message) { 
+   connection.send(JSON.stringify(message)); 
+}
+</pre>
+<h2>Client Application</h2>
+<p>One way to test this application is opening two browser tabs and trying to send a message each other.</p>
+<p>First of all, we need to install the <i>bootstrap</i> library. Bootstrap is a frontend framework for developing web applications. You can learn more at <a target="_blank" rel="nofollow" href="http://getbootstrap.com/">http://getbootstrap.com/.</a>Create a folder called, for example, “textchat”. This will be our root application folder. Inside this folder create a file <i>package.json</i> (it is necessary for managing npm dependencies) and add the following &minus;</p>
+<pre class="prettyprint notranslate">
+{ 
+   "name": "webrtc-textochat", 
+   "version": "0.1.0", 
+   "description": "webrtc-textchat", 
+   "author": "Author", 
+   "license": "BSD-2-Clause" 
+}
+</pre>
+<p>Then run <i>npm install bootstrap</i>. This will install the bootstrap library in the <i>textchat/node_modules</i> folder.</p>
+<p>Now we need to create a basic HTML page. Create an <i>index.html</i> file in the root folder with the following code &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;html&gt; 
+
+   &lt;head&gt; 
+      &lt;title&gt;WebRTC Text Demo&lt;/title&gt; 
+      &lt;link rel = "stylesheet" href = "node_modules/bootstrap/dist/css/bootstrap.min.css"/&gt; 
+   &lt;/head&gt;
+ 
+   &lt;style&gt; 
+      body { 
+         background: #eee; 
+         padding: 5% 0; 
+      } 
+   &lt;/style&gt;
+	
+   &lt;body&gt; 
+      &lt;div id = "loginPage" class = "container text-center"&gt; 
+		
+         &lt;div class = "row"&gt; 
+            &lt;div class = "col-md-4 col-md-offset-4"&gt; 
+               &lt;h2&gt;WebRTC Text Demo. Please sign in&lt;/h2&gt; 
+               &lt;label for = "usernameInput" class = "sr-only"&gt;Login&lt;/label&gt; 
+               &lt;input type = "email" id = "usernameInput" 
+                  class = "form-control formgroup" placeholder = "Login" 
+                  required = "" autofocus = ""&gt;
+               &lt;button id = "loginBtn" class = "btn btn-lg btn-primary btnblock"&gt;
+                  Sign in&lt;/button&gt; 
+            &lt;/div&gt; 
+         &lt;/div&gt; 
+			
+      &lt;/div&gt;
+		
+      &lt;div id = "callPage" class = "call-page container"&gt;
+		
+         &lt;div class = "row"&gt; 
+            &lt;div class = "col-md-4 col-md-offset-4 text-center"&gt; 
+               &lt;div class = "panel panel-primary"&gt; 
+                  &lt;div class = "panel-heading"&gt;Text chat&lt;/div&gt; 
+                  &lt;div id = "chatarea" class = "panel-body text-left"&gt;&lt;/div&gt; 
+               &lt;/div&gt; 
+            &lt;/div&gt; 
+         &lt;/div&gt;
+			
+         &lt;div class = "row text-center form-group"&gt; 
+            &lt;div class = "col-md-12"&gt; 
+               &lt;input id = "callToUsernameInput" type = "text" 
+                  placeholder = "username to call" /&gt; 
+               &lt;button id = "callBtn" class = "btn-success btn"&gt;Call&lt;/button&gt; 
+               &lt;button id = "hangUpBtn" class = "btn-danger btn"&gt;Hang Up&lt;/button&gt; 
+            &lt;/div&gt; 
+         &lt;/div&gt; 
+			
+         &lt;div class = "row text-center"&gt; 
+            &lt;div class = "col-md-12"&gt; 
+               &lt;input id = "msgInput" type = "text" placeholder = "message" /&gt; 
+               &lt;button id = "sendMsgBtn" class = "btn-success btn"&gt;Send&lt;/button&gt; 
+            &lt;/div&gt; 
+         &lt;/div&gt;
+			
+      &lt;/div&gt; 
+		
+      &lt;script src = "client.js"&gt;&lt;/script&gt; 
+		
+   &lt;/body&gt;
+ 
+&lt;/html&gt;
+</pre>
+<p>This page should be familiar to you. We have added the <i>bootstrap</i> css file. We have also defined two pages. Finally, we have created several text fields and buttons for getting information from the user. On the “chat” page you should see the div tag with the “chatarea” ID where all our messages will be displayed. Notice that we have added a link to a <i>client.js</i> file.</p>
+<p>Now we need to establish a connection with our signaling server. Create the <i>client.js</i> file in the root folder with the following code &minus;</p>
+<pre class="prettyprint notranslate">
+//our username 
+var name; 
+var connectedUser;
+  
+//connecting to our signaling server 
+var conn = new WebSocket('ws://localhost:9090');
+  
+conn.onopen = function () { 
+   console.log("Connected to the signaling server"); 
+}; 
+ 
+//when we got a message from a signaling server 
+conn.onmessage = function (msg) { 
+   console.log("Got message", msg.data);
+	
+   var data = JSON.parse(msg.data);
+	
+   switch(data.type) { 
+      case "login": 
+         handleLogin(data.success); 
+         break; 
+      //when somebody wants to call us 
+      case "offer": 
+         handleOffer(data.offer, data.name); 
+         break; 
+      case "answer": 
+         handleAnswer(data.answer); 
+         break; 
+      //when a remote peer sends an ice candidate to us 
+      case "candidate":
+         handleCandidate(data.candidate); 
+         break; 
+      case "leave": 
+         handleLeave(); 
+         break; 
+      default: 
+         break; 
+   } 
+};
+  
+conn.onerror = function (err) { 
+   console.log("Got error", err); 
+};
+  
+//alias for sending JSON encoded messages 
+function send(message) { 
+   //attach the other peer username to our messages 
+   if (connectedUser) { 
+      message.name = connectedUser; 
+   } 
+	
+   conn.send(JSON.stringify(message)); 
+};
+</pre>
+<p>Now run our signaling server via <i>node server</i>. Then, inside the root folder run the <i>static</i> command and open the page inside the browser. You should see the following console output &minus;</p>
+<img src="/webrtc/images/console_output_of_text_demo.jpg" alt="Console Output" />
+<p>The next step is implementing a user log in with a unique username. We simply send a username to the server, which then tell us whether it is taken or not. Add the following code to your <i>client.js</i> file &minus;</p>
+<pre class="prettyprint notranslate">
+//****** 
+//UI selectors block
+//****** 
+
+var loginPage = document.querySelector('#loginPage'); 
+var usernameInput = document.querySelector('#usernameInput'); 
+var loginBtn = document.querySelector('#loginBtn'); 
+
+var callPage = document.querySelector('#callPage'); 
+var callToUsernameInput = document.querySelector('#callToUsernameInput'); 
+var callBtn = document.querySelector('#callBtn'); 
+
+var hangUpBtn = document.querySelector('#hangUpBtn'); 
+callPage.style.display = "none"; 
+
+// Login when the user clicks the button 
+loginBtn.addEventListener("click", function (event) { 
+   name = usernameInput.value;
+	
+   if (name.length &gt; 0) { 
+      send({ 
+         type: "login", 
+         name: name 
+      }); 
+   } 
+	
+});
+ 
+function handleLogin(success) { 
+
+   if (success === false) { 
+      alert("Ooops...try a different username"); 
+   } else { 
+      loginPage.style.display = "none"; 
+      callPage.style.display = "block"; 
+		
+      //********************** 
+      //Starting a peer connection 
+      //********************** 
+   } 
+	
+};
+</pre>
+<p>Firstly, we select some references to the elements on the page. The we hide the call page. Then, we add an event listener on the login button. When the user clicks it, we send his username to the server. Finally, we implement the handleLogin callback. If the login was successful, we show the call page, set up a peer connection, and create a data channel.</p>
+<p>To start a peer connection with a data channel we need &minus;</p>
+<ul class="list">
+<li>Create the RTCPeerConnection object</li>
+<li>Create a data channel inside our RTCPeerConnection object</li>
+</ul>
+<p>Add the following code to the “UI selectors block” &minus;</p>
+<pre class="prettyprint notranslate">
+var msgInput = document.querySelector('#msgInput'); 
+var sendMsgBtn = document.querySelector('#sendMsgBtn'); 
+var chatArea = document.querySelector('#chatarea'); 
+
+var yourConn; 
+var dataChannel;
+</pre>
+<p>Modify the <i>handleLogin</i> function &minus;</p>
+<pre class="prettyprint notranslate">
+function handleLogin(success) { 
+   if (success === false) { 
+      alert("Ooops...try a different username"); 
+   } else { 
+      loginPage.style.display = "none"; 
+      callPage.style.display = "block";
+		
+      //********************** 
+      //Starting a peer connection 
+      //**********************
+		
+      //using Google public stun server 
+      var configuration = { 
+         "iceServers": [{ "url": "stun:stun2.1.google.com:19302" }] 
+      }; 
+		
+      yourConn = new webkitRTCPeerConnection(configuration, {optional: [{RtpDataChannels: true}]});
+		
+      // Setup ice handling 
+      yourConn.onicecandidate = function (event) { 
+         if (event.candidate) { 
+            send({
+               type: "candidate", 
+               candidate: event.candidate 
+            }); 
+         } 
+      };
+		
+      //creating data channel 
+      dataChannel = yourConn.createDataChannel("channel1", {reliable:true}); 
+		
+      dataChannel.onerror = function (error) { 
+         console.log("Ooops...error:", error); 
+      };
+		
+      //when we receive a message from the other peer, display it on the screen 
+      dataChannel.onmessage = function (event) { 
+         chatArea.innerHTML += connectedUser + ": " + event.data + "&lt;br /&gt;"; 
+      };
+		
+      dataChannel.onclose = function () { 
+         console.log("data channel is closed"); 
+      };  
+   } 
+};
+</pre>
+<p>If login was successful the application creates the <i>RTCPeerConnection</i> object and setup <i>onicecandidate</i> handler which sends all found icecandidates to the other peer. It also creates a dataChannel. Notice, that when creating the RTCPeerConnection object the second argument in the constructor optional: [{RtpDataChannels: true}] is mandatory if you are using Chrome or Opera. The next step is to create an offer to the other peer. Once a user gets the offer, he creates an <i>answer</i> and start trading ICE candidates. Add the following code to the <i>client.js</i> file &minus;</p>
+<pre class="prettyprint notranslate">
+//initiating a call
+callBtn.addEventListener("click", function () { 
+   var callToUsername = callToUsernameInput.value;
+	
+   if (callToUsername.length &gt; 0) {
+	
+      connectedUser = callToUsername;
+		
+      // create an offer 
+      yourConn.createOffer(function (offer) { 
+		
+         send({ 
+            type: "offer", 
+            offer: offer 
+         }); 
+			
+         yourConn.setLocalDescription(offer); 
+			
+      }, function (error) { 
+         alert("Error when creating an offer"); 
+      });  
+   } 
+});
+  
+//when somebody sends us an offer 
+function handleOffer(offer, name) { 
+   connectedUser = name; 
+   yourConn.setRemoteDescription(new RTCSessionDescription(offer));
+	
+   //create an answer to an offer 
+   yourConn.createAnswer(function (answer) { 
+      yourConn.setLocalDescription(answer); 
+		
+      send({ 
+         type: "answer", 
+         answer: answer 
+      }); 
+		
+   }, function (error) { 
+      alert("Error when creating an answer"); 
+   });
+};
+  
+//when we got an answer from a remote user 
+function handleAnswer(answer) { 
+   yourConn.setRemoteDescription(new RTCSessionDescription(answer)); 
+};
+  
+//when we got an ice candidate from a remote user 
+function handleCandidate(candidate) { 
+   yourConn.addIceCandidate(new RTCIceCandidate(candidate)); 
+};
+</pre>
+<p>We add a <i>click</i> handler to the Call button, which initiates an offer. Then we implement several handlers expected by the <i>onmessage</i> handler. They will be processed asynchronously until both the users have made a connection.</p>
+<p>The next step is implementing the hang-up feature. This will stop transmitting data and tell the other user to close the data channel. Add the following code &minus;</p>
+<pre class="prettyprint notranslate">
+//hang up 
+hangUpBtn.addEventListener("click", function () { 
+   send({ 
+      type: "leave" 
+   }); 
+	
+   handleLeave(); 
+}); 
+ 
+function handleLeave() { 
+   connectedUser = null; 
+   yourConn.close(); 
+   yourConn.onicecandidate = null; 
+};
+</pre>
+<p>When the user clicks on the Hang Up button &minus;</p>
+<ul class="list">
+<li>It will send a “leave” message to the other user.</li>
+<li>It will close the RTCPeerConnection and as well as data channel.</li>
+</ul>
+<p>The last step is sending a message to another peer. Add the “click” handler to the “send message” button &minus;</p>
+<pre class="prettyprint notranslate">
+//when user clicks the "send message" button 
+sendMsgBtn.addEventListener("click", function (event) { 
+   var val = msgInput.value; 
+   chatArea.innerHTML += name + ": " + val + "&lt;br /&gt;"; 
+	
+   //sending a message to a connected peer 
+   dataChannel.send(val); 
+   msgInput.value = ""; 
+});
+</pre>
+<p>Now run the code. You should be able to log in to the server using two browser tabs. You can then set up a peer connection to the other user and send him a message as well as close the data channel by clicking the “Hang Up” button.</p>
+<img src="/webrtc/images/output_of_text_demo.jpg" alt="Output of the Code" />
+<p>The following is the entire <i>client.js</i> file &minus;</p>
+<pre class="prettyprint notranslate">
+//our username 
+var name; 
+var connectedUser; 
+
+//connecting to our signaling server 
+var conn = new WebSocket('ws://localhost:9090'); 
+
+conn.onopen = function () { 
+   console.log("Connected to the signaling server");
+};
+ 
+//when we got a message from a signaling server 
+conn.onmessage = function (msg) { 
+   console.log("Got message", msg.data); 
+   var data = JSON.parse(msg.data); 
+	
+   switch(data.type) { 
+      case "login": 
+         handleLogin(data.success); 
+         break; 
+      //when somebody wants to call us 
+      case "offer": 
+         handleOffer(data.offer, data.name); 
+         break; 
+      case "answer": 
+         handleAnswer(data.answer); 
+         break; 
+      //when a remote peer sends an ice candidate to us 
+      case "candidate": 
+         handleCandidate(data.candidate); 
+         break; 
+      case "leave": 
+         handleLeave(); 
+         break; 
+      default: 
+         break; 
+   } 
+}; 
+
+conn.onerror = function (err) { 
+   console.log("Got error", err); 
+}; 
+
+//alias for sending JSON encoded messages 
+function send(message) { 
+
+   //attach the other peer username to our messages
+   if (connectedUser) { 
+      message.name = connectedUser; 
+   } 
+	
+   conn.send(JSON.stringify(message)); 
+};
+ 
+//****** 
+//UI selectors block 
+//****** 
+
+var loginPage = document.querySelector('#loginPage'); 
+var usernameInput = document.querySelector('#usernameInput'); 
+var loginBtn = document.querySelector('#loginBtn'); 
+
+var callPage = document.querySelector('#callPage'); 
+var callToUsernameInput = document.querySelector('#callToUsernameInput');
+var callBtn = document.querySelector('#callBtn'); 
+
+var hangUpBtn = document.querySelector('#hangUpBtn'); 
+var msgInput = document.querySelector('#msgInput'); 
+var sendMsgBtn = document.querySelector('#sendMsgBtn'); 
+
+var chatArea = document.querySelector('#chatarea'); 
+var yourConn; 
+var dataChannel; 
+callPage.style.display = "none"; 
+
+// Login when the user clicks the button 
+loginBtn.addEventListener("click", function (event) { 
+   name = usernameInput.value; 
+	
+   if (name.length &gt; 0) { 
+      send({ 
+         type: "login", 
+         name: name 
+      }); 
+   } 
+	
+});
+ 
+function handleLogin(success) { 
+
+   if (success === false) {
+      alert("Ooops...try a different username"); 
+   } else { 
+      loginPage.style.display = "none"; 
+      callPage.style.display = "block"; 
+		
+      //********************** 
+      //Starting a peer connection 
+      //********************** 
+		
+      //using Google public stun server 
+      var configuration = { 
+         "iceServers": [{ "url": "stun:stun2.1.google.com:19302" }] 
+      }; 
+		
+      yourConn = new webkitRTCPeerConnection(configuration, {optional: [{RtpDataChannels: true}]}); 
+		
+      // Setup ice handling 
+      yourConn.onicecandidate = function (event) { 
+         if (event.candidate) { 
+            send({ 
+               type: "candidate", 
+               candidate: event.candidate 
+            }); 
+         } 
+      }; 
+		
+      //creating data channel 
+      dataChannel = yourConn.createDataChannel("channel1", {reliable:true}); 
+		
+      dataChannel.onerror = function (error) { 
+         console.log("Ooops...error:", error); 
+      }; 
+		
+      //when we receive a message from the other peer, display it on the screen 
+      dataChannel.onmessage = function (event) { 
+         chatArea.innerHTML += connectedUser + ": " + event.data + "&lt;br /&gt;"; 
+      }; 
+		
+      dataChannel.onclose = function () { 
+         console.log("data channel is closed"); 
+      };
+		
+   } 
+};
+ 
+//initiating a call 
+callBtn.addEventListener("click", function () { 
+   var callToUsername = callToUsernameInput.value; 
+	
+   if (callToUsername.length &gt; 0) { 
+      connectedUser = callToUsername; 
+      // create an offer 
+      yourConn.createOffer(function (offer) { 
+         send({ 
+            type: "offer", 
+            offer: offer 
+         }); 
+         yourConn.setLocalDescription(offer); 
+      }, function (error) { 
+         alert("Error when creating an offer"); 
+      }); 
+   } 
+	
+});
+ 
+//when somebody sends us an offer 
+function handleOffer(offer, name) { 
+   connectedUser = name; 
+   yourConn.setRemoteDescription(new RTCSessionDescription(offer)); 
+	
+   //create an answer to an offer 
+   yourConn.createAnswer(function (answer) { 
+      yourConn.setLocalDescription(answer); 
+      send({ 
+         type: "answer", 
+         answer: answer 
+      }); 
+   }, function (error) { 
+      alert("Error when creating an answer"); 
+   });
+	
+};
+ 
+//when we got an answer from a remote user 
+function handleAnswer(answer) { 
+   yourConn.setRemoteDescription(new RTCSessionDescription(answer)); 
+};
+ 
+//when we got an ice candidate from a remote user 
+function handleCandidate(candidate) { 
+   yourConn.addIceCandidate(new RTCIceCandidate(candidate)); 
+};
+ 
+//hang up 
+hangUpBtn.addEventListener("click", function () { 
+   send({ 
+      type: "leave" 
+   }); 
+	
+   handleLeave(); 
+}); 
+
+function handleLeave() { 
+   connectedUser = null; 
+   yourConn.close(); 
+   yourConn.onicecandidate = null; 
+};
+ 
+//when user clicks the "send message" button 
+sendMsgBtn.addEventListener("click", function (event) { 
+   var val = msgInput.value; 
+   chatArea.innerHTML += name + ": " + val + "&lt;br /&gt;"; 
+	
+   //sending a message to a connected peer 
+   dataChannel.send(val); 
+   msgInput.value = ""; 
+});
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/webrtc/webrtc_voice_demo.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/webrtc/webrtc_security.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

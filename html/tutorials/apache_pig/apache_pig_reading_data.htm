@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Apache Pig - Reading Data</title>
+<meta charset="utf-8">
+<meta name="description" content="Apache Pig - Reading Data - In general, Apache Pig works on top of Hadoop. It is an analytical tool that analyzes large datasets that exist in the Hadoop File System. To analyze data using"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/apache_pig/apache_pig_reading_data.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#eb3c00;
+}
+a.demo {
+    background:#eb3c00;
+}
+li.heading {
+    background:#eb3c00;
+}
+.course-box{background:#eb3c00}
+.home-intro-sub p{color:#eb3c00}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/apache_pig/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/apache_pig/images/apache-pig-mini-logo.jpg" alt="Apache Pig Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Apache Pig Tutorial</li>
+<li><a href="/apache_pig/index.htm">Apache Pig - Home</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Apache Pig Introduction</li>
+<li><a href="/apache_pig/apache_pig_overview.htm">Apache Pig - Overview</a></li>
+<li><a href="/apache_pig/apache_pig_architecture.htm">Apache Pig - Architecture</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Apache Pig Environment</li>
+<li><a href="/apache_pig/apache_pig_installation.htm">Apache Pig - Installation</a></li>
+<li><a href="/apache_pig/apache_pig_execution.htm">Apache Pig - Execution</a></li>
+<li><a href="/apache_pig/apache_pig_grunt_shell.htm">Apache Pig - Grunt Shell</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Pig Latin</li>
+<li><a href="/apache_pig/pig_latin_basics.htm">Pig Latin - Basics</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Load &amp; Store Operators</li>
+<li><a href="/apache_pig/apache_pig_reading_data.htm">Apache Pig - Reading Data</a></li>
+<li><a href="/apache_pig/apache_pig_storing_data.htm">Apache Pig - Storing Data</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Diagnostic Operators</li>
+<li><a href="/apache_pig/apache_pig_diagnostic_operators.htm">Apache Pig - Diagnostic Operator</a></li>
+<li><a href="/apache_pig/apache_pig_describe_operator.htm">Apache Pig - Describe Operator</a></li>
+<li><a href="/apache_pig/apache_pig_explain_operator.htm">Apache Pig - Explain Operator</a></li>
+<li><a href="/apache_pig/apache_pig_illustrate_operator.htm">Apache Pig - Illustrate Operator</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Grouping &amp; Joining</li>
+<li><a href="/apache_pig/apache_pig_group_operator.htm">Apache Pig - Group Operator</a></li>
+<li><a href="/apache_pig/apache_pig_cogroup_operator.htm">Apache Pig - Cogroup Operator</a></li>
+<li><a href="/apache_pig/apache_pig_join_operator.htm">Apache Pig - Join Operator</a></li>
+<li><a href="/apache_pig/apache_pig_cross_operator.htm">Apache Pig - Cross Operator</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Combining &amp; Splitting</li>
+<li><a href="/apache_pig/apache_pig_union_operator.htm">Apache Pig - Union Operator</a></li>
+<li><a href="/apache_pig/apache_pig_split_operator.htm">Apache Pig - Split Operator</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Filtering</li>
+<li><a href="/apache_pig/apache_pig_filter_operator.htm">Apache Pig - Filter Operator</a></li>
+<li><a href="/apache_pig/apache_pig_distinct_operator.htm">Apache Pig - Distinct Operator</a></li>
+<li><a href="/apache_pig/apache_pig_foreach_operator.htm">Apache Pig - Foreach Operator</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Sorting</li>
+<li><a href="/apache_pig/apache_pig_order_by.htm">Apache Pig - Order By</a></li>
+<li><a href="/apache_pig/apache_pig_limit_operator.htm">Apache Pig - Limit Operator</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Pig Latin Built-In Functions</li>
+<li><a href="/apache_pig/apache_pig_eval_functions.htm">Apache Pig - Eval Functions</a></li>
+<li><a href="/apache_pig/apache_pig_load_store_functions.htm">Load &amp; Store Functions</a></li>
+<li><a href="/apache_pig/apache_pig_bag_tuple_functions.htm">Apache Pig - Bag &amp; Tuple Functions</a></li>
+<li><a href="/apache_pig/apache_pig_string_functions.htm">Apache Pig - String Functions</a></li>
+<li><a href="/apache_pig/apache_pig_date_time_functions.htm">Apache Pig - date-time Functions</a></li>
+<li><a href="/apache_pig/apache_pig_math_functions.htm">Apache Pig - Math Functions</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Other Modes Of Execution</li>
+<li><a href="/apache_pig/apache_pig_user_defined_functions.htm">Apache Pig - User-Defined Functions</a></li>
+<li><a href="/apache_pig/apache_pig_running_scripts.htm">Apache Pig - Running Scripts</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Apache Pig Useful Resources</li>
+<li><a href="/apache_pig/apache_pig_quick_guide.htm">Apache Pig - Quick Guide</a></li>
+<li><a href="/apache_pig/apache_pig_useful_resources.htm">Apache Pig - Useful Resources</a></li>
+<li><a href="/apache_pig/apache_pig_discussion.htm">Apache Pig - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Apache Pig - Reading Data</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/apache_pig/pig_latin_basics.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/apache_pig/apache_pig_storing_data.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In general, Apache Pig works on top of Hadoop. It is an analytical tool that analyzes large datasets that exist in the <b>H</b>adoop <b>F</b>ile <b>S</b>ystem. To analyze data using Apache Pig, we have to initially load the data into Apache Pig. This chapter explains how to load data to Apache Pig from HDFS.</p>
+<h2>Preparing HDFS</h2>
+<p>In MapReduce mode, Pig reads (loads) data from HDFS and stores the results back in HDFS. Therefore, let us start HDFS and create the following sample data in HDFS.</p>
+<table class="table table-bordered">
+<tr>
+<th>Student ID</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Phone</th>
+<th>City</th>
+</tr>
+<tr>
+<td>001</td>
+<td>Rajiv</td>
+<td>Reddy</td>
+<td>9848022337</td>
+<td>Hyderabad</td>
+</tr>
+<tr>
+<td>002</td>
+<td>siddarth</td>
+<td>Battacharya</td>
+<td>9848022338</td>
+<td>Kolkata</td>
+</tr>
+<tr>
+<td>003</td>
+<td>Rajesh</td>
+<td>Khanna</td>
+<td>9848022339</td>
+<td>Delhi</td>
+</tr>
+<tr>
+<td>004</td>
+<td>Preethi</td>
+<td>Agarwal</td>
+<td>9848022330</td>
+<td>Pune</td>
+</tr>
+<tr>
+<td>005</td>
+<td>Trupthi</td>
+<td>Mohanthy</td>
+<td>9848022336</td>
+<td>Bhuwaneshwar</td>
+</tr>
+<tr>
+<td>006</td>
+<td>Archana</td>
+<td>Mishra</td>
+<td>9848022335</td>
+<td>Chennai</td>
+</tr>
+</table>
+<p>The above dataset contains personal details like id, first name, last name, phone number and city, of six students.</p>
+<h3>Step 1: Verifying Hadoop</h3>
+<p>First of all, verify the installation using Hadoop version command, as shown below.</p>
+<pre class="prettyprint notranslate">
+$ hadoop version
+</pre>
+<p>If your system contains Hadoop, and if you have set the PATH variable, then you will get the following output &minus;</p>
+<pre class="result notranslate">
+Hadoop 2.6.0 
+Subversion https://git-wip-us.apache.org/repos/asf/hadoop.git -r 
+e3496499ecb8d220fba99dc5ed4c99c8f9e33bb1 
+Compiled by jenkins on 2014-11-13T21:10Z 
+Compiled with protoc 2.5.0 
+From source with checksum 18e43357c8f927c0695f1e9522859d6a 
+This command was run using /home/Hadoop/hadoop/share/hadoop/common/hadoop
+common-2.6.0.jar
+</pre>
+<h3>Step 2: Starting HDFS</h3>
+<p>Browse through the <b>sbin</b> directory of Hadoop and start <b>yarn</b> and Hadoop dfs (distributed file system) as shown below.</p>
+<pre class="result notranslate">
+cd /$Hadoop_Home/sbin/ 
+<b>$ start-dfs.sh</b> 
+localhost: starting namenode, logging to /home/Hadoop/hadoop/logs/hadoopHadoop-namenode-localhost.localdomain.out 
+localhost: starting datanode, logging to /home/Hadoop/hadoop/logs/hadoopHadoop-datanode-localhost.localdomain.out 
+Starting secondary namenodes [0.0.0.0] 
+starting secondarynamenode, logging to /home/Hadoop/hadoop/logs/hadoop-Hadoopsecondarynamenode-localhost.localdomain.out
+ 
+<b>$ start-yarn.sh</b> 
+starting yarn daemons 
+starting resourcemanager, logging to /home/Hadoop/hadoop/logs/yarn-Hadoopresourcemanager-localhost.localdomain.out 
+localhost: starting nodemanager, logging to /home/Hadoop/hadoop/logs/yarnHadoop-nodemanager-localhost.localdomain.out
+</pre>
+<h3>Step 3: Create a Directory in HDFS</h3>
+<p>In Hadoop DFS, you can create directories using the command <b>mkdir</b>. Create a new directory in HDFS with the name <b>Pig_Data</b> in the required path as shown below.</p>
+<pre class="prettyprint notranslate">
+$cd /$Hadoop_Home/bin/ 
+$ hdfs dfs -mkdir hdfs://localhost:9000/Pig_Data 
+</pre>
+<h3>Step 4: Placing the data in HDFS</h3>
+<p>The input file of Pig contains each tuple/record in individual lines. And the entities of the record are separated by a delimiter (In our example we used <b>“,”</b>).</p>
+<p>In the local file system, create an input file <b>student_data.txt</b> containing data as shown below.</p>
+<pre class="result notranslate">
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai.
+</pre>
+<p>Now, move the file from the local file system to HDFS using <b>put</b> command as shown below. (You can use <b>copyFromLocal</b> command as well.)</p>
+<pre class="prettyprint notranslate">
+$ cd $HADOOP_HOME/bin 
+$ hdfs dfs -put /home/Hadoop/Pig/Pig_Data/student_data.txt dfs://localhost:9000/pig_data/
+</pre>
+<h3>Verifying the file</h3>
+<p>You can use the <b>cat</b> command to verify whether the file has been moved into the HDFS, as shown below.</p>
+<pre class="prettyprint notranslate">
+$ cd $HADOOP_HOME/bin
+$ hdfs dfs -cat hdfs://localhost:9000/pig_data/student_data.txt
+</pre>
+<h3>Output</h3>
+<p>You can see the content of the file as shown below.</p>
+<pre class="result notranslate">
+15/10/01 12:16:55 WARN util.NativeCodeLoader: Unable to load native-hadoop
+library for your platform... using builtin-java classes where applicable
+  
+001,Rajiv,Reddy,9848022337,Hyderabad
+002,siddarth,Battacharya,9848022338,Kolkata
+003,Rajesh,Khanna,9848022339,Delhi
+004,Preethi,Agarwal,9848022330,Pune
+005,Trupthi,Mohanthy,9848022336,Bhuwaneshwar
+006,Archana,Mishra,9848022335,Chennai
+</pre>
+<h2>The Load Operator</h2>
+<p>You can load data into Apache Pig from the file system (HDFS/ Local) using <b>LOAD</b> operator of <b>Pig Latin</b>.</p>
+<h3>Syntax</h3>
+<p>The load statement consists of two parts divided by the “=” operator. On the left-hand side, we need to mention the name of the relation <b>where</b> we want to store the data, and on the right-hand side, we have to define <b>how</b> we store the data. Given below is the syntax of the <b>Load</b> operator.</p>
+<pre class="result notranslate">
+Relation_name = LOAD 'Input file path' USING function as schema;
+</pre>
+<p>Where,</p>
+<ul class="list">
+<li><p><b>relation_name</b> &minus; We have to mention the relation in which we want to store the data.</p></li>
+<li><p><b>Input file path</b> &minus; We have to mention the HDFS directory where the file is stored. (In MapReduce mode)</p></li>
+<li><p><b>function</b> &minus; We have to choose a function from the set of load functions provided by Apache Pig (<b>BinStorage, JsonLoader, PigStorage, TextLoader</b>).</p></li>
+<li><p><b>Schema</b> &minus; We have to define the schema of the data. We can define the required schema as follows &minus;</p></li>
+</ul>
+<pre class="result notranslate">
+(column1 : data type, column2 : data type, column3 : data type);
+</pre>
+<p><b>Note</b> &minus; We load the data without specifying the schema. In that case, the columns will be addressed as $01, $02, etc… (check).</p>
+<h3>Example</h3>
+<p>As an example, let us load the data in <b>student_data.txt</b> in Pig under the schema named <b>Student</b> using the <b>LOAD</b> command.</p>
+<h3>Start the Pig Grunt Shell</h3>
+<p>First of all, open the Linux terminal. Start the Pig Grunt shell in MapReduce mode as shown below.</p>
+<pre class="prettyprint notranslate">
+$ Pig –x mapreduce
+</pre>
+<p>It will start the Pig Grunt shell as shown below.</p>
+<pre class="result notranslate">
+15/10/01 12:33:37 INFO pig.ExecTypeProvider: Trying ExecType : LOCAL
+15/10/01 12:33:37 INFO pig.ExecTypeProvider: Trying ExecType : MAPREDUCE
+15/10/01 12:33:37 INFO pig.ExecTypeProvider: Picked MAPREDUCE as the ExecType
+
+2015-10-01 12:33:38,080 [main] INFO  org.apache.pig.Main - Apache Pig version 0.15.0 (r1682971) compiled Jun 01 2015, 11:44:35
+2015-10-01 12:33:38,080 [main] INFO  org.apache.pig.Main - Logging error messages to: /home/Hadoop/pig_1443683018078.log
+2015-10-01 12:33:38,242 [main] INFO  org.apache.pig.impl.util.Utils - Default bootup file /home/Hadoop/.pigbootup not found
+  
+2015-10-01 12:33:39,630 [main]
+INFO org.apache.pig.backend.hadoop.executionengine.HExecutionEngine - Connecting to hadoop file system at: hdfs://localhost:9000
+ 
+grunt&gt;
+</pre>
+<h3>Execute the Load Statement</h3>
+<p>Now load the data from the file <b>student_data.txt</b> into Pig by executing the following Pig Latin statement in the Grunt shell.</p>
+<pre class="prettyprint notranslate">
+grunt&gt; student = LOAD 'hdfs://localhost:9000/pig_data/student_data.txt' 
+   USING PigStorage(',')
+   as ( id:int, firstname:chararray, lastname:chararray, phone:chararray, 
+   city:chararray );
+</pre>
+<p>Following is the description of the above statement.</p>
+<table class="table table-bordered">
+<tr>
+<td style="width:16%;">Relation name</td>
+<td>We have stored the data in the schema <b>student</b>.</td>
+</tr>
+<tr>
+<td>Input file path</td>
+<td>We are reading data from the file <b>student_data.txt,</b> which is in the /pig_data/ directory of HDFS.</td>
+</tr>
+<tr>
+<td>Storage function</td>
+<td>We have used the <b>PigStorage()</b> function. It loads and stores data as structured text files. It takes a delimiter using which each entity of a tuple is separated, as a parameter. By default, it takes ‘\t’ as a parameter.</td>
+</tr>
+<tr>
+<td>schema</td>
+<td><p>We have stored the data using the following schema.</p>
+<table class="table table-bordered">
+<tr>
+<td>column</td>
+<td>id</td>
+<td>firstname</td>
+<td>lastname</td>
+<td>phone</td>
+<td>city</td>
+</tr>
+<tr>
+<td>datatype</td>
+<td>int</td>
+<td>char array</td>
+<td>char array</td>
+<td>char array</td>
+<td>char array</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p><b>Note</b> &minus; The <b>load</b> statement will simply load the data into the specified relation in Pig. To verify the execution of the <b>Load</b> statement, you have to use the <b>Diagnostic Operators</b> which are discussed in the next chapters.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/apache_pig/pig_latin_basics.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/apache_pig/apache_pig_storing_data.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

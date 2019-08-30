@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Python Pandas - DataFrame</title>
+<meta charset="utf-8">
+<meta name="description" content="Python Pandas - DataFrame - A Data frame is a two-dimensional data structure, i.e., data is aligned in a tabular fashion in rows and columns."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/python_pandas/python_pandas_dataframe.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#036db0;
+}
+a.demo {
+    background:#036db0;
+}
+li.heading {
+    background:#036db0;
+}
+.course-box{background:#036db0}
+.home-intro-sub p{color:#036db0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/python_pandas/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/python_pandas/images/python-pandas-mini-logo.jpg" alt="Python Pandas Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Python Pandas Tutorial</li>
+<li><a href="/python_pandas/index.htm">Python Pandas - Home</a></li>
+<li><a href="/python_pandas/python_pandas_introduction.htm">Python Pandas - Introduction</a></li>
+<li><a href="/python_pandas/python_pandas_environment_setup.htm">Python Pandas - Environment Setup</a></li>
+<li><a href="/python_pandas/python_pandas_introduction_to_data_structures.htm">Introduction to Data Structures</a></li>
+<li><a href="/python_pandas/python_pandas_series.htm">Python Pandas - Series</a></li>
+<li><a href="/python_pandas/python_pandas_dataframe.htm">Python Pandas - DataFrame</a></li>
+<li><a href="/python_pandas/python_pandas_panel.htm">Python Pandas - Panel</a></li>
+<li><a href="/python_pandas/python_pandas_basic_functionality.htm">Python Pandas - Basic Functionality</a></li>
+<li><a href="/python_pandas/python_pandas_descriptive_statistics.htm">Descriptive Statistics</a></li>
+<li><a href="/python_pandas/python_pandas_function_application.htm">Function Application</a></li>
+<li><a href="/python_pandas/python_pandas_reindexing.htm">Python Pandas - Reindexing</a></li>
+<li><a href="/python_pandas/python_pandas_iteration.htm">Python Pandas - Iteration</a></li>
+<li><a href="/python_pandas/python_pandas_sorting.htm">Python Pandas - Sorting</a></li>
+<li><a href="/python_pandas/python_pandas_working_with_text_data.htm">Working with Text Data</a></li>
+<li><a href="/python_pandas/python_pandas_options_and_customization.htm">Options &amp; Customization</a></li>
+<li><a href="/python_pandas/python_pandas_indexing_and_selecting_data.htm">Indexing &amp; Selecting Data</a></li>
+<li><a href="/python_pandas/python_pandas_statistical_functions.htm">Statistical Functions</a></li>
+<li><a href="/python_pandas/python_pandas_window_functions.htm">Python Pandas - Window Functions</a></li>
+<li><a href="/python_pandas/python_pandas_aggregations.htm">Python Pandas - Aggregations</a></li>
+<li><a href="/python_pandas/python_pandas_missing_data.htm">Python Pandas - Missing Data</a></li>
+<li><a href="/python_pandas/python_pandas_groupby.htm">Python Pandas - GroupBy</a></li>
+<li><a href="/python_pandas/python_pandas_merging_joining.htm">Python Pandas - Merging/Joining</a></li>
+<li><a href="/python_pandas/python_pandas_concatenation.htm">Python Pandas - Concatenation</a></li>
+<li><a href="/python_pandas/python_pandas_date_functionality.htm">Python Pandas - Date Functionality</a></li>
+<li><a href="/python_pandas/python_pandas_timedelta.htm">Python Pandas - Timedelta</a></li>
+<li><a href="/python_pandas/python_pandas_categorical_data.htm">Python Pandas - Categorical Data</a></li>
+<li><a href="/python_pandas/python_pandas_visualization.htm">Python Pandas - Visualization</a></li>
+<li><a href="/python_pandas/python_pandas_io_tool.htm">Python Pandas - IO Tools</a></li>
+<li><a href="/python_pandas/python_pandas_sparse_data.htm">Python Pandas - Sparse Data</a></li>
+<li><a href="/python_pandas/python_pandas_caveats_and_gotchas.htm">Python Pandas - Caveats &amp; Gotchas</a></li>
+<li><a href="/python_pandas/python_pandas_comparison_with_sql.htm">Comparison with SQL</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Python Pandas Useful Resources</li>
+<li><a href="/python_pandas/python_pandas_quick_guide.htm">Python Pandas - Quick Guide</a></li>
+<li><a href="/python_pandas/python_pandas_useful_resources.htm">Python Pandas - Useful Resources</a></li>
+<li><a href="/python_pandas/python_pandas_discussion.htm">Python Pandas - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Python Pandas - DataFrame</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/python_pandas/python_pandas_series.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/python_pandas/python_pandas_panel.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>A Data frame is a two-dimensional data structure, i.e., data is aligned in a tabular fashion in rows and columns.</p>
+<h3>Features of DataFrame</h3>
+<ul class="list">
+<li>Potentially columns are of different types</li>
+<li>Size – Mutable</li>
+<li>Labeled axes (rows and columns)</li>
+<li>Can Perform Arithmetic operations on rows and columns</li>
+</ul>
+<h3>Structure</h3>
+<p>Let us assume that we are creating a data frame with student’s data.</p>
+<img src="/python_pandas/images/structure_table.jpg" alt="Structure Table" />
+<p>You can think of it as an SQL table or a spreadsheet data representation.</p>
+<h2>pandas.DataFrame</h2>
+<p>A pandas DataFrame can be created using the following constructor &minus;</p>
+<pre class="result notranslate">
+pandas.DataFrame( data, index, columns, dtype, copy)
+</pre>
+<p>The parameters of the constructor are as follows &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No</th>
+<th style="text-align:center;">Parameter &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td style="text-align:center;">
+<p><b>data</b></p>
+<p>data takes various forms like ndarray, series, map, lists, dict, constants and also another DataFrame.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td style="text-align:center;">
+<p><b>index</b></p>
+<p>For the row labels, the Index to be used for the resulting frame is Optional Default np.arrange(n) if no index is passed.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td style="text-align:center;">
+<p><b>columns</b></p>
+<p>For column labels, the optional default syntax is - np.arrange(n). This is only true if no index is passed.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td style="text-align:center;">
+<p><b>dtype</b></p>
+<p>Data type of each column.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td style="text-align:center;">
+<p><b>copy</b></p>
+<p>This command (or whatever it is) is used for copying of data, if the default is False.</p>
+</td>
+</tr>
+</table>
+<h2>Create DataFrame</h2>
+<p>A pandas DataFrame can be created using various inputs like &minus;</p>
+<ul class="list">
+<li>Lists</li>
+<li>dict</li>
+<li>Series</li>
+<li>Numpy ndarrays</li>
+<li>Another DataFrame</li>
+</ul>
+<p>In the subsequent sections of this chapter, we will see how to create a DataFrame using these inputs.</p>
+<h2>Create an Empty DataFrame</h2>
+<p>A basic DataFrame, which can be created is an Empty Dataframe.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/pYtdhG" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+#import the pandas library and aliasing as pd
+import pandas as pd
+df = pd.DataFrame()
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+Empty DataFrame
+Columns: []
+Index: []
+</pre>
+<h2>Create a DataFrame from Lists</h2>
+<p>The DataFrame can be created using a single list or a list of lists.</p>
+<h3>Example 1</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/cqMm2H" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+data = [1,2,3,4,5]
+df = pd.DataFrame(data)
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+     0
+0    1
+1    2
+2    3
+3    4
+4    5
+</pre>
+<h3>Example 2</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/4O3Ab7" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+data = [['Alex',10],['Bob',12],['Clarke',13]]
+df = pd.DataFrame(data,columns=['Name','Age'])
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+      Name      Age
+0     Alex      10
+1     Bob       12
+2     Clarke    13
+</pre>
+<h3>Example 3</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/9bLwXj" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+data = [['Alex',10],['Bob',12],['Clarke',13]]
+df = pd.DataFrame(data,columns=['Name','Age'],dtype=float)
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+      Name     Age
+0     Alex     10.0
+1     Bob      12.0
+2     Clarke   13.0
+</pre>
+<p><b>Note</b> &minus; Observe, the <b>dtype</b> parameter changes the type of Age column to floating point.</p>
+<h2>Create a DataFrame from Dict of ndarrays / Lists</h2>
+<p>All the <b>ndarrays</b> must be of same length. If index is passed, then the length of the index should equal to the length of the arrays.</p>
+<p>If no index is passed, then by default, index will be range(n), where <b>n</b> is the array length.</p>
+<h3>Example 1</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/sWDCEY" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+data = {'Name':['Tom', 'Jack', 'Steve', 'Ricky'],'Age':[28,34,29,42]}
+df = pd.DataFrame(data)
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+      Age      Name
+0     28        Tom
+1     34       Jack
+2     29      Steve
+3     42      Ricky
+</pre>
+<p><b>Note</b> &minus; Observe the values 0,1,2,3. They are the default index assigned to each using the function range(n).</p>
+<h3>Example 2</h3>
+<p>Let us now create an indexed DataFrame using arrays.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/juJRE9" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+data = {'Name':['Tom', 'Jack', 'Steve', 'Ricky'],'Age':[28,34,29,42]}
+df = pd.DataFrame(data, index=['rank1','rank2','rank3','rank4'])
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+         Age    Name
+rank1    28      Tom
+rank2    34     Jack
+rank3    29    Steve
+rank4    42    Ricky
+</pre>
+<p><b>Note</b> &minus; Observe, the <b>index</b> parameter assigns an index to each row.</p>
+<h2>Create a DataFrame from List of Dicts</h2>
+<p>List of Dictionaries can be passed as input data to create a DataFrame. The dictionary keys are by default taken as column names.</p>
+<h3>Example 1</h3>
+<p>The following example shows how to create a DataFrame by passing a list of dictionaries.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/PynkrD" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+data = [{'a': 1, 'b': 2},{'a': 5, 'b': 10, 'c': 20}]
+df = pd.DataFrame(data)
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+    a    b      c
+0   1   2     NaN
+1   5   10   20.0
+</pre>
+<p><b>Note</b> &minus; Observe, NaN (Not a Number) is appended in missing areas.</p>
+<h3>Example 2</h3>
+<p>The following example shows how to create a DataFrame by passing a list of dictionaries and the row indices.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/qRx0ic" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+data = [{'a': 1, 'b': 2},{'a': 5, 'b': 10, 'c': 20}]
+df = pd.DataFrame(data, index=['first', 'second'])
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+        a   b       c
+first   1   2     NaN
+second  5   10   20.0
+</pre>
+<h3>Example 3</h3>
+<p>The following example shows how to create a DataFrame with a list of dictionaries, row indices, and column indices.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/Biq25j" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+data = [{'a': 1, 'b': 2},{'a': 5, 'b': 10, 'c': 20}]
+
+#With two column indices, values same as dictionary keys
+df1 = pd.DataFrame(data, index=['first', 'second'], columns=['a', 'b'])
+
+#With two column indices with one index with other name
+df2 = pd.DataFrame(data, index=['first', 'second'], columns=['a', 'b1'])
+print df1
+print df2
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+#df1 output
+         a  b
+first    1  2
+second   5  10
+
+#df2 output
+         a  b1
+first    1  NaN
+second   5  NaN
+</pre>
+<p><b>Note</b> &minus; Observe, df2 DataFrame is created with a column index other than the dictionary key; thus, appended the NaN’s in place. Whereas, df1 is created with column indices same as dictionary keys, so NaN’s appended.</p>
+<h2>Create a DataFrame from Dict of Series</h2>
+<p>Dictionary of Series can be passed to form a DataFrame. The resultant index is the union of all the series indexes passed.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/yn5FTV" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
+   'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+      one    two
+a     1.0    1
+b     2.0    2
+c     3.0    3
+d     NaN    4
+</pre>
+<p><b>Note</b> &minus; Observe, for the series one, there is no label <b>‘d’</b> passed, but in the result, for the <b>d</b> label, NaN is appended with NaN.</p>
+<p>Let us now understand <b>column selection, addition</b>, and <b>deletion</b> through examples.</p>
+<h2>Column Selection</h2>
+<p>We will understand this by selecting a column from the DataFrame.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/Rq2wBY" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
+   'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print df ['one']
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+a     1.0
+b     2.0
+c     3.0
+d     NaN
+Name: one, dtype: float64
+</pre>
+<h2>Column Addition</h2>
+<p>We will understand this by adding a new column to an existing data frame.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/dPCFDX" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
+   'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+
+# Adding a new column to an existing DataFrame object with column label by passing new series
+
+print ("Adding a new column by passing as Series:")
+df['three']=pd.Series([10,20,30],index=['a','b','c'])
+print df
+
+print ("Adding a new column using the existing columns in DataFrame:")
+df['four']=df['one']+df['three']
+
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+Adding a new column by passing as Series:
+     one   two   three
+a    1.0    1    10.0
+b    2.0    2    20.0
+c    3.0    3    30.0
+d    NaN    4    NaN
+
+Adding a new column using the existing columns in DataFrame:
+      one   two   three    four
+a     1.0    1    10.0     11.0
+b     2.0    2    20.0     22.0
+c     3.0    3    30.0     33.0
+d     NaN    4     NaN     NaN
+</pre>
+<h2>Column Deletion</h2>
+<p>Columns can be deleted or popped; let us take an example to understand how.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/tHyPQW" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+# Using the previous DataFrame, we will delete a column
+# using del function
+import pandas as pd
+
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd']), 
+   'three' : pd.Series([10,20,30], index=['a','b','c'])}
+
+df = pd.DataFrame(d)
+print ("Our dataframe is:")
+print df
+
+# using del function
+print ("Deleting the first column using DEL function:")
+del df['one']
+print df
+
+# using pop function
+print ("Deleting another column using POP function:")
+df.pop('two')
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+Our dataframe is:
+      one   three  two
+a     1.0    10.0   1
+b     2.0    20.0   2
+c     3.0    30.0   3
+d     NaN     NaN   4
+
+Deleting the first column using DEL function:
+      three    two
+a     10.0     1
+b     20.0     2
+c     30.0     3
+d     NaN      4
+
+Deleting another column using POP function:
+   three
+a  10.0
+b  20.0
+c  30.0
+d  NaN
+</pre>
+<h2>Row Selection, Addition, and Deletion</h2>
+<p>We will now understand row selection, addition and deletion through examples. Let us begin with the concept of selection.</p>
+<h3>Selection by Label</h3>
+<p>Rows can be selected by passing row label to a <b>loc</b> function.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/FYCqj5" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print df.loc['b']
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+one 2.0
+two 2.0
+Name: b, dtype: float64
+</pre>
+<p>The result is a series with labels as column names of the DataFrame. And, the Name of the series is the label with which it is retrieved.</p>
+<h3>Selection by integer location</h3>
+<p>Rows can be selected by passing integer location to an <b>iloc</b> function.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/lA7zea" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']),
+   'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print df.iloc[2]
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+one   3.0
+two   3.0
+Name: c, dtype: float64
+</pre>
+<h3>Slice Rows</h3>
+<p>Multiple rows can be selected using ‘ : ’ operator.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/iNZZv6" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print df[2:4]
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+   one  two
+c  3.0    3
+d  NaN    4
+</pre>
+<h3>Addition of Rows</h3>
+<p>Add new rows to a DataFrame using the <b>append</b> function. This function will append the rows at the end.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/8zJwv2" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+df = pd.DataFrame([[1, 2], [3, 4]], columns = ['a','b'])
+df2 = pd.DataFrame([[5, 6], [7, 8]], columns = ['a','b'])
+
+df = df.append(df2)
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+   a  b
+0  1  2
+1  3  4
+0  5  6
+1  7  8
+</pre>
+<h3>Deletion of Rows</h3>
+<p>Use index label to delete or drop rows from a DataFrame. If label is duplicated, then multiple rows will be dropped.</p>
+<p>If you observe, in the above example, the labels are duplicate. Let us drop a label and will see how many rows will get dropped.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/Eq7pwq" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import pandas as pd
+
+df = pd.DataFrame([[1, 2], [3, 4]], columns = ['a','b'])
+df2 = pd.DataFrame([[5, 6], [7, 8]], columns = ['a','b'])
+
+df = df.append(df2)
+
+# Drop rows with label 0
+df = df.drop(0)
+
+print df
+</pre>
+<p>Its <b>output</b> is as follows &minus;</p>
+<pre class="result notranslate">
+  a b
+1 3 4
+1 7 8
+</pre>
+<p>In the above example, two rows were dropped because those two contain the same label 0.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/python_pandas/python_pandas_series.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/python_pandas/python_pandas_panel.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

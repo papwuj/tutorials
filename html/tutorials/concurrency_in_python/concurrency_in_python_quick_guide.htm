@@ -1,0 +1,2937 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Concurrency in Python - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="Concurrency in Python - Quick Guide - In this chapter, we will understand the concept of concurrency in Python and learn about the different threads and processes."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/concurrency_in_python/concurrency_in_python_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#036db0;
+}
+a.demo {
+    background:#036db0;
+}
+li.heading {
+    background:#036db0;
+}
+.course-box{background:#036db0}
+.home-intro-sub p{color:#036db0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/concurrency_in_python/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/concurrency_in_python/images/concurrency-in-python-mini-logo.jpg" alt=" Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Concurrency in Python Tutorial</li>
+<li><a href="/concurrency_in_python/index.htm">Home</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_introduction.htm">Introduction</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_concurrency_vs_parallelism.htm">Concurrency vs Parallelism</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_system_and_memory_architecture.htm">System &amp; Memory Architecture</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_threads.htm">Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_implementation_of_threads.htm">Implementation of Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_synchronizing_threads.htm">Synchronizing Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_threads_intercommunication.htm">Threads Intercommunication</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_testing_thread_applications.htm">Testing Thread Applications</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_debugging_thread_applications.htm">Debugging Thread Applications</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_benchmarking_and_profiling.htm">Benchmarking &amp; Profiling</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_pool_of_threads.htm">Pool of Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_pool_of_processes.htm">Pool of Processes</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_multiprocessing.htm">Multiprocessing</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_processes_intercommunication.htm">Processes Intercommunication</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_eventdriven_programming.htm">Event-Driven Programming</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_reactive_programming.htm">Reactive Programming</a></li>
+<ul class="toc chapters">
+<li class="heading">Concurrency in Python Resources</li>
+<li><a href="/concurrency_in_python/concurrency_in_python_quick_guide.htm">Quick Guide</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_useful_resources.htm">Useful Resources</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_discussion.htm">Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Concurrency in Python - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/concurrency_in_python/concurrency_in_python_reactive_programming.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/concurrency_in_python/concurrency_in_python_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>Concurrency in Python - Introduction</h1>
+<p>In this chapter, we will understand the concept of concurrency in Python and learn about the different threads and processes.</p>
+<h2>What is Concurrency?</h2>
+<p>In simple words, concurrency is the occurrence of two or more events at the same time. Concurrency is a natural phenomenon because many events occur simultaneously at any given time.</p>
+<p>In terms of programming, concurrency is when two tasks overlap in execution. With concurrent programming, the performance of our applications and software systems can be improved because we can concurrently deal with the requests rather than waiting for a previous one to be completed.</p>
+<h2>Historical Review of Concurrency</h2>
+<p>Following points will give us the brief historical review of concurrency &minus;</p>
+<h3>From the concept of railroads</h3>
+<p>Concurrency is closely related with the concept of railroads. With the railroads, there was a need to handle multiple trains on the same railroad system in such a way that every train would get to its destination safely.</p>
+<h3>Concurrent computing in academia</h3>
+<p>The interest in computer science concurrency began with the research paper published by Edsger W. Dijkstra in 1965. In this paper, he identified and solved the problem of mutual exclusion, the property of concurrency control.</p>
+<h3>High-level concurrency primitives</h3>
+<p>In recent times, programmers are getting improved concurrent solutions because of the introduction of high-level concurrency primitives.</p>
+<h3>Improved concurrency with programming languages</h3>
+<p>Programming languages such as Google’s Golang, Rust and Python have made incredible developments in areas which help us get better concurrent solutions.</p>
+<h2>What is thread & multithreading?</h2>
+<p><b>Thread</b> is the smallest unit of execution that can be performed in an operating system. It is not itself a program but runs within a program. In other words, threads are not independent of one other. Each thread shares code section, data section, etc. with other threads. They are also known as lightweight processes.</p>
+<p>A thread consists of the following components &minus;</p>
+<ul class="list">
+<li><p>Program counter which consist of the address of the next executable instruction</p></li>
+<li><p>Stack</p></li>
+<li><p>Set of registers</p></li>
+<li><p>A unique id</p></li>
+</ul>
+<p><b>Multithreading</b>, on the other hand, is the ability of a CPU to manage the use of operating system by executing multiple threads concurrently. The main idea of multithreading is to achieve parallelism by dividing a process into multiple threads. The concept of multithreading can be understood with the help of the following example.</p>
+<h3>Example</h3>
+<p>Suppose we are running a particular process wherein we open MS Word to type content into it. One thread will be assigned to open MS Word and another thread will be required to type content in it. And now, if we want to edit the existing then another thread will be required to do the editing task and so on.</p>
+<h2>What is process &amp; multiprocessing?</h2>
+<p>A<b>process</b>is defined as an entity, which represents the basic unit of work to be implemented in the system. To put it in simple terms, we write our computer programs in a text file and when we execute this program, it becomes a process that performs all the tasks mentioned in the program. During the process life cycle, it passes through different stages – Start, Ready, Running, Waiting and Terminating.</p>
+<p>Following diagram shows the different stages of a process &minus;</p>
+<img src="/concurrency_in_python/images/multiprocessing.jpg" alt="Multiprocessing" />
+<p>A process can have only one thread, called primary thread, or multiple threads having their own set of registers, program counter and stack. Following diagram will show us the difference &minus;</p>
+<img src="/concurrency_in_python/images/multiprocessing_one.jpg" alt="Multiprocessing One" />
+<p><b>Multiprocessing,</b> on the other hand, is the use of two or more CPUs units within a single computer system. Our primary goal is to get the full potential from our hardware. To achieve this, we need to utilize full number of CPU cores available in our computer system. Multiprocessing is the best approach to do so.</p>
+<img src="/concurrency_in_python/images/multiprocessing_two.jpg" alt="Multiprocessing Two" />
+<p>Python is one of the most popular programming languages. Followings are some reasons that make it suitable for concurrent applications &minus;</p>
+<h3>Syntactic sugar</h3>
+<p>Syntactic sugar is syntax within a programming language that is designed to make things easier to read or to express. It makes the language “sweeter” for human use: things can be expressed more clearly, more concisely, or in an alternative style based on preference. Python comes with Magic methods, which can be defined to act on objects. These Magic methods are used as syntactic sugar and bound to more easy-to-understand keywords.</p>
+<h3>Large Community</h3>
+<p>Python language has witnessed a massive adoption rate amongst data scientists and mathematicians, working in the field of AI, machine learning, deep learning and quantitative analysis.</p>
+<h3>Useful APIs for concurrent programming</h3>
+<p>Python 2 and 3 have large number of APIs dedicated for parallel/concurrent programming. Most popular of them are <b>threading, concurrent.features, multiprocessing, asyncio, gevent and greenlets,</b> etc.</p>
+<h2>Limitations of Python in implementing concurrent applications</h2>
+<p>Python comes with a limitation for concurrent applications. This limitation is called <b>GIL (Global Interpreter Lock)</b> is present within Python. GIL never allows us to utilize multiple cores of CPU and hence we can say that there are no true threads in Python. We can understand the concept of GIL as follows &minus;</p>
+<h3>GIL (Global Interpreter Lock)</h3>
+<p>It is one of the most controversial topics in the Python world. In CPython, GIL is the mutex - the mutual exclusion lock, which makes things thread safe. In other words, we can say that GIL prevents multiple threads from executing Python code in parallel. The lock can be held by only one thread at a time and if we want to execute a thread then it must acquire the lock first. The diagram shown below will help you understand the working of GIL.</p>
+<img src="/concurrency_in_python/images/limitations.jpg" alt="Limitations" />
+<p>However, there are some libraries and implementations in Python such as <b>Numpy, Jpython</b> and <b>IronPytbhon.</b> These libraries work without any interaction with GIL.</p>
+<h1>Concurrency vs Parallelism</h1>
+<p>Both concurrency and parallelism are used in relation to multithreaded programs but there is a lot of confusion about the similarity and difference between them. The big question in this regard: is concurrency parallelism or not? Although both the terms appear quite similar but the answer to the above question is NO, concurrency and parallelism are not same. Now, if they are not same then what is the basic difference between them?</p>
+<p>In simple terms, concurrency deals with managing the access to shared state from different threads and on the other side, parallelism deals with utilizing multiple CPUs or its cores to improve the performance of hardware.</p>
+<h2>Concurrency in Detail</h2>
+<p>Concurrency is when two tasks overlap in execution. It could be a situation where an application is progressing on more than one task at the same time. We can understand it diagrammatically; multiple tasks are making progress at the same time, as follows &minus;</p>
+<img src="/concurrency_in_python/images/concurrency.jpg" alt="Concurrency" />
+<h2>Levels of Concurrency</h2>
+<p>In this section, we will discuss the three important levels of concurrency in terms of programming &minus;</p>
+<h3>Low-Level Concurrency</h3>
+<p>In this level of concurrency, there is explicit use of atomic operations. We cannot use such kind of concurrency for application building, as it is very error-prone and difficult to debug. Even Python does not support such kind of concurrency.</p>
+<h3>Mid-Level Concurrency</h3>
+<p>In this concurrency, there is no use of explicit atomic operations. It uses the explicit locks. Python and other programming languages support such kind of concurrency. Mostly application programmers use this concurrency.</p>
+<h3>High-Level Concurrency</h3>
+<p>In this concurrency, neither explicit atomic operations nor explicit locks are used. Python has <b>concurrent.futures</b> module to support such kind of concurrency.</p>
+<h2>Properties of Concurrent Systems</h2>
+<p>For a program or concurrent system to be correct, some properties must be satisfied by it. Properties related to the termination of system are as follows &minus;</p>
+<h3>Correctness property</h3>
+<p>The correctness property means that the program or the system must provide the desired correct answer. To keep it simple, we can say that the system must map the starting program state to final state correctly.</p>
+<h3>Safety property</h3>
+<p>The safety property means that the program or the system must remain in a <b>“good”</b> or <b>“safe”</b> state and never does anything <b>“bad”</b>.</p>
+<h3>Liveness property</h3>
+<p>This property means that a program or system must <b>“make progress”</b> and it would reach at some desirable state.</p>
+<h3>Actors of concurrent systems</h3>
+<p>This is one common property of concurrent system in which there can be multiple processes and threads, which run at the same time to make progress on their own tasks. These processes and threads are called actors of the concurrent system.</p>
+<h3>Resources of Concurrent Systems</h3>
+<p>The actors must utilize the resources such as memory, disk, printer etc. in order to perform their tasks.</p>
+<h3>Certain set of rules</h3>
+<p>Every concurrent system must possess a set of rules to define the kind of tasks to be performed by the actors and the timing for each. The tasks could be acquiring of locks, memory sharing, modifying the state, etc.</p>
+<h2>Barriers of Concurrent Systems</h2>
+<p></p>While implementing concurrent systems, the programmer must take into consideration the following two important issues, which can be the barriers of concurrent systems &minus;</p>
+<h3>Sharing of data</h3>
+<p>An important issue while implementing the concurrent systems is the sharing of data among multiple threads or processes. Actually, the programmer must ensure that locks protect the shared data so that all the accesses to it are serialized and only one thread or process can access the shared data at a time. In case, when multiple threads or processes are all trying to access the same shared data then not all but at least one of them would be blocked and would remain idle. In other words, we can say that we would be able to use only one process or thread at a time when lock is in force. There can be some simple solutions to remove the above-mentioned barriers &minus;</p>
+<h3>Data Sharing Restriction</h3>
+<p>The simplest solution is not to share any mutable data. In this case, we need not to use explicit locking and the barrier of concurrency due to mutual data would be solved.</p>
+<h3>Data Structure Assistance</h3>
+<p>Many times the concurrent processes need to access the same data at the same time. Another solution, than using of explicit locks, is to use a data structure that supports concurrent access. For example, we can use the <b>queue</b> module, which provides thread-safe queues. We can also use <b>multiprocessing.JoinableQueue</b> classes for multiprocessing-based concurrency.</p>
+<h3>Immutable Data Transfer</h3>
+<p>Sometimes, the data structure that we are using, say concurrency queue, is not suitable then we can pass the immutable data without locking it.</p>
+<h3>Mutable Data Transfer</h3>
+<p>In continuation of the above solution, suppose if it is required to pass only mutable data, rather than immutable data, then we can pass mutable data that is read only.</p>
+<h3>Sharing of I/O Resources</h3>
+<p>Another important issue in implementing concurrent systems is the use of I/O resources by threads or processes. The problem arises when one thread or process is using the I/O for such a long time and other is sitting idle. We can see such kind of barrier while working with an I/O heavy application. It can be understood with the help of an example, the requesting of pages from web browser. It is a heavy application. Here, if the rate at which the data is requested is slower than the rate at which it is consumed then we have I/O barrier in our concurrent system.</p>
+<p>The following Python script is for requesting a web page and getting the time our network took to get the requested page &minus;</p>
+<pre class="prettyprint notranslate">
+import urllib.request
+import time
+ts = time.time()
+req = urllib.request.urlopen('http://www.tutorialspoint.com')
+pageHtml = req.read()
+te = time.time()
+print("Page Fetching Time : {} Seconds".format (te-ts))
+</pre>
+<p>After executing the above script, we can get the page fetching time as shown below.</p>
+<h3>Output</h3>
+<pre class="result notranslate">
+Page Fetching Time: 1.0991398811340332 Seconds
+</pre>
+<p>We can see that the time to fetch the page is more than one second. Now what if we want to fetch thousands of different web pages, you can understand how much time our network would take.</p>
+<h2>What is Parallelism?</h2>
+<p>Parallelism may be defined as the art of splitting the tasks into subtasks that can be processed simultaneously. It is opposite to the concurrency, as discussed above, in which two or more events are happening at the same time. We can understand it diagrammatically; a task is broken into a number of subtasks that can be processed in parallel, as follows &minus;</p>
+<img src="/concurrency_in_python/images/parallelism.jpg" alt="Parallelism" />
+<p>To get more idea about the distinction between concurrency and parallelism, consider the following points &minus;</p>
+<h3>Concurrent but not parallel</h3>
+<p>An application can be concurrent but not parallel means that it processes more than one task at the same time but the tasks are not broken down into subtasks.</p>
+<h3>Parallel but not concurrent</h3>
+<p>An application can be parallel but not concurrent means that it only works on one task at a time and the tasks broken down into subtasks can be processed in parallel.</p>
+<h3>Neither parallel nor concurrent</h3>
+<p>An application can be neither parallel nor concurrent. This means that it works on only one task at a time and the task is never broken into subtasks.</p>
+<h3>Both parallel and concurrent</h3>
+<p>An application can be both parallel and concurrent means that it both works on multiple tasks at a time and the task is broken into subtasks for executing them in parallel.</p>
+<h2>Necessity of Parallelism</h2>
+<p>We can achieve parallelism by distributing the subtasks among different cores of single CPU or among multiple computers connected within a network.</p>
+<p>Consider the following important points to understand why it is necessary to achieve parallelism &minus;</p>
+<h3>Efficient code execution</h3>
+<p>With the help of parallelism, we can run our code efficiently. It will save our time because the same code in parts is running in parallel.</p>
+<h3>Faster than sequential computing</h3>
+<p>Sequential computing is constrained by physical and practical factors due to which it is not possible to get faster computing results. On the other hand, this issue is solved by parallel computing and gives us faster computing results than sequential computing.</p>
+<h3>Less execution time</h3>
+<p>Parallel processing reduces the execution time of program code.</p>
+<p>If we talk about real life example of parallelism, the graphics card of our computer is the example that highlights the true power of parallel processing because it has hundreds of individual processing cores that work independently and can do the execution at the same time. Due to this reason, we are able to run high-end applications and games as well.</p>
+<h2>Understanding of the processors for implementation</h2>
+<p>We know about concurrency, parallelism and the difference between them but what about the system on which it is to be implemented. It is very necessary to have the understanding of the system, on which we are going to implement, because it gives us the benefit to take informed decision while designing the software. We have the following two kinds of processors &minus;</p>
+<h3>Single-core processors</h3>
+<p>Single-core processors are capable of executing one thread at any given time. These processors use <b>context switching</b> to store all the necessary information for a thread at a specific time and then restoring the information later. The context switching mechanism helps us make progress on a number of threads within a given second and it looks as if the system is working on multiple things.
+</p>
+<p>Single-core processors come with many advantages. These processors require less power and there is no complex communication protocol between multiple cores. On the other hand, the speed of single-core processors is limited and it is not suitable for larger applications.</p>
+<h3>Multi-core processors</h3>
+<p>Multi-core processors have multiple independent processing units also called <b>cores</b>.</p>
+<p>Such processors do not need context switching mechanism as each core contains everything it needs to execute a sequence of stored instructions.</p>
+<h2>Fetch-Decode-Execute Cycle</h2>
+<p>The cores of multi-core processors follow a cycle for executing. This cycle is called the <b>Fetch-Decode-Execute</b> cycle. It involves the following steps &minus;</p>
+<h3>Fetch</h3>
+<p>This is the first step of cycle, which involves the fetching of instructions from the program memory.</p>
+<h3>Decode</h3>
+<p>Recently fetched instructions would be converted to a series of signals that will trigger other parts of the CPU.</p>
+<h3>Execute</h3>
+<p>It is the final step in which the fetched and the decoded instructions would be executed. The result of execution will be stored in a CPU register.</p>
+<p>One advantage over here is that the execution in multi-core processors are faster than that of single-core processors. It is suitable for larger applications. On the other hand, complex communication protocol between multiple cores is an issue. Multiple cores require more power than single-core processors.</p>
+<h1>System and Memory Architecture</h1>
+<p>There are different system and memory architecture styles that need to be considered while designing the program or concurrent system. It is very necessary because one system & memory style may be suitable for one task but may be error prone to other task.</p>
+<h2>Computer system architectures supporting concurrency</h2>
+<p>Michael Flynn in 1972 gave taxonomy for categorizing different styles of computer system architecture. This taxonomy defines four different styles as follows &minus;</p>
+<ul class="list">
+<li>Single instruction stream, single data stream (SISD)</li>
+<li>Single instruction stream, multiple data stream (SIMD)</li>
+<li>Multiple instruction stream, single data stream (MISD)</li>
+<li>Multiple instruction stream, multiple data stream (MIMD).</li>
+</ul>
+<h2>Single instruction stream, single data stream (SISD)</h2>
+<p>As the name suggests, such kind of systems would have one sequential incoming data stream and one single processing unit to execute the data stream. They are just like uniprocessor systems having parallel computing architecture. Following is the architecture of SISD &minus;</p>
+<img src="/concurrency_in_python/images/ssid.jpg" alt="SSID" />
+<h3>Advantages of SISD</h3>
+<p>The advantages of SISD architecture are as follows &minus;</p>
+<ul class="list">
+<li>It requires less power.</li>
+<li>There is no issue of complex communication protocol between multiple cores.</li>
+</ul>
+<h3>Disadvantages of SISD</h3>
+<p>The disadvantages of SISD architecture are as follows &minus;</p>
+<ul class="list">
+<li>The speed of SISD architecture is limited just like single-core processors.</li>
+<li>It is not suitable for larger applications.</li>
+</ul>
+<h2>Single instruction stream, multiple data stream (SIMD)</h2>
+<p>As the name suggests, such kind of systems would have multiple incoming data streams and number of processing units that can act on a single instruction at any given time. They are just like multiprocessor systems having parallel computing architecture. Following is the architecture of SIMD &minus;</p>
+<img src="/concurrency_in_python/images/simd.jpg" alt="simd" />
+<p>The best example for SIMD is the graphics cards. These cards have hundreds of individual processing units. If we talk about computational difference between SISD and SIMD then for the adding arrays <b>[5, 15, 20]</b> and <b>[15, 25, 10],</b> SISD architecture would have to perform three different add operations. On the other hand, with the SIMD architecture, we can add then in a single add operation.</p>
+<h3>Advantages of SIMD</h3>
+<p>The advantages of SIMD architecture are as follows &minus;</p>
+<ul class="list">
+<li><p>Same operation on multiple elements can be performed using one instruction only.</p></li>
+<li><p>Throughput of the system can be increased by increasing the number of cores of the processor.</p></li>
+<li><p>Processing speed is higher than SISD architecture.</p></li>
+</ul>
+<h3>Disadvantages of SIMD</h3>
+<p>The disadvantages of SIMD architecture are as follows &minus;</p>
+<ul class="list">
+<li>There is complex communication between numbers of cores of processor.</li>
+<li>The cost is higher than SISD architecture.</li>
+</ul>
+<h2>Multiple Instruction Single Data (MISD) stream</h2>
+<p>Systems with MISD stream have number of processing units performing different operations by executing different instructions on the same data set. Following is the architecture of MISD &minus; </p>
+<img src="/concurrency_in_python/images/misd.jpg" alt="MISD" />
+<p>The representatives of MISD architecture do not yet exist commercially.</p>
+<h2>Multiple Instruction Multiple Data (MIMD) stream</h2>
+<p>In the system using MIMD architecture, each processor in a multiprocessor system can execute different sets of instructions independently on the different set of data set in parallel. It is opposite to SIMD architecture in which single operation is executed on multiple data sets. Following is the architecture of MIMD &minus;</p>
+<img src="/concurrency_in_python/images/mimd.jpg" alt="MIMD" />
+<p>A normal multiprocessor uses the MIMD architecture. These architectures are basically used in a number of application areas such as computer-aided design/computer-aided manufacturing, simulation, modeling, communication switches, etc.</p>
+<h2>Memory architectures supporting concurrency</h2>
+<p>While working with the concepts like concurrency and parallelism, there is always a need to speed up the programs. One solution found by computer designers is to create shared-memory multi-computers, i.e., computers having single physical address space, which is accessed by all the cores that a processor is having. In this scenario, there can be a number of different styles of architecture but following are the three important architecture styles &minus;</p>
+<h3>UMA (Uniform Memory Access)</h3>
+<p>In this model, all the processors share the physical memory uniformly. All the processors have equal access time to all the memory words. Each processor may have a private cache memory. The peripheral devices follow a set of rules.</p>
+<p>When all the processors have equal access to all the peripheral devices, the system is called a <b>symmetric multiprocessor</b>. When only one or a few processors can access the peripheral devices, the system is called an <b>asymmetric multiprocessor</b>.</p>
+<img src="/concurrency_in_python/images/uma.jpg" alt="UMA" />
+<h3>Non-uniform Memory Access (NUMA)</h3>
+<p>In the NUMA multiprocessor model, the access time varies with the location of the memory word. Here, the shared memory is physically distributed among all the processors, called local memories. The collection of all local memories forms a global address space which can be accessed by all the processors.</p>
+<img src="/concurrency_in_python/images/numa.jpg" alt="NUMA" />
+<h3>Cache Only Memory Architecture (COMA)</h3>
+<p>The COMA model is a specialized version of the NUMA model. Here, all the distributed main memories are converted to cache memories.</p>
+<img src="/concurrency_in_python/images/coma.jpg" alt="coma" />
+<h1>Concurrency in Python - Threads</h1>
+<p>In general, as we know that thread is a very thin twisted string usually of the cotton or silk fabric and used for sewing clothes and such. The same term thread is also used in the world of computer programming. Now, how do we relate the thread used for sewing clothes and the thread used for computer programming? The roles performed by the two threads is similar here. In clothes, thread hold the cloth together and on the other side, in computer programming, thread hold the computer program and allow the program to execute sequential actions or many actions at once.</p>
+<p><b>Thread</b>is the smallest unit of execution in an operating system. It is not in itself a program but runs within a program. In other words, threads are not independent of one other and share code section, data section, etc. with other threads. These threads are also known as lightweight processes.</p>
+<h2>States of Thread</h2>
+<p>To understand the functionality of threads in depth, we need to learn about the lifecycle of the threads or the different thread states. Typically, a thread can exist in five distinct states. The different states are shown below &minus;</p>
+<h3>New Thread</h3>
+<p>A new thread begins its life cycle in the new state. However, at this stage, it has not yet started and it has not been allocated any resources. We can say that it is just an instance of an object.</p>
+<h3>Runnable</h3>
+<p>As the newly born thread is started, the thread becomes runnable i.e. waiting to run. In this state, it has all the resources but still task scheduler have not scheduled it to run.</p>
+<h3>Running</h3>
+<p>In this state, the thread makes progress and executes the task, which has been chosen by task scheduler to run. Now, the thread can go to either the dead state or the non-runnable/ waiting state.</p>
+<h3>Non-running/waiting</h3>
+<p>In this state, the thread is paused because it is either waiting for the response of some I/O request or waiting for the completion of the execution of other thread.</p>
+<h3>Dead</h3>
+<p>A runnable thread enters the terminated state when it completes its task or otherwise terminates.</p>
+<p>The following diagram shows the complete life cycle of a thread &minus;</p>
+<img src="/concurrency_in_python/images/dead.jpg" alt="Dead" />
+<h2>Types of Thread</h2>
+<p>In this section, we will see the different types of thread. The types are described below &minus;</p>
+<h3>User Level Threads</h3>
+<p>These are user-managed threads.</p>
+<p>In this case, the thread management kernel is not aware of the existence of threads. The thread library contains code for creating and destroying threads, for passing message and data between threads, for scheduling thread execution and for saving and restoring thread contexts. The application starts with a single thread.</p>
+<p>The examples of user level threads are &minus;</p>
+<ul class="list">
+<li>Java threads</li>
+<li>POSIX threads</li>
+</ul>
+<img src="/concurrency_in_python/images/user_level.jpg" alt="Dead" />
+<h3>Advantages of User level Threads</h3>
+<p>Following are the different advantages of user level threads &minus;</p>
+<ul class="list">
+<li>Thread switching does not require Kernel mode privileges.</li>
+<li>User level thread can run on any operating system.</li>
+<li>Scheduling can be application specific in the user level thread.</li>
+<li>User level threads are fast to create and manage.</li>
+</ul>
+<h3>Disadvantages of User level Threads</h3>
+<p>Following are the different disadvantages of user level threads &minus;</p>
+<ul class="list">
+<li>In a typical operating system, most system calls are blocking.</li>
+<li>Multithreaded application cannot take advantage of multiprocessing.</li>
+</ul>
+<h3>Kernel Level Threads</h3>
+<p>Operating System managed threads act on kernel, which is an operating system core.</p>
+<p>In this case, the Kernel does thread management. There is no thread management code in the application area. Kernel threads are supported directly by the operating system. Any application can be programmed to be multithreaded. All of the threads within an application are supported within a single process.</p>
+<p>The Kernel maintains context information for the process as a whole and for individual threads within the process. Scheduling by the Kernel is done on a thread basis. The Kernel performs thread creation, scheduling and management in Kernel space. Kernel threads are generally slower to create and manage than the user threads. The examples of kernel level threads are Windows, Solaris.</p>
+<img src="/concurrency_in_python/images/kernal.jpg" alt="Dead" />
+<h3>Advantages of Kernel Level Threads</h3>
+<p>Following are the different advantages of kernel level threads &minus;</p>
+<ul class="list">
+<li><p>Kernel can simultaneously schedule multiple threads from the same process on multiple processes.</p></li>
+<li><p>If one thread in a process is blocked, the Kernel can schedule another thread of the same process.</p></li>
+<li><p>Kernel routines themselves can be multithreaded.</p></li>
+</ul>
+<h3>Disadvantages of Kernel Level Threads</h3>
+<ul class="list">
+<li><p>Kernel threads are generally slower to create and manage than the user threads.</p></li>
+<li><p>Transfer of control from one thread to another within the same process requires a mode switch to the Kernel.</p></li>
+</ul>
+<h2>Thread Control Block - TCB</h2>
+<p>Thread Control Block (TCB) may be defined as the data structure in the kernel of operating system that mainly contains information about thread. Thread-specific information stored in TCB would highlight some important information about each process.</p>
+<p>Consider the following points related to the threads contained in TCB &minus;</p>
+<ul class="list">
+<li><p><b>Thread identification</b> &minus; It is the unique thread id (tid) assigned to every new thread.</p></li>
+<li><p><b>Thread state</b> &minus; It contains the information related to the state (Running, Runnable, Non-Running, Dead) of the thread.</p></li>
+<li><p><b>Program Counter (PC)</b> &minus; It points to the current program instruction of the thread.</p></li>
+<li><p><b>Register set</b> &minus; It contains the thread’s register values assigned to them for computations.</p></li>
+<li><p><b>Stack Pointer</b> &minus; It points to the thread’s stack in the process. It contains the local variables under thread’s scope.</p></li>
+<li><p><b>Pointer to PCB</b> &minus; It contains the pointer to the process that created that thread.</p></li>
+</ul>
+<img src="/concurrency_in_python/images/pcb.jpg" alt="pcb" />
+<h2>Relation between process & thread</h2>
+<p>In multithreading, process and thread are two very closely related terms having the same goal to make computer able to do more than one thing at a time. A process can contain one or more threads but on the contrary, thread cannot contain a process. However, they both remain the two basic units of execution. A program, executing a series of instructions, initiates process and thread both.</p>
+<p>The following table shows the comparison between process and thread &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Process</th>
+<th style="text-align:center;">Thread</th>
+</tr>
+<tr>
+<td>Process is heavy weight or resource intensive.</td>
+<td>Thread is lightweight which takes fewer resources than a process.</td>
+</tr>
+<tr>
+<td>Process switching needs interaction with operating system.</td>
+<td>Thread switching does not need to interact with operating system.</td>
+</tr>
+<tr>
+<td>In multiple processing environments, each process executes the same code but has its own memory and file resources.</td>
+<td style="vertical-align:middle;">All threads can share same set of open files, child processes.</td>
+</tr>
+<tr>
+<td>If one process is blocked, then no other process can execute until the first process is unblocked.</td>
+<td>While one thread is blocked and waiting, a second thread in the same task can run.</td>
+</tr>
+<tr>
+<td>Multiple processes without using threads use more resources.</td>
+<td>Multiple threaded processes use fewer resources.</td>
+</tr>
+<tr>
+<td>In multiple processes, each process operates independently of the others.</td>
+<td style="vertical-align:middle;">One thread can read, write or change another thread's data.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">If there would be any change in the parent process then it does not affect the child processes.</td>
+<td>If there would be any change in the main thread then it may affect the behavior of other threads of that process.</td>
+</tr>
+<tr>
+<td>To communicate with sibling processes, processes must use inter-process communication.</td>
+<td style="vertical-align:middle;">Threads can directly communicate with other threads of that process.</td>
+</tr>
+</table>
+<h2>Concept of Multithreading</h2>
+<p>As we have discussed earlier that Multithreading is the ability of a CPU to manage the use of operating system by executing multiple threads concurrently. The main idea of multithreading is to achieve parallelism by dividing a process into multiple threads. In a more simple way, we can say that multithreading is the way of achieving multitasking by using the concept of threads.</p>
+<p>The concept of multithreading can be understood with the help of the following example.</p>
+<h3>Example</h3>
+<p>Suppose we are running a process. The process could be for opening MS word for writing something. In such process, one thread will be assigned to open MS word and another thread will be required to write. Now, suppose if we want to edit something then another thread will be required to do the editing task and so on.</p>
+<p>The following diagram helps us understand how multiple threads exist in memory &minus;</p>
+<img src="/concurrency_in_python/images/multithreading.jpg" alt="Multithreading" />
+<p>We can see in the above diagram that more than one thread can exist within one process where every thread contains its own register set and local variables. Other than that, all the threads in a process share global variables.</p>
+<h2>Pros of Multithreading</h2>
+<p>Let us now see a few advantages of multithreading. The advantages are as follows &minus;</p>
+<ul class="list">
+<li><p><b>Speed of communication</b> &minus; Multithreading improves the speed of computation because each core or processor handles separate threads concurrently.</p></li>
+<li><p><b>Program remains responsive</b> &minus; It allows a program to remain responsive because one thread waits for the input and another runs a GUI at the same time.</p></li>
+<li><p><b>Access to global variables</b> &minus; In multithreading, all the threads of a particular process can access the global variables and if there is any change in global variable then it is visible to other threads too.</p></li>
+<li><p><b>Utilization of resources</b> &minus; Running of several threads in each program makes better use of CPU and the idle time of CPU becomes less.</p></li>
+<li><p><b>Sharing of data</b> &minus; There is no requirement of extra space for each thread because threads within a program can share same data.</p></li>
+</ul>
+<h2>Cons of Multithreading</h2>
+<p>Let us now see a few disadvantages of multithreading. The disadvantages are as follows &minus;</p>
+<ul class="list">
+<li><p><b>Not suitable for single processor system</b> &minus; Multithreading finds it difficult to achieve performance in terms of speed of computation on single processor system as compared with the performance on multi-processor system.</p></li>
+<li><p><b>Issue of security</b> &minus; As we know that all the threads within a program share same data, hence there is always an issue of security because any unknown thread can change the data.</p></li>
+<li><p><b>Increase in complexity</b> &minus; Multithreading can increase the complexity of the program and debugging becomes difficult.</p></li>
+<li><p><b>Lead to deadlock state</b> &minus; Multithreading can lead the program to potential risk of attaining the deadlock state.</p></li>
+<li><p><b>Synchronization required</b> &minus; Synchronization is required to avoid mutual exclusion. This leads to more memory and CPU utilization.</p></li>
+</ul>
+<h1>Implementation of Threads</h1>
+<p>In this chapter, we will learn how to implement threads in Python.</p>
+<h2>Python Module for Thread Implementation</h2>
+<p>Python threads are sometimes called lightweight processes because threads occupy much less memory than processes. Threads allow performing multiple tasks at once. In Python, we have the following two modules that implement threads in a program &minus;</p>
+<ul class="list">
+<li><p><b>&lt;_thread&gt;</b>module</p></li>
+<li><p><b>&lt;threading&gt;</b>module</p></li>
+</ul>
+<p>The main difference between these two modules is that <b>&lt;_thread&gt;</b> module treats a thread as a function whereas, the <b>&lt;threading&gt;</b> module treats every thread as an object and implements it in an object oriented way. Moreover, the <b>&lt;_thread&gt;</b>module is effective in low level threading and has fewer capabilities than the <b>&lt;threading&gt;</b> module.</p>
+<h3>&lt;_thread&gt; module</h3>
+<p>In the earlier version of Python, we had the <b>&lt;thread&gt;</b> module but it has been considered as "deprecated" for quite a long time. Users have been encouraged to use the <b>&lt;threading&gt;</b> module instead. Therefore, in Python 3 the module "thread" is not available anymore. It has been renamed to "<b>&lt;_thread&gt;</b>" for backwards incompatibilities in Python3.</p>
+<p>To generate new thread with the help of the <b>&lt;_thread&gt;</b> module, we need to call the <b>start_new_thread</b> method of it. The working of this method can be understood with the help of following syntax &minus;</p>
+<pre class="result notranslate">
+_thread.start_new_thread ( function, args[, kwargs] )
+</pre>
+<p>Here &minus;</p>
+<ul class="list">
+<li><p><b>args</b> is a tuple of arguments</p></li>
+<li><p><b>kwargs</b> is an optional dictionary of keyword arguments</p></li>
+</ul>
+<p>If we want to call function without passing an argument then we need to use an empty tuple of arguments in <b>args</b>.</p>
+<p>This method call returns immediately, the child thread starts, and calls function with the passed list, if any, of args. The thread terminates as and when the function returns.</p>
+<h3>Example</h3>
+<p>Following is an example for generating new thread by using the <b>&lt;_thread&gt;</b> module. We are using the start_new_thread() method here.</p>
+<pre class="prettyprint notranslate">
+import _thread
+import time
+
+def print_time( threadName, delay):
+   count = 0
+   while count &lt; 5:
+      time.sleep(delay)
+      count += 1
+      print ("%s: %s" % ( threadName, time.ctime(time.time()) ))
+
+try:
+   _thread.start_new_thread( print_time, ("Thread-1", 2, ) )
+   _thread.start_new_thread( print_time, ("Thread-2", 4, ) )
+except:
+   print ("Error: unable to start thread")
+while 1:
+   pass
+</pre>
+<h3>Output</h3>
+<p>The following output will help us understand the generation of new threads bwith the help of the <b>&lt;_thread&gt;</b> module.</p>
+<pre class="result notranslate">
+Thread-1: Mon Apr 23 10:03:33 2018
+Thread-2: Mon Apr 23 10:03:35 2018
+Thread-1: Mon Apr 23 10:03:35 2018
+Thread-1: Mon Apr 23 10:03:37 2018
+Thread-2: Mon Apr 23 10:03:39 2018
+Thread-1: Mon Apr 23 10:03:39 2018
+Thread-1: Mon Apr 23 10:03:41 2018
+Thread-2: Mon Apr 23 10:03:43 2018
+Thread-2: Mon Apr 23 10:03:47 2018
+Thread-2: Mon Apr 23 10:03:51 2018
+</pre>
+<h3>&lt;threading&gt; module</h3>
+<p>The <b>&lt;threading&gt;</b> module implements in an object oriented way and treats every thread as an object. Therefore, it provides much more powerful, high-level support for threads than the <_thread> module. This module is included with Python 2.4.</p>
+<h2>Additional methods in the &lt;threading&gt; module</h2>
+<p>The <b>&lt;threading&gt;</b> module comprises all the methods of the <b>&lt;_thread&gt;</b> module but it provides additional methods as well. The additional methods are as follows &minus;</p>
+<ul class="list">
+<li><p><b>threading.activeCount()</b> &minus; This method returns the number of thread objects that are active</p></li>
+<li><p><b>threading.currentThread()</b> &minus; This method returns the number of thread objects in the caller's thread control.</p></li>
+<li><p><b>threading.enumerate()</b> &minus; This method returns a list of all thread objects that are currently active.</p></li>
+<p>For implementing threading, the <b>&lt;threading&gt;</b> module has the <b><i>Thread</i></b> class which provides the following methods &minus;</p>
+<ul class="list">
+<li><p><b>run()</b> &minus; The run() method is the entry point for a thread.</p></li>
+<li><p><b>start()</b> &minus; The start() method starts a thread by calling the run method.</p></li>
+<li><p><b>join([time])</b> &minus; The join() waits for threads to terminate.</p></li>
+<li><p><b>isAlive()</b> &minus; The isAlive() method checks whether a thread is still executing.</p></li>
+<li><p><b>getName()</b> &minus; The getName() method returns the name of a thread.</p></li>
+<li><p><b>setName()</b> &minus; The setName() method sets the name of a thread.</p></li>
+</ul>
+</li>
+</ul>
+<h2>How to create threads using the &lt;threading&gt; module?</h2>
+<p>In this section, we will learn how to create threads using the <b>&lt;threading&gt;</b> module. Follow these steps to create a new thread using the &lt;threading&gt; module &minus;</p>
+<ul class="list">
+<li><p><b>Step 1</b> &minus; In this step, we need to define a new subclass of the <b>Thread</b> class.</p></li>
+<li><p><b>Step 2</b> &minus; Then for adding additional arguments, we need to override the <b>__init__(self [,args])</b> method.</p></li>
+<li><p><b>Step 3</b> &minus; In this step, we need to override the run(self [,args]) method to implement what the thread should do when started.</p></li>
+<p>Now, after creating the new <b>Thread </b>subclass, we can create an instance of it and then start a new thread by invoking the <b>start()</b>, which in turn calls the <b>run()</b> method.</p>
+</ul>
+<h3>Example</h3>
+<p>Consider this example to learn how to generate a new thread by using the <b>&lt;threading&gt;</b> module.</p>
+<pre class="prettyprint notranslate">
+import threading
+import time
+exitFlag = 0
+
+class myThread (threading.Thread):
+   def __init__(self, threadID, name, counter):
+      threading.Thread.__init__(self)
+      self.threadID = threadID
+      self.name = name
+      self.counter = counter
+   def run(self):
+      print ("Starting " + self.name)
+      print_time(self.name, self.counter, 5)
+      print ("Exiting " + self.name)
+def print_time(threadName, delay, counter):
+   while counter:
+      if exitFlag:
+         threadName.exit()
+      time.sleep(delay)
+      print ("%s: %s" % (threadName, time.ctime(time.time())))
+      counter -= 1
+
+thread1 = myThread(1, "Thread-1", 1)
+thread2 = myThread(2, "Thread-2", 2)
+
+thread1.start()
+thread2.start()
+thread1.join()
+thread2.join()
+print ("Exiting Main Thread")
+Starting Thread-1
+Starting Thread-2
+</pre>
+<h3>Output</h3>
+<p>Now, consider the following output &minus;</p>
+<pre class="result notranslate">
+Thread-1: Mon Apr 23 10:52:09 2018
+Thread-1: Mon Apr 23 10:52:10 2018
+Thread-2: Mon Apr 23 10:52:10 2018
+Thread-1: Mon Apr 23 10:52:11 2018
+Thread-1: Mon Apr 23 10:52:12 2018
+Thread-2: Mon Apr 23 10:52:12 2018
+Thread-1: Mon Apr 23 10:52:13 2018
+Exiting Thread-1
+Thread-2: Mon Apr 23 10:52:14 2018
+Thread-2: Mon Apr 23 10:52:16 2018
+Thread-2: Mon Apr 23 10:52:18 2018
+Exiting Thread-2
+Exiting Main Thread
+</pre>
+<h2>Python Program for Various Thread States</h2>
+<p>There are five thread states - new, runnable, running, waiting and dead. Among these five Of these five, we will majorly focus on three states - running, waiting and dead. A thread gets its resources in the running state, waits for the resources in the waiting state; the final release of the resource, if executing and acquired is in the dead state.</p>
+<p>The following Python program with the help of start(), sleep() and join() methods will show how a thread entered in running, waiting and dead state respectively.</p>
+<p><b>Step 1</b> &minus; Import the necessary modules, &lt;threading&gt; and &lt;time&gt;</p>
+<pre class="prettyprint notranslate">
+import threading
+import time
+</pre>
+<p><b>Step 2</b> &minus; Define a function, which will be called while creating a thread.</p>
+<pre class="prettyprint notranslate">
+def thread_states():
+   print("Thread entered in running state")
+</pre>
+<p><b>Step 3</b> &minus; We are using the sleep() method of time module to make our thread waiting for say 2 seconds.</p>
+<pre class="prettyprint notranslate">
+time.sleep(2)
+</pre>
+<p><b>Step 4</b> &minus; Now, we are creating a thread named T1, which takes the argument of the function defined above.</p>
+<pre class="prettyprint notranslate">
+T1 = threading.Thread(target=thread_states)
+</pre>
+<p><b>Step 5</b> &minus; Now, with the help of the start() function we can start our thread. It will produce the message, which has been set by us while defining the function.</p>
+<pre class="prettyprint notranslate">
+T1.start()
+Thread entered in running state
+</pre>
+<p><b>Step 6</b> &minus; Now, at last we can kill the thread with the join() method after it finishes its execution.</p>
+<pre class="prettyprint notranslate">
+T1.join()
+</pre>
+<h2>Starting a thread in Python</h2>
+<p>In python, we can start a new thread by different ways but the easiest one among them is to define it as a single function. After defining the function, we can pass this as the target for a new <b>threading.Thread</b> object and so on. Execute the following Python code to understand how the function works &minus;</p>
+<pre class="prettyprint notranslate">
+import threading
+import time
+import random
+def Thread_execution(i):
+   print("Execution of Thread {} started\n".format(i))
+   sleepTime = random.randint(1,4)
+   time.sleep(sleepTime)
+   print("Execution of Thread {} finished".format(i))
+for i in range(4):
+   thread = threading.Thread(target=Thread_execution, args=(i,))
+   thread.start()
+   print("Active Threads:" , threading.enumerate())
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Execution of Thread 0 started
+Active Threads:
+   [&lt;_MainThread(MainThread, started 6040)&gt;,
+      &lt;HistorySavingThread(IPythonHistorySavingThread, started 5968)&gt;,
+      &lt;Thread(Thread-3576, started 3932)&gt;]
+
+Execution of Thread 1 started
+Active Threads:
+   [&lt;_MainThread(MainThread, started 6040)&gt;,
+      &lt;HistorySavingThread(IPythonHistorySavingThread, started 5968)&gt;,
+      &lt;Thread(Thread-3576, started 3932)&gt;,
+      &lt;Thread(Thread-3577, started 3080)&gt;]
+
+Execution of Thread 2 started
+Active Threads:
+   [&lt;_MainThread(MainThread, started 6040)&gt;,
+      &lt;HistorySavingThread(IPythonHistorySavingThread, started 5968)&gt;,
+      &lt;Thread(Thread-3576, started 3932)&gt;,
+      &lt;Thread(Thread-3577, started 3080)&gt;,
+      &lt;Thread(Thread-3578, started 2268)&gt;]
+
+Execution of Thread 3 started
+Active Threads:
+   [&lt;_MainThread(MainThread, started 6040)&gt;,
+      &lt;HistorySavingThread(IPythonHistorySavingThread, started 5968)&gt;,
+      &lt;Thread(Thread-3576, started 3932)&gt;,
+      &lt;Thread(Thread-3577, started 3080)&gt;,
+      &lt;Thread(Thread-3578, started 2268)&gt;,
+      &lt;Thread(Thread-3579, started 4520)&gt;]
+Execution of Thread 0 finished
+Execution of Thread 1 finished
+Execution of Thread 2 finished
+Execution of Thread 3 finished
+</pre>
+<h2>Daemon threads in Python</h2>
+<p>Before implementing the daemon threads in Python, we need to know about daemon threads and their usage. In terms of computing, daemon is a background process that handles the requests for various services such as data sending, file transfers, etc. It would be dormant if it is not required any more. The same task can be done with the help of non-daemon threads also. However, in this case, the main thread has to keep track of the non-daemon threads manually. On the other hand, if we are using daemon threads then the main thread can completely forget about this and it will be killed when main thread exits. Another important point about daemon threads is that we can opt to use them only for non-essential tasks that would not affect us if it does not complete or gets killed in between. Following is the implementation of daemon threads in python &minus;</p>
+<pre class="prettyprint notranslate">
+import threading
+import time
+
+def nondaemonThread():
+   print("starting my thread")
+   time.sleep(8)
+   print("ending my thread")
+def daemonThread():
+   while True:
+   print("Hello")
+   time.sleep(2)
+if __name__ == '__main__':
+   nondaemonThread = threading.Thread(target = nondaemonThread)
+   daemonThread = threading.Thread(target = daemonThread)
+   daemonThread.setDaemon(True)
+   daemonThread.start()
+   nondaemonThread.start()
+</pre>
+<P>In the above code, there are two functions namely <b>>nondaemonThread()</b> and <b>>daemonThread()</b>. The first function prints its state and sleeps after 8 seconds while the the deamonThread() function prints Hello after every 2 seconds indefinitely. We can understand the difference between nondaemon and daemon threads with the help of following output &minus;</p>
+<pre class="result notranslate">
+Hello
+
+starting my thread
+Hello
+Hello
+Hello
+Hello
+ending my thread
+Hello
+Hello
+Hello
+Hello
+Hello
+</pre>
+<h1>Synchronizing Threads</h1>
+<p>Thread synchronization may be defined as a method with the help of which we can be assured that two or more concurrent threads are not simultaneously accessing the program segment known as critical section. On the other hand, as we know that critical section is the part of the program where the shared resource is accessed. Hence we can say that synchronization is the process of making sure that two or more threads do not interface with each other by accessing the resources at the same time. The diagram below shows that four threads trying to access the critical section of a program at the same time.</p>
+<img src="/concurrency_in_python/images/synchronizing.jpg" alt="Synchronizing" />
+<p>To make it clearer, suppose two or more threads trying to add the object in the list at the same time. This act cannot lead to a successful end because either it will drop one or all the objects or it will completely corrupt the state of the list. Here the role of the synchronization is that only one thread at a time can access the list.</p>
+<h2>Issues in thread synchronization</h2>
+<p>We might encounter issues while implementing concurrent programming or applying synchronizing primitives. In this section, we will discuss two major issues. The issues are &minus;</p>
+<ul class="list">
+<li>Deadlock</li>
+<li>Race condition</li>
+</ul>
+<h3>Race condition</h3>
+<p>This is one of the major issues in concurrent programming. Concurrent access to shared resources can lead to race condition. A race condition may be defined as the occurring of a condition when two or more threads can access shared data and then try to change its value at the same time. Due to this, the values of variables may be unpredictable and vary depending on the timings of context switches of the processes.</p>
+<h3>Example</h3>
+<p>Consider this example to understand the concept of race condition &minus;</p>
+<p><b>Step 1</b> &minus; In this step, we need to import threading module &minus;</p>
+<pre class="prettyprint notranslate">
+import threading
+</pre>
+<p><b>Step 2</b> &minus; Now, define a global variable, say x, along with its value as 0 &minus;</p>
+<pre class="prettyprint notranslate">
+x = 0
+</pre>
+<p><b>Step 3</b> &minus; Now, we need to define the <b>increment_global()</b> function, which will do the increment by 1 in this global function x &minus;</p>
+<pre class="prettyprint notranslate">
+def increment_global():
+
+   global x
+   x += 1
+</pre>
+<p><b>Step 4</b> &minus; In this step, we will define the <b>taskofThread()</b> function, which will call the increment_global() function for a specified number of times; for our example it is 50000 times &minus;</p>
+<pre class="prettyprint notranslate">
+def taskofThread():
+
+   for _ in range(50000):
+      increment_global()
+</pre>
+<p><b>Step 5</b> &minus; Now, define the main() function in which threads t1 and t2 are created. Both will be started with the help of the start() function and wait until they finish their jobs with the help of join() function.</p>
+<pre class="prettyprint notranslate">
+def main():
+   global x
+   x = 0
+   
+   t1 = threading.Thread(target= taskofThread)
+   t2 = threading.Thread(target= taskofThread)
+
+   t1.start()
+   t2.start()
+
+   t1.join()
+   t2.join()
+</pre>
+<p><b>Step 6</b> &minus; Now, we need to give the range as in for how many iterations we want to call the main() function. Here, we are calling it for 5 times.</p>
+<pre class="prettyprint notranslate">
+if __name__ == "__main__":
+   for i in range(5):
+      main()
+      print("x = {1} after Iteration {0}".format(i,x))
+</pre>
+<p>In the output shown below, we can see the effect of race condition as the value of x after each iteration is expected 100000. However, there is lots of variation in the value. This is due to the concurrent access of threads to the shared global variable x.</p>
+<h3>Output</h3>
+<pre class="result notranslate">
+x = 100000 after Iteration 0
+x = 54034 after Iteration 1
+x = 80230 after Iteration 2
+x = 93602 after Iteration 3
+x = 93289 after Iteration 4
+</pre>
+<h2>Dealing with race condition using locks</h2>
+<p>As we have seen the effect of race condition in the above program, we need a synchronization tool, which can deal with race condition between multiple threads. In Python, the <b>&lt;threading&gt;</b> module provides Lock class to deal with race condition. Further, the <b>Lock</b> class provides different methods with the help of which we can handle race condition between multiple threads. The methods are described below &minus;</p>
+<h3>acquire() method</h3>
+<p>This method is used to acquire, i.e., blocking a lock. A lock can be blocking or non-blocking depending upon the following true or false value &minus;</p>
+<ul class="list">
+<li><p><b>With value set to True</b> &minus; If the acquire() method is invoked with True, which is the default argument, then the thread execution is blocked until the lock is unlocked.</p></li>
+<li><p><b>With value set to False</b> &minus; If the acquire() method is invoked with False, which is not the default argument, then the thread execution is not blocked until it is set to true, i.e., until it is locked.</p></li>
+</ul>
+<h3>release() method</h3>
+<p>This method is used to release a lock. Following are a few important tasks related to this method &minus;</p>
+<ul class="list">
+<li><p>If a lock is locked, then the <b>release()</b> method would unlock it. Its job is to allow exactly one thread to proceed if more than one threads are blocked and waiting for the lock to become unlocked.</p></li>
+<li><p>It will raise a <b>ThreadError</b> if lock is already unlocked.</p></li>
+</ul>
+<p>Now, we can rewrite the above program with the lock class and its methods to avoid the race condition. We need to define the taskofThread() method with lock argument and then need to use the acquire() and release() methods for blocking and non-blocking of locks to avoid race condition.</p>
+<h3>Example</h3>
+<p>Following is example of python program to understand the concept of locks for dealing with race condition &minus;</p>
+<pre class="prettyprint notranslate">
+import threading
+
+x = 0
+
+def increment_global():
+
+   global x
+   x += 1
+
+def taskofThread(lock):
+
+   for _ in range(50000):
+      lock.acquire()
+      increment_global()
+      lock.release()
+
+def main():
+   global x
+   x = 0
+
+   lock = threading.Lock()
+   t1 = threading.Thread(target = taskofThread, args = (lock,))
+   t2 = threading.Thread(target = taskofThread, args = (lock,))
+
+   t1.start()
+   t2.start()
+
+   t1.join()
+   t2.join()
+
+if __name__ == "__main__":
+   for i in range(5):
+      main()
+      print("x = {1} after Iteration {0}".format(i,x))
+</pre>
+<p>The following output shows that the effect of race condition is neglected; as the value of x, after each & every iteration, is now 100000, which is as per the expectation of this program.</p>
+<h3>Output</h3>
+<pre class="result notranslate">
+x = 100000 after Iteration 0
+x = 100000 after Iteration 1
+x = 100000 after Iteration 2
+x = 100000 after Iteration 3
+x = 100000 after Iteration 4
+</pre>
+<h2>Deadlocks &minus; The Dining Philosophers problem</h2>
+<p>Deadlock is a troublesome issue one can face while designing the concurrent systems. We can illustrate this issue with the help of the dining philosopher problem as follows &minus;</p>
+<p>Edsger Dijkstra originally introduced the dining philosopher problem, one of the famous illustrations of one of the biggest problem of concurrent system called deadlock.</p>
+<p>In this problem, there are five famous philosophers sitting at a round table eating some food from their bowls. There are five forks that can be used by the five philosophers to eat their food. However, the philosophers decide to use two forks at the same time to eat their food.</p>
+<p>Now, there are two main conditions for the philosophers. First, each of the philosophers can be either in eating or in thinking state and second, they must first obtain both the forks, i.e., left and right. The issue arises when each of the five philosophers manages to pick the left fork at the same time. Now they all are waiting for the right fork to be free but they will never relinquish their fork until they have eaten their food and the right fork would never be available. Hence, there would be a deadlock state at the dinner table.</p>
+<h3>Deadlock in concurrent system</h3>
+<p>Now if we see, the same issue can arise in our concurrent systems too. The forks in the above example would be the system resources and each philosopher can represent the process, which is competing to get the resources.</p>
+<h3>Solution with Python program</h3>
+<p>The solution of this problem can be found by splitting the philosophers into two types – <b>greedy philosophers</b> and <b>generous philosophers</b>. Mainly a greedy philosopher will try to pick up the left fork and wait until it is there. He will then wait for the right fork to be there, pick it up, eat and then put it down. On the other hand, a generous philosopher will try to pick up the left fork and if it is not there, he will wait and try again after some time. If they get the left fork then they will try to get the right one. If they will get the right fork too then they will eat and release both the forks. However, if they will not get the right fork then they will release the left fork.</p>
+<h3>Example</h3>
+<p>The following Python program will help us find a solution to the dining philosopher problem &minus;</p>
+<pre class="prettyprint notranslate">
+import threading
+import random
+import time
+
+class DiningPhilosopher(threading.Thread):
+
+   running = True
+
+   def __init__(self, xname, Leftfork, Rightfork):
+   threading.Thread.__init__(self)
+   self.name = xname
+   self.Leftfork = Leftfork
+   self.Rightfork = Rightfork
+
+   def run(self):
+   while(self.running):
+      time.sleep( random.uniform(3,13))
+      print ('%s is hungry.' % self.name)
+      self.dine()
+
+   def dine(self):
+   fork1, fork2 = self.Leftfork, self.Rightfork
+
+   while self.running:
+      fork1.acquire(True)
+      locked = fork2.acquire(False)
+	  if locked: break
+      fork1.release()
+      print ('%s swaps forks' % self.name)
+      fork1, fork2 = fork2, fork1
+   else:
+      return
+
+   self.dining()
+   fork2.release()
+   fork1.release()
+
+   def dining(self):
+   print ('%s starts eating '% self.name)
+   time.sleep(random.uniform(1,10))
+   print ('%s finishes eating and now thinking.' % self.name)
+
+def Dining_Philosophers():
+   forks = [threading.Lock() for n in range(5)]
+   philosopherNames = ('1st','2nd','3rd','4th', '5th')
+
+   philosophers= [DiningPhilosopher(philosopherNames[i], forks[i%5], forks[(i+1)%5]) \
+      for i in range(5)]
+
+   random.seed()
+   DiningPhilosopher.running = True
+   for p in philosophers: p.start()
+   time.sleep(30)
+   DiningPhilosopher.running = False
+   print (" It is finishing.")
+
+Dining_Philosophers()
+</pre>
+<p>The above program uses the concept of greedy and generous philosophers. The program has also used the <b>acquire()</b> and <b>release()</b> methods of the <b>Lock</b> class of the <b>&lt;threading&gt;</b> module. We can see the solution in the following output &minus;</p>
+<h3>Output</h3>
+<pre class="result notranslate">
+4th is hungry.
+4th starts eating
+1st is hungry.
+1st starts eating
+2nd is hungry.
+5th is hungry.
+3rd is hungry.
+1st finishes eating and now thinking.3rd swaps forks
+2nd starts eating
+4th finishes eating and now thinking.
+3rd swaps forks5th starts eating
+5th finishes eating and now thinking.
+4th is hungry.
+4th starts eating
+2nd finishes eating and now thinking.
+3rd swaps forks
+1st is hungry.
+1st starts eating
+4th finishes eating and now thinking.
+3rd starts eating
+5th is hungry.
+5th swaps forks
+1st finishes eating and now thinking.
+5th starts eating
+2nd is hungry.
+2nd swaps forks
+4th is hungry.
+5th finishes eating and now thinking.
+3rd finishes eating and now thinking.
+2nd starts eating 4th starts eating
+It is finishing.
+</pre>
+<h1>Threads Intercommunication</h1>
+<p>In real life, if a team of people is working on a common task then there should be communication between them for finishing the task properly. The same analogy is applicable to threads also. In programming, to reduce the ideal time of the processor we create multiple threads and assign different sub tasks to every thread. Hence, there must be a communication facility and they should interact with each other to finish the job in a synchronized manner.</p>
+<p>Consider the following important points related to thread intercommunication &minus;</p>
+<ul class="list">
+<li><p><b>No performance gain</b> &minus; If we cannot achieve proper communication between threads and processes then the performance gains from concurrency and parallelism is of no use.</p></li>
+<li><p><b>Accomplish task properly</b> &minus; Without proper intercommunication mechanism between threads, the assigned task cannot be completed properly.</p></li>
+<li><p><b>More efficient than inter-process communication</b> &minus; Inter-thread communication is more efficient and easy to use than inter-process communication because all threads within a process share same address space and they need not use shared memory.</p></li>
+</ul>
+<h2>Python data structures for thread-safe communication</h2>
+<p>Multithreaded code comes up with a problem of passing information from one thread to another thread. The standard communication primitives do not solve this issue. Hence, we need to implement our own composite object in order to share objects between threads to make the communication thread-safe. Following are a few data structures, which provide thread-safe communication after making some changes in them &minus;</p>
+<h3>Sets</h3>
+<p>For using set data structure in a thread-safe manner, we need to extend the set class to implement our own locking mechanism.</p>
+<h3>Example</h3>
+<p>Here is a Python example of extending the class &minus;</p>
+<pre class="prettyprint notranslate">
+class extend_class(set):
+   def __init__(self, *args, **kwargs):
+      self._lock = Lock()
+      super(extend_class, self).__init__(*args, **kwargs)
+
+   def add(self, elem):
+      self._lock.acquire()
+	  try:
+      super(extend_class, self).add(elem)
+      finally:
+      self._lock.release()
+  
+   def delete(self, elem):
+      self._lock.acquire()
+      try:
+      super(extend_class, self).delete(elem)
+      finally:
+      self._lock.release()
+</pre>
+<p>In the above example, a class object named <b>extend_class</b> has been defined which is further inherited from the Python <b>set class</b>. A lock object is created within the constructor of this class. Now, there are two functions - <b>add()</b> and <b>delete()</b>. These functions are defined and are thread-safe. They both rely on the <b>super</b> class functionality with one key exception.</p>
+<h3>Decorator</h3>
+<p>This is another key method for thread-safe communication is the use of decorators.</p>
+<h3>Example</h3>
+<p>Consider a Python example that shows how to use decorators &mminus;</p>
+<pre class="prettyprint notranslate">
+def lock_decorator(method):
+
+   def new_deco_method(self, *args, **kwargs):
+      with self._lock:
+         return method(self, *args, **kwargs)
+return new_deco_method
+
+class Decorator_class(set):
+   def __init__(self, *args, **kwargs):
+      self._lock = Lock()
+      super(Decorator_class, self).__init__(*args, **kwargs)
+
+   @lock_decorator
+   def add(self, *args, **kwargs):
+      return super(Decorator_class, self).add(elem)
+   @lock_decorator
+   def delete(self, *args, **kwargs):
+      return super(Decorator_class, self).delete(elem)
+</pre>
+<p>In the above example, a decorator method named lock_decorator has been defined which is further inherited from the Python method class. Then a lock object is created within the constructor of this class. Now, there are two functions - add() and delete(). These functions are defined and are thread-safe. They both rely on super class functionality with one key exception.</p>
+<h3>Lists</h3>
+<p>The list data structure is thread-safe, quick as well as easy structure for temporary, in-memory storage. In Cpython, the GIL protects against concurrent access to them. As we came to know that lists are thread-safe but what about the data lying in them. Actually, the list’s data is not protected. For example, <b>L.append(x)</b> is not guarantee to return the expected result if another thread is trying to do the same thing. This is because, although <b>append()</b> is an atomic operation and thread-safe but the other thread is trying to modify the list’s data in concurrent fashion hence we can see the side effects of race conditions on the output.</p>
+<p>To resolve this kind of issue and safely modify the data, we must implement a proper locking mechanism, which further ensures that multiple threads cannot potentially run into race conditions. To implement proper locking mechanism, we can extend the class as we did in the previous examples.</p>
+<p>Some other atomic operations on lists are as follows &minus;</p>
+<pre class="prettyprint notranslate">
+L.append(x)
+L1.extend(L2)
+x = L[i]
+x = L.pop()
+L1[i:j] = L2
+L.sort()
+x = y
+x.field = y
+D[x] = y
+D1.update(D2)
+D.keys()
+</pre>
+<p>Here &minus;</p>
+<ul class="list">
+<li>L,L1,L2 all are lists</li>
+<li>D,D1,D2 are dicts</li>
+<li>x,y are objects</li>
+<li>i, j are ints</li>
+</ul>
+<h3>Queues</h3>
+<p>If the list’s data is not protected, we might have to face the consequences. We may get or delete wrong data item, of race conditions. That is why it is recommended to use the queue data structure. A real-world example of queue can be a single-lane one-way road, where the vehicle enters first, exits first. More real-world examples can be seen of the queues at the ticket windows and bus-stops.</p>
+<img src="/concurrency_in_python/images/queues.jpg" alt="Queues" />
+<p>Queues are by default, thread-safe data structure and we need not worry about implementing complex locking mechanism. Python provides us the <queue> module to use different types of queues in our application.</p>
+<h2>Types of Queues</h2>
+<p>In this section, we will earn about the different types of queues. Python provides three options of queues to use from the <b>&lt;queue&gt;</b> module &minus;</p>
+<ul class="list">
+<li>Normal Queues (FIFO, First in First out)</li>
+<li>LIFO, Last in First Out</li>
+<li>Priority</li>
+</ul>
+<p>We will learn about the different queues in the subsequent sections.</p>
+<h2>Normal Queues (FIFO, First in First out)</h2>
+<p>It is most commonly used queue implementations offered by Python. In this queuing mechanism whosoever will come first, will get the service first. FIFO is also called normal queues. FIFO queues can be represented as follows &minus;</p>
+<img src="/concurrency_in_python/images/fifo.jpg" alt="FIFO" />
+<h3>Python Implementation of FIFO Queue</h3>
+<p>In python, FIFO queue can be implemented with single thread as well as multithreads.</p>
+<h3>FIFO queue with single thread</h3>
+<p>For implementing FIFO queue with single thread, the <b>Queue</b> class will implement a basic first-in, first-out container. Elements will be added to one “end” of the sequence using <b>put()</b>, and removed from the other end using <b>get()</b>.</p>
+<h3>Example</h3>
+<p>Following is a Python program for implementation of FIFO queue with single thread &minus;</p>
+<pre class="prettyprint notranslate">
+import queue
+
+q = queue.Queue()
+
+for i in range(8):
+   q.put("item-" + str(i))
+
+while not q.empty():
+   print (q.get(), end = " ")
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+item-0 item-1 item-2 item-3 item-4 item-5 item-6 item-7
+</pre>
+<p>The output shows that above program uses a single thread to illustrate that the elements are removed from the queue in the same order they are inserted.</p>
+<h3>FIFO queue with multiple threads</h3>
+<p>For implementing FIFO with multiple threads, we need to define the myqueue() function, which is extended from the queue module. The working of get() and put() methods are same as discussed above while implementing FIFO queue with single thread. Then to make it multithreaded, we need to declare and instantiate the threads. These threads will consume the queue in FIFO manner.</p>
+<h3>Example</h3>
+<p>Following is a Python program for implementation of FIFO queue with multiple threads</p>
+<pre class="prettyprint notranslate">
+import threading
+import queue
+import random
+import time
+def myqueue(queue):
+   while not queue.empty():
+   item = queue.get()
+   if item is None:
+   break
+   print("{} removed {} from the queue".format(threading.current_thread(), item))
+   queue.task_done()
+   time.sleep(2)
+q = queue.Queue()
+for i in range(5):
+   q.put(i)
+threads = []
+for i in range(4):
+   thread = threading.Thread(target=myqueue, args=(q,))
+   thread.start()
+   threads.append(thread)
+for thread in threads:
+   thread.join()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+&lt;Thread(Thread-3654, started 5044)&gt; removed 0 from the queue
+&lt;Thread(Thread-3655, started 3144)&gt; removed 1 from the queue
+&lt;Thread(Thread-3656, started 6996)&gt; removed 2 from the queue
+&lt;Thread(Thread-3657, started 2672)&gt; removed 3 from the queue
+&lt;Thread(Thread-3654, started 5044)&gt; removed 4 from the queue
+</pre>
+<h2>LIFO, Last in First Out queue</h2>
+<p>This queue uses totally opposite analogy than FIFO(First in First Out) queues. In this queuing mechanism, the one who comes last, will get the service first. This is similar to implement stack data structure. LIFO queues prove useful while implementing Depth-first search like algorithms of artificial intelligence.</p>
+<h3>Python implementation of LIFO queue</h3>
+<p>In python, LIFO queue can be implemented with single thread as well as multithreads.</p>
+<h3>LIFO queue with single thread</h3>
+<p>For implementing LIFO queue with single thread, the <b>Queue</b> class will implement a basic last-in, first-out container by using the structure <b>Queue</b>.LifoQueue. Now, on calling <b>put()</b>, the elements are added in the head of the container and removed from the head also on using <b>get()</b>.</p>
+<h3>Example</h3>
+<p>Following is a Python program for implementation of the LIFO queue with single thread &minus;</p>
+<pre class="prettyprint notranslate">
+import queue
+
+q = queue.LifoQueue()
+
+for i in range(8):
+   q.put("item-" + str(i))
+
+while not q.empty():
+   print (q.get(), end=" ")
+Output:
+item-7 item-6 item-5 item-4 item-3 item-2 item-1 item-0
+</pre>
+<p>The output shows that the above program uses a single thread to illustrate that elements are removed from the queue in the opposite order they are inserted.</p>
+<h3>LIFO queue with multiple threads</h3>
+<p>The implementation is similar as we have done the implementation of FIFO queues with multiple threads. The only difference is that we need to use the <b>Queue</b> class that will implement a basic last-in, first-out container by using the structure <b>Queue.LifoQueue</b>.</p>
+<h3>Example</h3>
+<p>Following is a Python program for implementation of LIFO queue with multiple threads &minus;</p>
+<pre class="prettyprint notranslate">
+import threading
+import queue
+import random
+import time
+def myqueue(queue):
+   while not queue.empty():
+      item = queue.get()
+      if item is None:
+      break
+	  print("{} removed {} from the queue".format(threading.current_thread(), item))
+      queue.task_done()
+      time.sleep(2)
+q = queue.LifoQueue()
+for i in range(5):
+   q.put(i)
+threads = []
+for i in range(4):
+   thread = threading.Thread(target=myqueue, args=(q,))
+   thread.start()
+   threads.append(thread)
+for thread in threads:
+   thread.join() 
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+&lt;Thread(Thread-3882, started 4928)&gt; removed 4 from the queue
+&lt;Thread(Thread-3883, started 4364)&gt; removed 3 from the queue
+&lt;Thread(Thread-3884, started 6908)&gt; removed 2 from the queue
+&lt;Thread(Thread-3885, started 3584)&gt; removed 1 from the queue
+&lt;Thread(Thread-3882, started 4928)&gt; removed 0 from the queue
+</pre>
+<h3>Priority queue</h3>
+<p>In FIFO and LIFO queues, the order of items are related to the order of insertion. However, there are many cases when the priority is more important than the order of insertion. Let us consider a real world example. Suppose the security at the airport is checking people of different categories. People of the VVIP, airline staff, custom officer, categories may be checked on priority instead of being checked on the basis of arrival like it is for the commoners.</p>
+<p>Another important aspect that needs to be considered for priority queue is how to develop a task scheduler. One common design is to serve the most agent task on priority basis in the queue. This data structure can be used to pick up the items from the queue based on their priority value.</p>
+<h3>Python Implementation of Priority Queue</h3>
+<p>In python, priority queue can be implemented with single thread as well as multithreads.</p>
+<h3>Priority queue with single thread</h3>
+<p>For implementing priority queue with single thread, the <b>Queue</b> class will implement a task on priority container by using the structure <b>Queue</b>.PriorityQueue. Now, on calling <b>put()</b>, the elements are added with a value where the lowest value will have the highest priority and hence retrieved first by using <b>get()</b>.</p>
+<h3>Example</h3>
+<p>Consider the following Python program for implementation of Priority queue with single thread &minus;</p>
+<pre class="prettyprint notranslate">
+import queue as Q
+p_queue = Q.PriorityQueue()
+
+p_queue.put((2, 'Urgent'))
+p_queue.put((1, 'Most Urgent'))
+p_queue.put((10, 'Nothing important'))
+prio_queue.put((5, 'Important'))
+
+while not p_queue.empty():
+   item = p_queue.get()
+   print('%s - %s' % item)
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+1 – Most Urgent
+2 - Urgent
+5 - Important
+10 – Nothing important
+</pre>
+<p>In the above output, we can see that the queue has stored the items based on priority – less value is having high priority.</p>
+<h3>Priority queue with multi threads</h3>
+<p>The implementation is similar to the implementation of FIFO and LIFO queues with multiple threads. The only difference is that we need to use the <b>Queue</b> class for initializing the priority by using the structure <b>Queue.PriorityQueue</b>. Another difference is with the way the queue would be generated. In the example given below, it will be generated with two identical data sets.</p>
+<h3>Example</h3>
+<p>The following Python program helps in the implementation of priority queue with multiple threads &minus;</p>
+<pre class="prettyprint notranslate">
+import threading
+import queue
+import random
+import time
+def myqueue(queue):
+   while not queue.empty():
+      item = queue.get()
+      if item is None:
+      break
+      print("{} removed {} from the queue".format(threading.current_thread(), item))
+      queue.task_done()
+      time.sleep(1)
+q = queue.PriorityQueue()
+for i in range(5):
+   q.put(i,1)
+
+for i in range(5):
+   q.put(i,1)
+
+threads = []
+for i in range(2):
+   thread = threading.Thread(target=myqueue, args=(q,))
+   thread.start()
+   threads.append(thread)
+for thread in threads:
+   thread.join()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+&lt;Thread(Thread-4939, started 2420)&gt; removed 0 from the queue
+&lt;Thread(Thread-4940, started 3284)&gt; removed 0 from the queue
+&lt;Thread(Thread-4939, started 2420)&gt; removed 1 from the queue
+&lt;Thread(Thread-4940, started 3284)&gt; removed 1 from the queue
+&lt;Thread(Thread-4939, started 2420)&gt; removed 2 from the queue
+&lt;Thread(Thread-4940, started 3284)&gt; removed 2 from the queue
+&lt;Thread(Thread-4939, started 2420)&gt; removed 3 from the queue
+&lt;Thread(Thread-4940, started 3284)&gt; removed 3 from the queue
+&lt;Thread(Thread-4939, started 2420)&gt; removed 4 from the queue
+&lt;Thread(Thread-4940, started 3284)&gt; removed 4 from the queue
+</pre>
+<h1>Testing Thread Applications</h1>
+<p>In this chapter, we will learn about testing of thread applications. We will also learn the importance of testing.</p>
+<h2>Why to Test?</h2>
+<p>Before we dive into the discussion about the importance of testing, we need to know what is testing. In general terms, testing is a technique of finding out how well something is working. On the other hand, specifically if we talk about computer programs or software then testing is the technique of accessing the functionality of a software program.</p>
+<p>In this section, we will discuss the importance of software testing. In software development, there must be double-checking before the releasing of software to the client. That is why it is very important to test the software by experienced testing team. Consider the following points to understand the importance of software testing &minus;</p>
+<h3>Improvement of software quality</h3>
+<p>Certainly, no company wants to deliver low quality software and no client wants to buy low quality software. Testing improves the quality of software by finding and fixing the bugs in that.</p>
+<h3>Satisfaction of customers</h3>
+<p>The most important part of any business is the satisfaction of their customers. By providing bug free and good quality software, the companies can achieve customer satisfaction.</p>
+<h3>Lessen the impact of new features</h3>
+<p>Suppose we have made a software system of 10000 lines and we need to add a new feature then the development team would have the concern about the impact of this new feature on whole software. Here, also, testing plays a vital role because if the testing team has made a good suite of tests then it can save us from any potential catastrophic breaks.</p>
+<h3>User experience</h3>
+<p>Another most important part of any business is the experience of the users of that product. Only testing can assure that the end user finds it simple and easy to use the product.</p>
+<h3>Cutting down the expenses</h3>
+<p>Testing can cut down the total cost of software by finding and fixing the bugs in testing phase of its development rather than fixing it after delivery. If there is a major bug after the delivery of the software then it would increase its tangible cost say in terms of expenses and intangible cost say in terms of customer dissatisfaction, company’s negative reputation etc.</p>
+<h2>What to Test?</h2>
+<p>It is always recommended to have appropriate knowledge of what is to be tested. In this section, we will first understand be the prime motive of tester while testing any software. Code coverage, i.e., how many lines of code our test suite hits, while testing, should be avoided. It is because, while testing, focusing only on the number of lines of codes adds no real value to our system. There may remain some bugs, which reflect later at a later stage even after deployment.</p>
+<p>Consider the following important points related to what to test &minus;</p>
+<ul class="list">
+<li><p>We need to focus on testing the functionality of the code rather than the code coverage.</p></li>
+<li><p>We need to test the most important parts of the code first and then move towards the less important parts of the code. It will definitely save time.</p></li>
+<li><p>The tester must have multitude different tests that can push the software up to its limits.</p></li>
+</ul>
+<h2>Approaches for testing concurrent software programs</h2>
+<p>Due to the capability of utilizing the true capability of multi-core architecture, concurrent software systems are replacing sequential systems. In recent times, concurrent system programs are being used in everything from mobile phones to washing machines, from cars to airplanes, etc. We need to be more careful about testing the concurrent software programs because if we have added multiple threads to single thread application having already a bug, then we would end up with multiple bugs.</p>
+<p>Testing techniques for concurrent software programs are extensively focusing on selecting interleaving that expose potentially harmful patterns like race conditions, deadlocks and violation of atomicity. Following are two approaches for testing concurrent software programs &minus;</p>
+<h3>Systematic exploration</h3>
+<p>This approach aims to explore the space of the interleavings as broadly as possible. Such approaches can adopt a brute-force technique and others adopt partial order reduction technique or heuristic technique to explore the space of interleavings.</p>
+<h3>Property-driven</h3>
+<p>Property-driven approaches rely on the observation that concurrency faults are more likely to occur under interleavings that expose specific properties such as suspicious memory access pattern. Different property-driven approaches target different faults like race conditions, deadlocks and violation of atomicity, which further depends on one or other specific properties.</p>
+<h2>Testing Strategies</h2>
+<p>Test Strategy is also known as test approach. The strategy defines how testing would be carried out. Test approach has two techniques &minus;</p>
+<h3>Proactive</h3>
+<p>An approach in which the test design process is initiated as early as possible in order to find and fix the defects before the build is created.</p>
+<h3>Reactive</h3>
+<p>An approach in which the testing does not start until the completion of the development process.</p>
+<p>Before applying any test strategy or approach on python program, we must have a basic idea about the kind of errors a software program may have. The errors are as follows &minus;</p>
+<h3>Syntactical errors</h3>
+<p>During program development, there can be many small errors. The errors are mostly due to typing mistakes. For example, missing colon or a wrong spelling of a keyword, etc. Such errors are due to the mistake in program syntax and not in logic. Hence, these errors are called syntactical errors.</p>
+<h3>Semantic errors</h3>
+<p>The semantic errors are also called logical errors. If there is a logical or semantic error in software program then the statement will compile and run correctly but it will not give the desired output because the logic is not correct.</p>
+<h2>Unit Testing</h2>
+<p>This is one of the most used testing strategies for testing python programs. This strategy is used for testing units or components of the code. By units or components, we mean classes or functions of the code. Unit testing simplifies the testing of large programming systems by testing “small” units. With the help of the above concept, unit testing may be defined as a method where individual units of source code are tested to determine if they return the desired output.</p>
+<p>In our subsequent sections, we will learn about the different Python modules for unit testing.</p>
+<h2>unittest module</h2>
+<p>The very first module for unit testing is the unittest module. It is inspired by JUnit and by default included in Python3.6. It supports test automation, sharing of setup and shutdown code for tests, aggregation of tests into collections, and independence of the tests from the reporting framework.</p>
+<p>Following are a few important concepts supported by the unittest module</p>
+<h3>Text fixture</h3>
+<p>It is used to set up a test so that it can be run before starting the test and tear down after the finish of test. It may involve creation of temporary database, directories, etc. needed before starting the test.</p>
+<h3>Test case</h3>
+<p>The test case checks whether a required response is coming from the specific set of inputs or not. The unittest module includes a base class named TestCase which can be used to create new test cases. It includes two by default methods &minus;</p>
+<ul class="list">
+<li><p><b>setUp()</b> &minus; a hook method for setting up the test fixture before exercising it. This is called before calling the implemented test methods.</p></li>
+<li><p><b>tearDown(</b> &minus; a hook method for deconstructing the class fixture after running all tests in the class.</p></li>
+</ul>
+<h3>Test suite</h3>
+<p>It is a collection of test suites, test cases or both.</p>
+<h3>Test runner</h3>
+<p>It controls the running of the test cases or suits and provides the outcome to the user. It may use GUI or simple text interface for providing the outcome.</p>
+<p><b>Example</b></p>
+<p>The following Python program uses the unittest module to test a module named <b>Fibonacci</b>. The program helps in calculating the Fibonacci series of a number. In this example, we have created a class named Fibo_test, to define the test cases by using different methods. These methods are inherited from unittest.TestCase. We are using two by default methods – setUp() and tearDown(). We also define the testfibocal method. The name of the test must be started with the letter test. In the final block, unittest.main() provides a command-line interface to the test script.</p>
+<pre class="prettyprint notranslate">
+import unittest
+def fibonacci(n):
+   a, b = 0, 1
+   for i in range(n):
+   a, b = b, a + b
+   return a
+class Fibo_Test(unittest.TestCase):
+   def setUp(self):
+   print("This is run before our tests would be executed")
+   def tearDown(self):
+   print("This is run after the completion of execution of our tests")
+
+   def testfibocal(self):
+   self.assertEqual(fib(0), 0)
+   self.assertEqual(fib(1), 1)
+   self.assertEqual(fib(5), 5)
+   self.assertEqual(fib(10), 55)
+   self.assertEqual(fib(20), 6765)
+
+if __name__ == "__main__":
+   unittest.main()
+</pre>
+<p>When run from the command line, the above script produces an output that looks like this &minus;</p>
+<h3>Output</h3>
+<pre class="result notranslate">
+This runs before our tests would be executed.
+This runs after the completion of execution of our tests.
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+OK
+</pre>
+<p>Now, to make it clearer, we are changing our code which helped in defining the Fibonacci module.</p>
+<p>Consider the following code block as an example &minus;</p>
+<pre class="prettyprint notranslate">
+def fibonacci(n):
+   a, b = 0, 1
+   for i in range(n):
+   a, b = b, a + b
+   return a
+</pre>
+<p>A few changes to the code block are made as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+def fibonacci(n):
+   a, b = 1, 1
+   for i in range(n):
+   a, b = b, a + b
+   return a
+</pre>
+<p>Now, after running the script with the changed code, we will get the following output &minus;</p>
+<pre class="result notranslate">
+This runs before our tests would be executed.
+This runs after the completion of execution of our tests.
+F
+======================================================================
+FAIL: testCalculation (__main__.Fibo_Test)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+File "unitg.py", line 15, in testCalculation
+self.assertEqual(fib(0), 0)
+AssertionError: 1 != 0
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (failures = 1)
+</pre>
+<p>The above output shows that the module has failed to give the desired output.</p>
+<h2>Docktest module</h2>
+<p>The docktest module also helps in unit testing. It also comes prepackaged with python. It is easier to use than the unittest module. The unittest module is more suitable for complex tests. For using the doctest module, we need to import it. The docstring of the corresponding function must have interactive python session along with their outputs.</p>
+<p>If everything is fine in our code then there will be no output from the docktest module; otherwise, it will provide the output.</p>
+<h3>Example</h3>
+<p>The following Python example uses the docktest module to test a module named Fibonacci , which helps in calculating the Fibonacci series of a number.</p>
+<pre class="prettyprint notranslate">
+import doctest
+def fibonacci(n):
+   """
+   Calculates the Fibonacci number
+
+   &gt;&gt;&gt; fibonacci(0)
+   0
+   &gt;&gt;&gt; fibonacci(1)
+   1
+   &gt;&gt;&gt; fibonacci(10)
+   55
+   &gt;&gt;&gt; fibonacci(20)
+   6765
+   &gt;&gt;&gt;
+
+   """
+   a, b = 1, 1
+   for i in range(n):
+   a, b = b, a + b
+   return a
+      if __name__ == "__main__":
+   doctest.testmod()
+</pre>
+<p>We can see that the docstring of the corresponding function named fib had interactive python session along with the outputs. If our code is fine then there would be no output from the doctest module. But to see how it works we can run it with the –v option.</p>
+<pre class="prettyprint notranslate">
+(base) D:\ProgramData&gt;python dock_test.py -v
+Trying:
+   fibonacci(0)
+Expecting:
+   0
+ok
+Trying:
+   fibonacci(1)
+Expecting:
+   1
+ok
+Trying:
+   fibonacci(10)
+Expecting:
+   55
+ok
+Trying:
+   fibonacci(20)
+Expecting:
+   6765
+ok
+1 items had no tests:
+   __main__
+1 items passed all tests:
+4 tests in __main__.fibonacci
+4 tests in 2 items.
+4 passed and 0 failed.
+Test passed.
+</pre>
+<p>Now, we will change the code that helped in defining the Fibonacci module</p>
+<p>Consider the following code block as an example &minus;</p>
+<pre class="prettyprint notranslate">
+def fibonacci(n):
+   a, b = 0, 1
+   for i in range(n):
+   a, b = b, a + b
+   return a
+</pre>
+<p>The following code block helps with the changes &minus;</p>
+<pre class="prettyprint notranslate">
+def fibonacci(n):
+   a, b = 1, 1
+   for i in range(n):
+   a, b = b, a + b
+   return a
+</pre>
+<p>After running the script even without the –v option, with the changed code, we will get the output as shown below.</p>
+<h3>Output</h3>
+<pre class="result notranslate">
+(base) D:\ProgramData&gt;python dock_test.py
+**********************************************************************
+File "unitg.py", line 6, in __main__.fibonacci
+Failed example:
+   fibonacci(0)
+Expected:
+   0
+Got:
+   1
+**********************************************************************
+File "unitg.py", line 10, in __main__.fibonacci
+Failed example:
+   fibonacci(10)
+Expected:
+   55
+Got:
+   89
+**********************************************************************
+File "unitg.py", line 12, in __main__.fibonacci
+Failed example:
+   fibonacci(20)
+Expected:
+   6765
+Got:
+   10946
+**********************************************************************
+1 items had failures:
+   3 of 4 in __main__.fibonacci
+***Test Failed*** 3 failures.
+</pre>
+<p>We can see in the above output that three tests have failed.</p>
+<h1>Debugging Thread Applications</h1>
+<p>In this chapter, we will learn how to debug thread applications. We will also learn the importance of debugging.</p>
+<h2>What is Debugging?</h2>
+<p>In computer programming, debugging is the process of finding and removing the bugs, errors and abnormalities from computer program. This process starts as soon as the code is written and continues in successive stages as code is combined with other units of programming to form a software product. Debugging is part of the software testing process and is an integral part of the entire software development life cycle.</p>
+<h2>Python Debugger</h2>
+<p>The Python debugger or the <b>pdb</b> is part of the Python standard library. It is a good fallback tool for tracking down hard-to-find bugs and allows us to fix faulty code quickly and reliably. Followings are the two most important tasks of the <b>pdp</b> debugger &minus;</p>
+<ul class="list">
+<li>It allows us to check the values of variables at runtime.</li>
+<li>We can step through the code and set breakpoints also.</li>
+</ul>
+<p>We can work with pdb in the following two ways &minus;</p>
+<ul class="list">
+<li>Through the command-line; this is also called postmortem debugging.</li>
+<li>By interactively running pdb.</li>
+</ul>
+<h3>Working with pdb</h3>
+<p>For working with the Python debugger, we need to use the following code at the location where we want to break into the debugger &minus;</p>
+<pre class="prettyprint notranslate">
+import pdb;
+pdb.set_trace()
+</pre>
+<p>Consider the following commands to work with pdb through command-line.</p>
+<ul class="list">
+<li>h(help)</li>
+<li>d(down)</li>
+<li>u(up)</li>
+<li>b(break)</li>
+<li>cl(clear)</li>
+<li>l(list))</li>
+<li>n(next))</li>
+<li>c(continue)</li>
+<li>s(step)</li>
+<li>r(return))</li>
+<li>b(break)</li>
+</ul>
+<p>Following is a demo of the h(help) command of the Python debugger &minus;</p>
+<pre class="prettyprint notranslate">
+import pdb
+
+pdb.set_trace()
+--Call--
+&gt;d:\programdata\lib\site-packages\ipython\core\displayhook.py(247)__call__()
+-&gt; def __call__(self, result = None):
+(Pdb) h
+
+Documented commands (type help &lt;topic&gt;):
+========================================
+EOF   c         d       h        list     q       rv      undisplay
+a     cl        debug   help     ll       quit    s       unt
+alias clear     disable ignore   longlist r       source  until
+args  commands  display interact n        restart step    up
+b     condition down    j        next     return  tbreak  w
+break cont      enable  jump     p        retval  u       whatis
+bt    continue  exit    l        pp       run     unalias where
+
+Miscellaneous help topics:
+==========================
+exec pdb
+</pre>
+<h3>Example</h3>
+<p>While working with Python debugger, we can set the breakpoint anywhere in the script by using the following lines &minus;</p>
+<pre class="prettyprint notranslate">
+import pdb;
+pdb.set_trace()
+</pre>
+<p>After setting the breakpoint, we can run the script normally. The script will execute until a certain point; until where a line has been set. Consider the following example where we will run the script by using the above-mentioned lines at various places in the script &minus;</p>
+<pre class="prettyprint notranslate">
+import pdb;
+a = "aaa"
+pdb.set_trace()
+b = "bbb"
+c = "ccc"
+final = a + b + c
+print (final)
+</pre>
+<p>When the above script is run, it will execute the program till a = “aaa”, we can check this in the following output.</p>
+<h3>Output</h3>
+<pre class="result notranslate">
+--Return--
+&gt; &lt;ipython-input-7-8a7d1b5cc854&gt;(3)&lt;module&gt;()-&gt;None
+-&gt; pdb.set_trace()
+(Pdb) p a
+'aaa'
+(Pdb) p b
+*** NameError: name 'b' is not defined
+(Pdb) p c
+*** NameError: name 'c' is not defined
+</pre>
+<p>After using the command ‘p(print)’ in pdb, this script is only printing ‘aaa’. This is followed by an error because we have set the breakpoint till a = "aaa".</p>
+<p>Similarly, we can run the script by changing the breakpoints and see the difference in the output &minus;</p>
+<pre class="result notranslate">
+import pdb
+a = "aaa"
+b = "bbb"
+c = "ccc"
+pdb.set_trace()
+final = a + b + c
+print (final)
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+--Return--
+&gt; &lt;ipython-input-9-a59ef5caf723&gt;(5)&lt;module&gt;()-&gt;None
+-&gt; pdb.set_trace()
+(Pdb) p a
+'aaa'
+(Pdb) p b
+'bbb'
+(Pdb) p c
+'ccc'
+(Pdb) p final
+*** NameError: name 'final' is not defined
+(Pdb) exit
+</pre>
+<p>In the following script, we are setting the breakpoint in the last line of the program &minus;</p>
+<pre class="prettyprint notranslate">
+import pdb
+a = "aaa"
+b = "bbb"
+c = "ccc"
+final = a + b + c
+pdb.set_trace()
+print (final)
+</pre>
+<p>The output is as follows &minus;</p>
+<pre class="result notranslate">
+--Return--
+&gt; &lt;ipython-input-11-8019b029997d&gt;(6)&lt;module&gt;()-&gt;None
+-&gt; pdb.set_trace()
+(Pdb) p a
+'aaa'
+(Pdb) p b
+'bbb'
+(Pdb) p c
+'ccc'
+(Pdb) p final
+'aaabbbccc'
+(Pdb)
+</pre>
+<h1>Benchmarking and Profiling</h1>
+<p>In this chapter, we will learn how benchmarking and profiling help in addressing performance issues.</p>
+<p>Suppose we had written a code and it is giving the desired result too but what if we want to run this code a bit faster because the needs have changed. In this case, we need to find out what parts of our code are slowing down the entire program. In this case, benchmarking and profiling can be useful.</p>
+<h2>What is Benchmarking?</h2>
+<p>Benchmarking aims at evaluating something by comparison with a standard. However, the question that arises here is that what would be the benchmarking and why we need it in case of software programming. Benchmarking the code means how fast the code is executing and where the bottleneck is. One major reason for benchmarking is that it optimizes the code.</p>
+<h3>How does benchmarking work?</h3>
+<p>If we talk about the working of benchmarking, we need to start by benchmarking the whole program as one current state then we can combine micro benchmarks and then decompose a program into smaller programs. In order to find the bottlenecks within our program and optimize it. In other words, we can understand it as breaking the big and hard problem into series of smaller and a bit easier problems for optimizing them.</p>
+<h3>Python module for benchmarking</h3>
+<p>In Python, we have a by default module for benchmarking which is called <b>timeit</b>. With the help of the <b>timeit</b> module, we can measure the performance of small bit of Python code within our main program.</p>
+<h3>Example</h3>
+<p>In the following Python script, we are importing the <b>timeit</b> module, which further measures the time taken to execute two functions – <b>functionA</b> and <b>functionB</b> &minus;</p>
+<pre class="prettyprint notranslate">
+import timeit
+import time
+def functionA():
+   print("Function A starts the execution:")
+   print("Function A completes the execution:")
+def functionB():
+   print("Function B starts the execution")
+   print("Function B completes the execution")
+start_time = timeit.default_timer()
+functionA()
+print(timeit.default_timer() - start_time)
+start_time = timeit.default_timer()
+functionB()
+print(timeit.default_timer() - start_time)
+</pre>
+<p>After running the above script, we will get the execution time of both the functions as shown below.</p>
+<h3>Output</h3>
+<pre class="result notranslate">
+Function A starts the execution:
+Function A completes the execution:
+0.0014599495514175942
+Function B starts the execution
+Function B completes the execution
+0.0017024724827479076
+</pre>
+<h2>Writing our own timer using the decorator function</h2>
+<p>In Python, we can create our own timer, which will act just like the <b>timeit</b> module. It can be done with the help of the <b>decorator</b> function. Following is an example of the custom timer &minus;</p>
+<pre class="prettyprint notranslate">
+import random
+import time
+
+def timer_func(func):
+
+   def function_timer(*args, **kwargs):
+   start = time.time()
+   value = func(*args, **kwargs)
+   end = time.time()
+   runtime = end - start
+   msg = "{func} took {time} seconds to complete its execution."
+      print(msg.format(func = func.__name__,time = runtime))
+   return value
+   return function_timer
+
+@timer_func
+def Myfunction():
+   for x in range(5):
+   sleep_time = random.choice(range(1,3))
+   time.sleep(sleep_time)
+
+if __name__ == '__main__':
+   Myfunction()
+</pre>
+<p>The above python script helps in importing random time modules. We have created the timer_func() decorator function. This has the function_timer() function inside it. Now, the nested function will grab the time before calling the passed in function. Then it waits for the function to return and grabs the end time. In this way, we can finally make python script print the execution time. The script will generate the output as shown below.</p>
+<h3>Output</h3>
+<pre class="result notranslate">
+Myfunction took 8.000457763671875 seconds to complete its execution.
+</pre>
+<h2>What is profiling?</h2>
+<p>Sometimes the programmer wants to measure some attributes like the use of memory, time complexity or usage of particular instructions about the programs to measure the real capability of that program. Such kind of measuring about program is called profiling. Profiling uses dynamic program analysis to do such measuring.</p>
+<p>In the subsequent sections, we will learn about the different Python Modules for Profiling.</p>
+<h2>cProfile – the inbuilt module</h2>
+<p><b>cProfile</b> is a Python built-in module for profiling. The module is a C-extension with reasonable overhead that makes it suitable for profiling long-running programs. After running it, it logs all the functions and execution times. It is very powerful but sometimes a bit difficult to interpret and act on. In the following example, we are using cProfile on the code below &minus;</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+def increment_global():
+
+   global x
+   x += 1
+
+def taskofThread(lock):
+
+   for _ in range(50000):
+   lock.acquire()
+   increment_global()
+   lock.release()
+
+def main():
+   global x
+   x = 0
+
+   lock = threading.Lock()
+
+   t1 = threading.Thread(target=taskofThread, args=(lock,))
+   t2 = threading.Thread(target= taskofThread, args=(lock,))
+
+   t1.start()
+   t2.start()
+
+   t1.join()
+   t2.join()
+
+if __name__ == "__main__":
+   for i in range(5):
+      main()
+   print("x = {1} after Iteration {0}".format(i,x))
+</pre>
+<p>The above code is saved in the <b>thread_increment.py</b> file. Now, execute the code with cProfile on the command line as follows &minus;</p>
+<pre class="prettyprint notranslate">
+(base) D:\ProgramData&gt;python -m cProfile thread_increment.py
+x = 100000 after Iteration 0
+x = 100000 after Iteration 1
+x = 100000 after Iteration 2
+x = 100000 after Iteration 3
+x = 100000 after Iteration 4
+      3577 function calls (3522 primitive calls) in 1.688 seconds
+
+   Ordered by: standard name
+
+   ncalls tottime percall cumtime percall filename:lineno(function)
+
+   5 0.000 0.000 0.000 0.000 &lt;frozen importlib._bootstrap&gt;:103(release)
+   5 0.000 0.000 0.000 0.000 &lt;frozen importlib._bootstrap&gt;:143(__init__)
+   5 0.000 0.000 0.000 0.000 &lt;frozen importlib._bootstrap&gt;:147(__enter__)
+   … … … …
+</pre>
+<p>From the above output, it is clear that cProfile prints out all the 3577 functions called, with the time spent in each and the number of times they have been called. Followings are the columns we got in output &minus;</p>
+<ul class="list">
+<li><p><b>ncalls</b> &minus; It is the number of calls made.</p></li>
+<li><p><b>tottime</b> &minus; It is the total time spent in the given function.</p></li>
+<li><p><b>percall</b> &minus; It refers to the quotient of tottime divided by ncalls.</p></li>
+<li><p><b>cumtime</b> &minus; It is the cumulative time spent in this and all subfunctions. It is even accurate for recursive functions.</p></li>
+<li><p><b>percall</b> &minus; It is the quotient of cumtime divided by primitive calls.</p></li>
+<li><p><b>filename:lineno(function)</b> &minus; It basically provides the respective data of each function.</p></li>
+</ul>
+<h1>Concurrency in Python - Pool of Threads</h1>
+<p>Suppose we had to create a large number of threads for our multithreaded tasks. It would be computationally most expensive as there can be many performance issues, due to too many threads. A major issue could be in the throughput getting limited. We can solve this problem by creating a pool of threads. A thread pool may be defined as the group of pre-instantiated and idle threads, which stand ready to be given work. Creating thread pool is preferred over instantiating new threads for every task when we need to do large number of tasks. A thread pool can manage concurrent execution of large number of threads as follows &minus;</p>
+<ul class="list">
+<li><p>If a thread in a thread pool completes its execution then that thread can be reused.</p></li>
+<li><p>If a thread is terminated, another thread will be created to replace that thread.</p></li>
+</ul>
+<h2>Python Module – Concurrent.futures</h2>
+<p>Python standard library includes the <b>concurrent.futures</b> module. This module was added in Python 3.2 for providing the developers a high-level interface for launching asynchronous tasks. It is an abstraction layer on the top of Python’s threading and multiprocessing modules for providing the interface for running the tasks using pool of thread or processes.</p>
+<p>In our subsequent sections, we will learn about the different classes of the concurrent.futures module.</p>
+<h2>Executor Class</h2>
+<p><b>Executor</b>is an abstract class of the <b>concurrent.futures</b> Python module. It cannot be used directly and we need to use one of the following concrete subclasses &minus;</p>
+<ul class="list">
+<li>ThreadPoolExecutor</li>
+<li>ProcessPoolExecutor</li>
+</ul>
+<h3>ThreadPoolExecutor – A Concrete Subclass</h3>
+<p>It is one of the concrete subclasses of the Executor class. The subclass uses multi-threading and we get a pool of thread for submitting the tasks. This pool assigns tasks to the available threads and schedules them to run.</p>
+<h3>How to create a ThreadPoolExecutor?</h3>
+<p>With the help of <b>concurrent.futures</b> module and its concrete subclass <b>Executor</b>, we can easily create a pool of threads. For this, we need to construct a <b>ThreadPoolExecutor</b> with the number of threads we want in the pool. By default, the number is 5. Then we can submit a task to the thread pool. When we <b>submit()</b> a task, we get back a <b>Future</b>. The Future object has a method called <b>done()</b>, which tells if the future has resolved. With this, a value has been set for that particular future object. When a task finishes, the thread pool executor sets the value to the future object.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+from concurrent.futures import ThreadPoolExecutor
+from time import sleep
+def task(message):
+   sleep(2)
+   return message
+
+def main():
+   executor = ThreadPoolExecutor(5)
+   future = executor.submit(task, ("Completed"))
+   print(future.done())
+   sleep(2)
+   print(future.done())
+   print(future.result())
+if __name__ == '__main__':
+main()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+False
+True
+Completed
+</pre>
+<p>In the above example, a <b>ThreadPoolExecutor</b> has been constructed with 5 threads. Then a task, which will wait for 2 seconds before giving the message, is submitted to the thread pool executor. As seen from the output, the task does not complete until 2 seconds, so the first call to <b>done()</b> will return False. After 2 seconds, the task is done and we get the result of the future by calling the <b>result()</b> method on it.</p>
+<h3>Instantiating ThreadPoolExecutor – Context Manager</h3>
+<p>Another way to instantiate <b>ThreadPoolExecutor</b> is with the help of context manager. It works similar to the method used in the above example. The main advantage of using context manager is that it looks syntactically good. The instantiation can be done with the help of the following code &minus;</p>
+<pre class="prettyprint notranslate">
+with ThreadPoolExecutor(max_workers = 5) as executor
+</pre>
+<h3>Example</h3>
+<p>The following example is borrowed from the Python docs. In this example, first of all the <b>concurrent.futures</b> module has to be imported. Then a function named <b>load_url()</b> is created which will load the requested url. The function then creates <b>ThreadPoolExecutor</b>
+with the 5 threads in the pool. The <b>ThreadPoolExecutor</b> has been utilized as context manager. We can get the result of the future by calling the <b>result()</b> method on it.</p>
+<pre class="prettyprint notranslate">
+import concurrent.futures
+import urllib.request
+
+URLS = ['http://www.foxnews.com/',
+   'http://www.cnn.com/',
+   'http://europe.wsj.com/',
+   'http://www.bbc.co.uk/',
+   'http://some-made-up-domain.com/']
+
+def load_url(url, timeout):
+   with urllib.request.urlopen(url, timeout = timeout) as conn:
+   return conn.read()
+
+with concurrent.futures.ThreadPoolExecutor(max_workers = 5) as executor:
+
+   future_to_url = {executor.submit(load_url, url, 60): url for url in URLS}
+   for future in concurrent.futures.as_completed(future_to_url):
+   url = future_to_url[future]
+   try:
+      data = future.result()
+   except Exception as exc:
+      print('%r generated an exception: %s' % (url, exc))
+   else:
+      print('%r page is %d bytes' % (url, len(data)))
+</pre>
+<h3>Output</h3>
+<p>Following would be the output of the above Python script &minus;</p>
+<pre class="result notranslate">
+'http://some-made-up-domain.com/' generated an exception: &lt;urlopen error [Errno 11004] getaddrinfo failed&gt;
+'http://www.foxnews.com/' page is 229313 bytes
+'http://www.cnn.com/' page is 168933 bytes
+'http://www.bbc.co.uk/' page is 283893 bytes
+'http://europe.wsj.com/' page is 938109 bytes
+</pre>
+<h3>Use of Executor.map() function</h3>
+<p>The Python <b>map()</b> function is widely used in a number of tasks. One such task is to apply a certain function to every element within iterables. Similarly, we can map all the elements of an iterator to a function and submit these as independent jobs to out <b>ThreadPoolExecutor</b>. Consider the following example of Python script to understand how the function works.</p>
+<h3>Example</h3>
+<p>In this example below, the map function is used to apply the <b>square()</b> function to every value in the values array.</p>
+<pre class="prettyprint notranslate">
+from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import as_completed
+values = [2,3,4,5]
+def square(n):
+   return n * n
+def main():
+   with ThreadPoolExecutor(max_workers = 3) as executor:
+      results = executor.map(square, values)
+for result in results:
+      print(result)
+if __name__ == '__main__':
+   main()
+</pre>
+<h3>Output</h3>
+<p>The above Python script generates the following output &minus;</p>
+<pre class="result notranslate">
+4
+9
+16
+25
+</pre>
+<h1>Concurrency in Python - Pool of Processes</h1>
+<p>Pool of process can be created and used in the same way as we have created and used the pool of threads. Process pool can be defined as the group of pre-instantiated and idle processes, which stand ready to be given work. Creating process pool is preferred over instantiating new processes for every task when we need to do a large number of tasks.</p>
+<h2>Python Module – Concurrent.futures</h2>
+<p>Python standard library has a module called the <b>concurrent.futures</b>. This module was added in Python 3.2 for providing the developers a high-level interface for launching asynchronous tasks. It is an abstraction layer on the top of Python’s threading and multiprocessing modules for providing the interface for running the tasks using pool of thread or processes.</p>
+<p>In our subsequent sections, we will look at the different subclasses of the concurrent.futures module.</p>
+<h2>Executor Class</h2>
+<p><b>Executor</b> is an abstract class of the <b>concurrent.futures</b> Python module. It cannot be used directly and we need to use one of the following concrete subclasses &minus;</p>
+<ul class="list">
+<li>ThreadPoolExecutor</li>
+<li>ProcessPoolExecutor</li>
+</ul>
+<h3>ProcessPoolExecutor – A concrete subclass</h3>
+<p>It is one of the concrete subclasses of the Executor class. It uses multi-processing and we get a pool of processes for submitting the tasks. This pool assigns tasks to the available processes and schedule them to run.</p>
+<h3>How to create a ProcessPoolExecutor?</h3>
+<p>With the help of the <b>concurrent.futures</b> module and its concrete subclass <b>Executor</b>, we can easily create a pool of process. For this, we need to construct a <b>ProcessPoolExecutor</b> with the number of processes we want in the pool. By default, the number is 5. This is followed by submitting a task to the process pool.</p>
+<h3>Example</h3>
+<p>We will now consider the same example that we used while creating thread pool, the only difference being that now we will use <b>ProcessPoolExecutor</b> instead of <b>ThreadPoolExecutor</b> .</p>
+<pre class="prettyprint notranslate">
+from concurrent.futures import ProcessPoolExecutor
+from time import sleep
+def task(message):
+   sleep(2)
+   return message
+
+def main():
+   executor = ProcessPoolExecutor(5)
+   future = executor.submit(task, ("Completed"))
+   print(future.done())
+   sleep(2)
+   print(future.done())
+   print(future.result())
+if __name__ == '__main__':
+main()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+False
+False
+Completed
+</pre>
+<p>In the above example, a Process<b>PoolExecutor</b> has been constructed with 5 threads. Then a task, which will wait for 2 seconds before giving the message, is submitted to the process pool executor. As seen from the output, the task does not complete until 2 seconds, so the first call to <b>done()</b> will return False. After 2 seconds, the task is done and we get the result of the future by calling the <b>result()</b> method on it.</p>
+<h3>Instantiating ProcessPoolExecutor – Context Manager</h3>
+<p>Another way to instantiate ProcessPoolExecutor is with the help of context manager. It works similar to the method used in the above example. The main advantage of using context manager is that it looks syntactically good. The instantiation can be done with the help of the following code &minus;</p>
+<pre class="result notranslate">
+with ProcessPoolExecutor(max_workers = 5) as executor
+</pre>
+<h3>Example</h3>
+<p>For better understanding, we are taking the same example as used while creating thread pool. In this example, we need to start by importing the <b>concurrent.futures</b> module. Then a function named <b>load_url()</b> is created which will load the requested url. The <b>ProcessPoolExecutor</b> is then created with the 5 number of threads in the pool. The Process<b>PoolExecutor</b> has been utilized as context manager. We can get the result of the future by calling the <b>result()</b> method on it.</p>
+<pre class="prettyprint notranslate">
+import concurrent.futures
+from concurrent.futures import ProcessPoolExecutor
+import urllib.request
+
+URLS = ['http://www.foxnews.com/',
+   'http://www.cnn.com/',
+   'http://europe.wsj.com/',
+   'http://www.bbc.co.uk/',
+   'http://some-made-up-domain.com/']
+
+def load_url(url, timeout):
+   with urllib.request.urlopen(url, timeout = timeout) as conn:
+      return conn.read()
+
+def main():
+   with concurrent.futures.ProcessPoolExecutor(max_workers=5) as executor:
+      future_to_url = {executor.submit(load_url, url, 60): url for url in URLS}
+      for future in concurrent.futures.as_completed(future_to_url):
+      url = future_to_url[future]
+      try:
+         data = future.result()
+      except Exception as exc:
+         print('%r generated an exception: %s' % (url, exc))
+      else:
+         print('%r page is %d bytes' % (url, len(data)))
+
+if __name__ == '__main__':
+   main()
+</pre>
+<h3>Output</h3>
+<p>The above Python script will generate the following output &minus;</p>
+<pre class="result notranslate">
+'http://some-made-up-domain.com/' generated an exception: &lt;urlopen error [Errno 11004] getaddrinfo failed&gt;
+'http://www.foxnews.com/' page is 229476 bytes
+'http://www.cnn.com/' page is 165323 bytes
+'http://www.bbc.co.uk/' page is 284981 bytes
+'http://europe.wsj.com/' page is 967575 bytes
+</pre>
+<h3>Use of the Executor.map() function</h3>
+<p>The Python <b>map()</b> function is widely used to perform a number of tasks. One such task is to apply a certain function to every element within iterables. Similarly, we can map all the elements of an iterator to a function and submit these as independent jobs to the <b>ProcessPoolExecutor</b>. Consider the following example of Python script to understand this.</p>
+<h3>Example</h3>
+<p>We will consider the same example that we used while creating thread pool using the <b>Executor.map()</b> function. In the example givenbelow, the map function is used to apply <b>square()</b> function to every value in the values array.</p>
+<pre class="prettyprint notranslate">
+from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import as_completed
+values = [2,3,4,5]
+def square(n):
+   return n * n
+def main():
+   with ProcessPoolExecutor(max_workers = 3) as executor:
+      results = executor.map(square, values)
+   for result in results:
+      print(result)
+if __name__ == '__main__':
+   main()
+</pre>
+<h3>Output</h3>
+<p>The above Python script will generate the following output</p>
+<pre class="result notranslate">
+4
+9
+16
+25
+</pre>
+<h3>When to use ProcessPoolExecutor and ThreadPoolExecutor?</h3>
+<p>Now that we have studied about both the Executor classes – ThreadPoolExecutor and ProcessPoolExecutor, we need to know when to use which executor. We need to choose ProcessPoolExecutor in case of CPU-bound workloads and ThreadPoolExecutor in case of I/O-bound workloads.</p>
+<p>If we use <b>ProcessPoolExecutor</b>, then we do not need to worry about GIL because it uses multiprocessing. Moreover, the execution time will be less when compared to <b>ThreadPoolExecution</b>. Consider the following Python script example to understand this.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+import time
+import concurrent.futures
+
+value = [8000000, 7000000]
+
+def counting(n):
+   start = time.time()
+   while n &gt; 0:
+      n -= 1
+   return time.time() - start
+
+def main():
+   start = time.time()
+   with concurrent.futures.ProcessPoolExecutor() as executor:
+      for number, time_taken in zip(value, executor.map(counting, value)):
+         print('Start: {} Time taken: {}'.format(number, time_taken))
+   print('Total time taken: {}'.format(time.time() - start))
+
+if __name__ == '__main__':
+main()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Start: 8000000 Time taken: 1.5509998798370361
+Start: 7000000 Time taken: 1.3259999752044678
+Total time taken: 2.0840001106262207
+
+Example- Python script with ThreadPoolExecutor:
+import time
+import concurrent.futures
+
+value = [8000000, 7000000]
+
+def counting(n):
+   start = time.time()
+   while n &gt; 0:
+      n -= 1
+   return time.time() - start
+
+def main():
+   start = time.time()
+   with concurrent.futures.ThreadPoolExecutor() as executor:
+      for number, time_taken in zip(value, executor.map(counting, value)):
+         print('Start: {} Time taken: {}'.format(number, time_taken))
+      print('Total time taken: {}'.format(time.time() - start))
+
+if __name__ == '__main__':
+main()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Start: 8000000 Time taken: 3.8420000076293945
+Start: 7000000 Time taken: 3.6010000705718994
+Total time taken: 3.8480000495910645
+</pre>
+<p>From the outputs of both the programs above, we can see the difference of execution time while using <b>ProcessPoolExecutor</b> and <b>ThreadPoolExecutor</b>.</p>
+<h1>Concurrency in Python - Multiprocessing</h1>
+<p>In this chapter, we will focus more on the comparison between multiprocessing and multithreading.</p>
+<h3>Multiprocessing</h3>
+<p>It is the use of two or more CPUs units within a single computer system. It is the best approach to get the full potential from our hardware by utilizing full number of CPU cores available in our computer system.</p>
+<h3>Multithreading</h3>
+<p>It is the ability of a CPU to manage the use of operating system by executing multiple threads concurrently. The main idea of multithreading is to achieve parallelism by dividing a process into multiple threads.</p>
+<p>The following table shows some of the important differences between them &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Multiprocessing</th>
+<th style="text-align:center;">Multiprogramming</th>
+</tr>
+<tr>
+<td style="vertical-align:middle; width:44%">Multiprocessing refers to processing of multiple processes at same time by multiple CPUs.</td>
+<td>Multiprogramming keeps several programs in main memory at the same time and execute them concurrently utilizing single CPU.</td>
+</tr>
+<tr>
+<td>It utilizes multiple CPUs.</td>
+<td>It utilizes single CPU.</td>
+</tr>
+<tr>
+<td>It permits parallel processing.</td>
+<td>Context switching takes place.</td>
+</tr>
+<tr>
+<td>Less time taken to process the jobs.</td>
+<td>More Time taken to process the jobs.</td>
+</tr>
+<tr>
+<td>It facilitates much efficient utilization of devices of the computer system.</td>
+<td style="vertical-align:middle;">Less efficient than multiprocessing.</td>
+</tr>
+<tr>
+<td>Usually more expensive.</td>
+<td>Such systems are less expensive.</td>
+</tr>
+</table>
+<h2>Eliminating impact of global interpreter lock (GIL)</h2>
+<p>While working with concurrent applications, there is a limitation present in Python called the <b>GIL (Global Interpreter Lock)</b>. GIL never allows us to utilize multiple cores of CPU and hence we can say that there are no true threads in Python. GIL is the mutex – mutual exclusion lock, which makes things thread safe. In other words, we can say that GIL prevents multiple threads from executing Python code in parallel. The lock can be held by only one thread at a time and if we want to execute a thread then it must acquire the lock first.</p>
+<p>With the use of multiprocessing, we can effectively bypass the limitation caused by GIL &minus;</p>
+<ul class="list">
+<li><p>By using multiprocessing, we are utilizing the capability of multiple processes and hence we are utilizing multiple instances of the GIL.</p></li>
+<li><p>Due to this, there is no restriction of executing the bytecode of one thread within our programs at any one time.</p></li>
+</ul>
+<h2>Starting Processes in Python</h2>
+<p>The following three methods can be used to start a process in Python within the multiprocessing module &minus;</p>
+<ul class="list">
+<li>Fork</li>
+<li>Spawn</li>
+<li>Forkserver</li>
+</ul>
+<h3>Creating a process with Fork</h3>
+<p>Fork command is a standard command found in UNIX. It is used to create new processes called child processes. This child process runs concurrently with the process called the parent process. These child processes are also identical to their parent processes and inherit all of the resources available to the parent. The following system calls are used while creating a process with Fork &minus;</p>
+<ul class="list">
+<li><p><b>fork()</b> &minus; It is a system call generally implemented in kernel. It is used to create a copy of the process.p></li>
+<li><p><b>getpid()</b> &minus; This system call returns the process ID(PID) of the calling process.</p></li>
+</ul>
+<h3>Example</h3>
+<p>The following Python script example will help you understabd how to create a new child process and get the PIDs of child and parent processes &minus;</p>
+<pre class="prettyprint notranslate">
+import os
+
+def child():
+   n = os.fork()
+   
+   if n &gt; 0:
+      print("PID of Parent process is : ", os.getpid())
+
+   else:
+      print("PID of Child process is : ", os.getpid())
+child()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+PID of Parent process is : 25989
+PID of Child process is : 25990
+</pre>
+<h2>Creating a process with Spawn</h2>
+<p>Spawn means to start something new. Hence, spawning a process means the creation of a new process by a parent process. The parent process continues its execution asynchronously or waits until the child process ends its execution. Follow these steps for spawning a process &minus;</p>
+<ul class="list">
+<li><p>Importing multiprocessing module.</p></li>
+<li><p>Creating the object process.</p></li>
+<li><p>Starting the process activity by calling <b>start()</b> method.</p></li>
+<li><p>Waiting until the process has finished its work and exit by calling <b>join()</b> method.</p></li>
+</ul>
+<h3>Example</h3>
+<p>The following example of Python script helps in spawning three processes</p>
+<pre class="prettyprint notranslate">
+import multiprocessing
+
+def spawn_process(i):
+   print ('This is process: %s' %i)
+   return
+
+if __name__ == '__main__':
+   Process_jobs = []
+   for i in range(3):
+   p = multiprocessing.Process(target = spawn_process, args = (i,))
+      Process_jobs.append(p)
+   p.start()
+   p.join()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+This is process: 0
+This is process: 1
+This is process: 2
+</pre>
+<h2>Creating a process with Forkserver</h2>
+<p>Forkserver mechanism is only available on those selected UNIX platforms that support passing the file descriptors over Unix Pipes. Consider the following points to understand the working of Forkserver mechanism &minus;</p>
+<ul class="list">
+<li><p>A server is instantiated on using Forkserver mechanism for starting new process.</p></li>
+<li><p>The server then receives the command and handles all the requests for creating new processes.</p></li>
+<li><p>For creating a new process, our python program will send a request to Forkserver and it will create a process for us.</p></li>
+<li><p>At last, we can use this new created process in our programs.</p></li>
+</ul>
+<h2>Daemon processes in Python</h2>
+<p>Python <b>multiprocessing</b> module allows us to have daemon processes through its daemonic option. Daemon processes or the processes that are running in the background follow similar concept as the daemon threads. To execute the process in the background, we need to set the daemonic flag to true. The daemon process will continue to run as long as the main process is executing and it will terminate after finishing its execution or when the main program would be killed.</p>
+<h3>Example</h3>
+<p>Here, we are using the same example as used in the daemon threads. The only difference is the change of module from <b>multithreading</b> to <b>multiprocessing</b> and setting the daemonic flag to true. However, there would be a change in output as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+import multiprocessing
+import time
+
+def nondaemonProcess():
+   print("starting my Process")
+   time.sleep(8)
+   print("ending my Process")
+def daemonProcess():
+   while True:
+   print("Hello")
+   time.sleep(2)
+if __name__ == '__main__':
+   nondaemonProcess = multiprocessing.Process(target = nondaemonProcess)
+   daemonProcess = multiprocessing.Process(target = daemonProcess)
+   daemonProcess.daemon = True
+   nondaemonProcess.daemon = False
+   daemonProcess.start()
+   nondaemonProcess.start()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+starting my Process
+ending my Process
+</pre>
+<p>The output is different when compared to the one generated by daemon threads, because the process in no daemon mode have an output. Hence, the daemonic process ends automatically after the main programs end to avoid the persistence of running processes.</p>
+<h2>Terminating processes in Python</h2>
+<p>We can kill or terminate a process immediately by using the <b>terminate()</b> method. We will use this method to terminate the child process, which has been created with the help of function, immediately before completing its execution.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+import multiprocessing
+import time
+def Child_process():
+   print ('Starting function')
+   time.sleep(5)
+   print ('Finished function')
+P = multiprocessing.Process(target = Child_process)
+P.start()
+print("My Process has terminated, terminating main thread")
+print("Terminating Child Process")
+P.terminate()
+print("Child Process successfully terminated")
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+My Process has terminated, terminating main thread
+Terminating Child Process
+Child Process successfully terminated
+</pre>
+<p>The output shows that the program terminates before the execution of child process that has been created with the help of the Child_process() function. This implies that the child process has been terminated successfully.</p>
+<h2>Identifying the current process in Python</h2>
+<p>Every process in the operating system is having process identity known as PID. In Python, we can find out the PID of current process with the help of the following command &minus;</p>
+<pre class="prettyprint notranslate">
+import multiprocessing
+print(multiprocessing.current_process().pid)
+</pre>
+<h3>Example</h3>
+<p>The following example of Python script helps find out the PID of main process as well as PID of child process &minus;</p>
+<pre class="prettyprint notranslate">
+import multiprocessing
+import time
+def Child_process():
+   print("PID of Child Process is: {}".format(multiprocessing.current_process().pid))
+print("PID of Main process is: {}".format(multiprocessing.current_process().pid))
+P = multiprocessing.Process(target=Child_process)
+P.start()
+P.join()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+PID of Main process is: 9401
+PID of Child Process is: 9402
+</pre>
+<h2>Using a process in subclass</h2>
+<p>We can create threads by sub-classing the <b>threading.Thread</b> class. In addition, we can also create processes by sub-classing the <b>multiprocessing.Process</b> class. For using a process in subclass, we need to consider the following points &minus;</p>
+<ul class="list">
+<li><p>We need to define a new subclass of the <b>Process</b> class.</p></li>
+<li><p>We need to override the <b>_init_(self [,args] )</b> class.</p></li>
+<li><p>We need to override the of the <b>run(self [,args] )</b> method to implement what <b>Process</b></p></li>
+<li><p>We need to start the process by invoking the<b>start()</b> method.</p></li>
+</ul>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+import multiprocessing
+class MyProcess(multiprocessing.Process):
+   def run(self):
+   print ('called run method in process: %s' %self.name)
+   return
+if __name__ == '__main__':
+   jobs = []
+   for i in range(5):
+   P = MyProcess()
+   jobs.append(P)
+   P.start()
+   P.join()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+called run method in process: MyProcess-1
+called run method in process: MyProcess-2
+called run method in process: MyProcess-3
+called run method in process: MyProcess-4
+called run method in process: MyProcess-5
+</pre>
+<h2>Python Multiprocessing Module – Pool Class</h2>
+<p>If we talk about simple parallel <b>processing</b> tasks in our Python applications, then multiprocessing module provide us the Pool class. The following methods of <b>Pool</b> class can be used to spin up number of child processes within our main program</p>
+<h3>apply() method</h3>
+<p>This method is similar to the<b>.submit()</b>method of <b>.ThreadPoolExecutor.</b>It blocks until the result is ready.</p>
+<h3>apply_async() method</h3>
+<p>When we need parallel execution of our tasks then we need to use the<b>apply_async()</b>method to submit tasks to the pool. It is an asynchronous operation that will not lock the main thread until all the child processes are executed.</p>
+<h3>map() method</h3>
+<p>Just like the <b>apply()</b> method, it also blocks until the result is ready. It is equivalent to the built-in <b>map()</b> function that splits the iterable data in a number of chunks and submits to the process pool as separate tasks.</p>
+<h3>map_async() method</h3>
+<p>It is a variant of the <b>map()</b> method as <b>apply_async()</b> is to the <b>apply()</b> method. It returns a result object. When the result becomes ready, a callable is applied to it. The callable must be completed immediately; otherwise, the thread that handles the results will get blocked.</p>
+<h3>Example</h3>
+<p>The following example will help you implement a process pool for performing parallel execution. A simple calculation of square of number has been performed by applying the <b>square()</b> function through the <b>multiprocessing.Pool</b> method. Then <b>pool.map()</b> has been used to submit the 5, because input is a list of integers from 0 to 4. The result would be stored in <b>p_outputs</b> and it is printed.</p>
+<pre class="prettyprint notranslate">
+def square(n):
+   result = n*n
+   return result
+if __name__ == '__main__':
+   inputs = list(range(5))
+   p = multiprocessing.Pool(processes = 4)
+   p_outputs = pool.map(function_square, inputs)
+   p.close()
+   p.join()
+   print ('Pool :', p_outputs)
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Pool : [0, 1, 4, 9, 16]
+</pre>
+<h1>Processes Intercommunication</h1>
+<p>Process intercommunication means the exchange of data between processes. It is necessary to exchange the data between processes for the development of parallel application. Following diagram shows the various communication mechanisms for synchronization between multiple sub processes &minus;</p>
+<img src="/concurrency_in_python/images/intercommunication.jpg" alt="Intercommunication" />
+<h2>Various Communication Mechanisms</h2>
+<p>In this section, we will learn about the various communication mechanisms. The mechanisms are described below &minus;</p>
+<h3>Queues</h3>
+<p>Queues can be used with multi-process programs. The Queue class of <b>multiprocessing</b> module is similar to the <b>Queue.Queue</b> class. Hence, the same API can be used. <b>Multiprocessing</b>.Queue provides us a thread and process safe FIFO (first-in first-out) mechanism of communication between processes.</p>
+<h3>Example</h3>
+<p>Following is a simple example taken from python official docs on multiprocessing to understand the concept of Queue class of multiprocessing.</p>
+<pre class="prettyprint notranslate">
+from multiprocessing import Process, Queue
+import queue
+import random
+def f(q):
+   q.put([42, None, 'hello'])
+def main():
+   q = Queue()
+   p = Process(target = f, args = (q,))
+   p.start()
+   print (q.get())
+if __name__ == '__main__':
+   main()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+[42, None, 'hello']
+</pre>
+<h3>Pipes</h3>
+<p>It is a data structure, which is used to communicate between processes in multi-process programs. The Pipe() function returns a pair of connection objects connected by a pipe which by default is duplex(two way). It works in the following manner &minus;</p>
+<ul class="list">
+<li><p>It returns a pair of connection objects that represent the two ends of pipe.</p></li>
+<li><p>Every object has two methods – <b>send()</b> and <b>recv()</b>, to communicate between processes. </p></li>
+</ul>
+<h3>Example</h3>
+<p>Following is a simple example taken from python official docs on multiprocessing to understand the concept of <b>Pipe()</b> function of multiprocessing.</p>
+<pre class="prettyprint notranslate">
+from multiprocessing import Process, Pipe
+
+def f(conn):
+   conn.send([42, None, 'hello'])
+   conn.close()
+
+if __name__ == '__main__':
+   parent_conn, child_conn = Pipe()
+   p = Process(target = f, args = (child_conn,))
+   p.start()
+   print (parent_conn.recv())
+   p.join()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+[42, None, 'hello']
+</pre>
+<h3>Manager</h3>
+<p>Manager is a class of multiprocessing module that provides a way to coordinate shared information between all its users. A manager object controls a server process, which manages shared objects and allows other processes to manipulate them. In other words, managers provide a way to create data that can be shared between different processes. Following are the different properties of manager object &minus;</p>
+<ul class="list">
+<li><p>The main property of manager is to control a server process, which manages the shared objects.</p></li>
+<li><p>Another important property is to update all the shared objects when any process modifies it.</p></li>
+</ul>
+<h3>Example</h3>
+<p>Following is an example which uses the manager object for creating a list record in server process and then adding a new record in that list.</p>
+<pre class="prettyprint notranslate">
+import multiprocessing
+
+def print_records(records):
+   for record in records:
+      print("Name: {0}\nScore: {1}\n".format(record[0], record[1]))
+
+def insert_record(record, records):
+   records.append(record)
+      print("A New record is added\n")
+
+if __name__ == '__main__':
+   with multiprocessing.Manager() as manager:
+
+      records = manager.list([('Computers', 1), ('Histoty', 5), ('Hindi',9)])
+      new_record = ('English', 3)
+
+      p1 = multiprocessing.Process(target = insert_record, args = (new_record, records))
+      p2 = multiprocessing.Process(target = print_records, args = (records,))
+	  p1.start()
+      p1.join()
+      p2.start()
+      p2.join()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+A New record is added
+
+Name: Computers
+Score: 1
+
+Name: Histoty
+Score: 5
+
+Name: Hindi
+Score: 9
+
+Name: English
+Score: 3
+</pre>
+<h3>Concept of Namespaces in Manager</h3>
+<p>Manager Class comes with the concept of namespaces, which is a quick way method for sharing several attributes across multiple processes. Namespaces do not feature any public method, which can be called, but they have writable attributes.</p>
+<h3>Example</h3>
+<p>The following Python script example helps us utilize namespaces for sharing data across main process and child process &minus;</p>
+<pre class="prettyprint notranslate">
+import multiprocessing
+
+def Mng_NaSp(using_ns):
+
+   using_ns.x +=5
+   using_ns.y *= 10
+
+if __name__ == '__main__':
+   manager = multiprocessing.Manager()
+   using_ns = manager.Namespace()
+   using_ns.x = 1
+   using_ns.y = 1
+
+   print ('before', using_ns)
+   p = multiprocessing.Process(target = Mng_NaSp, args = (using_ns,))
+   p.start()
+   p.join()
+   print ('after', using_ns)
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+before Namespace(x = 1, y = 1)
+after Namespace(x = 6, y = 10)
+</pre>
+<h2>Ctypes-Array and Value</h2>
+<p>Multiprocessing module provides Array and Value objects for storing the data in a shared memory map. <b>Array</b> is a ctypes array allocated from shared memory and <b>Value</b> is a ctypes object allocated from shared memory.</p>
+<p>To being with, import Process, Value, Array from multiprocessing.</p>
+<h3>Example</h3>
+<p>Following Python script is an example taken from python docs to utilize Ctypes Array and Value for sharing some data between processes.</p>
+<pre class="prettyprint notranslate">
+def f(n, a):
+   n.value = 3.1415927
+   for i in range(len(a)):
+   a[i] = -a[i]
+
+if __name__ == '__main__':
+   num = Value('d', 0.0)
+   arr = Array('i', range(10))
+
+   p = Process(target = f, args = (num, arr))
+   p.start()
+   p.join()
+   print (num.value)
+   print (arr[:])
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+3.1415927
+[0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+</pre>
+<h2>Communicating Sequential Processes (CSP)</h2>
+<p>CSP is used to illustrate the interaction of systems with other systems featuring concurrent models. CSP is a framework for writing concurrent or program via message passing and hence it is effective for describing concurrency.</p>
+<h2>Python library – PyCSP</h2>
+<p>For implementing core primitives found in CSP, Python has a library called PyCSP. It keeps the implementation very short and readable so that it can be understood very easily. Following is the basic process network of PyCSP &minus;</p>
+<img src="/concurrency_in_python/images/pycsp.jpg" alt="PyCSP" />
+<p>In the above PyCSP process network, there are two processes – Process1 and Process 2. These processes communicate by passing messages through two channels – channel 1 and channel 2.</p>
+<h3>Installing PyCSP</h3>
+<p>With the help of following command, we can install Python library PyCSP &minus;</p>
+<pre class="prettyprint notranslate">
+pip install PyCSP
+</pre>
+<h3>Example</h3>
+<p>Following Python script is a simple example for running two processes in parallel to each other. It is done with the help of the PyCSP python libabary &minus;</p>
+<pre class="prettyprint notranslate">
+from pycsp.parallel import *
+import time
+@process
+def P1():
+   time.sleep(1)
+   print('P1 exiting')
+@process
+def P2():
+   time.sleep(1)
+   print('P2 exiting')
+def main():
+   Parallel(P1(), P2())
+   print('Terminating')
+if __name__ == '__main__':
+   main()
+</pre>
+<p>In the above script, two functions namely <b>P1</b> and <b>P2</b> have been created and then decorated with <b>@process</b> for converting them into processes.</p>
+<h3>Output</h3>
+<pre class="result notranslate">
+P2 exiting
+P1 exiting
+Terminating
+</pre>
+<h1>Event-Driven Programming</h1>
+<p>Event-driven programming focuses on events. Eventually, the flow of program depends upon events. Until now, we were dealing with either sequential or parallel execution model but the model having the concept of event-driven programming is called asynchronous model. Event-driven programming depends upon an event loop that is always listening for the new incoming events. The working of event-driven programming is dependent upon events. Once an event loops, then events decide what to execute and in what order. Following flowchart will help you understand how this works &minus;</p>
+<img src="/concurrency_in_python/images/driven.jpg" alt="Driven" />
+<h2>Python Module – Asyncio</h2>
+<p>Asyncio module was added in Python 3.4 and it provides infrastructure for writing single-threaded concurrent code using co-routines. Following are the different concepts used by the Asyncio module &minus;</p>
+<h3>The event loop</h3>
+<p>Event-loop is a functionality to handle all the events in a computational code. It acts round the way during the execution of whole program and keeps track of the incoming and execution of events. The Asyncio module allows a single event loop per process. Followings are some methods provided by Asyncio module to manage an event loop &minus;</p>
+<ul class="list">
+<li><p><b>loop = get_event_loop()</b> &minus; This method will provide the event loop for the current context.</p></li>
+<li><p><b>loop.call_later(time_delay,callback,argument)</b> &minus; This method arranges for the callback that is to be called after the given time_delay seconds.</p></li>
+<li><p><b>loop.call_soon(callback,argument)</b> &minus; This method arranges for a callback that is to be called as soon as possible. The callback is called after call_soon() returns and when the control returns to the event loop.</p></li>
+<li><p><b>loop.time()</b> &minus; This method is used to return the current time according to the event loop’s internal clock.</p></li>
+<li><p><b>asyncio.set_event_loop()</b> &minus; This method will set the event loop for the current context to the loop.</p></li>
+<li><p><b>asyncio.new_event_loop()</b> &minus; This method will create and return a new event loop object.</p></li>
+<li><p><b>loop.run_forever()</b> &minus; This method will run until stop() method is called.</p></li>
+</ul>
+<h3>Example</h3>
+<p>The following example of event loop helps in printing <b>hello world</b> by using the get_event_loop() method. This example is taken from the Python official docs.</p>
+<pre class="prettyprint notranslate">
+import asyncio
+
+def hello_world(loop):
+   print('Hello World')
+   loop.stop()
+
+loop = asyncio.get_event_loop()
+
+loop.call_soon(hello_world, loop)
+
+loop.run_forever()
+loop.close()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Hello World
+</pre>
+<h3>Futures</h3>
+<p>This is compatible with the concurrent.futures.Future class that represents a computation that has not been accomplished. There are following differences between asyncio.futures.Future and concurrent.futures.Future &minus;</p>
+<ul class="list">
+<li><p>result() and exception() methods do not take a timeout argument and raise an exception when the future isn’t done yet.</p></li>
+<li><p>Callbacks registered with add_done_callback() are always called via the event loop’s call_soon().</p></li>
+<li><p>asyncio.futures.Future class is not compatible with the wait() and as_completed() functions in the concurrent.futures package.</p></li>
+</ul>
+<h3>Example</h3>
+<p>The following is an example that will help you understand how to use asyncio.futures.future class.</p>
+<pre class="prettyprint notranslate">
+import asyncio
+
+async def Myoperation(future):
+   await asyncio.sleep(2)
+   future.set_result('Future Completed')
+
+loop = asyncio.get_event_loop()
+future = asyncio.Future()
+asyncio.ensure_future(Myoperation(future))
+try:
+   loop.run_until_complete(future)
+   print(future.result())
+finally:
+   loop.close()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Future Completed
+</pre>
+<h3>Coroutines</h3>
+<p>The concept of coroutines in Asyncio is similar to the concept of standard Thread object under threading module. This is the generalization of the subroutine concept. A coroutine can be suspended during the execution so that it waits for the external processing and returns from the point at which it had stopped when the external processing was done. The following two ways help us in implementing coroutines &minus;</p>
+<h3>async def function()</h3>
+<p>This is a method for implementation of coroutines under Asyncio module. Following is a Python script for the same &minus;</p>
+<pre class="prettyprint notranslate">
+import asyncio
+
+async def Myoperation():
+   print("First Coroutine")
+
+loop = asyncio.get_event_loop()
+try:
+   loop.run_until_complete(Myoperation())
+
+finally:
+   loop.close()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+First Coroutine
+</pre>
+<h3>@asyncio.coroutine decorator</h3>
+<p>Another method for implementation of coroutines is to utilize generators with the @asyncio.coroutine decorator. Following is a Python script for the same &minus;</p>
+<pre class="prettyprint notranslate">
+import asyncio
+
+@asyncio.coroutine
+def Myoperation():
+   print("First Coroutine")
+
+loop = asyncio.get_event_loop()
+try:
+   loop.run_until_complete(Myoperation())
+
+finally:
+   loop.close()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+First Coroutine
+</pre>
+<h3>Tasks</h3>
+<p>This subclass of Asyncio module is responsible for execution of coroutines within an event loop in parallel manner. Following Python script is an example of processing some tasks in parallel.</p>
+<pre class="prettyprint notranslate">
+import asyncio
+import time
+async def Task_ex(n):
+   time.sleep(1)
+   print("Processing {}".format(n))
+async def Generator_task():
+   for i in range(10):
+      asyncio.ensure_future(Task_ex(i))
+   int("Tasks Completed")
+   asyncio.sleep(2)
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(Generator_task())
+loop.close()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Tasks Completed
+Processing 0
+Processing 1
+Processing 2
+Processing 3
+Processing 4
+Processing 5
+Processing 6
+Processing 7
+Processing 8
+Processing 9
+</pre>
+<h3>Transports</h3>
+<p>Asyncio module provides transport classes for implementing various types of communication. These classes are not thread safe and always paired with a protocol instance after establishment of communication channel.</p>
+<p>Following are distinct types of transports inherited from the BaseTransport &minus;</p>
+<ul class="list">
+<li><p><b>ReadTransport</b> &minus;  This is an interface for read-only transports.</p></li>
+<li><p><b>WriteTransport</b> &minus;  This is an interface for write-only transports.</p></li>
+<li><p><b>DatagramTransport</b> &minus;  This is an interface for sending the data.</p></li>
+<li><p><b>BaseSubprocessTransport</b> &minus; Similar to BaseTransport class.</p></li>
+</ul>
+<p>Followings are five distinct methods of BaseTransport class that are subsequently transient across the four transport types &minus;</p>
+<ul class="list">
+<li><p><b>close()</b> &minus;  It closes the transport.</p></li>
+<li><p><b>is_closing()</b> &minus; This method will return true if the transport is closing or is already closed.transports.</p></li>
+<li><p><b>get_extra_info(name, default = none)</b> &minus;  This will give us some extra information about transport.</p></li>
+<li><p><b>get_protocol()</b> &minus; This method will return the current protocol.</p></li>
+</ul>
+<h3>Protocols</h3>
+<p>Asyncio module provides base classes that you can subclass to implement your network protocols. Those classes are used in conjunction with transports; the protocol parses incoming data and asks for the writing of outgoing data, while the transport is responsible for the actual I/O and buffering. Following are three classes of Protocol &minus;</p>
+<ul class="list">
+<li><p><b>Protocol</b> &minus;  This is the base class for implementing streaming protocols for use with TCP and SSL transports.</p></li>
+<li><p><b>DatagramProtocol</b> &minus; This is the base class for implementing datagram protocols for use with UDP transports..</p></li>
+<li><p><b>SubprocessProtocol</b> &minus; This is the base class for implementing protocols communicating with child processes through a set of unidirectional pipes.</p></li>
+</ul>
+<h1>Reactive Programming</h1>
+<p>Reactive programming is a programming paradigm that deals with data flows and the propagation of change. It means that when a data flow is emitted by one component, the change will be propagated to other components by reactive programming library. The propagation of change will continue until it reaches the final receiver. The difference between event-driven and reactive programming is that event-driven programming revolves around events and reactive programming revolves around data.</p>
+<h2>ReactiveX or RX for reactive programming</h2>
+<p>ReactiveX or Raective Extension is the most famous implementation of reactive programming. The working of ReactiveX depends upon the following two classes &minus;</p>
+<h3>Observable class</h3>
+<p>This class is the source of data stream or events and it packs the incoming data so that the data can be passed from one thread to another. It will not give data until some observer subscribe to it.</p>
+<h3>Observer class</h3>
+<p>This class consumes the data stream emitted by <b>observable</b>. There can be multiple observers with observable and each observer will receive each data item that is emitted. The observer can receive three type of events by subscribing to observable &minus;</p>
+<ul class="list">
+<li><p><b>on_next() event</b> &minus;  It implies there is an element in the data stream.</p></li>
+<li><p><b>on_completed() event</b> &minus; It implies end of emission and no more items are coming.</p></li>
+<li><p><b>on_error() event</b> &minus; It also implies end of emission but in case when an error is thrown by <b>observable</b>.</p></li>
+</ul>
+<h2>RxPY – Python Module for Reactive Programming</h2>
+<p>RxPY is a Python module which can be used for reactive programming. We need to ensure that the module is installed. The following command can be used to install the RxPY module &minus;</p>
+<pre class="result notranslate">
+pip install RxPY
+</pre>
+<h3>Example</h3>
+<p>Following is a Python script, which uses <b>RxPY</b> module and its classes <b>Observable</b> and <b>Observe for</b> reactive programming. There are basically two classes &minus;</p>
+<ul class="list">
+<li><p><b>get_strings()</b> &minus; for getting the strings from observer.</p></li>
+<li><p><b>PrintObserver()</b> &minus; for printing the strings from observer. It uses all three events of observer class. It also uses subscribe() class.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+from rx import Observable, Observer
+def get_strings(observer):
+   observer.on_next("Ram")
+   observer.on_next("Mohan")
+   observer.on_next("Shyam")
+      observer.on_completed()
+class PrintObserver(Observer):
+   def on_next(self, value):
+      print("Received {0}".format(value))
+   def on_completed(self):
+   print("Finished")
+   def on_error(self, error):
+      print("Error: {0}".format(error))
+source = Observable.create(get_strings)
+source.subscribe(PrintObserver())
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Received Ram
+Received Mohan
+Received Shyam
+Finished
+</pre>
+<h2>PyFunctional library for reactive programming</h2>
+<p><b>PyFunctional</b>is another Python library that can be used for reactive programming. It enables us to create functional programs using the Python programming language. It is useful because it allows us to create data pipelines by using chained functional operators.</p>
+<h3>Difference between RxPY and PyFunctional</h3>
+<p>Both the libraries are used for reactive programming and handle the stream in similar fashion but the main difference between both of them depends upon the handling of data. <b>RxPY</b> handles data and events in the system while <b>PyFunctional</b> is focused on transformation of data using functional programming paradigms.</p>
+<h3>Installing PyFunctional Module</h3>
+<p>We need to install this module before using it. It can be installed with the help of pip command as follows &minus;</p>
+<pre class="prettyprint notranslate">
+pip install pyfunctional
+</pre>
+<h3>Example</h3>
+<p>Following example uses <b>the PyFunctional</b> module and its <b>seq</b> class which act as the stream object with which we can iterate and manipulate. In this program, it maps the sequence by using the lamda function that doubles every value, then filters the value where x is greater than 4 and finally it reduces the sequence into a sum of all the remaining values.</p>
+<pre class="prettyprint notranslate">
+from functional import seq
+
+result = seq(1,2,3).map(lambda x: x*2).filter(lambda x: x &gt; 4).reduce(lambda x, y: x + y)
+
+print ("Result: {}".format(result))
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Result: 6
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/concurrency_in_python/concurrency_in_python_reactive_programming.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/concurrency_in_python/concurrency_in_python_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

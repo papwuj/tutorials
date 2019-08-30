@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Install and Configure Open LDAP</title>
+<meta charset="utf-8">
+<meta name="description" content="Install and Configure Open LDAP - LDAP known as Light Weight Directory Access Protocol is a protocol used for accessing X.500 service containers within an enterprise known from a directory. Thos"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/linux_admin/install_and_configure_open_ldap.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#dfa018;
+}
+a.demo {
+    background:#dfa018;
+}
+li.heading {
+    background:#dfa018;
+}
+.course-box{background:#dfa018}
+.home-intro-sub p{color:#dfa018}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/linux_admin/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/linux_admin/images/linux-admin-mini-logo.jpg" alt="Linux Admin Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Tutorial</li>
+<li><a href="/linux_admin/index.htm">Linux Admin - Home</a></li>
+<li><a href="/linux_admin/linux_admin_centos_overview.htm">CentOS Overview</a></li>
+<li><a href="/linux_admin/basic_centos_linux_commands.htm">Basic CentOS Linux Commands</a></li>
+<li><a href="/linux_admin/linux_admin_file_folder_management.htm">File / Folder Management</a></li>
+<li><a href="/linux_admin/linux_admin_user_management.htm">User Management</a></li>
+<li><a href="/linux_admin/linux_admin_quota_management.htm">Quota Management</a></li>
+<li><a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Systemd Services Start and Stop</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Resource Mgmt with systemctl</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Resource Mgmt with crgoups</a></li>
+<li><a href="/linux_admin/linux_admin_process_management.htm">Process Management</a></li>
+<li><a href="/linux_admin/linux_admin_firewall_setup.htm">Firewall Setup</a></li>
+<li><a href="/linux_admin/configure_php_in_centos_linux.htm">Configure PHP in CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_python_with_centos_linux.htm">Set Up Python with CentOS Linux</a></li>
+<li><a href="/linux_admin/configure_ruby_on_centos_linux.htm">Configure Ruby on CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_perl_for_centos_linux.htm">Set Up Perl for CentOS Linux</a></li>
+<li><a href="/linux_admin/install_and_configure_open_ldap.htm">Install and Configure Open LDAP</a></li>
+<li><a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Create SSL Certificates</a></li>
+<li><a href="/linux_admin/linux_admin_install_apache_web_server_centos_7.htm">Install Apache Web Server CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">MySQL Setup On CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_set_up_postfix_mta_and_imap_pop3.htm">Set Up Postfix MTA and IMAP/POP3</a></li>
+<li><a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Install Anonymous FTP</a></li>
+<li><a href="/linux_admin/linux_admin_remote_management.htm">Remote Management</a></li>
+<li><a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm">Traffic Monitoring in CentOS</a></li>
+<li><a href="/linux_admin/linux_admin_log_management.htm">Log Management</a></li>
+<li><a href="/linux_admin/linux_admin_backup_and_recovery.htm">Backup and Recovery</a></li>
+<li><a href="/linux_admin/linux_admin_system_updates.htm">System Updates</a></li>
+<li><a href="/linux_admin/linux_admin_shell_scripting.htm">Shell Scripting</a></li>
+<li><a href="/linux_admin/linux_admin_package_management.htm">Package Management</a></li>
+<li><a href="/linux_admin/linux_admin_volume_management.htm">Volume Management</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Useful Resources</li>
+<li><a href="/linux_admin/linux_admin_quick_guide.htm">Linux Admin - Quick Guide</a></li>
+<li><a href="/linux_admin/linux_admin_useful_resources.htm">Linux Admin - Useful Resources</a></li>
+<li><a href="/linux_admin/linux_admin_discussion.htm">Linux Admin - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Install and Configure Open LDAP</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/linux_admin/set_up_perl_for_centos_linux.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>LDAP known as <b>Light Weight Directory Access Protocol</b> is a protocol used for accessing X.500 service containers within an enterprise known from a directory. Those who are familiar with Windows Server Administration can think of LDAP as being very similar in nature to Active Directory. It is even a widely used concept of intertwining Windows workstations into an OpenLDAP CentOS enterprise. On the other spectrum, a CentOS Linux workstation can share resources and participate with the basic functionality in a Windows Domain.</p>
+<p>Deploying LDAP on CentOS as a Directory Server Agent, Directory System Agent, or DSA (these acronyms are all one and the same) is similar to older Novell Netware installations using the Directory Tree structure with NDS.</p>
+<h2>Brief History of LDAP</h2>
+<p>LDAP was basically created as an efficient way to access X.500 directories with enterprise resources. Both X.500 and LDAP share the same characteristics and are so similar that LDAP clients can access X.500 directories with some helpers. While LDAP also has its own directory server called <b>slapd</b>. The main difference between <i>LDAP</i> and <i>DAP</i> is, the lightweight version is designed to operate over TCP.</p>
+<p>While <i>DAP</i> uses the full OSI Model. With the advent of the Internet, TCP/IP and Ethernet prominence in networks of today, it is rare to come across a Directory Services implantation using both DAP and native X.500 enterprise directories outside specific legacy computing models.</p>
+<p>The main components used with openldap for CentOS Linux are &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">openldap</th>
+<th style="text-align:center;">LDAP support libraries</th>
+</tr>
+<tr>
+<td style="text-align:center;">openldap-server</td>
+<td>LDAP server</td>
+</tr>
+<tr>
+<td style="text-align:center;">openldap-clients</td>
+<td>LDAP client utlities</td>
+</tr>
+<tr>
+<td style="text-align:center;">openldap-devel</td>
+<td>Development libraries for OpenLDAP</td>
+</tr>
+<tr>
+<td style="text-align:center;">compay-openldap</td>
+<td>OpenLDAP shared libraries</td>
+</tr>
+<tr>
+<td style="text-align:center;">slapd</td>
+<td>Directory server daemon of OpenLDAP</td>
+</tr>
+<tr>
+<td style="text-align:center;">slurpd</td>
+<td>Used for LDAP replication across an enterprise domain</td>
+</tr>
+</table>
+<p><b>Note</b> &minus; When naming your enterprise, it is a best practice to use the <b><i>.local</i></b> TLD. Using a <i>.net</i> or <i>.com</i> can cause difficulties when segregating an online and internal domain infrastructure. Imagine the extra work for a company internally using <i>acme.com</i> for both external and internal operations. Hence, it can be wise to have Internet resources called <i>acme.com</i> or <i>acme.net</i>. Then, the local networking enterprise resources is depicted as <i>acme.local</i>. This will entail configuring DNS records, but will pay in simplicity, eloquence and security.</p>
+<h2>Install Open LDAP on CentOS</h2>
+<p>Install the openldap, openldap-servers, openldap-clients and migrationstools from <i>YUM</i>.</p>
+<pre class="result notranslate">
+[root@localhost]# yum -y install openldap openldap-servers openldap-clients
+migration tools
+ Loaded plugins: fastestmirror, langpacks
+ updates
+ | 3.4 kB  00:00:00
+ updates/7/x86_64/primary_db
+ | 2.2 MB  00:00:05
+ Determining fastest mirrors
+ (1/2): extras/7/x86_64/primary_db
+ | 121 kB  00:00:01
+ (2/2): base/7/x86_64/primary_db
+ | 5.6 MB  00:00:16
+ Package openldap-2.4.40-13.el7.x86_64 already installed and latest version
+ Resolving Dependencies
+ --&gt; Running transaction check
+ ---&gt; Package openldap-clients.x86_64 0:2.4.40-13.el7 will be installed
+ ---&gt; Package openldap-servers.x86_64 0:2.4.40-13.el7 will be installed
+ --&gt; Finished Dependency Resolution
+ base/7/x86_64/group_gz
+ | 155 kB  00:00:00
+ 
+ Dependencies Resolved
+ 
+=============================================================================== 
+=============================================================================== 
+Package                                Arch
+Version                             Repository                        Size 
+=============================================================================== 
+=============================================================================== 
+Installing: 
+openldap-clients                    x86_64
+2.4.40-13.el7                    base                                 188 k 
+openldap-servers                    x86_64
+2.4.40-13.el7                    base                                 2.1 M  
+
+Transaction Summary 
+=============================================================================== 
+===============================================================================
+Install  2 Packages
+
+Total download size: 2.3 M 
+Installed size: 5.3 M 
+Downloading packages:
+
+Installed: 
+openldap-clients.x86_64 0:2.4.40-13.el7                                       
+openldap-servers.x86_64 0:2.4.40-13.el7                                       
+Complete! 
+[root@localhost]#
+</pre>
+<p>Now, let's start and enable the <i>slapd</i> service &minus;</p>
+<pre class="result notranslate">
+[root@centos]# systemctl start slapd 
+[root@centos]# systemctl enable  slapd
+</pre>
+<p>At this point, let's assure we have our <i>openldap</i> structure in <i>/etc/openldap</i>.</p>
+<pre class="result notranslate">
+root@localhost]# ls /etc/openldap/ 
+certs  check_password.conf  ldap.conf  schema  slapd.d
+[root@localhost]#
+</pre>
+<p>Then make sure our slapd service is running.</p>
+<pre class="result notranslate">
+root@centos]# netstat -antup | grep slapd
+tcp        0      0 0.0.0.0:389            0.0.0.0:*              LISTEN      1641/slapd
+tcp6       0      0 :::389                 :::*                   LISTEN      1641/slapd
+ 
+[root@centos]#
+</pre>
+<p>Next, let's configure our <i>Open LDAP</i> installation.</p>
+<p>Make sure our system <i>ldap</i> user has been created.</p>
+<pre class="result notranslate">
+[root@localhost]# id ldap 
+uid=55(ldap) gid=55(ldap) groups=55(ldap)
+[root@localhost]#
+</pre>
+<p>Generate our LDAP credentials.</p>
+<pre class="result notranslate">
+[root@localhost]# slappasswd  
+New password:  
+Re-enter new password:  
+{SSHA}20RSyjVv6S6r43DFPeJgASDLlLoSU8g.a10
+
+[root@localhost]#
+</pre>
+<p><i>We need to save the output from slappasswd.</i></p>
+<h2>Configure Open LDAP</h2>
+<p><b>Step 1</b> &minus; Configure LDAP for domain and add administrative user.</p>
+<p>First, we want to set up our openLDAP environment. Following is a template to use with the <i>ldapmodify</i> command.</p>
+<pre class="result notranslate">
+dn: olcDatabase={2}hdb,cn=config 
+changetype: modify 
+replace: olcSuffix 
+olcSuffix: dc=vmnet,dc=local 
+dn: olcDatabase = {2}hdb,cn=config 
+changetype: modify 
+replace: olcRootDN 
+olcRootDN: cn=ldapadm,dc=vmnet,dc=local 
+dn: olcDatabase = {2}hdb,cn=config 
+changetype: modify 
+replace: olcRootPW 
+olcRootPW: &lt;output from slap
+</pre>
+<p>Make changes to: /etc/openldap/slapd.d/cn=config/olcDatabase = {1}monitor.ldif with the ldapmodify command.</p>
+<pre class="result notranslate">
+[root@localhost]# ldapmodify -Y EXTERNAL -H ldapi:/// -f /home/rdc/Documents/db.ldif  
+SASL/EXTERNAL authentication started 
+SASL username: gidNumber = 0+uidNumber = 0,cn=peercred,cn=external,cn=auth 
+SASL SSF: 0 
+modifying entry "olcDatabase = {2}hdb,cn=config" 
+modifying entry "olcDatabase = {2}hdb,cn=config" 
+modifying entry "olcDatabase = {2}hdb,cn=config" 
+
+[root@localhost cn=config]#
+</pre>
+<p>Let's check the modified LDAP configuration.</p>
+<pre class="result notranslate">
+root@linux1 ~]# vi /etc/openldap/slapd.d/cn=config/olcDatabase={2}hdb.ldif
+
+[root@centos]# cat /etc/openldap/slapd.d/cn\=config/olcDatabase\=\{2\}hdb.ldif
+ # AUTO-GENERATED FILE - DO NOT EDIT!! Use ldapmodify. 
+ # CRC32 a163f14c
+dn: olcDatabase = {2}hdb
+objectClass: olcDatabaseConfig
+objectClass: olcHdbConfig
+olcDatabase: {2}hdb
+olcDbDirectory: /var/lib/ldap
+olcDbIndex: objectClass eq,pres
+olcDbIndex: ou,cn,mail,surname,givenname eq,pres,sub
+structuralObjectClass: olcHdbConfig
+entryUUID: 1bd9aa2a-8516-1036-934b-f7eac1189139
+creatorsName: cn=config
+createTimestamp: 20170212022422Z
+olcSuffix: dc=vmnet,dc=local
+olcRootDN: cn=ldapadm,dc=vmnet,dc=local
+olcRootPW:: e1NTSEF1bUVyb1VzZTRjc2dkYVdGaDY0T0k = 
+entryCSN: 20170215204423.726622Z#000000#000#000000 
+modifiersName: gidNumber = 0+uidNumber = 0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20170215204423Z
+
+[root@centos]#
+</pre>
+<p>As you can see, our LDAP enterprise modifications were successful.</p>
+<p>Next, we want to create an self-signed ssl certificate for OpenLDAP. This will secure the communication between the enterprise server and clients.</p>
+<p><b>Step 2</b> &minus; Create a self-signed certificate for OpenLDAP.</p>
+<p>We will use <i>openssl</i> to create a self-signed ssl certificate. Go to the next chapter, <b>Create LDAP SSL Certificate with openssl</b> for instructions to secure communications with OpenLDAP. Then when ssl certificates are configured, we will have completed our OpenLDAP enterprise configuration.</p>
+<p><b>Step 3</b> &minus; Configure OpenLDAP to use secure communications with certificate.</p>
+<p>Create a <i>certs.ldif</i> file in <i>vim</i> with the following information &minus;</p>
+<pre class="result notranslate">
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/openldap/certs/yourGeneratedCertFile.pem
+
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/openldap/certs/youGeneratedKeyFile.pem
+</pre>
+<p>Next, again, use the <i>ldapmodify</i> command to merge the changes into the OpenLDAP configuration.</p>
+<pre class="result notranslate">
+[root@centos rdc]# ldapmodify -Y EXTERNAL  -H ldapi:/// -f certs.ldif
+SASL/EXTERNAL authentication started
+SASL username: gidNumber = 0+uidNumber = 0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+modifying entry "cn=config"
+
+[root@centos]#
+</pre>
+<p>Finally, let's test our OpenLADP configuration.</p>
+<pre class="result notranslate">
+[root@centos]# slaptest -u 
+config file testing succeeded 
+[root@centos]#
+</pre>
+<p><b>Step 4</b> &minus; Set up slapd database.</p>
+<pre class="result notranslate">
+cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG &amp;&amp; 
+chown ldap:ldap /var/lib/ldap/*
+</pre>
+<p>Updates the OpenLDAP Schema.</p>
+<p>Add the cosine and nis LDAP schemas.</p>
+<pre class="result notranslate">
+ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
+</pre>
+<p>Finally, create the enterprise schema and add it to the current OpenLDAP configuration.</p>
+<p>Following is for a domain called vmnet.<i>local</i> with an LDAP Admin called <i>ldapadm</i>.</p>
+<pre class="result notranslate">
+dn: dc=vmnet,dc=local
+dc: vmnet
+objectClass: top
+objectClass: domain
+
+dn: cn=ldapadm ,dc=vmnet,dc=local
+objectClass: organizationalRole
+cn: ldapadm
+description: LDAP Manager
+
+dn: ou = People,dc=vmnet,dc=local
+objectClass: organizationalUnit
+ou: People
+
+dn: ou = Group,dc=vmnet,dc=local 
+objectClass: organizationalUnit 
+ou: Group
+</pre>
+<p>Finally, import this into the current OpenLDAP schema.</p>
+<pre class="result notranslate">
+[root@centos]# ldapadd -x -W -D "cn=ldapadm,dc=vmnet,dc=local" -f ./base.ldif
+ Enter LDAP Password:
+adding new entry "dc=vmnet,dc=local"
+
+adding new entry "cn=ldapadm ,dc=vmnet,dc=local"
+
+adding new entry "ou=People,dc=vmnet,dc=local"
+
+adding new entry "ou=Group,dc=vmnet,dc=local"
+
+[root@centos]#
+</pre>
+<p><b>Step 5</b> &minus; Set up an OpenLDAP Enterprise Users.</p>
+<p>Open <i>vim</i> or your favorite text editor and copy the following format. This is setup for a user named "entacct" on the "vmnet.local" LDAP domain.</p>
+<pre class="result notranslate">
+dn: uid=entacct,ou=People,dc=vmnet,dc=local 
+objectClass: top
+objectClass: account 
+objectClass: posixAccount 
+objectClass: shadowAccount 
+cn: entacct 
+uid: entacct 
+uidNumber: 9999 
+gidNumber: 100 
+homeDirectory: /home/enyacct 
+loginShell: /bin/bash 
+gecos: Enterprise User Account 001 
+userPassword: {crypt}x 
+shadowLastChange: 17058 
+shadowMin: 0 
+shadowMax: 99999 
+shadowWarning: 7
+</pre>
+<p>Now import the above files, as saved, into the OpenLdap Schema.</p>
+<pre class="list">
+[root@centos]# ldapadd -x -W -D "cn=ldapadm,dc=vmnet,dc=local" -f entuser.ldif 
+ Enter LDAP Password:
+adding new entry "uid=entacct,ou=People,dc=vmnet,dc=local" 
+
+[root@centos]#
+</pre>
+<p>Before the users can access the LDAP Enterprise, we need to assign a password as follows &minus;</p>
+<pre class="result notranslate">
+ldappasswd -s password123 -W -D "cn=ldapadm,dc=entacct,dc=local" -x "uid=entacct 
+,ou=People,dc=vmnet,dc=local"
+</pre>
+<p><b>-s</b> specifies the password for the user</p> 
+<p><b>-x</b> is the username to which password updated is applied</p>
+<p><b>-D</b> is the *distinguished name" to authenticate against LDAP schema.</p>
+<p>Finally, before logging into the Enterprise account, let's check our <i>OpenLDAP</i> entry.</p>
+<pre class="result notranslate">
+[root@centos rdc]# ldapsearch -x cn=entacct -b dc=vmnet,dc=local
+ # extended LDIF
+ #
+ # LDAPv3
+ # base &lt;dc=vmnet,dc=local&gt; with scope subtree
+ # filter: cn=entacct
+ # requesting: ALL 
+ # 
+ # entacct, People, vmnet.local 
+dn: uid=entacct,ou=People,dc=vmnet,dc=local 
+objectClass: top 
+objectClass: account 
+objectClass: posixAccount 
+objectClass: shadowAccount 
+cn: entacct 
+uid: entacct 
+uidNumber: 9999 
+gidNumber: 100 
+homeDirectory: /home/enyacct 
+loginShell: /bin/bash 
+gecos: Enterprise User Account 001 
+userPassword:: e2NyeXB0fXg= 
+shadowLastChange: 17058 
+shadowMin: 0 
+shadowMax: 99999 
+shadowWarning: 7
+</pre>
+<p>Converting things like <i>/etc/passwd</i> and <i>/etc/groups</i> to OpenLDAP authentication requires the use of migration tools. These are included in the <i>migrationtools</i> package. Then, installed into <i>/usr/share/migrationtools</i>.</p>
+<pre class="result notranslate">
+[root@centos openldap-servers]# ls -l /usr/share/migrationtools/
+total 128
+-rwxr-xr-x. 1 root root  2652 Jun  9  2014 migrate_aliases.pl
+-rwxr-xr-x. 1 root root  2950 Jun  9  2014 migrate_all_netinfo_offline.sh
+-rwxr-xr-x. 1 root root  2946 Jun  9  2014 migrate_all_netinfo_online.sh
+-rwxr-xr-x. 1 root root  3011 Jun  9  2014 migrate_all_nis_offline.sh
+-rwxr-xr-x. 1 root root  3006 Jun  9  2014 migrate_all_nis_online.sh
+-rwxr-xr-x. 1 root root  3164 Jun  9  2014 migrate_all_nisplus_offline.sh
+-rwxr-xr-x. 1 root root  3146 Jun  9  2014 migrate_all_nisplus_online.sh
+-rwxr-xr-x. 1 root root  5267 Jun  9  2014 migrate_all_offline.sh
+-rwxr-xr-x. 1 root root  7468 Jun  9  2014 migrate_all_online.sh
+-rwxr-xr-x. 1 root root  3278 Jun  9  2014 migrate_automount.pl
+-rwxr-xr-x. 1 root root  2608 Jun  9  2014 migrate_base.pl
+</pre>
+<p><b>Step 6</b> &minus; Finally, we need to allow access to the slapd service so it can service requests.</p>
+<pre class="result notranslate">
+firewall-cmd --permanent --add-service=ldap 
+firewall-cmd --reload
+</pre>
+<h2>Configure LDAP Client Access</h2>
+<p>Configuring LDAP client access requires the following packages on the client: openldap, open-ldap clients, and nss_ldap.</p>
+<p>Configuring LDAP authentication for client systems is a bit easier.</p>
+<p><b>Step 1</b> &minus; Install dependent packeges &minus;</p>
+<pre class="result notranslate">
+# yum install -y openldap-clients nss-pam-ldapd
+</pre>
+<p><b>Step 2</b> &minus; Configure LDAP authentication with <i>authconfig</i>.</p>
+<pre class="result notranslate">
+authconfig --enableldap --enableldapauth --ldapserver=10.25.0.1 --
+ldapbasedn="dc=vmnet,dc=local" --enablemkhomedir --update
+</pre>
+<p><b>Step 3</b> &minus; Restart nslcd service.</p>
+<pre class="result notranslate">
+systemctl restart  nslcd
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/linux_admin/set_up_perl_for_centos_linux.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

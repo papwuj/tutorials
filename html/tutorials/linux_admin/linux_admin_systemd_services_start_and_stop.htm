@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Systemd Services Start and Stop</title>
+<meta charset="utf-8">
+<meta name="description" content="Systemd Services Start and Stop - systemd is the new way of running services on Linux. systemd has a superceded sysvinit. systemd brings faster boot-times to Linux and is now, a standard way to "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/linux_admin/linux_admin_systemd_services_start_and_stop.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#dfa018;
+}
+a.demo {
+    background:#dfa018;
+}
+li.heading {
+    background:#dfa018;
+}
+.course-box{background:#dfa018}
+.home-intro-sub p{color:#dfa018}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/linux_admin/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/linux_admin/images/linux-admin-mini-logo.jpg" alt="Linux Admin Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Tutorial</li>
+<li><a href="/linux_admin/index.htm">Linux Admin - Home</a></li>
+<li><a href="/linux_admin/linux_admin_centos_overview.htm">CentOS Overview</a></li>
+<li><a href="/linux_admin/basic_centos_linux_commands.htm">Basic CentOS Linux Commands</a></li>
+<li><a href="/linux_admin/linux_admin_file_folder_management.htm">File / Folder Management</a></li>
+<li><a href="/linux_admin/linux_admin_user_management.htm">User Management</a></li>
+<li><a href="/linux_admin/linux_admin_quota_management.htm">Quota Management</a></li>
+<li><a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Systemd Services Start and Stop</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Resource Mgmt with systemctl</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Resource Mgmt with crgoups</a></li>
+<li><a href="/linux_admin/linux_admin_process_management.htm">Process Management</a></li>
+<li><a href="/linux_admin/linux_admin_firewall_setup.htm">Firewall Setup</a></li>
+<li><a href="/linux_admin/configure_php_in_centos_linux.htm">Configure PHP in CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_python_with_centos_linux.htm">Set Up Python with CentOS Linux</a></li>
+<li><a href="/linux_admin/configure_ruby_on_centos_linux.htm">Configure Ruby on CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_perl_for_centos_linux.htm">Set Up Perl for CentOS Linux</a></li>
+<li><a href="/linux_admin/install_and_configure_open_ldap.htm">Install and Configure Open LDAP</a></li>
+<li><a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Create SSL Certificates</a></li>
+<li><a href="/linux_admin/linux_admin_install_apache_web_server_centos_7.htm">Install Apache Web Server CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">MySQL Setup On CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_set_up_postfix_mta_and_imap_pop3.htm">Set Up Postfix MTA and IMAP/POP3</a></li>
+<li><a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Install Anonymous FTP</a></li>
+<li><a href="/linux_admin/linux_admin_remote_management.htm">Remote Management</a></li>
+<li><a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm">Traffic Monitoring in CentOS</a></li>
+<li><a href="/linux_admin/linux_admin_log_management.htm">Log Management</a></li>
+<li><a href="/linux_admin/linux_admin_backup_and_recovery.htm">Backup and Recovery</a></li>
+<li><a href="/linux_admin/linux_admin_system_updates.htm">System Updates</a></li>
+<li><a href="/linux_admin/linux_admin_shell_scripting.htm">Shell Scripting</a></li>
+<li><a href="/linux_admin/linux_admin_package_management.htm">Package Management</a></li>
+<li><a href="/linux_admin/linux_admin_volume_management.htm">Volume Management</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Useful Resources</li>
+<li><a href="/linux_admin/linux_admin_quick_guide.htm">Linux Admin - Quick Guide</a></li>
+<li><a href="/linux_admin/linux_admin_useful_resources.htm">Linux Admin - Useful Resources</a></li>
+<li><a href="/linux_admin/linux_admin_discussion.htm">Linux Admin - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Systemd Services Start and Stop</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_quota_management.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p><b><i>systemd</i></b> is the new way of running services on Linux. <i>systemd</i> has a superceded <i>sysvinit</i>. <i>systemd</i> brings faster boot-times to Linux and is now, a standard way to manage Linux services. While stable, <i>systemd</i> is still evolving.</p>
+<p><i>systemd</i> as an init system, is used to manage both services and daemons that need status changes after the Linux kernel has been booted. By status change starting, stopping, reloading, and adjusting service state is applied.</p>
+<p>First, let's check the version of systemd currently running on our server.</p>
+<pre class="result notranslate">
+[centos@localhost ~]$ systemctl --version 
+systemd 219 
++PAM +AUDIT +SELINUX +IMA -APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP 
++GCRYPT +GNUTLS +ACL     +XZ -LZ4 -SECCOMP +BLKID +ELFUTILS +KMOD +IDN
+
+[centos@localhost ~]$
+</pre>
+<p>As of CentOS version 7, fully updated at the time of this writing systemd version 219 is the current stable version.</p>
+<p>We can also analyze the last server boot time with <i>systemd-analyze</i></p>
+<pre class="result notranslate">
+[centos@localhost ~]$ systemd-analyze    
+Startup finished in 1.580s (kernel) + 908ms (initrd) + 53.225s (userspace) = 55.713s 
+[centos@localhost ~]$
+</pre>
+<p>When the system boot times are slower, we can use the <i>systemd-analyze blame</i> command.</p>
+<pre class="result notranslate">
+[centos@localhost ~]$ systemd-analyze blame 
+   40.882s kdump.service 
+   5.775s NetworkManager-wait-online.service 
+   4.701s plymouth-quit-wait.service 
+   3.586s postfix.service 
+   3.121s systemd-udev-settle.service 
+   2.649s tuned.service 
+   1.848s libvirtd.service 
+   1.437s network.service 
+   875ms packagekit.service 
+   855ms gdm.service 
+   514ms firewalld.service 
+   438ms rsyslog.service
+   436ms udisks2.service 
+   398ms sshd.service 
+   360ms boot.mount 
+   336ms polkit.service 
+   321ms accounts-daemon.service
+</pre>
+<p>When working with <i>systemd</i>, it is important to understand the concept of <i>units</i>. <b>Units</b> are the resources <i>systemd</i> knows how to interpret. Units are categorized into 12 types as follows &minus;</p>
+<ul class="list">
+<li>.service</li>
+<li>.socket</li>
+<li>.device</li>
+<li>.mount</li>
+<li>.automount</li>
+<li>.swap</li>
+<li>.target</li>
+<li>.path</li>
+<li>.timer</li>
+<li>.snapshot</li>
+<li>.slice</li>
+<li>.scope</li>
+</ul>
+<p>For the most part, we will be working with .service as unit targets. It is recommended to do further research on the other types. As only <i>.service</i> units will apply to starting and stopping <i>systemd</i> services.</p>
+<p>Each <i>unit</i> is defined in a file located in either &minus;</p>
+<ul class="list">
+<li><p><b>/lib/systemd/system</b> &minus; base unit files</p></li>
+<li><p><b>/etc/systemd/system</b> &minus; modified unit files started at run-time</p></li>
+</ul>
+<h2>Manage Services with systemctl</h2>
+<p>To work with <i>systemd</i>, we will need to get very familiar with the <i>systemctl</i> command. Following are the most common command line switches for <i>systemctl</i>.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:10%">Switch</th>
+<th style="text-align:center;">Action</th>
+</tr>
+<tr>
+<td style="text-align:center;">-t</td>
+<td>Comma separated value of unit types such as service or socket</td>
+</tr>
+<tr>
+<td style="text-align:center;">-a</td>
+<td>Shows all loaded units</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">--state</td>
+<td>Shows all units in a defined state, either: load, sub, active, inactive, etc..</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">-H</td>
+<td>Executes operation remotely. Specify Host name or host and user separated by @.</td>
+</tr>
+</table>
+<h3>Basic systemctl Usage</h3>
+<pre class="result notranslate">
+systemctl [operation]
+example: systemctl --state [servicename.service]
+</pre>
+<p>For a quick look at all the services running on our box.</p>
+<pre class="result notranslate">
+[root@localhost rdc]# systemctl -t service 
+UNIT                       LOAD     ACTIVE      SUB     DESCRIPTION
+
+abrt-ccpp.service          loaded   active   exited     Install ABRT coredump   hook 
+abrt-oops.service          loaded   active   running    ABRT kernel log watcher 
+abrt-xorg.service          loaded   active   running    ABRT Xorg log watcher 
+abrtd.service              loaded   active   running    ABRT Automated Bug  Reporting Tool 
+accounts-daemon.service    loaded   active   running    Accounts Service 
+alsa-state.service         loaded   active   running    Manage Sound Card State (restore and store) 
+atd.service                loaded   active   running    Job spooling tools 
+auditd.service             loaded   active   running    Security Auditing Service 
+avahi-daemon.service       loaded   active   running    Avahi mDNS/DNS-SD Stack 
+blk-availability.service   loaded   active   exited     Availability of block devices 
+bluetooth.service          loaded   active   running    Bluetooth service 
+chronyd.service            loaded   active   running    NTP client/server
+</pre>
+<h3>Stopping a Service</h3>
+<p>Let's first, stop the bluetooth service.</p>
+<pre class="result notranslate">
+[root@localhost]# systemctl stop bluetooth
+
+[root@localhost]# systemctl --all -t service | grep bluetooth      
+bluetooth.service   loaded    inactive dead    Bluetooth service
+
+[root@localhost]#
+</pre>
+<p>As we can see, the bluetooth service is now inactive.</p>
+<p>To start the bluetooth service again.</p>
+<pre class="result notranslate">
+[root@localhost]# systemctl start bluetooth
+
+[root@localhost]# systemctl --all -t service | grep bluetooth 
+bluetooth.service  loaded    active   running Bluetooth     service
+
+[root@localhost]#
+</pre>
+<p><b>Note</b> &minus; We didn't specify bluetooth.service, since the <i>.service</i> is implied. It is a good practice to think of the <i>unit type</i> appending the service we are dealing with. So, from here on, we will use the <i>.service</i> extension to clarify we are working on service unit operations.</p>
+<p>The primary actions that can be performed on a service are &minus;</p>
+<table class="table table-bordered">
+<tr>
+<td style="text-align:center;width:10%">Start</td>
+<td>Starts the service</td>
+</tr>
+<tr>
+<td style="text-align:center;">Stop</td>
+<td>Stops a service</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">Reload</td>
+<td>Reloads the active configuration of a service w/o stopping it (like kill -HUP in system v init)</td>
+</tr>
+<tr>
+<td style="text-align:center;">Restart</td>
+<td>Starts, then stops a service</td>
+</tr>
+<tr>
+<td style="text-align:center;">Enable</td>
+<td>Starts a service at boot time</td>
+</tr>
+<tr>
+<td style="text-align:center;">Disable</td>
+<td>Stops a service from automatically starting at run time</td>
+</tr>
+</table>
+<p>The above actions are primarily used in the following scenarios &minus;</p>
+<table class="table table-bordered">
+<tr>
+<td style="text-align:center;width:10%">Start</td>
+<td>To bring a service up that has been put in the stopped state.</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">Stop</td>
+<td>To temporarily shut down a service (for example when a service must be stopped to access files locked by the service, as when upgrading the service)</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">Reload</td>
+<td>When a configuration file has been edited and we want to apply the new changes while not stopping the service.</td>
+</tr>
+<tr>
+<td style="text-align:center;">Restart</td>
+<td>In the same scenario as reload, but the service does not support <i>reload</i>.</td>
+</tr>
+<tr>
+<td style="text-align:center;">Enable</td>
+<td>When we want a disabled service to run at boot time.</td>
+</tr>
+<tr>
+<td style="text-align:center;">Disable</td>
+<td>Used primarily when there is a need to stop a service, but it starts on boot.</td>
+</tr>
+</table>
+<p>To check the status of a service &minus;</p>
+<pre class="result notranslate">
+[root@localhost]# systemctl status network.service 
+network.service - LSB: Bring up/down networking 
+Loaded: loaded (/etc/rc.d/init.d/network; bad; vendor preset: disabled) 
+Active: active (exited) since Sat 2017-01-14 04:43:48 EST; 1min 31s ago 
+Docs: man:systemd-sysv-generator(8)
+
+Process: 923 ExecStart = /etc/rc.d/init.d/network start (code=exited, status = 0/SUCCESS)
+
+localhost.localdomain systemd[1]: Starting LSB: Bring up/down networking... 
+localhost.localdomain network[923]: Bringing up loopback interface:  [  OK  ] 
+localhost.localdomain systemd[1]: Started LSB: Bring up/down networking.
+
+[root@localhost]#
+</pre>
+<p>Show us the current status of the <i>networking</i> service. If we want to see all the services related to networking, we can use &minus;</p>
+<pre class="result notranslate">
+[root@localhost]# systemctl --all -t service | grep -i network 
+network.service                       loaded    active    exited    LSB: Bring up/ 
+NetworkManager-wait-online.service    loaded    active    exited    Network Manager  
+NetworkManager.service                loaded    active    running   Network Manager 
+ntpd.service                          loaded    inactive  dead      Network Time  
+rhel-import-state.service             loaded    active    exited    Import network      
+
+[root@localhost]#
+</pre>
+<p>For those familiar with the <b>sysinit</b> method of managing services, it is important to make the transition to <i>systemd</i>. <i>systemd</i> is the new way starting and stopping daemon services in Linux.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_quota_management.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

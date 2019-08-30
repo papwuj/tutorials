@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>MFC - GDI</title>
+<meta charset="utf-8">
+<meta name="description" content="MFC - GDI - Windows provides a variety of drawing tools to use in device contexts. It provides pens to draw lines, brushes to fill interiors, and fonts to draw text. MFC pr"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/mfc/mfc_gdi.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#e94701;
+}
+a.demo {
+    background:#e94701;
+}
+li.heading {
+    background:#e94701;
+}
+.course-box{background:#e94701}
+.home-intro-sub p{color:#e94701}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/mfc/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/mfc/images/mfc-mini-logo.jpg" alt="MFC Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">MFC Tutorial</li>
+<li><a href="/mfc/index.htm">MFC - Home</a></li>
+<li><a href="/mfc/mfc_overview.htm">MFC - Overview</a></li>
+<li><a href="/mfc/mfc_environment_setup.htm">MFC - Environment Setup</a></li>
+<li><a href="/mfc/mfc_vcplusplus_projects.htm">MFC - VC++ Projects</a></li>
+<li><a href="/mfc/mfc_getting_started.htm">MFC - Getting Started</a></li>
+<li><a href="/mfc/mfc_windows_fundamentals.htm">MFC - Windows Fundamentals</a></li>
+<li><a href="/mfc/mfc_dialog_boxes.htm">MFC - Dialog Boxes</a></li>
+<li><a href="/mfc/mfc_windows_resources.htm">MFC - Windows Resources</a></li>
+<li><a href="/mfc/mfc_property_sheets.htm">MFC - Property Sheets</a></li>
+<li><a href="/mfc/mfc_windows_layout.htm">MFC - Windows Layout</a></li>
+<li><a href="/mfc/mfc_controls_management.htm">MFC - Controls Management</a></li>
+<li><a href="/mfc/mfc_windows_controls.htm">MFC - Windows Controls</a></li>
+<li><a href="/mfc/mfc_messages_events.htm">MFC - Messages &amp; Events</a></li>
+<li><a href="/mfc/mfc_activex_control.htm">MFC - Activex Controls</a></li>
+<li><a href="/mfc/mfc_file_system.htm">MFC - File System</a></li>
+<li><a href="/mfc/mfc_standard_io.htm">MFC - Standard I/O</a></li>
+<li><a href="/mfc/mfc_document_view.htm">MFC - Document View</a></li>
+<li><a href="/mfc/mfc_strings.htm">MFC - Strings</a></li>
+<li><a href="/mfc/mfc_carray.htm">MFC - Carray</a></li>
+<li><a href="/mfc/mfc_linked_lists.htm">MFC - Linked Lists</a></li>
+<li><a href="/mfc/mfc_database_classes.htm">MFC - Database Classes</a></li>
+<li><a href="/mfc/mfc_serialization.htm">MFC - Serialization</a></li>
+<li><a href="/mfc/mfc_multithreading.htm">MFC - Multithreading</a></li>
+<li><a href="/mfc/mfc_internet_programming.htm">MFC - Internet Programming</a></li>
+<li><a href="/mfc/mfc_gdi.htm">MFC - GDI</a></li>
+<li><a href="/mfc/mfc_libraries.htm">MFC - Libraries</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">MFC Useful Resources</li>
+<li><a href="/mfc/mfc_quick_guide.htm">MFC - Quick Guide</a></li>
+<li><a href="/mfc/mfc_useful_resources.htm">MFC - Useful Resources</a></li>
+<li><a href="/mfc/mfc_discussion.htm">MFC - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>MFC - GDI</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/mfc/mfc_internet_programming.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/mfc/mfc_libraries.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Windows provides a variety of drawing tools to use in device contexts. It provides pens to draw lines, brushes to fill interiors, and fonts to draw text. MFC provides graphic-object classes equivalent to the drawing tools in Windows.</p>
+<h2>Drawing</h2>
+<p>A device context is a Windows data structure containing information about the drawing attributes of a device such as a display or a printer. All drawing calls are made through a device-context object, which encapsulates the Windows APIs for drawing lines, shapes, and text.</p>
+<p>Device contexts allow device-independent drawing in Windows. Device contexts can be used to draw to the screen, to the printer, or to a metafile.</p>
+<p><b>CDC</b> is the most fundamental class to draw in MFC. The CDC object provides member functions to perform the basic drawing steps, as well as members for working with a display context associated with the client area of a window.</p> 
+<section class="toggle">
+<label>Given below is the list of methods in CDC class.</label>
+<div class="toggle-content">
+<table class="table table-bordered">
+<tr>
+<th style="width:15%;">Sr. No.</th>
+<th style="text-align:center;">Name &amp; Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td><p><b>AbortDoc</b></p>
+<p>Terminates the current print job, erasing everything the application has written to the device since the last call of the <b>StartDoc</b> member function.</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><p><b>AbortPath</b></p>
+<p>Closes and discards any paths in the device context.</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><p><b>AddMetaFileComment</b></p>
+<p>Copies the comment from a buffer into a specified enhanced-format metafile.</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><p><b>AlphaBlend</b></p>
+<p>Displays bitmaps that have transparent or semitransparent pixels.</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><p><b>AngleArc</b></p>
+<p>Draws a line segment and an arc, and moves the current position to the ending point of the arc.</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><p><b>Arc</b></p>
+<p>Draws an elliptical arc.</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><p><b>ArcTo</b></p>
+<p>Draws an elliptical arc. This function is similar to Arc, except that the current position is updated.</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td><p><b>Attach</b></p>
+<p>Attaches a Windows device context to this CDC object.</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td><p><b>BeginPath</b></p>
+<p>Opens a path bracket in the device context.</p></td>
+</tr>
+<tr>
+<td>10</td>
+<td><p><b>BitBlt</b></p>
+<p>Copies a bitmap from a specified device context.</p></td>
+</tr>
+<tr>
+<td>11</td>
+<td><p><b>Chord</b></p>
+<p>Draws a chord (a closed figure bounded by the intersection of an ellipse and a line segment).</p></td>
+</tr>
+<tr>
+<td>12</td>
+<td><p><b>CloseFigure</b></p>
+<p>Closes an open figure in a path.</p></td>
+</tr>
+<tr>
+<td>13</td>
+<td><p><b>CreateCompatibleDC</b></p>
+<p>Creates a memory-device context that is compatible with another device context. You can use it to prepare images in memory.</p></td>
+</tr>
+<tr>
+<td>14</td>
+<td><p><b>CreateDC</b></p>
+<p>Creates a device context for a specific device.</p></td>
+</tr>
+<tr>
+<td>15</td>
+<td><p><b>CreateIC</b></p>
+<p>Creates an information context for a specific device. This provides a fast way to get information about the device without creating a device context.</p></td>
+</tr>
+<tr>
+<td>16</td>
+<td><p><b>DeleteDC</b></p>
+<p>Deletes the Windows device context associated with this CDC object.</p></td>
+</tr>
+<tr>
+<td>17</td>
+<td><p><b>DeleteTempMap</b></p>
+<p>Called by the <b>CWinApp</b> idle-time handler to delete any temporary CDC object created by FromHandle. Also detaches the device context.</p></td>
+</tr>
+<tr>
+<td>18</td>
+<td><p><b>Detach</b></p>
+<p>Detaches the Windows device context from this CDC object.</p></td>
+</tr>
+<tr>
+<td>19</td>
+<td><p><b>DPtoHIMETRIC</b></p>
+<p>Converts device units into <b>HIMETRIC</b> units.</p></td>
+</tr>
+<tr>
+<td>20</td>
+<td><p><b>DPtoLP</b></p>
+<p>Converts device units into logical units.</p></td>
+</tr>
+<tr>
+<td>21</td>
+<td><p><b>Draw3dRect</b></p>
+<p>Draws a three-dimensional rectangle.</p></td>
+</tr>
+<tr>
+<td>22</td>
+<td><p><b>DrawDragRect</b></p>
+<p>Erases and redraws a rectangle as it is dragged.</p></td>
+</tr>
+<tr>
+<td>23</td>
+<td><p><b>DrawEdge</b></p>
+<p>Draws the edges of a rectangle.</p></td>
+</tr><tr>
+<td>24</td>
+<td><p><b>DrawEscape</b></p>
+<p>Accesses drawing capabilities of a video display that are not directly available through the graphics device interface (GDI).</p></td>
+</tr>
+<tr>
+<td>25</td>
+<td><p><b>DrawFocusRect</b></p>
+<p>Draws a rectangle in the style used to indicate focus.</p></td>
+</tr>
+<tr>
+<td>26</td>
+<td><p><b>DrawFrameControl</b></p>
+<p>Draw a frame control.</p></td>
+</tr>
+<tr>
+<td>27</td>
+<td><p><b>DrawIcon</b></p>
+<p>Draws an icon.</p></td>
+</tr>
+<tr>
+<td>28</td>
+<td><p><b>DrawState</b></p>
+<p>Displays an image and applies a visual effect to indicate a state.</p></td>
+</tr><tr>
+<td>29</td>
+<td><p><b>DrawText</b></p>
+<p>Draws formatted text in the specified rectangle.</p></td>
+</tr><tr>
+<td>30</td>
+<td><p><b>DrawTextEx</b></p>
+<p>Draws formatted text in the specified rectangle using additional formats.</p></td>
+</tr>
+<tr>
+<td>31</td>
+<td><p><b>Ellipse</b></p>
+<p>Draws an ellipse.</p></td>
+</tr><tr>
+<td>32</td>
+<td><p><b>EndDoc</b></p>
+<p>Ends a print job started by the StartDoc member function.</p></td>
+</tr><tr>
+<td>33</td>
+<td><p><b>EndPage</b></p>
+<p>Informs the device driver that a page is ending.</p></td>
+</tr><tr>
+<td>34</td>
+<td><p><b>EndPath</b></p>
+<p>Closes a path bracket and selects the path defined by the bracket into the device context.</p></td>
+</tr>
+<tr>
+<td>35</td>
+<td><p><b>EnumObjects</b></p>
+<p>Enumerates the pens and brushes available in a device context.</p></td>
+</tr><tr>
+<td>36</td>
+<td><p><b>Escape</b></p>
+<p>Allows applications to access facilities that are not directly available from a particular device through GDI. Also allows access to Windows escape functions. Escape calls made by an application are translated and sent to the device driver.</p></td>
+</tr><tr>
+<td>37</td>
+<td><p><b>ExcludeClipRect</b></p>
+<p>Creates a new clipping region that consists of the existing clipping region minus the specified rectangle.</p></td>
+</tr><tr>
+<td>38</td>
+<td><p><b>ExcludeUpdateRgn</b></p>
+<p>Prevents drawing within invalid areas of a window by excluding an updated region in the window from a clipping region.</p></td>
+</tr><tr>
+<td>39</td>
+<td><p><b>ExtFloodFill</b></p>
+<p>Fills an area with the current brush. Provides more flexibility than the <b>FloodFill</b> member function.</p></td>
+</tr><tr>
+<td>40</td>
+<td><p><b>ExtTextOut</b></p>
+<p>Writes a character string within a rectangular region using the currently selected font.</p></td>
+</tr><tr>
+<td>41</td>
+<td><p><b>FillPath</b></p>
+<p>Closes any open figures in the current path and fills the path's interior by using the current brush and polygonfilling mode.</p></td>
+</tr>
+<tr>
+<td>42</td>
+<td><p><b>FillRect</b></p>
+<p>Fills a given rectangle by using a specific brush.</p></td>
+</tr>
+<tr>
+<td>43</td>
+<td><p><b>FillRgn</b></p>
+<p>Fills a specific region with the specified brush.</p></td>
+</tr>
+<tr>
+<td>44</td>
+<td><p><b>FillSolidRect</b></p>
+<p>Fills a rectangle with a solid color.</p></td>
+</tr>
+<tr>
+<td>45</td>
+<td><p><b>FlattenPath</b></p>
+<p>Transforms any curves in the path selected into the current device context, and turns each curve into a sequence of lines.</p></td>
+</tr>
+<tr>
+<td>46</td>
+<td><p><b>FloodFill</b></p>
+<p>Fills an area with the current brush.</p></td>
+</tr>
+<tr>
+<td>47</td>
+<td><p><b>FrameRect</b></p>
+<p>Draws a border around a rectangle.</p></td>
+</tr>
+<tr>
+<td>48</td>
+<td><p><b>FrameRgn</b></p>
+<p>Draws a border around a specific region using a brush.</p></td>
+</tr>
+<tr>
+<td>49</td>
+<td><p><b>FromHandle</b></p>
+<p>Returns a pointer to a CDC object when given a handle to a device context. If a CDC object is not attached to the handle, a temporary CDC object is created and attached.</p></td>
+</tr>
+<tr>
+<td>50</td>
+<td><p><b>GetArcDirection</b></p>
+<p>Returns the current arc direction for the device context.</p></td>
+</tr>
+<tr>
+<td>51</td>
+<td><p><b>GetAspectRatioFilter</b></p>
+<p>Retrieves the setting for the current aspect-ratio filter.</p></td>
+</tr>
+<tr>
+<td>52</td>
+<td><p><b>GetBkColor</b></p>
+<p>Retrieves the current background color.</p></td>
+</tr>
+<tr>
+<td>53</td>
+<td><p><b>GetBkMode</b></p>
+<p>Retrieves the background mode.</p></td>
+</tr>
+<tr>
+<td>54</td>
+<td><p><b>GetBoundsRect</b></p>
+<p>Returns the current accumulated bounding rectangle for the specified device context.</p></td>
+</tr>
+<tr>
+<td>55</td>
+<td><p><b>GetBrushOrg</b></p>
+<p>Retrieves the origin of the current brush.</p></td>
+</tr>
+<tr>
+<td>56</td>
+<td><p><b>GetCharABCWidths</b></p>
+<p>Retrieves the widths, in logical units, of consecutive characters in a given range from the current font.</p></td>
+</tr>
+<tr>
+<td>57</td>
+<td><p><b>GetCharABCWidthsI</b></p>
+<p>Retrieves the widths, in logical units, of consecutive glyph indices in a specified range from the current TrueType font.</p></td>
+</tr>
+<tr>
+<td>58</td>
+<td><p><b>GetCharacterPlacement</b></p>
+<p>Retrieves various types of information on a character string.</p></td>
+</tr><tr>
+<td>59</td>
+<td><p><b>GetCharWidth</b></p>
+<p>Retrieves the fractional widths of consecutive characters in a given range from the current font.</p></td>
+</tr>
+<tr>
+<td>60</td>
+<td><p><b>GetCharWidthI</b></p>
+<p>Retrieves the widths, in logical coordinates, of consecutive glyph indices in a specified range from the current font.</p></td>
+</tr>
+<tr>
+<td>61</td>
+<td><p><b>GetClipBox</b></p>
+<p>Retrieves the dimensions of the tightest bounding rectangle around the current clipping boundary.</p></td>
+</tr>
+<tr>
+<td>62</td>
+<td><p><b>GetColorAdjustment</b></p>
+<p>Retrieves the color adjustment values for the device context.</p></td>
+</tr><tr>
+<td>63</td>
+<td><p><b>GetCurrentBitmap</b></p>
+<p>Returns a pointer to the currently selected <b>CBitmap</b> object.</p></td>
+</tr><tr>
+<td>64</td>
+<td><p><b>GetCurrentBrush</b></p>
+<p>Returns a pointer to the currently selected <b>CBrush</b> object.</p></td>
+</tr>
+<tr>
+<td>65</td>
+<td><p><b>GetCurrentFont</b></p>
+<p>Returns a pointer to the currently selected <b>CFont</b> object.</p></td>
+</tr>
+<tr>
+<td>66</td>
+<td><p><b>GetCurrentPalette</b></p>
+<p>Returns a pointer to the currently selected <b>CPalette</b> object.</p></td>
+</tr>
+<tr>
+<td>48</td>
+<td><p><b>GetCurrentPen</b></p>
+<p>Returns a pointer to the currently selected <b>CPen</b> object.</p></td>
+</tr>
+<tr>
+<td>67</td>
+<td><p><b>GetCurrentPosition</b></p>
+<p>Retrieves the current position of the pen (in logical coordinates).</p></td>
+</tr>
+<tr>
+<td>68</td>
+<td><p><b>GetDCBrushColor</b></p>
+<p>Retrieves the current brush color.</p></td>
+</tr>
+<tr>
+<td>69</td>
+<td><p><b>GetDCPenColor</b></p>
+<p>Retrieves the current pen color.</p></td>
+</tr>
+<tr>
+<td>70</td>
+<td><p><b>GetDeviceCaps</b></p>
+<p>Retrieves a specified kind of device-specific information about a given display device's capabilities.</p></td>
+</tr>
+<tr>
+<td>71</td>
+<td><p><b>GetFontData</b></p>
+<p>Retrieves font metric information from a scalable font file. The information to retrieve is identified by specifying an offset into the font file and the length of the information to return.</p></td>
+</tr>
+<tr>
+<td>72</td>
+<td><p><b>GetFontLanguageInfo</b></p>
+<p>Returns information about the currently selected font for the specified display context.</p></td>
+</tr>
+<tr>
+<td>73</td>
+<td><p><b>GetGlyphOutline</b></p>
+<p>Retrieves the outline curve or bitmap for an outline character in the current font.</p></td>
+</tr>
+<tr>
+<td>74</td>
+<td><p><b>GetGraphicsMode</b></p>
+<p>Retrieves the current graphics mode for the specified device context.</p></td>
+</tr>
+<tr>
+<td>75</td>
+<td><p><b>GetHalftoneBrush</b></p>
+<p>Retrieves a halftone brush.</p></td>
+</tr>
+<tr>
+<td>76</td>
+<td><p><b>GetKerningPairs</b></p>
+<p>Retrieves the character kerning pairs for the font that is currently selected in the specified device context.</p></td>
+</tr>
+<tr>
+<td>77</td>
+<td><p><b>GetLayout</b></p>
+<p>Retrieves the layout of a device context (DC). The layout can be either left to right (default) or right to left (mirrored).</p></td>
+</tr>
+<tr>
+<td>78</td>
+<td><p><b>GetMapMode</b></p>
+<p>Retrieves the current mapping mode.</p></td>
+</tr>
+<tr>
+<td>79</td>
+<td><p><b>GetMiterLimit</b></p>
+<p>Returns the miter limit for the device context.</p></td>
+</tr>
+<tr>
+<td>80</td>
+<td><p><b>GetNearestColor</b></p>
+<p>Retrieves the closest logical color to a specified logical color that the given device can represent.</p></td>
+</tr>
+<tr>
+<td>81</td>
+<td><p><b>GetOutlineTextMetrics</b></p>
+<p>Retrieves font metric information for TrueType fonts.</p></td>
+</tr>
+<tr>
+<td>82</td>
+<td><p><b>GetOutputCharWidth</b></p>
+<p>Retrieves the widths of individual characters in a consecutive group of characters from the current font using the output device context.</p></td>
+</tr>
+<tr>
+<td>83</td>
+<td><p><b>GetOutputTabbedTextExtent</b></p>
+<p>Computes the width and height of a character string on the output device context.</p></td>
+</tr>
+<tr>
+<td>84</td>
+<td><p><b>GetOutputTextExtent</b></p>
+<p>Computes the width and height of a line of text on the output device context using the current font to determine the dimensions.</p></td>
+</tr>
+<tr>
+<td>85</td>
+<td><p><b>GetOutputTextMetrics</b></p>
+<p>Retrieves the metrics for the current font from the output device context.</p></td>
+</tr>
+<tr>
+<td>86</td>
+<td><p><b>GetPath</b></p>
+<p>Retrieves the coordinates defining the endpoints of lines and the control points of curves found in the path that is selected into the device context.</p></td>
+</tr>
+<tr>
+<td>87</td>
+<td><p><b>GetPixel</b></p>
+<p>Retrieves the RGB color value of the pixel at the specified point.</p></td>
+</tr>
+<tr>
+<td>88</td>
+<td><p><b>GetPolyFillMode</b></p>
+<p>Retrieves the current polygon-filling mode.</p></td>
+</tr>
+<tr>
+<td>89</td>
+<td><p><b>GetROP2</b></p>
+<p>Retrieves the current drawing mode.</p></td>
+</tr>
+<tr>
+<td>90</td>
+<td><p><b>GetSafeHdc</b></p>
+<p>Returns <b>m_hDC</b>, the output device context.</p></td>
+</tr>
+<tr>
+<td>91</td>
+<td><p><b>GetStretchBltMode</b></p>
+<p>Retrieves the current bitmap-stretching mode.</p></td>
+</tr>
+<tr>
+<td>92</td>
+<td><p><b>GetTabbedTextExtent</b></p>
+<p>Computes the width and height of a character string on the attribute device context.</p></td>
+</tr>
+<tr>
+<td>93</td>
+<td><p><b>GetTextAlign</b></p>
+<p>Retrieves the text-alignment flags.</p></td>
+</tr>
+<tr>
+<td>94</td>
+<td><p><b>GetTextCharacterExtra</b></p>
+<p>Retrieves the current setting for the amount of intercharacter spacing.</p></td>
+</tr>
+<tr>
+<td>95</td>
+<td><p><b>GetTextColor</b></p>
+<p>Retrieves the current text color.</p></td>
+</tr>
+<tr>
+<td>96</td>
+<td><p><b>GetTextExtent</b></p>
+<p>Computes the width and height of a line of text on the attribute device context using the current font to determine the dimensions.</p></td>
+</tr>
+<tr>
+<td>97</td>
+<td><p><b>GetTextExtentExPointI</b></p>
+<p>Retrieves the number of characters in a specified string that will fit within a specified space and fills an array with the text extent for each of those characters.</p></td>
+</tr>
+<tr>
+<td>98</td>
+<td><p><b>GetTextExtentPointI</b></p>
+<p>Retrieves the width and height of the specified array of
+glyph indices.</p></td>
+</tr>
+<tr>
+<td>99</td>
+<td><p><b>GetTextFace</b></p>
+<p>Copies the typeface name of the current font into a buffer as a null-terminated string.</p></td>
+</tr>
+<tr>
+<td>100</td>
+<td><p><b>GetTextMetrics</b></p>
+<p>Retrieves the metrics for the current font from the attribute device context.</p></td>
+</tr>
+<tr>
+<td>101</td>
+<td><p><b>GetViewportExt</b></p>
+<p>Retrieves the x- and y-extents of the viewport.</p></td>
+</tr>
+<tr>
+<td>102</td>
+<td><p><b>GetViewportOrg</b></p>
+<p>Retrieves the x- and y-coordinates of the viewport origin.</p></td>
+</tr>
+<tr>
+<td>103</td>
+<td><p><b>GetWindow</b></p>
+<p>Returns the window associated with the display device context.</p></td>
+</tr>
+<tr>
+<td>104</td>
+<td><p><b>GetWindowExt</b></p>
+<p>Retrieves the x- and y-extents of the associated window.</p></td>
+</tr>
+<tr>
+<td>105</td>
+<td><p><b>GetWindowOrg</b></p>
+<p>Retrieves the x- and y-coordinates of the origin of the associated window.</p></td>
+</tr>
+<tr>
+<td>106</td>
+<td><p><b>GetWorldTransform</b></p>
+<p>Retrieves the current world-space to page-space transformation.</p></td>
+</tr>
+<tr>
+<td>107</td>
+<td><p><b>GradientFill</b></p>
+<p>Fills rectangle and triangle structures with a gradating color.</p></td>
+</tr>
+<tr>
+<td>108</td>
+<td><p><b>GrayString</b></p>
+<p>Draws dimmed (grayed) text at the given location.</p></td>
+</tr>
+<tr>
+<td>109</td>
+<td><p><b>HIMETRICtoDP</b></p>
+<p>Converts HIMETRIC units into device units.</p></td>
+</tr>
+<tr>
+<td>110</td>
+<td><p><b>HIMETRICtoLP</b></p>
+<p>Converts HIMETRIC units into logical units.</p></td>
+</tr>
+<tr>
+<td>111</td>
+<td><p><b>IntersectClipRect</b></p>
+<p>Creates a new clipping region by forming the intersection of the current region and a rectangle.</p></td>
+</tr>
+<tr>
+<td>112</td>
+<td><p><b>InvertRect</b></p>
+<p>Inverts the contents of a rectangle.</p></td>
+</tr>
+<tr>
+<td>113</td>
+<td><p><b>InvertRgn</b></p>
+<p>Inverts the colors in a region.</p></td>
+</tr>
+<tr>
+<td>114</td>
+<td><p><b>IsPrinting</b></p>
+<p>Determines whether the device context is being used for printing.</p></td>
+</tr>
+<tr>
+<td>115</td>
+<td><p><b>LineTo</b></p>
+<p>Draws a line from the current position up to, but not including, a point.</p></td>
+</tr>
+<tr>
+<td>116</td>
+<td><p><b>LPtoDP</b></p>
+<p>Converts logical units into device units.</p></td>
+</tr><tr>
+<td>117</td>
+<td><p><b>LPtoHIMETRIC</b></p>
+<p>Converts logical units into HIMETRIC units.</p></td>
+</tr>
+<tr>
+<td>118</td>
+<td><p><b>MaskBlt</b></p>
+<p>Combines the color data for the source and destination bitmaps using the given mask and raster operation.</p></td>
+</tr>
+<tr>
+<td>119</td>
+<td><p><b>ModifyWorldTransform</b></p>
+<p>Changes the world transformation for a device context using the specified mode.</p></td>
+</tr><tr>
+<td>120</td>
+<td><p><b>MoveTo</b></p>
+<p>Moves the current position.</p></td>
+</tr>
+<tr>
+<td>121</td>
+<td><p><b>OffsetClipRgn</b></p>
+<p>Moves the clipping region of the given device.</p></td>
+</tr>
+<tr>
+<td>122</td>
+<td><p><b>OffsetViewportOrg</b></p>
+<p>Modifies the viewport origin relative to the coordinates of the current viewport origin.</p></td>
+</tr>
+<tr>
+<td>123</td>
+<td><p><b>OffsetWindowOrg</b></p>
+<p>Modifies the window origin relative to the coordinates of the current window origin.</p></td>
+</tr>
+<tr>
+<td>124</td>
+<td><p><b>PaintRgn</b></p>
+<p>Fills a region with the selected brush.</p></td>
+</tr>
+<tr>
+<td>125</td>
+<td><p><b>PatBlt</b></p>
+<p>Creates a bit pattern.</p></td>
+</tr>
+<tr>
+<td>126</td>
+<td><p><b>Pie</b></p>
+<p>Draws a pie-shaped wedge.</p></td>
+</tr>
+<tr>
+<td>127</td>
+<td><p><b>PlayMetaFile</b></p>
+<p>Plays the contents of the specified metafile on the given device. The enhanced version of PlayMetaFile displays the picture stored in the given enhanced-format metafile. The metafile can be played any number of times.</p></td>
+</tr>
+<tr>
+<td>128</td>
+<td><p><b>PlgBlt</b></p>
+<p>Performs a bit-block transfer of the bits of color data from the specified rectangle in the source device context to the specified parallelogram in the given device context.</p></td>
+</tr>
+<tr>
+<td>129</td>
+<td><p><b>PolyBezier</b></p>
+<p>Draws one or more Bzier splines. The current position is neither used nor updated.</p></td>
+</tr>
+<tr>
+<td>130</td>
+<td><p><b>PolyBezierTo</b></p>
+<p>Draws one or more Bzier splines, and moves the current position to the ending point of the last Bzier spline.</p></td>
+</tr>
+<tr>
+<td>131</td>
+<td><p><b>PolyDraw</b></p>
+<p>Draws a set of line segments and Bzier splines. This function updates the current position.</p></td>
+</tr>
+<tr>
+<td>132</td>
+<td><p><b>Polygon</b></p>
+<p>Draws a polygon consisting of two or more points (vertices) connected by lines.</p></td>
+</tr>
+<tr>
+<td>133</td>
+<td><p><b>Polyline</b></p>
+<p>Draws a set of line segments connecting the specified points.</p></td>
+</tr>
+<tr>
+<td>134</td>
+<td><p><b>PolylineTo</b></p>
+<p>Draws one or more straight lines and moves the current position to the ending point of the last line.</p></td>
+</tr>
+<tr>
+<td>135</td>
+<td><p><b>PolyPolygon</b></p>
+<p>Creates two or more polygons that are filled using the current polygon-filling mode. The polygons may be disjoint or they may overlap.</p></td>
+</tr>
+<tr>
+<td>136</td>
+<td><p><b>PolyPolyline</b></p>
+<p>Draws multiple series of connected line segments. The current position is neither used nor updated by this function.</p></td>
+</tr>
+<tr>
+<td>137</td>
+<td><p><b>PtVisible</b></p>
+<p>Specifies whether the given point is within the clipping region.</p></td>
+</tr>
+<tr>
+<td>138</td>
+<td><p><b>RealizePalette</b></p>
+<p>Maps palette entries in the current logical palette to the
+system palette.</p></td>
+</tr>
+<tr>
+<td>139</td>
+<td><p><b>Rectangle</b></p>
+<p>Draws a rectangle using the current pen and fills it using the current brush.</p></td>
+</tr>
+<tr>
+<td>140</td>
+<td><p><b>RectVisible</b></p>
+<p>Determines whether any part of the given rectangle lies within the clipping region.</p></td>
+</tr>
+<tr>
+<td>141</td>
+<td><p><b>ReleaseAttribDC</b></p>
+<p>Releases <b>m_hAttribDC</b>, the attribute device context.</p></td>
+</tr>
+<tr>
+<td>142</td>
+<td><p><b>ReleaseOutputDC</b></p>
+<p>Releases <b>m_hDC</b>, the output device context.</p></td>
+</tr>
+<tr>
+<td>143</td>
+<td><p>ResetDC<b></b></p>
+<p>Updates the m_hAttribDC device context.</p></td>
+</tr>
+<tr>
+<td>144</td>
+<td><p><b>RestoreDC</b></p>
+<p>Restores the device context to a previous state saved with <b>SaveDC</b>.</p></td>
+</tr>
+<tr>
+<td>145</td>
+<td><p><b>RoundRect</b></p>
+<p>Draws a rectangle with rounded corners using the current pen and filled using the current brush.</p></td>
+</tr>
+<tr>
+<td>146</td>
+<td><p><b>SaveDC</b></p>
+<p>Saves the current state of the device context.</p></td>
+</tr>
+<tr>
+<td>147</td>
+<td><p><b>ScaleViewportExt</b></p>
+<p>Modifies the viewport extent relative to the current values.</p></td>
+</tr>
+<tr>
+<td>148</td>
+<td><p><b>ScaleWindowExt</b></p>
+<p>Modifies the window extents relative to the current values.</p></td>
+</tr>
+<tr>
+<td>149</td>
+<td><p><b>ScrollDC</b></p>
+<p>Scrolls a rectangle of bits horizontally and vertically.</p></td>
+</tr>
+<tr>
+<td>150</td>
+<td><p><b>SelectClipPath</b></p>
+<p>Selects the current path as a clipping region for the device context, combining the new region with any existing clipping region by using the specified mode.</p></td>
+</tr>
+<tr>
+<td>151</td>
+<td><p><b>SelectClipRgn</b></p>
+<p>Combines the given region with the current clipping region by using the specified mode.</p></td>
+</tr>
+<tr>
+<td>152</td>
+<td><p><b>SelectObject</b></p>
+<p>Selects a GDI drawing object such as a pen.</p></td>
+</tr>
+<tr>
+<td>153</td>
+<td><p><b>SelectPalette</b></p>
+<p>Selects the logical palette.</p></td>
+</tr>
+<tr>
+<td>154</td>
+<td><p><b>SelectStockObject</b></p>
+<p>Selects one of the predefined stock pens, brushes, or fonts provided by Windows.</p></td>
+</tr>
+<tr>
+<td>155</td>
+<td><p><b>SetAbortProc</b></p>
+<p>Sets a programmer-supplied callback function that Windows calls if a print job must be aborted.</p></td>
+</tr>
+<tr>
+<td>156</td>
+<td><p><b>SetArcDirection</b></p>
+<p>Sets the drawing direction to be used for arc and rectangle functions.</p></td>
+</tr>
+<tr>
+<td>157</td>
+<td><p><b>SetAttribDC</b></p>
+<p>Sets m_hAttribDC, the attribute device context.</p></td>
+</tr>
+<tr>
+<td>158</td>
+<td><p><b>SetBkColor</b></p>
+<p>Sets the current background color.</p></td>
+</tr>
+<tr>
+<td>159</td>
+<td><p><b>SetBkMode</b></p>
+<p>Sets the background mode.</p></td>
+</tr>
+<tr>
+<td>160</td>
+<td><p><b>SetBoundsRect</b></p>
+<p>Controls the accumulation of bounding-rectangle information for the specified device context.</p></td>
+</tr>
+<tr>
+<td>161</td>
+<td><p><b>SetBrushOrg</b></p>
+<p>Specifies the origin for the next brush selected into a device context.</p></td>
+</tr>
+<tr>
+<td>162</td>
+<td><p><b>SetColorAdjustment</b></p>
+<p>Sets the color adjustment values for the device context using the specified values.</p></td>
+</tr>
+<tr>
+<td>163</td>
+<td><p><b>SetDCBrushColor</b></p>
+<p>Sets the current brush color.</p></td>
+</tr>
+<tr>
+<td>164</td>
+<td><p><b>SetDCPenColor</b></p>
+<p>Sets the current pen color.</p></td>
+</tr>
+<tr>
+<td>165</td>
+<td><p><b>SetGraphicsMode</b></p>
+<p>Sets the current graphics mode for the specified device context.</p></td>
+</tr>
+<tr>
+<td>166</td>
+<td><p><b>SetLayout</b></p>
+<p>Changes the layout of a device context (DC).</p></td>
+</tr>
+<tr>
+<td>167</td>
+<td><p><b>SetMapMode</b></p>
+<p>Sets the current mapping mode.</p></td>
+</tr>
+<tr>
+<td>168</td>
+<td><p><b>SetMapperFlags</b></p>
+<p>Alters the algorithm that the font mapper uses when it maps logical fonts to physical fonts.</p></td>
+</tr>
+<tr>
+<td>169</td>
+<td><p><b>SetMiterLimit</b></p>
+<p>Sets the limit for the length of miter joins for the device context.</p></td>
+</tr>
+<tr>
+<td>170</td>
+<td><p><b>SetOutputDC</b></p>
+<p>Sets m_hDC, the output device context.</p></td>
+</tr>
+<tr>
+<td>171</td>
+<td><p><b>SetPixel</b></p>
+<p>Sets the pixel at the specified point to the closest approximation of the specified color.</p></td>
+</tr>
+<tr>
+<td>172</td>
+<td><p><b>SetPixelV</b></p>
+<p>Sets the pixel at the specified coordinates to the closest approximation of the specified color. <b>SetPixelV</b> is faster than <b>SetPixel</b> because it does not need to return the color value of the point actually painted.</p></td>
+</tr>
+<tr>
+<td>173</td>
+<td><p><b>SetPolyFillMode</b></p>
+<p>Sets the polygon-filling mode.</p></td>
+</tr>
+<tr>
+<td>175</td>
+<td><p><b>SetROP2</b></p>
+<p>Sets the current drawing mode.</p></td>
+</tr>
+<tr>
+<td>176</td>
+<td><p><b>SetStretchBltMode</b></p>
+<p>Sets the bitmap-stretching mode.</p></td>
+</tr>
+<tr>
+<td>177</td>
+<td><p><b>SetTextAlign</b></p>
+<p>Sets the text-alignment flags.</p></td>
+</tr><tr>
+<td>178</td>
+<td><p><b>SetTextCharacterExtra</b></p>
+<p>Sets the amount of intercharacter spacing.</p></td>
+</tr>
+<tr>
+<td>179</td>
+<td><p><b>SetTextColor</b></p>
+<p>Sets the text color.</p></td>
+</tr>
+<tr>
+<td>180</td>
+<td><p><b>SetTextJustification</b></p>
+<p>Adds space to the break characters in a string.</p></td>
+</tr>
+<tr>
+<td>181</td>
+<td><p><b>SetViewportExt</b></p>
+<p>Sets the x- and y-extents of the viewport.</p></td>
+</tr>
+<tr>
+<td>182</td>
+<td><p><b>SetViewportOrg</b></p>
+<p>Sets the viewport origin.</p></td>
+</tr>
+<tr>
+<td>183</td>
+<td><p><b>SetWindowExt</b></p>
+<p>Sets the x- and y-extents of the associated window.</p></td>
+</tr>
+<tr>
+<td>184</td>
+<td><p><b>SetWindowOrg</b></p>
+<p>Sets the window origin of the device context.</p></td>
+</tr>
+<tr>
+<td>185</td>
+<td><p><b>SetWorldTransform</b></p>
+<p>Sets the current world-space to page-space transformation.</p></td>
+</tr>
+<tr>
+<td>186</td>
+<td><p><b>StartDoc</b></p>
+<p>Informs the device driver that a new print job is starting.</p></td>
+</tr>
+<tr>
+<td>187</td>
+<td><p><b>StartPage</b></p>
+<p>Informs the device driver that a new page is starting.</p></td>
+</tr>
+<tr>
+<td>188</td>
+<td><p><b>StretchBlt</b></p>
+<p>Moves a bitmap from a source rectangle and device into a destination rectangle, stretching or compressing the bitmap if necessary to fit the dimensions of the destination rectangle.</p></td>
+</tr>
+<tr>
+<td>189</td>
+<td><p><b>StrokeAndFillPath</b></p>
+<p>Closes any open figures in a path, strikes the outline of the path by using the current pen, and fills its interior by using the current brush.</p></td>
+</tr><tr>
+<td>190</td>
+<td><p><b>StrokePath</b></p>
+<p>Renders the specified path by using the current pen.</p></td>
+</tr><tr>
+<td>191</td>
+<td><p><b>TabbedTextOut</b></p>
+<p>Writes a character string at a specified location, expanding tabs to the values specified in an array of tab-stop positions.</p></td>
+</tr>
+<tr>
+<td>192</td>
+<td><p><b>TextOut</b></p>
+<p>Writes a character string at a specified location using the currently selected font.</p></td>
+</tr>
+<tr>
+<td>193</td>
+<td><p><b>TransparentBlt</b></p>
+<p>Transfers a bit-block of color data from the specified source device context into a destination device context, rendering a specified color transparent in the transfer.</p></td>
+</tr>
+<tr>
+<td>194</td>
+<td><p><b>UpdateColors</b></p>
+<p>Updates the client area of the device context by matching the current colors in the client area to the system palette on a pixel-by-pixel basis.</p></td>
+</tr>
+<tr>
+<td>195</td>
+<td><p><b>WidenPath</b></p>
+<p>Redefines the current path as the area that would be painted if the path were stroked using the pen currently selected into the device context.</p></td>
+</tr>
+</table>
+</div>
+</section>
+<h2>Lines</h2>
+<p><b>Step 1</b> &minus; Let us look into a simple example by creating a new MFC based single document project with <b>MFCGDIDemo</b> name.</p>
+<img src="/mfc/images/lines1.jpg" alt="Lines" />
+<p><b>Step 2</b> &minus; Once the project is created, go the Solution Explorer and double click on the <b>MFCGDIDemoView.cpp</b> file under the Source Files folder.</p>
+<p><b>Step 3</b> &minus; Draw the line as shown below in <b>CMFCGDIDemoView::OnDraw()</b> method.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   pDC-&gt;MoveTo(95, 125);
+   pDC-&gt;LineTo(230, 125);
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p><b>Step 4</b> &minus; Run this application. You will see the following output.</p>
+<img src="/mfc/images/lines2.jpg" alt="Lines" />
+<p><b>Step 5</b> &minus; The CDC::MoveTo() method is used to set the starting position of a line.</p>
+<p>When using LineTo(), the program starts from the MoveTo() point to the LineTo() end.</p>
+<p>After LineTo() when you do not call MoveTo(), and call again LineTo() with other point value, the program will draw a line from the previous LineTo() to the new LineTo() point.</p>
+<p><b>Step 6</b> &minus; To draw different lines, you can use this property as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) { 
+   pDC-&gt;MoveTo(95, 125);
+   pDC-&gt;LineTo(230, 125);
+   pDC-&gt;LineTo(230, 225);
+   pDC-&gt;LineTo(95, 325);
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here 
+}
+</pre>
+<p><b>Step 7</b> &minus; Run this application. You will see the following output.</p>
+<img src="/mfc/images/lines3.jpg" alt="Lines" />
+<h2>Polylines</h2>
+<p>A <b>polyline</b> is a series of connected lines. The lines are stored in an array of POINT or CPoint values. To draw a polyline, you use the CDC::Polyline() method. To draw a polyline, at least two points are required. If you define more than two points, each line after the first would be drawn from the previous point to the next point until all points have been included.</p>
+<p><b>Step 1</b> &minus; Let us look into a simple example.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   CPoint Pt[7];
+   Pt[0] = CPoint(20, 150);
+   Pt[1] = CPoint(180, 150);
+   Pt[2] = CPoint(180, 20);
+   pDC&minus;Polyline(Pt, 3);
+   
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p><b>Step 2</b> &minus; When you run this application, you will see the following output.</p>
+<img src="/mfc/images/polylines.jpg" alt="Polylines" />
+<h2>Rectangles</h2>
+<p>A <b>rectangle</b> is a geometric figure made of four sides that compose four right angles. Like the line, to draw a rectangle, you must define where it starts and where it ends. To draw a rectangle, you can use the CDC::Rectangle() method.</p>
+<p><b>Step 1</b> &minus; Let us look into a simple example.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   pDC-&gt;Rectangle(15, 15, 250, 160);
+   
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p><b>Step 2</b> &minus; When you run this application, you will see the following output.</p>
+<img src="/mfc/images/rectangles.jpg" alt="Rectangles" />
+<h2>Squares</h2>
+<p>A <b>square</b> is a geometric figure made of four sides that compose four right angles, but each side must be equal in length.</p>
+<p>Let us look into a simple example.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   pDC-&gt;Rectangle(15, 15, 250, 250);
+   
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p>When you run this application, you will see the following output.</p>
+<img src="/mfc/images/squares.jpg" alt="Squares" />
+<h2>Pies</h2>
+<p>A <b>pie</b> is a fraction of an ellipse delimited by two lines that span from the center of the ellipse to one side each. To draw a pie, you can use the CDC::Pie() method as shown below &minus;</p>
+<p>BOOL Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);</p>
+<ul class="list">
+<li><p>The (x1, y1) point determines the upper-left corner of the rectangle in which the ellipse that represents the pie fits. The (x2, y2) point is the bottom-right corner of the rectangle.</p></li>
+</ul>
+<img src="/mfc/images/pies1.jpg" alt="Pies" />
+<ul class="list">
+<li><p>The (x3, y3) point specifies the starting corner of the pie in a default counterclockwise direction.</p></li>
+<li><p>The (x4, y4) point species the end point of the pie.</p></li>
+</ul>
+<p>Let us look into a simple example.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   pDC-&gt;Pie(40, 20, 226, 144, 155, 32, 202, 115);
+   
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p><b>Step 2</b> &minus; When you run this application, you will see the following output.</p>
+<img src="/mfc/images/pies2.jpg" alt="Pies" />
+<h2>Arcs</h2>
+<p>An arc is a portion or segment of an ellipse, meaning an arc is a non-complete ellipse. To draw an arc, you can use the CDC::Arc() method.</p>
+<p>BOOL Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);</p>
+<img src="/mfc/images/arcs1.jpg" alt="Arcs" />
+<p>The CDC class is equipped with the SetArcDirection() method.</p>
+<p>Here is the syntax &minus;</p>
+<pre class="result notranslate">
+int SetArcDirection(int nArcDirection)
+</pre>
+<p></p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%;">Sr.No.</th>
+<th style="text-align:center;">Value &amp; Orientation</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>AD_CLOCKWISE</b></p>
+<p>The figure is drawn clockwise</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>AD_COUNTERCLOCKWISE</b></p>
+<p>The figure is drawn counterclockwise</p></td>
+</tr>
+</table>
+<p><b>Step 1</b> &minus; Let us look into a simple example.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   pDC-&gt;SetArcDirection(AD_COUNTERCLOCKWISE);
+   pDC-&gt;Arc(20, 20, 226, 144, 202, 115, 105, 32);
+   
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p><b>Step 2</b> &minus; When you run this application, you will see the following output.</p>
+<img src="/mfc/images/arcs2.jpg" alt="Arcs" />
+<h2>Chords</h2>
+<p>The arcs we have drawn so far are considered open figures because they are made of a line that has a beginning and an end (unlike a circle or a rectangle that do not). A <b>chord</b> is an arc whose two ends are connected by a straight line.</p>
+<img src="/mfc/images/chords1.jpg" alt="Chords" />
+<p>To draw a chord, you can use the CDC::Chord() method.</p>
+<p>BOOL Chord(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);</p>
+<p>Let us look into a simple example.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   pDC-&gt;SetArcDirection(AD_CLOCKWISE);
+   pDC-&gt;Chord(20, 20, 226, 144, 202, 115, 105, 32);
+   
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p>When you run the above application, you will see the following output.</p>
+<img src="/mfc/images/chords2.jpg" alt="Chords" />
+<p>The arc direction in this example is set clockwise.</p>
+<h2>Colors</h2>
+<p>The <b>color</b> is one the most fundamental objects that enhances the aesthetic appearance of an object. The color is a non-spatial object that is added to an object to modify some of its visual aspects. The MFC library, combined with the Win32 API, provides various actions you can use to take advantage of the various aspects of colors.</p>
+<p>The RGB macro behaves like a function and allows you to pass three numeric values separated by a comma. Each value must be between 0 and 255 as shown in the following code.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   COLORREF color = RGB(239, 15, 225);
+}
+</pre>
+<p>Let us look into a simple example.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   COLORREF color = RGB(239, 15, 225);
+   pDC-&gt;SetTextColor(color);
+   pDC-&gt;TextOut(100, 80, L"MFC GDI Tutorial", 16);
+   
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p>When you run this application, you will see the following output.</p>
+<img src="/mfc/images/colors.jpg" alt="Colors" />
+<h2>Fonts</h2>
+<p><b>CFont</b> encapsulates a Windows graphics device interface (GDI) font and provides member functions for manipulating the font. To use a CFont object, construct a CFont object and attach a Windows font to it, and then use the object's member functions to manipulate the font.</p> 
+<section class="toggle">
+<label><i class="icon icon-minus"></i><i class="icon icon-plus"></i>Here is a list of methods in CFont class.</label>
+<div class="toggle-content" style="display: none;">
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%;">Sr.No.</th>
+<th style="text-align:center;">Name &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>CreateFont</b></p>
+<p>Initializes a CFont with the specified characteristics.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>CreateFontIndirect</b></p>
+<p>Initializes a CFont object with the characteristics given in a <b>LOGFONT</b> structure.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>CreatePointFont</b></p>
+<p>Initializes a CFont with the specified height, measured in tenths of a point, and typeface.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>CreatePointFontIndirect</b></p>
+<p>Same as <b>CreateFontIndirect</b> except that the font height is measured in tenths of a point rather than logical units.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>FromHandle</b></p>
+<p>Returns a pointer to a CFont object when given a Windows <b>HFONT</b>.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>GetLogFont</b></p>
+<p>Fills a LOGFONT with information about the logical font attached to the CFont object.</p></td>
+</tr>
+</table>
+</div>
+</section>
+<p>Let us look into a simple example.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   CFont font;
+   font.CreatePointFont(920, L"Garamond");
+   CFont *pFont = pDC-&gt;SelectObject(&amp;font);
+   COLORREF color = RGB(239, 15, 225);
+   pDC-&gt;SetTextColor(color);
+   pDC-&gt;TextOut(100, 80, L"MFC GDI Tutorial", 16);
+   pDC-&gt;SelectObject(pFont);
+   font.DeleteObject();
+   
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+   return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p>When you run the above application, you will see the following output.</p>
+<img src="/mfc/images/fonts.jpg" alt="Fonts" />
+<h2>Pens</h2>
+<p>A <b>pen</b> is a tool used to draw lines and curves on a device context. In the graphics programming, a pen is also used to draw the borders of a geometric closed shape such as a rectangle or a polygon. Microsoft Windows considers two types of pens — <b>cosmetic</b> and <b>geometric</b>.</p>
+<p>A pen is referred to as cosmetic when it can be used to draw only simple lines of a fixed width, less than or equal to 1 pixel. A pen is geometric when it can assume different widths and various ends. MFC provides a class <b>CPen</b> which encapsulates a Windows graphics device interface (GDI) pen.</p> 
+<section class="toggle">
+<label><i class="icon icon-minus"></i><i class="icon icon-plus"></i>Here is a list of methods in CPen class.</label>
+<div class="toggle-content" style="display: none;">
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%;">Sr.No.</th>
+<th style="text-align:center;">Name &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>CreatePen</b></p>
+<p>Creates a logical cosmetic or geometric pen with the specified style, width, and brush attributes, and attaches it to the CPen object.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>CreatePenIndirect</b></p>
+<p>Creates a pen with the style, width, and color given in a LOGPEN structure, and attaches it to the CPen object.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>FromHandle</b></p>
+<p>Returns a pointer to a CPen object when
+given a Windows <b>HPEN</b>.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>GetExtLogPen</b></p>
+<p>Gets an EXTLOGPEN underlying structure.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>GetLogPen</b></p>
+<p>Gets a <a href="https://docs.microsoft.com/en-us/windows/desktop/api/wingdi/ns-wingdi-taglogpen"target="_blank" rel="nofollow">LOGPEN</a> underlying structure.</p></td>
+</tr>
+</table>
+</div>
+</section>
+<section class="toggle">
+<label><i class="icon icon-minus"></i><i class="icon icon-plus"></i>Here the different style values for pen</label>
+<div class="toggle-content" style="display: none;"> 
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; width:5%;">Sr.No.</th>
+<th style="text-align:center;"><b>Name &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>PS_SOLID</b></p>
+<p>A continuous solid line.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>PS_DASH</b></p>
+<p>A continuous line with dashed interruptions.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>PS_DOT</b></p>
+<p>A line with a dot interruption at every other pixel.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>PS_DASHDOT</b></p>
+<p>A combination of alternating dashed and dotted points.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>PS_DASHDOTDOT</b></p>
+<p>A combination of dash and double dotted interruptions.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>PS_NULL</b></p>
+<p>No visible line.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>PS_INSIDEFRAME</b></p>
+<p>A line drawn just inside of the border of a closed shape.</p></td>
+</tr>
+</table>
+</div>
+</section>
+<p>Let us look into a simple example.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   CPen pen;
+   pen.CreatePen(PS_DASHDOTDOT, 1, RGB(160, 75, 90));
+   pDC-&gt;SelectObject(&amp;pen);
+   pDC-&gt;Rectangle(25, 35, 250, 125);
+   
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p>When you run the above application, you will see the following output.</p>
+<img src="/mfc/images/pens.jpg" alt="Pens" />
+<h2>Brushes</h2>
+<p>A <b>brush</b> is a drawing tool used to fill out closed shaped or the interior of lines. A brush behaves like picking up a bucket of paint and pouring it somewhere. MFC provides a class <b>CBrush</b> which encapsulates a Windows graphics device interface (GDI) brush.</p> 
+<section class="toggle">
+<label><i class="icon icon-minus"></i><i class="icon icon-plus"></i>Here is a list of methods in CBrush class.</label>
+<div class="toggle-content" style="display: none;">
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.NO.</th>
+<th style="text-align:center;">Name &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>CreateBrushIndirect</b></p>
+<p>Initializes a brush with the style, color, and pattern specified in a LOGBRUSH structure.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>CreateDIBPatternBrush</b></p>
+<p>Initializes a brush with a pattern specified by a device-independent bitmap (DIB).</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>CreateHatchBrush</b></p>
+<p>Initializes a brush with the specified hatched pattern and color.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>CreatePatternBrush</b></p>
+<p>Initializes a brush with a pattern specified by a bitmap.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>CreateSolidBrush</b></p>
+<p>Initializes a brush with the specified solid color.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>CreateSysColorBrush</b></p>
+<p>Creates a brush that is the default system color.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>FromHandle</b></p>
+<p>Returns a pointer to a CBrush object when given a handle to a Windows HBRUSH object.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>GetLogBrush</b></p>
+<p>Gets a LOGBRUSH structure.</p></td>
+</tr>
+</table>
+</div>
+</section>
+<p>Let us look into a simple example.</p>
+<pre class="prettyprint notranslate">
+void CMFCGDIDemoView::OnDraw(CDC* pDC) {
+   CBrush brush(RGB(100, 150, 200));
+   CBrush *pBrush = pDC-&gt;SelectObject(&amp;brush);
+   pDC-&gt;Rectangle(25, 35, 250, 125);
+   pDC-&gt;SelectObject(pBrush);
+   
+   CMFCGDIDemoDoc* pDoc = GetDocument();
+   ASSERT_VALID(pDoc);
+   if (!pDoc)
+      return;
+
+   // TODO: add draw code for native data here
+}
+</pre>
+<p>When you run this application, you will see the following output.</p>
+<img src="/mfc/images/brushes.jpg" alt="Brushes" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/mfc/mfc_internet_programming.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/mfc/mfc_libraries.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

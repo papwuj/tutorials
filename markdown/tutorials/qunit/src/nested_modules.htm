@@ -1,0 +1,45 @@
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>QUnit basic example</title>
+      <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.22.0.css">
+      <script src="https://code.jquery.com/qunit/qunit-1.22.0.js"></script>
+   </head>
+   <body>
+      <div id="qunit"></div>
+      <div id="qunit-fixture"></div> 
+      <script>
+         QUnit.module( "parent module", function( hooks ) {
+            hooks.beforeEach( function( assert ) {
+               assert.ok( true, "beforeEach called" );
+            });
+
+            hooks.afterEach( function( assert ) {
+               assert.ok( true, "afterEach called" );
+            });
+
+            QUnit.test( "hook test 1", function( assert ) {
+               assert.expect( 2 );
+            });
+
+            QUnit.module( "nested hook module", function( hooks ) {
+               // This will run after the parent module's beforeEach hook
+               hooks.beforeEach( function( assert ) {
+                  assert.ok( true, "nested beforeEach called" );
+               });
+
+               // This will run before the parent module's afterEach
+               hooks.afterEach( function( assert ) {
+                  assert.ok( true, "nested afterEach called" );
+               });
+
+               QUnit.test( "hook test 2", function( assert ) {
+                  assert.expect( 4 );
+               });
+            });
+         });
+      </script>
+
+      <div id="console" ></div>
+   </body>
+</html>

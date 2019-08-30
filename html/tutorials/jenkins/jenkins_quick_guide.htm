@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Jenkins - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="Jenkins - Quick Guide - Jenkins is a software that allows continuous integration. Jenkins will be installed on a server where the central build will take place. The following flowchart"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/jenkins/jenkins_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#D33833;
+}
+a.demo {
+    background:#D33833;
+}
+li.heading {
+    background:#D33833;
+}
+.course-box{background:#D33833}
+.home-intro-sub p{color:#D33833}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/jenkins/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/jenkins/images/jenkins-mini-logo.jpg" alt="Jenkins Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Jenkins Tutorial</li>
+<li><a href="/jenkins/index.htm">Jenkins - Home</a></li>
+<li><a href="/jenkins/jenkins_overview.htm">Jenkins - Overview</a></li>
+<li><a href="/jenkins/jenkins_installation.htm">Jenkins - Installation</a></li>
+<li><a href="/jenkins/jenkins_tomcat_setup.htm">Jenkins - Tomcat Setup</a></li>
+<li><a href="/jenkins/jenkins_git_setup.htm">Jenkins - Git Setup</a></li>
+<li><a href="/jenkins/jenkins_maven_setup.htm">Jenkins - Maven Setup</a></li>
+<li><a href="/jenkins/jenkins_configuration.htm">Jenkins - Configuration</a></li>
+<li><a href="/jenkins/jenkins_management.htm">Jenkins - Management</a></li>
+<li><a href="/jenkins/jenkins_setup_build_jobs.htm">Jenkins - Setup Build Jobs</a></li>
+<li><a href="/jenkins/jenkins_unit_testing.htm">Jenkins - Unit Testing</a></li>
+<li><a href="/jenkins/jenkins_automated_testing.htm">Jenkins - Automated Testing</a></li>
+<li><a href="/jenkins/jenkins_notification.htm">Jenkins - Notification</a></li>
+<li><a href="/jenkins/jenkins_reporting.htm">Jenkins - Reporting</a></li>
+<li><a href="/jenkins/jenkins_code_analysis.htm">Jenkins - Code Analysis</a></li>
+<li><a href="/jenkins/jenkins_distributed_builds.htm">Jenkins - Distributed Builds</a></li>
+<li><a href="/jenkins/jenkins_automated_deployment.htm">Jenkins - Automated Deployment</a></li>
+<li><a href="/jenkins/jenkins_metrics_and_trends.htm">Jenkins - Metrics and Trends</a></li>
+<li><a href="/jenkins/jenkins_server_maintenance.htm">Jenkins - Server Maintenance</a></li>
+<li><a href="/jenkins/jenkins_continuous_deployment.htm">Jenkins - Continuous Deployment</a></li>
+<li><a href="/jenkins/jenkins_managing_plugins.htm">Jenkins - Managing Plugins</a></li>
+<li><a href="/jenkins/jenkins_security.htm">Jenkins - Security</a></li>
+<li><a href="/jenkins/jenkins_backup_plugin.htm">Jenkins - Backup Plugin</a></li>
+<li><a href="/jenkins/jenkins_remote_testing.htm">Jenkins - Remote Testing</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Jenkins Useful Resources</li>
+<li><a href="/jenkins/jenkins_quick_guide.htm">Jenkins - Quick Guide</a></li>
+<li><a href="/jenkins/jenkins_useful_resources.htm">Jenkins - Useful Resources</a></li>
+<li><a href="/jenkins/jenkins_discussion.htm">Jenkins - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Jenkins - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/jenkins/jenkins_remote_testing.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/jenkins/jenkins_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>Jenkins - Overview</h1>
+<h2>Why Jenkins?</h2>
+<p>Jenkins is a software that allows <b>continuous integration</b>. Jenkins will be installed on a server where the central build will take place. The following flowchart demonstrates a very simple workflow of how Jenkins works.</p>
+<img src="/jenkins/images/why_jenkins.jpg" alt="Why Jenkins" />
+<p>Along with Jenkins, sometimes, one might also see the association of <b>Hudson</b>. Hudson is a very popular open-source Java-based continuous integration tool developed by Sun Microsystems which was later acquired by Oracle. After the acquisition of Sun by Oracle, a fork was created from the Hudson source code, which brought about the introduction of Jenkins.</p>
+<h2>What is Continuous Integration?</h2>
+<p>Continuous Integration is a development practice that requires developers to integrate code into a shared repository at regular intervals. This concept was meant to remove the problem of finding later occurrence of issues in the build lifecycle. Continuous integration requires the developers to have frequent builds. The common practice is that whenever a code commit occurs, a build should be triggered.</p>
+<h2>System Requirements</h2>
+<table class="table table-bordered">
+<tr>
+<td>JDK</td>
+<td>JDK 1.5 or above</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>2 GB RAM (recommended)</td>
+</tr>
+<tr>
+<td style="width:20%;">Disk Space</td>
+<td>No minimum requirement. Note that since all builds will be stored on the Jenkins machines, it has to be ensured that sufficient disk space is available for build storage.</td>
+</tr>
+<tr>
+<td style="width:34%;">Operating System Version</td>
+<td>Jenkins can be installed on Windows, Ubuntu/Debian, Red Hat/Fedora/CentOS, Mac OS X, openSUSE, FReeBSD, OpenBSD, Gentoo.</td>
+</tr>
+<tr>
+<td>Java Container</td>
+<td>The WAR file can be run in any container that supports Servlet 2.4/JSP 2.0 or later.(An example is Tomcat 5).</td>
+</tr>
+</table>
+<h1>Jenkins - Installation</h1>
+<h2>Download Jenkins</h2>
+<p>The official website for Jenkins is <a target="_blank" rel="nofollow" href="https://jenkins-ci.org/">Jenkins</a>. If you click the given link, you can get the home page of the Jenkins official website as shown below.</p>
+<img src="/jenkins/images/download_jenkins1.jpg" alt="Download Jenkins1" />
+<p>By default, the latest release and the Long-Term support release will be available for download. The past releases are also available for download. Click the Long-Term Support Release tab in the download section.</p>
+<img src="/jenkins/images/download_jenkins2.jpg" alt="Download Jenkins2" />
+<p>Click the link “Older but stable version” to download the Jenkins war file.</p>
+<h2>Starting Jenkins</h2>
+<p>Open the command prompt. From the command prompt, browse to the directory where the jenkins.war file is present. Run the following command</p>
+<pre class="result notranslate">
+D:\&gt;Java –jar Jenkins.war
+</pre>
+<p>After the command is run, various tasks will run, one of which is the extraction of the war file which is done by an embedded webserver called winstone.</p>
+<pre class="result notranslate">
+D:\&gt;Java –jar Jenkins.war
+Running from: D:\jenkins.war
+Webroot: $user.home/ .jenkins
+Sep 29, 2015 4:10:46 PM winstone.Logger logInternal
+INFO: Beginning extraction from war file
+</pre>
+<p>Once the processing is complete without major errors, the following line will come in the output of the command prompt.</p>
+<pre class="result notranslate">
+INFO: Jenkins is fully up and running
+</pre>
+<h2>Accessing Jenkins</h2>
+<p>Once Jenkins is up and running, one can access Jenkins from the link &minus; <b>http://localhost:8080</b></p>
+<p>This link will bring up the Jenkins dashboard.</p>
+<img src="/jenkins/images/accessing_jenkins.jpg" alt="Accessing Jenkins" />
+<h1>Jenkins – Tomcat Setup</h1>
+<p>The following prerequisites must be met for Jenkins Tomcat setup.</p>
+<h2>Step 1: Verifying Java Installation</h2>
+<p>To verify Java installation, open the console and execute the following java command.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">OS</th>
+<th style="text-align:center;">Task</th>
+<th style="text-align:center;">Command</th>
+</tr>
+<tr style="text-align:center;">
+<td>Windows</td>
+<td>Open command console</td>
+<td>\&gt;java –version</td>
+</tr>
+<tr style="text-align:center;">
+<td>Linux</td>
+<td>Open command terminal</td>
+<td>$java –version</td>
+</tr>
+</table>
+<p>If Java has been installed properly on your system, then you should get one of the following outputs, depending on the platform you are working on.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">OS</th>
+<th style="text-align:center;">Output</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Windows</td>
+<td>
+<p>Java version "1.7.0_60"</p>
+<p>Java (TM) SE Run Time Environment (build 1.7.0_60-b19)</p>
+<p>Java Hotspot (TM) 64-bit Server VM (build 24.60-b09, mixed mode)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Linux</td>
+<td>
+<p>java version "1.7.0_25"</p>
+<p>Open JDK Runtime Environment (rhel-2.3.10.4.el6_4-x86_64)</p>
+<p>Open JDK 64-Bit Server VM (build 23.7-b01, mixed mode)</p>
+</td>
+</tr>
+</table>
+<p>We assume the readers of this tutorial have Java 1.7.0_60 installed on their system before proceeding for this tutorial.</p>
+<p>In case you do not have Java JDK, you can download it from the link <a target="_blank" rel="nofollow" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Oracle</a></p>
+<h2>Step 2: Verifying Java Installation</h2>
+<p>Set the JAVA_HOME environment variable to point to the base directory location where Java is installed on your machine. For example,</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">OS</th>
+<th style="text-align:center;">Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set Environmental variable JAVA_HOME to C:\ProgramFiles\java\jdk1.7.0_60</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export JAVA_HOME=/usr/local/java-current</td>
+</tr>
+</table>
+<p>Append the full path of the Java compiler location to the System Path.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">OS</th>
+<th style="text-align:center;">Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Append the String; C:\Program Files\Java\jdk1.7.0_60\bin to the end of the system variable PATH.</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export PATH=$PATH:$JAVA_HOME/bin/</td>
+</tr>
+</table>
+<p>Verify the command java-version from command prompt as explained above.</p>
+<h2>Step 3: Download Tomcat</h2>
+<p>The official website for tomcat is <a target="_blank" rel="nofollow" href="http://tomcat.apache.org/">Tomcat</a>. If you click the given link, you can get the home page of the tomcat official website as shown below.</p>
+<img src="/jenkins/images/download_tomcat1.jpg" alt="Download Tomcat1" />
+<p>Browse to the link <a target="_blank" rel="nofollow" href="https://tomcat.apache.org/download-70.cgi">https://tomcat.apache.org/download-70.cgi</a> to get the download for tomcat.</p>
+<img src="/jenkins/images/download_tomcat2.jpg" alt="Download Tomcat2" />
+<p>Go to the ‘Binary Distributions’ section. Download the 32-bit Windows zip file.</p>
+<p>Then unzip the contents of the downloaded zip file.</p>
+<h2>Step 4: Jenkins and Tomcat Setup</h2>
+<p>Copy the Jenkis.war file which was downloaded from the previous section and copy it to the webapps folder in the tomcat folder.</p>
+<p>Now open the command prompt. From the command prompt, browse to the directory where the tomcat7 folder is location. Browse to the bin directory in this folder and run the start.bat file</p>
+<pre class="result notranslate">
+E:\Apps\tomcat7\bin&gt;startup.bat
+</pre>
+<p>Once the processing is complete without major errors, the following line will come in the output of the command prompt.</p>
+<pre class="result notranslate">
+INFO: Server startup in 1302 ms
+</pre>
+<p>Open the browser and go to the link &minus; <b>http://localhost:8080/jenkins</b>. Jenkins will be up and running on tomcat.</p>
+<img src="/jenkins/images/jenkins_and_tomcat_setup.jpg" alt="Jenkins and Tomcat Setup" />
+<h1>Jenkins - Git Setup</h1>
+<p>For this exercise, you have to ensure that Internet connectivity is present from the machine on which Jenkins is installed. In your Jenkins Dashboard (Home screen), click the Manage Jenkins option on the left hand side.</p>
+<img src="/jenkins/images/jenkins_git_setup.jpg" alt="Jenkins Git Setup" />
+<p>In the next screen, click the ‘Manage Plugins’ option.</p>
+<img src="/jenkins/images/manage_jenkins.jpg" alt="Manage Jenkins" />
+<p>In the next screen, click the Available tab. This tab will give a list of plugins which are available for downloading. In the ‘Filter’ tab type ‘Git plugin’</p>
+<img src="/jenkins/images/available_tab.jpg" alt="Available tab" />
+<p>The list will then be filtered. Check the Git Plugin option and click on the button ‘Install without restart’</p>
+<img src="/jenkins/images/git_plugin.jpg" alt="Git Plugin" />
+<p>The installation will then begin and the screen will be refreshed to show the status of the download.</p>
+<img src="/jenkins/images/installing_plugins_upgrades.jpg" alt="Installing Plugins Upgrades" />
+<p>Once all installations are complete, restart Jenkins by issue the following command in the browser. <b>http://localhost:8080/jenkins/restart</b></p>
+<p>After Jenkins is restarted, Git will be available as an option whilst configuring jobs. To verify, click on New Item in the menu options for Jenkins. Then enter a name for a job, in the following case, the name entered is ‘Demo’. Select ‘Freestyle project’ as the item type. Click the Ok button.</p>
+<img src="/jenkins/images/new_item_jenkins.jpg" alt="New Item Jenkins" />
+<p>In the next screen, if you browse to the Source code Management section, you will now see ‘Git’ as an option.</p>
+<img src="/jenkins/images/demo_config_jenkins.jpg" alt="Demo Config Jenkins" />
+<h1>Jenkins – Maven Setup</h1>
+<h2>Step 1: Downloading and Setting Up Maven</h2>
+<p>The official website for maven is <a target="_blank" rel="nofollow" href="https://maven.apache.org/download.cgi">Apache Maven</a>. If you click the given link, you can get the home page of the maven official website as shown below.</p>
+<img src="/jenkins/images/maven_setup.jpg" alt="Maven Setup" />
+<p>While browsing to the site, go to the Files section and download the link to the Binary.zip file.</p>
+<img src="/jenkins/images/maven_download.jpg" alt="Maven Download" />
+<p>Once the file is downloaded, extract the files to the relevant application folder. For this purpose, the maven files will be placed in E:\Apps\apache-maven-3.3.3.</p>
+<h2>Step 2: Setting up Jenkins and Maven</h2>
+<p>In the Jenkins dashboard (Home screen), click Manage Jenkins from the left-hand side menu.</p>
+<img src="/jenkins/images/setting_maven_jenkins.jpg" alt="Setting Maven Jenkins" />
+<p>Then, click on ‘Configure System’ from the right hand side.</p>
+<img src="/jenkins/images/manage_jenkins1.jpg" alt="Manage Jenkins1" />
+<img src="/jenkins/images/manage_jenkins2.jpg" alt="Manage Jenkins2" />
+<p>In the Configure system screen, scroll down till you see the Maven section and then click on the ‘Add Maven’ button.</p>
+<img src="/jenkins/images/add_maven.jpg" alt="Add Maven" />
+<p>Uncheck the ‘Install automatically’ option.</p>
+<p>Add any name for the setting and the location of the MAVEN_HOME.</p>
+<p>Then, click on the ‘Save’ button at the end of the screen.</p>
+<img src="/jenkins/images/configure_maven.jpg" alt="Configure Maven" />
+<p>You can now create a job with the ‘Maven project’ option. In the Jenkins dashboard, click the New Item option.</p>
+<img src="/jenkins/images/jenkins_dashboard1.jpg" alt="Jenkins Dashboard1" />
+<img src="/jenkins/images/jenkins_dashboard2.jpg" alt="Jenkins Dashboard2" />
+<h1>Jenkins - Configuration</h1>
+<p>You probably would have seen a couple of times in the previous exercises wherein we had to configure options within Jenkins. The following shows the various configuration options in Jenkins.</p>
+<p>So one can get the various configuration options for Jenkins by clicking the ‘Manage Jenkins’ option from the left hand menu side.</p>
+<img src="/jenkins/images/jenkins_configuration1.jpg" alt="Jenkins Configuration1" />
+<p>You will then be presented with the following screen &minus;</p>
+<img src="/jenkins/images/jenkins_configuration2.jpg" alt="Jenkins Configuration2" />
+<p>Click on Configure system. Discussed below are some of the Jenkins configuration settings which can be carried out.</p>
+<h2>Jenkins Home Directory</h2>
+<p>Jenkins needs some disk space to perform builds and keep archives. One can check this location from the configuration screen of Jenkins. By default, this is set to ~/.jenkins, and this location will initially be stored within your user profile location. In a proper environment, you need to change this location to an adequate location to store all relevant builds and archives. Once can do this in the following ways</p>
+<ul class="list">
+<li><p>Set "JENKINS_HOME" environment variable to the new home directory before launching the servlet container.</p></li>
+<li><p>Set "JENKINS_HOME" system property to the servlet container.</p></li>
+<li><p>Set JNDI environment entry "JENKINS_HOME" to the new directory.</p></li>
+</ul>
+<p>The following example will use the first option of setting the "JENKINS_HOME" environment variable.</p>
+<p>First create a new folder E:\Apps\Jenkins. Copy all the contents from the existing ~/.jenkins to this new directory.</p>
+<p>Set the JENKINS_HOME environment variable to point to the base directory location where Java is installed on your machine. For example,</p>
+<table class="table table-bordered">
+<tr>
+<th width="15%" style="text-align:center;">OS</th>
+<th style="text-align:center;">Output</th>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Set Environmental variable JENKINS_HOME to you’re the location you desire. As an example you can set it to E:\Apps\Jenkins</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>export JENKINS_HOME =/usr/local/Jenkins or the location you desire.</td>
+</tr>
+</table>
+<p>In the Jenkins dashboard, click Manage Jenkins from the left hand side menu. Then click on ‘Configure System’ from the right hand side.</p>
+<p>In the Home directory, you will now see the new directory which has been configured.</p>
+<img src="/jenkins/images/jenkins_home_directory.jpg" alt="Jenkins Home Directory" />
+<h2># of executors</h2>
+<p>This refers to the total number of concurrent job executions that can take place on the Jenkins machine. This can be changed based on requirements. Sometimes the recommendation is to keep this number the same as the number of CPU on the machines for better performance.</p>
+<h2>Environment Variables</h2>
+<p>This is used to add custom environment variables which will apply to all the jobs. These are key-value pairs and can be accessed and used in Builds wherever required.</p>
+<h2>Jenkins URL</h2>
+<p>By default, the Jenkins URL points to localhost. If you have a domain name setup for your machine, set this to the domain name else overwrite localhost with IP of machine. This will help in setting up slaves and while sending out links using the email as you can directly access the Jenkins URL using the environment variable JENKINS_URL which can be accessed as ${JENKINS_URL}.</p>
+<h2>Email Notification</h2>
+<p>In the email Notification area, you can configure the SMTP settings for sending out emails. This is required for Jenkins to connect to the SMTP mail server and send out emails to the recipient list.</p>
+<h1>Jenkins - Management</h1>
+<p>To manage Jenkins, click on the ‘Manage Jenkins’ option from the left hand menu side.</p>
+<p>So one can get the various configuration options for Jenkins by clicking the ‘Manage Jenkins’ option from the left hand menu side.</p>
+<img src="/jenkins/images/jenkins_management1.jpg" alt="Jenkins Management1" />
+<p>You will then be presented with the following screen &minus;</p>
+<img src="/jenkins/images/jenkins_management2.jpg" alt="Jenkins Management2" />
+<p>Some of the management options are as follows &minus;</p>
+<h2>Configure System</h2>
+<p>This is where one can manage paths to the various tools to use in builds, such as the JDKs, the versions of Ant and Maven, as well as security options, email servers, and other system-wide configuration details. When plugins are installed. Jenkins will add the required configuration fields dynamically after the plugins are installed.</p>
+<h2>Reload Configuration from Disk</h2>
+<p>Jenkins stores all its system and build job configuration details as XML files which is stored in the Jenkins home directory. Here also all of the build history is stored. If you are migrating build jobs from one Jenkins instance to another, or archiving old build jobs, you will need to add or remove the corresponding build job directories to Jenkins’s builds directory. You don’t need to take Jenkins offline to do this—you can simply use the “Reload Configuration from Disk” option to reload the Jenkins system and build job configurations directly.</p>
+<h2>Manage Plugin</h2>
+<p>Here one can install a wide variety of third-party plugins right from different Source code management tools such as Git, Mercurial or ClearCase, to code quality and code coverage metrics reporting. Plugins can be installed, updated and removed through the Manage Plugins screen.</p>
+<img src="/jenkins/images/manage_plugins.jpg" alt="Manage Plugins" />
+<h2>System Information</h2>
+<p>This screen displays a list of all the current Java system properties and system environment variables. Here one can check exactly what version of Java Jenkins is running in, what user it is running under, and so forth.</p>
+<p>The following screenshot shows some of the name-value information available in this section.</p>
+<img src="/jenkins/images/system_information.jpg" alt="System Information" />
+<h3>System Log</h3>
+<p>The System Log screen is a convenient way to view the Jenkins log files in real time. Again, the main use of this screen is for troubleshooting.</p>
+<h3>Load Statistics</h3>
+<p>This pages displays graphical data on how busy the Jenkins instance is in terms of the number of concurrent builds and the length of the build queue which gives an idea of how long your builds need to wait before being executed. These statistics can give a good idea of whether extra capacity or extra build nodes is required from an infrastructure perspective.</p>
+<h3>Script Console</h3>
+<p>This screen lets you run Groovy scripts on the server. It is useful for advanced troubleshooting since it requires a strong knowledge of the internal Jenkins architecture.</p>
+<h3>Manage nodes</h3>
+<p>Jenkins is capable of handling parallel and distributed builds. In this screen, you can configure how many builds you want. Jenkins runs simultaneously, and, if you are using distributed builds, set up build nodes. A build node is another machine that Jenkins can use to execute its builds.</p>
+<h3>Prepare for Shutdown</h3>
+<p>If there is a need to shut down Jenkins, or the server Jenkins is running on, it is best not to do so when a build is being executed. To shut down Jenkins cleanly, you can use the Prepare for Shutdown link, which prevents any new builds from being started. Eventually, when all of the current builds have finished, one will be able to shut down Jenkins cleanly.</p>
+<h1>Jenkins - Setup Build Jobs</h1>
+<p>For this exercise, we will create a job in Jenkins which picks up a simple HelloWorld application, builds and runs the java program.</p>
+<p><b>Step 1</b> &minus; Go to the Jenkins dashboard and Click on New Item</p>
+<img src="/jenkins/images/setup_build_jobs.jpg" alt="Setup Build Jobs" />
+<p><b>Step 2</b> &minus; In the next screen, enter the Item name, in this case we have named it Helloworld. Choose the ‘Freestyle project option’</p>
+<img src="/jenkins/images/helloworld.jpg" alt="Helloworld" />
+<p><b>Step 3</b> &minus; The following screen will come up in which you can specify the details of the job.</p>
+<img src="/jenkins/images/helloworld_config.jpg" alt="Helloworld Config" />
+<p><b>Step 4</b> &minus; We need to specify the location of files which need to be built. In this example, we will assume that a local git repository(E:\Program) has been setup which contains a ‘HelloWorld.java’ file. Hence scroll down and click on the Git option and enter the URL of the local git repository.</p>
+<p><b>Note</b> &minus; If you repository if hosted on Github, you can also enter the url of that repository here. In addition to this, you would need to click on the Add button for the credentials to add a user name and password to the github repository so that the code can be picked up from the remote repository.</p>
+<img src="/jenkins/images/git_repository.jpg" alt="Git Repository" />
+<p><b>Step 5</b> &minus; Now go to the Build section and click on Add build step &rarr; Execute Windows batch command</p>
+<img src="/jenkins/images/execute_windows_batch_command.jpg" alt="Execute Windows Batch Command" />
+<p><b>Step 6</b> &minus; In the command window, enter the following commands and then click on the Save button.</p>
+<pre class="result notranslate">
+Javac HelloWorld.java
+Java HelloWorld
+</pre>
+<p></p>
+<img src="/jenkins/images/save.jpg" alt="Save" />
+<p><b>Step 7</b> &minus; Once saved, you can click on the Build Now option to see if you have successfully defined the job.</p>
+<img src="/jenkins/images/build_now.jpg" alt="Build Now" />
+<p><b>Step 8</b> &minus; Once the build is scheduled, it will run. The following Build history section shows that a build is in progress.</p>
+<img src="/jenkins/images/build_history.jpg" alt="Build History" />
+<p><b>Step 9</b> &minus; Once the build is completed, a status of the build will show if the build was successful or not. In our case, the following build has been executed successfully. Click on the #1 in the Build history to bring up the details of the build.</p>
+<img src="/jenkins/images/details.jpg" alt="Details" />
+<p><b>Step 10</b> &minus; Click on the Console Output link to see the details of the build</p>
+<img src="/jenkins/images/console_output1.jpg" alt="Console Output1" />
+<img src="/jenkins/images/console_output2.jpg" alt="Console Output2" />
+<p>Apart from the steps shown above there are just so many ways to create a build job, the options available are many, which what makes Jenkins such a fantastic continuous deployment tool.</p>
+<h1>Jenkins - Unit Testing</h1>
+<p>Jenkins provides an out of box functionality for Junit, and provides a host of plugins for unit testing for other technologies, an example being MSTest for .Net Unit tests. If you go to the link <a target="_blank" rel="nofollow" href="https://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin">https://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin</a> it will give the list of Unit Testing plugins available.</p>
+<img src="/jenkins/images/unit_testing.jpg" alt="Unit Testing" />
+<img src="/jenkins/images/unit_testing_plugins.jpg" alt="Unit Testing Plugins" />
+<h2>Example of a Junit Test in Jenkins</h2>
+<p>The following example will consider</p>
+<ul class="list">
+<li>A simple HelloWorldTest class based on Junit.</li>
+<li>Ant as the build tool within Jenkins to build the class accordingly.</li>
+</ul>
+<p><b>Step 1</b> &minus; Go to the Jenkins dashboard and Click on the existing HelloWorld project and choose the Configure option</p>
+<img src="/jenkins/images/junit_test_example.jpg" alt="Junit Test Example" />
+<p><b>Step 2</b> &minus; Browse to the section to Add a Build step and choose the option to Invoke Ant.</p>
+<img src="/jenkins/images/invoke_ant.jpg" alt="Invoke Ant" />
+<p><b>Step 3</b> &minus; Click on the Advanced button.</p>
+<img src="/jenkins/images/advanced_button.jpg" alt="Advanced Button" />
+<p><b>Step 4</b> &minus; In the build file section, enter the location of the build.xml file.</p>
+<img src="/jenkins/images/xml_location.jpg" alt="XML Location" />
+<p><b>Step 5</b> &minus; Next click the option to Add post-build option and choose the option of “Publish Junit test result report”</p>
+<img src="/jenkins/images/publish_junit_report.jpg" alt="Publish Junit Report" />
+<p><b>Step 6</b> &minus; In the Test reports XML’s, enter the location as shown below. Ensure that Reports is a folder which is created in the HelloWorld project workspace. The “*.xml” basically tells Jenkins to pick up the result xml files which are produced by the running of the Junit test cases. These xml files which then be converted into reports which can be viewed later.</p>
+<p>Once done, click the Save option at the end.</p>
+<img src="/jenkins/images/report_test_xml.jpg" alt="Report Test XML" />
+<p><b>Step 7</b> &minus; Once saved, you can click on the Build Now option.</p>
+<p>Once the build is completed, a status of the build will show if the build was successful or not. In the Build output information, you will now notice an additional section called Test Result. In our case, we entered a negative Test case so that the result would fail just as an example.</p>
+<img src="/jenkins/images/build_option.jpg" alt="Build Option" />
+<p>One can go to the Console output to see further information. But what’s more interesting is that if you click on Test Result, you will now see a drill down of the Test results.</p>
+<img src="/jenkins/images/test_result.jpg" alt="Test Result" />
+<h1>Jenkins - Automated Testing</h1>
+<p>One of the basic principles of Continuous Integration is that a build should be verifiable. You have to be able to objectively determine whether a particular build is ready to proceed to the next stage of the build process, and the most convenient way to do this is to use automated tests. Without proper automated testing, you find yourself having to retain many build artifacts and test them by hand, which is hardly in the spirit of Continuous Integration. The following example shows how to use Selenium to run automated web tests.</p>
+<p><b>Step 1</b> &minus; Go to Manage Plugins.</p>
+<img src="/jenkins/images/automated_testing.jpg" alt="Automated Testing" />
+<p><b>Step 2</b> &minus; Find the Hudson Selenium Plugin and choose to install. Restart the Jenkins instance.</p>
+<img src="/jenkins/images/hudson_selenium_plugin.jpg" alt="Hudson Selenium Testing" />
+<p><b>Step 3</b> &minus; Go to Configure system.</p>
+<img src="/jenkins/images/configure_system.jpg" alt="Configure System" />
+<p><b>Step 4</b> &minus; Configure the selenium server jar and click on the Save button.</p>
+<img src="/jenkins/images/configure_selenium_server.jpg" alt="Configure Selenium Server" />
+<p><b>Note</b> &minus; The selenium jar file can be downloaded from the location <a target="_blank" rel="nofollow" href="http://www.seleniumhq.org/download/">SeleniumHQ</a></p>
+<p>Click on the download for the Selenium standalone server.</p>
+<img src="/jenkins/images/download_selenium_standalone_server.jpg" alt="Download Selenium Standalone Server" />
+<p><b>Step 5</b> &minus; Go back to your dashboard and click on the Configure option for the HelloWorld project.</p>
+<img src="/jenkins/images/configure.jpg" alt="Configure" />
+<p><b>Step 6</b> &minus; Click on Add build step and choose the optin of “SeleniumHQ htmlSuite Run”</p>
+<img src="/jenkins/images/seleniumhq_html_suite_run.jpg" alt="SeleniumHQ htmlSuite Run" />
+<p><b>Step 7</b> &minus; Add the necessary details for the selenium test. Here the suiteFile is the TestSuite generated by using the Selenium IDE. Click on Save and execute a build. Now the post build will launch the selenium driver, and execute the html test.</p>
+<img src="/jenkins/images/selenium_driver_html_test.jpg" alt="Selenium Driver HTML test" />
+<h1>Jenkins - Notification</h1>
+<p>Jenkins comes with an out of box facility to add an email notification for a build project.</p>
+<p><b>Step 1</b> &minus; Configuring an SMTP server. Goto Manage Jenkins &rarr; Configure System. Go to the E-mail notification section and enter the required SMTP server and user email-suffix details.</p>
+<img src="/jenkins/images/smtp_server.jpg" alt="SMTP Server" />
+<p><b>Step 2</b> &minus; Configure the recipients in the Jenkins project - When you configure any Jenkins build project, right at the end is the ability to add recipients who would get email notifications for unstable or broken builds. Then click on the Save button.</p>
+<img src="/jenkins/images/configure_recipients.jpg" alt="Configure Recipients" />
+<p>Apart from the default, there are also notification plugin’s available in the market. An example is the notification plugin from Tikal Knowledge which allows sending Job Status notifications in JSON and XML formats. This plugin enables end-points to be configured as shown below.</p>
+<img src="/jenkins/images/tikal_knowledge_plugin.jpg" alt="Tikal Knowledge Plugin" />
+<p>Here are the details of each option &minus;</p>
+<ul class="list">
+<li><p><b>"Format"</b> &minus; This is the notification payload format which can either be JSON or XML.</p></li>
+<li><p><b>"Protocol"</b> &minus; protocol to use for sending notification messages, HTTP, TCP or UDP.</p></li>
+<li><p><b>"Event"</b> &minus; The job events that trigger notifications: Job Started, Job Completed, Job Finalized or All Events (the default option).</p></li>
+<li><p><b>"URL"</b> &minus; URL to send notifications to. It takes the form of "<a target="_blank" rel="nofollow" href="http://www.host.com/">http://host</a>" for HTTP protocol, and <code>"host:port"</code> for TCP and UDP protocols.</p></li>
+<li><p><b>"Timeout"</b> &minus; Timeout in milliseconds for sending notification request, 30 seconds by default.</p></li>
+</ul>
+<h1>Jenkins - Reporting</h1>
+<p>As demonstrated in the earlier section, there are many reporting plugins available with the simplest one being the reports available for jUnit tests.</p>
+<p>In the Post-build action for any job, you can define the reports to be created. After the builds are complete, the Test Results option will be available for further drill-down.</p>
+<img src="/jenkins/images/jenkins_reporting.jpg" alt="Jenkins Reporting" />
+<h1>Jenkins - Code Analysis</h1>
+<p>Jenkins has a host of Code Analysis plugin. The various plugins can be found at <a target="_blank" rel="nofollow" href="https://wiki.jenkins-ci.org/display/JENKINS/Static+Code+Analysis+Plug-ins">https://wiki.jenkins-ci.org/display/JENKINS/Static+Code+Analysis+Plugins</a></p>
+<img src="/jenkins/images/jenkins_code_analysis.jpg" alt="Jenkins Code Analysis" />
+<p>This plugin provides utilities for the static code analysis plugins. Jenkins can parse the results file from various Code Analysis tools such as CheckStyle, FindBugs, PMD etc. For each corresponding code analysis tool, a plugin in Jenkins needs to be installed.</p>
+<p>Additionally the add-on plugin <a target="_blank" rel="nofollow" href="https://wiki.jenkins-ci.org/display/JENKINS/Analysis+Collector+Plugin">Static Analysis Collector</a> is available that combines the individual results of these plugins into a single trend graph and view.</p>
+<p>The plugins can provide information such as</p>
+<ul class="list">
+<li>The total number of warnings in a job</li>
+<li>A showing of the new and fixed warnings of a build</li>
+<li>Trend Reports showing the number of warnings per build</li>
+<li>Overview of the found warnings per module, package, category, or type</li>
+<li>Detailed reports of the found warnings optionally filtered by severity (or new and fixed)</li>
+</ul>
+<h1>Jenkins - Distributed Builds</h1>
+<p>Sometimes many build machines are required if there are instances wherein there are a larger and heavier projects which get built on a regular basis. And running all of these builds on a central machine may not be the best option. In such a scenario, one can configure other Jenkins machines to be slave machines to take the load off the master Jenkins server.</p>
+<p>Sometimes you might also need several different environments to test your builds. In this case using a slave to represent each of your required environments is almost a must.</p>
+<p>A slave is a computer that is set up to offload build projects from the master and once setup this distribution of tasks is fairly automatic. The exact delegation behavior depends on the configuration of each project; some projects may choose to "stick" to a particular machine for a build, while others may choose to roam freely between slaves.</p>
+<p>Since each slave runs a separate program called a "slave agent" there is no need to install the full Jenkins (package or compiled binaries) on a slave. There are various ways to start slave agents, but in the end the slave agent and Jenkins master needs to establish a bi-directional communication link (for example a TCP/IP socket.) in order to operate.</p>
+<p>To set up slaves/nodes in Jenkins follow the steps given below.</p>
+<p><b>Step 1</b> &minus; Go to the Manage Jenkins section and scroll down to the section of Manage Nodes.</p>
+<img src="/jenkins/images/manage_nodes.jpg" alt="Manage Nodes" />
+<p><b>Step 2</b> &minus; Click on New Node</p>
+<img src="/jenkins/images/new_nodes.jpg" alt="New Nodes" />
+<p><b>Step 3</b> &minus; Give a name for the node, choose the Dumb slave option and click on Ok.</p>
+<img src="/jenkins/images/dumb_slave.jpg" alt="Dumb Slave" />
+<p><b>Step 4</b> &minus; Enter the details of the node slave machine. In the below example, we are considering the slave machine to be a windows machine, hence the option of “Let Jenkins control this Windows slave as a Windows service” was chosen as the launch method. We also need to add the necessary details of the slave node such as the node name and the login credentials for the node machine. Click the Save button. The Labels for which the name is entered as “New_Slave” is what can be used to configure jobs to use this slave machine.</p>
+<img src="/jenkins/images/slave_machine1.jpg" alt="Slave Machine1" />
+<p>Once the above steps are completed, the new node machine will initially be in an offline state, but will come online if all the settings in the previous screen were entered correctly. One can at any time make the node slave machine as offline if required.</p>
+<img src="/jenkins/images/slave_machine2.jpg" alt="Slave Machine2" />
+<h1>Jenkins - Automated Deployment</h1>
+<p>There are many plugins available which can be used to transfer the build files after a successful build to the respective application/web server. On example is the “Deploy to container Plugin”. To use this follow the steps given below.</p>
+<p><b>Step 1</b> &minus; Go to Manage Jenkins &rarr; Manage Plugins. Go to the Available section and find the plugin “Deploy to container Plugin” and install the plugin. Restart the Jenkins server.</p>
+<img src="/jenkins/images/deploy_to_container_plugin.jpg" alt="Deploy to Container Plugin" />
+<p>This plugin takes a war/ear file and deploys that to a running remote application server at the end of a build.</p>
+<p>Tomcat 4.x/5.x/6.x/7.x</p>
+<p>JBoss 3.x/4.x</p>
+<p>Glassfish 2.x/3.x</p>
+<p><b>Step 2</b> &minus; Go to your Build project and click the Configure option. Choose the option “Deploy war/ear to a container”</p>
+<img src="/jenkins/images/deploy_war_ear_container.jpg" alt="Deploy war ear to Container" />
+<p><b>Step 3</b> &minus; In the Deploy war/ear to a container section, enter the required details of the server on which the files need to be deployed and click on the Save button. These steps will now ensure that the necessary files get deployed to the necessary container after a successful build.</p>
+<img src="/jenkins/images/demo_config.jpg" alt="Demo Config" />
+<h1>Jenkins - Metrics &amp; Trends</h1>
+<p>There are various plugins which are available in Jenkins to showcase metrics for builds which are carried out over a period of time. These metrics are useful to understand your builds and how frequently they fail/pass over time. As an example, let’s look at the ‘Build History Metrics plugin’.</p>
+<p>This plugin calculates the following metrics for all of the builds once installed</p>
+<ul class="list">
+<li>Mean Time To Failure (MTTF)</li>
+<li>Mean Time To Recovery (MTTR)</li>
+<li>Standard Deviation of Build Times</li>
+</ul>
+<p><b>Step 1</b> &minus; Go to the Jenkins dashboard and click on Manage Jenkins</p>
+<img src="/jenkins/images/welcome_to_jenkins.jpg" alt="Welcome to Jenkins" />
+<p><b>Step 2</b> &minus; Go to the Manage Plugins option.</p>
+<img src="/jenkins/images/metrics_trends_manage_plugins1.jpg" alt="Metrics Trends Manage Plugins1" />
+<p><b>Step 3</b> &minus; Go to the Available tab and search for the plugin ‘Build History Metrics plugin’ and choose to ‘install without restart’.</p>
+<img src="/jenkins/images/install_without_restart1.jpg" alt="Install Without Restart1" />
+<p><b>Step 4</b> &minus; The following screen shows up to confirm successful installation of the plugin. Restart the Jenkins instance.</p>
+<img src="/jenkins/images/installation_success_confirmation1.jpg" alt="Installation Success Confirmation1" />
+<p>When you go to your Job page, you will see a table with the calculated metrics. Metric’s are shown for the last 7 days, last 30 days and all time.</p>
+<img src="/jenkins/images/metrics_table.jpg" alt="Metrics Table" />
+<p>To see overall trends in Jenkins, there are plugins available to gather information from within the builds and Jenkins and display them in a graphical format. One example of such a plugin is the ‘Hudson global-build-stats plugin’. So let’s go through the steps for this.</p>
+<p><b>Step 1</b> &minus; Go to the Jenkins dashboard and click on Manage Jenkins</p>
+<img src="/jenkins/images/hudson_global_build_stats.jpg" alt="Hudson Global Build Stats" />
+<p><b>Step 2</b> &minus; Go to the Manage Plugins option</p>
+<img src="/jenkins/images/metrics_trends_manage_plugins2.jpg" alt="Metrics Trends Manage Plugins2" />
+<p><b>Step 3</b> &minus; Go to the Available tab and search for the plugin ‘Hudson global-build-stats plugin’ and choose to ‘install without restart’.</p>
+<img src="/jenkins/images/install_without_restart2.jpg" alt="Install Without Restart2" />
+<p><b>Step 4</b> &minus; The following screen shows up to confirm successful installation of the plugin. Restart the Jenkins instance.</p>
+<img src="/jenkins/images/installation_success_confirmation2.jpg" alt="Installation Success Confirmation2" />
+<p>To see the Global statistics, please follow the Step 5 through 8.</p>
+<p><b>Step 5</b> &minus; Go to the Jenkins dashboard and click on Manage Jenkins. In the Manage Jenkins screen, scroll down and now you will now see an option called ‘Global Build Stats’. Click on this link.</p>
+<img src="/jenkins/images/global_build_stats.jpg" alt="Global Build Stats" />
+<p><b>Step 6</b> &minus; Click on the button ‘Initialize stats’. What this does is that it gather’s all the existing records for builds which have already been carried out and charts can be created based on these results.</p>
+<img src="/jenkins/images/initialize_stats.jpg" alt="Initialize Stats" />
+<p><b>Step 7</b> &minus; Once the data has been initialized, it’s time to create a new chart. Click on the ‘Create new chart’ link.</p>
+<img src="/jenkins/images/create_new_chart.jpg" alt="Create New Chart" />
+<p><b>Step 8</b> &minus; A pop-up will come to enter relevant information for the new chart details. Enter the following mandatory information</p>
+<ul class="list">
+<li>Title – Any title information, for this example is given as ‘Demo’</li>
+<li>Chart Width – 800</li>
+<li>Chart Height – 600</li>
+<li>Chart time scale – Daily</li>
+<li>Chart time length – 30 days</li>
+</ul>
+<p>The rest of the information can remain as it is. Once the information is entered, click on Create New chart.</p>
+<img src="/jenkins/images/adding_new_chart.jpg" alt="Adding New Chart" />
+<p>You will now see the chart which displays the trends of the builds over time.</p>
+<img src="/jenkins/images/displaying_trends.jpg" alt="Displaying Trends" />
+<p>If you click on any section within the chart, it will give you a drill down of the details of the job and their builds.</p>
+<img src="/jenkins/images/global_build_search.jpg" alt="Global Build Search" />
+<h1>Jenkins - Server Maintenance</h1>
+<p>The following are some of the basic activities you will carry out, some of which are best practices for Jenkins server maintenance</p>
+<h2>URL Options</h2>
+<p>The following commands when appended to the Jenkins instance URL will carry out the relevant actions on the Jenkins instance.</p>
+<p><b>http://localhost:8080/jenkins/exit</b> &minus; shutdown jenkins</p>
+<p><b>http://localhost:8080/jenkins/restart</b> &minus; restart jenkins</p>
+<p><b>http://localhost:8080/jenkins/reload</b> &minus; to reload the configuration</p>
+<h2>Backup Jenkins Home</h2>
+<p>The Jenkins Home directory is nothing but the location on your drive where Jenkins stores all information for the jobs, builds etc. The location of your home directory can be seen when you click on Manage Jenkins &rarr; Configure system.</p>
+<img src="/jenkins/images/backup_jenkins_home.jpg" alt="Backup Jenkins Home" />
+<p>Set up Jenkins on the partition that has the most free disk-space – Since Jenkins would be taking source code for the various jobs defined and doing continuous builds, always ensure that Jenkins is setup on a drive that has enough hard disk space. If you hard disk runs out of space, then all builds on the Jenkins instance will start failing.</p>
+<p>Another best practice is to write cron jobs or maintenance tasks that can carry out clean-up operations to avoid the disk where Jenkins is setup from becoming full.</p>
+<h1>Jenkins - Continuous Deployment</h1>
+<p>Jenkins provides good support for providing continuous deployment and delivery. If you look at the flow of any software development through deployment, it will be as shown below.</p>
+<img src="/jenkins/images/jenkins_continuous_deployment.jpg" alt="Jenkins Continuous Deployment" />
+<p>The main part of Continuous deployment is to ensure that the entire process which is shown above is automated. Jenkins achieves all of this via various plugins, one of them being the “Deploy to container Plugin” which was seen in the earlier lessons.</p>
+<img src="/jenkins/images/continuous_deployment_container_plugin.jpg" alt="Continuous Deployment Container Plugin" />
+<p>There are plugins available which can actually give you a graphical representation of the Continuous deployment process. But first lets create another project in Jenkins, so that we can see best how this works.</p>
+<p>Let’s create a simple project which emulates the QA stage, and does a test of the Helloworld application.</p>
+<p><b>Step 1</b> &minus; Go to the Jenkins dashboard and click on New Item. Choose a ‘Freestyle project’ and enter the project name as ‘QA’. Click on the Ok button to create the project.</p>
+<img src="/jenkins/images/freestyle_project.jpg" alt="Freestyle Project" />
+<p><b>Step 2</b> &minus; In this example, we are keeping it simple and just using this project to execute a test program for the Helloworld application.</p>
+<img src="/jenkins/images/helloworld_application.jpg" alt="Helloworld Application" />
+<p>So our project QA is now setup. You can do a build to see if it builds properly.</p>
+<img src="/jenkins/images/qa_project_build.jpg" alt="QA Project Build" />
+<p><b>Step 3</b> &minus; Now go to you Helloworld project and click on the Configure option</p>
+<img src="/jenkins/images/project_configure_option.jpg" alt="Project Configure Option" />
+<p><b>Step 4</b> &minus; In the project configuration, choose the ‘Add post-build action’ and choose ‘Build other projects’</p>
+<img src="/jenkins/images/add_post_build_action.jpg" alt="Add Post Build Action" />
+<p><b>Step 5</b> &minus; In the ‘Project to build’ section, enter QA as the project name to build. You can leave the option as default of ‘Trigger only if build is stable’. Click on the Save button.</p>
+<img src="/jenkins/images/trigger_stable_build.jpg" alt="Trigger Stable Build" />
+<p><b>Step 6</b> &minus; Build the Helloworld project. Now if you see the Console output, you will also see that after the Helloworld project is successfully built, the build of the QA project will also happen.</p>
+<img src="/jenkins/images/qa_project_console_project.jpg" alt="QA Project Console Project" />
+<p><b>Step 7</b> &minus; Let now install the Delivery pipeline plugin. Go to Manage Jenkins &rarr; Manage Plugin’s. In the available tab, search for ‘Delivery Pipeline Plugin’. Click On Install without Restart. Once done, restart the Jenkins instance.</p>
+<img src="/jenkins/images/restart_jenkins_instance.jpg" alt="Restart Jenkins Instance" />
+<p><b>Step 8</b> &minus; To see the Delivery pipeline in action, in the Jenkins Dashboard, click on the + symbol in the Tab next to the ‘All’ Tab.</p>
+<img src="/jenkins/images/delivery_pipeline.jpg" alt="Delivery Pipeline" />
+<p><b>Step 9</b> &minus; Enter any name for the View name and choose the option ‘Delivery Pipeline View’.</p>
+<img src="/jenkins/images/delivery_pipeline_view.jpg" alt="Delivery Pipeline View" />
+<p><b>Step 10</b> &minus; In the next screen, you can leave the default options. One can change the following settings &minus;</p>
+<ul class="list">
+<li>Ensure the option ‘Show static analysis results’ is checked.</li>
+<li>Ensure the option ‘Show total build time’ is checked.</li>
+<li>For the Initial job – Enter the Helloworld project as the first job which should build.</li>
+<li>Enter any name for the Pipeline</li>
+<li>Click the OK button.</li>
+</ul>
+<img src="/jenkins/images/change_settings.jpg" alt="Change Setting" />
+<p>You will now see a great view of the entire delivery pipeline and you will be able to see the status of each project in the entire pipeline.</p>
+<img src="/jenkins/images/each_project_status.jpg" alt="Each Project Status" />
+<p>Another famous plugin is the <b>build pipeline plugin</b>. Let’s take a look at this.</p>
+<p><b>Step 1</b> &minus; Go to Manage Jenkins &rarr; Manage Plugin’s. In the available tab, search for ‘Build Pipeline Plugin’. Click On Install without Restart. Once done, restart the Jenkins instance.</p>
+<img src="/jenkins/images/build_pipeline_plugin.jpg" alt="Build Pipeline Plugin" />
+<p><b>Step 2</b> &minus; To see the Build pipeline in action, in the Jenkins Dashboard, click on the + symbol in the Tab next to the ‘All’ Tab.</p>
+<img src="/jenkins/images/see_build_pipeline_action.jpg" alt="See Build Pipeline Action" />
+<p><b>Step 3</b> &minus; Enter any name for the View name and choose the option ‘Build Pipeline View’.</p>
+<img src="/jenkins/images/build_pipeline_view.jpg" alt="Build Pipeline View" />
+<p><b>Step 4</b> &minus; Accept the default settings, just in the Selected Initial job, ensure to enter the name of the Helloworld project. Click on the Ok button.</p>
+<img src="/jenkins/images/accept_default_settings.jpg" alt="Accept Default Settings" />
+<p>You will now see a great view of the entire delivery pipeline and you will be able to see the status of each project in the entire pipeline.</p>
+<img src="/jenkins/images/entire_pipeline_status.jpg" alt="Entire Pipeline Status" />
+<h1>Jenkins - Managing Plugins</h1>
+<p>To get the list of all plugins available within Jenkins, one can visit the link &minus; <a target="_blank" rel="nofollow" href="https://wiki.jenkins-ci.org/display/JENKINS/Plugins">https://wiki.jenkins-ci.org/display/JENKINS/Plugins</a></p>
+<img src="/jenkins/images/jenkins_managing_plugins.jpg" alt="Jenkins Managing Plugins" />
+<p>We’ve already seen many instances for installing plugins, let’s look at some other maintenance tasks with regards to plugins</p>
+<h2>Uninstalling Plugins</h2>
+<p>To uninstall a plugin, Go to Manage Jenkins &rarr; Manage plugins. Click on the Installed tab. Some of the plugins will have the Uninstall option. You can click these buttons to uninstall the plugins. Ensure to restart your Jenkins instance after the uninstallation.</p>
+<img src="/jenkins/images/uninstalling_plugins.jpg" alt="Uninstalling Plugins" />
+<h2>Installing another Version of a Plugin</h2>
+<p>Sometimes it may be required to install an older version of a plugin, in such a case, you can download the plugin from the relevant plugin page on the Jenkins web site. You can then use the <b>Upload</b> option to upload the plugin manually.</p>
+<img src="/jenkins/images/installing_another_version_plugin.jpg" alt="Installing another Version Plugin" />
+<h1>Jenkins - Security</h1>
+<p>In Jenkins you have the ability to setup users and their relevant permissions on the Jenkins instance. By default you will not want everyone to be able to define jobs or other administrative tasks in Jenkins. So Jenkins has the ability to have a security configuration in place.</p>
+<p>To configure Security in Jenkins, follow the steps given below.</p>
+<p><b>Step 1</b> &minus; Click on Manage Jenkins and choose the ‘Configure Global Security’ option.</p>
+<img src="/jenkins/images/configure_global_security.jpg" alt="Configure Global Security" />
+<p><b>Step 2</b> &minus; Click on Enable Security option. As an example, let’s assume that we want Jenkins to maintain it’s own database of users, so in the Security Realm, choose the option of ‘Jenkins’ own user database’.</p>
+<p>By default you would want a central administrator to define users in the system, hence ensure the ‘Allow users to sign up’ option is unselected. You can leave the rest as it is for now and click the Save button.</p>
+<img src="/jenkins/images/enable_security_option.jpg" alt="Enable Security Option" />
+<p><b>Step 3</b> &minus; You will be prompted to add your first user. As an example, we are setting up an admin users for the system.</p>
+<img src="/jenkins/images/admin_user.jpg" alt="Admin User" />
+<p><b>Step 4</b> &minus; It’s now time to setup your users in the system. Now when you go to Manage Jenkins, and scroll down, you will see a ‘Manage Users’ option. Click this option.</p>
+<img src="/jenkins/images/manage_user.jpg" alt="Manage User" />
+<p><b>Step 5</b> &minus; Just like you defined your admin user, start creating other users for the system. As an example, we are just creating another user called ‘user’.</p>
+<img src="/jenkins/images/user.jpg" alt="User" />
+<p><b>Step 6</b> &minus; Now it’s time to setup your authorizations, basically who has access to what. Go to Manage Jenkins &rarr; Configure Global Security.</p>
+<p>Now in the Authorization section, click on ‘Matrix based security’</p>
+<img src="/jenkins/images/authorization_section.jpg" alt="Authorization Section" />
+<p><b>Step 7</b> &minus; If you don’t see the user in the user group list, enter the user name and add it to the list. Then give the appropriate permissions to the user.</p>
+<p>Click on the Save button once you have defined the relevant authorizations.</p>
+<p>Your Jenkins security is now setup.</p>
+<p><b>Note</b> &minus; For Windows AD authentication, one has to add the Active Directory plugin to Jenkins.</p>
+<h1>Jenkins - Backup Plugin</h1>
+<p>Jenkins has a backup plugin which can used to backup critical configuration settings related to Jenkins. Follow the steps given below to have a backup in place.</p>
+<p><b>Step 1</b> &minus; Click on Manage Jenkins and choose the ‘Manage Plugins’ option.</p>
+<img src="/jenkins/images/manage_backup_plugin.jpg" alt="Manage Backup Plugin" />
+<p><b>Step 2</b> &minus; In the available tab, search for ‘Backup Plugin’. Click On Install without Restart. Once done, restart the Jenkins instance</p>
+<img src="/jenkins/images/backup_plugin1.jpg" alt="Backup Plugin1" />
+<img src="/jenkins/images/backup_plugin2.jpg" alt="Backup Plugin2" />
+<p><b>Step 3</b> &minus; Now when you go to Manage Jenkins, and scroll down you will see ‘Backup Manager’ as an option. Click on this option.</p>
+<img src="/jenkins/images/backup_manager.jpg" alt="Backup Manager" />
+<p><b>Step 4</b> &minus; Click on Setup.</p>
+<img src="/jenkins/images/backup_manager_setup.jpg" alt="Backup Manager Setup" />
+<p><b>Step 5</b> &minus; Here, the main field to define is the directory for your backup. Ensure it’s on another drive which is different from the drive where your Jenkins instance is setup. Click on the Save button.</p>
+<img src="/jenkins/images/backup_config_files.jpg" alt="Backup Config Files" />
+<p><b>Step 6</b> &minus; Click on the ‘Backup Hudson configuration’ from the Backup manager screen to initiate the backup.</p>
+<img src="/jenkins/images/backup_hudson_configuration.jpg" alt="Backup Hudson Configuration" />
+<p>The next screen will show the status of the backup</p>
+<img src="/jenkins/images/backup_status.jpg" alt="Backup Status" />
+<p>To recover from a backup, go to the Backup Manager screen, click on Restore Hudson configuration.</p>
+<img src="/jenkins/images/restore_hudson_configuration.jpg" alt="Restore Hudson Configuration" />
+<p>The list of backup’s will be shown, click on the appropriate one to click on Launch Restore to begin the restoration of the backup.</p>
+<img src="/jenkins/images/backup_restoration.jpg" alt="Backup Restoration" />
+<h1>Jenkins - Remote Testing</h1>
+<p>Web tests such as selenium tests can be run on remote slave machines via the master slave and selenium suite plugin installation. The following steps show how to run remote tests using this configuration.</p>
+<p><b>Step 1</b> &minus; Ensure your master slave configuration is in place. Go to your master Jenkins server. Go to Manage Jenkins &rarr; Manage Nodes.</p>
+<img src="/jenkins/images/jenkins_remote_testing.jpg" alt="Jenkins Remote Testing" />
+<p>In our node list, the DXBMEM30 label is the slave machine. In this example, both the master and slave machines are windows machines.</p>
+<img src="/jenkins/images/node_list.jpg" alt="Node List" />
+<p><b>Step 2</b> &minus; Click on configure for the DXBMEM30 slave machine.</p>
+<img src="/jenkins/images/configure_slave_machine.jpg" alt="Configure Slave Machine" />
+<p><b>Step 3</b> &minus; Ensure the launch method is put as ‘Launch slave agents via Java Web Start’</p>
+<img src="/jenkins/images/launch_slave_agents.jpg" alt="Launch Slave Agents" />
+<p><b>Step 4</b> &minus; Now go to your slave machine and from there, open a browser instance to your Jenkins master instance. Then go to Manage Jenkins &rarr; Manage Nodes. Go to DXBMEM30 and click on</p>
+<img src="/jenkins/images/remote_testing_manage_nodes.jpg" alt="Remote Testing Manage Nodes" />
+<p><b>Step 5</b> &minus; Click on the DXBMEM30 instance.</p>
+<img src="/jenkins/images/instance.jpg" alt="DXBMEM30 Instance" />
+<p><b>Step 6</b> &minus; Scroll down and you will see the Launch option which is the option to Start ‘Java Web Start’</p>
+<img src="/jenkins/images/java_web_start.jpg" alt="Java Web Start" />
+<p><b>Step 7</b> &minus; You will be presented with a Security Warning. Click on the Acceptance checkbox and click on run.</p>
+<img src="/jenkins/images/security_warning.jpg" alt="Security Warning" />
+<p>You will now see a Jenkins Slave window opened and now connected.</p>
+<img src="/jenkins/images/jenkins_slave_window_connected.jpg" alt="Jenkins Slave Window Connected" />
+<p><b>Step 8</b> &minus; Configuring your tests to run on the slave. Here, you have to ensure that the job being created is meant specifically to only run the selenium tests.</p>
+<p>In the job configuration, ensure the option ‘Restrict where this project can be run’ is selected and in the Label expression put the name of the slave node.</p>
+<img src="/jenkins/images/configuration.jpg" alt="Configuration" />
+<p><b>Step 9</b> &minus; Ensure the selenium part of your job is configured. You have to ensure that the Sample.html file and the selenium-server.jar file is also present on the slave machine.</p>
+<img src="/jenkins/images/configure_selenium.jpg" alt="Configure Selenium" />
+<p>Once you have followed all of the above steps, and click on Build, this project will run the Selenium test on the slave machine as expected.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/jenkins/jenkins_remote_testing.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/jenkins/jenkins_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

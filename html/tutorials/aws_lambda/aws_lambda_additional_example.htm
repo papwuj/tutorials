@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>AWS Lambda â Additional Example</title>
+<meta charset="utf-8">
+<meta name="description" content="AWS Lambda â Additional Example - Till now, we have seen working of AWS Lambda with AWS services. Based on that knowledge, let us create a simple user registration form and post the data using A"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/aws_lambda/aws_lambda_additional_example.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#f68535;
+}
+a.demo {
+    background:#f68535;
+}
+li.heading {
+    background:#f68535;
+}
+.course-box{background:#f68535}
+.home-intro-sub p{color:#f68535}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/aws_lambda/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/aws_lambda/images/aws_lambda-mini-logo.jpg" alt="AWS Lambda Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">AWS Lambda Tutorial</li>
+<li><a href="/aws_lambda/index.htm">AWS Lambda - Home</a></li>
+<li><a href="/aws_lambda/aws_lambda_overview.htm">AWS Lambda - Overview</a></li>
+<li><a href="/aws_lambda/aws_lambda_environment_setup.htm">AWS Lambda - Environment Setup</a></li>
+<li><a href="/aws_lambda/aws_lambda_introduction.htm">AWS Lambda - Introduction</a></li>
+<li><a href="/aws_lambda/aws_lambda_building_the_lambda_function.htm">Building the Lambda function</a></li>
+<li><a href="/aws_lambda/aws_lambda_function_in_nodejs.htm">Function in NODEJS</a></li>
+<li><a href="/aws_lambda/aws_lambda_function_in_java.htm">Function in Java</a></li>
+<li><a href="/aws_lambda/aws_lambda_function_in_python.htm">Function in Python</a></li>
+<li><a href="/aws_lambda/aws_lambda_function_in_go.htm">Function in Go</a></li>
+<li><a href="/aws_lambda/aws_lambda_function_in_csharp.htm">Function in C#</a></li>
+<li><a href="/aws_lambda/aws_lambda_configuring_lambda_function.htm">Configuring Lambda Function</a></li>
+<li><a href="/aws_lambda/aws_lambda_creating_and_deploying_using_aws_console.htm">Creating &amp; Deploying using AWS Console</a></li>
+<li><a href="/aws_lambda/aws_lambda_creating_and_deploying_using_aws_cli.htm">Creating &amp; Deploying using AWS CLI</a></li>
+<li><a href="/aws_lambda/aws_lambda_creating_and_deploying_using_serverless_framework.htm">Creating &amp; Deploying using Serverless Framework</a></li>
+<li><a href="/aws_lambda/aws_lambda_executing_and_invoking_lambda_function.htm">AWS Executing &amp; Invoking Lambda Function</a></li>
+<li><a href="/aws_lambda/aws_lambda_deleting_lambda_function.htm">Deleting Lambda Function</a></li>
+<li><a href="/aws_lambda/aws_lambda_working_with_amazon_api_gateway.htm">Working with Amazon API Gateway</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_amazon_s3.htm">Lambda Function with Amazon S3</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_amazon_dynamodb.htm"> Lambda Function with Amazon DynamoDB</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_scheduled_events.htm">Lambda Function with Scheduled Events</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_amazon_sns.htm">Lambda Function with Amazon SNS</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_cloudtrail.htm">Lambda Function with CloudTrail</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_amazon_kinesis.htm"> Lambda Function with Amazon Kinesis</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_custom_user_applications.htm">Lambda Function with Custom User Applications</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_aws_lambdaedge_with_cloudfront.htm">AWS Lambda@Edge with CloudFront</a></li>
+<li><a href="/aws_lambda/aws_lambda_monitoring_and_troubleshooting_using_cloudwatch.htm">Monitoring and TroubleShooting using Cloudwatch</a></li>
+<li><a href="/aws_lambda/aws_lambda_additional_example.htm">AWS Lambda - Additional Example</a></li>
+<ul class="toc chapters">
+<li class="heading">AWS Lambda Useful resources</li>
+<li><a href="/aws_lambda/aws_lambda_quick_guide.htm">AWS Lambda - Quick Guide</a></li>
+<li><a href="/aws_lambda/aws_lambda_useful_resources.htm">AWS Lambda - Useful resources</a></li>
+<li><a href="/aws_lambda/aws_lambda_discussion.htm">AWS Lambda - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>AWS Lambda – Additional Example</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/aws_lambda/aws_lambda_monitoring_and_troubleshooting_using_cloudwatch.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/aws_lambda/aws_lambda_quick_guide.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Till now, we have seen working of AWS Lambda with AWS services. Based on that knowledge, let us create a simple user registration form and post the data using API gateway to AWS Lambda. AWS Lambda will get the data from the event or theAPI gateway trigger and will add those details to DynamoDB table.</p>
+<h2>Example</h2>
+<p>Let us consider an example and perform the following functionalities on it &minus;</p>
+<ul class="list">
+<li><p>Create DynamoDB Table</p></li>
+<li><p>Create Form for User Registration</p></li>
+<li><p>Create AWS Lambda and API gateway to send message to Phone using AWS SNS service</p></li>
+<li><p>Create AWS Lambda and API gateway to POST form data and insert in DynamoDb table</p></li>
+<li><p>Create AWS Lambda and API gateway to read data from Dynamodb table</p></li>
+<li><p>Final Working of the User Registration Form</p></li>
+</ul>
+<h2>Create DynamoDB Table</h2>
+<p>The data entered will be stored in DynamodDB table. We will use API gateway to share data entered with AWS Lambda and later AWS Lambda will add the details in DynamoDB.</p>
+<p>You can use the following details to create DynamodDB table in AWS console. First, go to AWS Service and click <b>DynamoDB</b>. Click <b>Table</b> to create the table as shown below &minus;</p>
+<img src="/aws_lambda/images/create_dynamodb_table.jpg" alt="Create DynamoDB Table" />
+<p></p>
+<img src="/aws_lambda/images/table_data.jpg" alt="Table Data" />
+<p>You can use the ARN to create policy for the DynamoDB to be used with AWS Lambda.</p>
+<p>Go to IAM and select <b>Policies</b>. Click <b>Create policy</b>, choose service as DynamodDB as shown below &minus;</p>
+<img src="/aws_lambda/images/select_policies.jpg" alt="Select Policies" />
+<p>Click <b>All DynamoDB</b> actions as shown above. Choose resource and enter the ARN for table as shown below &minus;</p>
+<img src="/aws_lambda/images/all_dynamodb.jpg" alt="All DynamoDB" />
+<p>Now, click <b>Add</b> as shown below.</p>
+<img src="/aws_lambda/images/click_add.jpg" alt="Click Add" />
+<p>If you click <b>Review policy</b> button at the end of the screen, you can see the following window &minus;</p>
+<img src="/aws_lambda/images/review_policy.jpg" alt="Review Policy" />
+<p>Enter name of the policy and click <b>Create policy</b> button at the end of the page. Now, we need to create role to be used with Lambda. We need permissionsforDynamoDB, APIGateway and Lambda.</p>
+<p>Go to AWS services and select IAM. Select Roles from left side and add the required roles.</p>
+<img src="/aws_lambda/images/create_policy_button.jpg" alt="Create Policy Button" />
+<p>Enter the role name and click <b>Create role</b>. The role created is <b>roleforlambdaexample</b>.</p>
+<h2>Create Form for User Registration</h2>
+<p>Here is the display of the user registration form to enter and to read the data from the dynamodb table.</p>
+<img src="/aws_lambda/images/user_registration.jpg" alt="User Registration" />
+<h2>Create AWS Lambda and API Gateway to Send OTP Message to Phone  using SNS service</h2>
+<p>If you see the user registration form, there is a button <b>validate phone</b>. User is suppose to enter phone number and click on <b>validate phone</b> button to validate the phone number.</p>
+<p>For this purpose &minus;</p>
+<p>When a user clicks this button, the API gateway post method which contains the phone details is called and internally AWS Lambda is triggered.</p>
+<p>Then, AWS Lambda sendsOTP to the phone number entered using AWS SNS service.</p>
+<p>The user receives the OTP and has to enter thisOTP number.</p>
+<p>The textbox to enter OTP will appear when the phone number is entered and <b>validate phone</b> button is clicked.</p>
+<p>The OTP received from AWS Lambda and the OTP entered by the user has to match, to allow the user to submit the user registration form.</p>
+<p>A simple block diagram that explains the working of phone validation is shown here &minus;</p>
+<img src="/aws_lambda/images/sns_service.jpg" alt="Sns Service" />
+<p>The AWS Lambda function created is as shown here &minus;</p>
+<img src="/aws_lambda/images/lambda_function_created.jpg" alt="Lambda Function Created" />
+<p>The corresponding AWS Lambda code is as given below &minus;</p>
+<pre class="prettyprint notranslate">
+const aws =  require("aws-sdk");
+const sns = new aws.SNS({
+   region:'us-east-1'
+});
+exports.handler = function(event, context, callback) {
+   let phoneno = event.mphone;
+   let otp = Math.floor(100000 + Math.random() * 900000);
+   let snsmessage = "Your otp is : "+otp;
+   sns.publish({
+      Message: snsmessage,
+      PhoneNumber: "+91"+phoneno
+   }, function (err, data) {
+      if (err) {
+         console.log(err);
+         callback(err, null);
+      } else {
+         console.log(data);
+         callback(null, otp);
+      }	
+   });
+};
+</pre>
+<p>Note that we are using SNS service to send the OTP code. This code is used to validate the mobile number entered by the user in the user registration form. The API gateway created for above phone validation is as follows &minus;</p>
+<img src="/aws_lambda/images/default_timeout.jpg" alt="Default Timeout" />
+<p></p>
+<img src="/aws_lambda/images/application_json.jpg" alt="Application Json" />
+<p>The Lambda function given is <b>phonevalidationexample</b>. We are taking the mobile phone details here to be used inside AWS Lambda. Then, AWS Lambda will send the OTP code to the given mobile number.</p>
+<h2>Create AWS Lambda and API Gateway to POST Form Data and Insert in DynamoDB Table</h2>
+<p>For user registration form, all the fields are mandatory. There is anAJAX call made wherein the data entered in the form is posted to the API Gateway URL.</p>
+<p>A simple block diagram which explains the working of the submit button is shown here &minus;</p>
+<img src="/aws_lambda/images/block_diagram_dynamodb_table.jpg" alt="Block Diagram Dynamodb Table" />
+<p>Once the form is filled, the submit button will call the API gateway which will trigger AWS Lambda. AWS Lambda will get the details of the form from event or theAPI Gateway and the data will be inserted in the DynamodDB table.</p>
+<p>Let us understand the creation of API Gateway and AWS Lambda.</p>
+<p>First, go to AWS services and click Lambda. The Lambda function created is as shown here &minus;</p>
+<img src="/aws_lambda/images/lambda_example.jpg" alt="Lambda Example" />
+<p>Now, to create an API gateway, go to AWS service and select <b>API Gateway</b>. Click on <b>Create API</b> button shown below.</p>
+<img src="/aws_lambda/images/create_api.jpg" alt="Create Api" />
+<p>Enter the <b>API name</b> and click on <b>Create API</b> button to add the API.</p>
+<img src="/aws_lambda/images/create_api_button.jpg" alt="Create Api Button" />
+<p>Now, an API is created called as <b>registeruser</b>. Select the API and click <b>Actions</b> dropdown to create <b>Resource</b>.</p>
+<img src="/aws_lambda/images/new_child_resource.jpg" alt="New Child Resource" />
+<p>Click <b>Create Resource</b>. Now, let us add the <b>POST</b> method. For this, click on resources created on left side and from <b>Actions</b> dropdown select <b>create method</b>. This will display dropdown as shown below &minus;</p>
+<img src="/aws_lambda/images/create_method.jpg" alt="Create Method" />
+<p>Select the POST method and add the Lambda function that we created above.</p>
+<img src="/aws_lambda/images/post_setup.jpg" alt="Post Setup" />
+<p>Click <b>Save</b> button to add the method. To send the form details to Lambda function <b>lambdaexample</b> we need to add the <b>Integration Request</b> as shown below &minus;</p>
+<img src="/aws_lambda/images/integration_request_example.jpg" alt="Integration Request" />
+<p>To post the form details, you will have to click <b>Integration Request</b>. It will display below details.</p>
+<img src="/aws_lambda/images/add_user_post.jpg" alt="Add User Post" />
+<p>Click <b>Body Mapping Templates</b> to add the form fields to be posted.</p>
+<img src="/aws_lambda/images/body_template.jpg" alt="Body Template" />
+<p>Next, click <b>Add mapping template</b> and enter the content type. Here, we have added <b>application/json</b> as the content type. Click it and here you need to enter the field in json format as shown below &minus;</p>
+<img src="/aws_lambda/images/add_mapping_template.jpg" alt="Add Mapping Template" />
+<p>Now, click the <b>Save</b> button and deploy the API as shown below &minus;</p>
+<img src="/aws_lambda/images/deploy_save_button.jpg" alt="Deploy Save Button" />
+<p>Here is the API created for POST which will use inside our .html file. Please note we need to Enable CORS for the resource created. Will use the api gateway url to make ajax call so the CORS has to enabled.</p>
+<p>Select the Methods on which you want to enable the CORS. Click on <b>Enable CORS and replace existing CORS headers</b>.</p> 
+<img src="/aws_lambda/images/core_header.jpg" alt="Core Header" />
+<p>It displays the confirmation screen as follows &minus;</p>
+<img src="/aws_lambda/images/confirmation_screen.jpg" alt="Confirmation Screen" />
+<p>Click <b>Yes, replace existing values</b> to enable CORS.</p>
+<img src="/aws_lambda/images/yes_replaced.jpg" alt="Yes Replaced" />
+<p>The AWS Lambda code forPOST API Gateway is as shown here &minus;</p>
+<pre class="prettyprint notranslate">
+const aws =  require("aws-sdk");
+const docClient = new aws.DynamoDB.DocumentClient({
+   region:'us-east-1'
+});
+exports.handler = function(event, context, callback) {
+   console.log(event);
+   console.log("Entering Data");
+   var data = {
+      TableName : "registeruser",
+      Item : {
+         first_name:event.fname,
+         last_name:event.lname,
+         emailid:event.emailid,	  
+         mobile_no : event.mphone,
+         otp:event.otp,
+         username:event.uname,
+         password:event.passwd,
+         confirm_password:event.cpasswd
+      }
+   }
+   docClient.put(data, function(err, value) {
+      if (err) {
+         console.log("Error");
+         callback(err, null);
+      } else {
+         console.log("data added successfully");
+         callback(null, value);
+      }
+   });
+}
+</pre>
+<p>The event parameter in AWS Lambda handler will have all the details which are added earlier in POST integration request. The details from event are added to the DynamodDB table as shown in the code.</p>
+<p>Now, we need to get the service details from AWS-SDK as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+const aws =  require("aws-sdk");
+const docClient = new aws.DynamoDB.DocumentClient({
+   region:'us-east-1'
+});
+var data = {
+   TableName : "registeruser",
+   Item : {
+      first_name:event.fname,
+      last_name:event.lname,	
+      emailid:event.emailid,
+      mobile_no : event.mphone,
+      otp:event.otp,
+      username:event.uname,
+      password:event.passwd,
+      confirm_password:event.cpasswd
+   }
+}
+docClient.put(data, function(err, value) {
+   if (err) {
+		console.log("Error");
+      callback(err, null);
+   } else {
+      console.log("data added successfully");
+      callback(null, value);
+   }
+});
+</pre>
+<h2>Create AWS Lambda and API Gateway to Read Data from DynamodDB Table</h2>
+<p>Now, we will create AWS Lambda function to read data from DynamoDB table. We will trigger APIGateway to the AWS Lambda function which will send data to the html form.</p>
+<p>The AWS Lambda function created is as shown below &minus;</p>
+<img src="/aws_lambda/images/read_data.jpg" alt="Read Data" />
+<p>The corresponding AWS Lambda code is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+const aws =  require("aws-sdk");
+const docClient = new aws.DynamoDB.DocumentClient({
+   region:'us-east-1'
+});
+exports.handler = function(event, context, callback) {
+   var readdata = {
+      TableName : "registeruser",
+      Limit : 10
+   }
+   docClient.scan(readdata, function(err, data) {
+      if (err) {
+         console.log("Error");
+         callback(err, null);
+      } else {
+         console.log("Data is " + data);
+         callback(null, data);
+      }
+   });
+}
+</pre>
+<p>Here the data is read from the DynamoDB table and given to the callback. Now, we will create APIGateway and add AWS Lambda function as the trigger.</p>
+<p>We will add get method to the API created earlier.</p>
+<img src="/aws_lambda/images/api_created.jpg" alt="Api Created" />
+<p>Lambda function added is <b>lambdareaddataexample</b>. Click <b>Save</b> to save the method and deploy the api.</p>
+<h2>Final Working of the User Registration Form</h2>
+<p>The final display of the form is as shown below &minus;</p>
+<img src="/aws_lambda/images/final_working.jpg" alt="Final Working" />
+<p>Now, enter the details as shown above. Note that the submit button is disabled. It will be enabled only when all the details are entered as shown &minus;</p>
+<img src="/aws_lambda/images/enter_details.jpg" alt="Enter Details" />
+<p>Now, enter the mobile number and click <b>validate phone</b> button. It will display the alert message saying <b>“OTP is send to the mobile, please enter the OTP to continue”</b>. OTP sent to the mobile number is as follows &minus;</p>
+<img src="/aws_lambda/images/otp.jpg" alt="Otp" />
+<p>Enter the OTP and remaining details and submit the form.</p>
+<img src="/aws_lambda/images/remaining_details.jpg" alt="Remaining Details" />
+<p>The data in DynamoDB <b>registeruser</b> table after submit is as shown here &minus;</p>
+<img src="/aws_lambda/images/register_user.jpg" alt="Register User" />
+<p>The code details are as given below &minus;</p>
+<p><b>Example1.html</b></p>
+<pre class="prettyprint notranslate">
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;
+      &lt;script type="text/javascript" src="formdet.js"&gt;&lt;/script&gt;
+      &lt;style&gt;
+         input[type=text], input[type=password],button {
+            width: 100%;
+            padding: 5px 5px;
+            margin: 5px 0;
+            box-sizing: border-box;
+         }
+         #maincontainer {
+            width: 80%;
+            margin: auto;
+            padding: 10px;
+         }
+         div#userregistration {
+            width: 60%;
+            float: left;
+         }
+         div#userdisplay {
+            margin-left: 60%;   
+         }
+      &lt;/style&gt;
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;div id="maincontainer"&gt;
+         &lt;div id="userregistration"&gt;
+            &lt;h1&gt;User Registration Form&lt;/h1&gt;
+            &lt;table border="0"&gt;
+               &lt;tr&gt;
+                  &lt;td&gt;&lt;b&gt;First Name&lt;span style="color:red;"&gt;*&lt;/span&gt; : &lt;/b&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;input type="text" value="" name="fname" id="fname" /&gt;&lt;/td&gt;
+                  &lt;td id="tdfname" style="display:none;"&gt;&lt;span style="color:red;"&gt;Enter First Name&lt;/span&gt;&lt;/td&gt;
+               &lt;/tr&gt;
+               &lt;tr&gt;
+                  &lt;td&gt;&lt;b&gt;Last Name&lt;span style="color:red;"&gt;*&lt;/span&gt; : &lt;/b&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;input type="text" value="" name="lname" id="lname" /&gt;&lt;/td&gt;
+                  &lt;td id="tdlname" style="display:none;"&gt;&lt;span style="color:red;"&gt;Enter Last Name&lt;/span&gt;&lt;/td&gt;
+               &lt;/tr&gt;
+               &lt;tr&gt;
+                  &lt;td&gt;&lt;b&gt;Email Id&lt;span style="color:red;"&gt;*&lt;/span&gt; : &lt;/b&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;input type="text" value="" name="emailid" id="emailid" /&gt;&lt;/td&gt;
+                  &lt;td id="tdemailid" style="display:none;"&gt;&lt;span style="color:red;"&gt;Enter Email&lt;/span&gt;&lt;/td&gt;
+               &lt;/tr&gt;
+               &lt;tr&gt;
+                  &lt;td&gt;&lt;b&gt;Mobile No&lt;span style="color:red;"&gt;*&lt;/span&gt; : &lt;/b&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;input type="text" name="mphone" id="mphone"/&gt;&lt;/td&gt;
+                  &lt;td id="tdmphone" style="display:none;"&gt;&lt;span style="color:red;"&gt;Enter Mobile Number&lt;/span&gt;&lt;/td&gt;
+               &lt;/tr&gt;   
+               &lt;tr&gt;
+                  &lt;td&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;button id="validatephone"&gt;validate phone&lt;/button&gt;&lt;/td&gt;	 
+                  &lt;td&gt;&lt;/td&gt;
+               &lt;/tr&gt;
+               &lt;tr id="otpdiv" style="display:none;"&gt;
+                  &lt;td&gt;&lt;b&gt;Enter OTP&lt;span style="color:red;"&gt;*&lt;/span&gt;:&lt;/b&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;input type="text" value="" name="otp" id="otp" /&gt;&lt;/td&gt;
+                  &lt;td id="tdotp" style="display:none;"&gt;&lt;span style="color:red;"&gt;Enter OTP&lt;/span&gt;&lt;/td&gt;
+               &lt;/tr&gt;
+               &lt;tr&gt;
+                  &lt;td&gt;&lt;b&gt;Username&lt;span style="color:red;"&gt;*&lt;/span&gt;: &lt;/b&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;input type="text" value="" name="uname" id="uname"/&gt;&lt;/td&gt;
+                  &lt;td id="tduname" style="display:none;"&gt;&lt;span style="color:red;"&gt;Enter Username&lt;/span&gt;&lt;/td&gt;
+               &lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;b&gt;Password&lt;span style="color:red;"&gt;*&lt;/span&gt; :&lt;/b&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;input type="password" value="" name="passwd" id="passwd"/&gt;&lt;/td&gt;
+                  &lt;td id="tdpasswd" style="display:none;"&gt;&lt;span style="color:red;"&gt;Enter Password&lt;/span&gt;&lt;/td&gt;
+               &lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;b&gt;Confirm Password&lt;span style="color:red;"&gt;*&lt;/span&gt; :&lt;/b&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;input type="password" value="" name="cpasswd" id="cpasswd"/&gt;&lt;/td&gt;
+                  &lt;td id="tdcpasswd" style="display:none;"&gt;&lt;span style="color:red;"&gt;Enter Confirm Password&lt;/span&gt;&lt;/td&gt;
+               &lt;/tr&gt;
+               &lt;tr&gt;
+                  &lt;td&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;button name="submit" id="submit" style="display:;" disabled="true"&gt;Submit&lt;/button&gt;&lt;/td&gt;
+                  &lt;td&gt;&lt;/td&gt;
+               &lt;/tr&gt;
+            &lt;/table&gt;
+         &lt;/div&gt;
+         
+         &lt;div id="userdisplay"&gt;
+            &lt;h1&gt;User Display&lt;/h1&gt;
+            &lt;table id="displaydetails" style="display:block;width:80%;padding:5px;margin:5px; border: 1px solid black;"&gt;
+               &lt;tr&gt;
+                  &lt;td&gt;&lt;/td&gt;
+                  &lt;td&gt;FirstName&lt;/td&gt;
+                  &lt;td&gt;LastName&lt;/td&gt;
+                  &lt;td&gt;Mobile No&lt;/td&gt;
+                  &lt;td&gt;EmailID&lt;/td&gt;
+               &lt;/tr&gt;
+            &lt;/table&gt;
+         &lt;/div&gt;
+      &lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><b>formdet.js</b></p>
+<pre class="prettyprint notranslate">
+function validateform() {
+   var sError="";
+   if ($("#fname").val() === "") {
+      $("#tdfname").css("display","");
+      sError++;
+   }
+   if ($("#lname").val() === "") {
+      $("#tdlname").css("display","");
+      sError++;
+   }
+   if ($("#emailid").val() === "") {
+      $("#tdemailid").css("display","");
+      sError++;
+   }
+   if ($("#mphone").val() === "") {
+      $("#tdmphone").css("display","");
+      sError++;
+   }
+   if ($("#otp").val() === "") {
+      $("#tdotp").css("display","");
+      sError++;
+   }
+   if ($("#uname").val() === "") {
+      $("#tduname").css("display","");
+      sError++;
+   }
+   if ($("#passwd").val() === "") {
+      $("#tdpasswd").css("display","");
+      sError++;
+   }
+   if ($("#cpasswd").val() === "") {
+      $("#tdcpasswd").css("display","");
+      sError++;
+   }
+   if (sError === "") {
+      return true;
+   } else {
+      return false;
+   }
+}
+$("#fname").change(function() {
+   if ($("#fname").val() !== "") {
+      $("#tdfname").css("display","none");			
+   } else {
+      $("#tdfname").css("display","");			
+   }
+});
+$("#lname").change(function() {
+   if ($("#lname").val() !== "") {
+      $("#tdlname").css("display","none");			
+   } else {
+      $("#tdlname").css("display","");			
+   }
+});
+$("#emailid").change(function() {
+   if ($("#emailid").val() !== "") {
+      $("#tdemailid").css("display","none");			
+   } else {
+      $("#tdemailid").css("display","");			
+   }
+});
+$("#mphone").change(function() {
+   if ($("#mphone").val() !== "") {
+      $("#tdmphone").css("display","none");			
+   } else {
+      $("#tdmphone").css("display","");			
+   }
+});
+$("#otp").change(function() {
+   if ($("#otp").val() !== "") {
+      $("#tdotp").css("display","none");			
+   } else {
+      $("#tdotp").css("display","");			
+   }
+});
+$("#uname").change(function() {
+   if ($("#uname").val() !== "") {
+      $("#tduname").css("display","none");			
+   } else {
+      $("#tduname").css("display","");			
+   }
+});
+$("#passwd").change(function() {
+   if ($("#passwd").val() !== "") {
+      $("#tdpasswd").css("display","none");			
+   } else {
+      $("#tdpasswd").css("display","");			
+   }
+});
+$("#cpasswd").change(function() {
+   if ($("#cpasswd").val() !== "") {
+      $("#tdcpasswd").css("display","none");			
+   } else {
+      $("#tdcpasswd").css("display","");			
+   }
+});
+
+var posturl = "https://4rvwimysc1.execute-api.us-east-1.amazonaws.com/prod/adduser";
+var phonevalidationurl = "https://wnvt01y6nc.execute-api.us-east-1.amazonaws.com/prod/validate";
+var otpsend = "";
+function getdata() {
+   var a = 0;
+   $.ajax({
+      type:'GET',
+      url:posturl,				
+      success: function(data) {
+         $("#displaydetails").html('');
+         $("#displaydetails").css("display", "");
+         console.log(data);
+         $("#displaydetails").append('&lt;tr style="padding:5px;margin:5px;background-color:gray;"&gt;&lt;td&gt;Name&lt;/td&gt;&lt;td&gt;Mobile No&lt;/td&gt;&lt;td&gt;EmailID&lt;/td&gt;&lt;/tr&gt;');
+         data.Items.forEach(function(registeruser) {
+            var clr = (a%2 === 0) ? "#eee": "white";
+            a++;
+            $("#displaydetails").append('&lt;tr style="padding:5px;margin:5px;background-color:'+clr+'"&gt;&lt;td&gt;'+registeruser.first_name+'-'+registeruser.last_name+'&lt;/td&gt;&lt;td&gt;'+registeruser.mobile_no+'&lt;/td&gt;&lt;td&gt;'+registeruser.emailid+'&lt;/td&gt;&lt;/tr&gt;');
+         });
+      },
+      error: function(err) {
+         console.log(err);
+      }
+   });
+}
+
+$(document).ready(function() {
+   $("#otp").on("change", function() {
+      var otpentered = $("#otp").val();
+      if (otpsend == otpentered) {
+         document.getElementById("submit").disabled = false;
+      } else {
+         alert("OTP is not valid.Please enter the valid one or validate phone again to continue!");
+         document.getElementById("submit").disabled = true;
+      }
+   });
+   $("#validatephone").on("click", function() {
+      $.ajax({
+         type:'POST',
+         url:phonevalidationurl,
+         data:JSON.stringify({
+            "mphone":$("#mphone").val()					
+         }),
+         success: function(data) {
+            $("#otpdiv").css("display", "");
+            alert("OTP is send to the mobile, please enter to continue");
+            console.log(data);
+            otpsend = data;
+         },
+         error : function(err) {
+            $("#otpdiv").css("display", "none");
+            alert("Invalid mobile no.");
+         }
+      });
+   });
+   $("#submit").on("click", function() {
+      if (validateform()) {
+         $.ajax({
+            type:'POST',
+            url:posturl,
+            data:JSON.stringify({
+               "fname": $("#fname").val(),
+               "lname": $("#lname").val(),
+               "emailid":$("#emailid").val(),
+               "mphone":$("#mphone").val(),
+               "otp":$("#otp").val(),
+               "uname":$("#uname").val(),
+               "passwd":$("#passwd").val(),
+               "cpasswd":$("#cpasswd").val()
+            }),
+            success: function(data) {
+               alert("Data added successfully");
+               console.log(data);
+               getdata();
+            }
+         });
+      }
+   });
+   getdata();
+});
+</pre>
+<p>Till now, we have done AJAX call to the API created and posted the data as shown above.</p>
+<p>The AJAX call to add the data to the table is as follows &minus;</p> 
+<pre class="prettyprint notranslate">
+var posturl = "https://4rvwimysc1.execute-api.us-east-1.amazonaws.com/prod/adduser";
+$(document).ready(function() {
+   $("#submit").on("click", function() {
+      if (validateform()) {
+         $.ajax({
+            type:'POST',
+            url:posturl,
+            data:JSON.stringify({
+               "fname": $("#fname").val(),
+               "lname": $("#lname").val(),
+               "emailid":$("#emailid").val(),
+               "mphone":$("#mphone").val(),
+               "otp":$("#otp").val(),
+               "uname":$("#uname").val(),
+               "passwd":$("#passwd").val(),
+               "cpasswd":$("#cpasswd").val()
+            }),
+            success: function(data) {
+               alert("Data added successfully");
+               console.log(data);
+               getdata();
+            }
+         });
+      }
+   });
+});
+</pre>
+<p>Note that to read the data, a function is called, whose code is given below &minus;</p>
+<pre class="prettyprint notranslate">
+function getdata() {
+   var a = 0;
+   $.ajax({
+      type:'GET',
+      url:posturl,				
+      success: function(data) {
+         $("#displaydetails").html('');
+         $("#displaydetails").css("display", "");
+         console.log(data);
+         $("#displaydetails").append('&lt;tr style="padding:5px;margin:5px;background-color:gray;"&gt;&lt;td&gt;Name&lt;/td&gt;&lt;td&gt;Mobile No&lt;/td&gt;&lt;td&gt;EmailID&lt;/td&gt;&lt;/tr&gt;');
+         data.Items.forEach(function(registeruser) {
+            var clr = (a%2 === 0) ? "#eee": "white";
+            a++;
+            $("#displaydetails").append('&lt;tr style="padding:5px;margin:5px;background-color:'+clr+'"&gt;&lt;td&gt;'+registeruser.first_name+'-'+registeruser.last_name+'&lt;/td&gt;&lt;td&gt;'+registeruser.mobile_no+'&lt;/td&gt;&lt;td&gt;'+registeruser.emailid+'&lt;/td&gt;&lt;/tr&gt;');
+         });
+      },
+      error: function(err) {
+         console.log(err);
+      }
+   });
+}
+</pre>
+<p>When you click mobile number validate button, the following code is called and sends the mobile number &minus;</p>
+<pre class="prettyprint notranslate"> 
+var phonevalidationurl = "https://wnvt01y6nc.execute-api.us-east-1.amazonaws.com/prod/validate";
+var otpsend = "";
+$("#validatephone").on("click", function() {
+   $.ajax({
+      type:'POST',
+      url:phonevalidationurl,
+      data:JSON.stringify({
+         "mphone":$("#mphone").val()					
+      }),
+      success: function(data) {
+         $("#otpdiv").css("display", "");
+         alert("OTP is send to the mobile, please enter the OTP to continue");
+         console.log(data);
+         otpsend = data;
+      },
+      error : function(err) {
+         $("#otpdiv").css("display", "none");
+         alert("Invalid mobile no.");
+      }
+   });
+});
+
+// Validate otp
+$("#otp").on("change", function() {
+   var otpentered = $("#otp").val();
+   if (otpsend == otpentered) {
+      document.getElementById("submit").disabled = false;
+   } else {
+      alert("OTP is not valid.Please enter the valid one or validate phone again to continue!");
+      document.getElementById("submit").disabled = true;
+   }
+}
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/aws_lambda/aws_lambda_monitoring_and_troubleshooting_using_cloudwatch.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/aws_lambda/aws_lambda_quick_guide.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

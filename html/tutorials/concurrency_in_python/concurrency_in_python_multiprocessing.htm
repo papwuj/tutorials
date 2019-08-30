@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Concurrency in Python - Multiprocessing</title>
+<meta charset="utf-8">
+<meta name="description" content="Concurrency in Python - Multiprocessing - In this chapter, we will focus more on the comparison between multiprocessing and multithreading."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/concurrency_in_python/concurrency_in_python_multiprocessing.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#036db0;
+}
+a.demo {
+    background:#036db0;
+}
+li.heading {
+    background:#036db0;
+}
+.course-box{background:#036db0}
+.home-intro-sub p{color:#036db0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/concurrency_in_python/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/concurrency_in_python/images/concurrency-in-python-mini-logo.jpg" alt=" Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Concurrency in Python Tutorial</li>
+<li><a href="/concurrency_in_python/index.htm">Home</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_introduction.htm">Introduction</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_concurrency_vs_parallelism.htm">Concurrency vs Parallelism</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_system_and_memory_architecture.htm">System &amp; Memory Architecture</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_threads.htm">Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_implementation_of_threads.htm">Implementation of Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_synchronizing_threads.htm">Synchronizing Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_threads_intercommunication.htm">Threads Intercommunication</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_testing_thread_applications.htm">Testing Thread Applications</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_debugging_thread_applications.htm">Debugging Thread Applications</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_benchmarking_and_profiling.htm">Benchmarking &amp; Profiling</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_pool_of_threads.htm">Pool of Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_pool_of_processes.htm">Pool of Processes</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_multiprocessing.htm">Multiprocessing</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_processes_intercommunication.htm">Processes Intercommunication</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_eventdriven_programming.htm">Event-Driven Programming</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_reactive_programming.htm">Reactive Programming</a></li>
+<ul class="toc chapters">
+<li class="heading">Concurrency in Python Resources</li>
+<li><a href="/concurrency_in_python/concurrency_in_python_quick_guide.htm">Quick Guide</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_useful_resources.htm">Useful Resources</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_discussion.htm">Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Concurrency in Python - Multiprocessing</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/concurrency_in_python/concurrency_in_python_pool_of_processes.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/concurrency_in_python/concurrency_in_python_processes_intercommunication.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, we will focus more on the comparison between multiprocessing and multithreading.</p>
+<h3>Multiprocessing</h3>
+<p>It is the use of two or more CPUs units within a single computer system. It is the best approach to get the full potential from our hardware by utilizing full number of CPU cores available in our computer system.</p>
+<h3>Multithreading</h3>
+<p>It is the ability of a CPU to manage the use of operating system by executing multiple threads concurrently. The main idea of multithreading is to achieve parallelism by dividing a process into multiple threads.</p>
+<p>The following table shows some of the important differences between them &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Multiprocessing</th>
+<th style="text-align:center;">Multiprogramming</th>
+</tr>
+<tr>
+<td style="vertical-align:middle; width:44%">Multiprocessing refers to processing of multiple processes at same time by multiple CPUs.</td>
+<td>Multiprogramming keeps several programs in main memory at the same time and execute them concurrently utilizing single CPU.</td>
+</tr>
+<tr>
+<td>It utilizes multiple CPUs.</td>
+<td>It utilizes single CPU.</td>
+</tr>
+<tr>
+<td>It permits parallel processing.</td>
+<td>Context switching takes place.</td>
+</tr>
+<tr>
+<td>Less time taken to process the jobs.</td>
+<td>More Time taken to process the jobs.</td>
+</tr>
+<tr>
+<td>It facilitates much efficient utilization of devices of the computer system.</td>
+<td style="vertical-align:middle;">Less efficient than multiprocessing.</td>
+</tr>
+<tr>
+<td>Usually more expensive.</td>
+<td>Such systems are less expensive.</td>
+</tr>
+</table>
+<h2>Eliminating impact of global interpreter lock (GIL)</h2>
+<p>While working with concurrent applications, there is a limitation present in Python called the <b>GIL (Global Interpreter Lock)</b>. GIL never allows us to utilize multiple cores of CPU and hence we can say that there are no true threads in Python. GIL is the mutex – mutual exclusion lock, which makes things thread safe. In other words, we can say that GIL prevents multiple threads from executing Python code in parallel. The lock can be held by only one thread at a time and if we want to execute a thread then it must acquire the lock first.</p>
+<p>With the use of multiprocessing, we can effectively bypass the limitation caused by GIL &minus;</p>
+<ul class="list">
+<li><p>By using multiprocessing, we are utilizing the capability of multiple processes and hence we are utilizing multiple instances of the GIL.</p></li>
+<li><p>Due to this, there is no restriction of executing the bytecode of one thread within our programs at any one time.</p></li>
+</ul>
+<h2>Starting Processes in Python</h2>
+<p>The following three methods can be used to start a process in Python within the multiprocessing module &minus;</p>
+<ul class="list">
+<li>Fork</li>
+<li>Spawn</li>
+<li>Forkserver</li>
+</ul>
+<h3>Creating a process with Fork</h3>
+<p>Fork command is a standard command found in UNIX. It is used to create new processes called child processes. This child process runs concurrently with the process called the parent process. These child processes are also identical to their parent processes and inherit all of the resources available to the parent. The following system calls are used while creating a process with Fork &minus;</p>
+<ul class="list">
+<li><p><b>fork()</b> &minus; It is a system call generally implemented in kernel. It is used to create a copy of the process.p></li>
+<li><p><b>getpid()</b> &minus; This system call returns the process ID(PID) of the calling process.</p></li>
+</ul>
+<h3>Example</h3>
+<p>The following Python script example will help you understabd how to create a new child process and get the PIDs of child and parent processes &minus;</p>
+<pre class="prettyprint notranslate">
+import os
+
+def child():
+   n = os.fork()
+   
+   if n &gt; 0:
+      print("PID of Parent process is : ", os.getpid())
+
+   else:
+      print("PID of Child process is : ", os.getpid())
+child()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+PID of Parent process is : 25989
+PID of Child process is : 25990
+</pre>
+<h2>Creating a process with Spawn</h2>
+<p>Spawn means to start something new. Hence, spawning a process means the creation of a new process by a parent process. The parent process continues its execution asynchronously or waits until the child process ends its execution. Follow these steps for spawning a process &minus;</p>
+<ul class="list">
+<li><p>Importing multiprocessing module.</p></li>
+<li><p>Creating the object process.</p></li>
+<li><p>Starting the process activity by calling <b>start()</b> method.</p></li>
+<li><p>Waiting until the process has finished its work and exit by calling <b>join()</b> method.</p></li>
+</ul>
+<h3>Example</h3>
+<p>The following example of Python script helps in spawning three processes</p>
+<pre class="prettyprint notranslate">
+import multiprocessing
+
+def spawn_process(i):
+   print ('This is process: %s' %i)
+   return
+
+if __name__ == '__main__':
+   Process_jobs = []
+   for i in range(3):
+   p = multiprocessing.Process(target = spawn_process, args = (i,))
+      Process_jobs.append(p)
+   p.start()
+   p.join()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+This is process: 0
+This is process: 1
+This is process: 2
+</pre>
+<h2>Creating a process with Forkserver</h2>
+<p>Forkserver mechanism is only available on those selected UNIX platforms that support passing the file descriptors over Unix Pipes. Consider the following points to understand the working of Forkserver mechanism &minus;</p>
+<ul class="list">
+<li><p>A server is instantiated on using Forkserver mechanism for starting new process.</p></li>
+<li><p>The server then receives the command and handles all the requests for creating new processes.</p></li>
+<li><p>For creating a new process, our python program will send a request to Forkserver and it will create a process for us.</p></li>
+<li><p>At last, we can use this new created process in our programs.</p></li>
+</ul>
+<h2>Daemon processes in Python</h2>
+<p>Python <b>multiprocessing</b> module allows us to have daemon processes through its daemonic option. Daemon processes or the processes that are running in the background follow similar concept as the daemon threads. To execute the process in the background, we need to set the daemonic flag to true. The daemon process will continue to run as long as the main process is executing and it will terminate after finishing its execution or when the main program would be killed.</p>
+<h3>Example</h3>
+<p>Here, we are using the same example as used in the daemon threads. The only difference is the change of module from <b>multithreading</b> to <b>multiprocessing</b> and setting the daemonic flag to true. However, there would be a change in output as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+import multiprocessing
+import time
+
+def nondaemonProcess():
+   print("starting my Process")
+   time.sleep(8)
+   print("ending my Process")
+def daemonProcess():
+   while True:
+   print("Hello")
+   time.sleep(2)
+if __name__ == '__main__':
+   nondaemonProcess = multiprocessing.Process(target = nondaemonProcess)
+   daemonProcess = multiprocessing.Process(target = daemonProcess)
+   daemonProcess.daemon = True
+   nondaemonProcess.daemon = False
+   daemonProcess.start()
+   nondaemonProcess.start()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+starting my Process
+ending my Process
+</pre>
+<p>The output is different when compared to the one generated by daemon threads, because the process in no daemon mode have an output. Hence, the daemonic process ends automatically after the main programs end to avoid the persistence of running processes.</p>
+<h2>Terminating processes in Python</h2>
+<p>We can kill or terminate a process immediately by using the <b>terminate()</b> method. We will use this method to terminate the child process, which has been created with the help of function, immediately before completing its execution.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+import multiprocessing
+import time
+def Child_process():
+   print ('Starting function')
+   time.sleep(5)
+   print ('Finished function')
+P = multiprocessing.Process(target = Child_process)
+P.start()
+print("My Process has terminated, terminating main thread")
+print("Terminating Child Process")
+P.terminate()
+print("Child Process successfully terminated")
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+My Process has terminated, terminating main thread
+Terminating Child Process
+Child Process successfully terminated
+</pre>
+<p>The output shows that the program terminates before the execution of child process that has been created with the help of the Child_process() function. This implies that the child process has been terminated successfully.</p>
+<h2>Identifying the current process in Python</h2>
+<p>Every process in the operating system is having process identity known as PID. In Python, we can find out the PID of current process with the help of the following command &minus;</p>
+<pre class="prettyprint notranslate">
+import multiprocessing
+print(multiprocessing.current_process().pid)
+</pre>
+<h3>Example</h3>
+<p>The following example of Python script helps find out the PID of main process as well as PID of child process &minus;</p>
+<pre class="prettyprint notranslate">
+import multiprocessing
+import time
+def Child_process():
+   print("PID of Child Process is: {}".format(multiprocessing.current_process().pid))
+print("PID of Main process is: {}".format(multiprocessing.current_process().pid))
+P = multiprocessing.Process(target=Child_process)
+P.start()
+P.join()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+PID of Main process is: 9401
+PID of Child Process is: 9402
+</pre>
+<h2>Using a process in subclass</h2>
+<p>We can create threads by sub-classing the <b>threading.Thread</b> class. In addition, we can also create processes by sub-classing the <b>multiprocessing.Process</b> class. For using a process in subclass, we need to consider the following points &minus;</p>
+<ul class="list">
+<li><p>We need to define a new subclass of the <b>Process</b> class.</p></li>
+<li><p>We need to override the <b>_init_(self [,args] )</b> class.</p></li>
+<li><p>We need to override the of the <b>run(self [,args] )</b> method to implement what <b>Process</b></p></li>
+<li><p>We need to start the process by invoking the<b>start()</b> method.</p></li>
+</ul>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+import multiprocessing
+class MyProcess(multiprocessing.Process):
+   def run(self):
+   print ('called run method in process: %s' %self.name)
+   return
+if __name__ == '__main__':
+   jobs = []
+   for i in range(5):
+   P = MyProcess()
+   jobs.append(P)
+   P.start()
+   P.join()
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+called run method in process: MyProcess-1
+called run method in process: MyProcess-2
+called run method in process: MyProcess-3
+called run method in process: MyProcess-4
+called run method in process: MyProcess-5
+</pre>
+<h2>Python Multiprocessing Module – Pool Class</h2>
+<p>If we talk about simple parallel <b>processing</b> tasks in our Python applications, then multiprocessing module provide us the Pool class. The following methods of <b>Pool</b> class can be used to spin up number of child processes within our main program</p>
+<h3>apply() method</h3>
+<p>This method is similar to the<b>.submit()</b>method of <b>.ThreadPoolExecutor.</b>It blocks until the result is ready.</p>
+<h3>apply_async() method</h3>
+<p>When we need parallel execution of our tasks then we need to use the<b>apply_async()</b>method to submit tasks to the pool. It is an asynchronous operation that will not lock the main thread until all the child processes are executed.</p>
+<h3>map() method</h3>
+<p>Just like the <b>apply()</b> method, it also blocks until the result is ready. It is equivalent to the built-in <b>map()</b> function that splits the iterable data in a number of chunks and submits to the process pool as separate tasks.</p>
+<h3>map_async() method</h3>
+<p>It is a variant of the <b>map()</b> method as <b>apply_async()</b> is to the <b>apply()</b> method. It returns a result object. When the result becomes ready, a callable is applied to it. The callable must be completed immediately; otherwise, the thread that handles the results will get blocked.</p>
+<h3>Example</h3>
+<p>The following example will help you implement a process pool for performing parallel execution. A simple calculation of square of number has been performed by applying the <b>square()</b> function through the <b>multiprocessing.Pool</b> method. Then <b>pool.map()</b> has been used to submit the 5, because input is a list of integers from 0 to 4. The result would be stored in <b>p_outputs</b> and it is printed.</p>
+<pre class="prettyprint notranslate">
+def square(n):
+   result = n*n
+   return result
+if __name__ == '__main__':
+   inputs = list(range(5))
+   p = multiprocessing.Pool(processes = 4)
+   p_outputs = pool.map(function_square, inputs)
+   p.close()
+   p.join()
+   print ('Pool :', p_outputs)
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Pool : [0, 1, 4, 9, 16]
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/concurrency_in_python/concurrency_in_python_pool_of_processes.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/concurrency_in_python/concurrency_in_python_processes_intercommunication.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Ruby - File I/O</title>
+<meta charset="utf-8">
+<meta name="description" content="Ruby - File I/O - Ruby provides a whole set of I/O-related methods implemented in the Kernel module. All the I/O methods are derived from the class IO."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/ruby/ruby_input_output.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#891204;
+}
+a.demo {
+    background:#891204;
+}
+li.heading {
+    background:#891204;
+}
+.course-box{background:#891204}
+.home-intro-sub p{color:#891204}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/ruby/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/ruby/images/ruby-mini-logo.jpg" alt="Ruby Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Ruby Basics</li>
+<li><a href="/ruby/index.htm">Ruby - Home</a></li>
+<li><a href="/ruby/ruby_overview.htm">Ruby - Overview</a></li>
+<li><a href="/ruby/ruby_environment.htm">Ruby - Environment Setup</a></li>
+<li><a href="/ruby/ruby_syntax.htm">Ruby - Syntax</a></li>
+<li><a href="/ruby/ruby_classes.htm">Ruby - Classes and Objects</a></li>
+<li><a href="/ruby/ruby_variables.htm">Ruby - Variables</a></li>
+<li><a href="/ruby/ruby_operators.htm">Ruby - Operators</a></li>
+<li><a href="/ruby/ruby_comments.htm">Ruby - Comments</a></li>
+<li><a href="/ruby/ruby_if_else.htm">Ruby - IF...ELSE</a></li>
+<li><a href="/ruby/ruby_loops.htm">Ruby - Loops</a></li>
+<li><a href="/ruby/ruby_methods.htm">Ruby - Methods</a></li>
+<li><a href="/ruby/ruby_blocks.htm">Ruby - Blocks</a></li>
+<li><a href="/ruby/ruby_modules.htm">Ruby - Modules</a></li>
+<li><a href="/ruby/ruby_strings.htm">Ruby - Strings</a></li>
+<li><a href="/ruby/ruby_arrays.htm">Ruby - Arrays</a></li>
+<li><a href="/ruby/ruby_hashes.htm">Ruby - Hashes</a></li>
+<li><a href="/ruby/ruby_date_time.htm">Ruby - Date &amp; Time</a></li>
+<li><a href="/ruby/ruby_ranges.htm">Ruby - Ranges</a></li>
+<li><a href="/ruby/ruby_iterators.htm">Ruby - Iterators</a></li>
+<li><a href="/ruby/ruby_input_output.htm">Ruby - File I/O</a></li>
+<li><a href="/ruby/ruby_exceptions.htm">Ruby - Exceptions</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Ruby Advanced</li>
+<li><a href="/ruby/ruby_object_oriented.htm">Ruby - Object Oriented</a></li>
+<li><a href="/ruby/ruby_regular_expressions.htm">Ruby - Regular Expressions</a></li>
+<li><a href="/ruby/ruby_database_access.htm">Ruby - Database Access</a></li>
+<li><a href="/ruby/ruby_web_applications.htm">Ruby - Web Applications</a></li>
+<li><a href="/ruby/ruby_sending_email.htm">Ruby - Sending Email</a></li>
+<li><a href="/ruby/ruby_socket_programming.htm">Ruby - Socket Programming</a></li>
+<li><a href="/ruby/ruby_xml_xslt.htm">Ruby - Ruby/XML, XSLT</a></li>
+<li><a href="/ruby/ruby_web_services.htm">Ruby - Web Services</a></li>
+<li><a href="/ruby/ruby_tk_guide.htm">Ruby - Tk Guide</a></li>
+<li><a href="/ruby/ruby_ldap.htm">Ruby - Ruby/LDAP Tutorial</a></li>
+<li><a href="/ruby/ruby_multithreading.htm">Ruby - Multithreading</a></li>
+<li><a href="/ruby/ruby_builtin_functions.htm">Ruby - Built-in Functions</a></li>
+<li><a href="/ruby/ruby_predefined_variables.htm">Ruby - Predefined Variables</a></li>
+<li><a href="/ruby/ruby_predefined_constants.htm">Ruby - Predefined Constants</a></li>
+<li><a href="/ruby/ruby_associated_tools.htm">Ruby - Associated Tools</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Ruby Useful Resources</li>
+<li><a href="/ruby/ruby_quick_guide.htm">Ruby - Quick Guide</a></li>
+<li><a href="/ruby/ruby_resources.htm">Ruby - Useful Resources</a></li>
+<li><a href="/ruby/ruby_discussion.htm">Ruby - Discussion</a></li>
+<li><a href="/ruby-on-rails/index.htm">Ruby - Ruby on Rails Tutorial</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Ruby - File I/O</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/ruby/ruby_iterators.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/ruby/ruby_exceptions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Ruby provides a whole set of I/O-related methods implemented in the Kernel module. All the I/O methods are derived from the class IO.</p>
+<p>The class <i>IO</i> provides all the basic methods, such as <i>read, write, gets, puts, readline, getc,</i> and <i>printf</i>.</p>
+<p>This chapter will cover all the basic I/O functions available in Ruby. For more functions, please refer to Ruby Class <i>IO</i>.</p>
+<h2>The puts Statement</h2>
+<p>In the previous chapters, you have assigned values to variables and then printed the output using <i>puts</i> statement.</p>
+<p>The <i>puts</i> statement instructs the program to display the value stored in the variable. This will add a new line at the end of each line it writes.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/F0FDkP" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+val1 = "This is variable one"
+val2 = "This is variable two"
+puts val1
+puts val2
+</pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">
+This is variable one
+This is variable two
+</pre>
+<h2>The gets Statement</h2>
+<p>The <i>gets</i> statement can be used to take any input from the user from standard screen called STDIN.</p>
+<h3>Example</h3>
+<p>The following code shows you how to use the gets statement. This code will prompt the user to enter a value, which will be stored in a variable val and finally will be printed on STDOUT.</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+puts "Enter a value :"
+val = gets
+puts val
+</pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">
+Enter a value :
+This is entered value
+This is entered value
+</pre>
+<h2>The putc Statement</h2>
+<p>Unlike the <i>puts</i> statement, which outputs the entire string onto the screen, the <i>putc</i> statement can be used to output one character at a time.</p>
+<h3>Example</h3>
+<p>The output of the following code is just the character H &minus;</p>
+<div class="demo-view">
+<a href="http://tpcg.io/640Hai" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+str = "Hello Ruby!"
+putc str
+</pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">
+H
+</pre>
+<h2>The print Statement</h2>
+<p>The <i>print</i> statement is similar to the <i>puts</i> statement. The only difference is that the <i>puts</i> statement goes to the next line after printing the contents, whereas with the <i>print</i> statement the cursor is positioned on the same line.</p>
+<h3>Example</h3>
+<div class="demo-view">
+<a href="http://tpcg.io/1i7dbn" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+print "Hello World"
+print "Good Morning"
+</pre>
+<p>This will produce the following result &minus;</p>
+<pre class="result notranslate">
+Hello WorldGood Morning
+</pre>
+<h2>Opening and Closing Files</h2>
+<p>Until now, you have been reading and writing to the standard input and output. Now, we will see how to play with actual data files.</p>
+<h2>The File.new Method</h2>
+<p>You can create a <i>File</i> object using <i>File.new</i> method for reading, writing, or both, according to the mode string. Finally, you can use <i>File.close</i> method to close that file.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+aFile = File.new("filename", "mode")
+   # ... process the file
+aFile.close
+</pre>
+<h2>The File.open Method</h2>
+<p>You can use <i>File.open</i> method to create a new file object and assign that file object to a file. However, there is one difference in between <i>File.open</i> and <i>File.new</i> methods. The difference is that the <i>File.open</i> method can be associated with a block, whereas you cannot do the same using the <i>File.new</i> method.</p>
+<pre class="prettyprint notranslate">
+File.open("filename", "mode") do |aFile|
+   # ... process the file
+end
+</pre>
+<section class="toggle">
+<label><i class="icon icon-minus"></i><i class="icon icon-plus"></i>Here is a list of The Different Modes of opening a File &minus;</label>
+<div class="toggle-content" style="display: none;"> 
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Modes &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>r</b></p>
+<p>Read-only mode. The file pointer is placed at the beginning of the file. This is the default mode.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>r+</b></p>
+<p>Read-write mode. The file pointer will be at the beginning of the file.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>w</b></p>
+<p>Write-only mode. Overwrites the file if the file exists. If the file does not exist, creates a new file for writing.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>w+</b></p>
+<p>Read-write mode. Overwrites the existing file if the file exists. If the file does not exist, creates a new file for reading and writing.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>a</b></p>
+<p>Write-only mode. The file pointer is at the end of the file if the file exists. That is, the file is in the append mode. If the file does not exist, it creates a new file for writing.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>a+</b></p>
+<p>Read and write mode. The file pointer is at the end of the file if the file exists. The file opens in the append mode. If the file does not exist, it creates a new file for reading and writing.</p></td>
+</tr>
+</table>
+</div>
+</section>
+<h2>Reading and Writing Files</h2>
+<p>The same methods that we've been using for 'simple' I/O are available for all file objects. So, gets reads a line from standard input, and <i>aFile.gets</i> reads a line from the file object aFile.</p>
+<p>However, I/O objects provides additional set of access methods to make our lives easier.</p>
+<h2>The sysread Method</h2>
+<p>You can use the method <i>sysread</i> to read the contents of a file. You can open the file in any of the modes when using the method sysread. For example &minus;</p>
+<p>Following is the input text file &minus;</p>
+<pre class="prettyprint notranslate">
+This is a simple text file for testing purpose.
+</pre>
+<p>Now let's try to read this file &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+aFile = File.new("input.txt", "r")
+if aFile
+   content = aFile.sysread(20)
+   puts content
+else
+   puts "Unable to open file!"
+end
+</pre>
+<p>This statement will output the first 20 characters of the file. The file pointer will now be placed at the 21st character in the file.</p>
+<h2>The syswrite Method</h2>
+<p>You can use the method syswrite to write the contents into a file. You need to open the file in write mode when using the method syswrite. For example &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+aFile = File.new("input.txt", "r+")
+if aFile
+   aFile.syswrite("ABCDEF")
+else
+   puts "Unable to open file!"
+end
+</pre>
+<p>This statement will write "ABCDEF" into the file.</p>
+<h2>The each_byte Method</h2>
+<p>This method belongs to the class <i>File</i>. The method <i>each_byte</i> is always associated with a block. Consider the following code sample &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+aFile = File.new("input.txt", "r+")
+if aFile
+   aFile.syswrite("ABCDEF")
+   aFile.each_byte {|ch| putc ch; putc ?. }
+else
+   puts "Unable to open file!"
+end
+</pre>
+<p>Characters are passed one by one to the variable ch and then displayed on the screen as follows &minus;</p>
+<pre class="result notranslate">
+s. .a. .s.i.m.p.l.e. .t.e.x.t. .f.i.l.e. .f.o.r. .t.e.s.t.i.n.g. .p.u.r.p.o.s.e...
+.
+.
+</pre>
+<h2>The IO.readlines Method</h2>
+<p>The class <i>File</i> is a subclass of the class IO. The class IO also has some methods, which can be used to manipulate files.</p>
+<p>One of the IO class methods is <i>IO.readlines</i>. This method returns the contents of the file line by line. The following code displays the use of the method <i>IO.readlines</i> &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+arr = IO.readlines("input.txt")
+puts arr[0]
+puts arr[1]
+</pre>
+<p>In this code, the variable arr is an array. Each line of the file <i>input.txt</i> will be an element in the array arr. Therefore, arr[0] will contain the first line, whereas arr[1] will contain the second line of the file.</p>
+<h2>The IO.foreach Method</h2>
+<p>This method also returns output line by line. The difference between the method <i>foreach</i> and the method <i>readlines</i> is that the method <i>foreach</i> is associated with a block. However, unlike the method <i>readlines</i>, the method <i>foreach</i> does not return an array. For example &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+IO.foreach("input.txt"){|block| puts block}
+</pre>
+<p>This code will pass the contents of the file <i>test</i> line by line to the variable block, and then the output will be displayed on the screen.</p>
+<h2>Renaming and Deleting Files</h2>
+<p>You can rename and delete files programmatically with Ruby with the <i>rename</i> and <i>delete</i> methods.</p>
+<p>Following is the example to rename an existing file <i>test1.txt</i> &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+# Rename a file from test1.txt to test2.txt
+File.rename( "test1.txt", "test2.txt" )
+</pre>
+<p>Following is the example to delete an existing file <i>test2.txt</i> &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+# Delete file test2.txt
+File.delete("test2.txt")
+</pre>
+<h2>File Modes and Ownership</h2>
+<p>Use the <i>chmod</i> method with a mask to change the mode or permissions/access list of a file &minus;</p>
+<p>Following is the example to change mode of an existing file <i>test.txt</i> to a mask value &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+file = File.new( "test.txt", "w" )
+file.chmod( 0755 )
+</pre>
+<section class="toggle">
+<label><i class="icon icon-minus"></i><i class="icon icon-plus"></i>Following is the table, which can help you to choose different mask for <i>chmod</i> method &minus;</label>
+<div class="toggle-content" style="display: none;"> 
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Mask &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>0700</b></p>
+<p>rwx mask for owner</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>0400</b></p>
+<p>r for owner</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>0200</b></p>
+<p>w for owner</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>0100</b></p>
+<p>x for owner</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>0070</b></p>
+<p>rwx mask for group</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>0040</b></p>
+<p>r for group</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>0020</b></p>
+<p>w for group</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>0010</b></p>
+<p>x for group</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>0007</b></p>
+<p>rwx mask for other</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>0004</b></p>
+<p>r for other</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>0002</b></p>
+<p>w for other</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><p><b>0001</b></p>
+<p>x for other</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><p><b>4000</b></p>
+<p>Set user ID on execution</p></td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><p><b>2000</b></p>
+<p>Set group ID on execution</p></td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><p><b>1000</b></p>
+<p>Save swapped text, even after use</p></td>
+</tr>
+</table>
+</div>
+</section>
+<h2>File Inquiries</h2>
+<p>The following command tests whether a file exists before opening it &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+File.open("file.rb") if File::exists?( "file.rb" )
+</pre>
+<p>The following command inquire whether the file is really a file &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+# This returns either true or false
+File.file?( "text.txt" ) 
+</pre>
+<p>The following command finds out if the given file name is a directory &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+# a directory
+File::directory?( "/usr/local/bin" ) # =&gt; true
+
+# a file
+File::directory?( "file.rb" ) # =&gt; false
+</pre>
+<p>The following command finds whether the file is readable, writable or executable &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+File.readable?( "test.txt" )   # =&gt; true
+File.writable?( "test.txt" )   # =&gt; true
+File.executable?( "test.txt" ) # =&gt; false
+</pre>
+<p>The following command finds whether the file has zero size or not &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+File.zero?( "test.txt" )      # =&gt; true
+</pre>
+<p>The following command returns size of the file &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+File.size?( "text.txt" )     # =&gt; 1002
+</pre>
+<p>The following command can be used to find out a type of file &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+File::ftype( "test.txt" )     # =&gt; file
+</pre>
+<p>The ftype method identifies the type of the file by returning one of the following &minus; <i>file, directory, characterSpecial, blockSpecial, fifo, link, socket, or unknown.</i></p>
+<p>The following command can be used to find when a file was created, modified, or last accessed &minus;</p>
+<pre class="prettyprint notranslate">
+#!/usr/bin/ruby
+
+File::ctime( "test.txt" ) # =&gt; Fri May 09 10:06:37 -0700 2008
+File::mtime( "text.txt" ) # =&gt; Fri May 09 10:44:44 -0700 2008
+File::atime( "text.txt" ) # =&gt; Fri May 09 10:45:01 -0700 2008
+</pre>
+<h2>Directories in Ruby</h2>
+<p>All files are contained within various directories, and Ruby has no problem handling these too. Whereas the <i>File</i> class handles files, directories are handled with the <i>Dir</i> class.</p>
+<h2>Navigating Through Directories</h2>
+<p>To change directory within a Ruby program, use <i>Dir.chdir</i> as follows. This example changes the current directory to <i>/usr/bin</i>.</p>
+<pre class="result notranslate">
+Dir.chdir("/usr/bin")
+</pre>
+<p>You can find out what the current directory is with <i> Dir.pwd</i> &minus;</p>
+<pre class="result notranslate">
+puts Dir.pwd # This will return something like /usr/bin
+</pre>
+<p>You can get a list of the files and directories within a specific directory using <i>Dir.entries</i> &minus;</p>
+<pre class="prettyprint notranslate">
+puts Dir.entries("/usr/bin").join(' ')
+</pre>
+<p><i>Dir.entries</i> returns an array with all the entries within the specified directory. <i>Dir.foreach</i> provides the same feature &minus;</p>
+<pre class="prettyprint notranslate">
+Dir.foreach("/usr/bin") do |entry|
+   puts entry
+end
+</pre>
+<p>An even more concise way of getting directory listings is by using Dir's class array method &minus;</p>
+<pre class="prettyprint notranslate">
+Dir["/usr/bin/*"]
+</pre>
+<h2>Creating a Directory</h2>
+<p>The <i>Dir.mkdir</i> can be used to create directories &minus;</p>
+<pre class="prettyprint notranslate">
+Dir.mkdir("mynewdir")
+</pre>
+<p>You can also set permissions on a new directory (not one that already exists) with mkdir &minus;</p>
+<p><b>NOTE</b> &minus; The mask 755 sets permissions owner, group, world [anyone] to rwxr-xr-x where r = read, w = write, and x = execute.</p>
+<pre class="prettyprint notranslate">
+Dir.mkdir( "mynewdir", 755 )
+</pre>
+<h2>Deleting a Directory</h2>
+<p>The <i>Dir.delete</i> can be used to delete a directory. The <i>Dir.unlink</i> and <i>Dir.rmdir</i> performs exactly the same function and are provided for convenience.</p>
+<pre class="prettyprint notranslate">
+Dir.delete("testdir")
+</pre>
+<h2>Creating Files &amp; Temporary Directories</h2>
+<p>Temporary files are those that might be created briefly during a program's execution but aren't a permanent store of information.</p>
+<p><i>Dir.tmpdir</i> provides the path to the temporary directory on the current system, although the method is not available by default. To make <i>Dir.tmpdir</i> available it's necessary to use require 'tmpdir'.</p>
+<p>You can use <i>Dir.tmpdir</i> with <i>File.join</i> to create a platform-independent temporary file &minus;</p>
+<pre class="prettyprint notranslate">
+require 'tmpdir'
+   tempfilename = File.join(Dir.tmpdir, "tingtong")
+   tempfile = File.new(tempfilename, "w")
+   tempfile.puts "This is a temporary file"
+   tempfile.close
+   File.delete(tempfilename)
+</pre>
+<p>This code creates a temporary file, writes data to it, and deletes it. Ruby's standard library also includes a library called <i>Tempfile</i> that can create temporary files for you &minus;</p>
+<pre class="prettyprint notranslate">
+require 'tempfile'
+   f = Tempfile.new('tingtong')
+   f.puts "Hello"
+   puts f.path
+   f.close
+</pre>
+<h2>Built-in Functions</h2>
+<p>Here are the ruby built-in functions to process files and directories &minus;</p>
+<ul class="list">
+<li><p><a href="/ruby/ruby_file_methods.htm" title="Ruby File Class and Methods">File Class and Methods</a>.</p></li>
+<li><p><a href="/ruby/ruby_dir_methods.htm" title="Ruby Dir Class and Methods">Dir Class and Methods</a>.</p></li>
+</ul>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/ruby/ruby_iterators.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/ruby/ruby_exceptions.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

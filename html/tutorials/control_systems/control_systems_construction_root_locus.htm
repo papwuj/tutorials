@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Construction of Root Locus</title>
+<meta charset="utf-8">
+<meta name="description" content="Construction of Root Locus - The root locus is a graphical representation in s-domain and it is symmetrical about the real axis. Because the open loop poles and zeros exist in the s-domain "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/control_systems/control_systems_construction_root_locus.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#31776b;
+}
+a.demo {
+    background:#31776b;
+}
+li.heading {
+    background:#31776b;
+}
+.course-box{background:#31776b}
+.home-intro-sub p{color:#31776b}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/control_systems/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+"HTML-CSS": {
+linebreaks: { automatic: true, width: "container" }
+}
+});
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+<div class="mini-logo">
+<img src="/control_systems/images/control-systems-mini-logo.jpg" alt="Control Systems Tutorial" />
+</div>
+<ul class="toc chapters">
+<li><a class="videolink" href="/control_system/index.asp" target="_blank"><img src="/control_systems/images/control-system-video-tutorials.jpg" alt="Control Systems Video Tutorials" /></a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Control Systems Tutorial</li>
+<li><a href="/control_systems/index.htm">Control Systems - Home</a></li>
+<li><a href="/control_systems/control_systems_introduction.htm">Control Systems - Introduction</a></li>
+<li><a href="/control_systems/control_systems_feedback.htm">Control Systems - Feedback</a></li>
+<li><a href="/control_systems/control_systems_mathematical_models.htm">Mathematical Models</a></li>
+<li><a href="/control_systems/control_systems_modelling_mechanical.htm">Modelling of Mechanical Systems</a></li>
+<li><a href="/control_systems/control_systems_electrical_analogies_mechanical.htm">Electrical Analogies of Mechanical Systems</a></li>
+<li><a href="/control_systems/control_systems_block_diagrams.htm">Control Systems - Block Diagrams</a></li>
+<li><a href="/control_systems/control_systems_block_diagram_algebra.htm">Block Diagram Algebra</a></li>
+<li><a href="/control_systems/control_systems_block_diagram_reduction.htm">Block Diagram Reduction</a></li>
+<li><a href="/control_systems/control_systems_signal_flow_graphs.htm">Signal Flow Graphs</a></li>
+<li><a href="/control_systems/control_systems_masons_gain_formula.htm">Mason's Gain Formula</a></li>
+<li><a href="/control_systems/control_systems_time_response_analysis.htm">Time Response Analysis</a></li>
+<li><a href="/control_systems/control_systems_response_first_order.htm">Response of the First Order System</a></li>
+<li><a href="/control_systems/control_systems_response_second_order.htm">Response of Second Order System</a></li>
+<li><a href="/control_systems/control_systems_time_domain_specifications.htm">Time Domain Specifications</a></li>
+<li><a href="/control_systems/control_systems_steady_state_errors.htm">Steady State Errors</a></li>
+<li><a href="/control_systems/control_systems_stability.htm">Control Systems - Stability</a></li>
+<li><a href="/control_systems/control_systems_stability_analysis.htm">Control Systems - Stability Analysis</a></li>
+<li><a href="/control_systems/control_systems_root_locus.htm">Control Systems - Root Locus</a></li>
+<li><a href="/control_systems/control_systems_construction_root_locus.htm">Construction of Root Locus</a></li>
+<li><a href="/control_systems/control_systems_frequency_response_analysis.htm">Frequency Response Analysis</a></li>
+<li><a href="/control_systems/control_systems_bode_plots.htm">Control Systems - Bode Plots</a></li>
+<li><a href="/control_systems/control_systems_construction_bode_plots.htm">Construction of Bode Plots</a></li>
+<li><a href="/control_systems/control_systems_polar_plots.htm">Control Systems - Polar Plots</a></li>
+<li><a href="/control_systems/control_systems_nyquist_plots.htm">Control Systems - Nyquist Plots</a></li>
+<li><a href="/control_systems/control_systems_compensators.htm">Control Systems - Compensators</a></li>
+<li><a href="/control_systems/control_systems_controllers.htm">Control Systems - Controllers</a></li>
+<li><a href="/control_systems/control_systems_state_space_model.htm">Control Systems - State Space Model</a></li>
+<li><a href="/control_systems/control_systems_state_space_analysis.htm">State Space Analysis</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Control Systems Useful Resources</li>
+<li><a href="/control_systems/control_systems_quick_guide.htm">Control Systems - Quick Guide</a></li>
+<li><a href="/control_systems/control_systems_useful_resources.htm">Control Systems - Useful Resources</a></li>
+<li><a href="/control_systems/control_systems_discussion.htm">Control Systems - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Construction of Root Locus</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/control_systems/control_systems_root_locus.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/control_systems/control_systems_frequency_response_analysis.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>The <b>root locus</b> is a graphical representation in s-domain and it is symmetrical about the real axis. Because the open loop poles and zeros exist in the s-domain having the values either as real or as complex conjugate pairs. In this chapter, let us discuss how to construct (draw) the root locus.</p>
+<h2>Rules for Construction of Root Locus</h2>
+<p>Follow these rules for constructing a root locus.</p>
+<p><b>Rule 1</b> &minus; Locate the open loop poles and zeros in the ‘s’ plane.</p>
+<p><b>Rule 2</b> &minus; Find the number of root locus branches.</p>
+<p>We know that the root locus branches start at the open loop poles and end at open loop zeros. So, the number of root locus branches <b>N</b> is equal to the number of finite open loop poles <b>P</b> or the number of finite open loop zeros <b>Z</b>, whichever is greater.</p>
+<p>Mathematically, we can write the number of root locus branches <b>N</b> as</p>
+<p style="padding-left:40%">$N=P$ if $P\geq Z$</p>
+<p style="padding-left:40%">$N=Z$ if $P&lt;Z$</p>
+<p><b>Rule 3</b> &minus; Identify and draw the <b>real axis root locus branches</b>.</p>
+<p>If the angle of the open loop transfer function at a point is an odd multiple of 180<sup>0</sup>, then that point is on the root locus. If odd number of the open loop poles and zeros exist to the left side of a point on the real axis, then that point is on the root locus branch. Therefore, the branch of points which satisfies this condition is the real axis of the root locus branch.</p>
+<p><b>Rule 4</b> &minus; Find the centroid and the angle of asymptotes.</p>
+<ul class="list">
+<li><p>If $P = Z$, then all the root locus branches start at finite open loop poles and end at finite open loop zeros.</p></li>
+<li><p>If $P > Z$ , then $Z$ number of root locus branches start at finite open loop poles and end at finite open loop zeros and $P − Z$ number of root locus branches start at finite open loop poles and end at infinite open loop zeros.</p></li>
+<li><p>If $P &lt; Z$ , then P number of root locus branches start at finite open loop poles and end at finite open loop zeros and $Z − P$ number of root locus branches start at infinite open loop poles and end at finite open loop zeros.</p></li>
+</ul>
+<p>So, some of the root locus branches approach infinity, when $P \neq Z$. Asymptotes give the direction of these root locus branches. The intersection point of asymptotes on the real axis is known as <b>centroid</b>.</p>
+<p>We can calculate the <b>centroid &alpha;</b> by using this formula,</p>
+<p>$\alpha = \frac{\sum Real\: part\: of\: finite\: open\: loop\: poles\:-\sum Real\: part\: of\: finite\: open\: loop\: zeros}{P-Z}$</p>
+<p>The formula for the angle of <b>asymptotes &theta;</b> is</p>
+<p>$$\theta=\frac{(2q+1)180^0}{P-Z}$$</p>
+<p>Where,</p>
+<p>$$q=0,1,2,....,(P-Z)-1$$</p>
+<p><b>Rule 5</b> &minus; Find the intersection points of root locus branches with an imaginary axis.</p>
+<p>We can calculate the point at which the root locus branch intersects the imaginary axis and the value of <b>K</b> at that point by using the Routh array method and special <b>case (ii)</b>.</p>
+<ul class="list">
+<li><p>If all elements of any row of the Routh array are zero, then the root locus branch intersects the imaginary axis and vice-versa.</p></li>
+<li><p>Identify the row in such a way that if we make the first element as zero, then the elements of the entire row are zero. Find the value of <b>K</b> for this combination.</p></li>
+<li><p>Substitute this <b>K</b> value in the auxiliary equation. You will get the intersection point of the root locus branch with an imaginary axis.</p></li>
+</ul>
+<p><b>Rule 6</b> &minus; Find Break-away and Break-in points.</p>
+<ul class="list">
+<li><p>If there exists a real axis root locus branch between two open loop poles, then there will be a <b>break-away point</b> in between these two open loop poles.</p></li>
+<li><p>If there exists a real axis root locus branch between two open loop zeros, then there will be a <b>break-in point</b> in between these two open loop zeros.</p></li>
+</ul>
+<p><b>Note</b> &minus; Break-away and break-in points exist only on the real axis root locus branches.</p>
+<p>Follow these steps to find break-away and break-in points.</p>
+<ul class="list">
+<li><p>Write $K$ in terms of $s$ from the characteristic equation $1 + G(s)H(s) = 0$.</p></li>
+<li><p>Differentiate $K$ with respect to s and make it equal to zero. Substitute these values of $s$ in the above equation.</p></li>
+<li><p>The values of $s$ for which the $K$ value is positive are the <b>break points</b>.</p></li>
+</ul>
+<p><b>Rule 7</b> &minus; Find the angle of departure and the angle of arrival.</p>
+<p>The Angle of departure and the angle of arrival can be calculated at complex conjugate open loop poles and complex conjugate open loop zeros respectively.</p>
+<p>The formula for the <b>angle of departure</b> $\phi_d$ is</p>
+<p>$$\phi_d=180^0-\phi$$</p>
+<p>The formula for the <b>angle of arrival</b> $\phi_a$ is</p>
+<p>$$\phi_a=180^0+\phi$$</p>
+<p>Where,</p>
+<p>$$\phi=\sum \phi_P-\sum \phi_Z$$</p>
+<h3>Example</h3>
+<p>Let us now draw the root locus of the control system having open loop transfer function, $G(s)H(s)=\frac{K}{s(s+1)(s+5)}$</p>
+<p><b>Step 1</b> &minus; The given open loop transfer function has three poles at $s = 0, s = −1$ and $s = −5$. It doesn’t have any zero. Therefore, the number of root locus branches is equal to the number of poles of the open loop transfer function.</p>
+<p>$$N=P=3$$</p>
+<img src="/control_systems/images/root_locus_branch.jpg" alt="Root Locus Branch" />
+<p>The three poles are located are shown in the above figure. The line segment between $s = −1$ and $s = 0$ is one branch of root locus on real axis. And the other branch of the root locus on the real axis is the line segment to the left of $s = −5$.</p>
+<p><b>Step 2</b> &minus; We will get the values of the centroid and the angle of asymptotes by using the given formulae.</p>
+<p>Centroid $\alpha = −2$</p>
+<p>The angle of asymptotes are $\theta = 60^0,180^0$ and $300^0$.</p>
+<p>The centroid and three asymptotes are shown in the following figure.</p>
+<img src="/control_systems/images/centroid.jpg" alt="Centroid" />
+<p><b>Step 3</b> &minus; Since two asymptotes have the angles of $60^0$ and $300^0$, two root locus branches intersect the imaginary axis. By using the Routh array method and special case(ii), the root locus branches intersects the imaginary axis at $j\sqrt{5}$ and $−j\sqrt{5}$.</p>
+<p>There will be one break-away point on the real axis root locus branch between the poles $s = −1$ and $s = 0$. By following the procedure given for the calculation of break-away point, we will get it as $s = −0.473$.</p>
+<p>The root locus diagram for the given control system is shown in the following figure.</p>
+<img src="/control_systems/images/break_away.jpg" alt="Break Away" />
+<p>In this way, you can draw the root locus diagram of any control system and observe the movement of poles of the closed loop transfer function.</p>
+<p>From the root locus diagrams, we can know the range of K values for different types of damping.</p>
+<h3>Effects of Adding Open Loop Poles and Zeros on Root Locus</h3>
+<p>The root locus can be shifted in <b>‘s’ plane</b> by adding the open loop poles and the open loop zeros.</p>
+<ul class="list">
+<li><p>If we include a pole in the open loop transfer function, then some of root locus branches will move towards right half of ‘s’ plane. Because of this, the damping ratio $\delta$ decreases. Which implies, damped frequency $\omega_d$ increases and the time domain specifications like delay time $t_d$, rise time $t_r$ and peak time $t_p$ decrease. But, it effects the system stability.</p></li>
+<li><p>If we include a zero in the open loop transfer function, then some of root locus branches will move towards left half of ‘s’ plane. So, it will increase the control system stability. In this case, the damping ratio $\delta$ increases. Which implies, damped frequency $\omega_d$ decreases and the time domain specifications like delay time $t_d$, rise time $t_r$ and peak time $t_p$ increase.</p></li>
+</ul>
+<p>So, based on the requirement, we can include (add) the open loop poles or zeros to the transfer function.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/control_systems/control_systems_root_locus.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/control_systems/control_systems_frequency_response_analysis.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

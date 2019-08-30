@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>PL/SQL - Exceptions - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="PL/SQL - Exceptions - In this chapter, we will discuss Exceptions in PL/SQL. An exception is an error condition during a program execution. PL/SQL supports programmers to catch such "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/plsql/plsql_exceptions.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#d02023;
+}
+a.demo {
+    background:#d02023;
+}
+li.heading {
+    background:#d02023;
+}
+.course-box{background:#d02023}
+.home-intro-sub p{color:#d02023}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/plsql/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/plsql/images/plsql-mini-logo.jpg" alt="PL/SQL Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">PL/SQL Tutorial</li>
+<li><a href="/plsql/index.htm">PL/SQL - Home</a></li>
+<li><a href="/plsql/plsql_overview.htm">PL/SQL - Overview</a></li>
+<li><a href="/plsql/plsql_environment_setup.htm">PL/SQL - Environment</a></li>
+<li><a href="/plsql/plsql_basic_syntax.htm">PL/SQL - Basic Syntax</a></li>
+<li><a href="/plsql/plsql_data_types.htm">PL/SQL - Data Types</a></li>
+<li><a href="/plsql/plsql_variable_types.htm">PL/SQL - Variables</a></li>
+<li><a href="/plsql/plsql_constants.htm">PL/SQL - Constants and Literals</a></li>
+<li><a href="/plsql/plsql_operators.htm">PL/SQL - Operators</a></li>
+<li><a href="/plsql/plsql_conditional_control.htm">PL/SQL - Conditions</a></li>
+<li><a href="/plsql/plsql_loops.htm">PL/SQL - Loops </a></li>
+<li><a href="/plsql/plsql_strings.htm">PL/SQL - Strings</a></li>
+<li><a href="/plsql/plsql_arrays.htm">PL/SQL - Arrays</a></li>
+<li><a href="/plsql/plsql_procedures.htm">PL/SQL - Procedures</a></li>
+<li><a href="/plsql/plsql_functions.htm">PL/SQL - Functions</a></li>
+<li><a href="/plsql/plsql_cursors.htm">PL/SQL - Cursors</a></li>
+<li><a href="/plsql/plsql_records.htm">PL/SQL - Records</a></li>
+<li><a href="/plsql/plsql_exceptions.htm">PL/SQL - Exceptions</a></li>
+<li><a href="/plsql/plsql_triggers.htm">PL/SQL - Triggers</a></li>
+<li><a href="/plsql/plsql_packages.htm">PL/SQL - Packages</a></li>
+<li><a href="/plsql/plsql_collections.htm">PL/SQL - Collections</a></li>
+<li><a href="/plsql/plsql_transactions.htm">PL/SQL - Transactions</a></li>
+<li><a href="/plsql/plsql_date_time.htm">PL/SQL - Date &amp; Time</a></li>
+<li><a href="/plsql/plsql_dbms_output.htm">PL/SQL - DBMS Output</a></li>
+<li><a href="/plsql/plsql_object_oriented.htm">PL/SQL - Object Oriented</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">PL/SQL Useful Resources</li>
+<li><a href="/plsql/plsql_questions_answers.htm">PL/SQL - Questions and Answers</a></li>
+<li><a href="/plsql/plsql_quick_guide.htm">PL/SQL - Quick Guide</a></li>
+<li><a href="/plsql/plsql_useful_resources.htm">PL/SQL - Useful Resources</a></li>
+<li><a href="/plsql/plsql_discussion.htm">PL/SQL - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>PL/SQL - Exceptions</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/plsql/plsql_records.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/plsql/plsql_triggers.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, we will discuss Exceptions in PL/SQL. An exception is an error condition during a program execution. PL/SQL supports programmers to catch such conditions using <b>EXCEPTION</b> block in the program and an appropriate action is taken against the error condition. There are two types of exceptions &minus;</p>
+<ul class="list">
+<li>System-defined exceptions</li>
+<li>User-defined exceptions</li>
+</ul>
+<h2>Syntax for Exception Handling</h2>
+<p>The general syntax for exception handling is as follows. Here you can list down as many exceptions as you can handle. The default exception will be handled using <b><i>WHEN others THEN</i></b> &minus;</p>
+<pre class="prettyprint notranslate">
+DECLARE 
+   &lt;declarations section&gt; 
+BEGIN 
+   &lt;executable command(s)&gt; 
+EXCEPTION 
+   &lt;exception handling goes here &gt; 
+   WHEN exception1 THEN  
+      exception1-handling-statements  
+   WHEN exception2  THEN  
+      exception2-handling-statements  
+   WHEN exception3 THEN  
+      exception3-handling-statements 
+   ........ 
+   WHEN others THEN 
+      exception3-handling-statements 
+END;
+</pre>
+<h3>Example</h3>
+<p>Let us write a code to illustrate the concept. We will be using the CUSTOMERS table we had created and used in the previous chapters &minus;</p>
+<pre class="prettyprint notranslate">
+DECLARE 
+   c_id customers.id%type := 8; 
+   c_name customerS.Name%type; 
+   c_addr customers.address%type; 
+BEGIN 
+   SELECT  name, address INTO  c_name, c_addr 
+   FROM customers 
+   WHERE id = c_id;  
+   DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name); 
+   DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr); 
+
+EXCEPTION 
+   WHEN no_data_found THEN 
+      dbms_output.put_line('No such customer!'); 
+   WHEN others THEN 
+      dbms_output.put_line('Error!'); 
+END; 
+/
+</pre>
+<p>When the above code is executed at the SQL prompt, it produces the following result &minus;</p>
+<pre class="result notranslate">
+No such customer!  
+
+PL/SQL procedure successfully completed. 
+</pre>
+<p>The above program displays the name and address of a customer whose ID is given. Since there is no customer with ID value 8 in our database, the program raises the run-time exception <b>NO_DATA_FOUND</b>, which is captured in the <b>EXCEPTION block</b>.</p>
+<h2>Raising Exceptions</h2>
+<p>Exceptions are raised by the database server automatically whenever there is any internal database error, but exceptions can be raised explicitly by the programmer by using the command <b>RAISE</b>. Following is the simple syntax for raising an exception &minus;</p> 
+<pre class="prettyprint notranslate">
+DECLARE 
+   exception_name EXCEPTION; 
+BEGIN 
+   IF condition THEN 
+      RAISE exception_name; 
+   END IF; 
+EXCEPTION 
+   WHEN exception_name THEN 
+   statement; 
+END; 
+</pre>
+<p>You can use the above syntax in raising the Oracle standard exception or any user-defined exception. In the next section, we will give you an example on raising a user-defined exception. You can raise the Oracle standard exceptions in a similar way.</p>
+<h2>User-defined Exceptions</h2>
+<p>PL/SQL allows you to define your own exceptions according to the need of your program. A user-defined exception must be declared and then raised explicitly, using either a RAISE statement or the procedure <b>DBMS_STANDARD.RAISE_APPLICATION_ERROR</b>.</p>
+<p>The syntax for declaring an exception is &minus;</p>
+<pre class="result notranslate">
+DECLARE 
+   my-exception EXCEPTION; 
+</pre>
+<h3>Example</h3>
+<p>The following example illustrates the concept. This program asks for a customer ID, when the user enters an invalid ID, the exception <b>invalid_id</b> is raised.</p>
+<pre class="prettyprint notranslate">
+DECLARE 
+   c_id customers.id%type := &cc_id; 
+   c_name customerS.Name%type; 
+   c_addr customers.address%type;  
+   -- user defined exception 
+   ex_invalid_id  EXCEPTION; 
+BEGIN 
+   IF c_id &lt;= 0 THEN 
+      RAISE ex_invalid_id; 
+   ELSE 
+      SELECT  name, address INTO  c_name, c_addr 
+      FROM customers 
+      WHERE id = c_id;
+      DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name);  
+      DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr); 
+   END IF; 
+
+EXCEPTION 
+   WHEN ex_invalid_id THEN 
+      dbms_output.put_line('ID must be greater than zero!'); 
+   WHEN no_data_found THEN 
+      dbms_output.put_line('No such customer!'); 
+   WHEN others THEN 
+      dbms_output.put_line('Error!');  
+END; 
+/
+</pre>
+<p>When the above code is executed at the SQL prompt, it produces the following result &minus;</p>
+<pre class="result notranslate">
+Enter value for cc_id: -6 (let's enter a value -6) 
+old  2: c_id customers.id%type := &cc_id; 
+new  2: c_id customers.id%type := -6; 
+ID must be greater than zero! 
+ 
+PL/SQL procedure successfully completed. 
+</pre>
+<h2>Pre-defined Exceptions</h2>
+<p>PL/SQL provides many pre-defined exceptions, which are executed when any database rule is violated by a program. For example, the predefined exception NO_DATA_FOUND is raised when a SELECT INTO statement returns no rows. The following table lists few of the important pre-defined exceptions &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center; vertical-align:middle;">Exception</th>
+<th style="text-align:center; vertical-align:middle;">Oracle Error</th>
+<th style="text-align:center; vertical-align:middle;">SQLCODE</th>
+<th style="text-align:center; vertical-align:middle;">Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">ACCESS_INTO_NULL</td>
+<td style="text-align:center; vertical-align:middle;">06530</td>
+<td style="text-align:center; vertical-align:middle;">-6530</td>
+<td>It is raised when a null object is automatically assigned a value.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">CASE_NOT_FOUND</td>
+<td style="text-align:center; vertical-align:middle;">06592</td>
+<td style="text-align:center; vertical-align:middle;">-6592</td>
+<td>It is raised when none of the choices in the WHEN clause of a CASE statement is selected, and there is no ELSE clause.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">COLLECTION_IS_NULL</td>
+<td style="text-align:center; vertical-align:middle;">06531</td>
+<td style="text-align:center; vertical-align:middle;">-6531</td>
+<td>It is raised when a program attempts to apply collection methods other than EXISTS to an uninitialized nested table or varray, or the program attempts to assign values to the elements of an uninitialized nested table or varray.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">DUP_VAL_ON_INDEX</td>
+<td style="text-align:center; vertical-align:middle;">00001</td>
+<td style="text-align:center; vertical-align:middle;">-1</td>
+<td>It is raised when duplicate values are attempted to be stored in a column with unique index.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">INVALID_CURSOR</td>
+<td style="text-align:center; vertical-align:middle;">01001</td>
+<td style="text-align:center; vertical-align:middle;">-1001</td>
+<td>It is raised when attempts are made to make a cursor operation that is not allowed, such as closing an unopened cursor.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">INVALID_NUMBER</td>
+<td style="text-align:center; vertical-align:middle;">01722</td>
+<td style="text-align:center; vertical-align:middle;">-1722</td>
+<td>It is raised when the conversion of a character string into a number fails because the string does not represent a valid number.</td></tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">LOGIN_DENIED</td>
+<td style="text-align:center; vertical-align:middle;">01017</td>
+<td style="text-align:center; vertical-align:middle;">-1017</td>
+<td>It is raised when a program attempts to log on to the database with an invalid username or password.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">NO_DATA_FOUND</td>
+<td style="text-align:center; vertical-align:middle;">01403</td>
+<td style="text-align:center; vertical-align:middle;">+100</td>
+<td>It is raised when a SELECT INTO statement returns no rows.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">NOT_LOGGED_ON</td>
+<td style="text-align:center; vertical-align:middle;">01012</td>
+<td style="text-align:center; vertical-align:middle;">-1012</td>
+<td>It is raised when a database call is issued without being connected to the database.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">PROGRAM_ERROR</td>
+<td style="text-align:center; vertical-align:middle;">06501</td>
+<td style="text-align:center; vertical-align:middle;">-6501</td>
+<td>It is raised when PL/SQL has an internal problem.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">ROWTYPE_MISMATCH</td>
+<td style="text-align:center; vertical-align:middle;">06504</td>
+<td style="text-align:center; vertical-align:middle;">-6504</td>
+<td>It is raised when a cursor fetches value in a variable having incompatible data type.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">SELF_IS_NULL</td>
+<td style="text-align:center; vertical-align:middle;">30625</td>
+<td style="text-align:center; vertical-align:middle;">-30625</td>
+<td>It is raised when a member method is invoked, but the instance of the object type was not initialized. </td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">STORAGE_ERROR</td>
+<td style="text-align:center; vertical-align:middle;">06500</td>
+<td style="text-align:center; vertical-align:middle;">-6500</td>
+<td>It is raised when PL/SQL ran out of memory or memory was corrupted.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">TOO_MANY_ROWS</td>
+<td style="text-align:center; vertical-align:middle;">01422</td>
+<td style="text-align:center; vertical-align:middle;">-1422</td>
+<td>It is raised when a SELECT INTO statement returns more than one row.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">VALUE_ERROR</td>
+<td style="text-align:center; vertical-align:middle;">06502</td>
+<td style="text-align:center; vertical-align:middle;">-6502</td>
+<td>It is raised when an arithmetic, conversion, truncation, or sizeconstraint error occurs.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">ZERO_DIVIDE</td>
+<td style="text-align:center; vertical-align:middle;">01476</td>
+<td style="text-align:center; vertical-align:middle;">1476</td>
+<td>It is raised when an attempt is made to divide a number by zero.</td>
+</tr>
+</table>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/plsql/plsql_records.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/plsql/plsql_triggers.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

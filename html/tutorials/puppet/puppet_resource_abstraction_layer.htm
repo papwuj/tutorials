@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Puppet - Resource Abstraction Layer</title>
+<meta charset="utf-8">
+<meta name="description" content="Puppet - Resource Abstraction Layer - In Puppet, Resource Abstraction Layer (RAL) can be considered as the core conceptualized model on which the whole infrastructure and Puppet setup works. In RAL,"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/puppet/puppet_resource_abstraction_layer.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#FFAD1B;
+}
+a.demo {
+    background:#FFAD1B;
+}
+li.heading {
+    background:#FFAD1B;
+}
+.course-box{background:#FFAD1B}
+.home-intro-sub p{color:#FFAD1B}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/puppet/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/puppet/images/puppet-mini-logo.jpg" alt="Puppet Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Puppet Tutorial</li>
+<li><a href="/puppet/index.htm">Puppet - Home</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Basic Puppet</li>
+<li><a href="/puppet/puppet_overview.htm">Puppet - Overview</a></li>
+<li><a href="/puppet/puppet_architecture.htm">Puppet - Architecture</a></li>
+<li><a href="/puppet/puppet_installation.htm">Puppet - Installation</a></li>
+<li><a href="/puppet/puppet_configuration.htm">Puppet - Configuration</a></li>
+<li><a href="/puppet/puppet_environment_conf.htm">Puppet - Environment Conf</a></li>
+<li><a href="/puppet/puppet_master.htm">Puppet - Master</a></li>
+<li><a href="/puppet/puppet_agent_setup.htm">Puppet - Agent Setup</a></li>
+<li><a href="/puppet/puppet_ssl_sign_certificate_setup.htm">Puppet - SSL Sign Certificate Setup</a></li>
+<li><a href="/puppet/puppet_installing_configuring_r10k.htm">Installing &amp; Configuring r10K</a></li>
+<li><a href="/puppet/puppet_validating_setup.htm">Puppet - Validating Setup</a></li>
+<li><a href="/puppet/puppet_coding_style.htm">Puppet - Coding Style</a></li>
+<li><a href="/puppet/puppet_manifest_files.htm">Puppet - Manifest Files</a></li>
+<li><a href="/puppet/puppet_module.htm">Puppet - Module</a></li>
+<li><a href="/puppet/puppet_file_server.htm">Puppet - File Server</a></li>
+<li><a href="/puppet/puppet_facter_facts.htm">Puppet - Facter &amp; Facts</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Advanced Puppet</li>
+<li><a href="/puppet/puppet_resource.htm">Puppet - Resource</a></li>
+<li><a href="/puppet/puppet_resource_abstraction_layer.htm">Puppet - Resource Abstraction Layer</a></li>
+<li><a href="/puppet/puppet_template.htm">Puppet - Template</a></li>
+<li><a href="/puppet/puppet_classes.htm">Puppet - Classes</a></li>
+<li><a href="/puppet/puppet_function.htm">Puppet - Function</a></li>
+<li><a href="/puppet/puppet_custom_functions.htm">Puppet - Custom Functions</a></li>
+<li><a href="/puppet/puppet_environment.htm">Puppet - Environment</a></li>
+<li><a href="/puppet/puppet_type_provider.htm">Puppet - Type &amp; Provider</a></li>
+<li><a href="/puppet/puppet_restful_api.htm">Puppet - RESTful API</a></li>
+<li><a href="/puppet/puppet_live_project.htm">Puppet - Live Project</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Puppet Useful Resources</li>
+<li><a href="/puppet/puppet_quick_guide.htm">Puppet - Quick Guide</a></li>
+<li><a href="/puppet/puppet_useful_resources.htm">Puppet - Useful Resources</a></li>
+<li><a href="/puppet/puppet_discussion.htm">Puppet - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Puppet - Resource Abstraction Layer</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/puppet/puppet_resource.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/puppet/puppet_template.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In Puppet, Resource Abstraction Layer (RAL) can be considered as the core conceptualized model on which the whole infrastructure and Puppet setup works. In RAL, each alphabet has its own significant meaning which is defined as follows.</p>
+<h2>Resource [R]</h2>
+<p>A resource can be considered as all the resources which are used to model any configuration in Puppet. They are basically in-built resources which are by default present in Puppet. They can be considered as a set of resources belonging to a pre-defined resource type. They are similar to OOP concept in any other programming language wherein the object is an instance of class. In Puppet, its resource is an instance of a resource type.</p>
+<h2>Abstraction [A]</h2>
+<p>Abstraction can be considered as a key feature where the resources are defined independently from the target OS. In other words, while writing any manifest file the user need not worry about the target machine or the OS, which is present on that particular machine. In abstraction, resources give enough information about what needs to exist on the Puppet agent.</p>
+<p>Puppet will take care of all the functionalities or magic happening behind the scene. Regardless of the resources and OS, Puppet will take care of implementing the configuration on the target machine, wherein the user need not worry how Puppet does behind the scenes.</p>
+<p>In abstraction, Puppet separates out the resources from its implementation. This platformspecific configuration exists from providers. We can use multiple subcommands along with its providers.</p>
+<h2>Layer [L]</h2>
+<p>It is possible that one defines an entire machine setup and configuration in terms of collection of resources, and it can be viewed and managed via Puppet’s CLI interface.</p>
+<h2>Example for User Resource Type</h2>
+<pre class="prettyprint notranslate">
+[root@puppetmaster ~]# puppet describe user --providers 
+user 
+==== 
+Manage users.
+This type is mostly built to manage systemusers, 
+so it is lacking some features useful for managing normalusers. 
+This resource type uses the prescribed native tools for 
+creating groups and generally uses POSIX APIs for retrieving informationabout them.
+It does not directly modify '/etc/passwd' or anything. 
+
+- **comment** 
+   A description of the user.  Generally the user's full name.  
+
+- **ensure** 
+   The basic state that the object should be in. 
+   Valid values are 'present', 'absent', 'role'.  
+
+- **expiry** 
+   The expiry date for this user. 
+   Must be provided in a zero-padded YYYY-MM-DD format --- e.g. 2010-02-19. 
+   If you want to make sure the user account does never expire, 
+   you can pass the special value 'absent'. 
+   Valid values are 'absent'. 
+   Values can match '/^\d{4}-\d{2}-\d{2}$/'. 
+   Requires features manages_expiry.  
+
+- **forcelocal** 
+   Forces the management of local accounts when accounts are also 
+   being managed by some other NSS 
+   Valid values are 'true', 'false', 'yes', 'no'. 
+   Requires features libuser.  
+
+- **gid** 
+   The user's primary group.  Can be specified numerically or by name. 
+   This attribute is not supported on Windows systems; use the ‘groups’ 
+   attribute instead. (On Windows, designating a primary group is only 
+   meaningful for domain accounts, which Puppet does not currently manage.)  
+
+- **groups** 
+   The groups to which the user belongs. The primary group should 
+   not be listed, and groups should be identified by name rather than by 
+   GID. Multiple groups should be specified as an array.  
+
+- **home** 
+   The home directory of the user.  The directory must be created 
+   separately and is not currently checked for existence.  
+
+- **ia_load_module**
+   The name of the I&amp;A module to use to manage this user. 
+   Requires features manages_aix_lam.  
+
+- **iterations** 
+   This is the number of iterations of a chained computation of the 
+   password hash (http://en.wikipedia.org/wiki/PBKDF2).  
+   This parameter is used in OS X. 
+   This field is required for managing passwords on OS X &gt;= 10.8.  
+
+- **key_membership** 
+   Whether specified key/value pairs should be considered the 
+   **complete list** ('inclusive') or the **minimum list** ('minimum') of 
+   the user's attributes. Defaults to 'minimum'. 
+   Valid values are 'inclusive', 'minimum'.  
+
+- **keys** 
+   Specify user attributes in an array of key = value pairs. 
+   Requires features manages_solaris_rbac.  
+
+- **managehome** 
+   Whether to manage the home directory when managing the user. 
+   This will create the home directory when 'ensure =&gt; present', and 
+   delete the home directory when ‘ensure =&gt; absent’. Defaults to ‘false’. 
+   Valid values are ‘true’, ‘false’, ‘yes’, ‘no’.  
+
+- **membership** 
+   Whether specified groups should be considered the **complete list** 
+   (‘inclusive’) or the **minimum list** (‘minimum’) of groups to which 
+   the user belongs. Defaults to ‘minimum’. 
+   Valid values are ‘inclusive’, ‘minimum’. 
+
+- **name** 
+   The user name. While naming limitations vary by operating system, 
+   it is advisable to restrict names to the lowest common denominator.  
+
+- **password** 
+   The user's password, in whatever encrypted format the local system requires. 
+   * Most modern Unix-like systems use salted SHA1 password hashes. You can use 
+      Puppet's built-in ‘sha1’ function to generate a hash from a password. 
+   * Mac OS X 10.5 and 10.6 also use salted SHA1 hashes. 
+   * Mac OS X 10.7 (Lion) uses salted SHA512 hashes. 
+   The Puppet Labs [stdlib][] module contains a ‘str2saltedsha512’ 
+   function which can generate password hashes for Lion. 
+   * Mac OS X 10.8 and higher use salted SHA512 PBKDF2 hashes. 
+   When managing passwords on these systems the salt and iterations properties 
+   need to be specified as well as the password. 
+   [stdlib]: https://github.com/puppetlabs/puppetlabs-stdlib/ 
+   Be sure to enclose any value that includes a dollar sign ($) in single 
+   quotes (') to avoid accidental variable interpolation. 
+   Requires features manages_passwords.  
+
+- **password_max_age** 
+   The maximum number of days a password may be used before it must be changed. 
+Requires features manages_password_age.  
+
+- **password_min_age** 
+   The minimum number of days a password must be used before it may be changed. 
+Requires features manages_password_age.  
+
+- **profile_membership** 
+   Whether specified roles should be treated as the **complete list** 
+   (‘inclusive’) or the **minimum list** (‘minimum’) of roles 
+   of which the user is a member. Defaults to ‘minimum’. 
+   Valid values are ‘inclusive’, ‘minimum’. 
+
+- **profiles** 
+   The profiles the user has.  Multiple profiles should be 
+   specified as an array. 
+Requires features manages_solaris_rbac.  
+
+- **project** 
+   The name of the project associated with a user. 
+   Requires features manages_solaris_rbac.  
+
+- **purge_ssh_keys** 
+   Purge ssh keys authorized for the user 
+   if they are not managed via ssh_authorized_keys. 
+   When true, looks for keys in .ssh/authorized_keys in the user's home directory. 
+   Possible values are true, false, or an array of 
+   paths to file to search for authorized keys. 
+   If a path starts with ~ or %h, this token is replaced with the user's home directory. 
+   Valid values are ‘true’, ‘false’.  
+
+- **role_membership** 
+   Whether specified roles should be considered the **complete list** 
+   (‘inclusive’) or the **minimum list** (‘minimum’) of roles the user has. 
+   Defaults to ‘minimum’. 
+Valid values are ‘inclusive’, ‘minimum’.  
+
+- **roles** 
+   The roles the user has.  Multiple roles should be 
+   specified as an array. 
+Requires features manages_solaris_rbac.  
+
+- **salt** 
+   This is the 32 byte salt used to generate the PBKDF2 password used in 
+   OS X. This field is required for managing passwords on OS X &gt;= 10.8. 
+   Requires features manages_password_salt. 
+
+- **shell** 
+   The user's login shell.  The shell must exist and be 
+   executable. 
+   This attribute cannot be managed on Windows systems. 
+   Requires features manages_shell. 
+
+- **system** 
+   Whether the user is a system user, according to the OS's criteria; 
+   on most platforms, a UID less than or equal to 500 indicates a system 
+   user. Defaults to ‘false’. 
+   Valid values are ‘true’, ‘false’, ‘yes’, ‘no’.  
+
+- **uid** 
+   The user ID; must be specified numerically. If no user ID is 
+   specified when creating a new user, then one will be chosen 
+   automatically. This will likely result in the same user having 
+   different UIDs on different systems, which is not recommended. 
+   This is especially noteworthy when managing the same user on both Darwin and 
+   other platforms, since Puppet does UID generation on Darwin, but 
+   the underlying tools do so on other platforms. 
+   On Windows, this property is read-only and will return the user's 
+   security identifier (SID).  
+
+Providers 
+--------- 
+
+- **aix** 
+   User management for AIX. 
+   * Required binaries: '/bin/chpasswd', '/usr/bin/chuser', 
+   '/usr/bin/mkuser', '/usr/sbin/lsgroup', '/usr/sbin/lsuser', 
+   '/usr/sbin/rmuser'. 
+   * Default for ‘operatingsystem’ == ‘aix’. 
+   * Supported features: ‘manages_aix_lam’, ‘manages_expiry’, 
+   ‘manages_homedir’, ‘manages_password_age’, ‘manages_passwords’, 
+   ‘manages_shell’. 
+
+- **directoryservice** 
+   User management on OS X. 
+   * Required binaries: ‘/usr/bin/dscacheutil’, ‘/usr/bin/dscl’, 
+   ‘/usr/bin/dsimport’, ‘/usr/bin/plutil’, ‘/usr/bin/uuidgen’. 
+   * Default for ‘operatingsystem’ == ‘darwin’. 
+   * Supported features: ‘manages_password_salt’, ‘manages_passwords’, 
+   ‘manages_shell’.
+
+- **hpuxuseradd** 
+   User management for HP-UX. This provider uses the undocumented ‘-F’ 
+   switch to HP-UX's special ‘usermod’ binary to work around the fact that 
+   its standard ‘usermod’ cannot make changes while the user is logged in. 
+   * Required binaries: ‘/usr/sam/lbin/useradd.sam’, 
+   ‘/usr/sam/lbin/userdel.sam’, ‘/usr/sam/lbin/usermod.sam’. 
+   * Default for ‘operatingsystem’ == ‘hp-ux’. 
+   * Supported features: ‘allows_duplicates’, ‘manages_homedir’, 
+   ‘manages_passwords’.  
+
+- **ldap** 
+   User management via LDAP. 
+   This provider requires that you have valid values for all of the 
+   LDAP-related settings in ‘puppet.conf’, including ‘ldapbase’.
+   You will almost definitely need settings for ‘ldapuser’ and ‘ldappassword’ in order 
+   for your clients to write to LDAP. 
+* Supported features: ‘manages_passwords’, ‘manages_shell’.  
+
+- **pw** 
+   User management via ‘pw’ on FreeBSD and DragonFly BSD. 
+   * Required binaries: ‘pw’. 
+   * Default for ‘operatingsystem’ == ‘freebsd, dragonfly’. 
+   * Supported features: ‘allows_duplicates’, ‘manages_expiry’, 
+   ‘manages_homedir’, ‘manages_passwords’, ‘manages_shell’. 
+
+- **user_role_add** 
+   User and role management on Solaris, via ‘useradd’ and ‘roleadd’. 
+   * Required binaries: ‘passwd’, ‘roleadd’, ‘roledel’, ‘rolemod’, 
+   ‘useradd’, ‘userdel’, ‘usermod’. 
+   * Default for ‘osfamily’ == ‘solaris’. 
+   * Supported features: ‘allows_duplicates’, ‘manages_homedir’, 
+   ‘manages_password_age’, ‘manages_passwords’, ‘manages_solaris_rbac’.  
+
+- **useradd** 
+   User management via ‘useradd’ and its ilk.  Note that you will need to 
+   install Ruby's shadow password library (often known as ‘ruby-libshadow’) 
+   if you wish to manage user passwords. 
+   * Required binaries: ‘chage’, ‘luseradd’, ‘useradd’, ‘userdel’, ‘usermod’. 
+   * Supported features: ‘allows_duplicates’, ‘libuser’, ‘manages_expiry’, 
+   ‘manages_homedir’, ‘manages_password_age’, ‘manages_passwords’, 
+   ‘manages_shell’, ‘system_users’.  
+
+- **windows_adsi** 
+   Local user management for Windows. 
+   * Default for 'operatingsystem' == 'windows'. 
+   * Supported features: 'manages_homedir', 'manages_passwords'. 
+</pre>
+<h2>Testing Resource</h2>
+<p>In Puppet, testing a resource directly indicates that one needs to first apply resources which one wants to use to configures a target node, so that the state of the machine changes accordingly.</p>
+<p>For testing we are going to apply the resource locally. As we have a resource predefined above with <b>user = vipin</b>. One way of applying a resource is by CLI. This can be done by re-writing the complete resource into a single command and then passing it to a resource sub command.</p>
+<pre class="result notranslate">
+puppet resource user vipin ensure = present uid = '505' 
+shell = '/bin/bash' home = '/home/vipin'
+</pre>
+<p>Test the applied resource.</p>
+<pre class="result notranslate">
+[root@puppetmaster ~]# cat /etc/passwd | grep "vipin" 
+vipin:x:505:501::/home/vipin:/bin/bash 
+</pre>
+<p>The above output shows that the resource is applied to the system and we have a new user created with the name of Vipin. It is advisable that you test this on your own as all the above codes are tested and are working codes.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/puppet/puppet_resource.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/puppet/puppet_template.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

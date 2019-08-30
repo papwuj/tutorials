@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Set Up Postfix MTA and IMAP/POP3</title>
+<meta charset="utf-8">
+<meta name="description" content="Set Up Postfix MTA and IMAP/POP3 - In order to send an email from our CentOS 7 server, we will need the setup to configure a modern Mail Transfer Agent (MTA). Mail Transfer Agent is the daemon re"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/linux_admin/linux_admin_set_up_postfix_mta_and_imap_pop3.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#dfa018;
+}
+a.demo {
+    background:#dfa018;
+}
+li.heading {
+    background:#dfa018;
+}
+.course-box{background:#dfa018}
+.home-intro-sub p{color:#dfa018}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/linux_admin/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/linux_admin/images/linux-admin-mini-logo.jpg" alt="Linux Admin Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Tutorial</li>
+<li><a href="/linux_admin/index.htm">Linux Admin - Home</a></li>
+<li><a href="/linux_admin/linux_admin_centos_overview.htm">CentOS Overview</a></li>
+<li><a href="/linux_admin/basic_centos_linux_commands.htm">Basic CentOS Linux Commands</a></li>
+<li><a href="/linux_admin/linux_admin_file_folder_management.htm">File / Folder Management</a></li>
+<li><a href="/linux_admin/linux_admin_user_management.htm">User Management</a></li>
+<li><a href="/linux_admin/linux_admin_quota_management.htm">Quota Management</a></li>
+<li><a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Systemd Services Start and Stop</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Resource Mgmt with systemctl</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Resource Mgmt with crgoups</a></li>
+<li><a href="/linux_admin/linux_admin_process_management.htm">Process Management</a></li>
+<li><a href="/linux_admin/linux_admin_firewall_setup.htm">Firewall Setup</a></li>
+<li><a href="/linux_admin/configure_php_in_centos_linux.htm">Configure PHP in CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_python_with_centos_linux.htm">Set Up Python with CentOS Linux</a></li>
+<li><a href="/linux_admin/configure_ruby_on_centos_linux.htm">Configure Ruby on CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_perl_for_centos_linux.htm">Set Up Perl for CentOS Linux</a></li>
+<li><a href="/linux_admin/install_and_configure_open_ldap.htm">Install and Configure Open LDAP</a></li>
+<li><a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Create SSL Certificates</a></li>
+<li><a href="/linux_admin/linux_admin_install_apache_web_server_centos_7.htm">Install Apache Web Server CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">MySQL Setup On CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_set_up_postfix_mta_and_imap_pop3.htm">Set Up Postfix MTA and IMAP/POP3</a></li>
+<li><a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Install Anonymous FTP</a></li>
+<li><a href="/linux_admin/linux_admin_remote_management.htm">Remote Management</a></li>
+<li><a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm">Traffic Monitoring in CentOS</a></li>
+<li><a href="/linux_admin/linux_admin_log_management.htm">Log Management</a></li>
+<li><a href="/linux_admin/linux_admin_backup_and_recovery.htm">Backup and Recovery</a></li>
+<li><a href="/linux_admin/linux_admin_system_updates.htm">System Updates</a></li>
+<li><a href="/linux_admin/linux_admin_shell_scripting.htm">Shell Scripting</a></li>
+<li><a href="/linux_admin/linux_admin_package_management.htm">Package Management</a></li>
+<li><a href="/linux_admin/linux_admin_volume_management.htm">Volume Management</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Useful Resources</li>
+<li><a href="/linux_admin/linux_admin_quick_guide.htm">Linux Admin - Quick Guide</a></li>
+<li><a href="/linux_admin/linux_admin_useful_resources.htm">Linux Admin - Useful Resources</a></li>
+<li><a href="/linux_admin/linux_admin_discussion.htm">Linux Admin - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Set Up Postfix MTA and IMAP/POP3</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In order to send an email from our CentOS 7 server, we will need the setup to configure a modern Mail Transfer Agent (MTA). Mail Transfer Agent is the daemon responsible for sending outbound mail for system users or corporate Internet Domains via SMTP.</p>
+<p>It is worth noting, this tutorial only teaches the process of setting up the daemon for local use. We do not go into detail about advanced configuration for setting up an MTA for business operations. This is a combination of many skills including but not limited to: DNS, getting a static routable IP address that is not blacklisted, and configuring advanced security and service settings. In short, this tutorial is meant to familiarize you with the basic configuration. Do not use this tutorial for MTA configuration of an Internet facing host.</p>
+<p>With its combined focus on both security and the ease of administration, we have chosen <b>Postfix</b> as the MTA for this tutorial. The default MTA installed in the older versions of CentOS is <i>Sendmail</i>. <b>Sendmail</b> is a great MTA. However, of the author's humble opinion, Postfix hits a sweet spot when addressing the following notes for an MTA. With the most current version of CentOS, Postfix has superseded Sendmail as the default MTA.</p>
+<p>Postfix is a widely used and well documented MTA. It is actively maintained and developed. It requires minimal configuration in mind (this is just email) and is efficient with system resources (again, this is just email).</p>
+<p><b>Step 1</b> &minus; Install Postfix from YUM Package Manager.</p>
+<pre class="result notranslate">
+[root@centos]# yum -y install postfix
+</pre>
+<p><b>Step 2</b> &minus; Configure Postfix config file.</p>
+<p>The Postfix configuration file is located in: <i>/etc/postfix/main.cf</i></p>
+<p>In a simple Postfix configuration, the following must be configured for a specific host: host name, domain, origin, inet_interfaces, and destination.</p>
+<p><b>Configure the hostname</b> &minus; The hostname is a fully qualified domain name of the Postfix host. In OpenLDAP chapter, we named the CentOS box: centos on the domain <i>vmnet.local</i>. Let’s stick with that for this chapter.</p>
+<pre class="result notranslate">
+# The myhostname parameter specifies the internet hostname of this
+# mail system. The default is to use the fully-qualified domain name
+# from gethostname(). $myhostname is used as a default value for many
+# other configuration parameters.
+#
+myhostname = centos.vmnet.local
+</pre>
+<p><b>Configure the domain</b> &minus; As stated above, the domain we will be using in this tutorial is <i>vmnet.local</i></p>
+<pre class="result notranslate">
+# The mydomain parameter specifies the local internet domain name.
+# The default is to use $myhostname minus the first component.
+# $mydomain is used as a default value for many other configuration
+# parameters.
+#
+mydomain = vmnet.local
+</pre>
+<p><b>Configure the origin</b> &minus; For a single server and domain set up, we just need to uncomment the following sections and leave the default Postfix variables.</p>
+<pre class="result notranslate">
+# SENDING MAIL
+#
+# The myorigin parameter specifies the domain that locally-posted
+# mail appears to come from. The default is to append $myhostname,
+# which is fine for small sites.  If you run a domain with multiple
+# machines, you should (1) change this to $mydomain and (2) set up
+# a domain-wide alias database that aliases each user to
+# user@that.users.mailhost.
+#
+# For the sake of consistency between sender and recipient addresses,
+# myorigin also specifies the default domain name that is appended
+# to recipient addresses that have no @domain part. 
+#
+myorigin = $myhostname
+myorigin = $mydomain
+</pre>
+<p><b>Configure the network interfaces</b> &minus; We will leave Postfix listening on our single network interface and all protocols and IP Addresses associated with that interface. This is done by simply leaving the default settings enabled for Postfix.</p>
+<pre class="result notranslate">
+# The inet_interfaces parameter specifies the network interface
+# addresses that this mail system receives mail on.  By default,
+# the software claims all active interfaces on the machine. The
+# parameter also controls delivery of mail to user@[ip.address].
+#
+# See also the proxy_interfaces parameter, for network addresses that
+# are forwarded to us via a proxy or network address translator.
+#
+# Note: you need to stop/start Postfix when this parameter changes. 
+#
+#inet_interfaces = all
+#inet_interfaces = $myhostname
+#inet_interfaces = $myhostname, localhost
+#inet_interfaces = localhost
+# Enable IPv4, and IPv6 if supported
+inet_protocols = all
+</pre>
+<p><b>Step 3</b> &minus; Configure SASL Support for Postfix.</p>
+<p>Without SASL Authentication support, Postfix will only allow sending email from local users. Or it will give a <i>relaying denied</i> error when the users send email away from the local domain.</p>
+<p><b>Note</b> &minus; <b>SASL</b> or <b>Simple Application Security Layer Framework</b> is a framework designed for authentication supporting different techniques amongst different Application Layer protocols. Instead of leaving authentication mechanisms up to the application layer protocol, SASL developers (and consumers) leverage current authentication protocols for higher level protocols that may not have the convenience or more secure authentication (when speaking of access to secured services) built in.</p>
+<h3>Install the "cyrus-sasl* package</h3>
+<pre class="result notranslate">
+[root@centos]# yum -y install  cyrus-sasl 
+Loaded plugins: fastestmirror, langpacks 
+Loading mirror speeds from cached hostfile 
+ * base: repos.forethought.net 
+ * extras: repos.dfw.quadranet.com 
+ * updates: mirrors.tummy.com 
+Package cyrus-sasl-2.1.26-20.el7_2.x86_64 already installed and latest version
+Nothing to do
+</pre>
+<h3>Configure <i>/etc/postfix/main.cf</i> for SASL Auth</h3>
+<pre class="result notranslate">
+smtpd_sasl_auth_enable = yes
+smtpd_recipient_restrictions =
+permit_mynetworks,permit_sasl_authenticated,reject_unauth_destination
+smtpd_sasl_security_options = noanonymous
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+</pre>
+<h3>My SASL Options in <i>main.conf</i></h3>
+<pre class="result notranslate">
+##Configure SASL Options Entries:
+smtpd_sasl_auth_enable = yes
+smptd_recipient_restrictions =
+permit_mynetworks,permit_sasl_authenticated,reject_unauth_destination
+smtp_sasl_type = dovecot
+smtp_sasl_path = private/auth/etc
+</pre>
+<p><b>Step 4</b> &minus; Configure FirewallD to allow incoming SMTP Services.</p>
+<pre class="result notranslate">
+[root@centos]# firewall-cmd --permanent --add-service=smtp 
+success
+
+[root@centos]# firewall-cmd --reload 
+success
+
+[root@centos]#
+</pre>
+<p>Now let's check to make sure our CentOS host is allowing and responding to the requests on port 25 (SMTP).</p>
+<pre class="result notranslate">
+Nmap scan report for 172.16.223.132 
+Host is up (0.00035s latency). 
+Not shown: 993 filtered ports 
+PORT    STATE  SERVICE 
+   20/tcp  closed ftp-data 
+   21/tcp  open   ftp 
+   22/tcp  open   ssh 
+   25/tcp  open   smtp 
+   80/tcp  open   http 
+   389/tcp open   ldap 
+   443/tcp open   https 
+MAC Address: 00:0C:29:BE:DF:5F (VMware)
+</pre>
+<p>As you can see, SMTP is listening and the daemon is responding to the requests from our internal LAN.</p>
+<h2>Install Dovecot IMAP and POP3 Server</h2>
+<p>Dovecot is a secure IMAP and POP3 Server deigned to handle incoming mail needs of a smaller to larger organization. Due to its prolific use with CentOS, we will be using Dovecot as an example of installing and configuring an incoming mail-server for CentOS and MTA SASL Provider.</p>
+<p>As noted previously, we will not be configuring MX records for DNS or creating secure rules allowing our services to handle mail for a domain. Hence, just setting these services up on an Internet facing host may leave leverage room for security holes w/o SPF Records.</p>
+<p><b>Step 1</b> &minus; Install Dovecot.</p>
+<pre class="result notranslate">
+[root@centos]# yum -y install dovecot
+</pre>
+<p><b>Step 2</b> &minus; Configure dovecot.</p>
+<p>The main configuration file for dovecot is located at: <i>/etc/dovecot.conf</i>. We will first back up the main configuration file. It is a good practice to always backup configuration files before making edits. This way id (for example) line breaks get destroyed by a text editor, and years of changes are lost. Reverting is easy as copying the current backup into production.</p>
+<h3>Enable protocols and daemon service for <i>dovecot</i></h3>
+<pre class="result notranslate">
+# Protocols we want to be serving. 
+protocols = imap imaps pop3 pop3s
+</pre>
+<p>Now, we need to enable the dovecot daemon to listen on startup &minus;</p>
+<pre class="result notranslate">
+[root@localhost]# systemctl start  dovecot 
+[root@localhost]# systemctl enable dovecot
+</pre>
+<p>Let's make sure Dovecot is listening locally on the specified ports for: imap, pop3, imap secured, and pop3 secured.</p>
+<pre class="result notranslate">
+[root@localhost]# netstat -antup | grep dovecot 
+ tcp        0        0 0.0.0.0:110        0.0.0.0:*        LISTEN        4368/dovecot
+ tcp        0        0 0.0.0.0:143        0.0.0.0:*        LISTEN        4368/dovecot
+ tcp        0        0 0.0.0.0:993        0.0.0.0:*        LISTEN        4368/dovecot
+ tcp        0        0 0.0.0.0:995        0.0.0.0:*        LISTEN        4368/dovecot
+ tcp6       0        0 :::110                :::*          LISTEN        4368/dovecot
+ tcp6       0        0 :::143                :::*          LISTEN        4368/dovecot
+ tcp6       0        0 :::993                :::*          LISTEN        4368/dovecot
+ tcp6       0        0 :::995                :::*          LISTEN        4368/dovecot
+
+[root@localhost]#
+</pre>
+<p>As seen, <i>dovecot</i> is listening on the specified ports for IPv4 and IPv4.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<td>POP3</td>
+<td>110</td>
+</tr>
+<tr>
+<td>POP3s</td>
+<td>995</td>
+</tr>
+<tr>
+<td>IMAP</td>
+<td>143</td>
+</tr>
+<tr>
+<td>IMAPs</td>
+<td>993</td>
+</tr>
+</table>
+<p>Now, we need to make some firewall rules.</p>
+<pre class="result notranslate">
+[root@localhost]# firewall-cmd --permanent --add-port=110/tcp 
+success
+ 
+[root@localhost]# firewall-cmd --permanent --add-port=143/tcp 
+success
+ 
+[root@localhost]# firewall-cmd --permanent --add-port=995/tcp 
+success
+ 
+[root@localhost]# firewall-cmd --permanent --add-port=993/tcp 
+success
+ 
+[root@localhost]# firewall-cmd --reload 
+success
+ 
+[root@localhost]#
+</pre>
+<p>Our incoming mail sever is accepting requests for <i>POP3</i>, <i>POP3s</i>, <i>IMAP</i>, and <i>IMAPs</i> to hosts on the LAN.</p>
+<pre class="result notranslate">
+Port Scanning host: 192.168.1.143
+
+   Open TCP Port:   21          ftp 
+   Open TCP Port:   22          ssh 
+   Open TCP Port:   25          smtp 
+   Open TCP Port:   80          http 
+   Open TCP Port:   110         pop3 
+   Open TCP Port:   143         imap 
+   Open TCP Port:   443         https 
+   Open TCP Port:   993         imaps 
+   Open TCP Port:   995         pop3s 
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

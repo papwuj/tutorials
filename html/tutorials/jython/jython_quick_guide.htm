@@ -1,0 +1,2248 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Jython - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="Jython - Quick Guide - Jython is the JVM implementation of the Python programming language. It is designed to run on the Java platform. A Jython program can import and use any Java cl"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/jython/jython_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#349041;
+}
+a.demo {
+    background:#349041;
+}
+li.heading {
+    background:#349041;
+}
+.course-box{background:#349041}
+.home-intro-sub p{color:#349041}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/jython/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/jython/images/jython-mini-logo.jpg" alt="Jython Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Jython Tutorial</li>
+<li><a href="/jython/index.htm">Jython - Home</a></li>
+<li><a href="/jython/jython_overview.htm">Jython - Overview</a></li>
+<li><a href="/jython/jython_installation.htm">Jython - Installation</a></li>
+<li><a href="/jython/jython_importing_java_libraries.htm">Jython - Importing Java Libraries</a></li>
+<li><a href="/jython/jython_variables_and_data_types.htm">Jython - Variables and Data Types</a></li>
+<li><a href="/jython/jython_using_java_collection_types.htm">Jython - Using Java Collection Types</a></li>
+<li><a href="/jython/jython_decision_control.htm">Jython - Decision Control</a></li>
+<li><a href="/jython/jython_loops.htm">Jython - Loops</a></li>
+<li><a href="/jython/jython_functions.htm">Jython - Functions</a></li>
+<li><a href="/jython/jython_modules.htm">Jython - Modules</a></li>
+<li><a href="/jython/jython_package.htm">Jython - Package</a></li>
+<li><a href="/jython/jython_java_application.htm">Jython - Java Application</a></li>
+<li><a href="/jython/jython_eclipse_plugin.htm">Jython - Eclipse Plugin</a></li>
+<li><a href="/jython/jython_project_in_eclipse.htm">Jython - A Project in Eclipse</a></li>
+<li><a href="/jython/jython_netbeans_plugin_and_project.htm">Jython - NetBeans Plugin &amp; Project</a></li>
+<li><a href="/jython/jython_servlets.htm">Jython - Servlets</a></li>
+<li><a href="/jython/jython_jdbc.htm">Jython - JDBC</a></li>
+<li><a href="/jython/jython_using_the_swing_gui_library.htm">Jython - Using the Swing GUI library</a></li>
+<li><a href="/jython/jython_layout_management.htm">Jython - Layout Management</a></li>
+<li><a href="/jython/jython_event_handling.htm">Jython - Event Handling</a></li>
+<li><a href="/jython/jython_menus.htm">Jython - Menus</a></li>
+<li><a href="/jython/jython_dialogs.htm">Jython - Dialogs</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Jython Useful Resources</li>
+<li><a href="/jython/jython_quick_guide.htm">Jython - Quick Guide</a></li>
+<li><a href="/jython/jython_useful_resources.htm">Jython - Useful Resources</a></li>
+<li><a href="/jython/jython_discussion.htm">Jython - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Jython - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/jython/jython_dialogs.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/jython/jython_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>Jython - Overview</h1>
+<p>Jython is the JVM implementation of the Python programming language. It is designed to run on the Java platform. A Jython program can import and use any Java class. Just as Java, Jython program compiles to <b>bytecode</b>. One of the main advantages is that a user interface designed in Python can use GUI elements of <b>AWT</b>, <b>Swing</b> or <b>SWT Package</b>.</p>
+<p>Jython, which started as JPython and was later renamed, follows closely the standard Python implementation called <b>CPython</b> as created by <b>Guido Van Rossum</b>. Jython was created in 1997 by <b>Jim Hugunin</b>. Jython 2.0 was released in 1999. Since then, Jython 2.x releases correspond to equivalent CPython releases. Jython 2.7.0 released in May 2015, corresponds to CPython 2.7. Development of Jython 3.x is under progress.</p>
+<h2>Difference between Python and Java</h2>
+<p>Following are the differences between Python and Java &minus;</p>
+<ul class="list">
+<li><p>Python is a dynamically typed language. Hence, the type declaration of variable is not needed. Java on the other hand is a statically typed language, which means that the type declaration of variable is mandatory and cannot be changed.</p></li>
+<li><p>Python has only unchecked exceptions, whereas Java has both checked and unchecked exceptions.</p></li>
+<li><p>Python uses indents for scoping, while Java uses matching curly brackets.</p></li>
+<li><p>Since Python is an interpreter-based language, it has no separate compilation steps. A Java program however needs to be compiled to bytecode and is in turn executed by a JVM.</p></li>
+<li><p>Python supports multiple inheritance, but in Java, multiple inheritance is not possible. It however has implementation of an interface.</p></li>
+<li><p>Compared to Java, Python has a richer built-in data structures (lists, dicts, tuples, everything is an object).</p></li>
+</ul>
+<h2>Difference between Python and Jython</h2>
+<p>Following are the differences between Python and Jython &minus;</p>
+<ul class="list">
+<li><p>Reference implementation of Python, called CPython, is written in C language. Jython on the other hand is completely written in Java and is a JVM implementation.</p></li>
+<li><p>Standard Python is available on multiple platforms. Jython is available for any platform with a JVM installed on it.</p></li>
+<li><p>Standard Python code compiles to a <b>.pyc</b> file, while Jython program compiles to a <b>.class</b> file.</p></li>
+<li><p>Python extensions can be written in C language. Extensions for Jython are written in Java.</p></li>
+<li><p>Jython is truly multi-threaded in nature. Python however uses the <b>Global Interpreter Lock</b> (GIL) mechanism for the purpose.</p></li>
+<li><p>Both implementations have different garbage collection mechanisms.</p></li>
+</ul>
+<p>In the next chapter, we will learn how to import the Java libraries in Jython.</p>
+<h1>Jython - Installation</h1>
+<p>Before installation of Jython 2.7, ensure that the system has <b>JDK 7</b> or more installed. Jython is available in the form of an executable jar file. Download it from - <a target="_blank" rel="nofollow" href="http://www.jython.org/downloads.html">http://www.jython.org/downloads.html</a> and either double click on its icon or run the following command &minus;</p>
+<pre class="result notranslate">
+java -jar jython_installer-2.7.0.jar
+</pre>
+<p>An installation wizard will commence with which installation options have to be given. Here is the systematic installation procedure.</p>
+<p>The first step in the wizard asks you to select the language.</p>
+<img src="/jython/images/wizard.jpg" alt="Wizard" />
+<p>The second step prompts you to accept the licence agreement.</p>
+<img src="/jython/images/licence_agreement.jpg" alt="License Agreement" />
+<p>In the next step, choose the installation type. It is recommended to choose the Standard installation.</p>
+<img src="/jython/images/installation_type.jpg" alt="Installation Type" />
+<p>The next screen asks your confirmation about your options and proceeds to complete the installation.</p>
+<img src="/jython/images/overview.jpg" alt="Overview" />
+<p>The installation procedure might take some time to complete.</p>
+<img src="/jython/images/installation_in_process.jpg" alt="Installation in Process" />
+<p>After the installation is complete, invoke <b>jython.exe</b> from the bin directory inside the destination directory. Assuming that Jython is installed in <b>C:\jython27</b>, execute the following from the command line.</p>
+<pre class="result notranslate">
+C:\jython27\bin\jython
+</pre>
+<p>A Python prompt (&gt;&gt;&gt;) will appear, in front of which any Python statement or Python script can be executed.</p>
+<img src="/jython/images/python_prompt.jpg" alt="Python Prompt" />
+<h1>Jython - Importing Java Libraries</h1>
+<p>One of the most important features of Jython is its ability to import Java classes in a Python program. We can import any java package or class in Jython, just as we do in a Java program. The following example shows how the <b>java.util</b> packages are imported in Python (Jython) script to declare an object of the Date class.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/csgUPx" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+from java.util import Date
+d = Date()
+print d
+</pre>
+<p>Save and run the above code as <b>UtilDate.py</b> from the command line. Instance of the current date and time will be displayed.</p>
+<pre class="result notranslate">
+C:\jython27\bin&gt;jython UtilDate.py
+Sun Jul 09 00:05:43 IST 2017
+</pre>
+<p>The following packages from the Java library are more often imported in a Jython program mainly because standard Python library either does not have their equivalents or are not as good.</p>
+<ul class="list">
+<li>Servlets</li>
+<li>JMS</li>
+<li>J2EE</li>
+<li>Javadoc</li>
+<li>Swing is considered superior to other GUI toolkits</li>
+</ul>
+<p>Any Java package for that matter can be imported in a Jython script. Here, the following java program is stored and compiled in a package called <b>foo</b>.</p>
+<pre class="prettyprint notranslate">
+package foo;
+public class HelloWorld {
+   public void hello() {
+      System.out.println("Hello World!");
+   }
+   public void hello(String name) {
+      System.out.printf("Hello %s!", name);
+   }
+}
+</pre>
+<p>This <b>HelloWorld.class</b> is imported in the following Jython Script. Methods in this class can be called from the Jython script <b>importex.py</b>.</p>
+<pre class="prettyprint notranslate">
+from foo import HelloWorld
+h = HelloWorld()
+h.hello()
+h.hello("TutorialsPoint")
+</pre>
+<p>Save and execute the above script from the command line to get following output.</p>
+<pre class="result notranslate">
+C:\jython27\bin&gt;jython importex.py
+Hello World!
+Hello TutorialsPoint!
+</pre>
+<h1>Jython - Variables and Data Types</h1>
+<p>Variables are named locations in computer’s memory. Each variable can hold one piece of data in it. Unlike Java, Python is a dynamically typed language. Hence while using Jython also; prior declaration of data type of variable is not done. Rather than the type of variable deciding which data can be stored in it, the data decides the type of variable.</p>
+<p>In the following example, a variable is assigned an integer value. Using the type() built-in function, we can verify that the type of variable is an integer. But, if the same variable is assigned a string, the type() function will string as the type of same variable.</p>
+<pre class="prettyprint notranslate">
+&gt; x = 10
+&gt;&gt;&gt; type(x)
+&lt;class 'int'&gt;
+
+&gt;&gt;&gt; x = "hello"
+&gt;&gt;&gt; type(x)
+&lt;class 'str'&gt;
+</pre>
+<p>This explains why Python is called a dynamically typed language.</p>
+<p>The following Python built-in data types can also be used in Jython &minus;</p>
+<ul class="list">
+<li>Number</li>
+<li>String</li>
+<li>List</li>
+<li>Tuple</li>
+<li>Dictionary</li>
+</ul>
+<p>Python recognizes numeric data as a number, which may be an integer, a real number with floating point or a complex number. String, List and Tuple data types are called sequences.</p>
+<h2>Jython Numbers</h2>
+<p>In Python, any signed integer is said to be of type ‘int’. To express a long integer, letter ‘L’ is attached to it. A number with a decimal point separating the integer part from a fractional component is called ‘float’. The fractional part may contain an exponent expressed in the scientific notation using ‘E’ or ‘e’.</p>
+<p>A Complex number is also defined as numeric data type in Python. A complex number contains a real part (a floating-point number) and an imaginary part having ‘j’ attached to it.</p>
+<p>In order to express a number in the Octal or the Hexadecimal representation, <b>0O</b> or <b>0X</b> is prefixed to it. The following code block gives examples of different representations of numbers in Python.</p>
+<pre class="result notranslate">
+int     -&gt; 10, 100, -786, 80
+long    -&gt; 51924361L, -0112L, 47329487234L
+float   -&gt; 15.2, -21.9, 32.3+e18, -3.25E+101
+complex -&gt; 3.14j, 45.j, 3e+26J, 9.322e-36j
+</pre>
+<h2>Jython Strings</h2>
+<p>A string is any sequence of characters enclosed in single (e.g. ‘hello’), double (e.g. “hello”) or triple (e.g. ‘“hello’” o “““hello”””) quotation marks. Triple quotes are especially useful if content of the string spans over multiple lines.</p>
+<p>The Escape sequence characters can be included verbatim in triple quoted string. The following examples show different ways to declare a string in Python.</p>
+<pre class="prettyprint notranslate">
+str = ’hello how are you?’
+str = ”Hello how are you?”
+str = """this is a long string that is made up of several lines and non-printable
+characters such as TAB ( \t ) and they will show up that way when displayed. NEWLINEs
+within the string, whether explicitly given like this within the brackets [ \n ], or just
+a NEWLINE within the variable assignment will also show up.
+"""
+</pre>
+<p>The third string when printed, will give the following output.</p>
+<pre class="result notranslate">
+this is a long string that is made up of
+several lines and non-printable characters such as
+TAB ( 	 ) and they will show up that way when displayed.
+NEWLINEs within the string, whether explicitly given like
+this within the brackets [
+], or just a NEWLINE within
+the variable assignment will also show up.
+</pre>
+<h2>Jython Lists</h2>
+<p>A List is a sequence data type. It is a collection of comma-separated items, not necessarily of the same type, stored in square brackets. Individual item from the List can be accessed using the zero based index.</p>
+<p>The following code block summarizes the usage of a List in Python.</p>
+<pre class="prettyprint notranslate">
+list1 = ['physics', 'chemistry', 1997, 2000];
+list2 = [1, 2, 3, 4, 5, 6, 7 ];
+print "list1[0]: ", list1[0]
+print "list2[1:5]: ", list2[1:5]
+</pre>
+<p>The following table describes some of the most common Jython Expressions related to Jython Lists.</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center; width:50%;">Jython Expression</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td>len(List)</td>
+<td>Length</td>
+</tr>
+<tr>
+<td>List[2]=10</td>
+<td>Updation</td>
+</tr>
+<tr>
+<td>Del List[1]</td>
+<td>Deletion</td>
+</tr>
+<tr>
+<td>List.append(20)</td>
+<td>Append</td>
+</tr>
+<tr>
+<td>List.insert(1,15)</td>
+<td>Insertion</td>
+</tr>
+<tr>
+<td>List.sort()</td>
+<td>Sorting</td>
+</tr>
+</table>
+<h2>Jython Tuples</h2>
+<p>A tuple is an immutable collection of comma-separated data items stored in parentheses. It is not possible to delete or modify an element in tuple, nor is it possible to add an element to the tuple collection. The following code block shows Tuple operations.</p>
+<pre class="prettyprint notranslate">
+tup1 = ('physics','chemistry‘,1997,2000);
+tup2 = (1, 2, 3, 4, 5, 6, 7 );
+print "tup1[0]: ", tup1[0]
+print "tup2[1:5]: ", tup2[1:5]
+</pre>
+<h2>Jython Dictionary</h2>
+<p>The Jython Dictionary is similar to Map class in Java Collection framework. It is a collection of key-value pairs. Pairs separated by comma are enclosed in curly brackets. A Dictionary object does not follow zero based index to retrieve element inside it as they are stored by hashing technique.</p>
+<p>The same key cannot appear more than once in a dictionary object. However, more than one key can have same associated values. Different functions available with Dictionary object are explained below &minus;</p>
+<pre class="prettyprint notranslate">
+dict = {'011':'New Delhi','022':'Mumbai','033':'Kolkata'}
+print "dict[‘011’]: ",dict['011']
+print "dict['Age']: ", dict['Age']
+</pre>
+<p>The following table describes some of the most common Jython Expressions related to Dictionary.</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center; width:50%;">Jython Expression</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td>dict.get(‘011’)</td>
+<td>Search</td>
+</tr>
+<tr>
+<td>len(dict)</td>
+<td>Length</td>
+</tr>
+<tr>
+<td>dict[‘044’] = ‘Chennai’</td>
+<td>Append</td>
+</tr>
+<tr>
+<td>del dict[‘022’]</td>
+<td>Delete</td>
+</tr>
+<tr>
+<td>dict.keys()</td>
+<td>list of keys</td>
+</tr>
+<tr>
+<td>dict.values()</td>
+<td>List of values</td>
+</tr>
+<tr>
+<td>dict.clear()</td>
+<td>Removes all elements</td>
+</tr>
+</table>
+<h1>Jython - Using Java Collection Types</h1>
+<p>In addition to Python’s built-in data types, Jython has the benefit of using Java collection classes by importing the <b>java.util package</b>. The following code describes the classes given below &minus;</p>
+<ul class="list">
+<li>Java ArrayList object with add()</li>
+<li>remove()</li>
+<li>get() and set() methods of the ArrayList class.</li>
+</ul>
+<div class="demo-view">
+<a href="http://tpcg.io/Iv0SC1" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+import java.util.ArrayList as ArrayList
+arr = ArrayList()
+arr.add(10)
+arr.add(20)
+print "ArrayList:",arr
+arr.remove(10) #remove 10 from arraylist
+arr.add(0,5) #add 5 at 0th index
+print "ArrayList:",arr
+print "element at index 1:",arr.get(1) #retrieve item at index 1
+arr.set(0,100) #set item at 0th index to 100
+print "ArrayList:",arr
+</pre>
+<p>The above Jython script produces the following output &minus;</p>
+<pre class="result notranslate">
+C:\jython27\bin&gt;jython arrlist.py
+ArrayList: [10, 20]
+ArrayList: [5, 20]
+element at index 1: 20
+ArrayList: [100, 20]
+</pre>
+<h2>Jarray Class</h2>
+<p>Jython also implements the <b>Jarray Object</b>, which allows construction of a Java array in Python. In order to work with a jarray, simply define a sequence type in Jython and pass it to the jarrayobject along with the type of object contained within the sequence. All values within a jarray must be of the same type.</p>
+<p>The following table shows the character typecodes used with a jarray.</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center;">Character Typecode</th>
+<th style="text-align:center;">Corresponding Java Type</th>
+</tr>
+<tr>
+<td>Z</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>C</td>
+<td>char</td>
+</tr>
+<tr>
+<td>B</td>
+<td>byte</td>
+</tr>
+<tr>
+<td>H</td>
+<td>short</td>
+</tr>
+<tr>
+<td>I</td>
+<td>int</td>
+</tr>
+<tr>
+<td>L</td>
+<td>long</td>
+</tr>
+<tr>
+<td>F</td>
+<td>float</td>
+</tr>
+<tr>
+<td>D</td>
+<td>double</td>
+</tr>
+</table>
+<p>The following example shows construction of jarray.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/ATYXZD" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+my_seq = (1,2,3,4,5)
+from jarray import array
+arr1 = array(my_seq,'i')
+print arr1
+myStr = "Hello Jython"
+arr2 = array(myStr,'c')
+print arr2
+</pre>
+<p>Here <b>my_seq</b> is defined as a tuple of integers. It is converted to Jarray arr1. The second example shows that Jarray arr2 is constructed from <b>mySttr string</b> sequence. The output of the above script <b>jarray.py</b> is as follows &minus;</p>
+<pre class="result notranslate">
+array('i', [1, 2, 3, 4, 5])
+array('c', 'Hello Jython')
+</pre>
+<h1>Jython - Decision Control</h1>
+<p>Decision making structures have one or more conditions to be evaluated or tested by the program, along with a statement or statements that are to be executed, if the condition is determined to be true, and optionally, other statements to be executed, if the condition is determined to be false.</p>
+<p>The following illustration shows the general form of a typical decision making structure found in most of the programming languages &minus;</p>
+<img src="/jython/images/decision_control.jpg" alt="Decision Control" />
+<p>Jython does not use curly brackets to indicate blocks of statements to be executed when the condition is true or false (as is the case in Java). Instead, uniform indent (white space from left margin) is used to form block of statements. Such a uniformly indented block makes the conditional code to be executed when a condition given in ‘if’ statement is true.</p>
+<p>A similar block may be present after an optional ‘else’ statement. Jython also provides the <b>elif statement</b> using which successive conditions can be tested. Here, the <b>else clause</b> will appear last and will be executed only when all the preceding conditions fail. The general syntax of using <b>if..elif..else</b> is as follows.</p>
+<pre class="result notranslate">
+if expression1:
+   statement(s)
+elif expression2:
+   statement(s)
+elif expression3:
+   statement(s)
+else:
+   statement(s)
+</pre>
+<p>In the following example, if <b>..elif ..else</b> construct is used to calculate discount on different values of amount input by user.</p>
+<pre class="prettyprint notranslate">
+discount = 0
+amount = input("enter Amount")
+if amount&gt;1000:
+   discount = amount*0.10
+elif amount&gt;500:
+   discount = amount*0.05
+else:
+   discount = 0
+print 'Discount = ',discount
+print 'Net amount = ',amount-discount
+</pre>
+<p>The output of above code will be as shown below.</p>
+<pre class="result notranslate">
+enter Amount1500
+Discount = 150.0
+Net amount = 1350.0
+enter Amount600
+Discount = 30.0
+Net amount = 570.0
+enter Amount200
+Discount = 0
+Net amount = 200
+</pre>
+<h1>Jython - Loops</h1>
+<p>In general, statements in a program are executed sequentially: The first statement in a function is executed first, followed by the second, and so on. There may be a situation when you need to execute a block of code several number of times. Statements that provide such repetition capability are called <b>looping statements</b>.</p>
+<p>In Jython, a loop can be formed by two statements, which are &minus;</p>
+<ul class="list">
+<li><p>The <b>while</b> statement and</p></li>
+<li><p>The <b>for</b> statement</p></li>
+</ul>
+<h2>The WHILE Loop</h2>
+<p>A while loop statement in Jython is similar to that in Java. It repeatedly executes a block of statements as long as a given condition is true. The following flowchart describes the behavior of a <b>while</b> loop.</p>
+<img src="/jython/images/while_loop.jpg" alt="While Loop" />
+<p>The general syntax of the while statement is given below.</p>
+<pre class="result notranslate">
+while expression:
+   statement(s)
+</pre>
+<p>The following Jython code uses the while loop to repeatedly increment and print value of a variable until it is less than zero.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/OpUk9r" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+count = 0
+while count&lt;10:
+   count = count+1
+   print "count = ",count
+print "Good Bye!"
+</pre>
+<p><b>Output</b> &minus; The output would be as follows.</p>
+<pre class="result notranslate">
+count =  1
+count =  2
+count =  3
+count =  4
+count =  5
+count =  6
+count =  7
+count =  8
+count =  9
+count =  10
+Good Bye!
+</pre>
+<h2>The FOR Loop</h2>
+<p>The FOR loop in Jython is not a counted loop as in Java. Instead, it has the ability to traverse elements in a sequence data type such as string, list or tuple. The general syntax of the FOR statement in Jython is as shown below &minus;</p>
+<pre class="result notranslate">
+for iterating_var in sequence:
+   statements(s)
+</pre>
+<p>We can display each character in a string, as well as each item in a List or Tuple by using the FOR statement as shown below &minus;</p>
+<div class="demo-view">
+<a href="http://tpcg.io/BAqVvL" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+#each letter in string
+for letter in 'Python':
+   print 'Current Letter :', letter
+</pre>
+<p><b>Output</b> &minus; The output would be as follows.</p>
+<pre class="result notranslate">
+Current Letter : P
+Current Letter : y
+Current Letter : t
+Current Letter : h
+Current Letter : o
+Current Letter : n
+</pre>
+<p>Let us consider another instance as follows.</p>
+<pre class="prettyprint notranslate">
+#each item in list
+libs = [‘PyQt’, 'WxPython',  'Tkinter']
+for lib in libs:        # Second Example
+   print 'Current library :', lib
+</pre>
+<p><b>Output</b> &minus; The output will be as follows.</p>
+<pre class="result notranslate">
+Current library : PyQt
+Current library : WxPython
+Current library : Tkinter
+</pre>
+<p>Here is another instance to consider.</p>
+<pre class="prettyprint notranslate">
+#each item in tuple
+libs = (‘PyQt’, 'WxPython',  'Tkinter')
+for lib in libs:        # Second Example
+   print 'Current library :', lib
+</pre>
+<p><b>Output</b> &minus; The output of the above program is as follows.</p>
+<pre class="result notranslate">
+Current library : PyQt
+Current library : WxPython
+Current library : Tkinter
+</pre>
+<p>In Jython, the <b>for</b> statement is also used to iterate over a list of numbers generated by range() function. The range() function takes following form &minus;</p>
+<pre class="result notranslate">
+range[([start],stop,[step])
+</pre>
+<p>The start and step parameters are 0 and 1 by default. The last number generated is stop step. The FOR statement traverses the list formed by the <b>range() function</b>. For example &minus;</p>
+<div class="demo-view">
+<a href="http://tpcg.io/HpDar4" target="_blank" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+for num in range(5):
+   print num
+</pre>
+<p>It produces the following output &minus;</p>
+<pre class="result notranslate">
+0
+1
+2
+3
+4
+</pre>
+<h1>Jython - Functions</h1>
+<p>A complex programming logic is broken into one or more independent and reusable blocks of statements called as functions. Python’s standard library contains large numbers of built-in functions. One can also define their own function using the <b>def</b> keyword. User defined name of the function is followed by a block of statements that forms its body, which ends with the return statement.</p>
+<p>Once defined, it can be called from any environment any number of times. Let us consider the following code to make the point clear.</p>
+<pre class="prettyprint notranslate">
+#definition of function
+defSayHello():
+   "optional documentation string"
+   print "Hello World"
+   return
+
+#calling the function
+SayHello()
+</pre>
+<p>A function can be designed to receive one or more parameters / arguments from the calling environment. While calling such a parameterized function, you need to provide the same number of parameters with similar data types used in the function definition, otherwise Jython interpreter throws a <b>TypeError</b> exception.</p>
+<h2>Example</h2>
+<pre class="prettyprint notranslate tryit">
+#defining function with two arguments
+def area(l,b):
+   area = l*b
+   print "area = ",area
+   return
+
+#calling function
+length = 10
+breadth = 20
+#with two arguments. This is OK
+area(length, breadth)
+#only one argument provided. This will throw TypeError
+area(length)
+</pre>
+<p>The <b>output</b> will be as follows &minus;</p>
+<pre class="result notranslate">
+area = 200
+Traceback (most recent call last):
+   File "area.py", line 11, in &lt;module&gt;
+   area(length)
+TypeError: area() takes exactly 2 arguments (1 given)
+</pre>
+<p>After performing the steps defined in it, the called function returns to the calling environment. It can return the data, if an expression is mentioned in front of the return keyword inside the definition of the function.</p>
+<pre class="prettyprint notranslate tryit">
+#defining function
+def area(l,b):
+   area = l*b
+   print "area = ",area
+   return area
+
+#calling function
+length = 10
+breadth = 20
+#calling function and obtaining its reurned value
+result = area(length, breadth)
+print "value returned by function : ", result
+</pre>
+<p>The following output is obtained if the above script is executed from the Jython prompt.</p>
+<pre class="result notranslate">
+area = 200
+value returned by function : 200
+</pre>
+<h1>Jython - Modules</h1>
+<p>A module is a Jython script in which one or more related functions, classes or variables are defined. This allows a logical organization of the Jython code. The Program elements defined in a module can be used in another Jython script by importing either the module or the specific element (function/class) from it.</p>
+<p>In the following code (hello.py) a function <b>SayHello()</b> is defined.</p>
+<pre class="prettyprint notranslate">
+#definition of function
+defSayHello(str):
+   print "Hello ", str
+   return
+</pre>
+<p>To use the SayHello() function from another script, import the <b>hello.py module</b> in it.</p>
+<pre class="result notranslate">
+import hello
+hello.SayHello("TutorialsPoint")
+</pre>
+<p>However, this will import all functions defined in the module. In order to import specific function from module use following syntax.</p>
+<pre class="result notranslate">
+from modname import name1[, name2[,... nameN]
+</pre>
+<p>For example, to import only the SayHello() function, change the above script as follows.</p>
+<pre class="prettyprint notranslate">
+from hello import SayHello
+SayHello("TutorialsPoint")
+</pre>
+<p>There is no need to prefix the name of the module while calling the function.</p>
+<h1>Jython - Package</h1>
+<p>Any folder containing one or more Jython modules is recognized as a package. However, it must have a special file called <b>__init__.py</b>, which provides the index of functions to be used.</p>
+<p>Let us now understand, how to create and import package.</p>
+<p><b>Step 1</b> &minus; Create a folder called <b>package1</b>, then create and save the following <b>g</b> modules in it.</p>
+<pre class="prettyprint notranslate">
+#fact.py
+def factorial(n):
+   f = 1
+   for x in range(1,n+1):
+      f = f*x
+   return f
+</pre>
+<p></p>
+<pre class="prettyprint notranslate">
+#sum.py
+def add(x,y):
+   s = x+y
+   return s
+</pre>
+<p></p>
+<pre class="prettyprint notranslate">
+#mult.py
+def multiply(x,y):
+   s = x*y
+   return s
+</pre>
+<p><b>Step 2</b> &minus; In the package1 folder create and save the <b>__init__.py</b> file with the following content.</p>
+<pre class="prettyprint notranslate">
+#__init__.py
+from fact import factorial
+from sum import add
+from mult import multiply
+</pre>
+<p><b>Step 3</b> &minus; Create the following Jython script outside the package1 folder as <b>test.py</b>.</p>
+<pre class="prettyprint notranslate">
+# Import your Package.
+import package1
+
+f = package1.factorial(5)
+print "factorial = ",f
+s = package1.add(10,20)
+print "addition = ",s
+m = package1.multiply(10,20)
+print "multiplication = ",m
+</pre>
+<p><b>Step 4</b> &minus; Execute test.py from Jython prompt. The following output will be obtained.</p>
+<pre class="result notranslate">
+factorial = 120
+addition = 30
+multiplication = 200
+</pre>
+<h1>Jython - Java Application</h1>
+<p>Download <b>jython-standalone-2.7.0.jar</b> - For embedding Jython in Java applications from their official downloads page: <a target="_blank" rel="nofollow" href="http://www.jython.org/downloads.html">http://www.jython.org/downloads.html</a> and include this jar file in Java CLASSPATH environment variable.</p>
+<p>This library contains the <b>PythonInterpreter</b> class. Using the object of this class, any Python script can be executed using the <b>execfile()</b> method. The PythonInterpreter enables you to make use of <b>PyObjects</b> directly. All objects known to the Jython runtime system are represented by an instance of the class PyObject or one of its subclasses.</p>
+<p>The PythonInterpreter class has some regularly used methods, which are explained in the table given below.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>setIn(PyObject)</b></p>
+<p>Set the Python object to use for the standard input stream</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>setIn(java.io.Reader)</b></p>
+<p>Set a java.io.Reader to use for the standard input stream</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>setIn(java.io.InputStream)</b></p>
+<p>Set a java.io.InputStream to use for the standard input stream</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>setOut(PyObject)</b></p>
+<p>Set the Python object to use for the standard output stream</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>setOut(java.io.Writer)</b></p>
+<p>Set the java.io.Writer to use for the standard output stream</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>setOut(java,io.OutputStream)</b></p>
+<p>Set the java.io.OutputStream to use for the standard output stream</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>setErr(PyObject)</b></p>
+<p>Set a Python error object to use for the standard error stream</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>setErr(java.io.Writer</b></p>
+<p>Set a java.io.Writer to use for the standard error stream</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>setErr(java.io.OutputStream)</b></p>
+<p>Set a java.io.OutputStream to use for the standard error stream</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>eval(String)</b></p>
+<p>Evaluate a string as Python source and return the result</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>eval(PyObject)</b></p>
+<p>Evaluate a Python code object and return the result</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><p><b>exec(String)</b></p>
+<p>Execute a Python source string in the local namespace</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><p><b>exec(PyObject)</b></p>
+<p>Execute a Python code object in the local namespace</p></td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><p><b>execfile(String filename)</b></p>
+<p>Execute a file of Python source in the local namespace</p></td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><p><b>execfile(java.io.InputStream)</b></p>
+<p>Execute an input stream of Python source in the local namespace</p></td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><p><b>compile(String)</b></p>
+<p>Compile a Python source string as an expression or module</p></td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><p><b>compile(script, filename)</b></p>
+<p>Compile a script of Python source as an expression or module</p></td>
+</tr>
+<tr>
+<td class="ts">18</td>
+<td><p><b>set(String name, Object value)</b></p>
+<p>Set a variable of Object type in the local namespace</p></td>
+</tr>
+<tr>
+<td class="ts">19</td>
+<td><p><b>set(String name, PyObject value)</b></p>
+<p>Set a variable of PyObject type in the local namespace</p></td>
+</tr>
+<tr>
+<td class="ts">20</td>
+<td><p><b>get(String)</b></p>
+<p>Get the value of a variable in the local namespace</p></td>
+</tr>
+<tr>
+<td class="ts">21</td>
+<td><p><b>get(String name, Class<T>javaclass</b></p>
+<p>Get the value of a variable in the local namespace. The value will be returned as an instance of the given Java class.</p></td>
+</tr>
+</table>
+<p>The following code block is a Java program having an embedded Jython script <b>“hello.py”.usingexecfile()</b> method of the PythonInterpreter object. It also shows how a Python variable can be set or read using set() and get() methods.</p>
+<pre class="prettyprint notranslate">
+import org.python.util.PythonInterpreter;
+import org.python.core.*;
+
+public class SimpleEmbedded {
+   public static void main(String []args) throws PyException {
+      PythonInterpreter interp = new PythonInterpreter();
+      System.out.println("Hello, world from Java");
+      interp.execfile("hello.py");
+      interp.set("a", new PyInteger(42));
+      interp.exec("print a");
+      interp.exec("x = 2+2");
+      PyObject x = interp.get("x");
+      System.out.println("x: "+x);
+      System.out.println("Goodbye ");
+   }
+}
+</pre>
+<p>Compile and run the above Java program to obtain the following output.</p>
+<pre class="result notranslate">
+Hello, world from Java
+hello world from Python
+42
+x: 4
+Goodbye
+</pre>
+<h1>Jython - Eclipse Plugin</h1>
+<p>PyDev is an open source plugin for Eclipse IDE to enable development of projects in Python, Jython as well as IronPython. It is hosted at <a target="_blank" rel="nofollow" href="https://pydev.org/">https://pydev.org</a>. A step-by-step procedure to install PyDev plugin in Eclipse IDE is given below.</p>
+<p><b>Step 1</b> &minus; Open Eclipse IDE and choose the <b>Install New Software</b> option from the Help menu.</p>
+<img src="/jython/images/install_new_software.jpg" alt="Install New Software" />
+<p><b>Step 2</b> &minus; Enter <b>http://pydev.org/updates</b> in the textbox in front of work with label and click add. Choose all available entries in the list and click on Next. The Wizard will take a few minutes to complete the installation and it will prompt the IDE to be restarted.</p>
+<img src="/jython/images/available_software.jpg" alt="Available Software" />
+<p><b>Step 3</b> &minus; Now choose the preferences option from the Window menu. The Preferences dialog will open as shown below.</p>
+<img src="/jython/images/preferences.jpg" alt="Preferences" />
+<p><b>Step 4</b> &minus; Expand the Interpreters node and select Jython Interpreter in the left pane. On the right pane, click on new to give path to the <b>jython.jar file</b>.</p>
+<img src="/jython/images/jython_jar.jpg" alt="Jython Jar" />
+<p>We are now ready to start a Jython project using Eclipse.</p>
+<h1>Jython - A Project in Eclipse</h1>
+<p>To make a project in eclipse, we should follow the steps given below.</p>
+<p><b>Step 1</b> &minus; Choose File ? New ? Project. Choose <b>PyDev</b> from the filter dialog. Give project name, project type and click on Finish.</p>
+<img src="/jython/images/pydev.jpg" alt="PyDev" />
+<p><b>Step 2</b> &minus; Hello project will now appear in the project explorer on the left. Right click to add hello.py in it.</p>
+<img src="/jython/images/hellopy.jpg" alt="Hellopy" />
+<p><b>Step 3</b> &minus; An empty hello.py will appear in the editor. Write the Jython code and save.</p>
+<img src="/jython/images/empty_hellopy.jpg" alt="Empty Hellopy" />
+<p><b>Step 4</b> &minus;  Click on the Run button on the menu bar. The output will appear in the console window as shown below.</p>
+<img src="/jython/images/run_button.jpg" alt="Run Button" />
+<h1>Jython - NetBeans Plugin and Project</h1>
+<p>Python and Jython support for NetBeans is available via the <b>nbPython plugin</b>. Download the plugin from following URL - <a target="_blank" rel="nofollow" href="http://plugins.netbeans.org/plugin/56795">http://plugins.netbeans.org/plugin/56795</a>. Unzip the downloaded archive in some folder. For example - <b>d:\nbplugin</b>. To install the NetBeans Plugin, let us follow the steps given below.</p>
+<p><b>Step 1</b> &minus; Start the <b>Netbeans IDE</b> and then go to Tools/Plugin to open the Plugin Manager. Choose ‘Downloaded’ tab and browse to the folder in which the downloaded file has been unzipped. The NetBeans window will appear as shown below.</p>
+<img src="/jython/images/netbeans_ide.jpg" alt="Netbeans IDE" />
+<p><b>Step 2</b> &minus; The next step is to select all the <b>.nbm</b> files and click open.</p>
+<img src="/jython/images/nbm.jpg" alt="nbm" />
+<p><b>Step 3</b> &minus; Click on the Install button.</p>
+<img src="/jython/images/install_button.jpg" alt="Install Button" />
+<p><b>Step 4</b> &minus; Accept the following license agreement to continue.</p>
+<img src="/jython/images/agreement.jpg" alt="Agreement" />
+<p>Ignore the warning about untrusted source of plugins and restart the IDE to proceed.</p>
+<h2>Jython Project in NetBeans</h2>
+<p>Once restarted, start a new project by choosing File/New. Python category will now be available in the categories list. Choose it to proceed.</p>
+<img src="/jython/images/category.jpg" alt="Category" />
+<p>If the system has Python installed, its version/versions will be automatically detected and shown in the Python platform dropdown list. However, Jython will not be listed. Click on the Manage button to add it.</p>
+<img src="/jython/images/python.jpg" alt="Python" />
+<p>Click on the ‘New’ button to add a platform name and path to Jython executable.</p>
+<img src="/jython/images/jython_executable.jpg" alt="Jython Executable" />
+<p>Jython will now be available in the platform list. Select from the dropdown list as shown in the following screenshot.</p>
+<img src="/jython/images/dropdown_list.jpg" alt="Dropdown List" />
+<p>We can now fill in the project name, location and main file in the next window.</p>
+<img src="/jython/images/project_name.jpg" alt="Project Name" />
+<p>The project structure will appear in the projects window of the NetBeans IDE and a template Python code in the editor window.</p>
+<img src="/jython/images/projects_window.jpg" alt="Projects Window" />
+<p></p>
+<img src="/jython/images/template_python_code.jpg" alt="Template Python Code" />
+<p>Build and execute the Jython project to obtain the following result in the output window of the NetBeans IDE.</p>
+<img src="/jython/images/output_window.jpg" alt="Output Window" />
+<h1>Jython - Servlets</h1>
+<p>A Java servlet is the most widely used web development technique. We can use Jython to write servlets and this adds many more advantages beyond what Java has to offer because now we can make use of the Python language features as well.</p>
+<p>We shall use the NetBeans IDE to develop a Java web application with a Jython servlet. Ensure that the <b>nbPython plugin</b> is installed in the NetBeans installation. Start a new project to build a web application by choosing the following path - <b>File &rarr; New Project &rarr; Java web &rarr; New Web Application</b>.</p>
+<p>Provide the Project name and location. The IDE will create the project folder structure. Add a Java servlet file (ServletTest.java) under the source packages node in the Projects window. This will add <b>servlet-api.jar</b> in the lib folder of the project. Also, let the IDE create the web.xml <b>descriptor file</b>. Add the following code in <b>ServletTest.java</b>.</p>
+<pre class="prettyprint notranslate">
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class ServletTest extends HttpServlet {
+   
+   public void doGet (HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+      doPost(request, response);
+   }
+   
+   public void doPost (HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+      response.setContentType ("text/html");
+      PrintWriter toClient = response.getWriter();
+      
+      toClient.println (
+         "&lt;html&gt;
+            &lt;head&gt;
+               &lt;title&gt;Servlet Test&lt;/title&gt;" + "
+            &lt;/head&gt;
+            &lt;body&gt;
+               &lt;h1&gt;Servlet Test&lt;/h1&gt;
+            &lt;/body&gt;
+         &lt;/html&gt;"
+      );
+   }
+}
+</pre>
+<p>The web.xml file created by NetBeans will be as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;web-app&gt;
+   &lt;servlet&gt;
+      &lt;servlet-name&gt;ServletTest&lt;/servlet-name&gt;
+      &lt;servlet-class&gt;ServletTest&lt;/servlet-class&gt;
+   &lt;/servlet&gt;
+   
+   &lt;servlet-mapping&gt;
+      &lt;servlet-name&gt;ServletTest&lt;/servlet-name&gt;
+      &lt;url-pattern&gt;/ServletTest&lt;/url-pattern&gt;
+   &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;
+</pre>
+<p>Build and run the project to obtain the text <b>Servlet Test</b> appearing in &lt;h1&gt; tag in the browser window. Thus, we have added a regular Java servlet in the application.</p>
+<p>Now, we shall add the Jython Servlet. Jython servlets work by means of an intermediate Java servlet is also known as PyServlet. The PyServlet.class is present in the <b>jython standalone.jar</b>. Add it in the <b>WEB-INF/lib</b> folder.</p>
+<p>The next step is to configure the web.xml to invoke the PyServlet, whenever a request for any <b>*.py file</b> is raised. This should be done by adding the following xml code in it.</p>
+<pre class="prettyprint notranslate">
+&lt;servlet&gt;
+   &lt;servlet-name&gt;PyServlet&lt;/servlet-name&gt;
+   &lt;servlet-class&gt;org.python.util.PyServlet&lt;/servlet-class&gt;
+   &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+
+&lt;servlet-mapping&gt;
+   &lt;servlet-name&gt;PyServlet&lt;/servlet-name&gt;
+   &lt;url-pattern&gt;*.py&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</pre>
+<p>The full web.xml code will look as shown below.</p>
+<pre class="prettyprint notranslate">
+&lt;web-app&gt;
+   &lt;servlet&gt;
+      &lt;servlet-name&gt;ServletTest&lt;/servlet-name&gt;
+      &lt;servlet-class&gt;ServletTest&lt;/servlet-class&gt;
+   &lt;/servlet&gt;
+   
+   &lt;servlet&gt;
+      &lt;servlet-name&gt;PyServlet&lt;/servlet-name&gt;
+      &lt;servlet-class&gt;org.python.util.PyServlet&lt;/servlet-class&gt;
+      &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+   &lt;/servlet&gt;
+   
+   &lt;servlet-mapping&gt;
+      &lt;servlet-name&gt;ServletTest&lt;/servlet-name&gt;
+      &lt;url-pattern&gt;/ServletTest&lt;/url-pattern&gt;
+   &lt;/servlet-mapping&gt;
+   
+   &lt;servlet-mapping&gt;
+      &lt;servlet-name&gt;PyServlet&lt;/servlet-name&gt;
+      &lt;url-pattern&gt;*.py&lt;/url-pattern&gt;
+   &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;
+</pre>
+<p>Place the following Jython code in the WEB-INF folder inside the project folder as JythonServlet.py, which is equivalent to the previous ServletTest.java.</p>
+<pre class="prettyprint notranslate">
+from javax.servlet.http import HttpServlet
+class JythonServlet1 (HttpServlet):
+   def doGet(self,request,response):
+      self.doPost (request,response)
+   def doPost(self,request,response):
+      toClient = response.getWriter()
+      response.setContentType ("text/html")
+      
+      toClient.println (
+         "&lt;html&gt;
+            &lt;head&gt;
+               &lt;title&gt;Servlet Test&lt;/title&gt;" + "
+            &lt;/head&gt;
+            &lt;body&gt;
+               &lt;h1&gt;Servlet Test&lt;/h1&gt;
+            &lt;/body&gt;
+         &lt;/html&gt;"
+      )
+</pre>
+<p>Build the project and in the browser open the following URL &minus;</p>
+<p><b>http://localhost:8080/jythonwebapp/jythonservlet.py</b></p>
+<p>The browser will show the <b>Servlet Test</b> in &lt;h1&gt; tag as in case of Java Servlet output.</p>
+<h1>Jython - JDBC</h1>
+<p>Jython uses the <b>zxJDBC package</b> that provides an easy-to-use Python wrapper around JDBC. zxJDBC bridges two standards: <b>JDBC</b> is the standard platform for database access in Java, and <b>DBI</b> is the standard database API for Python apps.</p>
+<p>ZxJDBC provides a DBI 2.0 standard compliant interface to JDBC. Over 200 drivers are available for JDBC and they all work with zxJDBC. High performance drivers are available for all major relational databases, including &minus;</p>
+<ul class="list">
+<li>DB2</li>
+<li>Derby</li>
+<li>MySQL</li>
+<li>Oracle</li>
+<li>PostgreSQL</li>
+<li>SQLite</li>
+<li>SQL Server and</li>
+<li>Sybase.</li>
+</ul>
+<p>The ZxJDBC package can be downloaded from <a rel="nofollow" target="_blank" href="https://sourceforge.net/projects/zxjdbc/">https://sourceforge.net/projects/zxjdbc/</a> or <a rel="nofollow" target="_blank"href="http://www.ziclix.com/zxjdbc/">http://www.ziclix.com/zxjdbc/</a>. The downloaded archive contains the ZxJDBC.jar, which should be added to the CLASSPATH environment variable.</p>
+<p>We intend to establish database connectivity with MySQL database. For this purpose, the JDBC driver for MySQL is required. Download the <b>MySQL J connector</b> from the following link - <a rel="nofollow" target="_blank" href="https://dev.mysql.com/downloads/connector/j/">https://dev.mysql.com/downloads/connector/j/</a> and include the mysql connector java-5.1.42-bin.jar in the CLASSPATH.</p>
+<p>Login to the MySQL server and create a student table in the test database with the following structure &minus;</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center;">Field</th>
+<th style="text-align:center;">Type</th>
+<th style="text-align:center;">Width</th>
+</tr>
+<tr>
+<td>Name</td>
+<td>Varchar</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Age</td>
+<td>Int</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Marks</td>
+<td>Int</td>
+<td>3</td>
+</tr>
+</table>
+<p>Add a few records in it.</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center;">Name</th>
+<th style="text-align:center;">Age</th>
+<th style="text-align:center;">Marks</th>
+</tr>
+<tr>
+<td>Ravi</td>
+<td>21</td>
+<td>78</td>
+</tr>
+<tr>
+<td>Ashok</td>
+<td>20</td>
+<td>65</td>
+</tr>
+<tr>
+<td>Anil</td>
+<td>22</td>
+<td>71</td>
+</tr>
+</table>
+<p>Create the following Jython script as <b>dbconnect.py</b>.</p>
+<pre class="prettyprint notranslate">
+url = "jdbc:mysql://localhost/test"
+user = "root"
+password = "password"
+driver = "com.mysql.jdbc.Driver"
+mysqlConn = zxJDBC.connect(url, user, password, driver)
+mysqlConn = con.cursor()
+mysqlConn.execute(“select * from student)
+for a in mysql.fetchall():
+   print a
+</pre>
+<p>Execute the above script from the Jython prompt. Records in the student table will be listed as shown below &minus;</p>
+<pre class="result notranslate">
+(“Ravi”, 21, 78)
+(“Ashok”, 20, 65)
+(“Anil”,22,71)
+</pre>
+<p>This explains the procedure of establishing JDBC in Jython.</p>
+<h1>Jython - Using the Swing GUI library</h1>
+<p>One of the major features of Jython is its ability to use the Swing GUI library in JDK. The Standard Python distribution (often called as CPython) has the <b>Tkinter GUI library</b> shipped with it. Other GUI libraries like <b>PyQt</b> and <b>WxPython</b> are also available for use with it, but the swing library offers a platform independent GUI toolkit.</p>
+<p>Using the swing library in Jython is much easier compared to using it in Java. In Java the anonymous classes have to be used to create event binding. In Jython, we can simply pass a function for the same purpose.</p>
+<p>The basic top-level window is created by declaring an object of the <b>JFrame class</b> and set its visible property to true.  For that, the Jframe class needs to be imported from the swing package.</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame
+</pre>
+<p>The JFrame class has multiple constructors with varying number of arguments. We shall use the one, which takes a string as argument and sets it as the title.</p>
+<pre class="prettyprint notranslate">
+frame = JFrame(“Hello”)
+</pre>
+<p>Set the frame’s size and location properties before setting its visible property to true. Store the following code as <b>frame.py</b>.</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame
+
+frame = JFrame("Hello")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(300,200)
+frame.setVisible(True)
+</pre>
+<p>Run the above script from the command prompt. It will display the following output showing a window.</p>
+<img src="/jython/images/window.jpg" alt="Window" />
+<p>The swing GUI library is provided in the form of <b>javax.swing</b> package in Java. Its main container classes, <b>JFrame</b> and <b>JDialog</b> are respectively derived from Frame and Dialog classes, which are in the AWT library. Other GUI controls like <b>JLabel, JButton, JTextField,</b> etc., are derived from the JComponent class.</p>
+<p>The following illustration shows the Swing Package Class hierarchy.</p>
+<img src="/jython/images/swing_package_class_hierarchy.jpg" alt="Swing Package Class Hierarchy" />
+<p>The following table summarizes different GUI control classes in a swing library &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Class &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>JLabel</b></p>
+<p>A JLabel object is a component for placing text in a container.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>JButton</b></p>
+<p>This class creates a labeled button.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>JColorChooser</b></p>
+<p>A JColorChooser provides a pane of controls designed to allow a user to manipulate and select a color.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>JCheckBox</b></p>
+<p>A JCheckBox is a graphical component that can be in either an <b>on</b> (true) or <b>off</b> (false) state.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>JRadioButton</b></p>
+<p>The JRadioButton class is a graphical component that can be either in an on (true) or off (false) state. in a group.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>JList</b></p>
+<p>A JList component presents the user with a scrolling list of text items.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>JComboBox</b></p>
+<p>A JComboBox component presents the user with drop down list of items</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>JTextField</b></p>
+<p>A JTextField object is a text component that allows for the editing of a single line of text.</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>JPasswordField</b></p>
+<p>A JPasswordField object is a text component specialized for password entry.</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>JTextArea</b></p>
+<p>A JTextArea object is a text component that allows editing of a multiple lines of text.</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>ImageIcon</b></p>
+<p>A ImageIcon control is an implementation of the Icon interface that paints Icons from Images</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><p><b>JScrollbar</b></p>
+<p>A Scrollbar control represents a scroll bar component in order to enable the user to select from range of values.</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><p><b>JOptionPane</b></p>
+<p>JOptionPane provides set of standard dialog boxes that prompt users for a value or informs them of something.</p></td>
+</tr>
+<tr>
+<td class="ts">14</td>
+<td><p><b>JFileChooser</b></p>
+<p>A JFileChooser control represents a dialog window from which the user can select a file.</p></td>
+</tr>
+<tr>
+<td class="ts">15</td>
+<td><p><b>JProgressBar</b></p>
+<p>As the task progresses towards completion, the progress bar displays the task's percentage of completion.</p></td>
+</tr>
+<tr>
+<td class="ts">16</td>
+<td><p><b>JSlider</b></p>
+<p>A JSlider lets the user graphically select a value by sliding a knob within a bounded interval.</p></td>
+</tr>
+<tr>
+<td class="ts">17</td>
+<td><p><b>JSpinner</b></p>
+<p>A JSpinner is a single line input field that lets the user select a number or an object value from an ordered sequence.</p></td>
+</tr>
+</table>
+<p>We would be using some of these controls in subsequent examples.</p>
+<h1>Jython - Layout Management</h1>
+<p>Layout managers in Java are classes those, which manage the placement of controls in the container objects like <b>Frame, Dialog</b> or <b>Panel</b>. Layout managers maintain the relative positioning of controls in a frame, even if the resolution changes or the frame itself is resized.</p>
+<p>These classes implement the <b>Layout interface</b>. The following Layout managers are defined in the <b>AWT library</b> &minus;</p>
+<ul class="list">
+<li>BorderLayout</li>
+<li>FlowLayout</li>
+<li>GridLayout</li>
+<li>CardLayout</li>
+<li>GridBagLayout</li>
+</ul>
+<p>The following Layout Managers are defined in the <b>Swing library</b> &minus;</p>
+<ul class="list">
+<li>BoxLayout</li>
+<li>GroupLayout</li>
+<li>ScrollPaneLayout</li>
+<li>SpringLayout</li>
+</ul>
+<p>We shall use AWT layout managers as well as swing layout managers in the following examples.</p>
+<ul class="list">
+<li>Absolute Layout</li>
+<li>Flow Layout</li>
+<li>Grid Layout</li>
+<li>Border Layout</li>
+<li>Box Layout</li>
+<li>Group Layout</li>
+</ul>
+<p>Let us now discuss each of these in detail.</p>
+<h2>Absolute Layout</h2>
+<p>Before we explore all the above Layout managers, we must look at absolute positioning of the controls in a container. We have to set the layout method of the frame object to ‘None’.</p>
+<pre class="prettyprint notranslate">
+frame.setLayout(None)
+</pre>
+<p>Then place the control by calling the <b>setBounds()</b> method. It takes four arguments - x position, y position, width and height.</p>
+<p>For example - To place a button object at the absolute position and with the absolute size.</p>
+<pre class="prettyprint notranslate">
+btn = JButton("Add")
+btn.setBounds(60,80,60,20)
+</pre>
+<p>Similarly, all controls can be placed by properly allocating position and size. This layout is relatively easy to use, but fails to retain its appearance when the window either is resized, or if the program is executed when screen resolution changes.</p>
+<p>In the following Jython script, three Jlabel objects are used to display text “phy”, “maths” and “Total” respectively. In front of these three - JTextField objects are placed. A Button object is placed above the “Total” label.</p>
+<p>First of all the JFrame window is created with a layout set to none.</p>
+<pre class="prettyprint notranslate">
+frame = JFrame("Hello")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(300,200)
+frame.setLayout(None)
+</pre>
+<p>Then different controls are added according to their absolute position and size. The complete code is given below &minus;</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame, JLabel, JButton, JTextField
+
+frame = JFrame("Hello")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(300,200)
+frame.setLayout(None)
+
+lbl1 = JLabel("Phy")
+lbl1.setBounds(60,20,40,20)
+txt1 = JTextField(10)
+txt1.setBounds(120,20,60,20)
+lbl2 = JLabel("Maths")
+lbl2.setBounds(60,50,40,20)
+txt2 = JTextField(10)
+txt2.setBounds(120, 50, 60,20)
+btn = JButton("Add")
+btn.setBounds(60,80,60,20)
+lbl3 = JLabel("Total")
+lbl3.setBounds(60,110,40,20)
+txt3 = JTextField(10)
+txt3.setBounds(120, 110, 60,20)
+
+frame.add(lbl1)
+frame.add(txt1)
+frame.add(lbl2)
+frame.add(txt2)
+frame.add(btn)
+frame.add(lbl3)
+frame.add(txt3)
+frame.setVisible(True)
+</pre>
+<p>The output for the above code is as follows.</p>
+<img src="/jython/images/add.jpg" alt="Add" />
+<h2>Jython FlowLayout</h2>
+<p>The FlowLayout is the default layout manager for container classes. It arranges control from left to right and then from top to bottom direction.</p>
+<p>In following example, a Jlabel object, a JTextField object and a JButton object are to be displayed in a JFrame using FlowLayout manager. To start with, let us import the required classes from the <b>javax.swing</b> package and the <b>java.awt</b> package.</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame, JLabel, JButton, JTextField
+from java.awt import FlowLayout
+</pre>
+<p>Then create a JFrame object and set its Location as well as the size properties.</p>
+<pre class="prettyprint notranslate">
+frame = JFrame("Hello")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(200,200)
+Set the layout manager for the frame as FlowLayout.
+frame.setLayout(FlowLayout())
+</pre>
+<p>Now declare objects for JLabel, JTextfield and JButton classes.</p>
+<pre class="prettyprint notranslate">
+label = JLabel("Welcome to Jython Swing")
+txt = JTextField(30)
+btn = JButton("ok")
+</pre>
+<p>Finally add these controls in the frame by calling the <b>add()</b> method of the JFrame class.</p>
+<pre class="prettyprint notranslate">
+frame.add(label)
+frame.add(txt)
+frame.add(btn)
+</pre>
+<p>To display the frame, set its visible property to true. The complete Jython script and its output is as given below &minus;</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame, JLabel, JButton, JTextField
+from java.awt import FlowLayout
+
+frame = JFrame("Hello")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(200,200)
+
+frame.setLayout(FlowLayout())
+
+label = JLabel("Welcome to Jython Swing")
+txt = JTextField(30)
+btn = JButton("ok")
+
+frame.add(label)
+frame.add(txt)
+frame.add(btn)
+frame.setVisible(True)
+</pre>
+<img src="/jython/images/welcome_to_jython_swing.jpg" alt="Welcome to Jython Swing" />
+<h2>Jython GridLayout</h2>
+<p>The Gridlayout manager allows placement of controls in a rectangular grid. One control is placed in each cell of the grid.</p>
+<p>In following example, the GridLayout is applied to a JFrame object dividing it in to 4 rows and 4 columns. A JButton object is to be placed in each cell of the grid.</p>
+<p>Let us first import the required libraries &minus;</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame, JButton
+from java.awt import GridLayout
+</pre>
+<p>Then create the JFrame container &minus;</p>
+<pre class="prettyprint notranslate">
+frame = JFrame("Hello")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(400,400)
+</pre>
+<p>Now, apply GridLayout by specifying its dimensions as 4 by 4.</p>
+<pre class="prettyprint notranslate">
+frame.setLayout(GridLayout(4,4))
+</pre>
+<p>We should now use two FOR loops, each going from 1 to 4, so sixteen JButton objects are placed in subsequent cells.</p>
+<pre class="prettyprint notranslate">
+k = 0
+frame.setLayout(GridLayout(4,4))
+for i in range(1,5):
+   for j in range(1,5):
+      k = k+1
+      frame.add(JButton(str(k)))
+</pre>
+<p>Finally set visibility of frame to true. The complete Jython code is given below.</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame, JButton
+from java.awt import GridLayout
+
+frame = JFrame("Hello")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(400,400)
+
+frame.setLayout(GridLayout(4,4))
+
+k = 0
+for i in range(1,5):
+   for j in range(1,5):
+      k = k+1
+      frame.add(JButton(str(k)))
+
+frame.setVisible(True)
+</pre>
+<p>The output of the above code is as follows &minus;</p>
+<img src="/jython/images/jython_code.jpg" alt="Jython Code" />
+<h2>Jython BorderLayout</h2>
+<p>The BorderLayout manager divides the container in five geographical regions and places with one component in each region. These regions are represented by defined constants as follows &minus;</p>
+<ul class="list">
+<li>BorderLayout.NORTH</li>
+<li>BorderLayout.SOUTH</li>
+<li>BorderLayout.EAST</li>
+<li>BorderLayout.WEST</li>
+<li>BorderLayout.CENTER</li>
+</ul>
+<p>Let us consider the following example &minus;</p>
+<img src="/jython/images/jython_borderlayout.jpg" alt="Jython BorderLayout" />
+<h2>Jython BoxLayout</h2>
+<p>The BoxLayout class is defined in the <b>javax.swing package</b>. It is used to arrange components in the container either vertically or horizontally. The direction is determined by the following constants &minus;</p>
+<ul class="list">
+<li>X_AXIS</li>
+<li>Y_AXIS</li>
+<li>LINE_AXIS</li>
+<li>PAGE_AXIS</li>
+</ul>
+<p>The integer constant specifies the axis along which the container's components should be laid out. When the container has the default component orientation, LINE_AXIS specifies that the components be laid out from left to right, and PAGE_AXIS specifies that the components be laid out from top to bottom.</p>
+<p>In the following example, panel (of JPanel class) is added in a JFrame object. Vertical BoxLayout is applied to it and two more panels, top and bottom, are added to it. These two internal panels have two buttons each added in the horizontal Boxlayout.</p>
+<p>Let us first create the top-level JFrame window.</p>
+<pre class="prettyprint notranslate">
+frame = JFrame()
+frame.setTitle("Buttons")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setSize(300, 150)
+</pre>
+<p>The JPanel object is declared having a vertical BoxLayout. Add it in top-level frame.</p>
+<pre class="prettyprint notranslate">
+panel = JPanel()
+panel.setLayout(BoxLayout(panel, BoxLayout.Y_AXIS))
+frame.add(panel)
+</pre>
+<p>In this panel, two more panels top and bottom are added to it. Each of them have two JButton objects added to them horizontally with a space holder of 25 pixels separating them.</p>
+<pre class="prettyprint notranslate">
+###top panel
+top = JPanel()
+top.setLayout(BoxLayout(top, BoxLayout.X_AXIS))
+b1 = JButton("OK")
+b2 = JButton("Close")
+top.add(Box.createVerticalGlue())
+top.add(b1)
+top.add(Box.createRigidArea(Dimension(25, 0)))
+top.add(b2)
+</pre>
+<p>Similarly, the bottom panel is constructed.</p>
+<pre class="prettyprint notranslate">
+###bottom panel
+bottom = JPanel()
+bottom.setLayout(BoxLayout(bottom, BoxLayout.X_AXIS))
+b3 = JButton("Open")
+b4 = JButton("Save")
+bottom.add(b3)
+bottom.add(Box.createRigidArea(Dimension(25, 0)))
+bottom.add(b4)
+bottom.add(Box.createVerticalGlue())
+</pre>
+<p>Note that the <b>createRigidArea()</b> function is used to create a space of 25 pixels between two buttons. Also the <b>createVerticalGlue()</b> function occupies the leading or the trailing space in the layout.</p>
+<p>To start with, add the top and bottom panels and set the visibility property of the frame to true. The complete code is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+from java.awt import Dimension
+from javax.swing import JButton, JFrame,JPanel,BoxLayout,Box
+
+frame = JFrame()
+frame.setTitle("Buttons")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setSize(300, 150)
+
+panel = JPanel()
+panel.setLayout(BoxLayout(panel, BoxLayout.Y_AXIS))
+frame.add(panel)
+
+###top panel
+top = JPanel()
+top.setLayout(BoxLayout(top, BoxLayout.X_AXIS))
+b1 = JButton("OK")
+b2 = JButton("Close")
+top.add(Box.createVerticalGlue())
+top.add(b1)
+top.add(Box.createRigidArea(Dimension(25, 0)))
+top.add(b2)
+
+###bottom panel
+bottom = JPanel()
+bottom.setLayout(BoxLayout(bottom, BoxLayout.X_AXIS))
+b3 = JButton("Open")
+b4 = JButton("Save")
+bottom.add(b3)
+bottom.add(Box.createRigidArea(Dimension(25, 0)))
+bottom.add(b4)
+bottom.add(Box.createVerticalGlue())
+
+panel.add(bottom)
+panel.add(top)
+frame.setVisible(True)
+</pre>
+<p>The above code will generate the following output.</p>
+<img src="/jython/images/jython_boxlayout.jpg" alt="Jython BoxLayout" />
+<h2>Jython GroupLayout</h2>
+<p>The GroupLayout manager groups the components in a hierarchical manner. The grouping is done by two classes, <b>SequentialGroup</b> and <b>ParallelGroup</b>, both implement Group interface in Java.</p>
+<p>The layout procedure is divided in two steps. In one-step, components are placed along with the horizontal axis, and in second along vertical axis. Each component must be defined twice in the layout.</p>
+<p>There are two types of arrangements, sequential and parallel. In both, we can arrange components sequentially or in parallel. In horizontal arrangement, row is called sequential group and column is called parallel group. On the other hand, in parallel arrangement, row of element is a parallel group and a column, which is called sequential.</p>
+<p>In following example, five buttons are arranged in such a way that three each appear in row and column. To start with, Add a Jpanel object in a JFrame window and set its layout as Grouplayout.</p>
+<pre class="prettyprint notranslate">
+frame =  JFrame()
+panel =  JPanel()
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+layout =  GroupLayout(panel)
+panel.setLayout(layout)
+</pre>
+<p>Then construct the JButton objects &minus;</p>
+<pre class="prettyprint notranslate">
+buttonD = JButton("D")
+buttonR = JButton("R")
+buttonY = JButton("Y")
+buttonO = JButton("O")
+buttonT = JButton("T")
+</pre>
+<p>Next, we create a <b>SequentialGroup</b> named <b>LeftToRight</b> to which buttonD and buttonY are added. In between them, a ParallelGroup ColumnMiddle (with other three buttons added vertically) is placed.</p>
+<pre class="prettyprint notranslate">
+leftToRight = layout.createSequentialGroup()
+leftToRight.addComponent(buttonD)
+columnMiddle = layout.createParallelGroup()
+columnMiddle.addComponent(buttonR)
+columnMiddle.addComponent(buttonO)
+columnMiddle.addComponent(buttonT)
+leftToRight.addGroup(columnMiddle)
+leftToRight.addComponent(buttonY)
+</pre>
+<p>Now comes the definition of vertical SequentialGroup called TopToBottom. Add a ParallelGroup row of three buttons and then rest two buttons vertically.</p>
+<pre class="prettyprint notranslate">
+topToBottom = layout.createSequentialGroup()
+rowTop = layout.createParallelGroup()
+rowTop.addComponent(buttonD)
+rowTop.addComponent(buttonR)
+rowTop.addComponent(buttonY)
+topToBottom.addGroup(rowTop)
+topToBottom.addComponent(buttonO)
+topToBottom.addComponent(buttonT)
+</pre>
+<p>Finally, set LeftToRight group horizontally and TopToBottom group vertically to the layout object. The complete code is given below &minus;</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JButton, JFrame,JPanel,GroupLayout
+
+frame = JFrame()
+panel = JPanel()
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+layout = GroupLayout(panel)
+panel.setLayout(layout)
+
+buttonD = JButton("D")
+buttonR = JButton("R")
+buttonY = JButton("Y")
+buttonO = JButton("O")
+buttonT = JButton("T")
+
+leftToRight = layout.createSequentialGroup()
+leftToRight.addComponent(buttonD)
+columnMiddle = layout.createParallelGroup()
+columnMiddle.addComponent(buttonR)
+columnMiddle.addComponent(buttonO)
+columnMiddle.addComponent(buttonT)
+leftToRight.addGroup(columnMiddle)
+leftToRight.addComponent(buttonY)
+
+topToBottom = layout.createSequentialGroup()
+rowTop = layout.createParallelGroup()
+rowTop.addComponent(buttonD)
+rowTop.addComponent(buttonR)
+rowTop.addComponent(buttonY)
+topToBottom.addGroup(rowTop)
+topToBottom.addComponent(buttonO)
+topToBottom.addComponent(buttonT)
+
+layout.setHorizontalGroup(leftToRight)
+layout.setVerticalGroup(topToBottom)
+
+frame.add(panel)
+frame.pack()
+frame.setVisible(True)
+</pre>
+<p>The output of the above code is as follows &minus;</p>
+<img src="/jython/images/jython_grouplayout.jpg" alt="Jython GroupLayout" />
+<h1>Jython - Event Handling</h1>
+<p>Event handling in Java swing requires that the control (like JButton or JList etc.) should be registered with the respective event listener. The event listener interface or corresponding Adapter class needs to be either implemented or subclassed with its event handling method overridden. In Jython, the event handling is very simple. We can pass any function as property of event handling function corresponding to the control.</p>
+<p>Let us first see how a click event is handled in Java.</p>
+<p>To begin with, we have to import the <b>java.awt.event package</b>. Next, the class extending JFrame must implement ActionListener interface.</p>
+<pre class="prettyprint notranslate">
+public class btnclick extends JFrame implements ActionListener
+</pre>
+<p>Then, we have to declare the JButton object, add it to the ContentPane of frame and then register it with ActionListener by the addActionListener() method.</p>
+<pre class="prettyprint notranslate">
+JButton b1 = new JButton("Click here");
+   getContentPane().add(b1);
+   b1.addActionListener(this);
+</pre>
+<p>Now, the actionPerformed() method of the ActionListener interface must be overridden to handle the ActionEvent.</p>
+<p>Following is entire Java code &minus;</p>
+<pre class="prettyprint notranslate">
+import java.awt.event.*;
+import javax.swing.*;
+public class btnclick extends JFrame implements ActionListener {
+   btnclick() {
+      JButton b1 = new JButton("Click here");
+      getContentPane().add(b1);
+      b1.addActionListener(this);
+   }
+   
+   public void actionPerformed(ActionEvent e) {
+      System.out.println("Clicked");
+   }
+   
+   public static void main(String args[]) {
+      btnclick b = new btnclick();
+      b.setSize(300,200);
+      b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      b.setVisible(true);
+   }
+}
+</pre>
+<p>Now, we will write the Jython code equivalent to the same code.</p>
+<p>To start with, we do not need to import the ActionEvent or the ActionListener, since Jython’s dynamic typing allows us to avoid mentioning these classes in our code.</p>
+<p>Secondly, there is no need to implement or subclass ActionListener. Instead, any user defined function is straightaway provided to the JButton constructor as a value of <b>actionPerformed</b> bean property.</p>
+<pre class="prettyprint notranslate">
+button = JButton('Click here!', actionPerformed = clickhere)
+</pre>
+<p>The <b>clickhere()</b> function is defined as a regular Jython function, which handles the click event on the button.</p>
+<pre class="prettyprint notranslate">
+def change_text(event):
+print clicked!'
+</pre>
+<p>Here is the Jython equivalent code.</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame, JButton
+
+frame = JFrame("Hello")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(300,200)
+
+def clickhere(event):
+   print "clicked"
+
+btn = JButton("Add", actionPerformed = clickhere)
+frame.add(btn)
+
+frame.setVisible(True)
+</pre>
+<p>The Output of Java and Jython code is identical. When the button is clicked, it will print the ‘clicked’ message on the console.</p>
+<img src="/jython/images/java_and_jython.jpg" alt="Java and Jython" />
+<p>In the following Jython code, two JTextField objects are provided on the JFrame window to enter marks in ‘phy’ and ‘maths’. The JButton object executes the add() function when clicked.</p>
+<pre class="prettyprint notranslate">
+btn = JButton("Add", actionPerformed = add)
+</pre>
+<p>The add() function reads the contents of two text fields by the getText() method and parses them to integers, so that, addition can be performed. The result is then put in the third text field by the setText() method.</p>
+<pre class="prettyprint notranslate">
+def add(event):
+   print "add"
+   ttl = int(txt1.getText())+int(txt2.getText())
+   txt3.setText(str(ttl))
+</pre>
+<p>The complete code is given below &minus;</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame, JLabel, JButton, JTextField
+from java.awt import Dimension
+
+frame = JFrame("Hello")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(300,200)
+frame.setLayout(None)
+
+def add(event):
+   print "add"
+   ttl = int(txt1.getText())+int(txt2.getText())
+   txt3.setText(str(ttl))
+
+lbl1 = JLabel("Phy")
+lbl1.setBounds(60,20,40,20)
+txt1 = JTextField(10)
+txt1.setBounds(120,20,60,20)
+lbl2 = JLabel("Maths")
+lbl2.setBounds(60,50,40,20)
+txt2 = JTextField(10)
+txt2.setBounds(120, 50, 60,20)
+btn = JButton("Add", actionPerformed = add)
+btn.setBounds(60,80,60,20)
+lbl3 = JLabel("Total")
+lbl3.setBounds(60,110,40,20)
+txt3 = JTextField(10)
+txt3.setBounds(120, 110, 60,20)
+
+frame.add(lbl1)
+frame.add(txt1)
+frame.add(lbl2)
+frame.add(txt2)
+frame.add(btn)
+frame.add(lbl3)
+frame.add(txt3)
+frame.setVisible(True)
+</pre>
+<p>When the above code is executed from the command prompt, the following window appears. Enter marks for ‘Phy’, Maths’, and click on the ‘Add’ button. The result will be displayed accordingly.</p>
+<img src="/jython/images/phy_maths.jpg" alt="Phy Maths" />
+<h2>Jython JRadioButton Event</h2>
+<p>The JRadioButton class is defined in the <b>javax.swing package</b>. It creates a selectable toggle button with on or off states. If multiple radio buttons are added in a ButtonGroup, their selection is mutually exclusive.</p>
+<p>In the following example, two objects of the JRadioButton class and two JLabels are added to a Jpanel container in a vertical BoxLayout. In the constructor of the JRadioButton objects, the <b>OnCheck()</b> function is set as the value of the actionPerformed property. This function is executed when the radio button is clicked to change its state.</p>
+<pre class="result notranslate">
+rb1 = JRadioButton("Male", True,actionPerformed = OnCheck)
+rb2 = JRadioButton("Female", actionPerformed = OnCheck)
+</pre>
+<p>Note that the default state of Radio Button is false (not selected). The button rb1 is created with its starting state as True (selected).</p>
+<p>The two radio buttons are added to a radio ButtonGroup to make them mutually exclusive, so that if one is selected, other is deselected automatically.</p>
+<pre class="prettyprint notranslate">
+grp = ButtonGroup()
+grp.add(rb1)
+grp.add(rb2)
+</pre>
+<p>These two radio buttons along with two labels are added to a panel object in the vertical layout with a separator area of 25 pixels in heights between rb2 and lbl2.</p>
+<pre class="prettyprint notranslate">
+panel = JPanel()
+panel.setLayout(BoxLayout(panel, BoxLayout.Y_AXIS))
+
+panel.add(Box.createVerticalGlue())
+panel.add(lbl)
+panel.add(rb1)
+panel.add(rb2)
+panel.add(Box.createRigidArea(Dimension(0,25)))
+panel.add(lbl1)
+</pre>
+<p>This panel is added to a top-level JFrame object, whose visible property is set to ‘True’ in the end.</p>
+<pre class="prettyprint notranslate">
+frame = JFrame("JRadioButton Example")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(250,200)
+frame.setVisible(True)
+The complete code of radio.py is given below:
+from javax.swing import JFrame, JPanel, JLabel, BoxLayout, Box
+
+from java.awt import Dimension
+from javax.swing import JRadioButton,ButtonGroup
+frame = JFrame("JRadioButton Example")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(250,200)
+panel = JPanel()
+panel.setLayout(BoxLayout(panel, BoxLayout.Y_AXIS))
+frame.add(panel)
+
+def OnCheck(event):
+   lbl1.text = ""
+   if rb1.isSelected():
+      lbl1.text = lbl1.text+"Gender selection : Male"
+   else:
+      lbl1.text = lbl1.text+"Gender selection : Female "
+      lbl = JLabel("Select Gender")
+
+rb1 = JRadioButton("Male", True,actionPerformed = OnCheck)
+rb2 = JRadioButton("Female", actionPerformed = OnCheck)
+grp = ButtonGroup()
+grp.add(rb1)
+grp.add(rb2)
+
+lbl1 = JLabel("Gender Selection :")
+
+panel.add(Box.createVerticalGlue())
+panel.add(lbl)
+panel.add(rb1)
+panel.add(rb2)
+panel.add(Box.createRigidArea(Dimension(0,25)))
+panel.add(lbl1)
+
+frame.setVisible(True)
+</pre>
+<p>Run the above Jython script and change the radio button selection. The selection will appear in the label at the bottom.</p>
+<img src="/jython/images/jradiobutton.jpg" alt="JRadioButton" />
+<h2>Jython JCheckBox Event</h2>
+<p>Like the <b>JRadioButton</b>, JCheckBox object is also a selectable button with a rectangular checkable box besides its caption. This is generally used to provide user opportunity to select multiple options from the list of items.</p>
+<p>In the following example, two check boxes and a label from swing package are added to a JPanel in vertical BoxLayout. The label at bottom displays the instantaneous selection state of two check boxes.</p>
+<p>Both checkboxes are declared with the constructor having the actionPerformed property set to the <b>OnCheck()</b> function.</p>
+<pre class="prettyprint notranslate">
+box1 = JCheckBox("Check1", actionPerformed = OnCheck)
+box2 = JCheckBox("Check2", actionPerformed = OnCheck)
+</pre>
+<p>The OnCheck() function verifies selection state of each check box and displays corresponding message on the label at the bottom.</p>
+<pre class="prettyprint notranslate">
+def OnCheck(event):
+   lbl1.text = ""
+   if box1.isSelected():
+      lbl1.text = lbl1.text + "box1 selected "
+   else:
+      lbl1.text = lbl1.text + "box1 not selected "
+   if box2.isSelected():
+      lbl1.text = lbl1.text + "box2 selected"
+   else:
+      lbl1.text = lbl1.text + "box2 not selected"
+</pre>
+<p>These boxes and a JLabel object are added to a JPanel with a spaceholder of 50 pixels in height added between them.</p>
+<pre class="prettyprint notranslate">
+panel = JPanel()
+panel.setLayout(BoxLayout(panel, BoxLayout.Y_AXIS))
+panel.add(Box.createVerticalGlue())
+panel.add(box1)
+panel.add(box2)
+panel.add(Box.createRigidArea(Dimension(0,50)))
+panel.add(lbl1)
+</pre>
+<p>The panel itself is added to a top-level JFrame window, whose visible property is set to true in the end.</p>
+<pre class="prettyprint notranslate">
+frame = JFrame("JCheckBox Example")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(250,150)
+frame.add(panel)
+
+frame.setVisible(True)
+</pre>
+<p>Run the above code and experiment with the selection of check boxes. The instantaneous state of both check boxes is displayed at the bottom.</p>
+<img src="/jython/images/check_box.jpg" alt="Check Box" />
+<h2>Jython JList Event</h2>
+<p>The JList control in the swing package provides the user with a scrollable list of items to choose.  The JComboBox provides a drop down list of items. In Java, the selection event is processed by implementing the valueChanged() method in the ListSelectionListener. In Jython, an event handler is assigned to the valueChanged property of the JList object.</p>
+<p>In the following example, a JList object and a label are added to a JFrame in the BorderLayout. The JList is populated with a collection of items in a tuple. Its valueChanged property is set to listSelect() function.</p>
+<pre class="prettyprint notranslate">
+lang = ("C", "C++", "Java", "Python", "Perl", "C#", "VB", "PHP", "Javascript", "Ruby")
+lst = JList(lang, valueChanged = listSelect)
+</pre>
+<p>The event handler function obtains the index of the selected item and fetches the corresponding item from the JList object to be displayed on the label at the bottom.</p>
+<pre class="prettyprint notranslate">
+def listSelect(event):
+   index = lst.selectedIndex
+   lbl1.text = "Hello" + lang[index]
+</pre>
+<p>The JList and JLabel object are added to the JFrame using BorderLayout.</p>
+<p>The entire code is given below &minus;</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame, JPanel, JLabel, JList
+from java.awt import BorderLayout
+
+frame = JFrame("JList Example")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(300,250)
+
+frame.setLayout(BorderLayout())
+
+def listSelect(event):
+   index = lst.selectedIndex
+   lbl1.text = "Hello" + lang[index]
+
+lang = ("C", "C++", "Java", "Python", "Perl", "C#", "VB", "PHP", "Javascript", "Ruby")
+lst = JList(lang, valueChanged = listSelect)
+lbl1 = JLabel("box1 not selected box2 not selected")
+frame.add(lst, BorderLayout.NORTH)
+frame.add(lbl1, BorderLayout.SOUTH)
+
+frame.setVisible(True)
+</pre>
+<p>The output of the following code is as follows.</p>
+<img src="/jython/images/jlist_and_jlabel_object.jpg" alt="JList and JLabel Object" />
+<h1>Jython - Menus</h1>
+<p>Most of the GUI based applications have a Menu bar at the top. It is found just below the title bar of the top-level window. The javax.swing package has elaborate facility to build an efficient menu system. It is constructed with the help of <b>JMenuBar, JMenu</b> and <b>JMenuItem</b> classes.</p>
+<p>In following example, a menu bar is provided in the top-level window. A File menu consisting of three menu item buttons is added to the menu bar. Let us now prepare a JFrame object with the layout set to BorderLayout.</p>
+<pre class="prettyprint notranslate">
+frame = JFrame("JMenuBar example")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(400,300)
+frame.setLayout(BorderLayout())
+</pre>
+<p>Now, a JMenuBar object is activated by the SetJMenuBar() method.</p>
+<pre class="prettyprint notranslate">
+bar = JMenuBar()
+frame.setJMenuBar(bar)
+</pre>
+<p>Next, a JMenu object having ‘File’ caption is declared. Three JMenuItem buttons are added to the File menu. When any of the menu items are clicked, the ActionEvent handler OnClick() function is executed. It is defined with the actionPerformed property.</p>
+<pre class="prettyprint notranslate">
+file = JMenu("File")
+newfile = JMenuItem("New",actionPerformed = OnClick)
+openfile = JMenuItem("Open",actionPerformed = OnClick)
+savefile = JMenuItem("Save",actionPerformed = OnClick)
+file.add(newfile)
+file.add(openfile)
+file.add(savefile)
+bar.add(file)
+</pre>
+<p>The OnClick() event handler retrieves the name of the JMenuItem button by the gwtActionCommand() function and displays it in the text box at the bottom of the window.</p>
+<pre class="prettyprint notranslate">
+def OnClick(event):
+   txt.text = event.getActionCommand()
+</pre>
+<p>The File menu object is added to menu bar. Finally, a JTextField control is added at the bottom of the JFrame object.</p>
+<pre class="prettyprint notranslate">
+txt = JTextField(10)
+frame.add(txt, BorderLayout.SOUTH)
+</pre>
+<p>The entire code of menu.py is given below &minus;</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame, JMenuBar, JMenu, JMenuItem, JTextField
+from java.awt import BorderLayout
+
+frame = JFrame("JMenuBar example")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(400,300)
+frame.setLayout(BorderLayout())
+
+def OnClick(event):
+   txt.text = event.getActionCommand()
+
+bar = JMenuBar()
+frame.setJMenuBar(bar)
+
+file = JMenu("File")
+newfile = JMenuItem("New",actionPerformed = OnClick)
+openfile = JMenuItem("Open",actionPerformed = OnClick)
+savefile = JMenuItem("Save",actionPerformed = OnClick)
+file.add(newfile)
+file.add(openfile)
+file.add(savefile)
+bar.add(file)
+
+txt = JTextField(10)
+frame.add(txt, BorderLayout.SOUTH)
+
+frame.setVisible(True)
+</pre>
+<p>When the above script is executed using the Jython interpreter, a window with the File menu appears. Click on it and its three menu items will drop down. If any button is clicked, its name will be displayed in the text box control.</p>
+<img src="/jython/images/jython_interpreter.jpg" alt="Jython Interpreter" />
+<h1>Jython - Dialogs</h1>
+<p>A Dialog object is a window that appears on top of the base window with which the user interacts. In this chapter, we shall see the preconfigured dialogs defined in the swing library. They are <b>MessageDialog, ConfirmDialog</b> and <b>InputDialog</b>. They are available because of the static method of the JOptionPane class.</p>
+<p>In the following example, the File menu has three JMenu items corresponding to the above three dialogs; each executes the <b>OnClick</b> event handler.</p>
+<pre class="prettyprint notranslate">
+file = JMenu("File")
+msgbtn = JMenuItem("Message",actionPerformed = OnClick)
+conbtn = JMenuItem("Confirm",actionPerformed = OnClick)
+inputbtn = JMenuItem("Input",actionPerformed = OnClick)
+file.add(msgbtn)
+file.add(conbtn)
+file.add(inputbtn)
+</pre>
+<p>The OnClick() handler function retrieves the caption of Menu Item button and invokes the respective showXXXDialog() method.</p>
+<pre class="prettyprint notranslate">
+def OnClick(event):
+   str = event.getActionCommand()
+   if str == 'Message':
+      JOptionPane.showMessageDialog(frame,"this is a sample message dialog")
+   if str == "Input":
+      x = JOptionPane.showInputDialog(frame,"Enter your name")
+      txt.setText(x)
+   if str == "Confirm":
+      s = JOptionPane.showConfirmDialog (frame, "Do you want to continue?")
+      if s == JOptionPane.YES_OPTION:
+         txt.setText("YES")
+      if s == JOptionPane.NO_OPTION:
+         txt.setText("NO")
+      if s == JOptionPane.CANCEL_OPTION:
+         txt.setText("CANCEL")
+</pre>
+<p>If the message option from menu is chosen, a message pops up. If Input option is clicked, a dialog asking for the input pops up. The input text is then displayed in the text box in the JFrame window. If the Confirm option is selected, a dialog with three buttons, YES, NO and CANCEL comes up. The user’s choice is recorded in the text box.</p>
+<p>The entire code is given below &minus;</p>
+<pre class="prettyprint notranslate">
+from javax.swing import JFrame, JMenuBar, JMenu, JMenuItem, JTextField
+from java.awt import BorderLayout
+from javax.swing import JOptionPane
+frame = JFrame("Dialog example")
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(400,300)
+frame.setLayout(BorderLayout())
+
+def OnClick(event):
+   str = event.getActionCommand()
+   if str == 'Message':
+      JOptionPane.showMessageDialog(frame,"this is a sample message dialog")
+   if str == "Input":
+      x = JOptionPane.showInputDialog(frame,"Enter your name")
+      txt.setText(x)
+   if str == "Confirm":
+      s = JOptionPane.showConfirmDialog (frame, "Do you want to continue?")
+      if s == JOptionPane.YES_OPTION:
+         txt.setText("YES")
+      if s == JOptionPane.NO_OPTION:
+         txt.setText("NO")
+      if s == JOptionPane.CANCEL_OPTION:
+         txt.setText("CANCEL")
+
+bar = JMenuBar()
+frame.setJMenuBar(bar)
+
+file = JMenu("File")
+msgbtn = JMenuItem("Message",actionPerformed = OnClick)
+conbtn = JMenuItem("Confirm",actionPerformed = OnClick)
+inputbtn = JMenuItem("Input",actionPerformed = OnClick)
+file.add(msgbtn)
+file.add(conbtn)
+file.add(inputbtn)
+bar.add(file)
+txt = JTextField(10)
+frame.add(txt, BorderLayout.SOUTH)
+frame.setVisible(True)
+</pre>
+<p>When the above script is executed, the following window is displayed with three options in the menu &minus;</p>
+<img src="/jython/images/dialog.jpg" alt="Dialog" />
+<h2>Message box</h2>
+<img src="/jython/images/message_box.jpg" alt="Message box" />
+<h2>Input Box</h2>
+<img src="/jython/images/input_box.jpg" alt="Input Box" />
+<h2>Confirm Dialog</h2>
+<img src="/jython/images/confirm_dialog.jpg" alt="Confirm Dialog" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/jython/jython_dialogs.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/jython/jython_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

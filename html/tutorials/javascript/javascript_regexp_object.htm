@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Regular Expressions and RegExp Object</title>
+<meta charset="utf-8">
+<meta name="description" content="Regular Expressions and RegExp Object - A regular expression is an object that describes a pattern of characters."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/javascript/javascript_regexp_object.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#f8ba24;
+}
+a.demo {
+    background:#f8ba24;
+}
+li.heading {
+    background:#f8ba24;
+}
+.course-box{background:#f8ba24}
+.home-intro-sub p{color:#f8ba24}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/javascript/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/javascript/images/javascript-mini-logo.jpg" alt="Javascript Tutorial" />
+</div>
+<ul class="toc chapters">
+<li><a class="videolink" href="/javascript_online_training/index.asp" target="_blank"><img src="/javascript/images/javascript-video-tutorials.jpg" alt="JavaScript Video Tutorials" /></a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Javascript Basics Tutorial</li>
+<li><a href="/javascript/index.htm">Javascript - Home</a></li>
+<li><a href="/javascript/javascript_overview.htm">Javascript - Overview</a></li>
+<li><a href="/javascript/javascript_syntax.htm">Javascript - Syntax</a></li>
+<li><a href="/javascript/javascript_enabling.htm">Javascript - Enabling</a></li>
+<li><a href="/javascript/javascript_placement.htm">Javascript - Placement</a></li>
+<li><a href="/javascript/javascript_variables.htm">Javascript - Variables</a></li>
+<li><a href="/javascript/javascript_operators.htm">Javascript - Operators</a></li>
+<li><a href="/javascript/javascript_ifelse.htm">Javascript - If...Else</a></li>
+<li><a href="/javascript/javascript_switch_case.htm">Javascript - Switch Case</a></li>
+<li><a href="/javascript/javascript_while_loop.htm">Javascript - While Loop</a></li>
+<li><a href="/javascript/javascript_for_loop.htm">Javascript - For Loop</a></li>
+<li><a href="/javascript/javascript_forin_loop.htm">Javascript - For...in</a></li>
+<li><a href="/javascript/javascript_loop_control.htm">Javascript - Loop Control</a></li>
+<li><a href="/javascript/javascript_functions.htm">Javascript - Functions</a></li>
+<li><a href="/javascript/javascript_events.htm">Javascript - Events</a></li>
+<li><a href="/javascript/javascript_cookies.htm">Javascript - Cookies</a></li>
+<li><a href="/javascript/javascript_page_redirect.htm">Javascript - Page Redirect</a></li>
+<li><a href="/javascript/javascript_dialog_boxes.htm">Javascript - Dialog Boxes</a></li>
+<li><a href="/javascript/javascript_void_keyword.htm">Javascript - Void Keyword</a></li>
+<li><a href="/javascript/javascript_page_printing.htm">Javascript - Page Printing</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JavaScript Objects</li>
+<li><a href="/javascript/javascript_objects.htm">Javascript - Objects</a></li>
+<li><a href="/javascript/javascript_number_object.htm">Javascript - Number</a></li>
+<li><a href="/javascript/javascript_boolean_object.htm">Javascript - Boolean</a></li>
+<li><a href="/javascript/javascript_strings_object.htm">Javascript - Strings</a></li>
+<li><a href="/javascript/javascript_arrays_object.htm">Javascript - Arrays</a></li>
+<li><a href="/javascript/javascript_date_object.htm">Javascript - Date</a></li>
+<li><a href="/javascript/javascript_math_object.htm">Javascript - Math</a></li>
+<li><a href="/javascript/javascript_regexp_object.htm">Javascript - RegExp</a></li>
+<li><a href="/javascript/javascript_html_dom.htm">Javascript - HTML DOM</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JavaScript Advanced</li>
+<li><a href="/javascript/javascript_error_handling.htm">Javascript - Error Handling</a></li>
+<li><a href="/javascript/javascript_form_validations.htm">Javascript - Validations</a></li>
+<li><a href="/javascript/javascript_animation.htm">Javascript - Animation</a></li>
+<li><a href="/javascript/javascript_multimedia.htm">Javascript - Multimedia</a></li>
+<li><a href="/javascript/javascript_debugging.htm">Javascript - Debugging</a></li>
+<li><a href="/javascript/javascript_image_map.htm">Javascript - Image Map</a></li>
+<li><a href="/javascript/javascript_browsers_handling.htm">Javascript - Browsers</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JavaScript Useful Resources</li>
+<li><a href="/javascript/javascript_questions_answers.htm">Javascript - Questions And Answers</a></li>
+<li><a href="/javascript/javascript_quick_guide.htm">Javascript - Quick Guide</a></li>
+<li><a href="/javascript/javascript_builtin_functions.htm">Javascript - Functions</a></li>
+<li><a href="/javascript/javascript_useful_resources.htm">Javascript - Resources</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Regular Expressions and RegExp Object</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/javascript/javascript_math_object.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/javascript/javascript_html_dom.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>A regular expression is an object that describes a pattern of characters.</p>
+<p>The JavaScript <b>RegExp</b> class represents regular expressions, and both String and <b>RegExp</b> define methods that use regular expressions to perform powerful pattern-matching and search-and-replace functions on text.</p>
+<h3>Syntax</h3>
+<p>A regular expression could be defined with the <b>RegExp ()</b> constructor, as follows &minus;</p>
+<pre class="result notranslate">
+var pattern = new RegExp(pattern, attributes);
+or simply
+var pattern = /pattern/attributes;
+</pre>
+<p>Here is the description of the parameters &minus;</p>
+<ul class="list">
+<li><p><b>pattern</b> &minus; A string that specifies the pattern of the regular expression or another regular expression.</p></li>
+<li><p><b>attributes</b> &minus; An optional string containing any of the "g", "i", and "m" attributes that specify global, case-insensitive, and multi-line matches, respectively.</p></li>
+</ul>
+<h2>Brackets</h2>
+<p>Brackets ([]) have a special meaning when used in the context of regular expressions. They are used to find a range of characters.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Expression &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>[...]</b></p>
+<p>Any one character between the brackets.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>[^...]</b></p>
+<p>Any one character not between the brackets.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>[0-9]</b></p>
+<p>It matches any decimal digit from 0 through 9.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>[a-z]</b></p>
+<p>It matches any character from lowercase <b>a </b>through lowercase <b>z</b>.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>[A-Z]</b></p>
+<p>It matches any character from uppercase <b>A</b> through uppercase <b>Z</b>.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>[a-Z]</b></p>
+<p>It matches any character from lowercase <b>a</b> through uppercase <b>Z</b>.</p></td>
+</tr>
+</table>
+<p>The ranges shown above are general; you could also use the range [0-3] to match any decimal digit ranging from 0 through 3, or the range [b-v] to match any lowercase character ranging from <b>b</b> through <b>v</b>.</p>
+<h2>Quantifiers</h2>
+<p>The frequency or position of bracketed character sequences and single characters can be denoted by a special character. Each special character has a specific connotation. The +, *, ?, and $ flags all follow a character sequence.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Expression &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>p+</b></p>
+<p>It matches any string containing one or more p's.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>p*</b></p>
+<p>It matches any string containing zero or more p's.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>p?</b></p>
+<p>It matches any string containing at most one p.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>p{N}</b></p>
+<p>It matches any string containing a sequence of <b>N</b> p's</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>p{2,3}</b></p>
+<p>It matches any string containing a sequence of two or three p's.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>p{2, }</b></p>
+<p>It matches any string containing a sequence of at least two p's.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>p$</b></p>
+<p>It  matches any string with p at the end of it.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>^p</b></p>
+<p>It matches any string with p at the beginning of it.</p></td>
+</tr>
+</table>
+<h3>Examples</h3>
+<p>Following examples explain more about matching characters.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Expression &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>[^a-zA-Z]</b></p>
+<p>It matches any string not containing any of the characters ranging from <b>a</b> through <b>z</b> and <b>A</b> through Z.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>p.p</b></p>
+<p>It matches any string containing <b>p,</b> followed by any character, in turn followed by another <b>p</b>.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>^.{2}$</b></p>
+<p>It matches any string containing exactly two characters.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>&lt;b&gt;(.*)&lt;/b&gt;</b></p>
+<p>It matches any string enclosed within &lt;b&gt; and &lt;/b&gt;.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>p(hp)*</b></p>
+<p>It matches any string containing a <b>p</b> followed by zero or more instances of the sequence <b>hp</b>.</p></td>
+</tr>
+</table>
+<h2>Literal characters</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Character &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>Alphanumeric</b></p>
+<p>Itself</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>\0</b></p>
+<p>The NUL character (\u0000)</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>\t</b></p>
+<p>Tab (\u0009</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>\n</b></p>
+<p>Newline (\u000A)</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>\v</b></p>
+<p>Vertical tab (\u000B)</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>\f</b></p>
+<p>Form feed (\u000C)</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>\r</b></p>
+<p>Carriage return (\u000D)</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>\xnn</b></p>
+<p>The Latin character specified by the hexadecimal number nn; for example, \x0A is the same as \n</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>\uxxxx</b></p>
+<p>The Unicode character specified by the hexadecimal number xxxx; for example, \u0009 is the same as \t</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>\cX</b></p>
+<p>The control character ^X; for example, \cJ is equivalent to the newline character \n</p></td>
+</tr>
+</table>
+<h2>Metacharacters</h2>
+<p>A metacharacter is simply an alphabetical character preceded by a backslash that acts to give the combination a special meaning.</p>
+<p>For instance, you can search for a large sum of money using the '\d' metacharacter: <b>/([\d]+)000/</b>, Here <b>\d</b> will search for any string of numerical character.</p>
+<p>The following table lists a set of metacharacters which can be used in PERL Style Regular Expressions.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:10%">Sr.No.</th>		
+<th style="text-align:center;">Character &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>.</b></p>              
+<p>a single character</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>\s</b></p>            
+<p>a whitespace character (space, tab, newline)</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>\S</b></p>             
+<p>non-whitespace character</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>\d</b></p>             
+<p>a digit (0-9)</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>\D</b></p>             
+<p>a non-digit</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>\w</b></p>             
+<p>a word character (a-z, A-Z, 0-9, _)</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>\W</b></p>            
+<p>a non-word character</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>[\b]</b></p>           
+<p>a literal backspace (special case).</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>[aeiou]</b></p>        
+<p>matches a single character in the given set</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>[^aeiou]</b></p>       
+<p>matches a single character outside the given set</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>(foo|bar|baz)</b></p>  
+<p>matches any of the alternatives specified</p></td>
+</tr>
+</table>
+<h2>Modifiers</h2>
+<p>Several modifiers are available that can simplify the way you work with <b>regexps,</b> like case sensitivity, searching in multiple lines, etc.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Modifier &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>i</b></p>
+<p>Perform case-insensitive matching.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>m</b></p>
+<p>Specifies that if the string has newline or carriage return characters, the ^ and $ operators will now match against a newline boundary, instead of a string boundary</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>g</b></p>
+<p>Performs a global matchthat is, find all matches rather than stopping after the first match.</p></td>
+</tr>
+</table>
+<h2>RegExp Properties</h2>
+<p>Here is a list of the properties associated with RegExp and their description.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Property &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javascript/regexp_constructor.htm">constructor</a>
+<p>Specifies the function that creates an object's prototype.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javascript/regexp_global.htm">global</a>
+<p>Specifies if the "g" modifier is set.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javascript/regexp_ignorecase.htm">ignoreCase</a>
+<p>Specifies if the "i" modifier is set.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javascript/regexp_lastindex.htm">lastIndex</a>
+<p>The index at which to start the next match.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><a href="/javascript/regexp_multiline.htm">multiline</a>
+<p>Specifies if the "m" modifier is set.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><a href="/javascript/regexp_source.htm">source</a>
+<p>The text of the pattern.</p></td>
+</tr>
+</table>
+<p>In the following sections, we will have a few examples to demonstrate the usage of RegExp properties.</p>
+<h2>RegExp Methods</h2>
+<p>Here is a list of the methods associated with RegExp along with their description.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><a href="/javascript/regexp_exec.htm">exec()</a>
+<p>Executes a search for a match in its string parameter.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><a href="/javascript/regexp_test.htm">test()</a>
+<p>Tests for a match in its string parameter.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><a href="/javascript/regexp_tosource.htm">toSource()</a>
+<p>Returns an object literal representing the specified object; you can use this value to create a new object.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><a href="/javascript/regexp_tostring.htm">toString()</a>
+<p>Returns a string representing the specified object.</p></td>
+</tr>
+</table>
+<p>In the following sections, we will have a few examples to demonstrate the usage of RegExp methods.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/javascript/javascript_math_object.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/javascript/javascript_html_dom.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

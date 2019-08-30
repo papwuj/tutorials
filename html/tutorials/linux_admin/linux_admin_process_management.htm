@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Linux Admin - Process Management</title>
+<meta charset="utf-8">
+<meta name="description" content="Linux Admin - Process Management - Following are the common commands used with Process Managementâbg, fg, nohup, ps, pstree, top, kill, killall, free, uptime, nice."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/linux_admin/linux_admin_process_management.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#dfa018;
+}
+a.demo {
+    background:#dfa018;
+}
+li.heading {
+    background:#dfa018;
+}
+.course-box{background:#dfa018}
+.home-intro-sub p{color:#dfa018}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/linux_admin/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/linux_admin/images/linux-admin-mini-logo.jpg" alt="Linux Admin Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Tutorial</li>
+<li><a href="/linux_admin/index.htm">Linux Admin - Home</a></li>
+<li><a href="/linux_admin/linux_admin_centos_overview.htm">CentOS Overview</a></li>
+<li><a href="/linux_admin/basic_centos_linux_commands.htm">Basic CentOS Linux Commands</a></li>
+<li><a href="/linux_admin/linux_admin_file_folder_management.htm">File / Folder Management</a></li>
+<li><a href="/linux_admin/linux_admin_user_management.htm">User Management</a></li>
+<li><a href="/linux_admin/linux_admin_quota_management.htm">Quota Management</a></li>
+<li><a href="/linux_admin/linux_admin_systemd_services_start_and_stop.htm">Systemd Services Start and Stop</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_systemctl.htm">Resource Mgmt with systemctl</a></li>
+<li><a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm">Resource Mgmt with crgoups</a></li>
+<li><a href="/linux_admin/linux_admin_process_management.htm">Process Management</a></li>
+<li><a href="/linux_admin/linux_admin_firewall_setup.htm">Firewall Setup</a></li>
+<li><a href="/linux_admin/configure_php_in_centos_linux.htm">Configure PHP in CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_python_with_centos_linux.htm">Set Up Python with CentOS Linux</a></li>
+<li><a href="/linux_admin/configure_ruby_on_centos_linux.htm">Configure Ruby on CentOS Linux</a></li>
+<li><a href="/linux_admin/set_up_perl_for_centos_linux.htm">Set Up Perl for CentOS Linux</a></li>
+<li><a href="/linux_admin/install_and_configure_open_ldap.htm">Install and Configure Open LDAP</a></li>
+<li><a href="/linux_admin/linux_admin_create_ssl_certificates.htm">Create SSL Certificates</a></li>
+<li><a href="/linux_admin/linux_admin_install_apache_web_server_centos_7.htm">Install Apache Web Server CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_mysql_setup_on_centos_7.htm">MySQL Setup On CentOS 7</a></li>
+<li><a href="/linux_admin/linux_admin_set_up_postfix_mta_and_imap_pop3.htm">Set Up Postfix MTA and IMAP/POP3</a></li>
+<li><a href="/linux_admin/linux_admin_install_anonymous_ftp.htm">Install Anonymous FTP</a></li>
+<li><a href="/linux_admin/linux_admin_remote_management.htm">Remote Management</a></li>
+<li><a href="/linux_admin/linux_admin_traffic_monitoring_in_centos.htm">Traffic Monitoring in CentOS</a></li>
+<li><a href="/linux_admin/linux_admin_log_management.htm">Log Management</a></li>
+<li><a href="/linux_admin/linux_admin_backup_and_recovery.htm">Backup and Recovery</a></li>
+<li><a href="/linux_admin/linux_admin_system_updates.htm">System Updates</a></li>
+<li><a href="/linux_admin/linux_admin_shell_scripting.htm">Shell Scripting</a></li>
+<li><a href="/linux_admin/linux_admin_package_management.htm">Package Management</a></li>
+<li><a href="/linux_admin/linux_admin_volume_management.htm">Volume Management</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Linux Admin Useful Resources</li>
+<li><a href="/linux_admin/linux_admin_quick_guide.htm">Linux Admin - Quick Guide</a></li>
+<li><a href="/linux_admin/linux_admin_useful_resources.htm">Linux Admin - Useful Resources</a></li>
+<li><a href="/linux_admin/linux_admin_discussion.htm">Linux Admin - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Linux Admin - Process Management</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_firewall_setup.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Following are the common commands used with Process Management–bg, fg, nohup, ps, pstree, top, kill, killall, free, uptime, nice.</p>
+<h3>Work with Processes</h3>
+<p><b>Quick Note: Process PID in Linux</b></p>
+<p>In Linux every running process is given a PID or Process ID Number. This <i>PID</i> is how CentOS identifies a particular process. As we have discussed, <i>systemd</i> is the first process started and given a PID of 1 in CentOS.</p>
+<p><b>Pgrep</b> is used to get Linux PID for a given process name.</p>
+<pre class="result notranslate">
+[root@CentOS]# pgrep systemd 
+1 
+[root@CentOS]#
+</pre>
+<p>As seen, the <i>pgrep</i> command returns the current PID of systemd.</p>
+<h2>Basic CentOS Process and Job Management in CentOS</h2>
+<p>When working with processes in Linux it is important to know how basic foregrounding and backgrounding processes is performed at the command line.</p>
+<ul class="list">
+<li><p><b>fg</b> &minus; Bringsthe process to the foreground</p></li>
+<li><p><b>bg</b> &minus; Movesthe process to the background</p></li>
+<li><p><b>jobs</b> &minus; List of the current processes attached to the shell</p></li>
+<li><p><b>ctrl+z</b> &minus; Control + z key combination to sleep the current process</p></li>
+<li><p><b>&amp;</b> &minus; Startsthe process in the background</p></li>
+</ul>
+<p>Let's start using the shell command <i>sleep</i>. <b><i>sleep</i></b> will simply do as it is named, sleep for a defined period of time: <i>sleep</i>.</p>
+<pre class="result notranslate">
+[root@CentOS ~]$ jobs
+
+[root@CentOS ~]$ sleep 10 &amp; 
+[1] 12454 
+
+[root@CentOS ~]$ sleep 20 &amp; 
+[2] 12479
+
+[root@CentOS ~]$ jobs 
+[1]-  Running                 sleep 10 &amp; 
+[2]+  Running                 sleep 20 &amp;
+
+[cnetos@CentOS ~]$
+</pre>
+<p>Now, let's bring the first job to the foreground &minus;</p>
+<pre class="result notranslate">
+[root@CentOS ~]$ fg 1 
+sleep 10
+</pre>
+<p>If you are following along, you'll notice the foreground job is stuck in your shell. Now, let's put the process to sleep, then re-enable it in the background.</p>
+<ul class="list">
+<li>Hit control+z</li>
+<li>Type: bg 1, sending the first job into the background and starting it.</li>
+</ul>
+<pre class="result notranslate">
+[root@CentOS ~]$ fg 1 
+sleep 20 
+^Z 
+[1]+  Stopped                 sleep 20
+
+[root@CentOS ~]$ bg 1 
+[1]+ sleep 20 &amp;
+
+[root@CentOS ~]$
+</pre>
+<h3>nohup</h3>
+<p>When working from a shell or terminal, it is worth noting that by default all the processes and jobs attached to the shell will terminate when the shell is closed or the user logs out. When using <i>nohup</i> the process will continue to run if the user logs out or closes the shell to which the process is attached.</p>
+<pre class="result notranslate">
+[root@CentOS]# nohup ping www.google.com &amp; 
+[1] 27299 
+nohup: ignoring input and appending output to ‘nohup.out’
+
+[root@CentOS]# pgrep ping 
+27299
+
+[root@CentOS]# kill -KILL `pgrep ping` 
+[1]+  Killed                  nohup ping www.google.com
+
+[root@CentOS rdc]# cat nohup.out  
+PING www.google.com (216.58.193.68) 56(84) bytes of data. 
+64 bytes from sea15s07-in-f4.1e100.net (216.58.193.68): icmp_seq = 1 ttl = 128
+time = 51.6 ms 
+64 bytes from sea15s07-in-f4.1e100.net (216.58.193.68): icmp_seq = 2 ttl = 128
+time = 54.2 ms 
+64 bytes from sea15s07-in-f4.1e100.net (216.58.193.68): icmp_seq = 3 ttl = 128
+time = 52.7 ms
+</pre>
+<h2>ps Command</h2>
+<p>The <b>ps</b> command is commonly used by administrators to investigate snapshots of a specific process. <i>ps</i> is commonly used with <i>grep</i> to filter out a specific process to analyze.</p>
+<pre class="result notranslate">
+[root@CentOS ~]$ ps axw | grep python 
+762   ?        Ssl    0:01 /usr/bin/python -Es /usr/sbin/firewalld --nofork -nopid 
+1296  ?        Ssl    0:00 /usr/bin/python -Es /usr/sbin/tuned -l -P 
+15550 pts/0    S+     0:00 grep --color=auto python
+</pre>
+<p>In the above command, we see all the processes using the <i>python</i> interpreter. Also included with the results were our grep command, looking for the string <i>python</i>.</p>
+<p>Following are the most common command line switches used with <i>ps</i>.</p>
+
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:10%">Switch</th>
+<th style="text-align:center;">Action</th>
+</tr>
+<tr>
+<td style="text-align:center;">a</td>
+<td>Excludes constraints of only the reporting processes for the current user</td>
+</tr>
+<tr>
+<td style="text-align:center;">x</td>
+<td>Shows processes not attached to a tty or shell</td>
+</tr>
+<tr>
+<td style="text-align:center;">w</td>
+<td>Formats wide output display of the output</td>
+</tr>
+<tr>
+<td style="text-align:center;">e</td>
+<td>Shows environment after the command</td>
+</tr>
+<tr>
+<td style="text-align:center;">-e</td>
+<td>Selects all processes</td>
+</tr>
+<tr>
+<td style="text-align:center;">-o</td>
+<td>User-defined formatted output</td>
+</tr>
+<tr>
+<td style="text-align:center;">-u</td>
+<td>Shows all processes by a specific user</td>
+</tr>
+<tr>
+<td style="text-align:center;">-C</td>
+<td>Shows all processes by name or process id</td>
+</tr>
+<tr>
+<td style="text-align:center;">--sort</td>
+<td>Sorts the processes by definition</td>
+</tr>
+</table>
+<p>To see all processes in use by the <i>nobody</i> user &minus;</p>
+<pre class="result notranslate">
+[root@CentOS ~]$ ps -u nobody 
+PID TTY          TIME CMD 
+1853 ?        00:00:00 dnsmasq 
+
+[root@CentOS ~]$
+</pre>
+<p>To see all information about the <i>firewalld</i> process &minus;</p>
+<pre class="result notranslate">
+[root@CentOS ~]$ ps -wl -C firewalld 
+F   S   UID   PID   PPID   C   PRI   NI   ADDR   SZ   WCHAN   TTY   TIME      CMD
+0   S     0   762      1   0    80   0     -   81786  poll_s   ?   00:00:01 firewalld 
+
+[root@CentOS ~]$
+</pre>
+<p>Let's see which processes are consuming the most memory &minus;</p>
+<pre class="result notranslate">
+[root@CentOS ~]$ ps aux  --sort=-pmem | head -10 
+USER       PID   %CPU   %MEM   VSZ     RSS   TTY   STAT   START   TIME   COMMAND 
+cnetos     6130   0.7   5.7   1344512 108364  ?      Sl   02:16   0:29  /usr/bin/gnome-shell 
+cnetos     6449   0.0   3.4   1375872 64440   ?      Sl   02:16   0:00  /usr/libexec/evolution-calendar-factory 
+root       5404   0.6   2.1   190256  39920 tty1     Ssl+ 02:15   0:27  /usr/bin/Xorg :0 -background none -noreset -audit 4 -verbose -auth /run/gdm/auth-for-gdm-iDefCt/database -seat seat0 -nolisten tcp vt1 
+cnetos     6296   0.0   1.7   1081944 32136   ?      Sl   02:16   0:00  /usr/libexec/evolution/3.12/evolution-alarm-notify 
+cnetos     6350   0.0   1.5   560728  29844   ?      Sl   02:16   0:01  /usr/bin/prlsga 
+cnetos     6158   0.0   1.4   1026956 28004   ?      Sl   02:16   0:00  /usr/libexec/gnome-shell-calendar-server 
+cnetos     6169   0.0   1.4   1120028 27576   ?      Sl   02:16   0:00  /usr/libexec/evolution-source-registry 
+root       762    0.0   1.4   327144  26724   ?      Ssl  02:09   0:01  /usr/bin/python -Es /usr/sbin/firewalld --nofork --nopid 
+cnetos     6026   0.0  1.4 1090832 26376      ?      Sl   02:16   0:00  /usr/libexec/gnome-settings-daemon
+
+[root@CentOS ~]$
+</pre>
+<p>See all the processes by user centos and format, displaying the custom output &minus;</p>
+<pre class="result notranslate">
+[cnetos@CentOS ~]$ ps -u cnetos -o pid,uname,comm 
+   PID    USER     COMMAND 
+   5802  centos   gnome-keyring-d 
+   5812  cnetos   gnome-session 
+   5819  cnetos   dbus-launch 
+   5820  cnetos   dbus-daemon 
+   5888  cnetos   gvfsd 
+   5893  cnetos   gvfsd-fuse 
+   5980  cnetos   ssh-agent   
+   5996  cnetos   at-spi-bus-laun
+</pre>
+<h2>pstree Command</h2>
+<p><b>pstree</b> is similar to <i>ps</i> but is not often used. It displays the processes in a neater tree fashion.</p>
+<pre class="result notranslate">
+[centos@CentOS ~]$ pstree 
+  systemd─┬─ModemManager───2*[{ModemManager}] 
+          ├─NetworkManager─┬─dhclient 
+          │                └─2*[{NetworkManager}] 
+          ├─2*[abrt-watch-log] 
+          ├─abrtd 
+          ├─accounts-daemon───2*[{accounts-daemon}] 
+          ├─alsactl 
+          ├─at-spi-bus-laun─┬─dbus-daemon───{dbus-daemon} 
+          │                 └─3*[{at-spi-bus-laun}] 
+          ├─at-spi2-registr───2*[{at-spi2-registr}] 
+          ├─atd 
+          ├─auditd─┬─audispd─┬─sedispatch 
+          │        │         └─{audispd} 
+          │        └─{auditd} 
+          ├─avahi-daemon───avahi-daemon 
+          ├─caribou───2*[{caribou}] 
+          ├─cgrulesengd 
+          ├─chronyd 
+          ├─colord───2*[{colord}] 
+          ├─crond 
+          ├─cupsd
+</pre>
+<p>The total output from <i>pstree</i> can exceed 100 lines. Usually, <i>ps</i> will give more useful information.</p>
+<h2>top Command</h2>
+<p><b>top</b> is one of the most often used commands when troubleshooting performance issues in Linux. It is useful for real-time stats and process monitoring in Linux. Following is the default output of <i>top</i> when brought up from the command line.</p>
+<pre class="result notranslate">
+Tasks: 170 total,   1 running, 169 sleeping,   0 stopped,   0 zombie 
+%Cpu(s):  2.3 us,  2.0 sy,  0.0 ni, 95.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+KiB Mem :  1879668 total,   177020 free,   607544 used,  1095104 buff/cache 
+KiB Swap:  3145724 total,  3145428 free,      296 used.  1034648 avail Mem 
+ 
+PID    USER     PR   NI    VIRT     RES   SHR    S  %CPU  %MEM   TIME+   COMMAND
+5404   root     20   0    197832   48024  6744   S   1.3   2.6  1:13.22   Xorg
+8013   centos   20   0    555316   23104  13140  S   1.0   1.2  0:14.89   gnome-terminal-
+6339   centos   20   0    332336   6016   3248   S   0.3   0.3  0:23.71   prlcc
+6351   centos   20   0    21044    1532   1292   S   0.3   0.1  0:02.66   prlshprof
+</pre>
+<p>Common <i>hot keys</i> used while running top (<i>hot keys</i> are accessed by pressing the key as top is running in your shell).</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:10%">Command</th>
+<th style="text-align:center;">Action</th>
+</tr>
+<tr>
+<td style="text-align:center;">b</td>
+<td>Enables / disables bold highlighting on top menu</td>
+</tr>
+<tr>
+<td style="text-align:center;">z</td>
+<td>Cycles the color scheme</td>
+</tr>
+<tr>
+<td style="text-align:center;">l</td>
+<td>Cycles the load average heading</td>
+</tr>
+<tr>
+<td style="text-align:center;">m</td>
+<td>Cycles the memory average heading</td>
+</tr>
+<tr>
+<td style="text-align:center;">t</td>
+<td>Task information heading</td>
+</tr>
+<tr>
+<td style="text-align:center;">h</td>
+<td>Help menu</td>
+</tr>
+<tr>
+<td style="text-align:center;">Shift+F</td>
+<td>Customizes sorting and display fields</td>
+</tr>
+</table>
+<p>Following are the common command line switches for <i>top</i>.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:10%">Command</th>
+<th style="text-align:center;">Action</th>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">-o</td>
+<td>Sorts by column (can prepend with - or + to sort ascending or descending)</td>
+</tr>
+<tr>
+<td style="text-align:center;">-u</td>
+<td>Shows only processes from a specified user</td>
+</tr>
+<tr>
+<td style="text-align:center;">-d</td>
+<td>Updates the delay time of <i>top</i></td>
+</tr>
+<tr>
+<td style="text-align:center;">-O</td>
+<td>Returns a list of columns which <i>top</i> can apply sorting</td>
+</tr>
+</table>
+<p>Sorting options screen in top, presented using <i>Shift+F</i>. This screen allows customization of <i>top</i> display and sort options.</p>
+<pre class="result notranslate">
+Fields Management for window 1:Def, whose current sort field is %MEM 
+Navigate with Up/Dn, Right selects for move then &lt;Enter&gt; or Left commits, 
+ 'd' or &lt;Space&gt; toggles display, 's' sets sort.  Use 'q' or &lt;Esc&gt; to end!
+ 
+* PID     = Process Id             TGID    = Thread Group Id      
+* USER    = Effective User Name    ENVIRON = Environment vars     
+* PR      = Priority               vMj     = Major Faults delta   
+* NI      = Nice Value             vMn     = Minor Faults delta   
+* VIRT    = Virtual Image (KiB)    USED    = Res+Swap Size (KiB)  
+* RES     = Resident Size (KiB)    nsIPC   = IPC namespace Inode  
+* SHR     = Shared Memory (KiB)    nsMNT   = MNT namespace Inode
+* S       = Process Status         nsNET   = NET namespace Inode  
+* %CPU    = CPU Usage              nsPID   = PID namespace Inode  
+* %MEM    = Memory Usage (RES)     nsUSER  = USER namespace Inode 
+* TIME+   = CPU Time, hundredths   nsUTS   = UTS namespace Inode  
+* COMMAND = Command Name/Line 
+PPID    = Parent Process pid
+UID     = Effective User Id
+</pre>
+<p><i>top</i>, showing the processes for user <i>rdc</i> and sorted by memory usage &minus;</p>
+<pre class="result notranslate">
+ PID   USER  %MEM  PR  NI    VIRT    RES    SHR    S %CPU     TIME+    COMMAND
+ 6130  rdc    6.2  20   0  1349592  117160  33232  S  0.0   1:09.34    gnome-shell
+ 6449  rdc    3.4  20   0  1375872   64428  21400  S  0.0   0:00.43    evolution-calen
+ 6296  rdc    1.7  20   0  1081944   32140  22596  S  0.0   0:00.40    evolution-alarm
+ 6350  rdc    1.6  20   0   560728   29844   4256  S  0.0   0:10.16    prlsga
+ 6281  rdc    1.5  20   0  1027176   28808  17680  S  0.0   0:00.78    nautilus
+ 6158  rdc    1.5  20   0  1026956   28004  19072  S  0.0   0:00.20    gnome-shell-cal
+</pre>
+<p>Showing valid top fields (condensed) &minus;</p>
+<pre class="result notranslate">
+[centos@CentOS ~]$ top -O 
+PID 
+PPID 
+UID 
+USER 
+RUID 
+RUSER 
+SUID 
+SUSER 
+GID 
+GROUP 
+PGRP 
+TTY 
+TPGID
+</pre>
+<h2>kill Command</h2>
+<p>The <b>kill</b> command is used to kill a process from the command shell via its PID. When <i>killing</i> a process, we need to specify a signal to send. The signal lets the kernel know how we want to end the process. The most commonly used signals are &minus;</p>
+<ul class="list">
+<li><p><b>SIGTERM</b> is implied as the kernel lets a process know it should stop soon as it is safe to do so. <i>SIGTERM</i> gives the process an opportunity to exit gracefully and perform safe exit operations.</p></li>
+<li><p><b>SIGHUP</b> most daemons will restart when sent <i>SIGHUP</i>. This is often used on the processes when changes have been made to a configuration file.</p></li>
+<li><p><b>SIGKILL</b> since <i>SIGTERM</i> is the equivalent to asking a process to shut down. The kernel needs an option to end a process that will not comply with requests. When a process is hung, the <i>SIGKILL</i> option is used to shut the process down explicitly.</p></li>
+</ul>
+<p>For a list off all signals that can be sent with <i>kill</i> the <i>-l</i> option can be used &minus;</p>
+<pre class="result notranslate">
+[root@CentOS]# kill -l 
+1) SIGHUP           2) SIGINT         3) SIGQUIT        4) SIGILL         5) SIGTRAP
+6) SIGABRT          7) SIGBUS         8) SIGFPE         9) SIGKILL       10) SIGUSR1
+11) SIGSEGV        12) SIGUSR2       13) SIGPIPE       14) SIGALRM       15) SIGTERM
+16) SIGSTKFLT      17) SIGCHLD       18) SIGCONT       19) SIGSTOP       20) SIGTSTP
+21) SIGTTIN        22) SIGTTOU       23) SIGURG        24) SIGXCPU       25) SIGXFSZ
+26) SIGVTALRM      27) SIGPROF       28) SIGWINCH      29) SIGIO         30) SIGPWR
+31) SIGSYS         34) SIGRTMIN      35) SIGRTMIN+1    36) SIGRTMIN+2    37) SIGRTMIN+3
+38) SIGRTMIN+4     39) SIGRTMIN+5    40) SIGRTMIN+6    41) SIGRTMIN+7    42) SIGRTMIN+8
+43) SIGRTMIN+9     44) SIGRTMIN+10   45) SIGRTMIN+11   46) SIGRTMIN+12   47) SIGRTMIN+13 
+48) SIGRTMIN+14    49) SIGRTMIN+15   50) SIGRTMAX-14   51) SIGRTMAX-13   52) SIGRTMAX-12 
+53) SIGRTMAX-11    54) SIGRTMAX-10   55) SIGRTMAX-9    56) SIGRTMAX-8    57) SIGRTMAX-7
+58) SIGRTMAX-6     59) SIGRTMAX-5    60) SIGRTMAX-4    61) SIGRTMAX-3    62) SIGRTMAX-2
+63) SIGRTMAX-1     64) SIGRTMAX
+
+[root@CentOS rdc]#
+</pre>
+<p>Using <i>SIGHUP</i> to restart system.</p>
+<pre class="result notranslate">
+[root@CentOS]# pgrep systemd 
+1 
+464 
+500 
+643 
+15071
+
+[root@CentOS]# kill -HUP 1
+
+[root@CentOS]# pgrep systemd
+1 
+464 
+500 
+643 
+15196 
+15197 
+15198
+
+[root@CentOS]#
+</pre>
+<p><b>pkill</b> will allow the administrator to send a <i>kill</i> signal by the process name.</p>
+<pre class="result notranslate">
+[root@CentOS]# pgrep ping 
+19450 
+[root@CentOS]# pkill -9 ping 
+[root@CentOS]# pgrep ping 
+[root@CentOS]#
+</pre>
+<p><b>killall</b> will kill all the processes. Be careful using <i>killall</i> as root, as it will kill all the processes for all users.</p>
+<pre class="resul notranslate">
+[root@CentOS]# killall chrome
+</pre>
+<h2>free Command</h2>
+<p><b>free</b> is a pretty simple command often used to quickly check the memory of a system. It displays the total amount of used physical and swap memory.</p>
+<pre class="result notranslate">
+[root@CentOS]# free 
+             total       used      free      shared      buff/cache      available 
+Mem:        1879668     526284    699796     10304        653588          1141412 
+Swap:       3145724          0    3145724
+
+[root@CentOS]# 
+</pre>
+<h2>nice Command</h2>
+<p><b>nice</b> will allow an administrator to set the scheduling priority of a process in terms of CPU usages. The niceness is basically how the kernel will schedule CPU time slices for a process or job. By default, it is assumed the process is given equal access to CPU resources.</p>
+<p>First, let's use top to check the niceness of the currently running processes.</p>
+<pre class="result notranslate">
+PID   USER   PR   NI    VIRT    RES    SHR   S  %CPU  %MEM     TIME+    COMMAND
+28    root   39   19       0      0      0   S  0.0   0.0    0:00.17    khugepaged
+690   root   39   19   16808   1396   1164   S  0.0   0.1    0:00.01    alsactl]
+9598  rdc    39   19  980596  21904  10284   S  0.0   1.2    0:00.27    tracker-extract
+9599  rdc    39   19  469876   9608   6980   S  0.0   0.5    0:00.04    tracker-miner-a
+9609  rdc    39   19  636528  13172   8044   S  0.0   0.7    0:00.12    tracker-miner-f
+9611  rdc    39   19  469620   8984   6496   S  0.0   0.5    0:00.02    tracker-miner-u
+27    root   25    5       0      0      0   S  0.0   0.0    0:00.00    ksmd
+637   rtkit  21    1  164648   1276   1068   S  0.0   0.1    0:00.11    rtkit-daemon
+1     root   20    0  128096   6712   3964   S  0.3   0.4    0:03.57    systemd
+2     root   20    0       0      0      0   S  0.0   0.0    0:00.01    kthreadd
+3     root   20    0       0      0      0   S  0.0   0.0    0:00.50    ksoftirqd/0
+7     root   20    0       0      0      0   S  0.0   0.0    0:00.00    migration/0
+8     root   20    0       0      0      0   S  0.0   0.0    0:00.00    rcu_bh
+9     root   20    0       0      0      0   S  0.0   0.0    0:02.07    rcu_sched
+</pre>
+<p>We want to focus on the <i>NICE</i> column depicted by <i>NI</i>. The niceness range can be anywhere between -20 to positive 19. -20 represents the highest given priority.</p>
+<pre class="result notranslate">
+nohup nice --20 ping www.google.com &amp;
+</pre>
+<h3>renice</h3>
+<p><i>renice</i> allows us to change the current priority of a process that is already running.</p>
+<pre class="result notranslate">
+renice 17 -p 30727
+</pre>
+<p>The above command will lower the priority of our <i>ping</i> process command.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/linux_admin/linux_admin_resource_mgmt_with_crgoups.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/linux_admin/linux_admin_firewall_setup.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Implementation of Threads</title>
+<meta charset="utf-8">
+<meta name="description" content="Implementation of Threads - In this chapter, we will learn how to implement threads in Python."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/concurrency_in_python/concurrency_in_python_implementation_of_threads.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#036db0;
+}
+a.demo {
+    background:#036db0;
+}
+li.heading {
+    background:#036db0;
+}
+.course-box{background:#036db0}
+.home-intro-sub p{color:#036db0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/concurrency_in_python/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/concurrency_in_python/images/concurrency-in-python-mini-logo.jpg" alt=" Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Concurrency in Python Tutorial</li>
+<li><a href="/concurrency_in_python/index.htm">Home</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_introduction.htm">Introduction</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_concurrency_vs_parallelism.htm">Concurrency vs Parallelism</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_system_and_memory_architecture.htm">System &amp; Memory Architecture</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_threads.htm">Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_implementation_of_threads.htm">Implementation of Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_synchronizing_threads.htm">Synchronizing Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_threads_intercommunication.htm">Threads Intercommunication</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_testing_thread_applications.htm">Testing Thread Applications</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_debugging_thread_applications.htm">Debugging Thread Applications</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_benchmarking_and_profiling.htm">Benchmarking &amp; Profiling</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_pool_of_threads.htm">Pool of Threads</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_pool_of_processes.htm">Pool of Processes</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_multiprocessing.htm">Multiprocessing</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_processes_intercommunication.htm">Processes Intercommunication</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_eventdriven_programming.htm">Event-Driven Programming</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_reactive_programming.htm">Reactive Programming</a></li>
+<ul class="toc chapters">
+<li class="heading">Concurrency in Python Resources</li>
+<li><a href="/concurrency_in_python/concurrency_in_python_quick_guide.htm">Quick Guide</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_useful_resources.htm">Useful Resources</a></li>
+<li><a href="/concurrency_in_python/concurrency_in_python_discussion.htm">Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Implementation of Threads</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/concurrency_in_python/concurrency_in_python_threads.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/concurrency_in_python/concurrency_in_python_synchronizing_threads.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, we will learn how to implement threads in Python.</p>
+<h2>Python Module for Thread Implementation</h2>
+<p>Python threads are sometimes called lightweight processes because threads occupy much less memory than processes. Threads allow performing multiple tasks at once. In Python, we have the following two modules that implement threads in a program &minus;</p>
+<ul class="list">
+<li><p><b>&lt;_thread&gt;</b>module</p></li>
+<li><p><b>&lt;threading&gt;</b>module</p></li>
+</ul>
+<p>The main difference between these two modules is that <b>&lt;_thread&gt;</b> module treats a thread as a function whereas, the <b>&lt;threading&gt;</b> module treats every thread as an object and implements it in an object oriented way. Moreover, the <b>&lt;_thread&gt;</b>module is effective in low level threading and has fewer capabilities than the <b>&lt;threading&gt;</b> module.</p>
+<h3>&lt;_thread&gt; module</h3>
+<p>In the earlier version of Python, we had the <b>&lt;thread&gt;</b> module but it has been considered as "deprecated" for quite a long time. Users have been encouraged to use the <b>&lt;threading&gt;</b> module instead. Therefore, in Python 3 the module "thread" is not available anymore. It has been renamed to "<b>&lt;_thread&gt;</b>" for backwards incompatibilities in Python3.</p>
+<p>To generate new thread with the help of the <b>&lt;_thread&gt;</b> module, we need to call the <b>start_new_thread</b> method of it. The working of this method can be understood with the help of following syntax &minus;</p>
+<pre class="result notranslate">
+_thread.start_new_thread ( function, args[, kwargs] )
+</pre>
+<p>Here &minus;</p>
+<ul class="list">
+<li><p><b>args</b> is a tuple of arguments</p></li>
+<li><p><b>kwargs</b> is an optional dictionary of keyword arguments</p></li>
+</ul>
+<p>If we want to call function without passing an argument then we need to use an empty tuple of arguments in <b>args</b>.</p>
+<p>This method call returns immediately, the child thread starts, and calls function with the passed list, if any, of args. The thread terminates as and when the function returns.</p>
+<h3>Example</h3>
+<p>Following is an example for generating new thread by using the <b>&lt;_thread&gt;</b> module. We are using the start_new_thread() method here.</p>
+<pre class="prettyprint notranslate">
+import _thread
+import time
+
+def print_time( threadName, delay):
+   count = 0
+   while count &lt; 5:
+      time.sleep(delay)
+      count += 1
+      print ("%s: %s" % ( threadName, time.ctime(time.time()) ))
+
+try:
+   _thread.start_new_thread( print_time, ("Thread-1", 2, ) )
+   _thread.start_new_thread( print_time, ("Thread-2", 4, ) )
+except:
+   print ("Error: unable to start thread")
+while 1:
+   pass
+</pre>
+<h3>Output</h3>
+<p>The following output will help us understand the generation of new threads bwith the help of the <b>&lt;_thread&gt;</b> module.</p>
+<pre class="result notranslate">
+Thread-1: Mon Apr 23 10:03:33 2018
+Thread-2: Mon Apr 23 10:03:35 2018
+Thread-1: Mon Apr 23 10:03:35 2018
+Thread-1: Mon Apr 23 10:03:37 2018
+Thread-2: Mon Apr 23 10:03:39 2018
+Thread-1: Mon Apr 23 10:03:39 2018
+Thread-1: Mon Apr 23 10:03:41 2018
+Thread-2: Mon Apr 23 10:03:43 2018
+Thread-2: Mon Apr 23 10:03:47 2018
+Thread-2: Mon Apr 23 10:03:51 2018
+</pre>
+<h3>&lt;threading&gt; module</h3>
+<p>The <b>&lt;threading&gt;</b> module implements in an object oriented way and treats every thread as an object. Therefore, it provides much more powerful, high-level support for threads than the <_thread> module. This module is included with Python 2.4.</p>
+<h2>Additional methods in the &lt;threading&gt; module</h2>
+<p>The <b>&lt;threading&gt;</b> module comprises all the methods of the <b>&lt;_thread&gt;</b> module but it provides additional methods as well. The additional methods are as follows &minus;</p>
+<ul class="list">
+<li><p><b>threading.activeCount()</b> &minus; This method returns the number of thread objects that are active</p></li>
+<li><p><b>threading.currentThread()</b> &minus; This method returns the number of thread objects in the caller's thread control.</p></li>
+<li><p><b>threading.enumerate()</b> &minus; This method returns a list of all thread objects that are currently active.</p></li>
+<p>For implementing threading, the <b>&lt;threading&gt;</b> module has the <b><i>Thread</i></b> class which provides the following methods &minus;</p>
+<ul class="list">
+<li><p><b>run()</b> &minus; The run() method is the entry point for a thread.</p></li>
+<li><p><b>start()</b> &minus; The start() method starts a thread by calling the run method.</p></li>
+<li><p><b>join([time])</b> &minus; The join() waits for threads to terminate.</p></li>
+<li><p><b>isAlive()</b> &minus; The isAlive() method checks whether a thread is still executing.</p></li>
+<li><p><b>getName()</b> &minus; The getName() method returns the name of a thread.</p></li>
+<li><p><b>setName()</b> &minus; The setName() method sets the name of a thread.</p></li>
+</ul>
+</li>
+</ul>
+<h2>How to create threads using the &lt;threading&gt; module?</h2>
+<p>In this section, we will learn how to create threads using the <b>&lt;threading&gt;</b> module. Follow these steps to create a new thread using the &lt;threading&gt; module &minus;</p>
+<ul class="list">
+<li><p><b>Step 1</b> &minus; In this step, we need to define a new subclass of the <b>Thread</b> class.</p></li>
+<li><p><b>Step 2</b> &minus; Then for adding additional arguments, we need to override the <b>__init__(self [,args])</b> method.</p></li>
+<li><p><b>Step 3</b> &minus; In this step, we need to override the run(self [,args]) method to implement what the thread should do when started.</p></li>
+<p>Now, after creating the new <b>Thread </b>subclass, we can create an instance of it and then start a new thread by invoking the <b>start()</b>, which in turn calls the <b>run()</b> method.</p>
+</ul>
+<h3>Example</h3>
+<p>Consider this example to learn how to generate a new thread by using the <b>&lt;threading&gt;</b> module.</p>
+<pre class="prettyprint notranslate">
+import threading
+import time
+exitFlag = 0
+
+class myThread (threading.Thread):
+   def __init__(self, threadID, name, counter):
+      threading.Thread.__init__(self)
+      self.threadID = threadID
+      self.name = name
+      self.counter = counter
+   def run(self):
+      print ("Starting " + self.name)
+      print_time(self.name, self.counter, 5)
+      print ("Exiting " + self.name)
+def print_time(threadName, delay, counter):
+   while counter:
+      if exitFlag:
+         threadName.exit()
+      time.sleep(delay)
+      print ("%s: %s" % (threadName, time.ctime(time.time())))
+      counter -= 1
+
+thread1 = myThread(1, "Thread-1", 1)
+thread2 = myThread(2, "Thread-2", 2)
+
+thread1.start()
+thread2.start()
+thread1.join()
+thread2.join()
+print ("Exiting Main Thread")
+Starting Thread-1
+Starting Thread-2
+</pre>
+<h3>Output</h3>
+<p>Now, consider the following output &minus;</p>
+<pre class="result notranslate">
+Thread-1: Mon Apr 23 10:52:09 2018
+Thread-1: Mon Apr 23 10:52:10 2018
+Thread-2: Mon Apr 23 10:52:10 2018
+Thread-1: Mon Apr 23 10:52:11 2018
+Thread-1: Mon Apr 23 10:52:12 2018
+Thread-2: Mon Apr 23 10:52:12 2018
+Thread-1: Mon Apr 23 10:52:13 2018
+Exiting Thread-1
+Thread-2: Mon Apr 23 10:52:14 2018
+Thread-2: Mon Apr 23 10:52:16 2018
+Thread-2: Mon Apr 23 10:52:18 2018
+Exiting Thread-2
+Exiting Main Thread
+</pre>
+<h2>Python Program for Various Thread States</h2>
+<p>There are five thread states - new, runnable, running, waiting and dead. Among these five Of these five, we will majorly focus on three states - running, waiting and dead. A thread gets its resources in the running state, waits for the resources in the waiting state; the final release of the resource, if executing and acquired is in the dead state.</p>
+<p>The following Python program with the help of start(), sleep() and join() methods will show how a thread entered in running, waiting and dead state respectively.</p>
+<p><b>Step 1</b> &minus; Import the necessary modules, &lt;threading&gt; and &lt;time&gt;</p>
+<pre class="prettyprint notranslate">
+import threading
+import time
+</pre>
+<p><b>Step 2</b> &minus; Define a function, which will be called while creating a thread.</p>
+<pre class="prettyprint notranslate">
+def thread_states():
+   print("Thread entered in running state")
+</pre>
+<p><b>Step 3</b> &minus; We are using the sleep() method of time module to make our thread waiting for say 2 seconds.</p>
+<pre class="prettyprint notranslate">
+time.sleep(2)
+</pre>
+<p><b>Step 4</b> &minus; Now, we are creating a thread named T1, which takes the argument of the function defined above.</p>
+<pre class="prettyprint notranslate">
+T1 = threading.Thread(target=thread_states)
+</pre>
+<p><b>Step 5</b> &minus; Now, with the help of the start() function we can start our thread. It will produce the message, which has been set by us while defining the function.</p>
+<pre class="prettyprint notranslate">
+T1.start()
+Thread entered in running state
+</pre>
+<p><b>Step 6</b> &minus; Now, at last we can kill the thread with the join() method after it finishes its execution.</p>
+<pre class="prettyprint notranslate">
+T1.join()
+</pre>
+<h2>Starting a thread in Python</h2>
+<p>In python, we can start a new thread by different ways but the easiest one among them is to define it as a single function. After defining the function, we can pass this as the target for a new <b>threading.Thread</b> object and so on. Execute the following Python code to understand how the function works &minus;</p>
+<pre class="prettyprint notranslate">
+import threading
+import time
+import random
+def Thread_execution(i):
+   print("Execution of Thread {} started\n".format(i))
+   sleepTime = random.randint(1,4)
+   time.sleep(sleepTime)
+   print("Execution of Thread {} finished".format(i))
+for i in range(4):
+   thread = threading.Thread(target=Thread_execution, args=(i,))
+   thread.start()
+   print("Active Threads:" , threading.enumerate())
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+Execution of Thread 0 started
+Active Threads:
+   [&lt;_MainThread(MainThread, started 6040)&gt;,
+      &lt;HistorySavingThread(IPythonHistorySavingThread, started 5968)&gt;,
+      &lt;Thread(Thread-3576, started 3932)&gt;]
+
+Execution of Thread 1 started
+Active Threads:
+   [&lt;_MainThread(MainThread, started 6040)&gt;,
+      &lt;HistorySavingThread(IPythonHistorySavingThread, started 5968)&gt;,
+      &lt;Thread(Thread-3576, started 3932)&gt;,
+      &lt;Thread(Thread-3577, started 3080)&gt;]
+
+Execution of Thread 2 started
+Active Threads:
+   [&lt;_MainThread(MainThread, started 6040)&gt;,
+      &lt;HistorySavingThread(IPythonHistorySavingThread, started 5968)&gt;,
+      &lt;Thread(Thread-3576, started 3932)&gt;,
+      &lt;Thread(Thread-3577, started 3080)&gt;,
+      &lt;Thread(Thread-3578, started 2268)&gt;]
+
+Execution of Thread 3 started
+Active Threads:
+   [&lt;_MainThread(MainThread, started 6040)&gt;,
+      &lt;HistorySavingThread(IPythonHistorySavingThread, started 5968)&gt;,
+      &lt;Thread(Thread-3576, started 3932)&gt;,
+      &lt;Thread(Thread-3577, started 3080)&gt;,
+      &lt;Thread(Thread-3578, started 2268)&gt;,
+      &lt;Thread(Thread-3579, started 4520)&gt;]
+Execution of Thread 0 finished
+Execution of Thread 1 finished
+Execution of Thread 2 finished
+Execution of Thread 3 finished
+</pre>
+<h2>Daemon threads in Python</h2>
+<p>Before implementing the daemon threads in Python, we need to know about daemon threads and their usage. In terms of computing, daemon is a background process that handles the requests for various services such as data sending, file transfers, etc. It would be dormant if it is not required any more. The same task can be done with the help of non-daemon threads also. However, in this case, the main thread has to keep track of the non-daemon threads manually. On the other hand, if we are using daemon threads then the main thread can completely forget about this and it will be killed when main thread exits. Another important point about daemon threads is that we can opt to use them only for non-essential tasks that would not affect us if it does not complete or gets killed in between. Following is the implementation of daemon threads in python &minus;</p>
+<pre class="prettyprint notranslate">
+import threading
+import time
+
+def nondaemonThread():
+   print("starting my thread")
+   time.sleep(8)
+   print("ending my thread")
+def daemonThread():
+   while True:
+   print("Hello")
+   time.sleep(2)
+if __name__ == '__main__':
+   nondaemonThread = threading.Thread(target = nondaemonThread)
+   daemonThread = threading.Thread(target = daemonThread)
+   daemonThread.setDaemon(True)
+   daemonThread.start()
+   nondaemonThread.start()
+</pre>
+<P>In the above code, there are two functions namely <b>>nondaemonThread()</b> and <b>>daemonThread()</b>. The first function prints its state and sleeps after 8 seconds while the the deamonThread() function prints Hello after every 2 seconds indefinitely. We can understand the difference between nondaemon and daemon threads with the help of following output &minus;</p>
+<pre class="result notranslate">
+Hello
+
+starting my thread
+Hello
+Hello
+Hello
+Hello
+ending my thread
+Hello
+Hello
+Hello
+Hello
+Hello
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/concurrency_in_python/concurrency_in_python_threads.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/concurrency_in_python/concurrency_in_python_synchronizing_threads.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

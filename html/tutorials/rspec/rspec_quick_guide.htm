@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>RSpec - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="RSpec - Quick Guide - RSpec is a unit test framework for the Ruby programming language. RSpec is different than traditional xUnit frameworks like JUnit because RSpec is a Behavior dr"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/rspec/rspec_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#FB0B3A;
+}
+a.demo {
+    background:#FB0B3A;
+}
+li.heading {
+    background:#FB0B3A;
+}
+.course-box{background:#FB0B3A}
+.home-intro-sub p{color:#FB0B3A}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/rspec/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/rspec/images/rspec-mini-logo.jpg" alt="RSpec Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">RSpec Tutorial</li>
+<li><a href="/rspec/index.htm">RSpec - Home</a></li>
+<li><a href="/rspec/rspec_introduction.htm">RSpec - Introduction</a></li>
+<li><a href="/rspec/rspec_basic_syntax.htm">RSpec - Basic Syntax</a></li>
+<li><a href="/rspec/rspec_writing_specs.htm">RSpec - Writing Specs</a></li>
+<li><a href="/rspec/rspec_matchers.htm">RSpec - Matchers</a></li>
+<li><a href="/rspec/rspec_test_doubles.htm">RSpec - Test Doubles</a></li>
+<li><a href="/rspec/rspec_stubs.htm">RSpec - Stubs</a></li>
+<li><a href="/rspec/rspec_hooks.htm">RSpec - Hooks</a></li>
+<li><a href="/rspec/rspec_tags.htm">RSpec - Tags</a></li>
+<li><a href="/rspec/rspec_subjects.htm">RSpec - Subjects</a></li>
+<li><a href="/rspec/rspec_helpers.htm">RSpec - Helpers</a></li>
+<li><a href="/rspec/rspec_metadata.htm">RSpec - Metadata</a></li>
+<li><a href="/rspec/rspec_filtering.htm">RSpec - Filtering</a></li>
+<li><a href="/rspec/rspec_expectations.htm">RSpec - Expectations</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">RSpec Resources</li>
+<li><a href="/rspec/rspec_quick_guide.htm">RSpec - Quick Guide</a></li>
+<li><a href="/rspec/rspec_useful_resources.htm">RSpec - Useful Resources</a></li>
+<li><a href="/rspec/rspec_discussion.htm">RSpec - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>RSpec - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/rspec/rspec_expectations.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/rspec/rspec_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>RSpec - Introduction</h1>
+<p>RSpec is a unit test framework for the Ruby programming language. RSpec is different than traditional xUnit frameworks like JUnit because RSpec is a Behavior driven development tool. What this means is that, tests written in RSpec focus on the “behavior” of an application being tested. RSpec does not put emphasis on, how the application works but instead on how it behaves, in other words, what the application actually does.</p>
+<h2>RSpec Environment</h2>
+<p>First of all, you will need to install Ruby on your computer. However, if you haven’t already done earlier, then you can download and install Ruby from the main Ruby website &minus; <a target="_blank" rel="nofollow" href="https://www.ruby-lang.org/en/documentation/installation">Ruby</a>.</p>
+<p>If you are installing Ruby on Windows, you should have the Ruby installer for Windows here at &minus; <a target="_blank" rel="nofollow" href="http://rubyinstaller.org/">http://www.rubyinstaller.org</a></p>
+<p>For this tutorial, you will only need text editor, such as Notepad and a command line console. The examples here will use cmd.exe on Windows.</p>
+<p>To run cmd.exe, simply click on the Start menu and type “cmd.exe”, then hit the Return key.</p>
+<p>At the command prompt in your cmd.exe window, type the following command to see what version of Ruby you are using &minus;</p>
+<pre class="result notranslate">
+ruby -v
+</pre>
+<p>You should see the below output that looks similar to this &minus;</p>
+<pre class="result notranslate">
+ruby 2.2.3p173 (2015-08-18 revision 51636) [x64-mingw32]
+</pre>
+<p>The examples in this tutorial will use Ruby 2.2.3 but any version of Ruby higher than 2.0.0 will suffice. Next, we need to install the RSpec gem for your Ruby installation. A gem is a Ruby library which you can use in your own code. In order to install a gem, you need to use the <b>gem</b> command.</p>
+<p>Let’s install the Rspec gem now. Go back to your cmd.exe Window and type the following &minus;</p>
+<pre class="result notranslate">
+gem install rspec
+</pre>
+<p>You should have a list of dependent gems that were installed, these are gems that the rspec gem needs to function correctly. At the end of the output, you should see something that looks like this &minus;</p>
+<pre class="result notranslate">
+Done installing documentation for diff-lcs, rspec-support, rspec-mocks,
+   rspec-expectations, rspec-core, rspec after 22 seconds 
+6 gems installed
+</pre>
+<p>Do not worry, if your output does not look exactly the same. Also, if you are using a Mac or Linux computer, you may need to either run <b>gem install rspec</b> command using <b>sudo</b> or use a tool like HomeBrew or RVM to install the rspec gem.</p>
+<pre class="result notranslate">
+Hello World
+</pre>
+<p>To get started, let’s create a directory (folder) to store our RSpec files. In your cmd.exe window, type the following &minus;</p>
+<pre class="result notranslate">
+cd \
+</pre>
+<p>Then type &minus;</p>
+<pre class="result notranslate">
+mkdir rspec_tutorial
+</pre>
+<p>And finally, type &minus;</p>
+<pre class="result notranslate">
+cd rspec_tutorial
+</pre>
+<p>From here, we’re going to create another directory named spec, do that by typing &minus;</p>
+<pre class="result notranslate">
+mkdir spec
+</pre>
+<p>We are going to store our RSpec files in this folder. RSpec files are known as “specs”. If this seems confusing to you, you can think of a spec file as a test file. RSpec uses the term “spec” which is a short form for “specification”.</p>
+<p>Since, RSpec is a BDD test tool, the goal is to focus on what the application does and whether or not it follows a specification. In behavior driven development, the specification is often described in terms of a “User Story”. RSpec is designed to make it clear whether the target code is behaving correctly, in other words following the specification.</p>
+<p>Let’s return to our Hello World code. Open a text editor and add the following code &minus;</p>
+<pre class="prettyprint notranslate">
+class HelloWorld
+
+   def say_hello 
+      "Hello World!"
+   end
+   
+end
+
+describe HelloWorld do 
+   context “When testing the HelloWorld class” do 
+      
+      it "should say 'Hello World' when we call the say_hello method" do 
+         hw = HelloWorld.new 
+         message = hw.say_hello 
+         expect(message).to eq "Hello World!"
+      end
+      
+   end
+end
+</pre>
+<p>Next, save this to a file named hello_world_spec.rb in the spec folder that you created above. Now back in your cmd.exe window, run this command &minus;</p>
+<pre class="result notranslate">
+rspec spec spec\hello_world_spec.rb
+</pre>
+<p>When the command completes, you should see output that looks like this &minus;</p>
+<pre class="result notranslate">
+Finished in 0.002 seconds (files took 0.11101 seconds to load) 
+1 example, 0 failures
+</pre>
+<p>Congratulations, you just created and ran your first RSpec unit test!</p>
+<p>In the next section, we will continue to discuss the syntax of RSpec files.</p>
+<h1>RSpec - Basic Syntax</h1>
+<p>Let’s take a closer look at the code of our <b>HelloWorld</b> example. First of all, in case it isn’t clear, we are testing the functionality of the <b>HelloWorld</b> class. This of course, is a very simple class that contains only one method <b>say_hello()</b>.</p>
+<p>Here is the RSpec code again &minus;</p>
+<pre class="prettyprint notranslate">
+describe HelloWorld do 
+   context “When testing the HelloWorld class” do 
+      
+      it "The say_hello method should return 'Hello World'" do 
+         hw = HelloWorld.new 
+         message = hw.say_hello 
+         expect(message).to eq "Hello World!" 
+      end
+      
+   end 
+end
+</pre>
+<h2>The describe Keyword</h2>
+<p>The word <b>describe</b> is an RSpec keyword. It is used to define an “Example Group”. You can think of an “Example Group” as a collection of tests. The <b>describe</b> keyword can take a class name and/or string argument. You also need to pass a block argument to <b>describe</b>, this will contain the individual tests, or as they are known in RSpec, the “Examples”. The block is just a Ruby block designated by the Ruby <b>do/end</b> keywords.</p>
+<h2>The context Keyword</h2>
+<p>The <b>context</b> keyword is similar to <b>describe</b>. It too can accept a class name and/or string argument. You should use a block with <b>context</b> as well. The idea of context is that it encloses tests of a certain type.</p>
+<p>For example, you can specify groups of Examples with different contexts like this &minus;</p>
+<pre class="result notranslate">
+context “When passing bad parameters to the foobar() method” 
+context “When passing valid parameters to the foobar() method” 
+context “When testing corner cases with the foobar() method”
+</pre>
+<p>The <b>context</b> keyword is not mandatory, but it helps to add more details about the examples that it contains.</p>
+<h2>The it Keyword</h2>
+<p>The word <b>it</b> is another RSpec keyword which is used to define an “Example”. An example is basically a test or a test case. Again, like <b>describe</b> and <b>context, it</b> accepts both class name and string arguments and should be used with a block argument, designated with <b>do/end</b>. In the case of <b>it</b>, it is customary to only pass a string and block argument. The string argument often uses the word “should” and is meant to describe what specific behavior should happen inside the <b>it block</b>. In other words, it describes that expected outcome is for the Example.</p>
+<p>Note the <b>it block</b> from our HelloWorld Example &minus;</p>
+<pre class="result notranslate">
+it "The say_hello method should return 'Hello World'" do
+</pre>
+<p>The string makes it clear what should happen when we call say hello on an instance of the HelloWorld class. This part of the RSpec philosophy, an Example is not just a test, it’s also a specification (a spec). In other words, an Example both documents and tests the expected behavior of your Ruby code.</p>
+<h2>The expect Keyword</h2>
+<p>The <b>expect</b> keyword is used to define an “Expectation” in RSpec. This is a verification step where we check, that a specific expected condition has been met.</p>
+<p>From our HelloWorld Example, we have &minus;</p>
+<pre class="result notranslate">
+expect(message).to eql "Hello World!"
+</pre>
+<p>The idea with <b>expect</b> statements is that they read like normal English. You can say this aloud as “Expect the variable message to equal the string ‘Hello World’”. The idea is that its descriptive and also easy to read, even for non-technical stakeholders such as project managers.</p>
+<pre class="result notranslate">
+The to keyword
+</pre>
+<p>The <b>to</b> keyword is used as part of <b>expect</b> statements. Note that you can also use the <b>not_to</b> keyword to express the opposite, when you want the Expectation to be false. You can see that to is used with a dot, <b>expect(message).to,</b> because it actually just a regular Ruby method. In fact, all of the RSpec keywords are really just Ruby methods.</p>
+<pre class="result notranslate">
+The eql keyword
+</pre>
+<p>The <b>eql</b> keyword is a special RSpec keyword called a Matcher. You use Matchers to specify what type of condition you are testing to be true (or false).</p>
+<p>In our HelloWorld <b>expect</b> statement, it is clear that <b>eql</b> means string equality. Note that, there are different types of equality operators in Ruby and consequently different corresponding Matchers in RSpec. We will explore the many different types of Matchers in a later section.</p>
+<h1>RSpec - Writing Specs</h1>
+<p>In this chapter, we will create a new Ruby class, save it in its own file and create a separate spec file to test this class.</p>
+<p>First, in our new class, it is called <b>StringAnalyzer</b>. It’s a simple class that, you guessed it, analyzes strings. Our class has only one method <b>has_vowels?</b> which as its names suggests, returns true if a string contains vowels and false if it doesn’t. Here’s the implementation for <b>StringAnalyzer</b> &minus;</p>
+<pre class="prettyprint notranslate">
+class StringAnalyzer 
+   def has_vowels?(str) 
+      !!(str =~ /[aeio]+/i) 
+   end 
+end
+</pre>
+<p>If you followed the HelloWorld section, you created a folder called C:\rspec_tutorial\spec.</p>
+<p>Delete the hello_world.rb file if you have it and save the StringAnalyzer code above to a file called string_analyzer.rb in the C:\rspec_tutorial\spec folder.</p>
+<p>Here is the source for our spec file to test StringAnalyzer &minus;</p>
+<pre class="prettyprint notranslate">
+require 'string_analyzer' 
+
+describe StringAnalyzer do 
+   context "With valid input" do 
+      
+      it "should detect when a string contains vowels" do 
+         sa = StringAnalyzer.new 
+         test_string = 'uuu' 
+         expect(sa.has_vowels? test_string).to be true 
+      end 
+		
+      it "should detect when a string doesn't contain vowels" do 
+         sa = StringAnalyzer.new 
+         test_string = 'bcdfg' 
+         expect(sa.has_vowels? test_string).to be false
+      end 
+      
+   end 
+end
+</pre>
+<p>Save this in the same spec directory, giving it the name string_analyzer_test.rb.</p>
+<p>In your cmd.exe window, cd to the C:\rspec_tutorial folder and run this command: dir spec</p>
+<p>You should see the following &minus;</p>
+<p>Directory of C:\rspec_tutorial\spec</p>
+<pre class="result notranslate">
+09/13/2015 08:22 AM  &lt;DIR&gt;    .
+09/13/2015 08:22 AM  &lt;DIR&gt;    ..
+09/12/2015 11:44 PM                 81 string_analyzer.rb
+09/12/2015 11:46 PM              451 string_analyzer_test.rb
+</pre>
+<p>Now we’re going to run our tests, run this command: rspec spec</p>
+<p>When you pass the name of a folder to <b>rspec</b>, it runs all of the spec files inside of the folder. You should see this result &minus;</p>
+<pre class="result notranslate">
+No examples found.
+
+Finished in 0 seconds (files took 0.068 seconds to load)
+0 examples, 0 failures
+</pre>
+<p>The reason that this happened is that, by default, <b>rspec</b> only runs files whose names end in “_spec.rb”. Rename string_analyzer_test.rb to string_analyzer_spec.rb. You can do that easily by running this command &minus;</p>
+<pre class="result notranslate">
+ren spec\string_analyzer_test.rb string_analyzer_spec.rb
+</pre>
+<p>Now, run <b>rspec</b> spec again, you should see output that looks like this &minus;</p>
+<pre class="result notranslate">
+F.
+Failures:
+
+   1) StringAnalyzer With valid input should detect when a string contains vowels
+      Failure/Error: expect(sa.has_vowels? test_string).to be true 
+         expected true
+            got false
+      # ./spec/string_analyzer_spec.rb:9:in `block (3 levels) in &lt;top (required)&gt;'
+
+Finished in 0.015 seconds (files took 0.12201 seconds to load)
+2 examples, 1 failure
+
+Failed examples:
+rspec ./spec/string_analyzer_spec.rb:6 # StringAnalyzer With valid 
+   input should detect when a string contains vowels
+Do you see what just happened? Our spec failed because we have a bug in 
+   StringAnalyzer. The bug is simple to fix, open up string_analyzer.rb
+   in a text editor and change this line:
+!!(str =~ /[aeio]+/i)
+to this:
+!!(str =~ /[aeiou]+/i)
+</pre>
+<p>Now, save the changes you just made in string_analyizer.rb and run the rspec spec command again, you should now see output that looks like &minus;</p>
+<pre class="result notranslate">
+..
+Finished in 0.002 seconds (files took 0.11401 seconds to load)
+2 examples, 0 failures
+</pre>
+<p>Congratulations, the examples (tests) in your spec file are now passing. We fixed a bug in the regular expression which has vowels method but our tests are far from complete.</p>
+<p>It would make sense to add more examples that tests various types of input strings with the has vowels method.</p>
+<p>The following table shows some of the permutations that could be added in new Examples (it blocks)</p>
+<table class="table table-bordered">
+<tr>
+<th class="ts">Input string</th>
+<th class="ts">Description</th>
+<th class="ts">Expected result with has_vowels?</th>
+</tr>
+<tr>
+<td class="ts">‘aaa’, ‘eee’, ‘iii’, ‘o’</td>
+<td>Only one vowel and no other letters.</td>
+<td class="ts">true</td>
+</tr>
+<tr>
+<td class="ts">‘abcefg’</td>
+<td>‘At least one vowel and some consonants’</td>
+<td class="ts">true</td>
+</tr>
+<tr>
+<td class="ts">‘mnklp’</td>
+<td>Only consonants.</td>
+<td class="ts">false</td>
+</tr>
+<tr>
+<td class="ts">‘’</td>
+<td>Empty string (no letters)</td>
+<td class="ts">false</td>
+</tr>
+<tr>
+<td class="ts">‘abcde55345&amp;??’</td>
+<td>Vowels, consonants, numbers and punctuation characters.</td>
+<td class="ts">true</td>
+</tr>
+<tr>
+<td class="ts">‘423432%%%^&amp;’</td>
+<td>Numbers and punctuation characters only.</td>
+<td class="ts">false</td>
+</tr>
+<tr>
+<td class="ts">‘AEIOU’</td>
+<td>Upper case vowels only.</td>
+<td class="ts">true</td>
+</tr>
+<tr>
+<td class="ts">‘AeiOuuuA’</td>
+<td>Upper case and lower vowels only.</td>
+<td class="ts">true</td>
+</tr>
+<tr>
+<td class="ts">‘AbCdEfghI’</td>
+<td>Upper and lower case vowels and consonants.</td>
+<td class="ts">true</td>
+</tr>
+<tr>
+<td class="ts">‘BCDFG’</td>
+<td>Upper case consonants only.</td>
+<td class="ts">false</td>
+</tr>
+<tr>
+<td class="ts">‘  ‘</td>
+<td>Whitespace characters only.</td>
+<td class="ts">false</td>
+</tr>
+</table>
+<p>It is up to you to decide, which examples to add to your spec file. There are many conditions to test for, you need to determine what subset of conditions is most important and tests your code the best.</p>
+<p>The <b>rspec</b> command offers many different options, to see them all, type <b>rspec</b> -help. The following table lists the most popular options and describes what they do.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;width:10%">Sr.No.</th>
+<th style="text-align:center;">Option/flag &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>-I PATH</b></p>
+<p>Adds PATH to the load (require) path that <b>rspec</b> uses when looking for Ruby source files.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>-r, --require PATH</b></p>
+<p>Adds a specific source file to be required in your spec. file(s).</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>--fail-fast</b></p>
+<p>With this option, rspec will stop running specs after the first Example fails. By default, rspec runs all specified spec files, no matter how many failures there are.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>-f, --format FORMATTER</b></p>
+<p>This option allows you to specify different output formats. See the section on Formatters for more details about output formats.</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>-o, --out FILE</b></p>
+<p>This option directs rspec to write the test results to the output file FILE instead of to standard out.</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>-c, --color</b></p>
+<p>Enables color in rspec’s output. Successful Example results will display in green text, failures will print in red text.</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>-b, --backtrace</b></p>
+<p>Displays full error backtraces in rspec’s output.</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>-w, --warnings</b></p>
+<p>Displays Ruby warnings in rspec’s output.</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>-P, --pattern PATTERN</b></p>
+<p>Load and run spec files that match the pattern PATTERN. For example, if you pass -p “*.rb”, rspec will run all Ruby files, not just the ones that end in “_spec.rb”.</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>-e, --example STRING</b></p>
+<p>This option directs rspec to run all Examples that contain the text STRING in their descriptions.</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>-t, --tag TAG</b></p>
+<p>With this option, rspec will only run examples that contain the tag TAG. Note that TAG is specified as a Ruby symbol. See the section on RSpec Tags for more details.</p></td>
+</tr>
+</table>
+<h1>RSpec - Matchers</h1>
+<p>If you recall our original Hello World example, it contained a line that looked like this &minus;</p>
+<pre class="result notranslate">
+expect(message).to eq "Hello World!"
+</pre>
+<p>The keyword eql is an <b>RSpec</b> “matcher”. Here, we will introduce the other types of matchers in RSpec.</p>
+<h2>Equality/Identity Matchers</h2>
+<p>Matchers to test for object or value equality.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Matcher</th>
+<th style="text-align:center;">Description</th>
+<th style="text-align:center;">Example</th>
+</tr>
+<tr>
+<td class="ts">eq</td>
+<td>Passes when actual == expected</td>
+<td>expect(actual).to eq expected</td>
+</tr>
+<tr>
+<td class="ts">eql</td>
+<td style="vertical-align:middle;">Passes when actual.eql?(expected)</td>
+<td>expect(actual).to eql expected</td>
+</tr>
+<tr>
+<td class="ts">be</td>
+<td>Passes when actual.equal?(expected)</td>
+<td>expect(actual).to be expected</td>
+</tr>
+<tr>
+<td class="ts">equal</td>
+<td>Also passes when actual.equal?(expected)</td>
+<td>expect(actual).to equal expected</td>
+</tr>
+</table>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+describe "An example of the equality Matchers" do 
+
+   it "should show how the equality Matchers work" do 
+      a = "test string" 
+      b = a 
+      
+      # The following Expectations will all pass 
+      expect(a).to eq "test string" 
+      expect(a).to eql "test string" 
+      expect(a).to be b 
+      expect(a).to equal b 
+   end
+   
+end
+</pre>
+<p>When the above code is executed, it will produce the following output. The number of seconds may be slightly different on your computer &minus;</p>
+<pre class="result notranslate">
+.
+Finished in 0.036 seconds (files took 0.11901 seconds to load)
+1 example, 0 failures
+</pre>
+<h2>Comparison Matchers</h2>
+<p>Matchers for comparing to values.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Matcher</th>
+<th style="text-align:center;">Description</th>
+<th style="text-align:center;">Example</th>
+</tr>
+<tr>
+<td class="ts">&gt;</td>
+<td>Passes when actual &gt; expected</td>
+<td>expect(actual).to be &gt; expected</td>
+</tr>
+<tr>
+<td class="ts">&gt;=</td>
+<td>Passes when actual &gt;= expected</td>
+<td>expect(actual).to be &gt;= expected</td>
+</tr>
+<tr>
+<td class="ts">&lt;</td>
+<td>Passes when actual &lt; expected</td>
+<td>expect(actual).to be &lt; expected</td>
+</tr>
+<tr>
+<td class="ts">&lt;=</td>
+<td>Passes when actual &lt;= expected</td>
+<td>expect(actual).to be &lt;= expected</td>
+</tr>
+<tr>
+<td class="ts">be_between inclusive</td>
+<td>Passes when actual is &lt;= min and &gt;= max</td>
+<td>expect(actual).to be_between(min, max).inclusive</td>
+</tr>
+<tr>
+<td class="ts">be_between exclusive</td>
+<td style="vertical-align:middle;">Passes when actual is &lt; min and &gt; max</td>
+<td>expect(actual).to be_between(min, max).exclusive</td>
+</tr>
+<tr>
+<td class="ts">match</td>
+<td>Passes when actual matches a regular expression</td>
+<td>expect(actual).to match(/regex/)</td>
+</tr>
+</table>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+describe "An example of the comparison Matchers" do
+
+   it "should show how the comparison Matchers work" do
+      a = 1
+      b = 2
+      c = 3		
+      d = 'test string'
+      
+      # The following Expectations will all pass
+      expect(b).to be &gt; a
+      expect(a).to be &gt;= a 
+      expect(a).to be &lt; b 
+      expect(b).to be &lt;= b 
+      expect(c).to be_between(1,3).inclusive 
+      expect(b).to be_between(1,3).exclusive 
+      expect(d).to match /TEST/i 
+   end
+   
+end
+</pre>
+<p>When the above code is executed, it will produce the following output. The number of seconds may be slightly different on your computer &minus;</p>
+<pre class="result notranslate">
+. 
+Finished in 0.013 seconds (files took 0.11801 seconds to load) 
+1 example, 0 failures
+</pre>
+<h2>Class/Type Matchers</h2>
+<p>Matchers for testing the type or class of objects.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Matcher</th>
+<th style="text-align:center;">Description</th>
+<th style="text-align:center;">Example</th>
+</tr>
+<tr>
+<td class="ts">be_instance_of</td>
+<td>Passes when actual is an instance of the expected class.</td>
+<td>expect(actual).to be_instance_of(Expected)</td>
+</tr>
+<tr>
+<td class="ts">be_kind_of</td>
+<td>Passes when actual is an instance of the expected class or any of its parent classes.</td>
+<td style="vertical-align:middle;">expect(actual).to be_kind_of(Expected)</td>
+</tr>
+<tr>
+<td class="ts">respond_to</td>
+<td>Passes when actual responds to the specified method.</td>
+<td>expect(actual).to respond_to(expected)</td>
+</tr>
+</table>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+describe "An example of the type/class Matchers" do
+ 
+   it "should show how the type/class Matchers work" do
+      x = 1 
+      y = 3.14 
+      z = 'test string' 
+      
+      # The following Expectations will all pass
+      expect(x).to be_instance_of Fixnum 
+      expect(y).to be_kind_of Numeric 
+      expect(z).to respond_to(:length) 
+   end
+   
+end
+</pre>
+<p>When the above code is executed, it will produce the following output. The number of seconds may be slightly different on your computer &minus;</p>
+<pre class="result notranslate">
+. 
+Finished in 0.002 seconds (files took 0.12201 seconds to load) 
+1 example, 0 failures
+</pre>
+<h2>True/False/Nil Matchers</h2>
+<p>Matchers for testing whether a value is true, false or nil.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Matcher</th>
+<th style="text-align:center;">Description</th>
+<th style="text-align:center;">Example</th>
+</tr>
+<tr>
+<td>be true</td>
+<td>Passes when actual == true</td>
+<td>expect(actual).to be true</td>
+</tr>
+<tr>
+<td>be false</td>
+<td>Passes when actual == false</td>
+<td>expect(actual).to be false</td>
+</tr>
+<tr>
+<td>be_truthy</td>
+<td>Passes when actual is not false or nil</td>
+<td>expect(actual).to be_truthy</td>
+</tr>
+<tr>
+<td>be_falsey</td>
+<td>Passes when actual is false or nil</td>
+<td>expect(actual).to be_falsey</td>
+</tr>
+<tr>
+<td>be_nil</td>
+<td>Passes when actual is nil</td>
+<td>expect(actual).to be_nil</td>
+</tr>
+</table>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+describe "An example of the true/false/nil Matchers" do
+   it "should show how the true/false/nil Matchers work" do
+      x = true 
+      y = false 
+      z = nil 
+      a = "test string" 
+      
+      # The following Expectations will all pass
+      expect(x).to be true 
+      expect(y).to be false 
+      expect(a).to be_truthy 
+      expect(z).to be_falsey 
+      expect(z).to be_nil 
+   end 
+end
+</pre>
+<p>When the above code is executed, it will produce the following output. The number of seconds may be slightly different on your computer &minus;</p>
+<pre class="result notranslate">
+. 
+Finished in 0.003 seconds (files took 0.12301 seconds to load) 
+1 example, 0 failures
+</pre>
+<h2>Error Matchers</h2>
+<p>Matchers for testing, when a block of code raises an error.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Matcher</th>
+<th style="text-align:center;">Description</th>
+<th style="text-align:center;">Example</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;">raise_error(ErrorClass)</td>
+<td>Passes when the block raises an error of type ErrorClass.</td>
+<td style="vertical-align:middle;">expect {block}.to raise_error(ErrorClass)</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">raise_error("error message")</td>
+<td>Passes when the block raise an error with the message “error message”.</td>
+<td>expect {block}.to raise_error(“error message”)</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">raise_error(ErrorClass, "error message")</td>
+<td>Passes when the block raises an error of type ErrorClass with the message “error message”</td>
+<td style="vertical-align:middle;">expect {block}.to raise_error(ErrorClass,“error message”)</td>
+</tr>
+</table>
+<h3>Example</h3>
+<p>Save the following code to a file with the name <b>error_matcher_spec.rb</b> and run it with this command &minus; <b>rspec error_matcher_spec.rb</b>.</p>
+<pre class="prettyprint notranslate">
+describe "An example of the error Matchers" do 
+   it "should show how the error Matchers work" do 
+      
+      # The following Expectations will all pass 
+      expect { 1/0 }.to raise_error(ZeroDivisionError)
+      expect { 1/0 }.to raise_error("divided by 0") 
+      expect { 1/0 }.to raise_error("divided by 0", ZeroDivisionError) 
+   end 
+end
+</pre>
+<p>When the above code is executed, it will produce the following output. The number of seconds may be slightly different on your computer &minus;</p>
+<pre class="result notranslate">
+. 
+Finished in 0.002 seconds (files took 0.12101 seconds to load) 
+1 example, 0 failures
+</pre>
+<h1>RSpec - Test Doubles</h1>
+<p>In this chapter, we will discuss RSpec Doubles, also known as RSpec Mocks. A Double is an object which can “stand in” for another object. You’re probably wondering what that means exactly and why you’d need one.</p>
+<p>Let’s say you are building an application for a school and you have a class representing a classroom of students and another class for students, that is you have a Classroom class and a Student class. You need to write the code for one of the classes first, so let’s say that, start with the Classroom class &minus;</p>
+<pre class="prettyprint notranslate">
+class ClassRoom 
+   def initialize(students) 
+      @students = students 
+   end 
+   
+   def list_student_names 
+      @students.map(&amp;:name).join(',') 
+   end 
+end
+</pre>
+<p>This is a simple class, it has one method list_student_names, which returns a comma delimited string of student names. Now, we want to create tests for this class but how do we do that if we haven’t created the Student class yet? We need a test Double.</p>
+<p>Also, if we have a “dummy” class that behaves like a Student object then our ClassRoom tests will not depend on the Student class. We call this test isolation.</p>
+<p>If our ClassRoom tests don’t rely on any other classes, then when a test fails, we can know immediately that there is a bug in our ClassRoom class and not some other class. Keep in mind that, in the real world, you may be building a class that needs to interact with another class written by someone else.</p>
+<p>This is where RSpec Doubles (mocks) become useful. Our list_student_names method calls the name method on each Student object in its @students member variable. Therefore, we need a Double which implements a name method.</p>
+<p>Here is the code for ClassRoom along with an RSpec Example (test), yet notice that there is no Student class defined &minus;</p>
+<pre class="prettyprint notranslate">
+class ClassRoom 
+   def initialize(students) 
+      @students = students 
+   end
+   
+   def list_student_names 
+      @students.map(&amp;:name).join(',') 
+   end 
+end
+
+describe ClassRoom do 
+   it 'the list_student_names method should work correctly' do 
+      student1 = double('student') 
+      student2 = double('student') 
+      
+      allow(student1).to receive(:name) { 'John Smith'} 
+      allow(student2).to receive(:name) { 'Jill Smith'} 
+      
+      cr = ClassRoom.new [student1,student2]
+      expect(cr.list_student_names).to eq('John Smith,Jill Smith') 
+   end 
+end
+</pre>
+<p>When the above code is executed, it will produce the following output. The elapsed time may be slightly different on your computer &minus;</p>
+<pre class="result notranslate">
+. 
+Finished in 0.01 seconds (files took 0.11201 seconds to load) 
+1 example, 0 failures
+</pre>
+<p>As you can see, using a <b>test double</b> allows you to test your code even when it relies on a class that is undefined or unavailable. Also, this means that when there is a test failure, you can tell right away that it’s because of an issue in your class and not a class written by someone else.</p>
+<h1>RSpec - Stubs</h1>
+<p>If you’ve already read the section on RSpec Doubles (aka Mocks), then you have already seen RSpec Stubs. In RSpec, a stub is often called a Method Stub, it’s a special type of method that “stands in” for an existing method, or for a method that doesn’t even exist yet.</p>
+<p>Here is the code from the section on RSpec Doubles &minus;</p>
+<pre class="prettyprint notranslate">
+class ClassRoom 
+   def initialize(students) 
+      @students = students 
+   End
+   
+   def list_student_names 
+      @students.map(&amp;:name).join(',') 
+   end 
+end 
+
+describe ClassRoom do 
+   it 'the list_student_names method should work correctly' do 
+      student1 = double('student') 
+      student2 = double('student') 
+      
+      allow(student1).to receive(:name) { 'John Smith'}
+      allow(student2).to receive(:name) { 'Jill Smith'} 
+      
+      cr = ClassRoom.new [student1,student2]
+      expect(cr.list_student_names).to eq('John Smith,Jill Smith') 
+   end 
+end
+</pre>
+<p>In our example, the allow() method provides the method stubs that we need to test the ClassRoom class. In this case, we need an object that will act just like an instance of the Student class, but that class doesn’t actually exist (yet). We know that the Student class needs to provide a name() method and we use allow() to create a method stub for name ().</p>
+<p>One thing to note is that, RSpec’s syntax has changed a bit over the years. In older versions of RSpec, the above method stubs would be defined like this &minus;</p>
+<pre class="result notranslate">
+student1.stub(:name).and_return('John Smith') 
+student2.stub(:name).and_return('Jill Smith')
+</pre>
+<p>Let’s take the above code and replace the two <b>allow()</b> lines with the old RSpec syntax &minus;</p>
+<pre class="prettyprint notranslate">
+class ClassRoom 
+   def initialize(students) 
+      @students = students 
+   end 
+   
+   def list_student_names 
+      @students.map(&amp;:name).join(',') 
+   end 
+	
+end 
+
+describe ClassRoom do 
+   it 'the list_student_names method should work correctly' do 
+      student1 = double('student') 
+      student2 = double('student')
+      
+      student1.stub(:name).and_return('John Smith')
+      student2.stub(:name).and_return('Jill Smith') 
+      
+      cr = ClassRoom.new [student1,student2] 
+      expect(cr.list_student_names).to eq('John Smith,Jill Smith') 
+   end 
+end
+</pre>
+<p>You will see this output when you execute the above code &minus;</p>
+<pre class="result notranslate">
+.
+Deprecation Warnings:
+
+Using `stub` from rspec-mocks' old `:should` syntax without explicitly 
+   enabling the syntax is deprec 
+
+ated. Use the new `:expect` syntax or explicitly enable `:should` instead. 
+   Called from C:/rspec_tuto 
+
+rial/spec/double_spec.rb:15:in `block (2 levels) in &lt;top (required)&gt;'.
+If you need more of the backtrace for any of these deprecations 
+   to identify where to make the necessary changes, you can configure 
+
+`config.raise_errors_for_deprecations!`, and it will turn the 
+   deprecation warnings into errors, giving you the full backtrace.
+
+1 deprecation warning total
+
+Finished in 0.002 seconds (files took 0.11401 seconds to load)
+1 example, 0 failures
+</pre>
+<p>It’s recommended that you use the new allow() syntax when you need to create method stubs in your RSpec examples, but we’ve provided the older style here so that you will recognize it if you see it.</p>
+<h1>RSpec - Hooks</h1>
+<p>When you are writing unit tests, it is often convenient to run setup and teardown code before and after your tests. Setup code is the code that configures or “sets up” conditions for a test. Teardown code does the cleanup, it makes sure that the environment is in a consistent state for subsequent tests.</p>
+<p>Generally speaking, your tests should be independent of each other. When you run an entire suite of tests and one of them fails, you want to have confidence that it failed because the code that it is testing has a bug, not because the previous test left the environment in an inconsistent state.</p>
+<p>The most common hooks used in RSpec are before and after hooks. They provide a way to define and run the setup and teardown code we discussed above. Let’s consider this example code &minus;</p>
+<pre class="prettyprint notranslate">
+class SimpleClass 
+   attr_accessor :message 
+   
+   def initialize() 
+      puts "\nCreating a new instance of the SimpleClass class" 
+      @message = 'howdy' 
+   end 
+   
+   def update_message(new_message) 
+      @message = new_message 
+   end 
+end 
+
+describe SimpleClass do 
+   before(:each) do 
+      @simple_class = SimpleClass.new 
+   end 
+   
+   it 'should have an initial message' do 
+      expect(@simple_class).to_not be_nil
+      @simple_class.message = 'Something else. . .' 
+   end 
+   
+   it 'should be able to change its message' do
+      @simple_class.update_message('a new message')
+      expect(@simple_class.message).to_not be 'howdy' 
+   end
+end
+</pre>
+<p>When you run this code, you’ll get the following output &minus;</p>
+<pre class="result notranslate">
+Creating a new instance of the SimpleClass class 
+. 
+Creating a new instance of the SimpleClass class 
+. 
+Finished in 0.003 seconds (files took 0.11401 seconds to load) 
+2 examples, 0 failures
+</pre>
+<p>Let’s take a closer look at what’s happening. The before(:each) method is where we define the setup code. When you pass the :each argument, you are instructing the before method to run before each example in your Example Group i.e. the two it blocks inside the describe block in the code above.</p>
+<p>In the line: @simple_class = SimpleClass.new, we are creating a new instance of the SimpleClass class and assigning it to an instance variable of an object. What object you might be wondering? RSpec creates a special class behind the scenes in the scope of the describe block. This allows you to assign values to instance variables of this class, that you can access within the it blocks in your Examples. This also makes it easy to write cleaner code in our tests. If each test (Example) needs an instance of SimpleClass, we can put that code in the before hook and not have to add it to each example.</p>
+<p>Notice that, the line “Creating a new instance of the SimpleClass class” is written to the console twice, this shows that, before hook was called in each of the <b>it blocks</b>.</p>
+<p>As we’ve mentioned, RSpec also has an after hook and both the before and after hooks can take: all as an argument. The after hook will run after the specified target. The: all target means that the hook will run before/after all of the Examples. Here is a simple example that illustrates when each hook is called.</p>
+<pre class="prettyprint notranslate">
+describe "Before and after hooks" do 
+   before(:each) do 
+      puts "Runs before each Example" 
+   end 
+   
+   after(:each) do 
+      puts "Runs after each Example" 
+   end 
+   
+   before(:all) do 
+      puts "Runs before all Examples" 
+   end 
+   
+   after(:all) do 
+      puts "Runs after all Examples"
+   end 
+   
+   it 'is the first Example in this spec file' do 
+      puts 'Running the first Example' 
+   end 
+   
+   it 'is the second Example in this spec file' do 
+      puts 'Running the second Example' 
+   end 
+end
+</pre>
+<p>When you run the above code, you will see this output &minus;</p>
+<pre class="result notranslate">
+Runs before all Examples 
+Runs before each Example 
+Running the first Example 
+Runs after each Example 
+.Runs before each Example 
+Running the second Example 
+Runs after each Example 
+.Runs after all Examples
+</pre>
+<h1>RSpec - Tags</h1>
+<p>RSpec Tags provide an easy way to run specific tests in your spec files. By default, RSpec will run all tests in the spec files that it runs, but you might only need to run a subset of them. Let’s say that you have some tests that run very quickly and that you’ve just made a change to your application code and you want to just run the quick tests, this code will demonstrate how to do that with RSpec Tags.</p>
+<pre class="prettyprint notranslate">
+describe "How to run specific Examples with Tags" do 
+   it 'is a slow test', :slow = &gt; true do 
+      sleep 10 
+      puts 'This test is slow!' 
+   end 
+   
+   it 'is a fast test', :fast = &gt; true do 
+      puts 'This test is fast!' 
+   end 
+end
+</pre>
+<p>Now, save the above code in a new file called tag_spec.rb. From the command line, run this command: rspec --tag slow tag_spec.rb</p>
+<p>You will see this output &minus;</p>
+<p>Run options: include {: slow = &gt;true}</p>
+<pre class="result notranslate">
+This test is slow! 
+. 
+Finished in 10 seconds (files took 0.11601 seconds to load) 
+1 example, 0 failures
+</pre>
+<p>Then, run this command: rspec --tag fast tag_spec.rb</p>
+<p>You will see this output &minus;</p>
+<pre class="result notranslate">
+Run options: include {:fast = &gt;true} 
+This test is fast! 
+. 
+Finished in 0.001 seconds (files took 0.11201 seconds to load) 
+1 example, 0 failures
+</pre>
+<p>As you can see, RSpec Tags makes it very easy to a subset of tests!</p>
+<h1>RSpec - Subjects</h1>
+<p>One of RSpec’s strengths is that it provides many ways to write tests, clean tests. When your tests are short and uncluttered, it becomes easier to focus on the expected behavior and not on the details of how the tests are written. RSpec Subjects are yet another shortcut allowing you to write simple straightforward tests.</p>
+<p>Consider this code &minus;</p>
+<pre class="prettyprint notranslate">
+class Person 
+   attr_reader :first_name, :last_name 
+   
+   def initialize(first_name, last_name) 
+      @first_name = first_name 
+      @last_name = last_name 
+   end 
+end 
+
+describe Person do 
+   it 'create a new person with a first and last name' do
+      person = Person.new 'John', 'Smith'
+      
+      expect(person).to have_attributes(first_name: 'John') 
+      expect(person).to have_attributes(last_name: 'Smith') 
+   end 
+end
+</pre>
+<p>It’s actually pretty clear as is, but we could use RSpec’s subject feature to reduce the amount of code in the example. We do that by moving the person object instantiation into the describe line.</p>
+<pre class="prettyprint notranslate">
+class Person 
+   attr_reader :first_name, :last_name 
+   
+   def initialize(first_name, last_name) 
+      @first_name = first_name 
+      @last_name = last_name 
+   end 
+	
+end 
+
+describe Person.new 'John', 'Smith' do 
+   it { is_expected.to have_attributes(first_name: 'John') } 
+   it { is_expected.to have_attributes(last_name: 'Smith') }
+end
+</pre>
+<p>When you run this code, you will see this output &minus;</p>
+<pre class="result notranslate">
+.. 
+Finished in 0.003 seconds (files took 0.11201 seconds to load) 
+2 examples, 0 failures
+</pre>
+<p>Note, how much simpler the second code sample is. We took the one <b>it block</b> in the first example and replaced it with two <b>it blocks</b> which end up requiring less code and are just as clear.</p>
+<h1>RSpec - Helpers</h1>
+<p>Sometimes your RSpec examples need an easy way to share reusable code. The best way to accomplish this is with Helpers. Helpers are basically regular Ruby methods which you share across examples. To illustrate the benefit of using helpers, let’s consider this code &minus;</p>
+<pre class="prettyprint notranslate">
+class Dog 
+   attr_reader :good_dog, :has_been_walked 
+   
+   def initialize(good_or_not) 
+      @good_dog = good_or_not 
+      @has_been_walked = false 
+   end 
+   
+   def walk_dog 
+      @has_been_walked = true 
+   end 
+end 
+
+describe Dog do 
+   it 'should be able to create and walk a good dog' do 
+      dog = Dog.new(true) 
+      dog.walk_dog 
+      
+      expect(dog.good_dog).to be true
+      expect(dog.has_been_walked).to be true 
+   end 
+   
+   it 'should be able to create and walk a bad dog' do 
+      dog = Dog.new(false) 
+      dog.walk_dog 
+
+      expect(dog.good_dog).to be false
+      expect(dog.has_been_walked).to be true 
+ 
+   end 
+end
+</pre>
+<p>This code is clear, but it’s always a good idea to reduce repeated code whenever possible. We can take the above code and reduce some of this repetition with a helper method called create_and_walk_dog().</p>
+<pre class="prettyprint notranslate">
+class Dog
+   attr_reader :good_dog, :has_been_walked 
+   
+   def initialize(good_or_not)
+      @good_dog = good_or_not 
+      @has_been_walked = false 
+   end 
+   
+   def walk_dog 
+      @has_been_walked = true 
+   end 
+end 
+
+describe Dog do 
+   def create_and_walk_dog(good_or_bad)
+      dog = Dog.new(good_or_bad)
+      dog.walk_dog
+      return dog 
+   end 
+   
+   it 'should be able to create and walk a good dog' do
+      dog = create_and_walk_dog(true)
+      
+      expect(dog.good_dog).to be true
+      expect(dog.has_been_walked).to be true 
+   end 
+   
+   it 'should be able to create and walk a bad dog' do 
+      dog = create_and_walk_dog(false)
+      
+      expect(dog.good_dog).to be false
+      expect(dog.has_been_walked).to be true 
+   end 
+end
+</pre>
+<p>When you run the above code, you will see this output &minus;</p>
+<pre class="result notranslate">
+.. 
+Finished in 0.002 seconds (files took 0.11401 seconds to load) 
+2 examples, 0 failures
+</pre>
+<p>As you can see, we were able to push the logic for creating and walking a dog object into a Helper which allows our examples to be shorter and cleaner.</p>
+<h1>RSpec - Metadata</h1>
+<p>RSpec is a flexible and powerful tool. The Metadata functionality in RSpec is no exception. Metadata generally refers to “data about data”. In RSpec, this means data about your <b>describe</b>, <b>context</b> and <b>it blocks</b>.</p>
+<p>Let’s take a look at an example &minus;</p>
+<pre class="prettyprint notranslate">
+RSpec.describe "An Example Group with a metadata variable", :foo =&gt; 17 do 
+   context 'and a context with another variable', :bar =&gt; 12 do 
+      
+      it 'can access the metadata variable of the outer Example Group' do |example| 
+         expect(example.metadata[:foo]).to eq(17) 
+      end
+      
+      it 'can access the metadata variable in the context block' do |example|  
+         expect(example.metadata[:bar]).to eq(12) 
+      end 
+      
+   end 
+end
+</pre>
+<p>When you run the above code, you will see this output &minus;</p>
+<pre class="result notranslate">
+.. 
+Finished in 0.002 seconds (files took 0.11301 seconds to load) 
+2 examples, 0 failures
+</pre>
+<p>Metadata provides a way to assign variables at various scopes within your RSpec files. The example.metadata variable is a Ruby hash which contains other information about your Examples and Example groups.</p>
+<p>For instance, let’s rewrite the above code to look like this &minus;</p>
+<pre class="prettyprint notranslate">
+RSpec.describe "An Example Group with a metadata variable", :foo =&gt; 17 do
+   context 'and a context with another variable', :bar =&gt; 12 do 
+      
+      it 'can access the metadata variable in the context block' do |example|
+         expect(example.metadata[:foo]).to eq(17) 
+         expect(example.metadata[:bar]).to eq(12) 
+         example.metadata.each do |k,v|
+         puts "#{k}: #{v}"
+      end
+		
+   end 
+end 
+</pre>
+<p>When we run this code, we see all of the values in the example.metadata hash &minus;</p>
+<pre class="result notranslate">
+.execution_result: #&lt;RSpec::Core::Example::ExecutionResult:0x00000002befd50&gt;
+block: #&lt;Proc:0x00000002bf81a8@C:/rspec_tutorial/spec/metadata_spec.rb:7&gt;
+description_args: ["can access the metadata variable in the context block"]
+description: can access the metadata variable in the context block
+full_description: An Example Group with a metadata variable and a context 
+   with another variable can access the metadata variable in the context block
+described_class:
+file_path: ./metadata_spec.rb
+line_number: 7
+location: ./metadata_spec.rb:7
+absolute_file_path: C:/rspec_tutorial/spec/metadata_spec.rb
+rerun_file_path: ./metadata_spec.rb
+scoped_id: 1:1:2
+foo: 17
+bar: 12
+example_group:
+{:execution_result=&gt;#&lt;RSpec::Core::Example::ExecutionResult:
+   0x00000002bfa0e8&gt;, :block=&gt;#&lt;
+   Proc:0x00000002bfac00@C:/rspec_tutorial/spec/metadata_spec.rb:2&gt;, 
+   :description_args=&gt;["and a context with another variable"], 
+	
+   :description=&gt;"and a context with another variable", 
+   :full_description=&gt;"An Example Group with a metadata variable
+   and a context with another variable", :described_class=&gt;nil, 
+      :file_path=&gt;"./metadata_spec.rb", 
+		
+   :line_number=&gt;2, :location=&gt;"./metadata_spec.rb:2", 
+      :absolute_file_path=&gt;"C:/rspec_tutorial/spec/metadata_spec.rb",
+      :rerun_file_path=&gt;"./metadata_spec.rb", 
+		
+   :scoped_id=&gt;"1:1", :foo=&gt;17, :parent_example_group=&gt;
+      {:execution_result=&gt;#&lt;
+      RSpec::Core::Example::ExecutionResult:0x00000002c1f690&gt;, 
+      :block=&gt;#&lt;Proc:0x00000002baff70@C:/rspec_tutorial/spec/metadata_spec.rb:1&gt;
+      , :description_args=&gt;["An Example Group with a metadata variable"], 
+		
+   :description=&gt;"An Example Group with a metadata variable", 
+   :full_description=&gt;"An Example Group with a metadata variable", 
+	:described_class=&gt;nil, :file_path=&gt;"./metadata_spec.rb", 
+   :line_number=&gt;1, :location=&gt;"./metadata_spec.rb:1",
+   :absolute_file_path=&gt;
+	
+   "C:/rspec_tutorial/spec/metadata_spec.rb", 
+   :rerun_file_path=&gt;"./metadata_spec.rb", 
+   :scoped_id=&gt;"1", :foo=&gt;17}, 
+   :bar=&gt;12}shared_group_inclusion_backtrace: [] 
+	
+last_run_status: unknown .
+.
+Finished in 0.004 seconds (files took 0.11101 seconds to load) 
+2 examples, 0 failures
+</pre>
+<p>Most likely, you will not need to use all of this metadata, but look at the full description value &minus;</p>
+<p>An Example Group with a metadata variable and a context with another variable can access the metadata variable in the context block.</p>
+<p>This is a sentence created from the describe block description + its contained context block description + the description for the <b>it block</b>.</p>
+<p>What is interesting to note here is that, these three strings together read like a normal English sentence. . . which is one of the ideas behind RSpec, having tests that sound like English descriptions of behavior.</p>
+<h1>RSpec - Filtering</h1>
+<p>You may want to read the section on RSpec Metadata before reading this section because, as it turns out, RSpec filtering is based on RSpec Metadata.</p>
+<p>Imagine that you have a spec file and it contains two types of tests (Examples): positive functional tests and negative (error) tests. Let’s define them like this &minus;</p>
+<pre class="prettyprint notranslate">
+RSpec.describe "An Example Group with positive and negative Examples" do 
+   context 'when testing Ruby\'s build-in math library' do
+      
+      it 'can do normal numeric operations' do 
+         expect(1 + 1).to eq(2) 
+      end 
+      
+      it 'generates an error when expected' do
+         expect{1/0}.to raise_error(ZeroDivisionError) 
+      end
+      
+   end 
+end
+</pre>
+<p>Now, save the above text as a file called ‘filter_spec.rb’ and then run it with this command &minus;</p>
+<pre class="result notranslate">
+rspec filter_spec.rb
+</pre>
+<p>You will see output that looks something like this &minus;</p>
+<pre class="result notranslate">
+.. 
+Finished in 0.003 seconds (files took 0.11201 seconds to load) 
+2 examples, 0 failures
+</pre>
+<p>Now what if, we wanted to re-run only the positive tests in this file? Or only the negative tests? We can easily do that with RSpec Filters. Change the above code to this &minus;</p>
+<pre class="prettyprint notranslate">
+RSpec.describe "An Example Group with positive and negative Examples" do 
+   context 'when testing Ruby\'s build-in math library' do
+      
+      it 'can do normal numeric operations', positive: true do 
+         expect(1 + 1).to eq(2) 
+      end 
+      
+      it 'generates an error when expected', negative: true do 
+         expect{1/0}.to raise_error(ZeroDivisionError) 
+      end
+      
+   end 
+end
+</pre>
+<p>Save your changes to filter_spec.rb and run this slightly different command &minus;</p>
+<pre class="result notranslate">
+rspec --tag positive filter_spec.rb
+</pre>
+<p>Now, you will see output that looks like this &minus;</p>
+<pre class="result notranslate">
+Run options: include {:positive=&gt;true} 
+. 
+Finished in 0.001 seconds (files took 0.11401 seconds to load) 
+1 example, 0 failures
+</pre>
+<p>By specifying --tag positive, we’re telling RSpec to only run Examples with the: positive metadata variable defined. We could do the same thing with negative tests by running the command like this &minus;</p>
+<pre class="result notranslate">
+rspec --tag negative filter_spec.rb
+</pre>
+<p>Keep in mind that these are just examples, you can specify a filter with any name that you want.</p>
+<h2>RSpec Formatters</h2>
+<p>Formatters allow RSpec to display the output from tests in different ways. Let’s create a new RSpec file containing this code &minus;</p>
+<pre class="prettyprint notranslate">
+RSpec.describe "A spec file to demonstrate how RSpec Formatters work" do 
+   context 'when running some tests' do 
+      
+      it 'the test usually calls the expect() method at least once' do 
+         expect(1 + 1).to eq(2) 
+      end
+      
+   end 
+end
+</pre>
+<p>Now, save this to a file called formatter_spec.rb and run this RSpec command &minus;</p>
+<pre class="result notranslate">
+rspec formatter_spec.rb
+</pre>
+<p>You should see output that looks like this &minus;</p>
+<pre class="result notranslate">
+. 
+Finished in 0.002 seconds (files took 0.11401 seconds to load) 
+1 example, 0 failures
+</pre>
+<p>Now run the same command but this time specify a formatter, like this &minus;</p>
+<pre class="result notranslate">
+rspec --format progress formatter_spec.rb
+</pre>
+<p>You should see the same output this time &minus;</p>
+<pre class="result notranslate">
+. 
+Finished in 0.002 seconds (files took 0.11401 seconds to load) 
+1 example, 0 failures
+</pre>
+<p>The reason is that the “progress” formatter is the default formatter. Let’s try a different formatter next, try running this command &minus;</p>
+<pre class="result notranslate">
+rspec --format doc formatter_spec.rb
+</pre>
+<p>Now you should see this output &minus;</p>
+<pre class="result notranslate">
+A spec file to demonstrate how RSpec Formatters work 
+   when running some tests 
+      the test usually calls the expect() method at least once
+Finished in 0.002 seconds (files took 0.11401 seconds to load) 
+1 example, 0 failures
+</pre>
+<p>As you can see, the output is quite different with the “doc” formatter. This formatter presents the output in a documentation-like style. You might be wondering what these options look like when you have a failure in a test (Example). Let’s change the code in <b>formatter_spec.rb</b> to look like this &minus;</p>
+<pre class="prettyprint notranslate">
+RSpec.describe "A spec file to demonstrate how RSpec Formatters work" do 
+   context 'when running some tests' do 
+      
+      it 'the test usually calls the expect() method at least once' do 
+         expect(1 + 1).to eq(1) 
+      end
+      
+   end 
+end
+</pre>
+<p>The expectation <b>expect(1 + 1).to eq(1)</b> should fail. Save your changes and re-run the above commands &minus;</p>
+<p><b>rspec --format progress formatter_spec.rb</b> and remember, since the “progress” formatter is the default, you could just run: <b>rspec formatter_spec.rb</b>. You should see this output &minus;</p>
+<pre class="result notranslate">
+F 
+Failures:
+1) A spec file to demonstrate how RSpec Formatters work when running some tests 
+the test usually calls the expect() method at least once
+   Failure/Error: expect(1 + 1).to eq(1)
+	
+      expected: 1
+         got: 2
+			  
+      (compared using ==)			  
+   # ./formatter_spec.rb:4:in `block (3 levels) in &lt;top (required)&gt;'
+
+Finished in 0.016 seconds (files took 0.11201 seconds to load)
+1 example, 1 failure
+Failed examples:
+
+rspec ./formatter_spec.rb:3 # A spec file to demonstrate how RSpec 
+   Formatters work when running some tests the test usually calls 
+   the expect() method at least once
+</pre>
+<p>Now, let’s try the doc formatter, run this command &minus;</p>
+<pre class="result notranslate">
+rspec --format doc formatter_spec.rb
+</pre>
+<p>Now, with the failed test, you should see this output &minus;</p>
+<pre class="result notranslate">
+A spec file to demonstrate how RSpec Formatters work
+   when running some tests
+      the test usually calls the expect() method at least once (FAILED - 1)
+		
+Failures:
+
+1) A spec file to demonstrate how RSpec Formatters work when running some
+   tests the test usually calls the expect() method at least once
+   Failure/Error: expect(1 + 1).to eq(1)
+	
+   expected: 1
+        got: 2
+		  
+   (compared using ==)
+   # ./formatter_spec.rb:4:in `block (3 levels) in &lt;top (required)&gt;'
+	
+Finished in 0.015 seconds (files took 0.11401 seconds to load) 
+1 example, 1 failure
+</pre>
+<h2>Failed Examples</h2>
+<p>rspec ./formatter_spec.rb:3 # A spec file to demonstrate how RSpec Formatters work when running some tests the test usually calls the expect() method at least once.</p>
+<p>RSpec Formatters offer the ability to change the way test results display, it is even possible to create your own custom Formatter, but that is a more advanced topic.</p>
+<h1>RSpec - Expectations</h1>
+<p>When you learn RSpec, you may read a lot about expectations and it can be a bit confusing at first. There are two main details you should keep in mind when you see the term Expectation &minus;</p>
+<ul class="list">
+<li><p>An Expectation is simply a statement in an <b>it block</b> that uses the <b>expect()</b> method. That’s it. It’s no more complicated than that. When you have code like this: <b>expect(1 + 1).to eq(2)</b>, you have an Expectation in your example. You are expecting that the expression <b>1 + 1</b> evaluates to <b>2</b>. The wording is important though since RSpec is a BDD test framework. By calling this statement an Expectation, it is clear that your RSpec code is describing the “behavior” of the code it’s testing. The idea is that you are expressing how the code should behave, in a way that reads like documentation.</p></li>
+<li><p>The Expectation syntax is relatively new. Before the <b>expect()</b> method was introduced (back in 2012), RSpec used a different syntax that was based on the <b>should()</b> method. The above Expectation is written like this in the old syntax: <b>(1 + 1).should eq(2)</b>.</p></li>
+</ul>
+<p>You may encounter the old RSpec syntax for Expectations when working with an older code based or an older version of RSpec. If you use the old syntax with a new version of RSpec, you will see a warning.</p>
+<p>For example, with this code &minus;</p>
+<pre class="prettyprint notranslate">
+RSpec.describe "An RSpec file that uses the old syntax" do
+   it 'you should see a warning when you run this Example' do 
+      (1 + 1).should eq(2) 
+   end 
+end
+</pre>
+<p>When you run it, you will get an output that looks like this &minus;</p>
+<pre class="result notranslate">
+. Deprecation Warnings:
+
+Using `should` from rspec-expectations' old `:should` 
+   syntax without explicitly enabling the syntax is deprecated. 
+   Use the new `:expect` syntax or explicitly enable 
+	
+`:should` with `config.expect_with( :rspec) { |c| c.syntax = :should }`
+   instead. Called from C:/rspec_tutorial/spec/old_expectation.rb:3 :in 
+   `block (2 levels) in &lt;top (required)&gt;'.
+
+If you need more of the backtrace for any of these deprecations to
+   identify where to make the necessary changes, you can configure 
+`config.raise_errors_for_deprecations!`, and it will turn the deprecation 
+   warnings into errors, giving you the full backtrace.
+
+1 deprecation warning total 
+Finished in 0.001 seconds (files took 0.11201 seconds to load) 
+1 example, 0 failures
+</pre>
+<p>Unless you are required to use the old syntax, it is highly recommended that you use expect() instead of should().</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/rspec/rspec_expectations.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/rspec/rspec_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

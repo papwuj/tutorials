@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>T-SQL - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="T-SQL - Quick Guide - In 1970's the product called 'SEQUEL', structured English query language, developed by IBM and later SEQUEL was renamed to 'SQL' which stands for Structured Que"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/t_sql/t_sql_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#d9321a;
+}
+a.demo {
+    background:#d9321a;
+}
+li.heading {
+    background:#d9321a;
+}
+.course-box{background:#d9321a}
+.home-intro-sub p{color:#d9321a}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/t_sql/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/t_sql/images/t-sql-mini-logo.jpg" alt="T-SQL Tutorial" />
+</div>
+<ul class="toc chapters">
+<li><a class="videolink" href="/tsql_online_training/index.asp" target="_blank">
+<img src="/t_sql/images/t-sql-video-tutorials.jpg" alt="T-SQL Video Tutorials" /></a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">T-SQL Tutorial</li>
+<li><a href="/t_sql/index.htm">T-SQL - Home</a></li>
+<li><a href="/t_sql/t_sql_overview.htm">T-SQL - Overview</a></li>
+<li><a href="/t_sql/t_sql_data_types.htm">T-SQL - Data Types</a></li>
+<li><a href="/t_sql/t_sql_create_tables.htm">T-SQL - Create Tables</a></li>
+<li><a href="/t_sql/t_sql_drop_tables.htm">T-SQL - Drop Tables</a></li>
+<li><a href="/t_sql/t_sql_insert_statement.htm">T-SQL - INSERT Statement</a></li>
+<li><a href="/t_sql/t_sql_select_statement.htm">T-SQL - SELECT Statement</a></li>
+<li><a href="/t_sql/t_sql_update_statement.htm">T-SQL - UPDATE Statement</a></li>
+<li><a href="/t_sql/t_sql_delete_statement.htm">T-SQL - DELETE Statement</a></li> 
+<li><a href="/t_sql/t_sql_where_clause.htm">T-SQL - WHERE Clause</a></li>
+<li><a href="/t_sql/t_sql_like_clause.htm">T-SQL - LIKE Clause</a></li>
+<li><a href="/t_sql/t_sql_order_by_clause.htm">T-SQL - ORDER BY Clause</a></li>
+<li><a href="/t_sql/t_sql_group_by_clause.htm">T-SQL - GROUP BY Clause</a></li>
+<li><a href="/t_sql/t_sql_distinct_clause.htm">T-SQL - DISTINCT Clause</a></li>
+<li><a href="/t_sql/t_sql_joining_tables.htm">T-SQL - Joining Tables</a></li>
+<li><a href="/t_sql/t_sql_sub_queries.htm">T-SQL - Sub-Queries</a></li>
+<li><a href="/t_sql/t_sql_stored_procedures.htm">T-SQL - Stored Procedures</a></li>
+<li><a href="/t_sql/t_sql_transactions.htm">T-SQL - Transactions</a></li>
+<li><a href="/t_sql/t_sql_indexes.htm">T-SQL - Indexes</a></li> 
+<li><a href="/t_sql/t_sql_functions.htm">T-SQL - Functions</a></li>
+<li><a href="/t_sql/t_sql_string_functions.htm">T-SQL - String Functions</a></li>
+<li><a href="/t_sql/t_sql_date_functions.htm">T-SQL - Date Functions</a></li>
+<li><a href="/t_sql/t_sql_numeric_functions.htm">T-SQL - Numeric Functions</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">T-SQL Useful Resources</li>
+<li><a href="/t_sql/t_sql_quick_guide.htm">T-SQL - Quick Guide</a></li>
+<li><a href="/t_sql/t_sql_useful_resources.htm">T-SQL - Useful Resources</a></li>
+<li><a href="/t_sql/t_sql_discussion.htm">T-SQL - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>T-SQL - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/t_sql/t_sql_numeric_functions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/t_sql/t_sql_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>T-SQL - Overview</h1>
+<p>In 1970's the product called 'SEQUEL', structured English query language, developed by IBM and later SEQUEL was renamed to 'SQL' which stands for Structured Query Language.</p>
+<p>In 1986, SQL was approved by ANSI (American national Standards Institute) and in 1987, it was approved by ISO (International Standards Organization).</p>
+<p>SQL is a structure query language which is a common database language for all RDBMS products. Different RDBMS product vendors have developed their own database language by extending SQL for their own RDBMS products.</p>
+<p>T-SQL stands for Transact Structure Query Language which is a Microsoft product and is an extension of SQL Language.</p>
+<h2>Example</h2>
+<p>MS SQL Server - SQL\T-SQL</p>
+<p>ORACLE - SQL\PL-SQL</p>
+<h1>T-SQL - Data Types</h1>
+<p>SQL Server data type is an attribute that specifies types of data of any object. Each column, variable and expression has related data type in SQL Server. These data types can be used while creating tables. You can choose a particular data type for a table column based on your requirement.</p>
+<p>SQL Server offers seven categories including other category of data types for use.</p>
+<h2>Exact Numeric Types</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center">Type</th>
+<th style="text-align:center">From</th>
+<th style="text-align:center">To</th>
+</tr> 
+<tr>
+<td>bigint</td>
+<td>-9,223,372,036,854,775,808</td>
+<td>9,223,372,036,854,775,807</td>
+</tr>
+<tr>
+<td>int</td>
+<td>-2,147,483,648</td>
+<td>2,147,483,647</td>
+</tr>
+<tr>
+<td>smallint</td>
+<td>-32,768</td>
+<td>32,767</td>
+</tr>
+<tr>
+<td>tinyint</td>
+<td>0</td>
+<td>255</td>
+</tr>
+<tr>
+<td>bit</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>-10^38 &plus;1</td>
+<td>10^38 –1</td>
+</tr>
+<tr>
+<td>numeric</td>
+<td>-10^38 &plus;1</td>
+<td>10^38 –1</td>
+</tr>
+<tr>
+<td>money</td>
+<td>-922,337,203,685,477.5808</td>
+<td>&plus;922,337,203,685,477.5807</td>
+</tr>
+<tr>
+<td>smallmoney</td>
+<td>-214,748.3648</td>
+<td>&plus;214,748.3647</td>
+</tr>
+</table>
+<p>Numeric and decimal are Fixed precision and scale data types and are functionally equivalent.</p>
+<h2>Approximate Numeric Types</h2>
+<table class="table table-bordered" style="text-align:center">
+<tr>
+<th style="text-align:center">Type</th>
+<th style="text-align:center">From</th>
+<th style="text-align:center">To</th>
+</tr> 
+<tr>
+<td>Float</td>
+<td>-1.79E &plus; 308</td>
+<td>1.79E &plus; 308</td>
+</tr>
+<tr>
+<td>Real</td>
+<td>-3.40E &plus; 38</td>
+<td>3.40E &plus; 38</td>
+</tr>
+</table>
+<h2>Date and Time Types</h2>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center">Type</th>
+<th style="text-align:center">From</th>
+<th style="text-align:center">To</th>
+</tr> 
+<tr>
+<td>
+<p><b>datetime</b>(3.33 milliseconds accuracy)</p>
+</td>
+<td>Jan 1, 1753</td>
+<td>Dec 31, 9999</td>
+</tr>
+<tr>
+<td>
+<p><b>smalldatetime</b>(1 minute accuracy)</p>
+</td>
+<td>Jan 1, 1900</td>
+<td>Jun 6, 2079</td>
+</tr>
+<tr>
+<td><p><b>date</b>(1 day accuracy. Introduced in SQL Server 2008)</p></td>
+<td>Jan 1, 0001</td>
+<td>Dec 31, 9999</td>
+</tr>
+<tr>
+<td><p><b>datetimeoffset</b>(100 nanoseconds accuracy. Introduced in SQL Server 2008)</p></td>
+<td>Jan 1, 0001</td>
+<td>Dec 31, 9999</td>
+</tr>
+<tr>
+<td><p><b>datetime2</b>(100 nanoseconds accuracy. Introduced in <b>SQL Server 2008</b>)</p></td>
+<td>Jan 1, 0001</td>
+<td>Dec 31, 9999</td>
+</tr>
+<tr>
+<td><p><b>time</b>(100 nanoseconds accuracy. Introduced in <b>SQL Server 2008</b>)</p></td>
+<td>00:00:00.0000000</td>
+<td>23:59:59.9999999</td>
+</tr>
+</table>
+<h2>Character Strings</h2>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No</th>
+<th class="ts">Type &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>char</b></p>
+<p>Fixed-length non-Unicode character data with a maximum length of 8,000 characters.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>varchar</b></p>
+<p>Variable-length non-Unicode data with a maximum of 8,000 characters.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>Varchar (max)</b></p>
+<p>Variable-length non-Unicode data with a maximum length of 231 characters (Introduced in SQL Server 2005).</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>text</b></p>
+<p>Variable-length non-Unicode data with a maximum length of 2,147,483,647 characters</p></td>
+</tr>
+</table>
+<h2>Unicode Character Strings</h2>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No</th>
+<th class="ts">Type &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>nchar</b></p>
+<p>Fixed-length Unicode data with a maximum length of 4,000 characters.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>nvarchar</b></p>
+<p>Variable-length Unicode data with a maximum length of 4,000 characters.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>Nvarchar (max)</b></p>
+<p>Variable-length Unicode data with a maximum length of 2<sup>30</sup> characters (Introduced in SQL Server 2005).</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>ntext</b></p>
+<p>Variable-length Unicode data with a maximum length of 1,073,741,823 characters.</p>
+</td>
+</tr>
+</table>
+<h2>Binary Strings</h2>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No</th>
+<th class="ts">Type &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>binary</b></p>
+<p>Fixed-length binary data with a maximum length of 8,000 bytes.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>varbinary</b></p>
+<p>Variable-length binary data with a maximum length of 8,000 bytes.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>varbinary(max)</b></p>
+<p>Variable-length binary data with a maximum length of 2<sup>31</sup> bytes (Introduced in SQL Server 2005).</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>image</b></p>
+<p>Variable-length binary data with a maximum length of 2,147,483,647 bytes.</p>
+</td>
+</tr>
+</table>
+<h2>Other Data Types</h2>
+<ul class="list">
+<li><p><b>sql_variant</b> &minus; Stores values of various SQL Server-supported data types, except text, ntext, and timestamp.</p></li>
+<li><p><b>timestamp</b> &minus; Stores a database-wide unique number that gets updated every time a row gets updated.</p></li>
+<li><p><b>uniqueidentifier</b> &minus; Stores a globally unique identifier (GUID).</p></li>
+<li><p><b>xml</b> &minus; Stores XML data. You can store XML instances in a column or a variable (Introduced in SQL Server 2005).</p></li>
+<li><p><b>cursor</b> &minus; A reference to a cursor.</p></li>
+<li><p><b>table</b> &minus; Stores a result set for later processing.</p></li>
+<li><p><b>hierarchyid</b> &minus; A variable length, system data type used to represent position in a hierarchy (Introduced in SQL Server 2008).</p></li> 
+</ul>
+<h1>T-SQL - Create Tables</h1>
+<p>Creating a basic table involves naming the table and defining its columns and each column's data type.</p>
+<p>The SQL Server <b>CREATE TABLE</b> statement is used to create a new table.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of CREATE TABLE statement &minus;</p>
+<pre class="result notranslate">
+CREATE TABLE table_name( 
+   column1 datatype, 
+   column2 datatype, 
+   column3 datatype, 
+   ..... 
+   columnN datatype, 
+   PRIMARY KEY( one or more columns ));
+</pre>
+<p>CREATE TABLE is the keyword telling the database system what you want to do. In this case, you want to create a new table. The unique name or identifier for the table follows the CREATE TABLE statement. Then in brackets comes the list defining each column in the table and what sort of data type it is. The syntax becomes clearer to understand with the following example.</p>
+<p>A copy of an existing table can be created using a combination of the CREATE TABLE statement and the SELECT statement. You can check complete details at Create Table Using another Table.</p>
+<h2>Example</h2>
+<p>In this example, let’s create a CUSTOMERS table with ID as primary key and NOT NULL are the constraints showing that these fields cannot be NULL while creating records in this table &minus;</p>
+<pre class="prettyprint notranslate">
+CREATE TABLE CUSTOMERS( 
+   ID   INT              NOT NULL, 
+   NAME VARCHAR (20)     NOT NULL, 
+   AGE  INT              NOT NULL, 
+   ADDRESS  CHAR (25) , 
+   SALARY   DECIMAL (18, 2),        
+   PRIMARY KEY (ID));
+</pre>
+<p>You can verify if your table has been created successfully by looking at the message displayed by the SQL server, otherwise you can use the following command &minus;</p>
+<pre class="result notranslate">
+exec sp_columns CUSTOMERS
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+TABLE_QUALIFIER   TABLE_OWNER   TABLE_NAME   COLUMN_NAME   DATA_TYPE   TYPE_NAME
+   PRECISION   LENGTH SCALE   RADIX   NULLABLE   REMARKS   COLUMN_DEF   SQL_DATA_TYPE 
+   SQL_DATETIME_SUB   CHAR_OCTET_LENGTH   ORDINAL_POSITION   IS_NULLABLE   SS_DATA_TYPE
+   
+TestDB    dbo    CUSTOMERS   ID        4    int      10   4    0      10     0
+   NULL   NULL   4   NULL    NULL      1    NO       56 
+   
+TestDB    dbo    CUSTOMERS   NAME      12   varchar  20   20   NULL   NULL   0
+   NULL   NULL   12   NULL   20        2    NO       39
+  
+TestDB    dbo    CUSTOMERS   AGE       4    int      10   4    0      10     0
+   NULL   NULL   4   NULL    NULL      3    NO       56 
+ 
+TestDB    dbo    CUSTOMERS   ADDRESS   1    char     25   25   NULL   NULL   1
+   NULL   NULL   1   NULL    25   4    YES  39  
+
+TestDB    dbo    CUSTOMERS   SALARY    3    decimal  18   20   2      10     1
+   NULL   NULL   3   NULL    NULL      5    YES      106 
+</pre>
+<p>You can now see that CUSTOMERS table is available in your database which you can use to store required information related to customers.</p>
+<h1>T-SQL - Drop Tables</h1>
+<p>The SQL Server <b>DROP TABLE</b> statement is used to remove a table definition and all data, indexes, triggers, constraints, and permission specifications for that table.</p>
+<p><b>Note</b> &minus; You have to be careful while using this command because once a table is deleted then all the information available in the table would also be lost forever.</p>
+<h2>Syntax</h2> 
+<p>Following is the basic syntax of DROP TABLE statement &minus;</p>
+<pre class="result notranslate">
+DROP TABLE table_name;
+</pre>
+<h2>Example</h2>
+<p>Let us first verify CUSTOMERS table and then we will delete it from the database &minus;</p>
+<pre class="prettyprint notranslate">
+Exec sp_columns CUSTOMERS;
+</pre>
+<p>The above command shows the following table.</p>
+<pre class="result notranslate">
+TABLE_QUALIFIER   TABLE_OWNER   TABLE_NAME   COLUMN_NAME   DATA_TYPE   TYPE_NAME
+   PRECISION   LENGTH SCALE   RADIX   NULLABLE   REMARKS   COLUMN_DEF   SQL_DATA_TYPE 
+   SQL_DATETIME_SUB   CHAR_OCTET_LENGTH   ORDINAL_POSITION   IS_NULLABLE   SS_DATA_TYPE
+   
+TestDB    dbo    CUSTOMERS   ID        4   int        10   4    0      10     0
+   NULL   NULL   4   NULL    NULL      1   NO         56 
+   
+TestDB    dbo    CUSTOMERS   NAME      12  varchar    20   20   NULL   NULL   0
+   NULL   NULL   12   NULL   20        2   NO         39
+  
+TestDB    dbo    CUSTOMERS   AGE       4   int        10   4    0      10     0
+   NULL   NULL   4   NULL    NULL      3   NO         56 
+ 
+TestDB    dbo    CUSTOMERS   ADDRESS   1   char       25   25   NULL   NULL   1
+   NULL   NULL   1   NULL    25        4   YES        39  
+
+TestDB    dbo    CUSTOMERS   SALARY   3   decimal     18   20   2      10     1
+   NULL   NULL   3   NULL    NULL     5   YES         106 
+</pre>
+<p>CUSTOMERS table is available in the database, so let us drop it. Following is the command for the same.</p>
+<pre class="result notranslate">
+DROP TABLE CUSTOMERS; 
+Command(s) completed successfully.
+</pre>
+<p>With the above command, you will not get any rows.</p>
+<pre class="result notranslate">
+Exec sp_columns CUSTOMERS; 
+No rows\data will be displayed 
+</pre>
+<h1>T-SQL - INSERT Statement</h1>
+<p>The SQL Server <b>INSERT INTO</b> statement is used to add new rows of data to a table in the database.</p>
+<h2>Syntax</h2>
+<p>Following are the two basic syntaxes of INSERT INTO statement.</p>
+<pre class="result notranslate">
+INSERT INTO TABLE_NAME [(column1, column2, column3,...columnN)]   
+VALUES (value1, value2, value3,...valueN); 
+</pre>
+<p>Where column1, column2,...columnN are the names of the columns in the table into which you want to insert data.</p>
+<p>You need not specify the column(s) name in the SQL query if you are adding values for all the columns of the table. But make sure the order of the values is in the same order as the columns in the table. Following is the SQL INSERT INTO syntax &minus;</p>
+<pre class="prettyprint notranslate">
+INSERT INTO TABLE_NAME VALUES (value1,value2,value3,...valueN);
+</pre>
+<h2>Example</h2>
+<p>Following statements will create six records in CUSTOMERS table &minus;</p>
+<pre class="prettyprint notranslate">
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
+VALUES (1, 'Ramesh', 32, 'Ahmedabad', 2000.00 );
+  
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
+VALUES (2, 'Khilan', 25, 'Delhi', 1500.00 );  
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
+VALUES (3, 'kaushik', 23, 'Kota', 2000.00 );  
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
+VALUES (4, 'Chaitali', 25, 'Mumbai', 6500.00 ); 
+ 
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
+VALUES (5, 'Hardik', 27, 'Bhopal', 8500.00 );  
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) 
+VALUES (6, 'Komal', 22, 'MP', 4500.00 );
+</pre>
+<h2>Syntax</h2>
+<p>You can create a record in CUSTOMERS table using second syntax as follows &minus;</p>
+<pre class="result notranslate">
+INSERT INTO CUSTOMERS VALUES (7, 'Muffy', 24, 'Indore', 10000.00 );
+</pre>
+<p>All the above statements will produce the following records in CUSTOMERS table &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE         ADDRESS              SALARY 
+1   Ramesh     32          Ahmedabad            2000.00 
+2   Khilan     25          Delhi                1500.00 
+3   kaushik    23          Kota                 2000.00 
+4   Chaitali   25          Mumbai               6500.00 
+5   Hardik     27          Bhopal               8500.00 
+6   Komal      22          MP                   4500.00 
+7   Muffy      24          Indore               10000.00 
+</pre>
+<h2>Populate One Table Using Another Table</h2>
+<p>You can populate data into a table through SELECT statement over another table provided another table has a set of fields, which are required to populate first table. Following is the syntax &minus;</p>
+<pre class="result notranslate">
+INSERT INTO first_table_name  
+   SELECT column1, column2, ...columnN  
+      FROM second_table_name 
+      [WHERE condition];
+</pre>
+<h1>T-SQL - SELECT Statement</h1>
+<p>SQL Server <b>SELECT</b> statement is used to fetch the data from a database table which returns data in the form of result table. These result tables are called <b>result-sets</b>.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of SELECT statement &minus;</p>
+<pre class="result notranslate">
+SELECT column1, column2, columnN FROM table_name;
+</pre>
+<p>Where, column1, column2...are the fields of a table whose values you want to fetch. If you want to fetch all the fields available in the field, then you can use the following syntax &minus;</p>
+<pre class="result notranslate">
+SELECT * FROM table_name;
+</pre>
+<h2>Example</h2>
+<p>Consider the CUSTOMERS table having the following records &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS             SALARY 
+1   Ramesh     32        Ahmedabad           2000.00 
+2   Khilan     25        Delhi               1500.00 
+3   kaushik    23        Kota                2000.00 
+4   Chaitali   25        Mumbai              6500.00 
+5   Hardik     27        Bhopal              8500.00 
+6   Komal      22        MP                  4500.00 
+7   Muffy      24        Indore              10000.00 
+</pre>
+<p>Following command is an example, which would fetch ID, Name and Salary fields of the customers available in CUSTOMERS table &minus;</p>
+<pre class="prettyprint notranslate">
+SELECT ID, NAME, SALARY FROM CUSTOMERS; 
+</pre>
+<p>The above command will produce the following output.</p>
+<pre class="result notranslate">
+ID  NAME          SALARY 
+1   Ramesh        2000.00 
+2   Khilan        1500.00 
+3   kaushik       2000.00 
+4   Chaitali      6500.00 
+5   Hardik        8500.00 
+6   Komal         4500.00 
+7   Muffy         10000.00 
+</pre>
+<p>If you want to fetch all the fields of CUSTOMERS table, then use the following query &minus;</p>
+<pre class="prettyprint notranslate">
+SELECT * FROM CUSTOMERS;
+</pre>
+<p>The above will produce the following output.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS              SALARY 
+1   Ramesh     32        Ahmedabad            2000.00 
+2   Khilan     25        Delhi                1500.00 
+3   kaushik    23        Kota                 2000.00 
+4   Chaitali   25        Mumbai               6500.00 
+5   Hardik     27        Bhopal               8500.00 
+6   Komal      22        MP                   4500.00 
+7   Muffy      24        Indore               10000.00 
+</pre>
+<h1>T-SQL - UPDATE Statement</h1>
+<p>The SQL Server <b>UPDATE</b> Query is used to modify the existing records in a table.</p>
+<p>You can use WHERE clause with UPDATE query to update selected rows otherwise all the rows would be affected.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of UPDATE query with WHERE clause &minus;</p>
+<pre class="result notranslate">
+UPDATE table_name 
+SET column1 = value1, column2 = value2...., columnN = valueN 
+WHERE [condition];
+</pre>
+<p>You can combine N number of conditions using AND or OR operators.</p> 
+<h2>Example</h2>
+<p>Consider the CUSTOMERS table having the following records &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS             SALARY 
+1   Ramesh     32        Ahmedabad           2000.00 
+2   Khilan     25        Delhi               1500.00 
+3   kaushik    23        Kota                2000.00 
+4   Chaitali   25        Mumbai              6500.00 
+5   Hardik     27        Bhopal              8500.00 
+6   Komal      22        MP                  4500.00 
+7   Muffy      24        Indore              10000.00 
+</pre>
+<p>Following command is an example, which would update ADDRESS for a customer whose ID is 6 &minus;</p>
+<pre class="prettyprint notranslate">
+UPDATE CUSTOMERS 
+SET ADDRESS = 'Pune' 
+WHERE ID = 6; 
+</pre>
+<p>CUSTOMERS table will now have the following records &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS             SALARY 
+1   Ramesh     32        Ahmedabad           2000.00 
+2   Khilan     25        Delhi               1500.00 
+3   kaushik    23        Kota                2000.00 
+4   Chaitali   25        Mumbai              6500.00 
+5   Hardik     27        Bhopal              8500.00 
+6   Komal      22        Pune                4500.00 
+7   Muffy      24        Indore              10000.00 
+</pre>
+<p>If you want to modify all ADDRESS and SALARY column values in CUSTOMERS table, you do not need to use WHERE clause. UPDATE query would be as follows &minus;</p>
+<pre class="prettyprint notranslate">
+UPDATE CUSTOMERS 
+SET ADDRESS = 'Pune', SALARY = 1000.00;
+</pre>
+<p>CUSTOMERS table will now have the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS          SALARY 
+1   Ramesh     32        Pune             1000.00 
+2   Khilan     25        Pune             1000.00 
+3   kaushik    23        Pune             1000.00 
+4   Chaitali   25        Pune             1000.00 
+5   Hardik     27        Pune             1000.00 
+6   Komal      22        Pune             1000.00 
+7   Muffy      24        Pune             1000.00 
+</pre>
+<h1>T-SQL - DELETE Statement</h1>
+<p>The SQL Server <b>DELETE</b> Query is used to delete the existing records from a table.</p>
+<p>You have to use WHERE clause with DELETE query to delete selected rows, otherwise all the records would be deleted.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of DELETE query with WHERE clause &minus;</p>
+<pre class="result notranslate">
+DELETE FROM table_name 
+WHERE [condition]; 
+</pre>
+<p>You can combine N number of conditions using AND or OR operators.</p>
+<h2>Example</h2>
+<p>Consider the CUSTOMERS table having the following records &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS            SALARY 
+1   Ramesh     32        Ahmedabad          2000.00 
+2   Khilan     25        Delhi              1500.00 
+3   kaushik    23        Kota               2000.00 
+4   Chaitali   25        Mumbai             6500.00 
+5   Hardik     27        Bhopal             8500.00 
+6   Komal      22        MP                 4500.00 
+7   Muffy      24        Indore             10000.00 
+</pre>
+<p>Following command is an example, which would DELETE a customer, whose ID is 6 &minus;</p>
+<pre class="result notranslate">
+DELETE FROM CUSTOMERS 
+WHERE ID = 6;
+</pre>
+<p>CUSTOMERS table will now have the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS              SALARY 
+1   Ramesh     32        Ahmedabad            2000.00 
+2   Khilan     25        Delhi                1500.00 
+3   kaushik    23        Kota                 2000.00 
+4   Chaitali   25        Mumbai               6500.00 
+5   Hardik     27        Bhopal               8500.00 
+7   Muffy      24        Indore               10000.00 
+</pre>
+<p>If you want to DELETE all the records from CUSTOMERS table, you do not need to use WHERE clause. DELETE query would be as follows &minus;</p>
+<pre class="result notranslate">
+DELETE FROM CUSTOMERS;
+</pre>
+<p>CUSTOMERS table now will not have any record.</p>
+<h1>T-SQL - WHERE Clause</h1>
+<p>The MS SQL Server <b>WHERE</b> clause is used to specify a condition while fetching the data from single table or joining with multiple tables.</p>
+<p>If the given condition is satisfied, only then it returns a specific value from the table. You will have to use WHERE clause to filter the records and fetch only necessary records.</p>
+<p>The WHERE clause is not only used in SELECT statement, but it is also used in UPDATE, DELETE statement, etc., which we would examine in subsequent chapters.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of SELECT statement with WHERE clause &minus;</p>
+<pre class="result notranslate">
+SELECT column1, column2, columnN  
+FROM table_name 
+WHERE [condition]
+</pre>
+<p>You can specify a condition using comparison or logical operators like &gt;, &lt;, =, LIKE, NOT, etc. The following example will make this concept clear.</p>
+<h2>Example</h2>
+<p>Consider the CUSTOMERS table having the following records &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS            SALARY 
+1   Ramesh     32        Ahmedabad          2000.00 
+2   Khilan     25        Delhi              1500.00 
+3   kaushik    23        Kota               2000.00 
+4   Chaitali   25        Mumbai             6500.00 
+5   Hardik     27        Bhopal             8500.00 
+6   Komal      22        MP                 4500.00 
+7   Muffy      24        Indore             10000.00 
+</pre>
+<p>Following command is an example which would fetch ID, Name and Salary fields from the CUSTOMERS table where salary is greater than 2000.</p>
+<pre class="result notranslate">
+SELECT ID, NAME, SALARY  
+FROM CUSTOMERS 
+WHERE SALARY &gt; 2000;
+</pre>
+<p>The above command will produce the following output.</p>
+<pre class="result notranslate">
+ID  NAME       SALARY 
+4   Chaitali   6500.00 
+5   Hardik     8500.00 
+6   Komal      4500.00 
+7   Muffy      10000.00
+</pre>
+<p>Following command is an example, which would fetch ID, Name and Salary fields from the CUSTOMERS table for a customer with the name ‘Hardik’. It is important to note that all the strings should be given inside single quotes ('') whereas numeric values should be given without any quote as in the above example &minus;</p>
+<pre class="result notranslate">
+SELECT ID, NAME, SALARY  
+FROM CUSTOMERS 
+WHERE NAME = 'Hardik';
+</pre>
+<p>The above command will produce the following output.</p>
+<pre class="result notranslate">
+ID  NAME     SALARY 
+5   Hardik   8500.00 
+</pre>
+<h1>T-SQL - LIKE Clause</h1>
+<p>The MS SQL Server <b>LIKE</b> clause is used to compare a value to similar values using wildcard operators. There are two wildcards used in conjunction with the LIKE operator &minus;</p>
+<ul class="list">
+<li>The percent sign (%)</li>
+<li>The underscore (_)</li>
+</ul>
+<p>The percent sign represents zero, one, or multiple characters. The underscore represents a single number or character. The symbols can be used in combinations.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of % and _.</p>
+<pre class="result notranslate">
+SELECT *\column-list FROM table_name 
+WHERE column LIKE 'XXXX%' 
+ 
+or   
+
+SELECT *\column-list FROM table_name 
+WHERE column LIKE '%XXXX%'  
+
+or  
+
+SELECT *\column-list FROM table_name 
+WHERE column LIKE 'XXXX_'  
+
+or  
+
+SELECT *\column-list FROM table_name 
+WHERE column LIKE '_XXXX'  
+
+or  
+
+SELECT  *\column-list FROM table_name 
+WHERE column LIKE '_XXXX_' 
+</pre>
+<p>You can combine N number of conditions using AND or OR operators. XXXX could be any numeric or string value.</p>
+<h2>Example</h2>
+<p>Following are a number of examples showing WHERE part having different LIKE clause with '%' and '_' operators.</p>
+<table class="table table-bordered">
+<tr>
+<th>Sr.No</th>
+<th class="ts">Statement &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td>
+<p><b>WHERE SALARY LIKE '200%'</b></p>
+<p>Finds any values that start with 200</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td>
+<p><b>WHERE SALARY LIKE '%200%'</b></p>
+<p>Finds any values that have 200 in any position</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td>
+<p><b>WHERE SALARY LIKE '_00%'</b></p>
+<p>Finds any values that have 00 in the second and third positions</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td>
+<p><b>WHERE SALARY LIKE '2_%_%'</b></p>
+<p>Finds any values that start with 2 and are at least 3 characters in length</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td>
+<p><b>WHERE SALARY LIKE '%2'</b></p>
+<p>Finds any values that end with 2</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td>
+<p><b>WHERE SALARY LIKE '_2%3'</b></p>
+<p>Finds any values that have a 2 in the second position and end with a 3</p>
+</td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td>
+<p><b>WHERE SALARY LIKE '2___3'</b></p>
+<p>Finds any values in a five-digit number that start with 2 and end with 3</p>
+</td>
+</tr>
+</table>
+<p>Consider the CUSTOMERS table having the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS            SALARY 
+1   Ramesh     32        Ahmedabad          2000.00 
+2   Khilan     25        Delhi              1500.00 
+3   kaushik    23        Kota               2000.00 
+4   Chaitali   25        Mumbai             6500.00 
+5   Hardik     27        Bhopal             8500.00 
+6   Komal      22        MP                 4500.00 
+7   Muffy      24        Indore             10000.00 
+</pre>
+<p>Following command is an example, which will display all the records from CUSTOMERS table where SALARY starts with 200.</p>
+<pre class="prettyprint notranslate">
+SELECT * FROM CUSTOMERS 
+WHERE SALARY LIKE '200%'; 
+</pre>
+<p>The above command will produce the following output.</p>
+<pre class="result notranslate">
+ID   NAME     AGE     ADDRESS       SALARY 
+1    Ramesh   32      Ahmedabad     2000.00 
+3    kaushik  23      Kota          2000.00
+</pre>
+<h1>T-SQL - ORDER BY Clause</h1>
+<p>The MS SQL Server <b>ORDER</b> BY clause is used to sort the data in ascending or descending order, based on one or more columns. Some database sort query results in ascending order by default.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of ORDER BY clause.</p>
+<pre class="result notranslate">
+SELECT column-list  
+FROM table_name  
+[WHERE condition]  
+[ORDER BY column1, column2, .. columnN] [ASC | DESC];
+</pre>
+<p>You can use more than one column in the ORDER BY clause. Make sure whatever column you are using to sort, that column should be in column-list.</p>
+<h2>Example</h2>
+<p>Consider the CUSTOMERS table having the following records &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS            SALARY 
+1   Ramesh     32        Ahmedabad          2000.00 
+2   Khilan     25        Delhi              1500.00 
+3   kaushik    23        Kota               2000.00 
+4   Chaitali   25        Mumbai             6500.00 
+5   Hardik     27        Bhopal             8500.00 
+6   Komal      22        MP                 4500.00 
+7   Muffy      24        Indore             10000.00 
+</pre>
+<p>Following command is an example, which would sort the result in ascending order by NAME and SALARY.</p>
+<pre class="prettyprint notranslate">
+SELECT * FROM CUSTOMERS 
+   ORDER BY NAME, SALARY 
+</pre>
+<p>The above command will produce the following output.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS           SALARY 
+4   Chaitali   25        Mumbai            6500.00 
+5   Hardik     27        Bhopal            8500.00 
+3   kaushik    23        Kota              2000.00 
+2   Khilan     25        Delhi             1500.00 
+6   Komal      22        MP                4500.00 
+7   Muffy      24        Indore            10000.00 
+1   Ramesh     32        Ahmedabad         2000.00 
+</pre>
+<p>Following command is an example, which would sort the result in descending order by NAME.</p>
+<pre class="prettyprint notranslate">
+SELECT * FROM CUSTOMERS 
+   ORDER BY NAME DESC
+</pre>
+<p>The above command will produce the following result &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS            SALARY 
+1   Ramesh     32        Ahmedabad          2000.00
+7   Muffy      24        Indore             10000.00  
+6   Komal      22        MP                 4500.00 
+2   Khilan     25        Delhi              1500.00 
+3   kaushik    23        Kota               2000.00
+5   Hardik     27        Bhopal             8500.00
+4   Chaitali   25        Mumbai             6500.00  
+</pre>
+<h1>T-SQL - GROUP BY Clause</h1>
+<p>The SQL Server <b>GROUP BY</b> clause is used in collaboration with the SELECT statement to arrange identical data into groups.</p>
+<p>The GROUP BY clause follows the WHERE clause in a SELECT statement and precedes the ORDER BY clause.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of GROUP BY clause. The GROUP BY clause must follow the conditions in the WHERE clause and must precede the ORDER BY clause if one is used.</p>
+<pre class="result notranslate">
+SELECT column1, column2 
+FROM table_name 
+WHERE [ conditions ] 
+GROUP BY column1, column2 
+ORDER BY column1, column2 
+</pre>
+<h2>Example</h2>
+<p>Consider the CUSTOMERS table is having the following records &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS          SALARY 
+1   Ramesh     32        Ahmedabad        2000.00 
+2   Khilan     25        Delhi            1500.00 
+3   kaushik    23        Kota             2000.00 
+4   Chaitali   25        Mumbai           6500.00 
+5   Hardik     27        Bhopal           8500.00 
+6   Komal      22        MP               4500.00 
+7   Muffy      24        Indore           10000.00 
+</pre>
+<p>If you want to know the total amount of salary on each customer, then following will be the GROUP BY query.</p>
+<pre class="prettyprint notranslate">
+SELECT NAME, SUM(SALARY) as [sum of salary] FROM CUSTOMERS 
+   GROUP BY NAME;
+</pre>
+<p>The above command will produce the following output.</p>
+<pre class="result notranslate">
+NAME        sum of salary 
+Chaitali    6500.00 
+Hardik      8500.00 
+kaushik     2000.00 
+Khilan      1500.00 
+Komal       4500.00 
+Muffy       10000.00 
+Ramesh      2000.00
+</pre>
+<p>Let us now consider the following CUSTOMERS table having the following records with duplicate names.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS           SALARY 
+1   Ramesh     32        Ahmedabad         2000.00 
+2   Khilan     25        Delhi             1500.00 
+3   kaushik    23        Kota              2000.00 
+4   Chaitali   25        Mumbai            6500.00 
+5   Hardik     27        Bhopal            8500.00 
+6   Komal      22        MP                4500.00 
+7   Muffy      24        Indore            10000.00 
+</pre>
+<p>If we want to know the total amount of salary on each customer, then following will be GROUP BY query.</p>
+<pre class="prettyprint notranslate">
+SELECT NAME, SUM(SALARY) as [sum of salary] FROM CUSTOMERS 
+   GROUP BY NAME 
+</pre>
+<p>The above command will produce the following output.</p>
+<pre class="result notranslate">
+NAME        sum of salary 
+Hardik      8500.00 
+kaushik     8500.00 
+Komal       4500.00 
+Muffy       10000.00 
+Ramesh      3500.00 
+</pre>
+<h1>T-SQL - DISTINCT Clause</h1>
+<p>The MS SQL Server <b>DISTINCT</b> keyword is used in conjunction with SELECT statement to eliminate all the duplicate records and fetching only unique records.</p>
+<p>There may be a situation when you have multiple duplicate records in a table. While fetching such records, it makes more sense to fetch only unique records instead of fetching duplicate records.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of DISTINCT keyword to eliminate duplicate records.</p>
+<pre class="result notranslate">
+SELECT DISTINCT column1, column2,.....columnN  
+FROM table_name 
+WHERE [condition] 
+</pre>
+<h2>Example</h2>
+<p>Consider the CUSTOMERS table having the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS            SALARY 
+1   Ramesh     32        Ahmedabad          2000.00 
+2   Khilan     25        Delhi              1500.00 
+3   kaushik    23        Kota               2000.00 
+4   Chaitali   25        Mumbai             6500.00 
+5   Hardik     27        Bhopal             8500.00 
+6   Komal      22        MP                 4500.00 
+7   Muffy      24        Indore             10000.00 
+</pre>
+<p>Let us see how the following SELECT query returns duplicate salary records.</p>
+<pre class="prettyprint notranslate">
+SELECT SALARY FROM CUSTOMERS 
+   ORDER BY SALARY 
+</pre>
+<p>The above command will produce the following output where salary 2000 comes twice which is a duplicate record from the original table.</p>
+<pre class="result notranslate">
+SALARY 
+1500.00 
+2000.00 
+2000.00 
+4500.00 
+6500.00 
+8500.00 
+10000.00
+</pre>
+<p>Let us now use DISTINCT keyword with the above SELECT query and see the result.</p>
+<pre class="prettyprint notranslate">
+SELECT DISTINCT SALARY FROM CUSTOMERS 
+   ORDER BY SALARY 
+</pre>
+<p>The above command produces the following output where we do not have any duplicate entry.</p>
+<pre class="result notranslate">
+SALARY 
+1500.00 
+2000.00 
+4500.00 
+6500.00 
+8500.00 
+10000.00 
+</pre>
+<h1>T-SQL - Joining Tables</h1>
+<p>The MS SQL Server <b>Joins</b> clause is used to combine records from two or more tables in a database. A JOIN is a means for combining fields from two tables by using values common to each.</p>
+<p>Consider the following two tables, (a) CUSTOMERS table is as follows &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS             SALARY 
+1   Ramesh     32        Ahmedabad           2000.00 
+2   Khilan     25        Delhi               1500.00 
+3   kaushik    23        Kota                2000.00 
+4   Chaitali   25        Mumbai              6500.00 
+5   Hardik     27        Bhopal              8500.00 
+6   Komal      22        MP                  4500.00 
+7   Muffy      24        Indore              10000.00 
+</pre>
+<p>(b) Another table is ORDERS as follows &minus;</p>
+<pre class="result notranslate">
+OID  DATE                       CUSTOMER_ID        AMOUNT 
+100  2009-10-08 00:00:00.000    3                  1500.00 
+101  2009-11-20 00:00:00.000    2                  1560.00 
+102  2009-10-08 00:00:00.000    3                  3000.00 
+103  2008-05-20 00:00:00.000    4                  2060.00 
+</pre>
+<p>Let us join these two tables in our SELECT statement as follows &minus;</p>
+<pre class="prettyprint notranslate">
+SELECT ID, NAME, AGE, AMOUNT 
+   FROM CUSTOMERS, ORDERS 
+   WHERE  CUSTOMERS.ID = ORDERS.CUSTOMER_ID 
+OR 
+SELECT A.ID, A.NAME, A.AGE, B.AMOUNT 
+   FROM CUSTOMERS A inner join  ORDERS B on A.ID = B.Customer_ID 
+</pre>
+<p>The above command will produce the following output.</p>
+<pre class="result notranslate">
+ID   NAME      AGE    AMOUNT 
+2    Khilan    25     1560.00 
+3    kaushik   23     1500.00 
+3    kaushik   23     3000.00 
+4    Chaitali  25     2060.00 
+</pre>
+<p>It is noticeable that the join is performed in the WHERE clause. Several operators can be used to join tables, such as =, &lt;, &gt;, &lt;&gt;, &lt;=, &gt;=, !=, BETWEEN, LIKE, and NOT; they can all be used to join tables. However, the most common operator is the equal symbol.</p>
+<p>MS SQL Server Join Types &minus;</p>
+<p>There are different types of joins available in MS SQL Server &minus;</p>
+<ul class="list">
+<li><p><b>INNER JOIN</b> &minus; Returns rows when there is a match in both tables.</p></li>
+<li><p><b>LEFT JOIN</b> &minus; Returns all rows from the left table, even if there are no matches in the right table.</p></li>
+<li><p><b>RIGHT JOIN</b> &minus; Returns all rows from the right table, even if there are no matches in the left table.</p></li>
+<li><p><b>FULL JOIN</b> &minus; Returns rows when there is a match in one of the tables.</p></li>
+<li><p><b>SELF JOIN</b> &minus; This is used to join a table to itself as if the table were two tables, temporarily renaming at least one table in the MS SQL Server statement.</p></li>
+<li><p><b>CARTESIAN JOIN</b> &minus; Returns the Cartesian product of the sets of records from the two or more joined tables.</p></li> 
+</ul>
+<h1>T-SQL - Sub-Queries</h1>
+<p>A <b>sub-query</b> or <b>Inner query</b> or <b>Nested query</b> is a query within another SQL Server query and embedded within the WHERE clause. A sub query is used to return data that will be used in the main query as a condition to further restrict the data to be retrieved.</p>
+<p>Sub queries can be used with the SELECT, INSERT, UPDATE, and DELETE statements along with the operators like =, &lt;, &gt;, &gt;=, &lt;=, IN, BETWEEN, etc.</p>
+<p>There are a few rules that sub queries must follow &minus;</p>
+<ul class="list">
+<li><p>You must enclose a subquery in parenthesis.</p></li>
+<li><p>A subquery must include a SELECT clause and a FROM clause.</p></li>
+<li><p>A subquery can include optional WHERE, GROUP BY, and HAVING clauses.</p></li>
+<li><p>A subquery cannot include COMPUTE or FOR BROWSE clauses.</p></li>
+<li><p>You can include an ORDER BY clause only when a TOP clause is included.</p></li>
+<li><p>You can nest sub queries up to 32 levels.</p></li> 
+</ul>
+<h2>Subqueries with SELECT Statement</h2>
+<h3>Syntax</h3>
+<p>Subqueries are most frequently used with the SELECT statement. Following is the basic syntax.</p>
+<pre class="result notranslate">
+SELECT column_name [, column_name ] 
+FROM   table1 [, table2 ] 
+WHERE  column_name OPERATOR 
+   (SELECT column_name [, column_name ] 
+   FROM table1 [, table2 ] 
+   [WHERE]) 
+</pre>
+<h3>Example</h3>
+<p>Consider the CUSTOMERS table having the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS            SALARY 
+1   Ramesh     32        Ahmedabad          2000.00 
+2   Khilan     25        Delhi              1500.00 
+3   kaushik    23        Kota               2000.00 
+4   Chaitali   25        Mumbai             6500.00 
+5   Hardik     27        Bhopal             8500.00 
+6   Komal      22        MP                 4500.00 
+7   Muffy      24        Indore             10000.00 
+</pre>
+<p>Let us apply the following subquery with SELECT statement.</p>
+<pre class="prettyprint notranslate">
+SELECT *  
+   FROM CUSTOMERS
+   WHERE ID IN (SELECT ID FROM CUSTOMERS WHERE SALARY &gt; 4500)
+</pre>
+<p>The above command will produce the following output.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS          SALARY 
+4   Chaitali   25        Mumbai           6500.00 
+5   Hardik     27        Bhopal           8500.00 
+7   Muffy      24        Indore           10000.00 
+</pre>
+<h2>Subqueries with INSERT Statement</h2>
+<p>Sub queries also can be used with INSERT statements. The INSERT statement uses the data returned from the subquery to insert into another table. The selected data in the subquery can be modified with any of the character, date, or number functions.</p>
+<h3>Syntax</h3>
+<p>Following is the basic syntax.</p>
+<pre class="result notranslate">
+INSERT INTO table_name [ (column1 [, column2 ]) ] 
+   SELECT [ *|column1 [, column2 ] 
+   FROM table1 [, table2 ] 
+   [ WHERE VALUE OPERATOR ]
+</pre>
+<h3>Example</h3>
+<p>Consider a table CUSTOMERS_BKP with similar structure as CUSTOMERS table. Following is the syntax to copy complete CUSTOMERS table into CUSTOMERS_BKP.</p>
+<pre class="prettyprint notranslate">
+INSERT INTO CUSTOMERS_BKP 
+   SELECT * FROM CUSTOMERS  
+   WHERE ID IN (SELECT ID FROM CUSTOMERS)
+</pre>
+<h2>Subqueries with UPDATE Statement</h2>
+<p>The subquery can be used in conjunction with the UPDATE statement. Either single or multiple columns in a table can be updated when using a subquery with the UPDATE statement.</p>
+<h3>Syntax</h3>
+<p>Following is the basic syntax.</p>
+<pre class="result notranslate">
+UPDATE table 
+SET column_name = new_value 
+[ WHERE OPERATOR [ VALUE ] 
+   (SELECT COLUMN_NAME 
+   FROM TABLE_NAME) 
+   [ WHERE) ] 
+</pre>
+<h3>Example</h3>
+<p>Let us assume we have CUSTOMERS_BKP table available which is backup of CUSTOMERS table.</p>
+<p>Following command example updates SALARY by 0.25 times in CUSTOMERS table for all the customers whose AGE is greater than or equal to 27.</p>
+<pre class="prettyprint notranslate">
+UPDATE CUSTOMERS 
+   SET SALARY = SALARY * 0.25 
+   WHERE AGE IN (SELECT AGE FROM CUSTOMERS_BKP WHERE AGE &gt;= 27 )
+</pre>
+<p>This will impact two rows and finally CUSTOMERS table will have the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS             SALARY 
+1   Ramesh     32        Ahmedabad           500.00 
+2   Khilan     25        Delhi               1500.00 
+3   kaushik    23        Kota                2000.00 
+4   Chaitali   25        Mumbai              6500.00 
+5   Hardik     27        Bhopal              2125.00 
+6   Komal      22        MP                  4500.00 
+7   Muffy      24        Indore              10000.00 
+</pre>
+<h2>Subqueries with DELETE Statement</h2>
+<p>The subquery can be used in conjunction with the DELETE statement like with any other statements mentioned above.</p>
+<h3>Syntax</h3>
+<p>Following is the basic syntax.</p>
+<pre class="result notranslate">
+DELETE FROM TABLE_NAME 
+[ WHERE OPERATOR [ VALUE ] 
+   (SELECT COLUMN_NAME 
+   FROM TABLE_NAME) 
+   [ WHERE) ] 
+</pre>
+<h3>Example</h3>
+<p>Let us assume we have CUSTOMERS_BKP table available which is backup of CUSTOMERS table.</p>
+<p>Following command example deletes records from CUSTOMERS table for all the customers whose AGE is greater than or equal to 27.</p>
+<pre class="prettyprint notranslate">
+DELETE FROM CUSTOMERS 
+   WHERE AGE IN (SELECT AGE FROM CUSTOMERS_BKP WHERE AGE &gt;=27 )
+</pre>
+<p>This would impact two rows and finally CUSTOMERS table will have the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS          SALARY 
+2   Khilan     25        Delhi            1500.00 
+3   kaushik    23        Kota             2000.00 
+4   Chaitali   25        Mumbai           6500.00  
+6   Komal      22        MP               4500.00 
+7   Muffy      24        Indore           10000.00 
+</pre>
+<h1>T-SQL - Stored Procedures</h1>
+<p>The MS SQL Server <b>Stored procedure</b> is used to save time to write code again and again by storing the same in database and also get the required output by passing parameters.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of Stored procedure creation.</p>
+<pre class="result notranslate">
+Create procedure &lt;procedure_Name&gt; 
+As 
+Begin 
+&lt;SQL Statement&gt; 
+End 
+Go
+</pre>
+<h2>Example</h2>
+<p>Consider the CUSTOMERS table having the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS            SALARY 
+1   Ramesh     32        Ahmedabad          2000.00 
+2   Khilan     25        Delhi              1500.00 
+3   kaushik    23        Kota               2000.00 
+4   Chaitali   25        Mumbai             6500.00 
+5   Hardik     27        Bhopal             8500.00 
+6   Komal      22        MP                 4500.00 
+7   Muffy      24        Indore             10000.00 
+</pre>
+<p>Following command is an example which would fetch all records from the CUSTOMERS table in Testdb database.</p>
+<pre class="prettyprint notranslate">
+CREATE PROCEDURE SelectCustomerstabledata 
+AS 
+SELECT * FROM Testdb.Customers 
+GO
+</pre>
+<p>The above command will produce the following output.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS           SALARY 
+1   Ramesh     32        Ahmedabad         2000.00 
+2   Khilan     25        Delhi             1500.00 
+3   kaushik    23        Kota              2000.00 
+4   Chaitali   25        Mumbai            6500.00 
+5   Hardik     27        Bhopal            8500.00 
+6   Komal      22        MP                4500.00 
+7   Muffy      24        Indore            10000.00 
+</pre> 
+<h1>T-SQL - Transactions</h1>
+<p>A <b>transaction</b> is a unit of work that is performed against a database. Transactions are units or sequences of work accomplished in a logical order, whether in a manual fashion by a user or automatically by some sort of a database program.</p>
+<p>A transaction is the propagation of one or more changes to the database. For example, if you are creating a record or updating a record or deleting a record from the table, then you are performing a transaction on the table. It is important to control transactions to ensure data integrity and to handle database errors.</p>
+<p>Practically, you will club many SQL queries into a group and you will execute all of them together as a part of a transaction.</p>
+<h2>Properties of Transactions</h2>
+<p>Transactions have the following four standard properties, usually referred to by the acronym ACID &minus;</p>
+<ul class="list">
+<li><p><b>Atomicity</b> &minus; Ensures that all operations within the work unit are completed successfully; otherwise, the transaction is aborted at the point of failure, and previous operations are rolled back to their former state.</p></li>
+<li><p><b>Consistency</b> &minus; Ensures that the database properly changes state upon a successfully committed transaction.</p></li>
+<li><p><b>Isolation</b> &minus; Enables transactions to operate independently of and transparent to each other.</p></li>
+<li><p><b>Durability</b> &minus; Ensures that the result or effect of a committed transaction persists in case of a system failure.</p></li> 
+</ul>
+<h3>Transaction Control</h3>
+<p>There are following commands used to control transactions &minus;</p>
+<ul class="list">
+<li><p><b>COMMIT</b> &minus; To save the changes.</p></li>
+<li><p><b>ROLLBACK</b> &minus; To roll back the changes.</p></li>
+<li><p><b>SAVEPOINT</b> &minus; Creates points within groups of transactions in which to ROLLBACK.</p></li>
+<li><p><b>SET TRANSACTION</b> &minus; Places a name on a transaction.</p></li> 
+</ul>
+<p>Transactional control commands are only used with the DML commands INSERT, UPDATE and DELETE only. They cannot be used while creating tables or dropping them because these operations are automatically committed in the database.</p>
+<p>In order to use transactional control commands in MS SQL Server, we have to begin transaction with ‘begin tran’ or begin transaction command otherwise these commands will not work.</p>
+<h2>COMMIT Command</h2>
+<p>The COMMIT command is the transactional command used to save changes invoked by a transaction to the database. This command saves all transactions to the database since the last COMMIT or ROLLBACK command.</p>
+<h3>Syntax</h3>
+<p>Following is the syntax for COMMIT command.</p>
+<pre class="result notranslate">
+COMMIT; 
+</pre>
+<h3>Example</h3>
+<p>Consider the CUSTOMERS table having the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS           SALARY 
+1   Ramesh     32        Ahmedabad         2000.00 
+2   Khilan     25        Delhi             1500.00 
+3   kaushik    23        Kota              2000.00 
+4   Chaitali   25        Mumbai            6500.00 
+5   Hardik     27        Bhopal            8500.00 
+6   Komal      22        MP                4500.00 
+7   Muffy      24        Indore            10000.00 
+</pre>
+<p>Following command example will delete records from the table having age = 25 and then COMMIT the changes in the database.</p>
+<pre class="prettyprint notranslate">
+Begin Tran 
+DELETE FROM CUSTOMERS 
+   WHERE AGE = 25 
+COMMIT 
+</pre>
+<p>As a result, two rows from the table would be deleted and SELECT statement will produce the following output.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS           SALARY 
+1   Ramesh     32        Ahmedabad         2000.00
+3   kaushik    23        Kota              2000.00
+5   Hardik     27        Bhopal            8500.00 
+6   Komal      22        MP                4500.00 
+7   Muffy      24        Indore            10000.00 
+</pre>
+<h2>ROLLBACK Command</h2>
+<p>The ROLLBACK command is the transactional command used to undo transactions that have not already been saved to the database. This command can only be used to undo transactions since the last COMMIT or ROLLBACK command was issued.</p>
+<h3>Syntax</h3>
+<p>Following is the syntax for ROLLBACK command.</p>
+<pre class="result notranslate">
+ROLLBACK
+</pre>
+<h3>Example</h3>
+<p>Consider the CUSTOMERS table having the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS            SALARY 
+1   Ramesh     32        Ahmedabad          2000.00 
+2   Khilan     25        Delhi              1500.00 
+3   kaushik    23        Kota               2000.00 
+4   Chaitali   25        Mumbai             6500.00 
+5   Hardik     27        Bhopal             8500.00 
+6   Komal      22        MP                 4500.00 
+7   Muffy      24        Indore             10000.00 
+</pre>
+<p>Following command example will delete records from the table having age = 25 and then ROLLBACK the changes in the database.</p>
+<pre class="prettyprint notranslate">
+Begin Tran 
+DELETE FROM CUSTOMERS 
+   WHERE AGE = 25; 
+ROLLBACK
+</pre>
+<p>As a result, delete operation will not impact the table and SELECT statement will produce the following result.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS          SALARY 
+1   Ramesh     32        Ahmedabad        2000.00 
+2   Khilan     25        Delhi            1500.00 
+3   kaushik    23        Kota             2000.00 
+4   Chaitali   25        Mumbai           6500.00 
+5   Hardik     27        Bhopal           8500.00 
+6   Komal      22        MP               4500.00 
+7   Muffy      24        Indore           10000.00 
+</pre>
+<h2>SAVEPOINT Command</h2>
+<p>SAVEPOINT is a point in a transaction when you can roll the transaction back to a certain point without rolling back the entire transaction.</p>
+<h3>Syntax</h3>
+<p>Following is the syntax for SAVEPOINT command.</p>
+<pre class="result notranslate">
+SAVE TRANSACTION SAVEPOINT_NAME
+</pre>
+<p>This command serves only in the creation of a SAVEPOINT among transactional statements. The ROLLBACK command is used to undo a group of transactions.</p>
+<p>Following is the syntax for rolling back to a SAVEPOINT.</p>
+<pre class="result notranslate">
+ROLLBACK TO SAVEPOINT_NAME
+</pre>
+<p>In the following example, we will delete three different records from the CUSTOMERS table. We will have to create a SAVEPOINT before each delete, so that we can ROLLBACK to any SAVEPOINT at any time to return the appropriate data to its original state.</p>
+<h3>Example</h3> 
+<p>Consider the CUSTOMERS table having the following records &minus;</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS          SALARY 
+1   Ramesh     32        Ahmedabad        2000.00 
+2   Khilan     25        Delhi            1500.00 
+3   kaushik    23        Kota             2000.00 
+4   Chaitali   25        Mumbai           6500.00 
+5   Hardik     27        Bhopal           8500.00 
+6   Komal      22        MP               4500.00 
+7   Muffy      24        Indore           10000.00 
+</pre>
+<p>Following are the series of operations &minus;</p>
+<pre class="result notranslate">
+Begin Tran 
+SAVE Transaction SP1 
+Savepoint created. 
+DELETE FROM CUSTOMERS WHERE ID = 1  
+1 row deleted. 
+SAVE Transaction SP2 
+Savepoint created. 
+DELETE FROM CUSTOMERS WHERE ID = 2 
+1 row deleted.
+SAVE Transaction SP3 
+Savepoint created. 
+DELETE FROM CUSTOMERS WHERE ID = 3 
+1 row deleted.
+</pre>
+<p>The three deletions have taken place, however, we have changed our mind and decide to ROLLBACK to the SAVEPOINT that we identified as SP2. Because SP2 was created after the first deletion, the last two deletions are undone &minus;</p>
+<pre class="result notranslate">
+ROLLBACK Transaction SP2 
+Rollback complete. 
+</pre>
+<p>Notice that only the first deletion took place since we rolled back to SP2.</p>
+<pre class="result notranslate">
+SELECT * FROM CUSTOMERS 
+</pre>
+<p>6 rows selected.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS          SALARY 
+2   Khilan     25        Delhi        1500.00 
+3   kaushik    23        Kota             2000.00 
+4   Chaitali   25        Mumbai           6500.00 
+5   Hardik     27        Bhopal           8500.00 
+6   Komal      22        MP               4500.00 
+7   Muffy      24        Indore           10000.00 
+</pre>
+<h2>SET TRANSACTION Command</h2>
+<p>SET TRANSACTION command can be used to initiate a database transaction. This command is used to specify characteristics for the transaction that follows.</p>
+<h3>Syntax</h3>
+<p>Following is the syntax for SET TRANSACTION.</p>
+<pre class="result notranslate">
+SET TRANSACTION ISOLATION LEVEL &lt;Isolationlevel_name&gt;
+</pre>
+<h1>T-SQL - Indexes</h1>
+<p><b>Indexes</b> are special lookup tables that the database search engine can use to speed up data retrieval. Simply put, an <b>index</b> is a pointer to data in a table. An index in a database is very similar to an index at the end of a book.</p>
+<p>For example, if you want to reference all the pages in a book that discuss a certain topic, you first refer to the index, which lists all topics alphabetically and are then referred to one or more specific page numbers.</p>
+<p>An index helps speed up SELECT queries and WHERE clauses, but it slows down data input, with UPDATE and INSERT statements. Indexes can be created or dropped with no effect on the data.</p>
+<p>Creating an index involves the CREATE INDEX statement, which allows you to name the index, to specify the table and which column or columns to index, and to indicate whether the index is in ascending or descending order.</p>
+<p>Indexes can also be unique, similar to the UNIQUE constraint, in that the index prevents duplicate entries in the column or combination of columns on which there's an index.</p>
+<h2>CREATE INDEX Command</h2>
+<p>Following is the basic syntax of CREATE INDEX.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+CREATE INDEX index_name ON table_name
+</pre>
+<h3>Single-Column Indexes</h3>
+<p>A single-column index is one that is created based on only one table column. Following is the basic syntax.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+CREATE INDEX index_name 
+ON table_name (column_name)
+</pre>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+CREATE INDEX singlecolumnindex 
+ON customers (ID)
+</pre>
+<h3>Unique Indexes</h3>
+<p>Unique indexes are used not only for performance, but also for data integrity. A unique index does not allow any duplicate values to be inserted into the table. Following is the basic syntax.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+CREATE UNIQUE INDEX index_name 
+on table_name (column_name)
+</pre>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+CREATE UNIQUE INDEX uniqueindex 
+on customers (NAME)
+</pre>
+<h3>Composite Indexes</h3>
+<p>A composite index is an index on two or more columns of a table. Following is the basic syntax.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+CREATE INDEX index_name on table_name (column1, column2) 
+</pre>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+CREATE INDEX compositeindex 
+on customers (NAME, ID)
+</pre>
+<p>Whether to create a single-column index or a composite index, take into consideration the column(s) that you may use very frequently in a query's WHERE clause as filter conditions.</p>
+<p>Should there be only one column used, a single-column index should be the choice. Should there be two or more columns that are frequently used in the WHERE clause as filters, the composite index would be the best choice.</p>
+<h3>Implicit Indexes</h3>
+<p>Implicit indexes are indexes that are automatically created by the database server when an object is created. Indexes are automatically created for primary key constraints and unique constraints.</p>
+<h2>DROP INDEX Command</h2>
+<p>An index can be dropped using MS SQL SERVER DROP command. Care should be taken when dropping an index because performance may be slowed or improved.</p>
+<h3>Syntax</h3>
+<p>Following is the basic syntax.</p>
+<pre class="result notranslate">
+DROP INDEX tablename.index_name
+</pre>
+<h3>When to Avoid Indexes?</h3>
+<p>Although indexes are intended to enhance the performance of databases, there are times when they should be avoided. The following guidelines indicate when the use of an index should be reconsidered &minus;</p>
+<ul class="list">
+<li><p>Indexes should not be used on small tables.</p></li>
+<li><p>Tables that have frequent, large batch update or insert operations should not be indexed.</p></li>
+<li><p>Indexes should not be used on columns that contain a high number of NULL values.</p></li>
+<li><p>Columns that are frequently manipulated should not be indexed.</p></li> 
+</ul>
+<h1>T-SQL - Functions</h1>
+<p>MS SQL Server has many built-in functions to perform processing on string or numeric data. Following is the list of all useful SQL built-in functions &minus;</p>
+<ul class="list">
+<li><p><b><a target="_blank" href="/sql/sql-count-function.htm">SQL Server COUNT Function</a></b> &minus; The SQL Server COUNT aggregate function is used to count the number of rows in a database table.</p></li>
+<li><p><b><a target="_blank" href="/sql/sql-max-function.htm">SQL Server MAX Function</a></b> &minus; The SQL Server MAX aggregate function allows to select the highest (maximum) value for a certain column.</p></li>
+<li><p><b><a target="_blank" href="/sql/sql-min-function.htm">SQL Server MIN Function</a></b> &minus; The SQL Server MIN aggregate function allows to select the lowest (minimum) value for a certain column.</p></li>
+<li><p><b><a target="_blank" href="/sql/sql-avg-function.htm">SQL Server AVG Function</a></b> &minus; The SQL Server AVG aggregate function selects the average value for certain table column.</p></li>
+<li><p><b><a target="_blank" href="/sql/sql-sum-function.htm">SQL Server SUM Function</a></b> &minus; The SQL Server SUM aggregate function allows selecting the total for a numeric column.</p></li>
+<li><p><b><a target="_blank" href="/sql/sql-sqrt-function.htm">SQL Server SQRT Function</a></b> &minus; This is used to generate a square root of a given number.</p></li>
+<li><p><b><a target="_blank" href="/sql/sql-rand-function.htm">SQL Server RAND Function</a></b> &minus; This is used to generate a random number using SQL command.</p></li>
+<li><p><b><a target="_blank" href="/sql/sql-concat-function.htm">SQL Server CONCAT Function</a></b> &minus; This is used to concatenate multiple parameters to a single parameter.</p></li>
+<li><p><b><a target="_blank" href="/sql/sql-numeric-functions.htm">SQL Server Numeric Functions</a></b> &minus; Complete list of SQL functions required to manipulate numbers in SQL.</p></li>
+<li><p><b><a target="_blank" href="/sql/sql-string-functions.htm">SQL Server String Functions</a></b> &minus; Complete list of SQL functions required to manipulate strings in SQL.</p></li> 
+</ul>
+<h1>T-SQL - String Functions</h1>
+<p>MS SQL Server String functions can be applied on string value or will return string value or numeric data.</p>
+<p>Following is the list of String functions with examples.</p>
+<h2>ASCII()</h2> 
+<p>Ascii code value will come as output for a character expression.</p>
+<h3>Example</h3>
+<p>The following query will give the Ascii code value of a given character.</p>
+<pre class="result notranslate">
+Select ASCII ('word') 
+</pre>
+<h2>CHAR()</h2>
+<p>Character will come as output for given Ascii code or integer.</p>
+<h3>Example</h3>
+<p>The following query will give the character for a given integer.</p>
+<pre class="result notranslate">
+Select CHAR(97)
+</pre>
+<h2>NCHAR()</h2>
+<p>Unicode character will come as output for a given integer.</p>
+<h3>Example</h3>
+<p>The following query will give the Unicode character for a given integer.</p>
+<pre class="result notranslate">
+Select NCHAR(300)
+</pre>
+<h2>CHARINDEX()</h2>
+<p>Starting position for given search expression will come as output in a given string expression.</p>
+<h3>Example</h3>
+<p>The following query will give the starting position of 'G' character for given string expression 'KING'.</p>
+<pre class="result notranslate">
+Select CHARINDEX('G', 'KING')
+</pre>
+<h2>LEFT()</h2>
+<p>Left part of the given string till the specified number of characters will come as output for a given string.</p>
+<h3>Example</h3>
+<p>The following query will give the 'WORL' string as mentioned 4 number of characters for given string 'WORLD'.</p>
+<pre class="result notranslate">
+Select LEFT('WORLD', 4)
+</pre>
+<h2>RIGHT()</h2>
+<p>Right part of the given string till the specified number of characters will come as output for a given string.</p>
+<h3>Example</h3>
+<p>The following query will give the 'DIA' string as mentioned 3 number of characters for given string 'INDIA'.</p>
+<pre class="result notranslate">
+Select RIGHT('INDIA', 3)
+</pre>
+<h2>SUBSTRING()</h2>
+<p>Part of a string based on the start position value and length value will come as output for a given string.</p>
+<h3>Example</h3>
+<p>The following queries will give the 'WOR', 'DIA', 'ING' strings as we mentioned (1,3), (3,3) and (2,3) as start and length values respectively for given strings 'WORLD', 'INDIA' and 'KING'.</p>
+<pre class="result notranslate">
+Select SUBSTRING ('WORLD', 1,3) 
+Select SUBSTRING ('INDIA', 3,3) 
+Select SUBSTRING ('KING', 2,3)
+</pre>
+<h2>LEN()</h2>
+<p>Number of characters will come as output for a given string expression.</p>
+<h3>Example</h3>
+<p>The following query will give the 5 for the 'HELLO' string expression.</p>
+<pre class="result notranslate">
+Select LEN('HELLO') 
+</pre>
+<h2>LOWER()</h2>
+<p>Lowercase string will come as output for a given string data.</p>
+<h3>Example</h3>
+<p>The following query will give the 'sqlserver' for the 'SQLServer' character data.</p>
+<pre class="result notranslate">
+Select LOWER('SQLServer') 
+</pre>
+<h2>UPPER()</h2>
+<p>Uppercase string will come as output for a given string data.</p>
+<h3>Example</h3>
+<p>The following query will give the 'SQLSERVER' for the 'SqlServer' character data.</p>
+<pre class="result notranslate">
+Select UPPER('SqlServer')
+</pre>
+<h2>LTRIM()</h2>
+<p>String expression will come as output for a given string data after removing leading blanks.</p>
+<h3>Example</h3>
+<p>The following query will give the 'WORLD' for the '&nbsp;&nbsp; WORLD' character data.</p>
+<pre class="result notranslate">
+Select LTRIM('   WORLD')
+</pre>
+<h2>RTRIM()</h2>
+<p>String expression will come as output for a given string data after removing trailing blanks.</p>
+<h3>Example</h3>
+<p>The following query will give the 'INDIA' for the 'INDIA &nbsp;&nbsp;' character data.</p>
+<pre class="result notranslate">
+Select RTRIM('INDIA   ') 
+</pre>
+<h2>REPLACE()</h2>
+<p>String expression will come as output for a given string data after replacing all occurrences of specified character with specified character.</p>
+<h3>Example</h3>
+<p>The following query will give the 'KNDKA' string for the 'INDIA' string data.</p>
+<pre class="result notranslate">
+Select REPLACE('INDIA', 'I', 'K')
+</pre>
+<h2>REPLICATE()</h2>
+<p>Repeat string expression will come as output for a given string data with specified number of times.</p>
+<h3>Example</h3>
+<p>The following query will give the 'WORLDWORLD' string for the 'WORLD' string data.</p>
+<pre class="result notranslate">
+Select REPLICATE('WORLD', 2)
+</pre>
+<h2>REVERSE()</h2>
+<p>Reverse string expression will come as output for a given string data.</p>
+<h3>Example</h3>
+<p>The following query will give the 'DLROW' string for the 'WORLD' string data.</p>
+<pre class="result notranslate">
+Select REVERSE('WORLD')
+</pre>
+<h2>SOUNDEX()</h2>
+<p>Returns four-character (SOUNDEX) code to evaluate the similarity of two given strings.</p>
+<h3>Example</h3>
+<p>The following query will give the 'S530' for the 'Smith', 'Smyth' strings.</p>
+<pre class="result notranslate">
+Select SOUNDEX('Smith'), SOUNDEX('Smyth')
+</pre>
+<h2>DIFFERENCE()</h2>
+<p>Integer value will come as output of given two expressions.</p>
+<h3>Example</h3>
+<p>The following query will give the 4 for the 'Smith', 'Smyth' expressions.</p>
+<pre class="result notranslate">
+Select Difference('Smith','Smyth') 
+</pre>
+<p><b>Note</b> &minus; If the output value is 0 it indicates weak or no similarity between give 2 expressions.</p>
+<h2>SPACE()</h2>
+<p>String will come as output with the specified number of spaces.</p>
+<h3>Example</h3>
+<p>The following query will give the 'I LOVE INDIA'.</p>
+<pre class="result notranslate">
+Select 'I'&plus;space(1)&plus;'LOVE'&plus;space(1)&plus;'INDIA'
+</pre>
+<h2>STUFF()</h2>
+<p>String expression will come as output for a given string data after replacing from starting character till the specified length with specified character.</p>
+<h3>Example</h3>
+<p>The following query will give the 'AIJKFGH' string for the 'ABCDEFGH' string data as per given starting character and length as 2 and 4 respectively and 'IJK' as specified target string.</p>
+<pre class="result notranslate">
+Select STUFF('ABCDEFGH', 2,4,'IJK') 
+</pre>
+<h2>STR()</h2>
+<p>Character data will come as output for the given numeric data.</p>
+<h3>Example</h3>
+<p>The following query will give the 187.37 for the given 187.369 based on specified length as 6 and decimal as 2.</p>
+<pre class="result notranslate">
+Select STR(187.369,6,2) 
+</pre>
+<h2>UNICODE()</h2>
+<p>Integer value will come as output for the first character of given expression.</p>
+<h3>Example</h3>
+<p>The following query will give the 82 for the 'RAMA' expression.</p>
+<pre class="result notranslate">
+Select UNICODE('RAMA') 
+</pre>
+<h2>QUOTENAME()</h2>
+<p>Given string will come as output with the specified delimiter.</p>
+<h3>Example</h3>
+<p>The following query will give the "RAMA" for the given 'RAMA' string as we specified double quote as delimiter.</p>
+<pre class="result notranslate">
+Select QUOTENAME('RAMA','"') 
+</pre>
+<h2>PATINDEX()</h2>
+<p>Starting position of the first occurrence from the given expression as we specified 'I' position is required.</p>
+<h3>Example</h3>
+<p>The following query will give the 1 for the 'INDIA'.</p>
+<pre class="result notranslate">
+Select PATINDEX('I%','INDIA') 
+</pre>
+<h2>FORMAT()</h2>
+<p>Given expression will come as output with the specified format.</p>
+<h3>Example</h3>
+<p>The following query will give the ' Monday, November 16, 2015' for the getdate function as per specified format with 'D' refers weekday name.</p>
+<pre class="result notranslate">
+SELECT FORMAT ( getdate(), 'D') 
+</pre>
+<h2>CONCAT()</h2> 
+<p>Single string will come as output after concatenating the given parameter values.</p>
+<h3>Example</h3>
+<p>The following query will give the 'A,B,C' for the given parameters.</p>
+<pre class="result notranslate">
+Select CONCAT('A',',','B',',','C') 
+</pre>
+<h1>T-SQL - Date Functions</h1>
+<p>Following is the list of date functions in MS SQL Server.</p>
+<h2>GETDATE()</h2>
+<p>It will return the current date along with time.</p>
+<h3>Syntax</h3>
+<p>Syntax for the above function &minus;</p>
+<pre class="result notranslate">
+GETDATE()
+</pre>
+<h3>Example</h3>
+<p>The following query will return the current date along with time in MS SQL Server.</p>
+<pre class="prettyprint notranslate">
+Select getdate() as currentdatetime
+</pre>
+<h2>DATEPART()</h2>
+<p>It will return the part of date or time.</p>
+<h3>Syntax</h3>
+<p>Syntax for the above function &minus;</p>
+<pre class="result notranslate">
+DATEPART(datepart, datecolumnname)
+</pre>
+<h3>Example</h3>
+<p><b>Example 1</b> &minus; The following query will return the part of current date in MS SQL Server.</p>
+<pre class="prettyprint notranslate">
+Select datepart(day, getdate()) as currentdate
+</pre>
+<p><b>Example 2</b> &minus; The following query will return the part of current month in MS SQL Server.</p>
+<pre class="prettyprint notranslate">
+Select datepart(month, getdate()) as currentmonth
+</pre>
+<h2>DATEADD()</h2>
+<p>It will display the date and time by add or subtract date and time interval.</p>
+<h3>Syntax</h3>
+<p>Syntax for the above function &minus;</p>
+<pre class="result notranslate">
+DATEADD(datepart, number, datecolumnname)
+</pre>
+<h3>Example</h3>
+<p>The following query will return the after 10 days date and time from the current date and time in MS SQL Server.</p>
+<pre class="prettyprint notranslate">
+Select dateadd(day, 10, getdate()) as after10daysdatetimefromcurrentdatetime 
+</pre>
+<h2>DATEDIFF()</h2>
+<p>It will display the date and time between two dates.</p>
+<h3>Syntax</h3>
+<p>Syntax for the above function &minus;</p>
+<pre class="result notranslate">
+DATEDIFF(datepart, startdate, enddate)
+</pre>
+<h3>Example</h3>
+<p>The following query will return the difference of hours between 2015-11-16 and 2015-11-11 dates in MS SQL Server.</p>
+<pre class="prettyprint notranslate">
+Select datediff(hour, 2015-11-16, 2015-11-11) as 
+differencehoursbetween20151116and20151111 
+</pre>
+<h2>CONVERT()</h2>
+<p>It will display the date and time in different formats.</p>
+<h3>Syntax</h3>
+<p>Syntax for the above function &minus;</p>
+<pre class="result notranslate">
+CONVERT(datatype, expression, style)
+</pre>
+<h3>Example</h3>
+<p>The following queries will return the date and time in different format in MS SQL Server.</p>
+<pre class="prettyprint notranslate">
+SELECT CONVERT(VARCHAR(19),GETDATE()) 
+SELECT CONVERT(VARCHAR(10),GETDATE(),10) 
+SELECT CONVERT(VARCHAR(10),GETDATE(),110)
+</pre>
+<h1>T-SQL - Numeric Functions</h1>
+<p>MS SQL Server numeric functions can be applied on numeric data and will return numeric data.</p>
+<p>Following is the list of Numeric functions with examples.</p>
+<h2>ABS()</h2>
+<p>Absolute value will come as output for numeric expression.</p>
+<h3>Example</h3>
+<p>The following query will give the absolute value.</p>
+<pre class="result notranslate">
+Select ABS(-22) 
+</pre>
+<h2>ACOS()</h2>
+<p>Arc cosine value will come as output for the specified numeric expression.</p>
+<h3>Example</h3>
+<p>The following query will give the arc cosine value of 0.</p>
+<pre class="result notranslate">
+Select ACOS(0) 
+</pre>
+<h2>ASIN()</h2>
+<p>Arc sine value will come as output for the specified numeric expression.</p>
+<h3>Example</h3>
+<p>The following query will give the arc sine value of 0.</p>
+<pre class="result notranslate">
+Select ASIN(0)
+</pre>
+<h2>ATAN()</h2>
+<p>Arc tangent value will come as output for the specified numeric expression.</p>
+<h3>Example</h3>
+<p>The following query will give the arc tangent value of 0.</p>
+<pre class="result notranslate">
+Select ATAN(0) 
+</pre>
+<h2>ATN2()</h2>
+<p>Arc tangent value in all four quadrants will come as output for the specified numeric expression.</p>
+<h3>Example</h3>
+<p>The following query will give the arc tangent value in all four quadrants of 0.</p>
+<pre class="result notranslate">
+Select ATN2(0, -1) 
+</pre>
+<p>Consider the CUSTOMERS table having the following records.</p>
+<pre class="result notranslate">
+ID  NAME       AGE       ADDRESS             SALARY 
+1   Ramesh     32        Ahmedabad           2000.00 
+2   Khilan     25        Delhi               1500.00 
+3   kaushik    23        Kota                2000.00 
+4   Chaitali   25        Mumbai              6500.00 
+5   Hardik     27        Bhopal              8500.00 
+6   Komal      22        MP                  4500.00 
+7   Muffy      24        Indore              10000.00 
+</pre>
+<h2>BETWEEN()</h2>
+<p>If the values exist between given two expressions then those will be come as output.</p>
+<h3>Example</h3>
+<p>The following query will give the following output.</p>
+<pre class="result notranslate">
+SELECT salary from customers where salary between 2000 and 8500
+</pre>
+<h3>Output</h3>
+<pre class="result notranslate">
+salary 
+2000.00 
+2000.00 
+6500.00 
+8500.00 
+4500.00
+</pre>
+<h2>MIN()</h2>
+<p>Minimum value will come as output from the given expression.</p>
+<h3>Example</h3>
+<p>The following query will give '1500.00' for the given 'salary' expression from the customers table.</p>
+<pre class="result notranslate">
+Select MIN(salary)from CUSTOMERS
+</pre>
+<h2>MAX()</h2>
+<p>Maximum value will come as output from the given expression.</p>
+<h3>Example</h3>
+<p>The following query will give '10000.00' for the given 'salary' expression from the customers table.</p>
+<pre class="result notranslate">
+Select MAX(salary)from CUSTOMERS
+</pre>
+<h2>SQRT()</h2>
+<p>Square root of the given numeric expression will come as output.</p>
+<h3>Example</h3>
+<p>The following query will give 2 for the given 4 numeric expression.</p>
+<pre class="result notranslate">
+Select SQRT(4) 
+</pre>
+<h2>PI()</h2>
+<p>PI value will come as output.</p>
+<h3>Example</h3>
+<p>The following query will give 3.14159265358979 for the PI value.</p>
+<pre class="result notranslate">
+Select PI() 
+</pre>
+<h2>CEILING()</h2>
+<p>Given value will come as output after rounding the decimals which is the next highest value.</p>
+<h3>Example</h3>
+<p>The following query will give 124 for the given 123.25 value.</p>
+<pre class="result notranslate">
+Select CEILING(123.25) 
+</pre>
+<h2>FLOOR()</h2>
+<p>Given value will come as output after rounding the decimals which is less than or equal to the expression.</p>
+<h3>Example</h3>
+<p>The following query will give 123 for the given 123.25 value.</p>
+<pre class="result notranslate">
+Select FLOOR(123.25) 
+</pre>
+<h2>LOG()</h2>
+<p>Natural logarithm of the  given expression will come as output.</p>
+<h3>Example</h3>
+<p>The following query will give 0 for the given 1 value.</p>
+<pre class="result notranslate">
+Select LOG(1) 
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/t_sql/t_sql_numeric_functions.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/t_sql/t_sql_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

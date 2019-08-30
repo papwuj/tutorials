@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>DOM - XMLHttpRequest Object - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="DOM - XMLHttpRequest Object - XMLHttpRequest object establishes a medium between a web page's client-side and server-side that can be used by the many scripting languages like JavaScript, JS"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/dom/dom_xmlhttprequest_object.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#3d87c8;
+}
+a.demo {
+    background:#3d87c8;
+}
+li.heading {
+    background:#3d87c8;
+}
+.course-box{background:#3d87c8}
+.home-intro-sub p{color:#3d87c8}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/dom/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/dom/images/dom-mini-logo.jpg" alt="XML DOM Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">XML DOM Basics</li>
+<li><a href="/dom/index.htm">XML DOM - Home</a></li>
+<li><a href="/dom/xml_dom_overview.htm">XML DOM - Overview</a></li>
+<li><a href="/dom/xml_dom_model.htm">XML DOM - Model</a></li>
+<li><a href="/dom/xml_dom_nodes.htm">XML DOM - Nodes</a></li>
+<li><a href="/dom/xml_dom_node_tree.htm">XML DOM - Node Tree</a></li>
+<li><a href="/dom/xml_dom_methods.htm">XML DOM - Methods</a></li>
+<li><a href="/dom/xml_dom_loading.htm">XML DOM - Loading</a></li>
+<!--<li><a href="/dom/xml_dom_parser.htm">XML DOM Parser</a></li>-->
+<li><a href="/dom/xml_dom_traversing.htm">XML DOM - Traversing</a></li>
+<li><a href="/dom/xml_dom_navigation.htm">XML DOM - Navigation</a></li>
+<li><a href="/dom/xml_dom_accessing.htm">XML DOM - Accessing</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">XML DOM Operations</li>
+<li><a href="/dom/xml_dom_get_node.htm">XML DOM - Get Node</a></li>
+<li><a href="/dom/xml_dom_set_node.htm">XML DOM - Set Node</a></li>
+<li><a href="/dom/xml_dom_create_node.htm">XML DOM - Create Node</a></li>
+<li><a href="/dom/xml_dom_add_node.htm">XML DOM - Add Node</a></li>
+<li><a href="/dom/xml_dom_replace_node.htm">XML DOM - Replace Node</a></li>
+<li><a href="/dom/xml_dom_remove_node.htm">XML DOM - Remove Node</a></li>
+<li><a href="/dom/xml_dom_clone_node.htm">XML DOM - Clone Node</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">XML DOM Objects</li>
+<li><a href="/dom/dom_node_object.htm">DOM - Node Object</a></li>
+<li><a href="/dom/dom_nodelist_object.htm">DOM - NodeList Object</a></li>
+<li><a href="/dom/dom_namednodemap_object.htm">DOM - NamedNodeMap Object</a></li>
+<li><a href="/dom/dom_domimplementation_object.htm">DOM - DOMImplementation</a></li>
+<li><a href="/dom/dom_documenttype_object.htm">DOM - DocumentType Object</a></li>
+<li><a href="/dom/dom_processinginstruction_object.htm">DOM - ProcessingInstruction</a></li>
+<li><a href="/dom/dom_entity_object.htm">DOM - Entity Object</a></li>
+<li><a href="/dom/dom_entityreference_object.htm">DOM - EntityReference Object</a></li>
+<li><a href="/dom/dom_notation_object.htm">DOM - Notation Object</a></li>
+<li><a href="/dom/dom_element_object.htm">DOM - Element Object</a></li>
+<li><a href="/dom/dom_attribute_object.htm">DOM - Attribute Object</a></li>
+<li><a href="/dom/dom_cdatasection_object.htm">DOM - CDATASection Object</a></li>
+<li><a href="/dom/dom_comment_object.htm">DOM - Comment Object</a></li>
+<li><a href="/dom/dom_xmlhttprequest_object.htm">DOM - XMLHttpRequest Object</a></li>
+<li><a href="/dom/dom_domexception_object.htm">DOM - DOMException Object</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">XML DOM Useful Resources</li>
+<li><a href="/dom/xml_dom_quick_guide.htm">XML DOM - Quick Guide</a></li>
+<li><a href="/dom/xml_dom_useful_resources.htm">XML DOM - Useful Resources</a></li>
+<li><a href="/dom/xml_dom_discussion.htm">XML DOM - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>DOM - XMLHttpRequest Object</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/dom/dom_comment_object.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/dom/dom_domexception_object.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>XMLHttpRequest object establishes a medium between a web page's client-side and server-side that can be used by the many scripting languages like JavaScript, JScript, VBScript and other web browser to transfer and manipulate the XML data.</p>
+<p>With the XMLHttpRequest object it is possible to update the part of a web page without reloading the whole page, request and receive the data from a server after the page has been loaded and send the data to the server.</p>
+<h2>Syntax</h2>
+<p>An XMLHttpRequest object can be instatiated as follows &minus;</p>
+<pre class="result notranslate">
+xmlhttp = new XMLHttpRequest();
+</pre>
+<p>To handle all browsers, including IE5 and IE6, check if the browser supports the XMLHttpRequest object as below &minus;</p>
+<pre class="prettyprint notranslate">
+if(window.XMLHttpRequest) // for Firefox, IE7+, Opera, Safari, ... {
+   xmlHttp = new XMLHttpRequest();
+} else if(window.ActiveXObject) // for Internet Explorer 5 or 6 {
+   xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+}
+</pre>
+<p>Examples to load an XML file using the XMLHttpRequest object can be referred <a href="/dom/xml_dom_loading.htm">here</a></p>
+<h2>Methods</h2>
+<p>The following table lists the methods of the XMLHttpRequest object &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">1</td>
+<td><p><b>abort()</b></p><p>Terminates the current request made.</p></td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">2</td>
+<td><p><b>getAllResponseHeaders()</b></p><p>Returns all the response headers as a string, or null if no response has been received.</p></td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">3</td>
+<td><p><b>getResponseHeader()</b></p><p>Returns the string containing the text of the specified header, or null if either the response has not yet been received or the header doesn't exist in the response.</p></td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">4</td>
+<td><p><b>open(method,url,async,uname,pswd)</b></p><p>It is used in conjugation with the Send method to send the request to the server. The open method specifies the following parameters &minus;</p>
+<ul class="list">
+<li><p><b>method</b> &minus; specifies the type of request i.e. Get or Post.</p></li>
+<li><p><b>url</b> &minus; it is the location of the file.</p></li>
+<li><p><b>async</b> &minus; indicates how the request should be handled. It is boolean value. where,</p>
+<ul class="list">
+<li><p>&apos;true&apos; means the request is processed asynchronously without waiting for a Http response.</p></li>
+<li><p>&apos;false&apos; means the request is processed synchronously after receiving the Http response.</p></li>
+</ul>
+</li>
+<li><p><b>uname</b> &minus; is the username.</p></li>
+<li><p><b>pswd</b> &minus; is the password.</p></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">5</td>
+<td><p><b>send(string)</b></p><p>It is used to send the request working in conjugation with the Open method.</p></td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">6</td>
+<td><p><b>setRequestHeader()</b></p><p>Header contains the label/value pair to which the request is sent.</p></td>
+</tr>
+</table>
+<h2>Attributes</h2>
+<p>The following table lists the attributes of the XMLHttpRequest object &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th>S.No.</th>
+<th style="text-align:center;">Attribute &amp; Description</th>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">1</td>
+<td><p><b>onreadystatechange</b></p><p>It is an event based property which is set on at every state change.</p></td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">2</td>
+<td><p><b>readyState</b></p><p>This describes the present state of the XMLHttpRequest object. There are five possible states of the readyState property &minus;</p>
+<ul class="list">
+<li><p><b>readyState = 0</b> &minus; means request is yet to initialize.</p></li>
+<li><p><b>readyState = 1</b> &minus; request is set.</p></li>
+<li><p><b>readyState = 2</b> &minus; request is sent.</p></li>
+<li><p><b>readyState = 3</b> &minus; request is processing.</p></li>
+<li><p><b>readyState = 4</b> &minus; request is completed.</p></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">3</td>
+<td><p><b>responseText</b></p><p>This property is used when the response from the server is a text file.</p></td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">4</td>
+<td><p><b>responseXML</b></p><p>This property is used when the response from the server is an XML file.</p></td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">5</td>
+<td><p><b>status</b></p>Gives the status of the Http request object as a number. For example, "404" or "200".</td>
+</tr>
+<tr>
+<td style="text-align:center;vertical-align:middle;">6</td>
+<td><p><b>statusText</b></p><p>Gives the status of the Http request object as a string. For example, "Not Found" or "OK".</p></td>
+</tr>
+</table>
+<h2>Examples</h2>
+<p><i>node.xml</i> contents are as below &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0"?&gt;
+&lt;Company&gt;
+   &lt;Employee category = "Technical"&gt;
+      &lt;FirstName&gt;Tanmay&lt;/FirstName&gt;
+      &lt;LastName&gt;Patil&lt;/LastName&gt;
+      &lt;ContactNo&gt;1234567890&lt;/ContactNo&gt;
+      &lt;Email&gt;tanmaypatil@xyz.com&lt;/Email&gt;
+   &lt;/Employee&gt;
+   
+   &lt;Employee category = "Non-Technical"&gt;
+      &lt;FirstName&gt;Taniya&lt;/FirstName&gt;
+      &lt;LastName&gt;Mishra&lt;/LastName&gt;
+      &lt;ContactNo&gt;1234667898&lt;/ContactNo&gt;
+      &lt;Email&gt;taniyamishra@xyz.com&lt;/Email&gt;
+   &lt;/Employee&gt;
+   
+   &lt;Employee category = "Management"&gt;
+      &lt;FirstName&gt;Tanisha&lt;/FirstName&gt;
+      &lt;LastName&gt;Sharma&lt;/LastName&gt;
+      &lt;ContactNo&gt;1234562350&lt;/ContactNo&gt;
+      &lt;Email&gt;tanishasharma@xyz.com&lt;/Email&gt;
+   &lt;/Employee&gt;
+&lt;/Company&gt;
+</pre>
+<h3>Retrieve specific information of a resource file</h3>
+<p>Following example demonstrates how to retrive specific information of a resource file using the method <i>getResponseHeader()</i> and the property <i>readState</i>.</p>
+<pre class="prettyprint notranslate">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta http-equiv = "content-type" content = "text/html; charset = iso-8859-2" /&gt;
+         &lt;script&gt;
+            function loadXMLDoc() {
+               var xmlHttp = null;
+               if(window.XMLHttpRequest) // for Firefox, IE7+, Opera, Safari, ... {
+                  xmlHttp = new XMLHttpRequest();
+               }
+               else if(window.ActiveXObject) // for Internet Explorer 5 or 6 {
+                  xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+               }
+
+               return xmlHttp;
+            }
+
+            function makerequest(serverPage, myDiv) {
+               var request =  loadXMLDoc();
+               request.open("GET", serverPage);
+               request.send(null);
+
+               request.onreadystatechange = function() {
+                  if (request.readyState == 4) {
+                     document.getElementById(myDiv).innerHTML = request.getResponseHeader("Content-length");
+                  }
+               }
+            }
+      &lt;/script&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;button type = "button" onclick="makerequest('/dom/node.xml', 'ID')"&gt;Click me to get the specific ResponseHeader&lt;/button&gt;
+      &lt;div id = "ID"&gt;Specific header information is returned.&lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Execution</h3>
+<p>Save this file as <i>elementattribute_removeAttributeNS.htm</i> on the server path (this file and node_ns.xml should be on the same path in your server). We will get the output as shown below &minus;</p>
+<pre class="result notranslate">
+Before removing the attributeNS: en
+After removing the attributeNS: null
+</pre>
+<h3>Retrieve header infomation of a resource file</h3>
+<p>Following example demonstrates how to retrieve the header information of a resource file, using the method <b><i>getAllResponseHeaders()</i></b> using the property <b><i>readyState</i></b>.</p>
+<pre class="prettyprint notranslate">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;meta http-equiv="content-type" content="text/html; charset=iso-8859-2" /&gt;
+      &lt;script&gt;
+         function loadXMLDoc() {
+            var xmlHttp = null;
+
+            if(window.XMLHttpRequest) // for Firefox, IE7+, Opera, Safari, ... {
+               xmlHttp = new XMLHttpRequest();
+            } else if(window.ActiveXObject) //  for Internet Explorer 5 or 6 {
+               xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            return xmlHttp;
+         }
+
+         function makerequest(serverPage, myDiv) {
+            var request =  loadXMLDoc();
+            request.open("GET", serverPage);
+            request.send(null);
+            request.onreadystatechange = function() {
+               if (request.readyState == 4) {
+                  document.getElementById(myDiv).innerHTML = request.getAllResponseHeaders();
+               }
+            }
+         }
+      &lt;/script&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;button type = "button" onclick = "makerequest('/dom/node.xml', 'ID')"&gt;
+         Click me to load the AllResponseHeaders&lt;/button&gt;
+      &lt;div id = "ID"&gt;&lt;/div&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Execution</h3>
+<p>Save this file as <i>http_allheader.html</i> on the server path (this file and node.xml should be on the same path in your server). We will get the output as shown below (depends on the browser) &minus;</p>
+<pre class="result notranslate">
+Date: Sat, 27 Sep 2014 07:48:07 GMT Server: Apache Last-Modified: 
+      Wed, 03 Sep 2014 06:35:30 GMT Etag: "464bf9-2af-50223713b8a60" Accept-Ranges: bytes Vary: Accept-Encoding,User-Agent 
+      Content-Encoding: gzip Content-Length: 256 Content-Type: text/xml 
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/dom/dom_comment_object.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/dom/dom_domexception_object.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

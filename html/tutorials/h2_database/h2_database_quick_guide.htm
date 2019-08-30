@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>H2 Database - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="H2 Database - Quick Guide - H2 is an open-source lightweight Java database. It can be embedded in Java applications or run in the client-server mode. Mainly, H2 database can be configured "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/h2_database/h2_database_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#036db0;
+}
+a.demo {
+    background:#036db0;
+}
+li.heading {
+    background:#036db0;
+}
+.course-box{background:#036db0}
+.home-intro-sub p{color:#036db0}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/h2_database/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/h2_database/images/h2-database-mini-logo.jpg" alt="H2 Database Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">H2 Database Tutorial</li>
+<li><a href="/h2_database/index.htm">H2 Database - Home</a></li>
+<li><a href="/h2_database/h2_database_introduction.htm">H2 Database - Introduction</a></li>
+<li><a href="/h2_database/h2_database_installation.htm">H2 Database - Installation</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">H2 Database - Data Manipulation</li>
+<li><a href="/h2_database/h2_database_select.htm">H2 Database - Select</a></li>
+<li><a href="/h2_database/h2_database_insert.htm">H2 Database - Insert</a></li>
+<li><a href="/h2_database/h2_database_update.htm">H2 Database - Update</a></li>
+<li><a href="/h2_database/h2_database_delete.htm">H2 Database - Delete</a></li>
+<li><a href="/h2_database/h2_database_backup.htm">H2 Database - Backup</a></li>
+<li><a href="/h2_database/h2_database_call.htm">H2 Database - Call</a></li>
+<li><a href="/h2_database/h2_database_explain.htm">H2 Database - Explain</a></li>
+<li><a href="/h2_database/h2_database_merge.htm">H2 Database - Merge</a></li>
+<li><a href="/h2_database/h2_database_show.htm">H2 Database - Show</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">H2 Database - Data Definition</li>
+<li><a href="/h2_database/h2_database_create.htm">H2 Database - Create</a></li>
+<li><a href="/h2_database/h2_database_alter.htm">H2 Database - Alter</a></li>
+<li><a href="/h2_database/h2_database_drop.htm">H2 Database - Drop</a></li>
+<li><a href="/h2_database/h2_database_truncate.htm">H2 Database - Truncate</a></li>
+<li><a href="/h2_database/h2_database_commit.htm">H2 Database - Commit</a></li>
+<li><a href="/h2_database/h2_database_grant.htm">H2 Database - Grant</a></li>
+<li><a href="/h2_database/h2_database_savepoint.htm">H2 Database - Savepoint</a></li>
+<li><a href="/h2_database/h2_database_rollback.htm">H2 Database - Rollback</a></li>
+<li><a href="/h2_database/h2_database_jdbc_connection.htm">H2 Database - JDBC Connection</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">H2 Database Useful Resources</li>
+<li><a href="/h2_database/h2_database_quick_guide.htm">H2 Database - Quick Guide</a></li>
+<li><a href="/h2_database/h2_database_useful_resources.htm">H2 Database - Useful Resources</a></li>
+<li><a href="/h2_database/h2_database_discussion.htm">H2 Database - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>H2 Database - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/h2_database/h2_database_jdbc_connection.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/h2_database/h2_database_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>H2 Database - Introduction</h1>
+<p>H2 is an open-source lightweight Java database. It can be embedded in Java applications or run in the client-server mode. Mainly, H2 database can be configured to run as inmemory database, which means that data will not persist on the disk. Because of embedded database it is not used for production development, but mostly used for development and testing.</p>
+<p>This database can be used in embedded mode or in server mode. Following are the main features of H2 database &minus;</p>
+<ul class="list">
+<li>Extremely fast, open source, JDBC API</li>
+<li>Available in embedded and server modes; in-memory databases</li>
+<li>Browser-based Console application</li>
+<li>Small footprint &minus; Around 1.5MB jar file size</li>
+</ul>
+<h2>Features of H2 Database</h2>
+<p>The main features of H2 Database are as follows &minus;</p>
+<ul class="list">
+<li><p>It is an extremely fast database engine.</p></li>
+<li><p>H2 is open source and written in Java.</p></li>
+<li><p>It supports standard SQL and JDBC API. It can use PostgreSQL ODBC driver too.</p></li>
+<li><p>It has embedded and Server mode.</p></li>
+<li><p>H2 supports <b>clustering</b> and <b>multi-version concurrency</b>.</p></li>
+<li><p>It has strong security features.</p></li>
+</ul>
+<h2>Additional Features</h2>
+<p>Following are some additional features of H2 Database &minus;</p>
+<ul class="list">
+<li><p>H2 is a disk-based or in-memory databases and tables, read-only database support, temporary tables.</p></li>
+<li><p>H2 provides transaction support (read committed), 2-phase-commit multiple connections, table level locking.</p></li>
+<li><p>H2 is a cost-based optimizer, using a genetic algorithm for complex queries, zeroadministration.</p></li>
+<li><p>H2 contains scrollable and updatable result set support, large result set, external result sorting, functions can return a result set.</p></li>
+<li><p>H2 supports encrypted database (AES), SHA-256 password encryption, encryption functions, and SSL.</p></li>
+</ul>
+<h2>Components in H2 Database</h2>
+<p>In order to use H2 Database, you need to have the following components &minus;</p>
+<ul class="list">
+<li>A web browser</li>
+<li>A H2 console server</li>
+</ul>
+<p>This is a client/server application, so both server and client (a browser) are required to run it.</p>
+<h1>H2 Database - Installation</h1>
+<p>H2 is a database written in Java. We can easily embed this database to our application by using JDBC. We can run this on many different platforms or any version of Java Runtime Environment. However, before installing the database, there should be Java installed in the system.</p>
+<h2>Verify Java Installation</h2>
+<p>If JDK is installed in the system, try the following command to verify the Java version.</p>
+<pre class="result notranslate">
+java –version
+</pre>
+<p>If JDk is successfully installed in the system, then we will get the following output.</p>
+<pre class="result notranslate">
+java version "1.8.0_91" 
+Java(TM) SE Runtime Environment (build 1.8.0_91-b14) 
+Java HotSpot(TM) 64-Bit Server VM (build 25.91-b14, mixed mode)
+</pre>
+<p>If JDK is not installed in the system, then visit the following link to <a href="/java/java_environment_setup.htm">Install JDK</a>.</p>
+<h2>Install H2 Database</h2>
+<p>We can run this database on many different platforms. In this chapter, we will learn about H2 Database installation on Windows.</p>
+<p>Following are the steps to install H2 Database on Windows operating system.</p>
+<h3>Step 1: Download H2 Setup File</h3>
+<p>Download the latest version of <a target="_blank" rel="nofollow" href="https://www.h2database.com/html/download.html">H2 Database</a> from the given link. In this link, you will get the latest version of H2 database in two types. One is Windows Installer type (that is .exe file) and second is Platform-Independent zip file for other operating systems.</p>
+<p>Click the Windows installer for downloading the Windows supportable H2 database after downloading the .exe file. In this case, we are using H2 Database with the version 1.4.192.</p>
+<h3>Step 2: Install H2 Database</h3>
+<p>After downloading we get the H2 Windows installer file (i.e. h2-setup-yyyy-mm-dd.exe) in the Downloads directory. To start the installation process of H2 Database, double click on the installer file.</p>
+<p>The following screen is the first step in the installation process. Provide a path where we want to install the H2 database server as shown in the following screenshot.</p>
+<img src="/h2_database/images/install_h2.jpg" alt="Install H2 Database" />
+<p>As seen in the above screenshot, by default it will take <b>C:\ProgramFiles (x86)\H2</b> as the destination folder. Click next to proceed to the next step. The following screen pops up.</p>
+<img src="/h2_database/images/destination.jpg" alt="Destination" />
+<p>In the above screenshot, click the Install button to start the installation process. After installation, we get the following screenshot.</p>
+<img src="/h2_database/images/installation_button.jpg" alt="Installation Button" />
+<p>Click Finish to complete the installation process.</p>
+<h3>Step 3: Verify H2 Database Installation</h3>
+<p>After installation, let us verify the database installation in the system. Click Windows &rarr; type H2 Console &rarr; Click H2 console icon. Connect to the URL <b>http://localhost:8082</b>. At the time of connecting, the H2 database will ask for database registration as shown in the following screenshot.</p>
+<img src="/h2_database/images/database_installation.jpg" alt="Database Installation" />
+<p>Fill all the details in the above dialog box such as Saved Settings, Settings Name, Driver Class, JDBC URL, User Name, and Password. In the JDBC URL, specify the database is located and the database name. User Name and Password are the fields for user name and password of the database. Click Connect.</p>
+<p>The Database welcome page pops up as shown in the following screenshot.</p>
+<img src="/h2_database/images/pop_ups.jpg" alt="Pop ups" />
+<h1>H2 Database - Select</h1>
+<p>Select command is used to fetch record data from a table or multiple tables. If we design a select query, then it returns data in the form of result table called <b>result sets</b>.</p>
+<h2>Syntax</h2>
+<p>The basic syntax of SELECT statement is as follows &minus;</p>
+<pre class="result notranslate">
+SELECT [ TOP term ] [ DISTINCT | ALL ] selectExpression [,...] 
+FROM tableExpression [,...] [ WHERE expression ] 
+[ GROUP BY expression [,...] ] [ HAVING expression ] 
+[ { UNION [ ALL ] | MINUS | EXCEPT | INTERSECT } select ] [ ORDER BY order [,...] ] 
+[ [ LIMIT expression ] [ OFFSET expression ] [ SAMPLE_SIZE rowCountInt ] ] 
+[ FOR UPDATE ]
+</pre>
+<p>To fetch all the available fields, use the following syntax.</p>
+<pre class="result notranslate">
+SELECT * FROM table_name;
+</pre>
+<h2>Example</h2>
+<p>Consider the CUSTOMER table having the following records &minus;</p>
+<pre class="result notranslate">
++----+----------+-----+-----------+----------+ 
+| ID | NAME     | AGE | ADDRESS   | SALARY   | 
++----+----------+-----+-----------+----------+ 
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 | 
+|  2 | Khilan   |  25 | Delhi     |  1500.00 | 
+|  3 | kaushik  |  23 | Kota      |  2000.00 | 
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 | 
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 | 
+|  6 | Komal    |  22 | MP        |  4500.00 | 
+|  7 | Muffy    |  24 | Indore    | 10000.00 | 
++----+----------+-----+-----------+----------+ 
+</pre>
+<p>To get the customer table along with the given data, execute the following queries.</p>
+<pre class="prettyprint notranslate">
+CREATE TABLE CUSTOMER (id number, name varchar(20), age number, address varchar(20), 
+salary number);  
+
+INSERT into CUSTOMER values (1, 'Ramesh', 32, 'Ahmedabad', 2000); 
+INSERT into CUSTOMER values (2, 'Khilan', 25, 'Delhi', 1500); 
+INSERT into CUSTOMER values (3, 'kaushik', 23, 'Kota', 2000); 
+INSERT into CUSTOMER values (4, 'Chaitali', 25, 'Mumbai', 6500); 
+INSERT into CUSTOMER values (5, 'Hardik', 27, 'Bhopal', 8500); 
+INSERT into CUSTOMER values (6, 'Komal', 22, 'MP', 4500); 
+INSERT into CUSTOMER values (7, 'Muffy', 24, 'Indore', 10000);
+</pre>
+<p>The following command is an example, which would fetch ID, Name and Salary fields of the customers available in the CUSTOMER table.</p>
+<pre class="prettyprint notranslate">
+SELECT ID, NAME, SALARY FROM CUSTOMERS;
+</pre>
+<p>The above command produces the following result.</p>
+<pre class="result notranslate">
++----+----------+----------+ 
+| ID | NAME     | SALARY   | 
++----+----------+----------+ 
+|  1 | Ramesh   |  2000.00 | 
+|  2 | Khilan   |  1500.00 | 
+|  3 | kaushik  |  2000.00 | 
+|  4 | Chaitali |  6500.00 | 
+|  5 | Hardik   |  8500.00 | 
+|  6 | Komal    |  4500.00 | 
+|  7 | Muffy    | 10000.00 | 
++----+----------+----------+ 
+</pre>
+<p>Use the following query to fetch all the fields of CUSTOMERS table.</p>
+<pre class="prettyprint notranslate">
+SQL> SELECT * FROM CUSTOMERS;
+</pre>
+<p>The above query produces the following result &minus;</p>
+<pre class="result notranslate">
++----+----------+-----+-----------+----------+ 
+| ID | NAME     | AGE | ADDRESS   | SALARY   | 
++----+----------+-----+-----------+----------+ 
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 | 
+|  2 | Khilan   |  25 | Delhi     |  1500.00 | 
+|  3 | kaushik  |  23 | Kota      |  2000.00 | 
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 | 
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 | 
+|  6 | Komal    |  22 | MP        |  4500.00 | 
+|  7 | Muffy    |  24 | Indore    | 10000.00 | 
++----+----------+-----+-----------+----------+ 
+</pre>
+<h1>H2 Database - Insert</h1>
+<p>The SQL INSERT statement is used to add new rows of data to a table in the database.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of INSERT INTO statement.</p>
+<pre class="result notranslate">
+INSERT INTO tableName 
+{ [ ( columnName [,...] ) ] 
+{ VALUES 
+{ ( { DEFAULT | expression } [,...] ) } [,...] | [ DIRECT ] [ SORTED ] select } } | 
+{ SET { columnName = { DEFAULT | expression } } [,...] }
+</pre>
+<p>Using this INSERT statement, we can insert a new record or new rows into a table. When using DIRECT clause, the results are directly affected to the target table without any intermediate step. However, while adding values for all the columns of the table, make sure the order of the values is in the same order as the columns in the table.</p>
+<h2>Example</h2>
+<p>Let us take an example and try to insert the following given records into the Customer table.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<th style="text-align:center;">ID</th>
+<th style="text-align:center;">Name</th>
+<th style="text-align:center;">Age</th>
+<th style="text-align:center;">Address</th>
+<th style="text-align:center;">Salary</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Ramesh</td>
+<td>32</td>
+<td>Ahmedabad</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Khilan</td>
+<td>25</td>
+<td>Delhi</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Kaushik</td>
+<td>23</td>
+<td>Kota</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Chaitail</td>
+<td>25</td>
+<td>Mumbai</td>
+<td>6500</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Hardik</td>
+<td>27</td>
+<td>Bhopal</td>
+<td>8500</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Komal</td>
+<td>22</td>
+<td>MP</td>
+<td>4500</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Muffy</td>
+<td>24</td>
+<td>Indore</td>
+<td>10000</td>
+</tr>
+</table>
+<p>We can get all the given records into the customer table by executing the following commands.</p>
+<pre class="result notranslate">
+INSERT INTO CUSTOMER VALUES (1, 'Ramesh', 32, 'Ahmedabad', 2000); 
+INSERT INTO CUSTOMER VALUES (2, 'Khilan', 25, 'Delhi', 1500); 
+INSERT INTO CUSTOMER VALUES (3, 'kaushik', 23, 'Kota', 2000); 
+INSERT INTO CUSTOMER VALUES (4, 'Chaitali', 25, 'Mumbai', 6500); 
+INSERT INTO CUSTOMER VALUES (5, 'Hardik', 27, 'Bhopal', 8500); 
+INSERT INTO CUSTOMER VALUES (6, 'Komal', 22, 'MP', 4500); 
+INSERT INTO CUSTOMER VALUES (7, 'Muffy', 24, 'Indore', 10000); 
+</pre>
+<h1>H2 Database - Update</h1>
+<p>The UPDATE query is used to update or modify the existing records in a table. We can use WHERE clause with UPDATE query to update the selected rows, otherwise all the rows would be affected.</p>
+<h2>Syntax</h2>
+<p>Following is the basic syntax of the UPDATE query.</p>
+<pre class="result notranslate">
+UPDATE tableName [ [ AS ] newTableAlias ] SET 
+{ { columnName = { DEFAULT | expression } } [,...] } | 
+{ ( columnName [,...] ) = ( select ) } 
+[ WHERE expression ] [ ORDER BY order [,...] ] [ LIMIT expression ]
+</pre>
+<p>In this UPDATE syntax, we can combine more than one condition by using AND or OR clauses.</p>
+<h2>Example</h2>
+<p>Consider the CUSTOMER table having the following records.</p>
+<pre class="result notranslate">
++----+----------+-----+-----------+----------+ 
+| ID | NAME     | AGE | ADDRESS   | SALARY   | 
++----+----------+-----+-----------+----------+ 
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 | 
+|  2 | Khilan   |  25 | Delhi     |  1500.00 | 
+|  3 | kaushik  |  23 | Kota      |  2000.00 | 
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 | 
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 | 
+|  6 | Komal    |  22 | MP        |  4500.00 | 
+|  7 | Muffy    |  24 | Indore    | 10000.00 | 
++----+----------+-----+-----------+----------+ 
+</pre>
+<p>If you want to get the customer table along with the given data, execute the following queries.</p>
+<pre class="result notranslate">
+CREATE TABLE CUSTOMER (id number, name varchar(20), age number, address varchar(20), 
+   salary number);  
+INSERT into CUSTOMER values (1, 'Ramesh', 32, 'Ahmedabad', 2000); 
+INSERT into CUSTOMER values (2, 'Khilan', 25, 'Delhi', 1500); 
+INSERT into CUSTOMER values (3, 'kaushik', 23, 'Kota', 2000); 
+INSERT into CUSTOMER values (4, 'Chaitali', 25, 'Mumbai', 6500); 
+INSERT into CUSTOMER values (5, 'Hardik', 27, 'Bhopal', 8500); 
+INSERT into CUSTOMER values (6, 'Komal', 22, 'MP', 4500); 
+INSERT into CUSTOMER values (7, 'Muffy', 24, 'Indore', 10000);
+</pre>
+<p>The following command is an example, which would update ADDRESS for a customer whose ID is 6 &minus;</p>
+<pre class="result notranslate">
+UPDATE CUSTOMERS SET ADDRESS = 'Pune' WHERE ID = 6;
+</pre>
+<p>Now, CUSTOMERS table would have the following records. We can check the customer table records by executing the following query.</p>
+<pre class="result notranslate">
+SELECT * FROM CUSTOMERS;
+</pre>
+<p>The above query produces the following result.</p>
+<pre class="result notranslate">
++----+----------+-----+-----------+----------+ 
+| ID | NAME     | AGE | ADDRESS   | SALARY   | 
++----+----------+-----+-----------+----------+ 
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 | 
+|  2 | Khilan   |  25 | Delhi     |  1500.00 | 
+|  3 | kaushik  |  23 | Kota      |  2000.00 | 
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 | 
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 | 
+|  6 | Komal    |  22 | Pune      |  4500.00 | 
+|  7 | Muffy    |  24 | Indore    | 10000.00 | 
++----+----------+-----+-----------+----------+ 
+</pre>
+<p>To modify all ADDRESS and SALARY column values in CUSTOMERS table, we need not use the WHERE clause. The UPDATE query would be as follows &minus;</p>
+<pre class="result notranslate">
+UPDATE CUSTOMERS SET ADDRESS = 'Pune', SALARY = 1000.00; 
+</pre>
+<p>Now, CUSTOMERS table would have the following records. We can check the customer table records by executing the following query.</p>
+<pre class="result notranslate">
+SELECT * FROM CUSTOMERS;
+</pre>
+<p>The above query produces the following result &minus;</p>
+<pre class="result notranslate">
++----+----------+-----+---------+---------+ 
+| ID | NAME     | AGE | ADDRESS | SALARY  | 
++----+----------+-----+---------+---------+ 
+|  1 | Ramesh   |  32 | Pune    | 1000.00 | 
+|  2 | Khilan   |  25 | Pune    | 1000.00 | 
+|  3 | kaushik  |  23 | Pune    | 1000.00 | 
+|  4 | Chaitali |  25 | Pune    | 1000.00 | 
+|  5 | Hardik   |  27 | Pune    | 1000.00 | 
+|  6 | Komal    |  22 | Pune    | 1000.00 | 
+|  7 | Muffy    |  24 | Pune    | 1000.00 | 
++----+----------+-----+---------+---------+ 
+</pre>
+<h1>H2 Database - Delete</h1>
+<p>The SQL DELETE query is used to delete the existing records from a table. We can use WHERE clause with DELETE query to delete selected records, otherwise all the records will be deleted.</p>
+<h2>Syntax</h2>
+<p>Following is the generic query syntax of the delete command.</p>
+<pre class="result notranslate">
+DELETE [ TOP term ] FROM tableName [ WHERE expression ] [ LIMIT term ]
+</pre>
+<p>The above syntax deletes the rows from a table. If TOP or LIMIT is specified, at most the specified number of rows are deleted (no limit if null or smaller than zero).</p>
+<h2>Example</h2>
+<p>Consider the CUSTOMER table having the following records.</p>
+<pre class="result notranslate">
++----+----------+-----+-----------+----------+ 
+| ID | NAME     | AGE | ADDRESS   | SALARY   | 
++----+----------+-----+-----------+----------+ 
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 | 
+|  2 | Khilan   |  25 | Delhi     |  1500.00 | 
+|  3 | kaushik  |  23 | Kota      |  2000.00 | 
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 | 
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 | 
+|  6 | Komal    |  22 | MP        |  4500.00 | 
+|  7 | Muffy    |  24 | Indore    | 10000.00 | 
++----+----------+-----+-----------+----------+
+</pre>
+<p>The following command will delete the details of the customer, whose ID is 6.</p>
+<pre class="result notranslate">
+DELETE FROM CUSTOMERS WHERE ID = 6;
+</pre>
+<p>After execution of the above command, check the Customer table by executing the following command.</p>
+<pre class="prettyprint notranslate">
+SELECT * FROM CUSTOMERS; 
+</pre>
+<p>The above command produces the following output &minus;</p>
+<pre class="result notranslate">
++----+----------+-----+-----------+----------+ 
+| ID | NAME     | AGE | ADDRESS   | SALARY   | 
++----+----------+-----+-----------+----------+ 
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 | 
+|  2 | Khilan   |  25 | Delhi     |  1500.00 | 
+|  3 | kaushik  |  23 | Kota      |  2000.00 | 
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 | 
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 | 
+|  7 | Muffy    |  24 | Indore    | 10000.00 | 
++----+----------+-----+-----------+----------+ 
+</pre>
+<p>If we want to DELETE all the records from CUSTOMERS table, we do not use WHERE clause. The DELETE query would be as follows.</p>
+<pre class="result notranslate">
+DELETE FROM CUSTOMER; 
+</pre>
+<p>After executing the above command, no records will be available in the Customer table.</p>
+<h1>H2 Database - Backup</h1>
+<p>BACKUP is the command used to take database backup into a separate .zip file. Objects are not locked, and when it takes backup the transaction log is also copied. Admin rights are required to execute this command.</p>
+<h2>Syntax</h2>
+<p>Following is the generic syntax of the Backup command.</p>
+<pre class="result notranslate">
+BACKUP TO fileNameString;
+</pre>
+<h2>Example</h2>
+<p>In this example, let us take a backup of the current database into <b>backup.zip</b> file. Use the following command for the same.</p>
+<pre class="prettyprint notranslate">
+BACKUP TO 'backup.zip';
+</pre>
+<p>On executing the above command, you will get the backup.zip file in your local file system.</p>
+<h1>H2 Database - Call</h1>
+<p>CALL is a SQL command which belongs to H2 database server. This command is used to calculate a simple expression. It returns the result of the given expression in a single column field. When it returns an array of results, then each element in the array is displayed as a column value.</p>
+<h2>Syntax</h2>
+<p>Following is the generic syntax of the CALL command.</p>
+<pre class="result notranslate">
+CALL expression;
+</pre>
+<p>We can use the arithmetic expression in this syntax.</p>
+<h2>Example</h2>
+<p>Let us take an example and execute an arithmetic expression (15 &ast; 25) using call command.</p>
+<pre class="result notranslate">
+CALL 15*25; 
+</pre>
+<p>The above command produces the following output.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">375</th>
+</tr>
+<tr>
+<td style="text-align:center;">375</td>
+</tr>
+</table>
+<h1>H2 Database - Explain</h1>
+<p>EXPLAIN command displays the execution plan for a statement. When we execute a statement using EXPLAIN ANALYZE command, the query plan will include the actual row scan count for each table.</p>
+<h2>Syntax</h2>
+<p>Following is the generic syntax of the EXPLAIN command.</p>
+<pre class="result notranslate">
+EXPLAIN { [ PLAN FOR ] | ANALYZE } { select | insert | update | delete | merge} 
+</pre>
+<p>Along with this syntax we can use select, insert, delete, and merge.</p>
+<h2>Example</h2>
+<p>This example explains the query plan details of the customer with ID 1.</p>
+<pre class="result notranslate">
+EXPLAIN SELECT * FROM CUSTOMER WHERE ID = 1;
+</pre>
+<p>The above command produces the following output &minus;</p>
+<img src="/h2_database/images/explain_output.jpg" alt="Explain Output" />
+<h1>H2 Database - Merge</h1>
+<p>MERGE command is used to update the existing rows and insert new rows into a table.  The primary key column plays an important role while using this command; it is used to find the row.</p>
+<h2>Syntax</h2>
+<p>Following is the generic syntax of the MERGE command.</p>
+<pre class="result notranslate">
+MERGE INTO tableName [ ( columnName [,...] ) ] 
+[ KEY ( columnName [,...] ) ] 
+{ VALUES { ( { DEFAULT | expression } [,...] ) } [,...] | select } 
+</pre>
+<p>In the above syntax, the KEY clause is used to specify the primary key column name. Along with VALUES clause, we can use primitive values to insert or we can retrieve and store another table values into this table using the select command.</p>
+<h2>Example</h2>
+<p>In this example, let us try to add a new record into Customers table. Following are the details of the new record in the table.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<th style="text-align:center;">Column Name</th>
+<th style="text-align:center;">Value</th>
+</tr>
+<tr>
+<td>ID</td>
+<td>8</td>
+</tr>
+<tr>
+<td>NAME</td>
+<td>Lokesh</td>
+</tr>
+<tr>
+<td>AGE</td>
+<td>32</td>
+</tr>
+<tr>
+<td>ADDRESS</td>
+<td>Hyderabad</td>
+</tr>
+<tr>
+<td>SALARY</td>
+<td>2500</td>
+</tr>
+</table>
+<p>Using the following query, let us insert the given record into the H2 database query.</p>
+<pre class="result notranslate">
+MERGE INTO CUSTOMER KEY (ID) VALUES (8, 'Lokesh', 32, 'Hyderabad', 2500);
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+Update count: 1 
+</pre>
+<p>Let us verify the records of the Customer table by executing the following query.</p>
+<pre class="prettyprint notranslate">
+SELECT * FROM CUSTOMER;
+</pre>
+<p>The above query produces the following output.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<th style="text-align:center;">ID</th>
+<th style="text-align:center;">Name</th>
+<th style="text-align:center;">Age</th>
+<th style="text-align:center;">Address</th>
+<th style="text-align:center;">Salary</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Ramesh</td>
+<td>32</td>
+<td>Ahmedabad</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Khilan</td>
+<td>25</td>
+<td>Delhi</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Kaushik</td>
+<td>23</td>
+<td>Kota</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Chaitali</td>
+<td>25</td>
+<td>Mumbai</td>
+<td>6500</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Hardik</td>
+<td>27</td>
+<td>Bhopal</td>
+<td>8500</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Komal</td>
+<td>22</td>
+<td>MP</td>
+<td>4500</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Muffy</td>
+<td>24</td>
+<td>Indore</td>
+<td>10000</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Lokesh</td>
+<td>32</td>
+<td>Hyderabad</td>
+<td>2500</td>
+</tr>
+</table>
+<p>Now let us try to update the record using the <b>Merge</b> command. Following are the details of the record to be updated.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<th style="text-align:center;">Column Name</th>
+<th style="text-align:center;">Value</th>
+</tr>
+<tr>
+<td>ID</td>
+<td>8</td>
+</tr>
+<tr>
+<td>NAME</td>
+<td>Loki</td>
+</tr>
+<tr>
+<td>AGE</td>
+<td>32</td>
+</tr>
+<tr>
+<td>ADDRESS</td>
+<td>Hyderabad</td>
+</tr>
+<tr>
+<td>SALARY</td>
+<td>3000</td>
+</tr>
+</table>
+<p>Use the following query to insert the given record into the H2 database query.</p>
+<pre class="result notranslate">
+MERGE INTO CUSTOMER KEY (ID) VALUES (8, 'Loki', 32, 'Hyderabad', 3000);
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+Update count: 1 
+</pre>
+<p>Let us verify the records of the Customer table by executing the following query.</p>
+<pre class="result notranslate">
+SELECT * FROM CUSTOMER; 
+</pre>
+<p>The above query produces the following output &minus;</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<th style="text-align:center;">ID</th>
+<th style="text-align:center;">Name</th>
+<th style="text-align:center;">Age</th>
+<th style="text-align:center;">Address</th>
+<th style="text-align:center;">Salary</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Ramesh</td>
+<td>32</td>
+<td>Ahmedabad</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Khilan</td>
+<td>25</td>
+<td>Delhi</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Kaushik</td>
+<td>23</td>
+<td>Kota</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Chaitali</td>
+<td>25</td>
+<td>Mumbai</td>
+<td>6500</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Hardik</td>
+<td>27</td>
+<td>Bhopal</td>
+<td>8500</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Komal</td>
+<td>22</td>
+<td>MP</td>
+<td>4500</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Muffy</td>
+<td>24</td>
+<td>Indore</td>
+<td>10000</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Loki</td>
+<td>32</td>
+<td>Hyderabad</td>
+<td>3000</td>
+</tr>
+</table>
+<h1>H2 Database - Show</h1>
+<p>SHOW is a command used to display the list of Schemas, Tables, or Columns of the table.</p>
+<h2>Syntax</h2>
+<p>Following is the generic syntax of the SHOW command.</p>
+<pre class="result notranslate">
+SHOW { SCHEMAS | TABLES [ FROM schemaName ] | 
+COLUMNS FROM tableName [ FROM schemaName ] } 
+</pre>
+<h2>Example</h2>
+<p>The following command can be used to get the list of tables in the current database.</p>
+<pre class="prettyprint notranslate">
+SHOW TABLES; 
+</pre>
+<p>The above command produces the following output.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<th style="text-align:center;">TABLE_NAME</th>
+<th style="text-align:center;">TABLE_SCHEMA</th>
+</tr>
+<tr>
+<td>CUSTOMER</td>
+<td>PUBLIC</td>
+</tr>
+<tr>
+<td>EMP</td>
+<td>PUBLIC</td>
+</tr>
+</table>
+<h1>H2 Database - Create</h1>
+<p>CREATE is a generic SQL command used to create Tables, Schemas, Sequences, Views, and Users in H2 Database server.</p>
+<h2>Create Table</h2>
+<p>Create Table is a command used to create a user-defined table in the current database.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax for the Create Table command.</p>
+<pre class="result notranslate">
+CREATE [ CACHED | MEMORY ] [ TEMP | [ GLOBAL | LOCAL ] TEMPORARY ] 
+TABLE [ IF NOT EXISTS ] name 
+[ ( { columnDefinition | constraint } [,...] ) ] 
+[ ENGINE tableEngineName [ WITH tableEngineParamName [,...] ] ] 
+[ NOT PERSISTENT ] [ TRANSACTIONAL ] 
+[ AS select ] 
+</pre>
+<p>By using the generic syntax of the Create Table command, we can create different types of tables such as cached tables, memory tables, and temporary tables. Following is the list to describe different clauses from the given syntax.</p>
+<ul class="list">
+<li><p><b>CACHED</b> &minus; The cached tables are the default type for regular tables. This means the number of rows is not limited by the main memory.</p></li>
+<li><p><b>MEMORY</b> &minus; The memory tables are the default type for temporary tables. This means the memory tables should not get too large and the index data is kept in the main memory.</p></li>
+<li><p><b>TEMPORARY</b> &minus; Temporary tables are deleted while closing or opening a database. Basically, temporary tables are of two types &minus;</p>
+<ul class="list">
+<li><p>GLOBAL type &minus; Accessible by all connections.</p></li>
+<li><p>LOCAL type &minus; Accessible by the current connection.</p></li>
+</ul>
+<p>The default type for temporary tables is global type. Indexes of temporary tables are kept in the main memory, unless the temporary table is created using CREATE CACHED TABLE.</p></li>
+<li><p><b>ENGINE</b> &minus; The ENGINE option is only required when custom table implementations are used.</p></li>
+<li><p><b>NOT PERSISTENT</b> &minus; It is a modifier to keep the complete table data in-memory and all rows are lost when the database is closed.</p></li>
+<li><p><b>TRANSACTIONAL</b> &minus; It is a keyword that commits an open transaction and this command supports only temporary tables.</p></li>
+</ul>
+<h3>Example</h3>
+<p>In this example, let us create a table named tutorials_tbl using the following given data.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<th style="text-align:center;">Sr.No</th>
+<th style="text-align:center;">Column Name</th>
+<th style="text-align:center;">Data Type</th>
+</tr>
+<tr>
+<td>1</td>
+<td>ID</td>
+<td>Int</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Title</td>
+<td>Varchar(50)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Author</td>
+<td>Varchar(20)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Submission_date</td>
+<td>Date</td>
+</tr>
+</table>
+<p>The following query is used to create a table <b>tutorials_tbl</b> along with the given column data.</p>
+<pre class="result notranslate">
+CREATE TABLE tutorials_tbl ( 
+   id INT NOT NULL, 
+   title VARCHAR(50) NOT NULL, 
+   author VARCHAR(20) NOT NULL, 
+   submission_date DATE, 
+);
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+(0) rows effected 
+</pre>
+<h2>Create Schema</h2>
+<p>Create Schema is a command used to create a user-dependent schema under a particular authorization (under the currently registered user).</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the Create Schema command.</p>
+<pre class="result notranslate">
+CREATE SCHEMA [ IF NOT EXISTS ] name [ AUTHORIZATION ownerUserName ] 
+</pre>
+<p>In the above generic syntax, AUTHORIZATION is a keyword used to provide the respective user name. This command is optional which means if we are not providing the user name, then it will consider the current user. The user that executes the command must have admin rights, as well as the owner.</p>
+<p>This command commits an open transaction in this connection.</p>
+<h3>Example</h3>
+<p>In this example, let us create a schema named <b>test_schema</b> under SA user, using the following command.</p>
+<pre class="prettyprint notranslate">
+CREATE SCHEMA test_schema AUTHORIZATION sa; 
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+(0) rows effected 
+</pre>
+<h2>Create Sequence</h2>
+<p>Sequence is concept which is used to generate a number by following a sequence for id or any random column values.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the create sequence command.</p>
+<pre class="result notranslate">
+CREATE SEQUENCE [ IF NOT EXISTS ] newSequenceName [ START WITH long ] 
+[ INCREMENT BY long ] 
+[ MINVALUE long | NOMINVALUE | NO MINVALUE ] 
+[ MAXVALUE long | NOMAXVALUE | NO MAXVALUE ] 
+[ CYCLE long | NOCYCLE | NO CYCLE ] 
+[ CACHE long | NOCACHE | NO CACHE ] 
+</pre>
+<p>This generic syntax is used to create a sequence. The datatype of a sequence is <b>BIGINT</b>. In this the sequence, values are never re-used, even when the transaction is roll backed.</p>
+<h3>Example</h3>
+<p>In this example, let us create a sequence named <b>SEQ_ID</b>, using the following query.</p>
+<pre class="prettyprint notranslate">
+CREATE SEQUENCE SEQ_ID; 
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+(0) rows effected 
+</pre>
+<h1>H2 Database - Alter</h1>
+<p>ALTER is a command used to change the table structure by adding different clauses to the <b>alter</b> command. Based on the scenario, we need to add respective clause to the alter command. In this chapter, we will discuss various scenarios of alter command.</p>
+<h2>Alter Table Add</h2>
+<p>Alter Table Add is a command used to add a new column to a table along with the respective data type. This command commits the transaction in this connection.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the Alter Table Add command.</p>
+<pre class="result notranslate">
+ALTER TABLE [ IF EXISTS ] tableName ADD [ COLUMN ] 
+{ [ IF NOT EXISTS ] columnDefinition [ { BEFORE | AFTER } columnName ] 
+   | ( { columnDefinition } [,...] ) }
+</pre>
+<h3>Example</h3>
+<p>In this example, we will add a new column <b>start_date</b> to the table <b>tutorials_tbl</b>. The datatype for start_date is Date. Following is the query to add a new column.</p>
+<pre class="prettyprint notranslate">
+ALTER TABLE tutorials_tbl ADD start_date DATE;
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+(6) rows effected 
+</pre>
+<h2>Alter Table Add Constraint</h2>
+<p>Alter table add constraint is a command used to add different constraints to the table such as primary key, foreign key, not null, etc.</p>
+<p>The required indexes are automatically created if they don’t exist yet. It is not possible to disable checking for unique constraint. This command commits an open transaction in this connection.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the Alter table add constraint command.</p>
+<pre class="result notranslate">
+ALTER TABLE [ IF EXISTS ] tableName ADD constraint [ CHECK | NOCHECK ] 
+</pre>
+<h3>Example</h3>
+<p>In this example, let us add a primary key constraint <b>(tutorials_tbl_pk)</b> to the column id of the table <b>tutorials_tbl</b>, using the following query.</p>
+<pre class="prettyprint notranslate">
+ALTER TABLE tutorials_tbl ADD CONSTRAINT tutorials_tbl_pk PRIMARYKEY(id); 
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+(6) row (s) effected
+</pre>
+<h2>Alter Table Rename Constraint</h2>
+<p>This command is used to rename the constraint name of a particular relation table. This command commits an open transaction in this connection.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the Alter Table Rename Constraint command.</p>
+<pre class="result notranslate">
+ALTER TABLE [ IF EXISTS ] tableName RENAME oldConstraintName TO newConstraintName
+</pre>
+<p>While using this syntax, make sure that the old constraint name should exist with the respective column.</p>
+<h3>Example</h3>
+<p>In this example, we will change the primary key constraint name of the table <b>tutorials_tbl</b> from <b>tutorials_tbl_pk</b> to <b>tutorials_tbl_pk_constraint</b>. Following is the query to do so.</p>
+<pre class="prettyprint notranslate">
+ALTER TABLE tutorials_tbl RENAME CONSTRAINT 
+tutorials_tbl_pk TO tutorials_tbl_pk_constraint;
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+(1) row (s) effected 
+</pre>
+<h2>Alter Table Alter Column</h2>
+<p>This command is used to change the structure and properties of the column of a particular table. Changing the properties means changing the datatype of a column, rename a column, change the identity value, or change the selectivity.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the Alter Table Alter Column command.</p>
+<pre class="result notranslate">
+ALTER TABLE [ IF EXISTS ] tableName ALTER COLUMN columnName 
+{ { dataType [ DEFAULT expression ] [ [ NOT ] NULL ] [ AUTO_INCREMENT | IDENTITY ] } 
+| { RENAME TO name } 
+| { RESTART WITH long } 
+| { SELECTIVITY int } 
+| { SET DEFAULT expression } 
+| { SET NULL } 
+| { SET NOT NULL } } 
+</pre>
+<p>In the above syntax &minus;</p>
+<ul class="list">
+<li><p><b>RESTART</b> &minus; command changes the next value of an auto increment column.</p></li>
+<li><p><b>SELECTIVITY</b> &minus; command sets the selectivity (1-100) for a column. Based on the selectivity value we can image the value of the column.</p></li>
+<li><p><b>SET DEFAULT</b> &minus; changes the default value of a column.</p></li>
+<li><p><b>SET NULL</b> &minus; sets the column to allow NULL.</p></li>
+<li><p><b>SET NOT NULL</b> &minus; sets the column to allow NOT NULL.</p></li>
+</ul>
+<h3>Example</h3>
+<p>In this example, we will rename the column of the table <b>tutorials_tbl</b> from <b>Title</b> to <b>Tutorial_Title</b> using the following query.</p>
+<pre class="result notranslate">
+ALTER TABLE tutorials_tbl ALTER COLUMN title RENAME TO tutorial_title; 
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+(0) row(s) effected 
+</pre>
+<p>In a similar way, we can perform different scenarios with the ALTER command.</p>
+<h1>H2 Database - Drop</h1>
+<p>DROP is a command taken from the generic SQL grammar. This command is used to delete a database component and its structure from the memory. There are different scenarios with the Drop command that we will discuss in this chapter.</p>
+<h2>Drop Table</h2>
+<p>Drop Table is a command that deletes the respective table and its structure.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the Drop Table command.</p>
+<pre class="result notranslate">
+DROP TABLE [ IF EXISTS ] tableName [,...] [ RESTRICT | CASCADE ]
+</pre>
+<p>The command will fail if we are using RESTRICT and the table having dependent views exist. All dependent views are dropped, when we are using CASCADE keyword.</p>
+<h3>Example</h3>
+<p>In this example, we will drop a table named test using the following query.</p>
+<pre class="result notranslate">
+DROP TABLE test;
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+(6) row (s) effected 
+</pre>
+<h2>Drop Schema</h2>
+<p>Drop Schema is a command that drops a respective schema from the database server. It will not work from the current schema.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">
+DROP SCHEMA [ IF EXISTS ] schemaName 
+</pre>
+<h3>Example</h3>
+<p>In this example, we will drop a schema named <b>test_schema</b> using the following query.</p>
+<pre class="result notranslate">
+DROP SCHEMA TEST_SCHEMA; 
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+(0) row(s) effected
+</pre>
+<h2>Drop Sequence</h2>
+<p>Drop Sequence is a command used to drop a sequence from the table structure.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the Drop Sequence command.</p>
+<pre class="result notranslate">
+DROP SEQUENCE [ IF EXISTS ] sequenceName
+</pre>
+<p>This command commits an open transaction in this connection.</p>
+<h3>Example</h3>
+<p>In this example, we will drop a sequence named <b>sequence_id</b>. Following is the command.</p>
+<pre class="result notranslate">
+DROP SEQUENCE sequence_id;
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+(0) row (s) effected 
+</pre>
+<h2>Drop View</h2>
+<p>Drop View is a command used to drop the existing view. All dependent views are dropped as well if the CASCADE clause is used.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the Drop View command.</p>
+<pre class="result notranslate">
+DROP VIEW [ IF EXISTS ] viewName [ RESTRICT | CASCADE ]
+</pre>
+<h3>Example</h3>
+<p>In this example, we will drop a view named <b>sample_view</b> using the following query.</p>
+<pre class="result notranslate">
+DROP VIEW sample_view;
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+(0) row (s) effected 
+</pre>
+<h1>H2 Database - Truncate</h1>
+<p>TRUNCATE is a command used to delete the data from the table.  Unlike DELETE FROM without WHERE clause, this command cannot be rolled back. This command commits an open transaction in this connection.</p>
+<h2>Syntax</h2>
+<p>Following is the generic syntax of the truncate command.</p>
+<pre class="result notranslate">
+TRUNCATE TABLE tableName 
+</pre>
+<h2>Example</h2>
+<p>In this example, we will truncate a table named <b>test</b> using the following query.</p>
+<pre class="result notranslate">
+TRUNCATE TABLE test;
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+(6) row (s) effected 
+</pre>
+<h1>H2 Database - Commit</h1>
+<p>COMMIT is a command from the SQL grammar used to commit the transaction. We can either commit the specific transaction or we can commit the currently executed transaction.</p>
+<h2>Syntax</h2>
+<p>There are two different syntaxes for COMMIT command.</p>
+<p>Following is the generic syntax for the commit command to commit the current transaction.</p>
+<pre class="result notranslate">
+COMMIT [ WORK ] 
+</pre>
+<p>Following is the generic syntax for the commit command to commit the specific transaction.</p>
+<pre class="result notranslate">
+COMMIT TRANSACTION transactionName
+</pre>
+<h2>Example 1</h2>
+<p>In this example, let us commit the current transaction using the following command.</p>
+<pre class="result notranslate">
+COMMIT
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Committed successfully
+</pre>
+<h2>Example 2</h2>
+<p>In this example, we will commit the transaction named <b>tx_test</b> using the following command.</p>
+<pre class="result notranslate">
+COMMIT TRANSACTION tx_test;
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Committed successfully 
+</pre>
+<h1>H2 Database - Grant</h1>
+<p>Grant is a command coming from the SQL grammar used to grant the rights to a table, to a user, or to a role. Admin rights are required to execute this command. This command commits an open transaction in this connection.</p>
+<p>In this chapter, we will discuss the different scenarios of Grant command.</p>
+<h2>Grant Right</h2>
+<p>Grant Right is a command to provide admin rights to a table, to a user, or to a role.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the Grant command.</p>
+<pre class="result notranslate">
+GRANT { SELECT | INSERT | UPDATE | DELETE | ALL } [,...] ON 
+{ { SCHEMA schemaName } | { tableName [,...] } } 
+TO { PUBLIC | userName | roleName }
+</pre>
+<h3>Example</h3>
+<p>In this example, we will grant the test table as read-only using the following command.</p>
+<pre class="result notranslate">
+GRANT SELECT ON TEST TO READONLY
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Grant successfully
+</pre>
+<h2>Grant Alter Any Schema</h2>
+<p>Grant Alter Any Schema is a command to grant schema altering rights to a respective user.</p>
+<h3>Syntax</h3>
+<p>Following is the generic syntax of the Grant Alter Any Schema command.</p>
+<pre class="result notranslate">
+GRANT ALTER ANY SCHEMA TO userName 
+</pre>
+<h3>Example</h3>
+<p>In this example, we will grant altering privileges of a schema to a user named <b>test_user</b>. Make sure that test_user exists. Following is the query to grant altering privileges.</p>
+<pre class="result notranslate">
+GRANT ALTER ANY SCHEMA TO test_user;
+</pre>
+<p>The above query produces the following output.</p>
+<pre class="result notranslate">
+Granted successfully to test_user
+</pre>
+<h1>H2 Database - Savepoint</h1>
+<p>SAVEPOINT is a command used to temporarily save the transaction. It is better to maintain savepoints in your transaction as it is helpful to roll back the transaction to the respective Savepoint whenever necessary.</p>
+<h2>Syntax</h2>
+<p>Following is the generic syntax of the Savepoint command.</p>
+<pre class="result notranslate">
+SAVEPOINT savepointName
+</pre>
+<h2>Example</h2>
+<p>In this example, we will create a Savepoint named Half_Done using the following  command.</p>
+<pre class="prettyprint notranslate">
+SAVEPOINT Half_Done; 
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Savepoint created
+</pre>
+<h1>H2 Database - Rollback</h1>
+<p>ROLLBACK is a command from the SQL grammar used to roll back the transaction to a  Savepoint or to the previous transaction. By using this command, we can either roll back to the specific Savepoint or we can roll back to the previous executed transaction.</p>
+<h2>Syntax</h2>
+<p>There are two different syntaxes for ROLLABCK command.</p>
+<p>Following is the generic syntax for the rollback command.</p>
+<pre class="result notranslate">
+ROLLBACK [ TO SAVEPOINT savepointName ] 
+</pre>
+<p>Following is the generic syntax of the Rollback command to the specific transaction.</p>
+<pre class="result notranslate">
+ROLLBACK TRANSACTION transactionName 
+</pre>
+<h2>Example 1</h2>
+<p>In this example, we will roll back the current transaction to a Savepoint named <b>sp1_test</b> using the following command.</p>
+<pre class="result notranslate">
+ROLLBACK sp1_test; 
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Rollback successfully 
+</pre>
+<h2>Example 2</h2>
+<p>In the following example, we will roll back the complete transaction named <b>tx_test</b> using the given command.</p>
+<pre class="result notranslate">
+ROLLBACK TRANSACTION tx_test;
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Rollback successfully 
+</pre>
+<h1>H2 Database - JDBC Connection</h1>
+<p>H2 is a JAVA database. We can interact with this database by using JDBC. In this chapter, we will see how to create a JDBC connection with H2 database and the CRUD operations with the H2 database.</p>
+<p>Generally, there are five steps to create a JDBC connection.</p>
+<p><b>Step 1</b> &minus; Registering the JDBC database driver.</p>
+<pre class="result notranslate">
+Class.forName ("org.h2.Driver"); 
+</pre>
+<p><b>Step 2</b> &minus; Opening the connection.</p>
+<pre class="result notranslate">
+Connection conn = DriverManager.getConnection ("jdbc:h2:~/test", "sa",""); 
+</pre>
+<p><b>Step 3</b> &minus; Creating a statement.</p>
+<pre class="result notranslate">
+Statement st = conn.createStatement(); 
+</pre>
+<p><b>Step 4</b> &minus; Executing a statement and receiving Resultset.</p>
+<pre class="result notranslate">
+Stmt.executeUpdate("sql statement"); 
+</pre>
+<p><b>Step 5</b> &minus; Closing a connection.</p>
+<pre class="result notranslate">
+conn.close(); 
+</pre>
+<p>Before moving on to create a full program, we need to add <b>h2-1.4.192.jar file</b> to CLASSPATH. We can get this <b>jar</b> from the folder <b>C:\Program Files (x86)\H2\bin</b>.</p>
+<h2>Create Table</h2>
+<p>In this example, we will write a program for create table. Consider a table named <b>Registration</b> having the following fields.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<th style="text-align:center;">S.No</th>
+<th style="text-align:center;">Column Name</th>
+<th style="text-align:center;">Data Type</th>
+<th style="text-align:center;">NOT NULL</th>
+<th style="text-align:center;">Primary Key</th>
+</tr>
+<tr>
+<td>1</td>
+<td>ID</td>
+<td>Number</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>2</td>
+<td>First</td>
+<td>Varchar(255)</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Last</td>
+<td>Varchar(255)</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Age</td>
+<td>Number</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</table>
+<p>Following is an example program named <b>H2jdbcCreateDemo</b>.</p>
+<pre class="prettyprint notranslate">
+import java.sql.Connection; 
+import java.sql.DriverManager; 
+import java.sql.SQLException; 
+import java.sql.Statement;  
+
+public class H2jdbcCreateDemo { 
+   // JDBC driver name and database URL 
+   static final String JDBC_DRIVER = "org.h2.Driver";   
+   static final String DB_URL = "jdbc:h2:~/test";  
+   
+   //  Database credentials 
+   static final String USER = "sa"; 
+   static final String PASS = ""; 
+  
+   public static void main(String[] args) { 
+      Connection conn = null; 
+      Statement stmt = null; 
+      try { 
+         // STEP 1: Register JDBC driver 
+         Class.forName(JDBC_DRIVER); 
+             
+         //STEP 2: Open a connection 
+         System.out.println("Connecting to database..."); 
+         conn = DriverManager.getConnection(DB_URL,USER,PASS);  
+         
+         //STEP 3: Execute a query 
+         System.out.println("Creating table in given database..."); 
+         stmt = conn.createStatement(); 
+         String sql =  "CREATE TABLE   REGISTRATION " + 
+            "(id INTEGER not NULL, " + 
+            " first VARCHAR(255), " +  
+            " last VARCHAR(255), " +  
+            " age INTEGER, " +  
+            " PRIMARY KEY ( id ))";  
+         stmt.executeUpdate(sql);
+         System.out.println("Created table in given database..."); 
+         
+         // STEP 4: Clean-up environment 
+         stmt.close(); 
+         conn.close(); 
+      } catch(SQLException se) { 
+         //Handle errors for JDBC 
+         se.printStackTrace(); 
+      } catch(Exception e) { 
+         //Handle errors for Class.forName 
+         e.printStackTrace(); 
+      } finally { 
+         //finally block used to close resources 
+         try{ 
+            if(stmt!=null) stmt.close(); 
+         } catch(SQLException se2) { 
+         } // nothing we can do 
+         try { 
+            if(conn!=null) conn.close(); 
+         } catch(SQLException se){ 
+            se.printStackTrace(); 
+         } //end finally try 
+      } //end try 
+      System.out.println("Goodbye!");
+   } 
+}
+</pre>
+<p>Save the above program into H2jdbcCreateDemo.java. Compile and execute the above program by executing the following commands in the command prompt.</p>
+<pre class="result notranslate">
+\>javac H2jdbcCreateDemo.java 
+\>java H2jdbcCreateDemo 
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Connecting to database... 
+Creating table in given database... 
+Created table in given database... 
+Goodbye!
+</pre>
+<p>After this execution, we can check the table created using the H2 SQL interface.</p>
+<h2>Insert Records</h2>
+<p>In this example, we will write a program for inserting records. Let us insert the following records into the table Registration.</p>
+<table style="text-align:center;" class="table table-bordered">
+<tr>
+<th style="text-align:center;">ID</th>
+<th style="text-align:center;">First</th>
+<th style="text-align:center;">Last</th>
+<th style="text-align:center;">Age</th>
+</tr>
+<tr>
+<td>100</td>
+<td>Zara</td>
+<td>Ali</td>
+<td>18</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Mahnaz</td>
+<td>Fatma</td>
+<td>25</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Zaid</td>
+<td>Khan</td>
+<td>30</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Sumit</td>
+<td>Mital</td>
+<td>28</td>
+</tr>
+</table>
+<p>Following is an example program named <b>H2jdbcInsertDemo</b>.</p>
+<pre class="prettyprint notranslate">
+import java.sql.Connection; 
+import java.sql.DriverManager; 
+import java.sql.SQLException; 
+import java.sql.Statement;  
+
+public class H2jdbcInsertDemo { 
+   // JDBC driver name and database URL 
+   static final String JDBC_DRIVER = "org.h2.Driver";   
+   static final String DB_URL = "jdbc:h2:~/test";  
+   
+   //  Database credentials 
+   static final String USER = "sa"; 
+   static final String PASS = ""; 
+  
+   public static void main(String[] args) { 
+      Connection conn = null; 
+      Statement stmt = null; 
+      try{
+         // STEP 1: Register JDBC driver 
+         Class.forName(JDBC_DRIVER);  
+         
+         // STEP 2: Open a connection 
+         System.out.println("Connecting to a selected database..."); 
+         conn = DriverManager.getConnection(DB_URL,USER,PASS); 
+         System.out.println("Connected database successfully..."); 
+         
+         // STEP 3: Execute a query 
+         stmt = conn.createStatement();  
+         String sql = "INSERT INTO Registration " + "VALUES (100, 'Zara', 'Ali', 18)"; 
+         
+         stmt.executeUpdate(sql); 
+         sql = "INSERT INTO Registration " + "VALUES (101, 'Mahnaz', 'Fatma', 25)";  
+         
+         stmt.executeUpdate(sql); 
+         sql = "INSERT INTO Registration " + "VALUES (102, 'Zaid', 'Khan', 30)"; 
+         
+         stmt.executeUpdate(sql); 
+         sql = "INSERT INTO Registration " + "VALUES(103, 'Sumit', 'Mittal', 28)"; 
+         
+         stmt.executeUpdate(sql); 
+         System.out.println("Inserted records into the table..."); 
+         
+         // STEP 4: Clean-up environment 
+         stmt.close(); 
+         conn.close(); 
+      } catch(SQLException se) { 
+         // Handle errors for JDBC 
+         se.printStackTrace(); 
+      } catch(Exception e) { 
+         // Handle errors for Class.forName 
+         e.printStackTrace(); 
+      } finally { 
+         // finally block used to close resources 
+         try {
+            if(stmt!=null) stmt.close();  
+         } catch(SQLException se2) { 
+         } // nothing we can do 
+         try { 
+            if(conn!=null) conn.close(); 
+         } catch(SQLException se) { 
+            se.printStackTrace(); 
+         } // end finally try 
+      } // end try 
+      System.out.println("Goodbye!"); 
+   } 
+}
+</pre>
+<p>Save the above program into H2jdbcInsertDemo.java. Compile and execute the above program by executing the following commands in the command prompt.</p>
+<pre class="result notranslate">
+\>javac H2jdbcInsertDemo.java 
+\>java H2jdbcInsertDemo 
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Connecting to a selected database... 
+Connected database successfully... 
+Inserted records into the table... 
+Goodbye! 
+</pre>
+<h2>Read Record</h2>
+<p>In this example, we will write a program for reading records. Let us try to read all records from the table <b>Registration</b>.</p>
+<p>Following is an example program named <b>H2jdbcRecordDemo</b>.</p>
+<pre class="prettyprint notranslate">
+import java.sql.Connection; 
+import java.sql.DriverManager; 
+import java.sql.ResultSet; 
+import java.sql.SQLException; 
+import java.sql.Statement;  
+
+public class H2jdbcReadDemo { 
+   // JDBC driver name and database URL 
+   static final String JDBC_DRIVER = "org.h2.Driver";   
+   static final String DB_URL = "jdbc:h2:~/test";  
+   
+   //  Database credentials 
+   static final String USER = "sa"; 
+   static final String PASS = ""; 
+   
+   public static void main(String[] args) { 
+      Connection conn = null; 
+      Statement stmt = null; 
+      try { 
+         // STEP 1: Register JDBC driver 
+         Class.forName(JDBC_DRIVER); 
+         
+         // STEP 2: Open a connection 
+         System.out.println("Connecting to database..."); 
+         conn = DriverManager.getConnection(DB_URL,USER,PASS);  
+         
+         // STEP 3: Execute a query 
+         System.out.println("Connected database successfully..."); 
+         stmt = conn.createStatement(); 
+         String sql = "SELECT id, first, last, age FROM Registration"; 
+         ResultSet rs = stmt.executeQuery(sql); 
+         
+         // STEP 4: Extract data from result set 
+         while(rs.next()) { 
+            // Retrieve by column name 
+            int id  = rs.getInt("id"); 
+            int age = rs.getInt("age"); 
+            String first = rs.getString("first"); 
+            String last = rs.getString("last");  
+            
+            // Display values 
+            System.out.print("ID: " + id); 
+            System.out.print(", Age: " + age); 
+            System.out.print(", First: " + first); 
+            System.out.println(", Last: " + last); 
+         } 
+         // STEP 5: Clean-up environment 
+         rs.close(); 
+      } catch(SQLException se) { 
+         // Handle errors for JDBC 
+         se.printStackTrace(); 
+      } catch(Exception e) { 
+         // Handle errors for Class.forName 
+         e.printStackTrace(); 
+      } finally { 
+         // finally block used to close resources 
+         try { 
+            if(stmt!=null) stmt.close();  
+         } catch(SQLException se2) { 
+         } // nothing we can do 
+         try { 
+            if(conn!=null) conn.close(); 
+         } catch(SQLException se) { 
+            se.printStackTrace(); 
+         } // end finally try 
+      } // end try 
+      System.out.println("Goodbye!"); 
+   } 
+}
+</pre>
+<p>Save the above program into H2jdbcReadDemo.java. Compile and execute the above program by executing the following commands in the command prompt.</p>
+<pre class="result notranslate">
+\>javac H2jdbcReadDemo.java 
+\>java H2jdbcReadDemo 
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Connecting to a selected database... 
+Connected database successfully... 
+ID: 100, Age: 18, First: Zara, Last: Ali 
+ID: 101, Age: 25, First: Mahnaz, Last: Fatma 
+ID: 102, Age: 30, First: Zaid, Last: Khan 
+ID: 103, Age: 28, First: Sumit, Last: Mittal 
+Goodbye!
+</pre>
+<h2>Update Records</h2>
+<p>In this example, we will write a program to update records. Let us try to read all records from the table <b>Registration</b>.</p>
+<p>Following is an example program named <b>H2jdbcUpdateDemo</b>.</p>
+<pre class="prettyprint notranslate">
+import java.sql.Connection; 
+import java.sql.DriverManager; 
+import java.sql.ResultSet; 
+import java.sql.SQLException; 
+import java.sql.Statement;  
+
+public class H2jdbcUpdateDemo { 
+   // JDBC driver name and database URL 
+   static final String JDBC_DRIVER = "org.h2.Driver";   
+   static final String DB_URL = "jdbc:h2:~/test";  
+   
+   // Database credentials 
+   static final String USER = "sa"; 
+   static final String PASS = ""; 
+   
+   public static void main(String[] args) { 
+      Connection conn = null; 
+      Statement stmt = null; 
+      try { 
+         // STEP 1: Register JDBC driver 
+         Class.forName(JDBC_DRIVER); 
+         
+         // STEP 2: Open a connection 
+         System.out.println("Connecting to a database..."); 
+         conn = DriverManager.getConnection(DB_URL,USER,PASS);  
+         
+         // STEP 3: Execute a query 
+         System.out.println("Connected database successfully..."); 
+         stmt = conn.createStatement(); 
+         String sql = "UPDATE Registration " + "SET age = 30 WHERE id in (100, 101)"; 
+         stmt.executeUpdate(sql);  
+         
+         // Now you can extract all the records 
+         // to see the updated records 
+         sql = "SELECT id, first, last, age FROM Registration"; 
+         ResultSet rs = stmt.executeQuery(sql);  
+         
+         while(rs.next()){ 
+            // Retrieve by column name 
+            int id  = rs.getInt("id"); 
+            int age = rs.getInt("age"); 
+            String first = rs.getString("first"); 
+            String last = rs.getString("last");  
+            
+            // Display values 
+            System.out.print("ID: " + id); 
+            System.out.print(", Age: " + age); 
+            System.out.print(", First: " + first); 
+            System.out.println(", Last: " + last); 
+         } 
+         rs.close();    
+      } catch(SQLException se) { 
+         // Handle errors for JDBC 
+         se.printStackTrace(); 
+      } catch(Exception e) { 
+         // Handle errors for Class.forName 
+         e.printStackTrace(); 
+      } finally { 
+         // finally block used to close resources  
+         try { 
+            if(stmt!=null) stmt.close(); 
+         } catch(SQLException se2) { 
+         } // nothing we can do 
+         try { 
+            if(conn!=null) conn.close(); 
+         } catch(SQLException se) { 
+            se.printStackTrace(); 
+         } // end finally try 
+      } // end try 
+      System.out.println("Goodbye!"); 
+   } 
+} 
+</pre>
+<p>Save the above program into H2jdbcUpdateDemo.java. Compile and execute the above program by executing the following commands in the command prompt.</p>
+<pre class="result notranslate">
+\>javac H2jdbcUpdateDemo.java 
+\>java H2jdbcUpdateDemo 
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Connecting to a selected database... 
+Connected database successfully... 
+ID: 100, Age: 30, First: Zara, Last: Ali 
+ID: 101, Age: 30, First: Mahnaz, Last: Fatma 
+ID: 102, Age: 30, First: Zaid, Last: Khan 
+ID: 103, Age: 28, First: Sumit, Last: Mittal 
+Goodbye!
+</pre>
+<h2>Delete Records</h2>
+<p>In this example, we will write a program to delete records. Let us try to read all records from the table <b>Registration</b>.</p>
+<p>Following is an example program named <b>H2jdbcDeleteDemo</b>.</p>
+<pre class="prettyprint notranslate">
+import java.sql.Connection; 
+import java.sql.DriverManager; 
+import java.sql.ResultSet; 
+import java.sql.SQLException; 
+import java.sql.Statement;  
+
+public class H2jdbcDeleteDemo { 
+   // JDBC driver name and database URL 
+   static final String JDBC_DRIVER = "org.h2.Driver";   
+   static final String DB_URL = "jdbc:h2:~/test";  
+   
+   // Database credentials 
+   static final String USER = "sa"; 
+   static final String PASS = ""; 
+  
+   public static void main(String[] args) { 
+      Connection conn = null; 
+      Statement stmt = null; 
+      try { 
+         // STEP 1: Register JDBC driver 
+         Class.forName(JDBC_DRIVER);  
+         
+         // STEP 2: Open a connection 
+         System.out.println("Connecting to database..."); 
+         conn = DriverManager.getConnection(DB_URL,USER,PASS);  
+         
+         // STEP 3: Execute a query
+         System.out.println("Creating table in given database..."); 
+         stmt = conn.createStatement();  
+         String sql = "DELETE FROM Registration " + "WHERE id = 101"; 
+         stmt.executeUpdate(sql);  
+         
+         // Now you can extract all the records 
+         // to see the remaining records 
+         sql = "SELECT id, first, last, age FROM Registration"; 
+         ResultSet rs = stmt.executeQuery(sql);  
+         
+         while(rs.next()){ 
+            // Retrieve by column name 
+            int id  = rs.getInt("id"); 
+            int age = rs.getInt("age"); 
+            String first = rs.getString("first"); 
+            String last = rs.getString("last");  
+            
+            // Display values 
+            System.out.print("ID: " + id); 
+            System.out.print(", Age: " + age); 
+            System.out.print(", First: " + first); 
+            System.out.println(", Last: " + last); 
+         } 
+         rs.close(); 
+      } catch(SQLException se) { 
+         // Handle errors for JDBC 
+         se.printStackTrace();  
+      } catch(Exception e) { 
+         // Handle errors for Class.forName 
+         e.printStackTrace(); 
+      } finally { 
+         // finally block used to close resources 
+         try { 
+            if(stmt!=null) stmt.close(); 
+         } catch(SQLException se2) { 
+         } // nothing we can do 
+         try { 
+            if(conn!=null) conn.close(); 
+         } catch(SQLException se) { 
+            se.printStackTrace(); 
+         } // end finally try
+      } // end try 
+      System.out.println("Goodbye!"); 
+   } 
+}
+</pre>
+<p>Save the above program into H2jdbcDeleteDemo.java. Compile and execute the above program by executing the following commands in the command prompt.</p>
+<pre class="result notranslate">
+\>javac H2jdbcDeleteDemo.java 
+\>java H2jdbcDeleteDemo
+</pre>
+<p>The above command produces the following output.</p>
+<pre class="result notranslate">
+Connecting to a selected database... 
+Connected database successfully... 
+ID: 100, Age: 30, First: Zara, Last: Ali 
+ID: 102, Age: 30, First: Zaid, Last: Khan 
+ID: 103, Age: 28, First: Sumit, Last: Mittal 
+Goodbye! 
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/h2_database/h2_database_jdbc_connection.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/h2_database/h2_database_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

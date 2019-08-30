@@ -1,0 +1,2362 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaMail API - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="JavaMail API - Quick Guide - The JavaMail API provides a platform-independent and protocol-independent framework to build mail and messaging applications. The JavaMail API provides a set of"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/javamail_api/javamail_api_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#40bfb8;
+}
+a.demo {
+    background:#40bfb8;
+}
+li.heading {
+    background:#40bfb8;
+}
+.course-box{background:#40bfb8}
+.home-intro-sub p{color:#40bfb8}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/javamail_api/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/javamail_api/images/javamail-mini-logo.jpg" alt="JavaMail API Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">JavaMail API Tutorial</li>
+<li><a target="_top" href="/javamail_api/index.htm">JavaMail - Home	</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_overview.htm">JavaMail API - Overview</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_environment_setup.htm">JavaMail - Environment Setup</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_core_classes.htm">JavaMail - Core Classes</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_sending_emails.htm">JavaMail - Sending Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_checking_emails.htm">JavaMail - Checking Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_fetching_emails.htm">JavaMail - Fetching Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_authentication.htm">JavaMail - Authentication</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_replying_emails.htm">JavaMail - Replying Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_forwarding_emails.htm">JavaMail - Forwarding Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_deleting_emails.htm">JavaMail - Deleting Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_gmail_smtp_server.htm">JavaMail - Gmail SMTP server</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_folder_management.htm">JavaMail - Folder Management</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_quota_management.htm">JavaMail - Quota Management</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_bounced_messages.htm">JavaMail - Bounced Messages</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JavaMail API Protocols</li>
+<li><a target="_top" href="/javamail_api/javamail_api_smtp_servers.htm">JavaMail - SMTP Servers</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_imap_servers.htm">JavaMail - IMAP Servers</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_pop3_servers.htm">JavaMail - POP3 Servers</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JavaMail API Useful Resources</li>
+<li><a target="_top" href="/javamail_api/javamail_api_quick_guide.htm">JavaMail - Quick Guide</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_useful_resources.htm">JavaMail - Useful Resources</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_discussion.htm">JavaMail - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>JavaMail API - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/javamail_api/javamail_api_pop3_servers.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/javamail_api/javamail_api_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>The JavaMail API provides a platform-independent and protocol-independent framework to build mail and messaging applications. The JavaMail API provides a set of abstract classes defining objects that comprise a mail system. It is an optional package (standard extension) for reading, composing, and sending electronic messages. </p>
+<p>JavaMail provides elements that are used to construct an interface to a messaging system, including system components and interfaces. While this specification does not define any specific implementation, JavaMail does include several classes that implement RFC822 and MIME Internet messaging standards. These classes are delivered as part of the JavaMail class package.</p>
+<p>Following are some of the protocols supported in JavaMail API:</p>
+<ul class="list">
+<li><p><b>SMTP</b>: Acronym for <b>Simple Mail Transfer Protocol</b>. It provides a mechanism to deliver email. </p></li>
+<li><p><b>POP</b>: Acronym for <b>Post Office Protocol</b>. POP is the mechanism most people on the Internet use to get their mail. It defines support for a single mailbox for each user. RFC 1939 defines this protocol. </p></li>
+<li><p><b>IMAP</b>: Acronym for <b>Internet Message Access Protocol</b>. It is an advanced protocol for receiving messages. It provides support for multiple mailbox for each user, in addition to, mailbox can be shared by multiple users. It is defined in RFC 2060.</p></li>
+<li><p><b>MIME</b>:  Acronym for <b>Multipurpose Internet Mail Extensions</b>. . It is not a mail transfer protocol. Instead, it defines the content of what is transferred: the format of the messages, attachments, and so on. There are many different documents that take effect here: RFC 822, RFC 2045, RFC 2046, and RFC 2047. As a user of the JavaMail API, you usually don't need to worry about these formats. However, these formats do exist and are used by your programs.</p></li>
+<li><p><b>NNTP and Others</b>:There are many protocols that are provided by third-party providers. Some of them are Network News Transfer Protocol (NNTP), Secure Multipurpose Internet Mail Extensions (S/MIME) etc.</p></li>
+</ul>
+<p>Details of these will be covered in the subsequent chapters.</p>
+<h2>Architecture</h2>
+<p>As said above the java application uses JavaMail API to compose, send and receive emails.The following figure illustrates the architecture of JavaMail:</p>
+<img src="/javamail_api/images/architecture.jpg" alt="JavaMail API Architecture"/>
+<p> The abstract mechanism of JavaMail API is similar to other J2EE APIs, such as JDBC, JNDI, and JMS. As seen the architecture diagram above, JavaMail API is divided into two main parts:</p>
+<ul class="list">
+<li><p>An application-independent part: An application-programming interface (API) is used by the application components to send and receive mail messages, independent of the underlying provider or protocol used.</p></li>
+<li><p>A service-dependent part: A service provider interface (SPI) speaks the protocol-specific languages, such as SMTP, POP, IMAP, and Network News Transfer Protocol (NNTP). It is used to plug in a provider of an e-mail service to the J2EE platform. </p></li>
+</ul>
+<h1>Environment Setup</h1> 
+ <p>To send an e-mail using your Java Application is simple enough but to start with you should have <b>JavaMail API</b> and <b>Java Activation Framework (JAF)</b> installed on your machine.</p>
+<blockquote>You will need the <b>JavaBeans Activation Framework (JAF)</b> extension that provides the <i>javax.activation</i> package only when you're not using Java SE 6 or newer.</blockquote>
+<ul class="list">
+<li><p>You can download  latest version of <a target="_blank" rel="nofollow" href="http://www.oracle.com/technetwork/java/javamail/index.html" 
+>JavaMail (Version 1.5.0)</a> from Java's standard website.</p></li>
+<li><p>You can download  latest version of <a target="_blank" rel="nofollow" href="http://www.oracle.com/technetwork/java/javase/index-jsp-136939.html">JAF (Version 1.1.1)</a> from Java's standard website.</p></li>
+</ul>
+<p>Download and unzip these files, in the newly created top level directories you will find a number of jar files for both the applications.  You need to add <b>mail.jar</b> and <b>activation.jar</b> files in your CLASSPATH.</p>
+<h2>SMTP server</h2>
+ <p>To send emails, you must have SMTP server that is responsible to send mails. You can use one of the following techniques to get the SMTP server:</p>
+<ul class="list">
+<li><p>Install and use any SMTP server such as Postfix server (for Ubuntu), Apache James server (Java Apache Mail Enterprise Server)etc. (or)</p></li>
+<li><p>Use the SMTP server provided by the host provider for eg: free SMTP provide by <a target="_blank" rel="nofollow"  href="http://www.jangosmtp.com/">JangoSMTP</a> site is <i>relay.jangosmtp.net</i> (or)</p></li>
+<li><p>Use the SMTP Server provided by companies e.g. gmail, yahoo, etc.</p></li>
+</ul>
+<blockquote>The examples in the subsequent chapters, we've used the free JangoSMTP server to send email. You can create an account by visiting this site and configure your email adress.</blockquote>
+<h1>Core Classes</h1>
+<p>The JavaMail API consists of some interfaces and classes used to send, read, and delete e-mail messages. Though there are many packages in the JavaMail API, will cover the main two packages that are used in Java Mail API frequently: <i>javax.mail</i> and <i>javax.mail.internet</i> package. These packages contain all the JavaMail core classes. They are:</p>
+<table class="table table-bordered">
+<tr><th>Class</th><th>Description</th></tr>
+<tr><td><a href="/javamail_api/javamail_api_core_classes.htm#class_session">javax.mail.Session</a></td><td>The key class of the API. A multithreaded object represents the connection factory.</td></tr>
+<tr><td><a href="/javamail_api/javamail_api_core_classes.htm#class_message">javax.mail.Message</a></td><td>An abstract class that models an e-mail message. Subclasses provide the actual implementations.</td></tr>
+<tr><td><a href="/javamail_api/javamail_api_core_classes.htm#class_address">javax.mail.Address</a></td><td>An abstract class that models the addresses (from and to addresses) in a message. Subclasses provide the specific implementations.</td></tr>
+<tr><td><a href="/javamail_api/javamail_api_core_classes.htm#class_authenticator">javax.mail.Authenticator</a></td><td>An abstract class used to protect mail resources on the mail server.</td></tr>
+<tr><td><a href="/javamail_api/javamail_api_core_classes.htm#class_transport">javax.mail.Transport</a></td><td>An abstract class that models a message transport mechanism for sending an e-mail message.</td></tr>
+<tr><td><a href="/javamail_api/javamail_api_core_classes.htm#class_store">javax.mail.Store</a></td><td>An abstract class that models a message store and its access protocol, for storing and retrieving messages. A Store is divided into Folders.</td></tr>
+<tr><td><a href="/javamail_api/javamail_api_core_classes.htm#class_folder">javax.mail.Folder</a></td><td>An abstract class that represents a folder of mail messages. It can contain subfolders.</td></tr>
+<tr><td>javax.mail.internet.<b>MimeMessage</b></td><td>Message is an abstract class, hence must work with a subclass; in most cases, you’ll use a MimeMessage. A MimeMessage is an e-mail message that understands MIME types and headers.</td></tr>
+<tr><td>javax.mail.internet.<b>InternetAddress</b></td><td>This class represents an Internet email address using the syntax of RFC822. Typical address syntax is of the form <i>user@host.domain</i> or <i>Personal Name &lt;user@host.domain&gt;</i>.</td></tr>
+</table>
+<h1>Sending Simple Emails</h1>
+<p>Here is an example to send a simple email. Here we have used JangoSMTP server via which emails are sent to our destination email address. The setup is explained in the <a href="/javamail_api/javamail_api_environment_setup.htm">Environment Setup</a> chapter.</p>
+<p>To send a simple email steps followed are:</p>
+<ul class="list">
+<li><p>Get a Session</p></li>
+<li><p>Create a default MimeMessage object and set <i>From,</i> <i>To,</i> <i>Subject</i> in the message.</p></li>
+<li><p>Set the actual message as:</p>
+<pre class="prettyprint notranslate">
+message.setText("your text goes here");
+</pre>
+</li>
+<li><p>Send the message using the Transport object.</p></li>
+</ul>
+<h2>Create Java Class</h2>
+<p>Create a java class file <b>SendEmail</b>, the contents of which are as follows:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+public class SendEmail {
+   public static void main(String[] args) {
+      // Recipient's email ID needs to be mentioned.
+      String to = "destinationemail@gmail.com";
+
+      // Sender's email ID needs to be mentioned
+      String from = "fromemail@gmail.com";
+      final String username = "manishaspatil";//change accordingly
+      final String password = "******";//change accordingly
+
+      // Assuming you are sending email through relay.jangosmtp.net
+      String host = "relay.jangosmtp.net";
+
+      Properties props = new Properties();
+      props.put("mail.smtp.auth", "true");
+      props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.host", host);
+      props.put("mail.smtp.port", "25");
+
+      // Get the Session object.
+      Session session = Session.getInstance(props,
+         new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(username, password);
+	   }
+         });
+
+      try {
+	   // Create a default MimeMessage object.
+	   Message message = new MimeMessage(session);
+	
+	   // Set From: header field of the header.
+	   message.setFrom(new InternetAddress(from));
+	
+	   // Set To: header field of the header.
+	   message.setRecipients(Message.RecipientType.TO,
+               InternetAddress.parse(to));
+	
+	   // Set Subject: header field
+	   message.setSubject("Testing Subject");
+	
+	   // Now set the actual message
+	   message.setText("Hello, this is sample for to check send " +
+		"email using JavaMailAPI ");
+
+	   // Send message
+	   Transport.send(message);
+
+	   System.out.println("Sent message successfully....");
+
+      } catch (MessagingException e) {
+         throw new RuntimeException(e);
+      }
+   }
+}
+</pre>
+<p>As we are using the SMTP server provided by the host provider JangoSMTP, we need to authenticate the username and password. The <i>javax.mail.PasswordAuthentication</i> class is used to authenticate the password.</p>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class SendEmail.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendEmail.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendEmail
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+Sent message successfully....
+</pre>
+<p>As I'm sending an email to my gmail address through JangoSMTP, the following mail would be received in my gmail account inbox:</p>
+<img src="/javamail_api/images/sendemail.jpg" alt="JavaMail API Send Email"/>
+<h1>Sending Email With Attachment</h1>
+<p>Here is an example to send an email with attachment from your machine. The file on local machine is <b>file.txt</b> placed at <i>/home/manisha/</i>. Here we have used JangoSMTP server via which emails are sent to our destination email address. The setup is explained in the <a href="/javamail_api/javamail_api_environment_setup.htm">Environment Setup</a> chapter.</p>
+<p>To send a email with an inline image, the steps followed are:</p>
+<ul class="list">
+<li><p>Get a Session</p></li>
+<li><p>Create a default MimeMessage object and set <i>From,</i> <i>To,</i> <i>Subject</i> in the message.</p></li>
+<li><p>Set the actual message as below:</p>
+<pre class="prettyprint notranslate">
+messageBodyPart.setText("This is message body");
+</pre>
+</li>
+<li><p>Create a MimeMultipart object. Add the above messageBodyPart with actual message set in it, to this multipart object. </p></li>
+<li><p>Next add the attachment by creating a Datahandler as follows:</p>
+<pre class="prettyprint notranslate">
+messageBodyPart = new MimeBodyPart();
+String filename = "/home/manisha/file.txt";
+DataSource source = new FileDataSource(filename);
+messageBodyPart.setDataHandler(new DataHandler(source));
+messageBodyPart.setFileName(filename);
+multipart.addBodyPart(messageBodyPart);
+</pre>
+</li>
+<li><p>Next set the multipart in the message as follows:</p>
+<pre class="prettyprint notranslate">
+message.setContent(multipart);
+</pre>
+</li>
+<li><p>Send the message using the Transport object.</p></li>
+</ul>
+<h2>Create Java Class</h2>
+<p>Create a java class file <b>SendAttachmentInEmail</b>, the contents of which are as follows:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.util.Properties;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
+public class SendAttachmentInEmail {
+   public static void main(String[] args) {
+      // Recipient's email ID needs to be mentioned.
+      String to = "destinationemail@gmail.com";
+
+      // Sender's email ID needs to be mentioned
+      String from = "fromemail@gmail.com";
+
+      final String username = "manishaspatil";//change accordingly
+      final String password = "******";//change accordingly
+
+      // Assuming you are sending email through relay.jangosmtp.net
+      String host = "relay.jangosmtp.net";
+
+      Properties props = new Properties();
+      props.put("mail.smtp.auth", "true");
+      props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.host", host);
+      props.put("mail.smtp.port", "25");
+
+      // Get the Session object.
+      Session session = Session.getInstance(props,
+         new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(username, password);
+            }
+         });
+
+      try {
+         // Create a default MimeMessage object.
+         Message message = new MimeMessage(session);
+
+         // Set From: header field of the header.
+         message.setFrom(new InternetAddress(from));
+
+         // Set To: header field of the header.
+         message.setRecipients(Message.RecipientType.TO,
+            InternetAddress.parse(to));
+
+         // Set Subject: header field
+         message.setSubject("Testing Subject");
+
+         // Create the message part
+         BodyPart messageBodyPart = new MimeBodyPart();
+
+         // Now set the actual message
+         messageBodyPart.setText("This is message body");
+
+         // Create a multipar message
+         Multipart multipart = new MimeMultipart();
+
+         // Set text message part
+         multipart.addBodyPart(messageBodyPart);
+
+         // Part two is attachment
+         messageBodyPart = new MimeBodyPart();
+         String filename = "/home/manisha/file.txt";
+         DataSource source = new FileDataSource(filename);
+         messageBodyPart.setDataHandler(new DataHandler(source));
+         messageBodyPart.setFileName(filename);
+         multipart.addBodyPart(messageBodyPart);
+
+         // Send the complete message parts
+         message.setContent(multipart);
+
+         // Send message
+         Transport.send(message);
+
+         System.out.println("Sent message successfully....");
+  
+      } catch (MessagingException e) {
+         throw new RuntimeException(e);
+      }
+   }
+}
+</pre>
+<p>As we are using the SMTP server provided by the host provider JangoSMTP, we need to authenticate the username and password. The <i>javax.mail.PasswordAuthentication</i> class is used to authenticate the password.</p>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class SendAttachmentInEmail.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendAttachmentInEmail.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendAttachmentInEmail
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+Sent message successfully....
+</pre>
+<p>As I'm sending an email to my gmail address through JangoSMTP, the following mail would be received in my gmail account inbox:</p>
+<img src="/javamail_api/images/sendattachment.jpg" alt="JavaMail API Send Email With Attachment"/>
+<h1>Sending an HTML Email</h1>
+<p>Here is an example to send an HTML email from your machine.  Here we have used JangoSMTP server via which emails are sent to our destination email address. The setup is explained in the <a href="/javamail_api/javamail_api_environment_setup.htm">Environment Setup</a> chapter.</p>
+
+<p>This example is very similar to sending simple email, except that, here we are using setContent() method to set content whose second argument is "text/html" to specify that the HTML content is included in the message. Using this example, you can send as big as HTML content you like. </p>
+<p>To send a email with HTML content, the steps followed are:</p>
+<ul class="list">
+<li><p>Get a Session</p></li>
+<li><p>Create a default MimeMessage object and set <i>From,</i> <i>To,</i> <i>Subject</i> in the message.</p></li>
+<li><p>Set the actual message using setContent() method as below:</p>
+<pre class="prettyprint notranslate">
+message.setContent("&lt;h1&gt;This is actual message embedded in 
+   HTML tags&lt;/h1&gt;", "text/html");
+</pre>
+</li>
+<li><p>Send the message using the Transport object.</p></li>
+</ul>
+<h2>Create Java Class</h2>
+<p>Create a java class file <b>SendHTMLEmail</b>, the contents of which are as follows:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+public class SendHTMLEmail {
+   public static void main(String[] args) {
+      // Recipient's email ID needs to be mentioned.
+      String to = "destinationemail@gmail.com";
+
+      // Sender's email ID needs to be mentioned
+      String from = "fromemail@gmail.com";
+      final String username = "manishaspatil";//change accordingly
+      final String password = "******";//change accordingly
+
+      // Assuming you are sending email through relay.jangosmtp.net
+      String host = "relay.jangosmtp.net";
+
+      Properties props = new Properties();
+      props.put("mail.smtp.auth", "true");
+      props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.host", host);
+      props.put("mail.smtp.port", "25");
+
+      // Get the Session object.
+      Session session = Session.getInstance(props,
+         new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(username, password);
+            }
+	});
+
+      try {
+            // Create a default MimeMessage object.
+            Message message = new MimeMessage(session);
+
+   	   // Set From: header field of the header.
+	   message.setFrom(new InternetAddress(from));
+
+	   // Set To: header field of the header.
+	   message.setRecipients(Message.RecipientType.TO,
+              InternetAddress.parse(to));
+
+	   // Set Subject: header field
+	   message.setSubject("Testing Subject");
+
+	   // Send the actual HTML message, as big as you like
+	   message.setContent(
+              "&lt;h1&gt;This is actual message embedded in HTML tags&lt;/h1&gt;",
+             "text/html");
+
+	   // Send message
+	   Transport.send(message);
+
+	   System.out.println("Sent message successfully....");
+
+      } catch (MessagingException e) {
+	   e.printStackTrace();
+	   throw new RuntimeException(e);
+      }
+   }
+}
+</pre>
+<p>As we are using the SMTP server provided by the host provider JangoSMTP, we need to authenticate the username and password. The <i>javax.mail.PasswordAuthentication</i> class is used to authenticate the password.</p>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class SendHTMLEmail.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendHTMLEmail.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendHTMLEmail
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+Sent message successfully....
+</pre>
+<p>As I'm sending an email to my gmail address through JangoSMTP, the following mail would be received in my gmail account inbox:</p>
+<img src="/javamail_api/images/sendhtmlemail.jpg" alt="JavaMail API Send HTML Email"/>
+<h1>Sending Email With Inline Images</h1>
+<p>Here is an example to send an HTML email from your machine with inline image.  Here we have used JangoSMTP server via which emails are sent to our destination email address. The setup is explained in the <a href="/javamail_api/javamail_api_environment_setup.htm">Environment Setup</a> chapter.</p>
+<p>To send a email with an inline image, the steps followed are:</p>
+<ul class="list">
+<li><p>Get a Session</p></li>
+<li><p>Create a default MimeMessage object and set <i>From,</i> <i>To,</i> <i>Subject</i> in the message.</p></li>
+<li><p>Create a MimeMultipart object.</p></li>
+<li><p>In our example we will have an HTML part and an Image in the email. So first create the HTML content and set it in the multipart object as:</p>
+<pre class="prettyprint notranslate">
+// first part (the html)
+BodyPart messageBodyPart = new MimeBodyPart();
+String htmlText = "&lt;H1&gt;Hello&lt;/H1&gt;&lt;img src=\"cid:image\"&gt;";
+messageBodyPart.setContent(htmlText, "text/html");
+// add it
+multipart.addBodyPart(messageBodyPart);
+</pre>
+</li>
+<li><p>Next add the image by creating a Datahandler as follows:</p>
+<pre class="prettyprint notranslate">
+// second part (the image)
+messageBodyPart = new MimeBodyPart();
+DataSource fds = new FileDataSource(
+ "/home/manisha/javamail-mini-logo.png");
+
+messageBodyPart.setDataHandler(new DataHandler(fds));
+messageBodyPart.setHeader("Content-ID", "&lt;image&gt;");
+</pre>
+</li>
+<li><p>Next set the multipart in the message as follows:</p>
+<pre class="prettyprint notranslate">
+message.setContent(multipart);
+</pre>
+</li>
+<li><p>Send the message using the Transport object.</p></li>
+</ul>
+<h2>Create Java Class</h2>
+<p>Create a java class file <b>SendInlineImagesInEmail</b>, the contents of which are as follows:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
+public class SendInlineImagesInEmail {
+   public static void main(String[] args) {
+      // Recipient's email ID needs to be mentioned.
+      String to = "destinationemail@gmail.com";
+
+      // Sender's email ID needs to be mentioned
+      String from = "fromemail@gmail.com";
+      final String username = "manishaspatil";//change accordingly
+      final String password = "******";//change accordingly
+
+      // Assuming you are sending email through relay.jangosmtp.net
+      String host = "relay.jangosmtp.net";
+
+      Properties props = new Properties();
+      props.put("mail.smtp.auth", "true");
+      props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.host", host);
+      props.put("mail.smtp.port", "25");
+
+      Session session = Session.getInstance(props,
+         new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(username, password);
+            }
+         });
+
+      try {
+
+         // Create a default MimeMessage object.
+         Message message = new MimeMessage(session);
+
+         // Set From: header field of the header.
+         message.setFrom(new InternetAddress(from));
+
+         // Set To: header field of the header.
+         message.setRecipients(Message.RecipientType.TO,
+            InternetAddress.parse(to));
+
+         // Set Subject: header field
+         message.setSubject("Testing Subject");
+
+         // This mail has 2 part, the BODY and the embedded image
+         MimeMultipart multipart = new MimeMultipart("related");
+
+         // first part (the html)
+         BodyPart messageBodyPart = new MimeBodyPart();
+         String htmlText = "&lt;H1&gt;Hello&lt;/H1&gt;&lt;img src=\"cid:image\"&gt;";
+         messageBodyPart.setContent(htmlText, "text/html");
+         // add it
+         multipart.addBodyPart(messageBodyPart);
+
+         // second part (the image)
+         messageBodyPart = new MimeBodyPart();
+         DataSource fds = new FileDataSource(
+            "/home/manisha/javamail-mini-logo.png");
+
+         messageBodyPart.setDataHandler(new DataHandler(fds));
+         messageBodyPart.setHeader("Content-ID", "&lt;image&gt;");
+
+         // add image to the multipart
+         multipart.addBodyPart(messageBodyPart);
+
+         // put everything together
+         message.setContent(multipart);
+         // Send message
+         Transport.send(message);
+
+         System.out.println("Sent message successfully....");
+
+      } catch (MessagingException e) {
+         throw new RuntimeException(e);
+      }
+   }
+}
+</pre>
+<p>As we are using the SMTP server provided by the host provider JangoSMTP, we need to authenticate the username and password. The <i>javax.mail.PasswordAuthentication</i> class is used to authenticate the password.</p>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class SendInlineImagesInEmail.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendInlineImagesInEmail.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendInlineImagesInEmail
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+Sent message successfully....
+</pre>
+<p>As I'm sending an email to my gmail address through JangoSMTP, the following mail would be received in my gmail account inbox:</p>
+<img src="/javamail_api/images/sendinlineimage.jpg" alt="JavaMail API Send Email With Inline Images"/>
+<h1>Checking Emails</h1>
+<p>There are two aspects to which needs to understood before proceeding with this chapter. They are <b>Check</b> and <b>Fetch</b>.</p>
+<ul class="list">
+<li><p><b>Check</b>ing an email in JavaMail is a process where we open the respective folder in the mailbox and get each message. Here we only check the header of each message i.e the <i>From, To, subject</i>. Content is not read.</p></li>
+<li><p><b>Fetch</b>ing an email in JavaMail is a process where we open the respective folder in the mailbox and get each message. Alongwith the header we also read the content by recognizing the content-type.</p></li>
+</ul>
+<p>To check or fetch an email using JavaMail API, we would need POP or IMAP servers. To check and fetch the emails, Folder and Store classes are needed. Here we have used GMAIL's POP3 server (pop.gmail.com). In this chapter will learn how to check emails using JavaMail API. Fetching shall be covered in the subsequent chapters. To check emails:</p>
+<ul class="list">
+<li><p>Get a Session</p></li>
+<li><p>Create pop3 Store object and connect with pop server.</p></li>
+<li><p>Create folder object. Open the appropriate folder in your mailbox.</p></li>
+<li><p>Get your messages.</p></li>
+<li><p>Close the Store and Folder objects.</p></li>
+</ul>
+<h2>Create Java Class</h2>
+<p>Create a java class file <b>CheckingMails</b>, the contents of which are as follows:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.util.Properties;
+
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Session;
+import javax.mail.Store;
+
+public class CheckingMails {
+
+   public static void check(String host, String storeType, String user,
+      String password) 
+   {
+      try {
+
+      //create properties field
+      Properties properties = new Properties();
+
+      properties.put("mail.pop3.host", host);
+      properties.put("mail.pop3.port", "995");
+      properties.put("mail.pop3.starttls.enable", "true");
+      Session emailSession = Session.getDefaultInstance(properties);
+  
+      //create the POP3 store object and connect with the pop server
+      Store store = emailSession.getStore("pop3s");
+
+      store.connect(host, user, password);
+
+      //create the folder object and open it
+      Folder emailFolder = store.getFolder("INBOX");
+      emailFolder.open(Folder.READ_ONLY);
+
+      // retrieve the messages from the folder in an array and print it
+      Message[] messages = emailFolder.getMessages();
+      System.out.println("messages.length---" + messages.length);
+
+      for (int i = 0, n = messages.length; i &lt; n; i++) {
+         Message message = messages[i];
+         System.out.println("---------------------------------");
+         System.out.println("Email Number " + (i + 1));
+         System.out.println("Subject: " + message.getSubject());
+         System.out.println("From: " + message.getFrom()[0]);
+         System.out.println("Text: " + message.getContent().toString());
+
+      }
+
+      //close the store and folder objects
+      emailFolder.close(false);
+      store.close();
+
+      } catch (NoSuchProviderException e) {
+         e.printStackTrace();
+      } catch (MessagingException e) {
+         e.printStackTrace();
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+   }
+
+   public static void main(String[] args) {
+
+      String host = "pop.gmail.com";// change accordingly
+      String mailStoreType = "pop3";
+      String username = "yourmail@gmail.com";// change accordingly
+      String password = "*****";// change accordingly
+
+      check(host, mailStoreType, username, password);
+
+   }
+
+}
+</pre>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class CheckingMails.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: CheckingMails.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: CheckingMails
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+messages.length---4
+---------------------------------
+Email Number 1
+Subject: Test Mail--Fetch
+From: &lt;abcd@gmail.com&gt;
+Text: javax.mail.internet.MimeMultipart@327a5b7f
+---------------------------------
+Email Number 2
+Subject: testing ----checking simple email
+From: &lt;abcd@gmail.com&gt;
+Text: javax.mail.internet.MimeMultipart@7f0d08bc
+---------------------------------
+Email Number 3
+Subject: Email with attachment
+From: &lt;abcd@gmail.com&gt;
+Text: javax.mail.internet.MimeMultipart@30b8afce
+---------------------------------
+Email Number 4
+Subject: Email with Inline image
+From: &lt;abcd@gmail.com&gt;
+Text: javax.mail.internet.MimeMultipart@2d1e165f
+</pre>
+<p>Here we have printed the number of messages in the INBOX which is 4 in this case. We have also printed Subject, From address and Text for each email message.</p>
+<h1>Fetching Emails</h1>
+<p>In the previous chapter we learnt how to check emails. Now let us see how to fetch each email and read its content. Let us write a Java class <b>FetchingEmail</b> which will read following types of emails:</p> 
+<ul class="list">
+<li><p>Simple email</p></li>
+<li><p>Email with attachment</p></li>
+<li><p>Email with inline image</p></li>
+</ul>
+
+<p>Basic steps followed in the code are as below:</p>
+<ul class="list">
+<li><p>Get the Session object.</p></li>
+<li><p>Create POP3 store object and connect to the store.</p></li>
+<li><p>Create Folder object and open the appropriate folder in your mailbox.</p></li>
+<li><p>Retrieve messages.</p></li>
+<li><p>Close the folder and  store objects respectively.</p></li>
+</ul>
+<h2>Create Java Class</h2>
+<p>Create a java Create a java class file <b>FetchingEmail</b>, contents of which are as below:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Date;
+import java.util.Properties;
+
+import javax.mail.Address;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Part;
+import javax.mail.Session;
+import javax.mail.Store;
+
+public class FetchingEmail {
+
+   public static void fetch(String pop3Host, String storeType, String user,
+      String password) {
+      try {
+         // create properties field
+         Properties properties = new Properties();
+         properties.put("mail.store.protocol", "pop3");
+         properties.put("mail.pop3.host", pop3Host);
+         properties.put("mail.pop3.port", "995");
+         properties.put("mail.pop3.starttls.enable", "true");
+         Session emailSession = Session.getDefaultInstance(properties);
+         // emailSession.setDebug(true);
+
+         // create the POP3 store object and connect with the pop server
+         Store store = emailSession.getStore("pop3s");
+
+         store.connect(pop3Host, user, password);
+
+         // create the folder object and open it
+         Folder emailFolder = store.getFolder("INBOX");
+         emailFolder.open(Folder.READ_ONLY);
+
+         BufferedReader reader = new BufferedReader(new InputStreamReader(
+	      System.in));
+
+         // retrieve the messages from the folder in an array and print it
+         Message[] messages = emailFolder.getMessages();
+         System.out.println("messages.length---" + messages.length);
+
+         for (int i = 0; i &lt; messages.length; i++) {
+            Message message = messages[i];
+            System.out.println("---------------------------------");
+            writePart(message);
+            String line = reader.readLine();
+            if ("YES".equals(line)) {
+               message.writeTo(System.out);
+            } else if ("QUIT".equals(line)) {
+               break;
+            }
+         }
+
+         // close the store and folder objects
+         emailFolder.close(false);
+         store.close();
+
+      } catch (NoSuchProviderException e) {
+         e.printStackTrace();
+      } catch (MessagingException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+}
+
+   public static void main(String[] args) {
+
+      String host = "pop.gmail.com";// change accordingly
+      String mailStoreType = "pop3";
+      String username = 
+         "abc@gmail.com";// change accordingly
+      String password = "*****";// change accordingly
+
+      //Call method fetch
+      fetch(host, mailStoreType, username, password);
+
+   }
+
+   /*
+   * This method checks for content-type 
+   * based on which, it processes and
+   * fetches the content of the message
+   */
+   public static void writePart(Part p) throws Exception {
+      if (p instanceof Message)
+         //Call methos writeEnvelope
+         writeEnvelope((Message) p);
+
+      System.out.println("----------------------------");
+      System.out.println("CONTENT-TYPE: " + p.getContentType());
+
+      //check if the content is plain text
+      if (p.isMimeType("text/plain")) {
+         System.out.println("This is plain text");
+         System.out.println("---------------------------");
+         System.out.println((String) p.getContent());
+      } 
+      //check if the content has attachment
+      else if (p.isMimeType("multipart/*")) {
+         System.out.println("This is a Multipart");
+         System.out.println("---------------------------");
+         Multipart mp = (Multipart) p.getContent();
+         int count = mp.getCount();
+         for (int i = 0; i &lt; count; i++)
+            writePart(mp.getBodyPart(i));
+      } 
+      //check if the content is a nested message
+      else if (p.isMimeType("message/rfc822")) {
+         System.out.println("This is a Nested Message");
+         System.out.println("---------------------------");
+         writePart((Part) p.getContent());
+      } 
+      //check if the content is an inline image
+      else if (p.isMimeType("image/jpeg")) {
+         System.out.println("--------> image/jpeg");
+         Object o = p.getContent();
+
+         InputStream x = (InputStream) o;
+         // Construct the required byte array
+         System.out.println("x.length = " + x.available());
+         int i = 0;
+         byte[] bArray = new byte[x.available()];
+
+         while ((i = (int) ((InputStream) x).available()) > 0) {
+            int result = (int) (((InputStream) x).read(bArray));
+            if (result == -1)
+            break;
+         }
+         FileOutputStream f2 = new FileOutputStream("/tmp/image.jpg");
+         f2.write(bArray);
+      } 
+      else if (p.getContentType().contains("image/")) {
+         System.out.println("content type" + p.getContentType());
+         File f = new File("image" + new Date().getTime() + ".jpg");
+         DataOutputStream output = new DataOutputStream(
+            new BufferedOutputStream(new FileOutputStream(f)));
+            com.sun.mail.util.BASE64DecoderStream test = 
+                 (com.sun.mail.util.BASE64DecoderStream) p
+                  .getContent();
+         byte[] buffer = new byte[1024];
+         int bytesRead;
+         while ((bytesRead = test.read(buffer)) != -1) {
+            output.write(buffer, 0, bytesRead);
+         }
+      } 
+      else {
+         Object o = p.getContent();
+         if (o instanceof String) {
+            System.out.println("This is a string");
+            System.out.println("---------------------------");
+            System.out.println((String) o);
+         } 
+         else if (o instanceof InputStream) {
+            System.out.println("This is just an input stream");
+            System.out.println("---------------------------");
+            InputStream is = (InputStream) o;
+            is = (InputStream) o;
+            int c;
+            while ((c = is.read()) != -1)
+               System.out.write(c);
+         } 
+         else {
+            System.out.println("This is an unknown type");
+            System.out.println("---------------------------");
+            System.out.println(o.toString());
+         }
+   }
+
+}
+   /*
+   * This method would print FROM,TO and SUBJECT of the message
+   */
+   public static void writeEnvelope(Message m) throws Exception {
+      System.out.println("This is the message envelope");
+      System.out.println("---------------------------");
+      Address[] a;
+
+      // FROM
+      if ((a = m.getFrom()) != null) {
+         for (int j = 0; j &lt; a.length; j++)
+         System.out.println("FROM: " + a[j].toString());
+      }
+
+      // TO
+      if ((a = m.getRecipients(Message.RecipientType.TO)) != null) {
+         for (int j = 0; j &lt; a.length; j++)
+         System.out.println("TO: " + a[j].toString());
+      }
+
+      // SUBJECT
+      if (m.getSubject() != null)
+         System.out.println("SUBJECT: " + m.getSubject());
+
+   }
+
+}
+</pre>
+<blockquote>You can set the debug on by uncommenting the statement <i>emailSession.setDebug(true);</i></blockquote>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class FetchingEmail.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: FetchingEmail.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: FetchingEmail
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+messages.length---3
+---------------------------------
+This is the message envelope
+---------------------------
+FROM: XYZ &lt;xyz@gmail.com&gt;
+TO: ABC &lt;abc@gmail.com&gt;
+SUBJECT: Simple Message
+----------------------------
+CONTENT-TYPE: multipart/alternative; boundary=047d7b343d6ad3e4ea04e8ec6579
+This is a Multipart
+---------------------------
+
+----------------------------
+CONTENT-TYPE: text/plain; charset=ISO-8859-1
+This is plain text
+---------------------------
+Hi am a simple message string....
+
+-- 
+Regards
+xyz
+
+This is the message envelope
+---------------------------
+FROM: XYZ &lt;xyz@gmail.com&gt;
+TO: ABC &lt;abc@gmail.com&gt;
+SUBJECT: Attachement
+----------------------------
+CONTENT-TYPE: multipart/mixed; boundary=047d7b343d6a99180904e8ec6751
+This is a Multipart
+---------------------------
+
+----------------------------
+CONTENT-TYPE: text/plain; charset=ISO-8859-1
+This is plain text
+---------------------------
+Hi I've an attachment.Please check
+
+-- 
+Regards
+XYZ
+
+----------------------------
+CONTENT-TYPE: application/octet-stream; name=sample_attachement
+This is just an input stream
+---------------------------
+Submit your Tutorials, White Papers and Articles into our Tutorials Directory. This is a tutorials database where we are keeping all the tutorials shared by the internet community for the benefit of others.
+
+
+This is the message envelope
+---------------------------
+FROM: XYZ &lt;xyz@gmail.com&gt;
+TO: ABC &lt;abc@gmail.com&gt;
+SUBJECT: Inline Image
+----------------------------
+CONTENT-TYPE: multipart/related; boundary=f46d04182582be803504e8ece94b
+This is a Multipart
+---------------------------
+
+----------------------------
+CONTENT-TYPE: text/plain; charset=ISO-8859-1
+This is plain text
+---------------------------
+Hi I've an inline image
+
+
+[image: Inline image 3]
+
+-- 
+Regards
+XYZ
+
+----------------------------
+CONTENT-TYPE: image/png; name="javamail-mini-logo.png"
+content typeimage/png; name="javamail-mini-logo.png"
+</pre>
+<p>Here you can see there are three emails in our mailbox. First a simple mail with message "Hi am a simple message string....". The second mail has an attachment. The contents of the attachment are also printed as seen above. The third mail has an inline image.</p>
+<h1>Authentication</h1>
+<p>We will modify our CheckingMails.java from the chapter <a href="/javamail_api/javamail_api_checking_emails.htm">Checking Emails</a>. Its contents are as below:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Store;
+
+public class CheckingMails {
+
+   public static void check(String host, String storeType, String user,
+      String password) 
+   {
+      try {
+
+      // create properties field
+      Properties properties = new Properties();
+
+      properties.put("mail.pop3s.host", host);
+      properties.put("mail.pop3s.port", "995");
+      properties.put("mail.pop3s.starttls.enable", "true");
+
+      // Setup authentication, get session
+      Session emailSession = Session.getInstance(properties,
+         new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(
+                  "manishapatil3may@gmail.com", "manisha123");
+            }
+         });
+      // emailSession.setDebug(true);
+
+      // create the POP3 store object and connect with the pop server
+      Store store = emailSession.getStore("pop3s");
+
+      store.connect();
+
+      // create the folder object and open it
+      Folder emailFolder = store.getFolder("INBOX");
+      emailFolder.open(Folder.READ_ONLY);
+
+      // retrieve the messages from the folder in an array and print it
+      Message[] messages = emailFolder.getMessages();
+      System.out.println("messages.length---" + messages.length);
+
+      for (int i = 0, n = messages.length; i &lt; n; i++) {
+         Message message = messages[i];
+         System.out.println("---------------------------------");
+         System.out.println("Email Number " + (i + 1));
+         System.out.println("Subject: " + message.getSubject());
+         System.out.println("From: " + message.getFrom()[0]);
+         System.out.println("Text: " + message.getContent().toString());
+      }
+
+      // close the store and folder objects
+      emailFolder.close(false);
+      store.close();
+
+      } catch (NoSuchProviderException e) {
+         e.printStackTrace();
+      } catch (MessagingException e) {
+         e.printStackTrace();
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+   }
+
+   public static void main(String[] args) {
+
+      String host = "pop.gmail.com";// change accordingly
+      String mailStoreType = "pop3";
+      String username = "abc@gmail.com";// change accordingly
+      String password = "*****";// change accordingly
+
+      check(host, mailStoreType, username, password);
+
+   }
+
+}
+</pre>
+<blockquote>You can set the debug on by uncommenting the statement <i>emailSession.setDebug(true);</i></blockquote>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class CheckingMails.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: CheckingMails.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: CheckingMails
+</pre>
+<h2>Verify Output</h2>
+<p>You can see a similar message as below on the command console:</p>
+<pre class="prettyprint notranslate">
+messages.length---3
+---------------------------------
+Email Number 1
+Subject: Today is a nice day
+From: XYZ &lt;xyz@gmail.com&gt;
+Text: javax.mail.internet.MimeMultipart@45f676cb
+---------------------------------
+Email Number 2
+Subject: hiiii....
+From: XYZ &lt;xyz@gmail.com&gt;
+Text: javax.mail.internet.MimeMultipart@37f12d4f
+---------------------------------
+Email Number 3
+Subject: helloo
+From: XYZ &lt;xyz@gmail.com&gt;
+Text: javax.mail.internet.MimeMultipart@3ad5ba3a
+</pre>
+<h1>Replying Emails</h1>
+<p>In this chapter we will see how to reply to an email using JavaMail API. Basic steps followed in the program below are:</p>
+<ul class="list">
+<li><p>Get the Session object with POP and SMTP server details in the properties. We would need POP details to retrieve messages and SMTP details to send messages.</p></li>
+<li><p>Create POP3 store object and connect to the store.</p></li>
+<li><p>Create Folder object and open the appropriate folder in your mailbox.</p></li>
+<li><p>Retrieve messages.</p></li>
+<li><p>Iterate through the messages and type "Y" or "y" if you want to reply.</p></li>
+<li><p>Get all information (To,From,Subject, Content) of the message.</p></li>
+<li><p>Build the reply message, using Message.reply() method. This method configures a new Message with the proper recipient and subject. The method takes a boolean parameter indicating whether to reply to only the sender (false) or reply to all (true).
+</p></li>
+<li><p>Set From,Text and Reply-to in the message and send it through the instance of Transport object.</p></li>
+<li><p>Close the Transport, folder and  store objects respectively.</p></li>
+</ul>
+<blockquote>Here we have used JangoSMTP server via which emails are sent to our destination email address. The setup is explained in the <a href="/javamail_api/javamail_api_environment_setup.htm">Environment Setup</a> chapter.</blockquote>
+<h2>Create Java Class</h2>
+<p>Create a java class file <b>ReplyToEmail</b>, the contents of which are as follows:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Date;
+import java.util.Properties;
+
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Store;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+public class ReplyToEmail {
+   public static void main(String args[]) 
+   {
+      Date date = null;
+
+      Properties properties = new Properties();
+      properties.put("mail.store.protocol", "pop3");
+      properties.put("mail.pop3s.host", "pop.gmail.com");
+      properties.put("mail.pop3s.port", "995");
+      properties.put("mail.pop3.starttls.enable", "true");
+      properties.put("mail.smtp.auth", "true");
+      properties.put("mail.smtp.starttls.enable", "true");
+      properties.put("mail.smtp.host", "relay.jangosmtp.net");
+      properties.put("mail.smtp.port", "25");
+      Session session = Session.getDefaultInstance(properties);
+
+      // session.setDebug(true);
+      try 
+      {
+         // Get a Store object and connect to the current host
+         Store store = session.getStore("pop3s");
+         store.connect("pop.gmail.com", "xyz@gmail.com",
+            "*****");//change the user and password accordingly
+
+         Folder folder = store.getFolder("inbox");
+         if (!folder.exists()) {
+            System.out.println("inbox not found");
+               System.exit(0);
+         }
+         folder.open(Folder.READ_ONLY);
+
+         BufferedReader reader = new BufferedReader(new InputStreamReader(
+            System.in));
+
+         Message[] messages = folder.getMessages();
+         if (messages.length != 0) {
+
+            for (int i = 0, n = messages.length; i &lt; n; i++) {
+               Message message = messages[i];
+               date = message.getSentDate();
+               // Get all the information from the message
+               String from = InternetAddress.toString(message.getFrom());
+               if (from != null) {
+                  System.out.println("From: " + from);
+               }
+               String replyTo = InternetAddress.toString(message
+	         .getReplyTo());
+               if (replyTo != null) {
+                  System.out.println("Reply-to: " + replyTo);
+               }
+               String to = InternetAddress.toString(message
+	         .getRecipients(Message.RecipientType.TO));
+               if (to != null) {
+                  System.out.println("To: " + to);
+               }
+
+               String subject = message.getSubject();
+               if (subject != null) {
+                  System.out.println("Subject: " + subject);
+               }
+               Date sent = message.getSentDate();
+               if (sent != null) {
+                  System.out.println("Sent: " + sent);
+               }
+
+               System.out.print("Do you want to reply [y/n] : ");
+               String ans = reader.readLine();
+               if ("Y".equals(ans) || "y".equals(ans)) {
+
+                  Message replyMessage = new MimeMessage(session);
+                  replyMessage = (MimeMessage) message.reply(false);
+                  replyMessage.setFrom(new InternetAddress(to));
+                  replyMessage.setText("Thanks");
+                  replyMessage.setReplyTo(message.getReplyTo());
+
+                  // Send the message by authenticating the SMTP server
+                  // Create a Transport instance and call the sendMessage
+                  Transport t = session.getTransport("smtp");
+                  try {
+	   	     //connect to the SMTP server using transport instance
+		     //change the user and password accordingly	
+	             t.connect("abc", "****");
+	             t.sendMessage(replyMessage,
+                        replyMessage.getAllRecipients());
+                  } finally {
+                     t.close();
+                  }
+                  System.out.println("message replied successfully ....");
+
+                  // close the store and folder objects
+                  folder.close(false);
+                  store.close();
+
+               } else if ("n".equals(ans)) {
+                  break;
+               }
+            }//end of for loop
+
+         } else {
+            System.out.println("There is no msg....");
+         }
+
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+
+   }
+
+}
+</pre>
+<blockquote>You can set the debug on by uncommenting the statement <i>session.setDebug(true);</i></blockquote>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class ReplyToEmail.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: ReplyToEmail.java
+</pre>
+<p>Now that the class is compiled, execute the following command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: ReplyToEmail
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+From: ABC &lt;abc@gmail.com&gt;
+Reply-to: abc@trioteksolutions.com
+To: XYZ &lt;xyz@gmail.com&gt;
+Subject: Hi today is a nice day
+Sent: Thu Oct 17 15:58:37 IST 2013
+Do you want to reply [y/n] : y
+message replied successfully ....
+</pre>
+<p>Check the inbox to which the mail was sent. In our case the message received looks as below:</p>
+<img src="/javamail_api/images/replymessage.jpg" alt="JavaMail API Reply Email"/>
+<h1>Forwarding Emails</h1>
+<p>In this chapter we will see how to forward an email using JavaMail API. Basic steps followed in the program below are:</p>
+<ul class="list">
+<li><p>Get the Session object with POP and SMTP server details in the properties.  We would need POP details to retrieve messages and SMTP details to send messages.</p></li>
+<li><p>Create POP3 store object and connect to the store.</p></li>
+<li><p>Create Folder object and open the appropriate folder in your mailbox.</p></li>
+<li><p>Retrieve messages.</p></li>
+<li><p>Iterate through the messages and type "Y" or "y" if you want to forward.</p></li>
+<li><p>Get all information (To,From,Subject, Content) of the message.</p></li>
+<li><p>Build the forward message by working with the parts that make up a message. First part would be the text of the message and a second part would be the message to forward. Combine the two into a multipart. Then you add the multipart to a properly addressed message and send it. </p></li>
+<li><p>Close the Transport, folder and  store objects respectively.</p></li>
+</ul>
+<blockquote>Here we have used JangoSMTP server via which emails are sent to our destination email address. The setup is explained in the <a href="/javamail_api/javamail_api_environment_setup.htm">Environment Setup</a> chapter.</blockquote>
+<h2>Create Java Class</h2>
+<p>Create a java class file <b>ForwardEmail</b>, the contents of which are as follows:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Date;
+import java.util.Properties;
+
+import javax.mail.BodyPart;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Store;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
+public class ForwardEmail {
+
+   public static void main(String[] args) {
+      Properties properties = new Properties();
+      properties.put("mail.store.protocol", "pop3");
+      properties.put("mail.pop3s.host", "pop.gmail.com");
+      properties.put("mail.pop3s.port", "995");
+      properties.put("mail.pop3.starttls.enable", "true");
+      properties.put("mail.smtp.auth", "true");
+      properties.put("mail.smtp.host", "relay.jangosmtp.net");
+      properties.put("mail.smtp.port", "25");
+      Session session = Session.getDefaultInstance(properties);
+      try {
+         // session.setDebug(true);
+         // Get a Store object and connect to the current host
+         Store store = session.getStore("pop3s");
+         store.connect("pop.gmail.com", "xyz@gmail.com",
+            "*****");//change the user and password accordingly
+
+         // Create a Folder object and open the folder
+         Folder folder = store.getFolder("inbox");
+         folder.open(Folder.READ_ONLY);
+         BufferedReader reader = new BufferedReader(new InputStreamReader(
+            System.in));
+         Message[] messages = folder.getMessages();
+         if (messages.length != 0) {
+
+         for (int i = 0, n = messages.length; i &lt; n; i++) {
+            Message message = messages[i];
+            // Get all the information from the message
+            String from = InternetAddress.toString(message.getFrom());
+            if (from != null) {
+               System.out.println("From: " + from);
+            }
+            String replyTo = InternetAddress.toString(message
+               .getReplyTo());
+            if (replyTo != null) {
+               System.out.println("Reply-to: " + replyTo);
+            }
+            String to = InternetAddress.toString(message
+               .getRecipients(Message.RecipientType.TO));
+            if (to != null) {
+               System.out.println("To: " + to);
+            }
+
+            String subject = message.getSubject();
+            if (subject != null) {
+               System.out.println("Subject: " + subject);
+            }
+            Date sent = message.getSentDate();
+            if (sent != null) {
+               System.out.println("Sent: " + sent);
+            }
+            System.out.print("Do you want to reply [y/n] : ");
+            String ans = reader.readLine();
+            if ("Y".equals(ans) || "y".equals(ans)) {
+               Message forward = new MimeMessage(session);
+               // Fill in header
+               forward.setRecipients(Message.RecipientType.TO,
+               InternetAddress.parse(from));
+               forward.setSubject("Fwd: " + message.getSubject());
+               forward.setFrom(new InternetAddress(to));
+
+               // Create the message part
+               MimeBodyPart messageBodyPart = new MimeBodyPart();
+               // Create a multipart message
+               Multipart multipart = new MimeMultipart();
+               // set content
+               messageBodyPart.setContent(message, "message/rfc822");
+               // Add part to multi part
+               multipart.addBodyPart(messageBodyPart);
+               // Associate multi-part with message
+               forward.setContent(multipart);
+               forward.saveChanges();
+
+               // Send the message by authenticating the SMTP server
+               // Create a Transport instance and call the sendMessage
+               Transport t = session.getTransport("smtp");
+               try {
+                  //connect to the SMTP server using transport instance
+		  //change the user and password accordingly
+                  t.connect("abc", "*****");
+                  t.sendMessage(forward, forward.getAllRecipients());
+               } finally {
+                  t.close();
+               }
+
+               System.out.println("message forwarded successfully....");
+
+            // close the store and folder objects
+            folder.close(false);
+            store.close();
+            }// end if
+
+         }// end for
+   }// end if
+   } catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+
+}
+</pre>
+<blockquote>You can set the debug on by uncommenting the statement <i>session.setDebug(true);</i></blockquote>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class ForwardEmail.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: ForwardEmail.java
+</pre>
+<p>Now that the class is compiled, execute the following command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: ForwardEmail
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+From: ABC &lt;abc@gmail.com&gt;
+Reply-to: abc@trioteksolutions.com
+To: XYZ &lt;xyz@gmail.com&gt;
+Subject: Hi today is a nice day
+Sent: Thu Oct 17 15:58:37 IST 2013
+Do you want to reply [y/n] : y
+message forwarded successfully....
+</pre>
+<p>Check the inbox to which the mail was sent. In our case the forwarded message would look as below:</p>
+<img src="/javamail_api/images/fwdmsg_header.jpg" alt="JavaMail API Forward Email"/>
+ <img src="/javamail_api/images/fwdmsg_body.jpg" alt="JavaMail API Forward Email"/>
+<h1>Deleting Emails</h1>
+<p>In this chapter we will see how to delete an email using JavaMail API. Deleting messages involves working with the Flags associated with the messages. There are different flags for different states, some system-defined and some user-defined. The predefined flags are defined in the inner class Flags.Flag and are listed below:</p>
+<ul class="list">
+<li><p>Flags.Flag.ANSWERED</p></li>
+<li><p>Flags.Flag.DELETED</p></li>
+<li><p>Flags.Flag.DRAFT</p></li>
+<li><p>Flags.Flag.FLAGGED</p></li>
+<li><p>Flags.Flag.RECENT</p></li>
+<li><p>Flags.Flag.SEEN</p></li>
+<li><p>Flags.Flag.USER</p></li>
+</ul>
+<p>POP protocol supports only deleting of the messages.</p>
+
+<p>Basic steps followed in the delete program are:</p>
+<ul class="list">
+<li><p>Get the Session object with POP and SMTP server details in the properties.  We would need POP details to retrieve messages and SMTP details to send messages.</p></li>
+<li><p>Create POP3 store object and connect to the store.</p></li>
+<li><p>Create Folder object and open the appropriate folder in your mailbox in READ_WRITE mode.</p></li>
+<li><p>Retrieves messages from inbox folder.</p></li>
+<li><p>Iterate through the messages and type "Y" or "y" if you want to delete the message by invoking the method setFlag(Flags.Flag.DELETED, true) on the Message object.</p></li>
+<li><p>The messages marked DELETED are not actually deleted, until we call the expunge() method on the Folder object, or close the folder with expunge set to true.</p></li>
+<li><p>Close the store object.</p></li>
+</ul>
+
+<h2>Create Java Class</h2>
+<p>Create a java class file <b>ForwardEmail</b>, the contents of which are as follows:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Properties;
+
+import javax.mail.Flags;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Session;
+import javax.mail.Store;
+
+public class DeleteEmail {
+
+   public static void delete(String pop3Host, String storeType, String user,
+      String password) 
+   {
+      try 
+      {
+         // get the session object
+         Properties properties = new Properties();
+         properties.put("mail.store.protocol", "pop3");
+         properties.put("mail.pop3s.host", pop3Host);
+         properties.put("mail.pop3s.port", "995");
+         properties.put("mail.pop3.starttls.enable", "true");
+         Session emailSession = Session.getDefaultInstance(properties);
+         // emailSession.setDebug(true);
+
+         // create the POP3 store object and connect with the pop server
+         Store store = emailSession.getStore("pop3s");
+
+         store.connect(pop3Host, user, password);
+
+         // create the folder object and open it
+         Folder emailFolder = store.getFolder("INBOX");
+         emailFolder.open(Folder.READ_WRITE);
+
+         BufferedReader reader = new BufferedReader(new InputStreamReader(
+            System.in));
+         // retrieve the messages from the folder in an array and print it
+         Message[] messages = emailFolder.getMessages();
+         System.out.println("messages.length---" + messages.length);
+         for (int i = 0; i &lt; messages.length; i++) {
+            Message message = messages[i];
+            System.out.println("---------------------------------");
+            System.out.println("Email Number " + (i + 1));
+            System.out.println("Subject: " + message.getSubject());
+            System.out.println("From: " + message.getFrom()[0]);
+
+            String subject = message.getSubject();
+            System.out.print("Do you want to delete this message [y/n] ? ");
+            String ans = reader.readLine();
+            if ("Y".equals(ans) || "y".equals(ans)) {
+	       // set the DELETE flag to true
+	       message.setFlag(Flags.Flag.DELETED, true);
+	       System.out.println("Marked DELETE for message: " + subject);
+            } else if ("n".equals(ans)) {
+	       break;
+            }
+         }
+         // expunges the folder to remove messages which are marked deleted
+         emailFolder.close(true);
+         store.close();
+
+      } catch (NoSuchProviderException e) {
+         e.printStackTrace();
+      } catch (MessagingException e) {
+         e.printStackTrace();
+      } catch (IOException io) {
+         io.printStackTrace();
+      }
+   }
+
+   public static void main(String[] args) {
+
+      String host = "pop.gmail.com";// change accordingly
+      String mailStoreType = "pop3";
+      String username = "abc@gmail.com";// change accordingly
+      String password = "*****";// change accordingly
+
+      delete(host, mailStoreType, username, password);
+
+   }
+
+}
+</pre>
+<blockquote>You can set the debug on by uncommenting the statement <i>emailSession.setDebug(true);</i></blockquote>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class DeleteEmail.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: DeleteEmail.java
+</pre>
+<p>Now that the class is compiled, execute the following command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: DeleteEmail
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+messages.length---1
+---------------------------------
+Email Number 1
+Subject: Testing
+From: ABC &lt;abc@gmail.com&gt;
+Do you want to delete this message [y/n] ? y
+Marked DELETE for message: Testing
+</pre>
+<h1>Gmail SMTP Server</h1>
+<p>In all previous chapters we used JangoSMTP server to send emails. In this chapter we will learn about SMTP server provided by Gmail. Gmail (among others) offers use of their public SMTP server free of charge.</p> 
+<p>Gmail SMTP server details can be found <a href="https://support.google.com/mail/answer/13287?hl=en" rel="nofollow" target="_blank">here</a>. As you can see in the details, we can use either TLS or SSL connection to send email via Gmail SMTP server.</p>
+<p>The procedure to send email using Gmail SMTP server is similar as explained in chapter <a href="/javamail_api/javamail_api_sending_emails.htm">Sending Emails</a>, except that we would change the host server. As a pre-requisite the sender email address should be an active gmail account. Let us try an example.</p>
+<h2>Create Java Class</h2>
+<p>Create a Java file <b>SendEmailUsingGMailSMTP</b>, contents of which are as below:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+public class SendEmailUsingGMailSMTP {
+   public static void main(String[] args) {
+      // Recipient's email ID needs to be mentioned.
+      String to = "xyz@gmail.com";//change accordingly
+
+      // Sender's email ID needs to be mentioned
+      String from = "abc@gmail.com";//change accordingly
+      final String username = "abc";//change accordingly
+      final String password = "*****";//change accordingly
+
+      // Assuming you are sending email through relay.jangosmtp.net
+      String host = "smtp.gmail.com";
+
+      Properties props = new Properties();
+      props.put("mail.smtp.auth", "true");
+      props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.host", host);
+      props.put("mail.smtp.port", "587");
+
+      // Get the Session object.
+      Session session = Session.getInstance(props,
+      new javax.mail.Authenticator() {
+         protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username, password);
+         }
+      });
+
+      try {
+         // Create a default MimeMessage object.
+         Message message = new MimeMessage(session);
+
+         // Set From: header field of the header.
+         message.setFrom(new InternetAddress(from));
+
+         // Set To: header field of the header.
+         message.setRecipients(Message.RecipientType.TO,
+         InternetAddress.parse(to));
+
+         // Set Subject: header field
+         message.setSubject("Testing Subject");
+
+         // Now set the actual message
+         message.setText("Hello, this is sample for to check send "
+            + "email using JavaMailAPI ");
+
+         // Send message
+         Transport.send(message);
+
+         System.out.println("Sent message successfully....");
+
+      } catch (MessagingException e) {
+            throw new RuntimeException(e);
+      }
+   }
+}
+</pre>
+<p>Here the host is set as <i>smtp.gmail.com</i> and port is set as <i>587</i>. Here we have enabled TLS connection.</p>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class SendEmailUsingGMailSMTP.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendEmailUsingGMailSMTP.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendEmailUsingGMailSMTP
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+Sent message successfully....
+</pre>
+<h1>Folder Management</h1>
+<p>So far, we’ve worked in our previous chapters mostly with the INBOX folder. This is the default folder in which most mail resides. Some systems might call it as INBOX and some other might call it by some other name. But,you can always access it from the JavaMail API using the name INBOX.</p>
+<p>The JavaMail API represents folders as instances of the abstract Folder class:</p>
+<pre class="prettyprint notranslate">
+public abstract class Folder extends Object
+</pre>
+<p>This class declares methods for requesting named folders from servers, deleting messages from folders, searching for particular messages in folders, listing the messages in a folder, and so forth.</p>
+<h2>Opening a Folder</h2>
+<p>We can't create a folder directly as the only constructor in the <i>Folder</i> class is <i>protected</i>. We can get a <i>Folder</i> from:</p>
+<ul class="list">
+<li><p>a Session</p></li>
+<li><p>a Store</p></li>
+<li><p>or another Folder</p></li>
+</ul>
+<p>All the above classes have a similar getFolder() method with similar signature:</p>
+<pre class="prettyprint notranslate">
+public abstract Folder getFolder(String name) throws MessagingException
+</pre>
+<p>Some of the methods which help in getting the <i>Folder</i> object are:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Method</th><th>Description</th></tr>
+<tr><td>boolean <i>exists()</i></td><td>Checks if the folder really exists. Use this method before getting the Folder object.</td></tr>
+<tr><td>abstract void <i>open</i>(int mode)</td><td>When you get a  <i>Folder</i>, its closed. Use this method to open it. <i>mode
+</i> can be  Folder.READ_ONLY or Folder.READ_WRITE.</td></tr>
+<tr><td>abstract boolean <i>isOpen</i>()</td><td>This method returns <i>true</i> if the folder is open, <i>false</i> if it’s closed</td></tr>
+<tr><td>abstract void <i>close</i>(boolean expunge)</td><td>Closes the folder. If the <i>expunge</i> argument is <i>true</i>, any deleted messages in the folder are deleted from the actual file on the server. Otherwise, they’re simply marked as <i>deleted</i>, but the messages can still be undeleted.</td></tr>
+</table>
+
+<h2>Basic Folder Info</h2>
+<p>Following are some of the methods in Folder class which return basic information about a folder:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Method</th><th>Description</th></tr>
+<tr><td>abstract String <i>getName</i>()</td><td>Returns the name of the folder, such as "TutorialsPoint Mail"</td></tr>
+<tr><td>abstract String <i>getFullName</i>()</td><td>Returns the complete hierarchical name from the root such as “books/Manisha/TutorialsPoint Mail”.</td></tr>
+<tr><td>URLName <i>getURLName</i>()</td><td>Return a URLName representing this folder.</td></tr>
+<tr><td>abstract Folder <i>getParent</i>()</td><td>Returns the name of the folder that contains this folder i.e the parent folder. E.g "Manisha" from the previous "TutorialsPoint Mail" example.</td></tr>
+<tr><td>abstract int <i>getType()</i></td><td>Returns an int indicating whether the folder can contain messages and/or other folders. </td></tr>
+<tr><td>int <i>getMode()</i></td><td> It returns one of the two named constants Folder.READ_ONLY or Folder.READ_WRITE or -1 when the mode is unknown.</td></tr>
+<tr><td>Store <i>getStore</i>()</td><td>Returns the Store object from which this folder was retrieved.</td></tr>
+<tr><td>abstract char <i>getSeparator</i>()</td><td>Return the delimiter character that separates this Folder's pathname from the names of immediate subfolders. </td></tr>
+</table>
+<h2>Managing Folder</h2>
+<p>Following are some of the methods which help manage the Folder:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Method</th><th>Description</th></tr>
+<tr><td>abstract boolean <i>create</i>(int type)</td><td>This creates a new folder in this folder’s Store. Where <i>type</i> would be:Folder.HOLDS_MESSAGES or Folder.HOLDS_FOLDERS. Returns <i>true</i> if folder is successfully created else returns <i>false</i>.</td></tr>
+<tr><td>abstract boolean <i>delete</i>(boolean recurse)</td><td>This deletes the folder only if the folder is closed. Otherwise, it
+throws an <i>IllegalStateException</i>. If <i>recurse</i> is <i>true</i>, then  subfolders are deleted.</td></tr>
+<tr><td>abstract boolean <i>renameTo</i>(Folder f)</td><td>This changes the name of this folder. A folder must be closed to be renamed. Otherwise, an IllegalStateException is thrown.</td></tr>
+</table>
+<h2>Managing Messages in Folders</h2>
+<p>Following are some of the methods that help manage the messages in Folder:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Method</th><th>Description</th></tr>
+<tr><td>abstract void <i>appendMessages</i>(Message[] messages)</td><td>As the name implies, the messages in the array are placed at the end of this folder.</td></tr>
+<tr><td>void <i>copyMessages</i>(Message[] messages, Folder destination)</td><td>This copies messages from this folder into a specified folder given as an argument.</td></tr>
+<tr><td>abstract Message[] <i>expunge</i>()</td><td>To delete a message from a folder, set its Flags.Flag.DELETED flag to true. To physically remove deleted messages from a folder, you have to call this method.</td></tr>
+</table>
+<h2>Listing the Contents of a Folder</h2>
+<p>There are four methods to list the folders that a folder contains:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Method</th><th>Description</th></tr>
+<tr><td>Folder[] <i>list</i>()</td><td>This returns an array listing the folders that this folder contains.</td></tr>
+<tr><td>Folder[] <i>listSubscribed</i>()</td><td>This returns an array listing all the subscribed folders that this folder contains.</td></tr>
+<tr><td>abstract <i>Folder</i>[] list(String pattern)</td><td>This is similar to the <i>list()</i> method except that it allows you to specify a
+pattern. The pattern is a string giving the name of the folders that match.</td></tr>
+<tr><td>Folder[] <i>listSubscribed</i>(String pattern)</td><td>This is similar to the <i>listSubscribed()</i> method except that it allows you to specify a pattern. The pattern is a string giving the name of the folders that match.</td></tr>
+</table>
+<h2>Checking for Mail</h2>
+<table class="table table-bordered">
+<tr><th style="width:40%">Method</th><th>Description</th></tr>
+<tr><td>abstract int <i>getMessageCount</i>()</td><td>This method can be invoked on an open or closed folder. However, in the case of a closed
+folder, this method may (or may not) return -1 to indicate that the exact number of messages isn’t easily available.</td></tr>
+<tr><td>abstract boolean <i>hasNewMessages</i>()</td><td>This  returns <i>true</i> if new messages have been added to the folder since it was last opened.</td></tr>
+<tr><td>int <i>getNewMessageCount</i>()</td><td>It returns the new message count by checking messages in the folder whose RECENT flag is set.</td></tr>
+<tr><td>int <i>getUnreadMessageCount</i>()</td><td>This can be invoked on either an open or a closed folder. However, in the case of a closed folder, it may return -1 to indicate that the real answer would be too expensive to obtain.</td></tr>
+</table>
+<h2>Getting Messages from Folders</h2>
+<p>The Folder class provides four methods for retrieving messages from open folders:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Method</th><th>Description</th></tr>
+<tr><td>abstract Message <i>getMessage</i>(int messageNumber) </td><td>This returns the nth message in the folder. The first message in the folder is number 1.</td></tr>
+<tr><td>Message[] <i>getMessages</i>()</td><td>This returns an array of <i>Message</i> objects representing all the messages in this folder. </td></tr>
+<tr><td>Message[] <i>getMessages</i>(int start, int end)</td><td>This returns an array of <i>Message</i> objects from the folder, beginning with start and finishing with end, inclusive.</td></tr>
+<tr><td>Message[] <i>getMessages</i>(int[] messageNumbers)</td><td>This returns an array containing only those messages specifically identified by number in the <i>messageNumbers</i> array.</td></tr>
+<tr><td>void <i>fetch</i>(Message[] messages, FetchProfile fp)</td><td>Prefetch the items specified in the FetchProfile for the given Messages. The FetchProfile argument specifies which headers in the messages to prefetch.</td></tr>
+</table>
+<h2>Searching Folders</h2>
+<p>If the server supports searching (as many IMAP servers do and most POP servers don’t), it’s easy to search a folder for the messages meeting certain criteria. The criteria are encoded in SearchTerm objects. Following are the two search methods:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Method</th><th>Description</th></tr>
+<tr><td>Message[] <i>search</i>(SearchTerm term)</td><td>Search this Folder for messages matching the specified search criterion. Returns an array containing the matching messages. Returns an empty array if no matches were found.</td></tr>
+<tr><td>Message[] <i>search</i>(SearchTerm term, Message[] messages)</td><td>Search the given array of messages for those that match the specified search criterion. Returns an array containing the matching messages. Returns an empty array if no matches were found. The the specified Message objects must belong to this folder.</td></tr>
+</table>
+<h2>Flags</h2>
+<p>Flag modification is useful when you need to change flags for the entire set of messages in a Folder. Following are the methods provided in the Folder class:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Method</th><th>Description</th></tr>
+<tr><td>void <i>setFlags</i>(Message[] messages, Flags flag, boolean value)</td><td>Sets the specified flags on the messages specified in the array.</td></tr>
+<tr><td>void <i>setFlags</i>(int start, int end, Flags flag, boolean value)</td><td>Sets the specified flags on the messages numbered from start through end, both start and end inclusive.</td></tr>
+<tr><td> void <i>setFlags</i>(int[] messageNumbers, Flags flag, boolean value)</td><td>Sets the specified flags on the messages whose message numbers are in the array.</td></tr>
+<tr><td>abstract Flags <i>getPermanentFlags</i>()</td><td>Returns the flags that this folder supports for all messages.</td></tr>
+</table>
+<h1>Quota Management</h1>
+<p>A quota in JavaMail is a limited or fixed number or amount of messages in a email store. Each Mail service request counts toward the JavaMail API Calls quota. An email service can apply following quota criterion:</p> 
+<ul class="list">
+<li><p>Maximum size of outgoing mail messages, including attachments.</p></li>
+<li><p>Maximum size of incoming mail messages, including attachments.</p></li>
+<li><p>Maximum size of message when an administrator is a recipient</p></li>
+</ul>
+<p>For Quota management JavaMail has following classes:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Class</th><th>Description</th></tr>
+<tr><td>public class Quota</td><td>This class represents a set of quotas for a given quota root. Each quota root has a set of resources, represented by the Quota.Resource class. Each resource has a name (for example, "STORAGE"), a current usage, and a usage limit. This has only one method <i>setResourceLimit(String name, long limit)</i>.</td></tr>
+<tr><td>public static class Quota.Resource</td><td>Represents an individual resource in a quota root.</td></tr>
+<tr><td>public interface QuotaAwareStore</td><td>An interface implemented by Stores that support quotas. The <i>getQuota</i> and <i>setQuota</i> methods support the quota model defined by the IMAP QUOTA extension. <i>GmailSSLStore, GmailStore, IMAPSSLStore, IMAPStore</i> are the known implementing classes of this interface.</td></tr>
+</table>
+<p>Let us see and example in the following sections which checks for mail storage name, limit and its usage.</p>
+<h2>Create Java Class</h2>
+<p>Create a java class file <b>QuotaExample</b>, the contents of which are as follows:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.util.Properties;
+
+import javax.mail.Quota;
+import javax.mail.Session;
+import javax.mail.Store;
+
+import com.sun.mail.imap.IMAPStore;
+
+public class QuotaExample 
+{
+   public static void main(String[] args) 
+   {
+      try 
+      {
+         Properties properties = new Properties();
+         properties.put("mail.store.protocol", "imaps");
+         properties.put("mail.imaps.port", "993");
+         properties.put("mail.imaps.starttls.enable", "true");
+         Session emailSession = Session.getDefaultInstance(properties);
+         // emailSession.setDebug(true);
+
+         // create the IMAP3 store object and connect with the pop server
+         Store store = emailSession.getStore("imaps");
+
+         //change the user and password accordingly
+         store.connect("imap.gmail.com", "abc@gmail.com", "*****");
+         IMAPStore imapStore = (IMAPStore) store;
+         System.out.println("imapStore ---" + imapStore);
+
+         //get quota
+         Quota[] quotas = imapStore.getQuota("INBOX");
+         //Iterate through the Quotas
+         for (Quota quota : quotas) {
+            System.out.println(String.format("quotaRoot:'%s'",
+               quota.quotaRoot));
+            //Iterate through the Quota Resource
+            for (Quota.Resource resource : quota.resources) {
+               System.out.println(String.format(
+                  "name:'%s', limit:'%s', usage:'%s'", resource.name,
+                  resource.limit, resource.usage));
+            }
+         }
+      } catch (Exception e) 
+      {
+         e.printStackTrace();
+      }
+   }
+}
+</pre>
+<p>Here are connection to the gmail service via IMAP (imap.gmail.com) server, as IMAPStore implements the QuotaAwareStore. Once you get the Store object, fetch the Quota array and iterate through it and print the relevant information.</p>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class QuotaExample.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: QuotaExample.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: QuotaExample
+</pre>
+<h2>Verify Output</h2>
+<p>You should see a similar message on the command console:</p>
+<pre class="result">
+imapStore ---imaps://abc%40gmail.com@imap.gmail.com
+quotaRoot:''
+name:'STORAGE', limit:'15728640', usage:'513'
+</pre>
+<h1>Bounced Messages</h1>
+<p>A message can be bounced for several reasons. This problem is discussed in depth at <a rel="nofollow" href="http://www.rfc-editor.org/info/rfc1211" target="_blank">rfc1211</a>. Only a server can determine the existence of a particular mailbox or user name. When the server detects an error, it will return a message indicating the reason for the failure to the sender of the original message.</p> 
+<p>There are many Internet standards covering Delivery Status Notifications but a large number of servers don't support these new standards, instead using ad hoc techniques for returning such failure messages. Hence it get very difficult to correlate the <i>bounced</i> message with the original message that caused the problem.</p>
+<p>JavaMail includes support for parsing Delivery Status Notifications. There are a number of techniques and heuristics for dealing with this problem. One of the techniques being Variable Envelope Return Paths. You can set the return path in the enveloper as shown in the example below. This is the address where bounce mails are sent to.  You may want to set this to a generic address, different than the From: header, so you can process remote bounces. This done by setting <i>mail.smtp.from </i>property in JavaMail. </p>
+<h2>Create Java Class</h2>
+<p>Create a java class file <b>SendEmail</b>, the contents of which are as follows:</p>
+<pre class="prettyprint notranslate">
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+public class SendEmail {
+   public static void main(String[] args) throws Exception {
+      String smtpServer = "smtp.gmail.com";
+      int port = 587;
+      final String userid = "youraddress";//change accordingly
+      final String password = "*****";//change accordingly
+      String contentType = "text/html";
+      String subject = "test: bounce an email to a different address " +
+				"from the sender";
+      String from = "youraddress@gmail.com";
+      String to = "bouncer@fauxmail.com";//some invalid address
+      String bounceAddr = "toaddress@gmail.com";//change accordingly
+      String body = "Test: get message to bounce to a separate email address";
+
+      Properties props = new Properties();
+
+      props.put("mail.smtp.auth", "true");
+      props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.host", smtpServer);
+      props.put("mail.smtp.port", "587");
+      props.put("mail.transport.protocol", "smtp");
+      props.put("mail.smtp.from", bounceAddr);
+
+      Session mailSession = Session.getInstance(props,
+         new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(userid, password);
+            }
+         });
+
+      MimeMessage message = new MimeMessage(mailSession);
+      message.addFrom(InternetAddress.parse(from));
+      message.setRecipients(Message.RecipientType.TO, to);
+      message.setSubject(subject);
+      message.setContent(body, contentType);
+
+      Transport transport = mailSession.getTransport();
+      try {
+         System.out.println("Sending ....");
+         transport.connect(smtpServer, port, userid, password);
+         transport.sendMessage(message,
+            message.getRecipients(Message.RecipientType.TO));
+         System.out.println("Sending done ...");
+      } catch (Exception e) {
+         System.err.println("Error Sending: ");
+         e.printStackTrace();
+
+      }
+      transport.close();
+   }// end function main()
+}
+</pre>
+<p>Here we can see that the property <i>mail.smtp.from</i> is set different from the <i>from</i> address.</p>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class SendEmail.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendEmail.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: SendEmail
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+Sending ....
+Sending done ...
+</pre>
+<h1>SMTP Servers</h1>
+<p>SMTP is an acronym for <b>Simple Mail Transfer Protocol</b>. It is an Internet standard for electronic mail (e-mail) transmission across Internet Protocol (IP) networks. SMTP uses TCP port 25. SMTP connections secured by SSL are known by the shorthand SMTPS, though SMTPS is not a protocol in its own right.</p> 
+<p>JavaMail API has package <i><b>com.sun.mail.smtp</b></i> which act as SMTP protocol provider to access an SMTP server. Following table lists the classes included in this package: </p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Class</th><th>Description</th></tr>
+<tr><td>SMTPMessage</td><td>This class is a specialization of the MimeMessage class that allows you to specify various SMTP options and parameters that will be used when this message is sent over SMTP.</td></tr>
+<tr><td>SMTPSSLTransport</td><td>This class implements the Transport abstract class using SMTP over SSL for message submission and transport.</td></tr>
+<tr><td>SMTPTransport</td><td>This class implements the Transport abstract class using SMTP for message submission and transport.</td></tr>
+</table>
+<p>The following table lists the exceptions thrown:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Exception</th><th>Description</th></tr>
+<tr><td>SMTPAddressFailedException</td><td>This exception is thrown when the message cannot be sent.</td></tr>
+<tr><td>SMTPAddressSucceededException</td><td>This exception is chained off a SendFailedException when the <i>mail.smtp.reportsuccess</i> property is true.</td></tr>
+<tr><td>SMTPSenderFailedException</td><td>This exception is thrown when the message cannot be sent.</td></tr>
+<tr><td>SMTPSendFailedException</td><td>This exception is thrown when the message cannot be sent.The exception includes the sender's address, which the mail server rejected.</td></tr>
+</table>
+<p>The  <i><b>com.sun.mail.smtp</b></i> provider use SMTP Authentication optionally. To use SMTP authentication you'll need to set the <i>mail.smtp.auth</i> property or provide the SMTP Transport with a username and password when connecting to the SMTP server. You can do this using one of the following approaches: </p>
+<ul class="list">
+<li><p>Provide an Authenticator object when creating your mail Session and provide the username and password information during the Authenticator callback. <i>mail.smtp.user</i> property can be set to provide a default username for the callback, but the password will still need to be supplied explicitly. This approach allows you to use the static Transport send method to send messages. For example: </p></li>
+<pre class="prettyprint notranslate">
+Transport.send(message);
+</pre>
+<li><p>Call the Transport connect method explicitly with username and password arguments. For example:
+<pre class="prettyprint notranslate">
+Transport tr = session.getTransport("smtp");
+tr.connect(smtphost, username, password);
+msg.saveChanges();
+tr.sendMessage(msg, msg.getAllRecipients());
+tr.close();
+</pre>
+</p></li></ul>
+<p> The SMTP protocol provider supports the following properties, which may be set in the JavaMail Session object. The properties are always set as strings. For example:</p>
+<pre class="prettyprint notranslate">
+ props.put("mail.smtp.port", "587");
+</pre>
+<h1>IMAP Servers</h1>
+<p>IMAP is Acronym for <b>Internet Message Access Protocol</b>. It is an Application Layer Internet protocol that allows an e-mail client to access e-mail on a remote mail server. An IMAP server typically listens on well-known port 143. IMAP over SSL (IMAPS) is assigned to port number 993.</p>
+<p>IMAP supports both on-line and off-line modes of operation. E-mail clients using IMAP generally leave messages on the server until the user explicitly deletes them. </p>
+<p>Package <b>com.sun.mail.imap</b> is an IMAP protocol provider for the JavaMail API that provides access to an IMAP message store. The table below lists the interface and classes of this provider:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Class/Interface</th><th>Description</th></tr>
+<tr><td>IMAPFolder.ProtocolCommand</td><td>This a simple <i>interface</i> for user-defined IMAP protocol commands.</td></tr>
+<tr><td>ACL</td><td>This is a class. An access control list entry for a particular authentication identifier (user or group).</td></tr>
+<tr><td>IMAPFolder</td><td>This class implements an IMAP folder.</td></tr>
+<tr><td>IMAPFolder.FetchProfileItem</td><td>This a class for fetching headers.</td></tr>
+<tr><td>IMAPMessage</td><td>This class implements an ReadableMime object.</td></tr>
+<tr><td>IMAPMessage.FetchProfileCondition </td><td>This class implements the test to be done on each message in the folder.</td></tr>
+<tr><td>IMAPSSLStore</td><td>This class provides access to an IMAP message store over SSL.</td></tr>	
+<tr><td>IMAPStore</td><td>This class provides access to an IMAP message store.</td></tr>
+<tr><td>Rights</td><td>This class represents the set of rights for an authentication identifier (for instance, a user or a group).</td></tr>
+<tr><td>Rights.Right </td><td>This inner class represents an individual right.</td></tr>
+<tr><td>SortTerm</td><td>A particular sort criteria, as defined by RFC 5256.</td></tr>
+</table>
+<p>Some points to be noted above this provider:</p>
+<ul class="list">
+<li><p>This provider supports both the IMAP4 and IMAP4rev1 protocols.</p></li>
+<li><p>A connected IMAPStore maintains a pool of IMAP protocol objects for use in communicating with the IMAP server.  As folders are opened and new IMAP protocol objects are needed, the IMAPStore will provide them from the connection pool, or create them if none are available. When a folder is closed, its IMAP protocol object is returned to the connection pool if the pool .</p></li>
+<li><p>The connected IMAPStore object may or may not maintain a separate IMAP protocol object that provides the store a dedicated connection to the IMAP server.</p></li>
+</ul>
+<h1>POP3 Servers</h1>
+<p>Post Office Protocol (POP) is an application-layer Internet standard protocol used by local e-mail clients to retrieve e-mail from a remote server over a TCP/IP connection. POP supports simple download-and-delete requirements for access to remote mailboxes. A POP3 server listens on well-known port 110. </p> 
+<p>Package <b>com.sun.mail.pop3</b> is a POP3 protocol provider for the JavaMail API that provides access to a POP3 message store. The table below lists the classes in this package:</p>
+<table class="table table-bordered">
+<tr><th style="width:40%">Name</th><th>Description</th></tr>
+<tr><td>POP3Folder</td><td>A POP3 Folder (can only be "INBOX").</td></tr>
+<tr><td>POP3Message</td><td>A POP3 Message.</td></tr>
+<tr><td>POP3SSLStore</td><td>A POP3 Message Store using SSL.</td></tr>
+<tr><td>POP3Store</td><td>A POP3 Message Store.</td></tr>
+</table>
+<p>Some points to be noted above this provider:</p>
+<ul class="list">
+<li><p>POP3 provider supports only a single folder named <b>INBOX</b>. Due to the limitations of the POP3 protocol, many of the JavaMail API capabilities like event notification, folder management, flag management, etc. are not allowed.</p></li>
+<li><p>The POP3 provider is accessed through the JavaMail APIs by using the protocol name <i>pop3</i> or a URL of the form <i>pop3://user:password@host:port/INBOX"</i>. </p></li>
+<li><p>POP3 supports no permanent flags. For example the <i>Flags.Flag.RECENT</i> flag will never be set for POP3 messages. It's up to the application to determine which messages in a POP3 mailbox are <i>new</i>.</p></li>
+<li><p>POP3 does not support the Folder.expunge() method. To delete and expunge messages, set the Flags.Flag.DELETED flag on the messages and close the folder using the Folder.close(true) method. </p></li>
+<li><p>POP3 does not provide a <i>received date</i>, so the getReceivedDate method will return null.</p></li>
+<li><p>When the headers of a POP3 message are accessed, the POP3 provider uses the TOP command to fetch all headers, which are then cached. </p></li>
+<li><p>When the content of a POP3 message is accessed, the POP3 provider uses the RETR command to fetch the entire message. </p></li>
+<li><p>The <i>POP3Message.invalidate</i> method can be used to invalidate cached data without closing the folder. </p></li>
+</ul>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/javamail_api/javamail_api_pop3_servers.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/javamail_api/javamail_api_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

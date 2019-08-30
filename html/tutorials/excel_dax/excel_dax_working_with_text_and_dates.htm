@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Excel DAX - Working with Text and Dates</title>
+<meta charset="utf-8">
+<meta name="description" content="Excel DAX - Working with Text and Dates - DAX can be used in the scenarios involving working along with text, extracting and composing date and time values or creating values based on a condition. You c"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/excel_dax/excel_dax_working_with_text_and_dates.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#1f9506;
+}
+a.demo {
+    background:#1f9506;
+}
+li.heading {
+    background:#1f9506;
+}
+.course-box{background:#1f9506}
+.home-intro-sub p{color:#1f9506}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/excel_dax/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/excel_dax/images/excel-dax-mini-logo.jpg" alt="Excel DAX Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Excel DAX Tutorial</li>
+<li><a href="/excel_dax/index.htm">DAX - Home</a></li>
+<li><a href="/excel_dax/excel_dax_overview.htm">DAX - Overview</a></li>
+<li><a href="/excel_dax/excel_dax_calculated_columns.htm">DAX - Calculated Columns</a></li>
+<li><a href="/excel_dax/excel_dax_calculated_fields_measures.htm">DAX - Calculated Fields / Measures</a></li>
+<li><a href="/excel_dax/excel_dax_editing_calculated_field.htm">DAX - Editing a Calculated Field</a></li>
+<li><a href="/excel_dax/excel_dax_deleting_calculated_field.htm">DAX - Deleting a Calculated Field</a></li>
+<li><a href="/excel_dax/excel_dax_syntax.htm">DAX - Syntax</a></li>
+<li><a href="/excel_dax/excel_dax_operators.htm">DAX - Operators</a></li>
+<li><a href="/excel_dax/excel_dax_standard_parameters.htm">DAX - Standard Parameters</a></li>
+<li><a href="/excel_dax/excel_dax_functions.htm">DAX - Functions</a></li>
+<li><a href="/excel_dax/understanding_dax_functions.htm">DAX - Understanding DAX Functions</a></li>
+<li><a href="/excel_dax/excel_dax_evaluation_context.htm">DAX - Evaluation Context</a></li>
+<li><a href="/excel_dax/excel_dax_formulas.htm">DAX - Formulas</a></li>
+<li><a href="/excel_dax/updating_results_of_dax_formulas.htm">Updating Results of DAX Formulas</a></li>
+<li><a href="/excel_dax/excel_dax_updating_data_in_data_model.htm">Updating Data in the Data Model</a></li>
+<li><a href="/excel_dax/excel_dax_recalculating_dax_formulas.htm">DAX - Recalculating DAX Formulas</a></li>
+<li><a href="/excel_dax/troubleshooting_dax_formula_recalculation.htm">Troubleshooting DAX Formula Recalculation</a></li>
+<li><a href="/excel_dax/excel_dax_formula_errors.htm">DAX - Formula Errors</a></li>
+<li><a href="/excel_dax/excel_dax_time_intelligence.htm">DAX - Time Intelligence</a></li>
+<li><a href="/excel_dax/excel_dax_filter_functions.htm">DAX - Filter Functions</a></li>
+<li><a href="/excel_dax/excel_dax_scenarios.htm">DAX - Scenarios</a></li>
+<li><a href="/excel_dax/excel_dax_performing_complex_calculations.htm">Performing Complex Calculations</a></li>
+<li><a href="/excel_dax/excel_dax_working_with_text_and_dates.htm">DAX - Working with Text and Dates</a></li>
+<li><a href="/excel_dax/excel_dax_conditional_values_and_testing_for_errors.htm">Conditional Values &amp; Testing for Errors</a></li>
+<li><a href="/excel_dax/excel_dax_using_time_intelligence.htm">DAX - Using Time Intelligence</a></li>
+<li><a href="/excel_dax/excel_dax_ranking_and_comparing_values.htm">DAX - Ranking &amp; Comparing Values</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Excel DAX Useful Resources</li>
+<li><a href="/excel_dax/excel_dax_quick_guide.htm">DAX - Quick Guide</a></li>
+<li><a href="/excel_dax/excel_dax_useful_resources.htm">DAX - Useful Resources</a></li>
+<li><a href="/excel_dax/excel_dax_discussion.htm">DAX - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Excel DAX - Working with Text and Dates</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/excel_dax/excel_dax_performing_complex_calculations.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/excel_dax/excel_dax_conditional_values_and_testing_for_errors.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>DAX can be used in the scenarios involving working along with text, extracting and composing date and time values or creating values based on a condition. You can do the following with DAX &minus;</p>
+<ul class="list">
+<li>Create a key column in a table by concatenation.</li>
+<li>Compose a date based on date parts extracted from a text date.</li>
+<li>Define a custom date format.</li>
+<li>Change data types using a formula.
+<ul class="list">
+<li>Convert real numbers to integers.</li>
+<li>Convert real numbers, integers, or dates to strings.</li>
+<li>Convert strings to real numbers or dates.</li>
+</ul>
+</li>
+</ul>
+<h2>Creating a Key Column by Concatenation</h2>
+<p>Data Model in PowerPivot allows only a single key column. It does not support composite keys that you might find in the external data sources. Hence, if any composite keys exist in a table in the data source, you need to combine them into a single key column for the table in the Data Model.</p>
+<p>You can use the DAX function CONCATENATE to combine two columns into a single column in a table in the Data Model. DAX function CONCATENATE joins two text strings into one text string. The joined items can be text, numbers, or Boolean values represented as text or a combination of those items. You can also use a column reference if the column contains appropriate values.</p>
+<pre class="result notranslate">
+= CONCATENATE ([Column1], [Column2]) 
+</pre>
+<p>DAX CONCATENATE function accepts only two arguments. If any of the arguments is not of text data type, it will be converted to text. DAX CONCATENATE function returns the concatenated string.</p>
+<h2>Date Based on Date Parts Extracted from a Text Date</h2>
+<p>Data Model in Power Pivot supports a data type datetime for date and time values. The DAX functions that work on date and/or time values require the datetime data type for the arguments.</p>
+<p>If your data source contains dates of a different format, you need to first extract the date parts using a DAX formula and combine those parts to constitute a valid DAX datetime data type.</p>
+<p>You can use the following DAX functions to extract and compose dates &minus;</p>
+<p><b>DATE</b> &minus; Returns the specified date in datetime format.</p>
+<p><b>DATEVALUE</b> &minus; Converts a date in the form of text to a date in datetime format.</p>
+<p><b>TIMEVALUE</b> &minus; Converts a time in text format to a time in datetime format.</p>
+<h2>Defining a Custom Date Format</h2>
+<p>Suppose the dates in your data source are not represented by a standard format. You can define a custom date format to ensure that the values are handled correctly. DAX FORMAT function enables you to convert a value to text according to the specified format.</p>
+<pre class="result notranslate">
+FORMAT (&lt;value&gt;, &lt;format_string&gt;) 
+</pre>
+<p>FORMAT function returns a string containing value formatted as defined by format_string.</p>
+<p>You can either use pre-defined Date and Time formats or you can create user-defined Date and Time formats for the argument format_string of the FORMAT function.</p>
+<p>Following are the predefined date and time format names. If you use strings other than these predefined strings, they will be interpreted as a custom date and time format.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:11%">S. No.</th>
+<th style="text-align:center;">Format_String &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>"General Date"</b></p>
+<p>Displays a date and/or time. For example, 2/10/2015 10:10:32 AM</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>"Long Date" or "Medium Date"</b></p>
+<p>Displays a date according to long date format. For example, Wednesday, March 07, 2016</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>"Short Date"</b></p>
+<p>Displays a date using short date format. For example, 2/03/2016</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>"Long Time"</b></p>
+<p>Displays a time using long time format.</p>
+<p>Typically includes hours, minutes and seconds.</p>
+<p>For example, 10:10:32 AM</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>"Medium Time"</b></p>
+<p>Displays a time in 12-hour format.</p>
+<p>For example, 09:30 PM</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>"Short Time"</b></p>
+<p>Displays a time in 24-hour format.</p>
+<p>For example, 14:15</p>
+</td>
+</tr>
+</table>
+<p>Alternatively, you can use the characters in the following table to create user-defined date/time formats.</p>
+<table class="table table-bordered">
+<tr>
+<th style="width:11%">S. No.</th>
+<th style="text-align:center;">Character &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>:</b></p>
+<p>Time separator.</p>
+<p>Time separator.  Separates hours, minutes, and seconds when time values are formatted.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>/</b></p>
+<p>Date separator.</p>
+<p>Separates the day, month, and year when date values are formatted.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>%</b></p>
+<p>Used to indicate that the following character should be read as a single-letter format without regard to any trailing letters. Also used to indicate that a single-letter format is read as a userdefined format.</p>
+</td>
+</tr>
+</table>
+<p>Following are the details of the various characters.</p>
+<ul class="list">
+<li><p><b>%d</b> &minus; Displays the day as a number without a leading zero (e.g. 5).</p></li>
+<li><p><b>%dd</b> &minus; Displays the day as a number with a leading zero (e.g. 05).</p></li>
+<li><p><b>%ddd</b> &minus; Displays the day as an abbreviation (e.g. Sun).</p></li>
+<li><p><b>%dddd</b> &minus; Displays the day as a full name (e.g. Sunday).</p></li>
+<li><p><b>%M</b> &minus; Displays the month as a number without a leading zero (e.g. January is represented as 1).</p></li>
+<li><p><b>%MM</b> &minus; Displays the month as a number with a leading zero (e.g. January is represented as 01).</p></li>
+<li><p><b>%MMM</b> &minus; Displays the month as an abbreviation (e.g. January is represented as Jan).</p></li>
+<li><p><b>%MMMM</b> &minus; Displays the month as a full month name (e.g. January).</p></li>
+<li><p><b>%gg</b> &minus; Displays the period/era string (e.g. A.D.).</p></li>
+<li><p><b>%h</b> &minus; Displays the hour as a number without leading zeros using the 12-hour clock (e.g. 1:15:15 PM). Use <b>%h</b> if this is the only character in your user-defined numeric format.</p></li>
+<li><p><b>%hh</b> &minus; Displays the hour as a number with leading zeros using the 12-hour clock (e.g. 01:15:15 PM).</p></li>
+<li><p><b>%H</b> &minus; Displays the hour as a number without leading zeros using the 24-hour clock (e.g. 13:15:15, 1:15:15). Use %H if this is the only character in your user-defined numeric format.</p></li>
+<li><p><b>%HH</b> &minus; Displays the hour as a number with leading zeros using the 24-hour clock (e.g. 13:15:15, 1:15:15).</p></li>
+<li><p><b>%m</b> &minus; Displays the minute as a number without leading zeros (e.g. 2:1:15). Use %m if this is the only character in your user-defined numeric format.</p></li>
+<li><p><b>%mm</b> &minus; Displays the minute as a number with leading zeros (e.g. 2:01:15).</p></li>
+<li><p><b>%s</b> &minus; Displays the second as a number without leading zeros (e.g. 2:15:5). Use %s if this is the only character in your user-defined numeric format.</p></li>
+<li><p><b>%ss</b> &minus; Displays the second as a number with leading zeros (e.g. 2:15:05).</p></li>
+<li><p><b>%f</b> &minus; Displays fractions of seconds. For e.g. <b>ff</b> displays hundredths of seconds, whereas <b>ffff</b> displays ten-thousandths of seconds. You can use up to seven <b>f</b> symbols in your user-defined format. Use <b>%f</b> if this is the only character in your user-defined numeric format.</p></li>
+<li><p><b>%t</b> &minus; Uses the 12-hour clock and displays an uppercase A for any hour before noon; displays an uppercase P for any hour between noon and 11:59 P.M. Use %t if this is the only character in your user-defined numeric format.</p></li>
+<li><p><b>%tt</b> &minus; For locales that use a 12-hour clock, displays an uppercase AM with any hour before noon; displays an uppercase PM with any hour between noon and 11:59 P.M. For locales that use a 24-hour clock, displays nothing.</p></li>
+<li><p><b>%y</b> &minus; Displays the year number (0-9) without leading zeros. Use <b>%y</b> if this is the only character in your user-defined numeric format.</p></li>
+<li><p><b>%yy</b> &minus; Displays the year in two-digit numeric format with a leading zero, if applicable.</p></li>
+<li><p><b>%yyy</b> &minus; Displays the year in four-digit numeric format.</p></li>
+<li><p><b>%yyyy</b> &minus; Displays the year in four-digit numeric format.</p></li>
+<li><p><b>%z</b> &minus; Displays the timezone offset without a leading zero (e.g. -8). Use <b>%z</b> if this is the only character in your user-defined numeric format.</p></li>
+<li><p><b>%zz</b> &minus; Displays the. timezone offset with a leading zero (e.g. -08)</p></li>
+<li><p><b>%zzz</b> &minus; Displays the full timezone offset (e.g. -08:00).</p></li>
+</ul>
+<p>As you can observe, formatting strings are case sensitive. Different formatting can be obtained by using a different case.</p>
+<h2>Changing Data Types of DAX Formula Outputs</h2>
+<p>In DAX formulas, the data type of the output is determined by the source columns and you cannot explicitly specify the data type of the result. This is because the optimal data type is determined by Power Pivot. However, you can use the implicit data type conversions performed by Power Pivot to manipulate the output data type. Otherwise, you can use certain DAX functions to convert the output data type.</p>
+<p><b>Using the Implicit Data Type Conversions</b></p>
+<ul class="list">
+<li><p>To convert a date or a number string to a number, multiply by 1.0. For example, = (TODAY()+5)*1.0. This formula calculates the current date plus 5 days and converts the result to an integer value.</p>
+<ul class="list">
+<li><p>To convert a date, number or currency value to a string, concatenate the value with an empty string. For example, = Today() &amp; “”</p></li>
+</ul>
+</li>
+</ul>
+<p><b>Using the DAX Functions for Data Type Conversions</b></p>
+<p>You can use DAX functions for the following &minus;</p>
+<ul class="list">
+<li>Converting Real Numbers to Integers.</li>
+<li>Converting Real Numbers, Integers or Dates to Strings.</li>
+<li>Converting Strings to Real Numbers or Dates.</li>
+</ul>
+<p>You will learn this in the following sections.</p>
+<h3>Converting Real Numbers to Integers</h3>
+<p>You can use the following DAX functions for converting real numbers to integers &minus;</p>
+<p><b>ROUND (&lt;number&gt;, &lt;num_digits&gt;)</b> &minus; Rounds a number to the specified number of digits and returns a decimal number.</p>
+<p><b>CEILING (&lt;number&gt;, &lt;significance&gt;)</b> &minus; Rounds a number up, to the nearest integer or to the nearest multiple of significance and returns a decimal number.</p>
+<p><b>FLOOR (&lt;number&gt;, &lt;significance&gt;)</b> &minus; Rounds a number down, toward zero, to the nearest multiple of significance and returns a decimal number.</p>
+<h3>Converting Real Numbers, Integers, or Dates to Strings</h3>
+<p>You can use the following DAX functions for converting real numbers, integers, or dates to strings &minus;</p>
+<p><b>FIXED (&lt;number&gt;, [&lt;decimals&gt;], [&lt;no_comma&gt;])</b> &minus; Rounds a number and returns the result as text. The number of digits to the right of the decimal point is 2 or the specified number of decimals. The result is with commas or optionally with no commas.</p>
+<p><b>FORMAT (&lt;value&gt;, &lt;format_string&gt;)</b> &minus; Converts a value to text according to the specified format.</p>
+<p>You have already learnt about using Format function for converting dates to strings.</p>
+<h3>Converting Strings to Real Numbers or Dates</h3>
+<p>You can use the following DAX functions for converting strings to real numbers or dates &minus;</p>
+<p><b>VALUE (&lt;text&gt;)</b> &minus; Converts a text string that represents a number to a number.</p>
+<p><b>DATEVALUE (date_text)</b> &minus; Converts a date in the form of text to a date in datetime format.</p>
+<p><b>TIMEVALUE (time_text)</b> &minus; Converts a time in text format to a time in datetime format.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/excel_dax/excel_dax_performing_complex_calculations.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/excel_dax/excel_dax_conditional_values_and_testing_for_errors.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

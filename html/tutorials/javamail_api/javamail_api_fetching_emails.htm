@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaMail API - Fetching Emails - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="JavaMail API - Fetching Emails - In the previous chapter we learnt how to check emails. Now let us see how to fetch each email and read its content. Let us write a Java class FetchingEmail whic"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/javamail_api/javamail_api_fetching_emails.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#40bfb8;
+}
+a.demo {
+    background:#40bfb8;
+}
+li.heading {
+    background:#40bfb8;
+}
+.course-box{background:#40bfb8}
+.home-intro-sub p{color:#40bfb8}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/javamail_api/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/javamail_api/images/javamail-mini-logo.jpg" alt="JavaMail API Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">JavaMail API Tutorial</li>
+<li><a target="_top" href="/javamail_api/index.htm">JavaMail - Home	</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_overview.htm">JavaMail API - Overview</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_environment_setup.htm">JavaMail - Environment Setup</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_core_classes.htm">JavaMail - Core Classes</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_sending_emails.htm">JavaMail - Sending Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_checking_emails.htm">JavaMail - Checking Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_fetching_emails.htm">JavaMail - Fetching Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_authentication.htm">JavaMail - Authentication</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_replying_emails.htm">JavaMail - Replying Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_forwarding_emails.htm">JavaMail - Forwarding Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_deleting_emails.htm">JavaMail - Deleting Emails</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_gmail_smtp_server.htm">JavaMail - Gmail SMTP server</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_folder_management.htm">JavaMail - Folder Management</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_quota_management.htm">JavaMail - Quota Management</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_bounced_messages.htm">JavaMail - Bounced Messages</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JavaMail API Protocols</li>
+<li><a target="_top" href="/javamail_api/javamail_api_smtp_servers.htm">JavaMail - SMTP Servers</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_imap_servers.htm">JavaMail - IMAP Servers</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_pop3_servers.htm">JavaMail - POP3 Servers</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">JavaMail API Useful Resources</li>
+<li><a target="_top" href="/javamail_api/javamail_api_quick_guide.htm">JavaMail - Quick Guide</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_useful_resources.htm">JavaMail - Useful Resources</a></li>
+<li><a target="_top" href="/javamail_api/javamail_api_discussion.htm">JavaMail - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>JavaMail API - Fetching Emails</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/javamail_api/javamail_api_checking_emails.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/javamail_api/javamail_api_authentication.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+ <p>In the previous chapter we learnt how to check emails. Now let us see how to fetch each email and read its content. Let us write a Java class <b>FetchingEmail</b> which will read following types of emails:</p> 
+<ul class="list">
+<li><p>Simple email</p></li>
+<li><p>Email with attachment</p></li>
+<li><p>Email with inline image</p></li>
+</ul>
+
+<p>Basic steps followed in the code are as below:</p>
+<ul class="list">
+<li><p>Get the Session object.</p></li>
+<li><p>Create POP3 store object and connect to the store.</p></li>
+<li><p>Create Folder object and open the appropriate folder in your mailbox.</p></li>
+<li><p>Retrieve messages.</p></li>
+<li><p>Close the folder and  store objects respectively.</p></li>
+</ul>
+<h2>Create Java Class</h2>
+<p>Create a java Create a java class file <b>FetchingEmail</b>, contents of which are as below:</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Date;
+import java.util.Properties;
+
+import javax.mail.Address;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Part;
+import javax.mail.Session;
+import javax.mail.Store;
+
+public class FetchingEmail {
+
+   public static void fetch(String pop3Host, String storeType, String user,
+      String password) {
+      try {
+         // create properties field
+         Properties properties = new Properties();
+         properties.put("mail.store.protocol", "pop3");
+         properties.put("mail.pop3.host", pop3Host);
+         properties.put("mail.pop3.port", "995");
+         properties.put("mail.pop3.starttls.enable", "true");
+         Session emailSession = Session.getDefaultInstance(properties);
+         // emailSession.setDebug(true);
+
+         // create the POP3 store object and connect with the pop server
+         Store store = emailSession.getStore("pop3s");
+
+         store.connect(pop3Host, user, password);
+
+         // create the folder object and open it
+         Folder emailFolder = store.getFolder("INBOX");
+         emailFolder.open(Folder.READ_ONLY);
+
+         BufferedReader reader = new BufferedReader(new InputStreamReader(
+	      System.in));
+
+         // retrieve the messages from the folder in an array and print it
+         Message[] messages = emailFolder.getMessages();
+         System.out.println("messages.length---" + messages.length);
+
+         for (int i = 0; i &lt; messages.length; i++) {
+            Message message = messages[i];
+            System.out.println("---------------------------------");
+            writePart(message);
+            String line = reader.readLine();
+            if ("YES".equals(line)) {
+               message.writeTo(System.out);
+            } else if ("QUIT".equals(line)) {
+               break;
+            }
+         }
+
+         // close the store and folder objects
+         emailFolder.close(false);
+         store.close();
+
+      } catch (NoSuchProviderException e) {
+         e.printStackTrace();
+      } catch (MessagingException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+   }
+   public static void main(String[] args) {
+
+      String host = "pop.gmail.com";// change accordingly
+      String mailStoreType = "pop3";
+      String username = 
+         "abc@gmail.com";// change accordingly
+      String password = "*****";// change accordingly
+
+      //Call method fetch
+      fetch(host, mailStoreType, username, password);
+
+   }
+
+   /*
+   * This method checks for content-type 
+   * based on which, it processes and
+   * fetches the content of the message
+   */
+   public static void writePart(Part p) throws Exception {
+      if (p instanceof Message)
+         //Call methos writeEnvelope
+         writeEnvelope((Message) p);
+
+      System.out.println("----------------------------");
+      System.out.println("CONTENT-TYPE: " + p.getContentType());
+
+      //check if the content is plain text
+      if (p.isMimeType("text/plain")) {
+         System.out.println("This is plain text");
+         System.out.println("---------------------------");
+         System.out.println((String) p.getContent());
+      } 
+      //check if the content has attachment
+      else if (p.isMimeType("multipart/*")) {
+         System.out.println("This is a Multipart");
+         System.out.println("---------------------------");
+         Multipart mp = (Multipart) p.getContent();
+         int count = mp.getCount();
+         for (int i = 0; i &lt; count; i++)
+            writePart(mp.getBodyPart(i));
+      } 
+      //check if the content is a nested message
+      else if (p.isMimeType("message/rfc822")) {
+         System.out.println("This is a Nested Message");
+         System.out.println("---------------------------");
+         writePart((Part) p.getContent());
+      } 
+      //check if the content is an inline image
+      else if (p.isMimeType("image/jpeg")) {
+         System.out.println("--------> image/jpeg");
+         Object o = p.getContent();
+
+         InputStream x = (InputStream) o;
+         // Construct the required byte array
+         System.out.println("x.length = " + x.available());
+         while ((i = (int) ((InputStream) x).available()) > 0) {
+            int result = (int) (((InputStream) x).read(bArray));
+            if (result == -1)
+         int i = 0;
+         byte[] bArray = new byte[x.available()];
+
+            break;
+         }
+         FileOutputStream f2 = new FileOutputStream("/tmp/image.jpg");
+         f2.write(bArray);
+      } 
+      else if (p.getContentType().contains("image/")) {
+         System.out.println("content type" + p.getContentType());
+         File f = new File("image" + new Date().getTime() + ".jpg");
+         DataOutputStream output = new DataOutputStream(
+            new BufferedOutputStream(new FileOutputStream(f)));
+            com.sun.mail.util.BASE64DecoderStream test = 
+                 (com.sun.mail.util.BASE64DecoderStream) p
+                  .getContent();
+         byte[] buffer = new byte[1024];
+         int bytesRead;
+         while ((bytesRead = test.read(buffer)) != -1) {
+            output.write(buffer, 0, bytesRead);
+         }
+      } 
+      else {
+         Object o = p.getContent();
+         if (o instanceof String) {
+            System.out.println("This is a string");
+            System.out.println("---------------------------");
+            System.out.println((String) o);
+         } 
+         else if (o instanceof InputStream) {
+            System.out.println("This is just an input stream");
+            System.out.println("---------------------------");
+            InputStream is = (InputStream) o;
+            is = (InputStream) o;
+            int c;
+            while ((c = is.read()) != -1)
+               System.out.write(c);
+         } 
+         else {
+            System.out.println("This is an unknown type");
+            System.out.println("---------------------------");
+            System.out.println(o.toString());
+         }
+      }
+
+   }
+   /*
+   * This method would print FROM,TO and SUBJECT of the message
+   */
+   public static void writeEnvelope(Message m) throws Exception {
+      System.out.println("This is the message envelope");
+      System.out.println("---------------------------");
+      Address[] a;
+
+      // FROM
+      if ((a = m.getFrom()) != null) {
+         for (int j = 0; j &lt; a.length; j++)
+         System.out.println("FROM: " + a[j].toString());
+      }
+
+      // TO
+      if ((a = m.getRecipients(Message.RecipientType.TO)) != null) {
+         for (int j = 0; j &lt; a.length; j++)
+         System.out.println("TO: " + a[j].toString());
+      }
+
+      // SUBJECT
+      if (m.getSubject() != null)
+         System.out.println("SUBJECT: " + m.getSubject());
+
+   }
+
+}
+</pre>
+<blockquote>You can set the debug on by uncommenting the statement <i>emailSession.setDebug(true);</i></blockquote>
+<h2>Compile and Run</h2>
+<p>Now that our class is ready, let us compile the above class. I've saved the class FetchingEmail.java to directory : <b>/home/manisha/JavaMailAPIExercise</b>. We would need the jars <i>javax.mail.jar</i> and <i>activation.jar</i> in the classpath. Execute the command below to compile the class (both the jars are placed in /home/manisha/ directory) from command prompt:</p>
+<pre class="prettyprint notranslate">
+javac -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: FetchingEmail.java
+</pre>
+<p>Now that the class is compiled, execute the below command to run:</p>
+<pre class="prettyprint notranslate">
+java -cp /home/manisha/activation.jar:/home/manisha/javax.mail.jar: FetchingEmail
+</pre>
+<h2>Verify Output</h2>
+<p>You should see the following message on the command console:</p>
+<pre class="prettyprint notranslate">
+messages.length---3
+---------------------------------
+This is the message envelope
+---------------------------
+FROM: XYZ &lt;xyz@gmail.com&gt;
+TO: ABC &lt;abc@gmail.com&gt;
+SUBJECT: Simple Message
+----------------------------
+CONTENT-TYPE: multipart/alternative; boundary=047d7b343d6ad3e4ea04e8ec6579
+This is a Multipart
+---------------------------
+
+----------------------------
+CONTENT-TYPE: text/plain; charset=ISO-8859-1
+This is plain text
+---------------------------
+Hi am a simple message string....
+
+-- 
+Regards
+xyz
+
+This is the message envelope
+---------------------------
+FROM: XYZ &lt;xyz@gmail.com&gt;
+TO: ABC &lt;abc@gmail.com&gt;
+SUBJECT: Attachement
+----------------------------
+CONTENT-TYPE: multipart/mixed; boundary=047d7b343d6a99180904e8ec6751
+This is a Multipart
+---------------------------
+
+----------------------------
+CONTENT-TYPE: text/plain; charset=ISO-8859-1
+This is plain text
+---------------------------
+Hi I've an attachment.Please check
+
+-- 
+Regards
+XYZ
+
+----------------------------
+CONTENT-TYPE: application/octet-stream; name=sample_attachement
+This is just an input stream
+---------------------------
+Submit your Tutorials, White Papers and Articles into our Tutorials Directory. This is a tutorials database where we are keeping all the tutorials shared by the internet community for the benefit of others.
+
+
+This is the message envelope
+---------------------------
+FROM: XYZ &lt;xyz@gmail.com&gt;
+TO: ABC &lt;abc@gmail.com&gt;
+SUBJECT: Inline Image
+----------------------------
+CONTENT-TYPE: multipart/related; boundary=f46d04182582be803504e8ece94b
+This is a Multipart
+---------------------------
+
+----------------------------
+CONTENT-TYPE: text/plain; charset=ISO-8859-1
+This is plain text
+---------------------------
+Hi I've an inline image
+
+
+[image: Inline image 3]
+
+-- 
+Regards
+XYZ
+
+----------------------------
+CONTENT-TYPE: image/png; name="javamail-mini-logo.png"
+content typeimage/png; name="javamail-mini-logo.png"
+</pre>
+<p>Here you can see there are three emails in our mailbox. First a simple mail with message "Hi am a simple message string....". The second mail has an attachment. The contents of the attachment are also printed as seen above. The third mail has an inline image.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/javamail_api/javamail_api_checking_emails.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/javamail_api/javamail_api_authentication.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

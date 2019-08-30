@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Using Lambda Function with Amazon Kinesis</title>
+<meta charset="utf-8">
+<meta name="description" content="Using Lambda Function with Amazon Kinesis - AWS Kinesis service is used to capture/store real time tracking data coming from website clicks, logs, social media feeds. We can trigger AWS Lambda to perform "/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/aws_lambda/aws_lambda_using_lambda_function_with_amazon_kinesis.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#f68535;
+}
+a.demo {
+    background:#f68535;
+}
+li.heading {
+    background:#f68535;
+}
+.course-box{background:#f68535}
+.home-intro-sub p{color:#f68535}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/aws_lambda/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/aws_lambda/images/aws_lambda-mini-logo.jpg" alt="AWS Lambda Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">AWS Lambda Tutorial</li>
+<li><a href="/aws_lambda/index.htm">AWS Lambda - Home</a></li>
+<li><a href="/aws_lambda/aws_lambda_overview.htm">AWS Lambda - Overview</a></li>
+<li><a href="/aws_lambda/aws_lambda_environment_setup.htm">AWS Lambda - Environment Setup</a></li>
+<li><a href="/aws_lambda/aws_lambda_introduction.htm">AWS Lambda - Introduction</a></li>
+<li><a href="/aws_lambda/aws_lambda_building_the_lambda_function.htm">Building the Lambda function</a></li>
+<li><a href="/aws_lambda/aws_lambda_function_in_nodejs.htm">Function in NODEJS</a></li>
+<li><a href="/aws_lambda/aws_lambda_function_in_java.htm">Function in Java</a></li>
+<li><a href="/aws_lambda/aws_lambda_function_in_python.htm">Function in Python</a></li>
+<li><a href="/aws_lambda/aws_lambda_function_in_go.htm">Function in Go</a></li>
+<li><a href="/aws_lambda/aws_lambda_function_in_csharp.htm">Function in C#</a></li>
+<li><a href="/aws_lambda/aws_lambda_configuring_lambda_function.htm">Configuring Lambda Function</a></li>
+<li><a href="/aws_lambda/aws_lambda_creating_and_deploying_using_aws_console.htm">Creating &amp; Deploying using AWS Console</a></li>
+<li><a href="/aws_lambda/aws_lambda_creating_and_deploying_using_aws_cli.htm">Creating &amp; Deploying using AWS CLI</a></li>
+<li><a href="/aws_lambda/aws_lambda_creating_and_deploying_using_serverless_framework.htm">Creating &amp; Deploying using Serverless Framework</a></li>
+<li><a href="/aws_lambda/aws_lambda_executing_and_invoking_lambda_function.htm">AWS Executing &amp; Invoking Lambda Function</a></li>
+<li><a href="/aws_lambda/aws_lambda_deleting_lambda_function.htm">Deleting Lambda Function</a></li>
+<li><a href="/aws_lambda/aws_lambda_working_with_amazon_api_gateway.htm">Working with Amazon API Gateway</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_amazon_s3.htm">Lambda Function with Amazon S3</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_amazon_dynamodb.htm"> Lambda Function with Amazon DynamoDB</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_scheduled_events.htm">Lambda Function with Scheduled Events</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_amazon_sns.htm">Lambda Function with Amazon SNS</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_cloudtrail.htm">Lambda Function with CloudTrail</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_amazon_kinesis.htm"> Lambda Function with Amazon Kinesis</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_lambda_function_with_custom_user_applications.htm">Lambda Function with Custom User Applications</a></li>
+<li><a href="/aws_lambda/aws_lambda_using_aws_lambdaedge_with_cloudfront.htm">AWS Lambda@Edge with CloudFront</a></li>
+<li><a href="/aws_lambda/aws_lambda_monitoring_and_troubleshooting_using_cloudwatch.htm">Monitoring and TroubleShooting using Cloudwatch</a></li>
+<li><a href="/aws_lambda/aws_lambda_additional_example.htm">AWS Lambda - Additional Example</a></li>
+<ul class="toc chapters">
+<li class="heading">AWS Lambda Useful resources</li>
+<li><a href="/aws_lambda/aws_lambda_quick_guide.htm">AWS Lambda - Quick Guide</a></li>
+<li><a href="/aws_lambda/aws_lambda_useful_resources.htm">AWS Lambda - Useful resources</a></li>
+<li><a href="/aws_lambda/aws_lambda_discussion.htm">AWS Lambda - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Using Lambda Function with Amazon Kinesis</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/aws_lambda/aws_lambda_using_lambda_function_with_cloudtrail.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/aws_lambda/aws_lambda_using_lambda_function_with_custom_user_applications.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p><b>AWS Kinesis</b> service is used to capture/store real time tracking data coming from website clicks, logs, social media feeds. We can trigger AWS Lambda to perform additional processing on this logs.</p> 
+<h2>Requisites</h2>
+<p>The basic requirements to get started with Kinesis and AWS Lambda are as shown &minus;</p>
+<ul class="list">
+<li>Create role with required permissions</li>
+<li>Create data stream in Kinesis</li>
+<li>Create AWS Lambda function.</li>
+<li>Add code to AWS Lambda</li>
+<li>Add data to Kinesis data stream</li>
+</ul>
+<h2>Example</h2>
+<p>Let us work on an example wherein we will trigger AWS Lambda for processing the data stream from Kinesis and send mail with the data received.</p>
+<p>A simple block diagram for explaining the process is shown below &minus;</p>
+<img src="/aws_lambda/images/block_diagram_kinesis.jpg" alt="Block Diagram Kinesis" />
+<h2>Create Role with Required Permissions</h2>
+<p>Go to AWS console and create a role.</p>
+<img src="/aws_lambda/images/required_permissions.jpg" alt="Required Permissions" />
+<h2>Create Data Stream in Kinesis</h2>
+<p>Go to AWS console and create data stream in kinesis.</p>
+<img src="/aws_lambda/images/data_stream.jpg" alt="Data Stream" />
+<p>There are 4 options as shown. We will work on Create data stream in this example.</p>
+<img src="/aws_lambda/images/create_data_stream.jpg" alt="Create Data Stream" />
+<p>Click <b>Create data stream</b>. Enter the name in Kinesis stream name given below.</p>
+<img src="/aws_lambda/images/create_kinesis_stream.jpg" alt="Create Kinesis Stream" />
+<p>Enter number of shards for the data stream.</p>
+<img src="/aws_lambda/images/estimate_number.jpg" alt="Estimate Number" />
+<p>The details of Shards are as shown below &minus;</p>
+<img src="/aws_lambda/images/shards.jpg" alt="Shards" />
+<p>Enter the name and click the <b>Create Kinesis stream</b> button at the bottom.</p>
+<img src="/aws_lambda/images/kinesis_stream.jpg" alt="Kinesis Stream" />
+<p>Note that it takes certain time for the stream to go active.</p>
+<h2>Create AWS Lambda Function</h2>
+<p>Go to AWS console and click Lambda. Create AWS Lambda function as shown &minus;</p>
+<img src="/aws_lambda/images/kinesis_lambda.jpg" alt="Kinesis Lambda" />
+<p>Click <b>Create function</b> button at the end of the screen. Add Kinesis as the trigger to AWS Lambda.</p>
+<img src="/aws_lambda/images/kinesis_trigger.jpg" alt="Kinesis Trigger" />
+<p>Add configuration details to the Kinesis trigger &minus;</p>
+<img src="/aws_lambda/images/configure_kinesis.jpg" alt="Configure Kinesis" />
+<p>Add the trigger and now add code to AWS Lambda.</p>
+<h2>Adding Code to AWS Lambda</h2>
+<p>For this purpose, we will use nodejs as the run-time. We will send mail once AWS Lambda is triggered with kinesis data stream.</p>
+<pre class="prettyprint notranslate">
+const aws =  require("aws-sdk");
+var ses = new aws.SES({
+   region: 'us-east-1'
+});
+exports.handler = function(event, context, callback) {
+   let payload = "";
+   event.Records.forEach(function(record) {
+      // Kinesis data is base64 encoded so decode here
+      payload = new Buffer(record.kinesis.data, 'base64').toString('ascii');
+      console.log('Decoded payload:', payload);
+   });
+   var eParams = {
+      Destination: {
+         ToAddresses: ["xxxxxxx@gmail.com"]
+      },
+      Message: {
+         Body: {
+            Text: {
+               Data:payload
+            }
+         },
+         Subject: {
+            Data: "Kinesis data stream"
+         }
+      },
+      Source: "cxxxxxxxxx@gmail.com"
+   };    
+   var email = ses.sendEmail(eParams, function(err, data) {
+      if (err) console.log(err);
+      else {
+         console.log("===EMAIL SENT===");
+         console.log("EMAIL CODE END");
+         console.log('EMAIL: ', email);
+         context.succeed(event);
+         callback(null, "email is send");
+      }
+   });
+};
+</pre>
+<p>The event param has the data entered in kinesis data stream. The above aws lambda code will get activated once data is entered in kinesis data stream.</p>
+<h2>Add Data to Kinesis Data Stream</h2>
+<p>Here we will use AWS CLI to add data kinesis data stream as shown below. For this purpose, we can use the following command &minus;</p>
+<pre class="result notranslate">
+aws kinesis put-record --stream-name kinesisdemo  --data "hello world" --
+partition-key "789675"
+</pre>
+<p></p>
+<img src="/aws_lambda/images/data_kinesis.jpg" alt="Data Kinesis" />
+<p>Then, AWS Lambda is activated and the mail is sent.</p>
+<img src="/aws_lambda/images/activate_mail.jpg" alt="Activate Mail" />
+<p></p>
+<img src="/aws_lambda/images/kinesis_command.jpg" alt="Kinesis Command" />
+<img src="/aws_lambda/images/kinesis_mail.jpg" alt="Kinesis Mail" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/aws_lambda/aws_lambda_using_lambda_function_with_cloudtrail.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/aws_lambda/aws_lambda_using_lambda_function_with_custom_user_applications.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

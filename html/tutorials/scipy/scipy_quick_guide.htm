@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>SciPy - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="SciPy - Quick Guide - SciPy, pronounced as Sigh Pi, is a scientific python open source, distributed under the BSD licensed library to perform Mathematical, Scientific and Engineering"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/scipy/scipy_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#01539f;
+}
+a.demo {
+    background:#01539f;
+}
+li.heading {
+    background:#01539f;
+}
+.course-box{background:#01539f}
+.home-intro-sub p{color:#01539f}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/scipy/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/scipy/images/scipy-mini-logo.jpg" alt="SciPy Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">SciPy Tutorial</li>
+<li><a href="/scipy/index.htm">SciPy - Home</a></li>
+<li><a href="/scipy/scipy_introduction.htm">SciPy - Introduction</a></li>
+<li><a href="/scipy/scipy_environment_setup.htm">SciPy - Environment Setup</a></li>
+<li><a href="/scipy/scipy_basic_functionality.htm">SciPy - Basic Functionality</a></li>
+<li><a href="/scipy/scipy_cluster.htm">SciPy - Cluster</a></li>
+<li><a href="/scipy/scipy_constants.htm">SciPy - Constants</a></li>
+<li><a href="/scipy/scipy_fftpack.htm">SciPy - FFTpack</a></li>
+<li><a href="/scipy/scipy_integrate.htm">SciPy - Integrate</a></li>
+<li><a href="/scipy/scipy_interpolate.htm">SciPy - Interpolate</a></li>
+<li><a href="/scipy/scipy_input_output.htm">SciPy - Input and Output</a></li>
+<li><a href="/scipy/scipy_linalg.htm">SciPy - Linalg</a></li>
+<li><a href="/scipy/scipy_ndimage.htm">SciPy - Ndimage</a></li>
+<li><a href="/scipy/scipy_optimize.htm">SciPy - Optimize</a></li>
+<li><a href="/scipy/scipy_stats.htm">SciPy - Stats</a></li>
+<li><a href="/scipy/scipy_csgraph.htm">SciPy - CSGraph</a></li>
+<li><a href="/scipy/scipy_spatial.htm">SciPy - Spatial</a></li>
+<li><a href="/scipy/scipy_odr.htm">SciPy - ODR</a></li>
+<li><a href="/scipy/scipy_special_package.htm">SciPy - Special Package</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">SciPy Useful Resources</li>
+<li><a href="/scipy/scipy_quick_guide.htm">SciPy - Quick Guide</a></li>
+<li><a href="/scipy/scipy_useful_resources.htm">SciPy - Useful Resources</a></li>
+<li><a href="/scipy/scipy_discussion.htm">SciPy - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>SciPy - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/scipy/scipy_special_package.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/scipy/scipy_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>SciPy - Introduction</h1>
+<p>SciPy, pronounced as Sigh Pi, is a scientific python open source, distributed under the BSD licensed library to perform Mathematical, Scientific and Engineering Computations.</p>
+<p>The SciPy library depends on NumPy, which provides convenient and fast N-dimensional array manipulation. The SciPy library is built to work with NumPy arrays and provides many user-friendly and efficient numerical practices such as routines for numerical integration and optimization. Together, they run on all popular operating systems, are quick to install and are free of charge. NumPy and SciPy are easy to use, but powerful enough to depend on by some of the world's leading scientists and engineers.</p>
+<h2>SciPy Sub-packages</h2>
+<p>SciPy is organized into sub-packages covering different scientific computing domains. These are summarized in the following table &minus;</p>
+<table class="table table-bordered">
+<tr>
+<td style="text-align:center" width="40%"><a href="https://docs.scipy.org/doc/scipy/reference/cluster.html#module-scipy.cluster" target="_blank" rel="nofollow">scipy.cluster</a></td>
+<td>Vector quantization / Kmeans</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/constants.html#module-scipy.constants" target="_blank" rel="nofollow">scipy.constants</a></td>
+<td>Physical and mathematical constants</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/fftpack.html#module-scipy.fftpack" target="_blank" rel="nofollow">scipy.fftpack</a></td>
+<td>Fourier transform</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/integrate.html#module-scipy.integrate" target="_blank" rel="nofollow">scipy.integrate</a></td>
+<td>Integration routines</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/interpolate.html#module-scipy.interpolate" target="_blank" rel="nofollow">scipy.interpolate</a></td>
+<td>Interpolation</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/io.html#module-scipy.io" target="_blank" rel="nofollow">scipy.io</a></td>
+<td>Data input and output</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/linalg.html#module-scipy.linalg" target="_blank" rel="nofollow">scipy.linalg</a></td>
+<td>Linear algebra routines</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/ndimage.html#module-scipy.ndimage" target="_blank" rel="nofollow">scipy.ndimage</a></td>
+<td>n-dimensional image package</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/odr.html#module-scipy.odr" target="_blank" rel="nofollow">scipy.odr</a></td>
+<td>Orthogonal distance regression</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/optimize.html#module-scipy.optimize" target="_blank" rel="nofollow">scipy.optimize</a></td>
+<td>Optimization</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/signal.html#module-scipy.signal" target="_blank" rel="nofollow">scipy.signal</a></td>
+<td>Signal processing</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/sparse.html#module-scipy.sparse" target="_blank" rel="nofollow">scipy.sparse</a></td>
+<td>Sparse matrices</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/spatial.html#module-scipy.spatial" target="_blank" rel="nofollow">scipy.spatial</a></td>
+<td>Spatial data structures and algorithms</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/special.html#module-scipy.special" target="_blank" rel="nofollow">scipy.special</a></td>
+<td>Any special mathematical functions</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://docs.scipy.org/doc/scipy/reference/stats.html#module-scipy.stats" target="_blank" rel="nofollow">scipy.stats</a></td>
+<td>Statistics</td>
+</tr>
+</table>
+<h2>Data Structure</h2>
+<p>The basic data structure used by SciPy is a multidimensional array provided by the NumPy module. NumPy provides some functions for Linear Algebra, Fourier Transforms and Random Number Generation, but not with the generality of the equivalent functions in SciPy.</p>
+<h1>SciPy - Environment Setup</h1>
+<p>Standard Python distribution does not come bundled with any SciPy module. A lightweight alternative is to install SciPy using the popular Python package installer,</p>
+<pre class="result notranslate">
+pip install pandas
+</pre>
+<p>If we install the <b>Anaconda Python package</b>, Pandas will be installed by default. Following are the packages and links to install them in different operating systems.</p>
+<h2>Windows</h2>
+<p><b>Anaconda</b> (from <a href=" https://www.continuum.io" target="_blank" rel="nofollow"> https://www.continuum.io</a>) is a free Python distribution for the SciPy stack. It is also available for Linux and Mac.</p>
+<p><b>Canopy</b> (<a href="https://www.enthought.com/products/canopy/" rel="nofollow" target="_blank">https://www.enthought.com/products/canopy/</a>) is available free, as well as for commercial distribution with a full SciPy stack for Windows, Linux and Mac.</p>
+<p><b>Python (x,y)</b> &minus; It is a free Python distribution with SciPy stack and Spyder IDE for Windows OS. (Downloadable from <a href="https://python-xy.github.io/" target="_blank" rel="nofollow">https://python-xy.github.io/</a>)</p>
+<h3>Linux</h3>
+<p>Package managers of respective Linux distributions are used to install one or more packages in the SciPy stack.</p>
+<h3>Ubuntu</h3>
+<p>We can use the following path to install Python in Ubuntu.</p>
+<pre class="result notranslate">
+sudo apt-get install python-numpy python-scipy 
+python-matplotlibipythonipython-notebook python-pandas python-sympy python-nose
+</pre>
+<h3>Fedora</h3>
+<p>We can use the following path to install Python in Fedora.</p>
+<pre class="result notranslate">
+sudo yum install numpyscipy python-matplotlibipython python-pandas 
+sympy python-nose atlas-devel
+</pre>
+<h1>SciPy - Basic Functionality</h1>
+<p>By default, all the NumPy functions have been available through the SciPy namespace. There is no need to import the NumPy functions explicitly, when SciPy is imported. The main object of NumPy is the homogeneous multidimensional array. It is a table of elements (usually numbers), all of the same type, indexed by a tuple of positive integers. In NumPy, dimensions are called as axes. The number of <b>axes</b> is called as <b>rank</b>.</p>
+<p>Now, let us revise the basic functionality of Vectors and Matrices in NumPy. As SciPy is built on top of NumPy arrays, understanding of NumPy basics is necessary. As most parts of linear algebra deals with matrices only.</p>
+<h2>NumPy Vector</h2>
+<p>A Vector can be created in multiple ways. Some of them are described below.</p>
+<h3>Converting Python array-like objects to NumPy</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+list = [1,2,3,4]
+arr = np.array(list)
+print arr
+</pre>
+<p>The output of the above program will be as follows.</p>
+<pre class="result notranslate">
+[1 2 3 4]
+</pre>
+<h2>Intrinsic NumPy Array Creation</h2>
+<p>NumPy has built-in functions for creating arrays from scratch. Some of these functions are explained below.</p>
+<h3>Using zeros()</h3>
+<p>The zeros(shape) function will create an array filled with 0 values with the specified shape. The default dtype is float64. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+print np.zeros((2, 3))
+</pre>
+<p>The output of the above program will be as follows.</p>
+<pre class="result notranslate">
+array([[ 0., 0., 0.],
+[ 0., 0., 0.]])
+</pre>
+<h3>Using ones()</h3>
+<p>The ones(shape) function will create an array filled with 1 values. It is identical to zeros in all the other respects. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+print np.ones((2, 3))
+</pre>
+<p>The output of the above program will be as follows.</p>
+<pre class="result notranslate">
+array([[ 1., 1., 1.],
+[ 1., 1., 1.]])
+</pre>
+<h3>Using arange()</h3>
+<p>The arange() function will create arrays with regularly incrementing values. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+print np.arange(7)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([0, 1, 2, 3, 4, 5, 6])
+</pre>
+<h3>Defining the data type of the values</h3>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+arr = np.arange(2, 10, dtype = np.float)
+print arr
+print "Array Data Type :",arr.dtype
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+[ 2. 3. 4. 5. 6. 7. 8. 9.]
+Array Data Type : float64
+</pre>
+<h3>Using linspace()</h3>
+<p>The linspace() function will create arrays with a specified number of elements, which will be spaced equally between the specified beginning and end values. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+print np.linspace(1., 4., 6)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([ 1. , 1.6, 2.2, 2.8, 3.4, 4. ])
+</pre>
+<h2>Matrix</h2>
+<p>A matrix is a specialized 2-D array that retains its 2-D nature through operations. It has certain special operators, such as * (matrix multiplication) and ** (matrix power). Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+print np.matrix('1 2; 3 4')
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+matrix([[1, 2],
+[3, 4]])
+</pre>
+<h3>Conjugate Transpose of Matrix</h3>
+<p>This feature returns the (complex) conjugate transpose of <b>self</b>. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+mat = np.matrix('1 2; 3 4')
+print mat.H
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+matrix([[1, 3],
+        [2, 4]])
+</pre>
+<h3>Transpose of Matrix</h3>
+<p>This feature returns the transpose of self. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+mat = np.matrix('1 2; 3 4')
+mat.T
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+matrix([[1, 3],
+        [2, 4]])
+</pre>
+<p>When we transpose a matrix, we make a new matrix whose rows are the columns of the original. A conjugate transposition, on the other hand, interchanges the row and the column index for each matrix element. The inverse of a matrix is a matrix that, if multiplied with the original matrix, results in an identity matrix.</p>
+<h1>SciPy - Cluster</h1>
+<p><b>K-means clustering</b> is a method for finding clusters and cluster centers in a set of unlabelled data. Intuitively, we might think of a cluster as – comprising of a group of data points, whose inter-point distances are small compared with the distances to points outside of the cluster. Given an initial set of K centers, the K-means algorithm iterates the following two steps &minus;</p>
+<ul class="list">
+<li><p>For each center, the subset of training points (its cluster) that is closer to it is identified than any other center.</p></li>
+<li><p>The mean of each feature for the data points in each cluster are computed, and this mean vector becomes the new center for that cluster.</p></li>
+</ul>
+<p>These two steps are iterated until the centers no longer move or the assignments no longer change. Then, a new point <b>x</b> can be assigned to the cluster of the closest prototype. The SciPy library provides a good implementation of the K-Means algorithm through the cluster package. Let us understand how to use it.</p>
+<h2>K-Means Implementation in SciPy</h2>
+<p>We will understand how to implement K-Means in SciPy.</p>
+<h3>Import K-Means</h3>
+<p>We will see the implementation and usage of each imported function.</p>
+<pre class="result notranslate">
+from SciPy.cluster.vq import kmeans,vq,whiten
+</pre>
+<h3>Data generation</h3>
+<p>We have to simulate some data to explore the clustering.</p>
+<pre class="prettyprint notranslate">
+from numpy import vstack,array
+from numpy.random import rand
+
+# data generation with three features
+data = vstack((rand(100,3) + array([.5,.5,.5]),rand(100,3)))
+</pre>
+<p>Now, we have to check for data. The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([[ 1.48598868e+00, 8.17445796e-01, 1.00834051e+00],
+       [ 8.45299768e-01, 1.35450732e+00, 8.66323621e-01],
+       [ 1.27725864e+00, 1.00622682e+00, 8.43735610e-01],
+       …………….
+</pre>
+<p>Normalize a group of observations on a per feature basis. Before running K-Means, it is beneficial to rescale each feature dimension of the observation set with whitening. Each feature is divided by its standard deviation across all observations to give it unit variance.</p>
+<h3>Whiten the data</h3>
+<p>We have to use the following code to whiten the data.</p>
+<pre class="result notranslate">
+# whitening of data
+data = whiten(data)
+</pre>
+<h2>Compute K-Means with Three Clusters</h2>
+<p>Let us now compute K-Means with three clusters using the following code.</p>
+<pre class="result notranslate">
+# computing K-Means with K = 3 (2 clusters)
+centroids,_ = kmeans(data,3)
+</pre>
+<p>The above code performs K-Means on a set of observation vectors forming K clusters. The K-Means algorithm adjusts the centroids until sufficient progress cannot be made, i.e. the change in distortion, since the last iteration is less than some threshold. Here, we can observe the centroid of the cluster by printing the centroids variable using the code given below.</p>
+<pre class="prettyprint notranslate">
+print(centroids)
+</pre>
+<p>The above code will generate the following output.</p>
+<pre class="result notranslate">
+print(centroids)[ [ 2.26034702  1.43924335  1.3697022 ]
+                  [ 2.63788572  2.81446462  2.85163854]
+                  [ 0.73507256  1.30801855  1.44477558] ]
+</pre>
+<p>Assign each value to a cluster by using the code given below.</p>
+<pre class="prettyprint notranslate">
+# assign each sample to a cluster
+clx,_ = vq(data,centroids)
+</pre>
+<p>The <b>vq</b> function compares each observation vector in the ‘M’ by ‘N’ <b>obs</b> array with the centroids and assigns the observation to the closest cluster. It returns the cluster of each observation and the distortion. We can check the distortion as well. Let us check the cluster of each observation using the following code.</p>
+<pre class="prettyprint notranslate">
+# check clusters of observation
+print clx
+</pre>
+<p>The above code will generate the following output.</p>
+<pre class="result notranslate">
+array([1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 2, 0, 2, 0, 1, 1, 1,
+0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0,
+0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+0, 1,  0, 0, 0, 0, 1, 0, 0, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0, 2, 2, 2, 2, 2, 0, 0,
+2, 2, 2, 1, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 
+2, 2, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], dtype=int32)
+</pre>
+<p>The distinct values 0, 1, 2 of the above array indicate the clusters.</p>
+<h1>SciPy - Constants</h1>
+<p>SciPy constants package provides a wide range of constants, which are used in the general scientific area.</p>
+<h2>SciPy Constants Package</h2>
+<p>The <b>scipy.constants package</b> provides various constants. We have to import the required constant and use them as per the requirement. Let us see how these constant variables are imported and used.</p>
+<p>To start with, let us compare the ‘pi’ value by considering the following example.</p>
+<pre class="prettyprint notranslate">
+#Import pi constant from both the packages
+from scipy.constants import pi
+from math import pi
+
+print("sciPy - pi = %.16f"%scipy.constants.pi)
+print("math - pi = %.16f"%math.pi)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+sciPy - pi = 3.1415926535897931
+math - pi = 3.1415926535897931
+</pre>
+<h2>List of Constants Available</h2>
+<p>The following tables describe in brief the various constants.</p>
+<h3>Mathematical Constants</h3>
+<p></p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center;" width="12%">Sr. No.</th>
+<th style="text-align:center;">Constant</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>pi</td>
+<td>pi</td>
+</tr>
+<tr>
+<td>2</td>
+<td>golden</td>
+<td>Golden Ratio</td>
+</tr>
+</table>
+<h3>Physical Constants</h3>
+<p>The following table lists the most commonly used physical constants.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;" width="12%">Sr. No.</th>
+<th style="text-align:center;">Constant &amp; Description</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td><p><b>c</b></p><p>Speed of light in vacuum</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td><p><b>speed_of_light</b></p><p>Speed of light in vacuum</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">3</td>
+<td><p><b>h</b></p><p>Planck constant</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">4</td>
+<td><p><b>Planck</b></p><p>Planck constant h</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">5</td>
+<td><p><b>G</b></p><p>Newton’s gravitational constant</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">6</td>
+<td><p><b>e</b></p><p>Elementary charge</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">7</td>
+<td><p><b>R</b></p><p>Molar gas constant</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">8</td>
+<td><p><b>Avogadro</b></p><p>Avogadro constant</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">9</td>
+<td><p><b>k</b></p><p>Boltzmann constant</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">10</td>
+<td><p><b>electron_mass(OR) m_e</b></p><p>Electronic mass</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">11</td>
+<td><p><b>proton_mass (OR) m_p</b></p><p>Proton mass</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">12</td>
+<td><p><b>neutron_mass(OR)m_n</b></p><p>Neutron mass</p></td>
+</tr>
+</table>
+<h3>Units</h3>
+<p>The following table has the list of SI units.</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center;" width="12%">Sr. No.</th>
+<th style="text-align:center;">Unit</th>
+<th style="text-align:center;">Value</th>
+</tr>
+<tr>
+<td>1</td>
+<td>milli</td>
+<td>0.001</td>
+</tr>
+<tr>
+<td>2</td>
+<td>micro</td>
+<td>1e-06</td>
+</tr>
+<tr>
+<td>3</td>
+<td>kilo</td>
+<td>1000</td>
+</tr>
+</table>
+<p>These units range from yotta, zetta, exa, peta, tera ……kilo, hector, …nano, pico, … to zepto.</p>
+<h3>Other Important Constants</h3>
+<p>The following table lists other important constants used in SciPy.</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center;" width="12%">Sr. No.</th>
+<th style="text-align:center;">Unit</th>
+<th style="text-align:center;">Value</th>
+</tr>
+<tr>
+<td>1</td>
+<td>gram</td>
+<td>0.001 kg</td>
+</tr>
+<tr>
+<td>2</td>
+<td>atomic mass</td>
+<td>Atomic mass constant</td>
+</tr>
+<tr>
+<td>3</td>
+<td>degree</td>
+<td>Degree in radians</td>
+</tr>
+<tr>
+<td>4</td>
+<td>minute</td>
+<td>One minute in seconds</td>
+</tr>
+<tr>
+<td>5</td>
+<td>day</td>
+<td>One day in seconds</td>
+</tr>
+<tr>
+<td>6</td>
+<td>inch</td>
+<td>One inch in meters</td>
+</tr>
+<tr>
+<td>7</td>
+<td>micron</td>
+<td>One micron in meters</td>
+</tr>
+<tr>
+<td>8</td>
+<td>light_year</td>
+<td>One light-year in meters</td>
+</tr>
+<tr>
+<td>9</td>
+<td>atm</td>
+<td>Standard atmosphere in pascals</td>
+</tr>
+<tr>
+<td>10</td>
+<td>acre</td>
+<td>One acre in square meters</td>
+</tr>
+<tr>
+<td>11</td>
+<td>liter</td>
+<td>One liter in cubic meters</td>
+</tr>
+<tr>
+<td>12</td>
+<td>gallon</td>
+<td>One gallon in cubic meters</td>
+</tr>
+<tr>
+<td>13</td>
+<td>kmh</td>
+<td>Kilometers per hour in meters per seconds</td>
+</tr>
+<tr>
+<td>14</td>
+<td>degree_Fahrenheit</td>
+<td>One Fahrenheit in kelvins</td>
+</tr>
+<tr>
+<td>15</td>
+<td>eV</td>
+<td>One electron volt in joules</td>
+</tr>
+<tr>
+<td>16</td>
+<td>hp</td>
+<td>One horsepower in watts</td>
+</tr>
+<tr>
+<td>17</td>
+<td>dyn</td>
+<td>One dyne in newtons</td>
+</tr>
+<tr>
+<td>18</td>
+<td>lambda2nu</td>
+<td>Convert wavelength to optical frequency</td>
+</tr>
+</table>
+<p>Remembering all of these are a bit tough. The easy way to get which key is for which function is with the <b>scipy.constants.find()</b> method. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import scipy.constants
+res = scipy.constants.physical_constants["alpha particle mass"]
+print res
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+[
+   'alpha particle mass',
+   'alpha particle mass energy equivalent',
+   'alpha particle mass energy equivalent in MeV',
+   'alpha particle mass in u',
+   'electron to alpha particle mass ratio'
+]
+</pre>
+<p>This method returns the list of keys, else nothing if the keyword does not match.</p>
+<h1>SciPy - FFTpack</h1>
+<p><b>Fourier Transformation</b> is computed on a time domain signal to check its behavior in the frequency domain. Fourier transformation finds its application in disciplines such as signal and noise processing, image processing, audio signal processing, etc. SciPy offers the fftpack module, which lets the user compute fast Fourier transforms.</p>
+<p>Following is an example of a sine function, which will be used to calculate Fourier transform using the fftpack module.</p>
+<h2>Fast Fourier Transform</h2>
+<p>Let us understand what fast Fourier transform is in detail.</p>
+<h3>One Dimensional Discrete Fourier Transform</h3>
+<p>The FFT y[k] of length N of the length-N sequence x[n] is calculated by fft() and the inverse transform is calculated using ifft(). Let us consider the following example</p>
+<pre class="prettyprint notranslate">
+#Importing the fft and inverse fft functions from fftpackage
+from scipy.fftpack import fft
+
+#create an array with random n numbers
+x = np.array([1.0, 2.0, 1.0, -1.0, 1.5])
+
+#Applying the fft function
+y = fft(x)
+print y
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+[ 4.50000000+0.j           2.08155948-1.65109876j   -1.83155948+1.60822041j
+ -1.83155948-1.60822041j   2.08155948+1.65109876j ]
+</pre>
+<p>Let us look at another example</p>
+<pre class="prettyprint notranslate">
+#FFT is already in the workspace, using the same workspace to for inverse transform
+
+yinv = ifft(y)
+
+print yinv
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+[ 1.0+0.j   2.0+0.j   1.0+0.j   -1.0+0.j   1.5+0.j ]
+</pre>
+<p>The <b>scipy.fftpack</b> module allows computing fast Fourier transforms. As an illustration, a (noisy) input signal may look as follows &minus;</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+time_step = 0.02
+period = 5.
+time_vec = np.arange(0, 20, time_step)
+sig = np.sin(2 * np.pi / period * time_vec) + 0.5 *np.random.randn(time_vec.size)
+print sig.size
+</pre>
+<p>We are creating a signal with a time step of 0.02 seconds. The last statement prints the size of the signal sig. The output would be as follows &minus;</p>
+<pre class="result notranslate">
+1000
+</pre>
+<p>We do not know the signal frequency; we only know the sampling time step of the signal sig. The signal is supposed to come from a real function, so the Fourier transform will be symmetric. The <b>scipy.fftpack.fftfreq()</b> function will generate the sampling frequencies and <b>scipy.fftpack.fft()</b> will compute the fast Fourier transform.</p>
+<p>Let us understand this with the help of an example.</p>
+<pre class="prettyprint notranslate">
+from scipy import fftpack
+sample_freq = fftpack.fftfreq(sig.size, d = time_step)
+sig_fft = fftpack.fft(sig)
+print sig_fft
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([ 
+   25.45122234 +0.00000000e+00j,   6.29800973 +2.20269471e+00j,
+   11.52137858 -2.00515732e+01j,   1.08111300 +1.35488579e+01j,
+   …….])
+</pre>
+<h2>Discrete Cosine Transform</h2>
+<p>A <b>Discrete Cosine Transform (DCT)</b> expresses a finite sequence of data points in terms of a sum of cosine functions oscillating at different frequencies. SciPy provides a DCT with the function <b>dct</b> and a corresponding IDCT with the function <b>idct</b>. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy.fftpack import dct
+print dct(np.array([4., 3., 5., 10., 5., 3.]))
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([ 60.,  -3.48476592,  -13.85640646,  11.3137085,  6.,  -6.31319305])
+</pre>
+<p>The inverse discrete cosine transform reconstructs a sequence from its discrete cosine transform (DCT) coefficients. The idct function is the inverse of the dct function. Let us understand this with the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy.fftpack import dct
+print idct(np.array([4., 3., 5., 10., 5., 3.]))
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([ 39.15085889, -20.14213562, -6.45392043, 7.13341236,
+8.14213562, -3.83035081])
+</pre>
+<h1>SciPy - Integrate</h1>
+<p>When a function cannot be integrated analytically, or is very difficult to integrate analytically, one generally turns to numerical integration methods. SciPy has a number of routines for performing numerical integration. Most of them are found in the same <b>scipy.integrate</b> library. The following table lists some commonly used functions.</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;" width="12%">Sr No.</th>
+<th style="text-align:center;">Function &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>quad</b></p>
+<p>Single integration</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>dblquad</b></p>
+<p>Double integration</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>tplquad</b></p>
+<p>Triple integration</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>nquad</b></p>
+<p><i>n</i>-fold multiple integration</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>fixed_quad</b></p>
+<p>Gaussian quadrature, order n</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>quadrature</b></p>
+<p>Gaussian quadrature to tolerance</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>romberg</b></p>
+<p>Romberg integration</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>trapz</b></p>
+<p>Trapezoidal rule</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>cumtrapz</b></p>
+<p>Trapezoidal rule to cumulatively compute integral</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>simps</b></p>
+<p>Simpson’s rule</p></td>
+</tr>
+<tr>
+<td class="ts">11</td>
+<td><p><b>romb</b></p>
+<p>Romberg integration</p></td>
+</tr>
+<tr>
+<td class="ts">12</td>
+<td><p><b>polyint</b></p>
+<p>Analytical polynomial integration (NumPy)</p></td>
+</tr>
+<tr>
+<td class="ts">13</td>
+<td><p><b>poly1d</b></p>
+<p>Helper function for polyint (NumPy)</p></td>
+</tr>
+</table>
+<h2>Single Integrals</h2>
+<p>The Quad function is the workhorse of SciPy’s integration functions. Numerical integration is sometimes called <b>quadrature</b>, hence the name. It is normally the default choice for performing single integrals of a function <i>f(x)</i> over a given fixed range from a to b.</p>
+<p>$$\int_{a}^{b} f(x)dx$$</p>
+<p>The general form of quad is <b>scipy.integrate.quad(f, a, b)</b>, Where ‘f’ is the name of the function to be integrated. Whereas, ‘a’ and ‘b’ are the lower and upper limits, respectively. Let us see an example of the Gaussian function, integrated over a range of 0 and 1.</p>
+<p>We first need to define the function &rarr; $f(x) = e^{-x^2}$ , this can be done using a lambda expression and then call the quad method on that function.</p>
+<pre class="prettyprint notranslate">
+import scipy.integrate
+from numpy import exp
+f= lambda x:exp(-x**2)
+i = scipy.integrate.quad(f, 0, 1)
+print i
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+(0.7468241328124271, 8.291413475940725e-15)
+</pre>
+<p>The quad function returns the two values, in which the first number is the value of integral and the second value is the estimate of the absolute error in the value of integral.</p>
+<p><b>Note</b> &minus; Since quad requires the function as the first argument, we cannot directly pass exp as the argument. The Quad function accepts positive and negative infinity as limits. The Quad function can integrate standard predefined NumPy functions of a single variable, such as exp, sin and cos.</p>
+<h2>Multiple Integrals</h2>
+<p>The mechanics for double and triple integration have been wrapped up into the functions <b>dblquad, tplquad</b> and <b>nquad</b>. These functions integrate four or six arguments, respectively. The limits of all inner integrals need to be defined as functions.</p>
+<h2>Double Integrals</h2>
+<p>The general form of <b>dblquad</b> is scipy.integrate.dblquad(func, a, b, gfun, hfun). Where, func is the name of the function to be integrated, ‘a’ and ‘b’ are the lower and upper limits of the x variable, respectively, while gfun and hfun are the names of the functions that define the lower and upper limits of the y variable.</p>
+<p>As an example, let us perform the double integral method.</p>
+<p>$$\int_{0}^{1/2} dy \int_{0}^{\sqrt{1-4y^2}} 16xy \:dx$$</p>
+<p>We define the functions f, g, and h, using the lambda expressions. Note that even if g and h are constants, as they may be in many cases, they must be defined as functions, as we have done here for the lower limit.</p>
+<pre class="prettyprint notranslate">
+import scipy.integrate
+from numpy import exp
+from math import sqrt
+f = lambda x, y : 16*x*y
+g = lambda x : 0
+h = lambda y : sqrt(1-4*y**2)
+i = scipy.integrate.dblquad(f, 0, 0.5, g, h)
+print i
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+(0.5, 1.7092350012594845e-14)
+</pre>
+<p>In addition to the routines described above, scipy.integrate has a number of other integration routines, including nquad, which performs n-fold multiple integration, as well as other routines that implement various integration algorithms. However, quad and dblquad will meet most of our needs for numerical integration.</p>
+<h1>SciPy - Interpolate</h1>
+<p>In this chapter, we will discuss how interpolation helps in SciPy.</p>
+<h2>What is Interpolation?</h2>
+<p>Interpolation is the process of finding a value between two points on a line or a curve. To help us remember what it means, we should think of the first part of the word, 'inter,' as meaning 'enter,' which reminds us to look 'inside' the data we originally had. This tool, interpolation, is not only useful in statistics, but is also useful in science, business, or when there is a need to predict values that fall within two existing data points.</p>
+<p>Let us create some data and see how this interpolation can be done using the <b>scipy.interpolate</b> package.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+from scipy import interpolate
+import matplotlib.pyplot as plt
+x = np.linspace(0, 4, 12)
+y = np.cos(x**2/3+4)
+print x,y
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+(
+   array([0.,  0.36363636,  0.72727273,  1.09090909,  1.45454545, 1.81818182, 
+          2.18181818,  2.54545455,  2.90909091,  3.27272727,  3.63636364,  4.]),
+            
+   array([-0.65364362,  -0.61966189,  -0.51077021,  -0.31047698,  -0.00715476,
+           0.37976236,   0.76715099,   0.99239518,   0.85886263,   0.27994201,
+          -0.52586509,  -0.99582185])
+)
+</pre>
+<p>Now, we have two arrays. Assuming those two arrays as the two dimensions of the points in space, let us plot using the following program and see how they look like.</p>
+<pre class="prettyprint notranslate">
+plt.plot(x, y,’o’)
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/interpolation.jpg" alt="Interpolation" />
+<h2>1-D Interpolation</h2>
+<p>The interp1d class in the scipy.interpolate is a convenient method to create a function based on fixed data points, which can be evaluated anywhere within the domain defined by the given data using linear interpolation.</p>
+<p>By using the above data, let us create a interpolate function and draw a new interpolated graph.</p>
+<pre class="result notranslate">
+f1 = interp1d(x, y,kind = 'linear')
+
+f2 = interp1d(x, y, kind = 'cubic')
+</pre>
+<p>Using the interp1d function, we created two functions f1 and f2. These functions, for a given input x returns y. The third variable kind represents the type of the interpolation technique. 'Linear', 'Nearest', 'Zero', 'Slinear', 'Quadratic', 'Cubic' are a few techniques of interpolation.</p>
+<p>Now, let us create a new input of more length to see the clear difference of interpolation. We will use the same function of the old data on the new data.</p>
+<pre class="prettyprint notranslate">
+xnew = np.linspace(0, 4,30)
+
+plt.plot(x, y, 'o', xnew, f(xnew), '-', xnew, f2(xnew), '--')
+
+plt.legend(['data', 'linear', 'cubic','nearest'], loc = 'best')
+
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/1d_interpolation.jpg" alt="1-D Interpolation" />
+<h2>Splines</h2>
+<p>To draw smooth curves through data points, drafters once used thin flexible strips of wood, hard rubber, metal or plastic called mechanical splines. To use a mechanical spline, pins were placed at a judicious selection of points along a curve in a design, and then the spline was bent, so that it touched each of these pins.</p>
+<p>Clearly, with this construction, the spline interpolates the curve at these pins. It can be used to reproduce the curve in other drawings. The points where the pins are located is called knots. We can change the shape of the curve defined by the spline by adjusting the location of the knots.</p>
+<h3>Univariate Spline</h3>
+<p>One-dimensional smoothing spline fits a given set of data points. The UnivariateSpline class in scipy.interpolate is a convenient method to create a function, based on fixed data points class – scipy.interpolate.UnivariateSpline(x, y, w = None, bbox = [None, None], k = 3, s = None, ext = 0, check_finite = False).</p>
+<p><b>Parameters</b> &minus; Following are the parameters of a Univariate Spline.</p>
+<ul class="list">
+<li><p>This fits a spline y = spl(x) of degree k to the provided x, y data.</p></li>
+<li><p>‘w’ &minus; Specifies the weights for spline fitting. Must be positive. If none (default), weights are all equal.</p></li>
+<li><p>‘s’ &minus; Specifies the number of knots by specifying a smoothing condition.</p></li>
+<li><p>‘k’ &minus; Degree of the smoothing spline. Must be &lt;= 5. Default is k = 3, a cubic spline.</p></li>
+<li><p>Ext &minus; Controls the extrapolation mode for elements not in the interval defined by the knot sequence.</p></li>
+<ul class="list">
+<li><p>if ext = 0 or ‘extrapolate’, returns the extrapolated value.</p></li>
+<li><p>if ext = 1 or ‘zero’, returns 0</p></li>
+<li><p>if ext = 2 or ‘raise’, raises a ValueError</p></li>
+<li><p>if ext = 3 of ‘const’, returns the boundary value.</p></li>
+</ul>
+<li><p>check_finite – Whether to check that the input arrays contain only finite numbers.</p></li>
+</ul>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import matplotlib.pyplot as plt
+from scipy.interpolate import UnivariateSpline
+x = np.linspace(-3, 3, 50)
+y = np.exp(-x**2) + 0.1 * np.random.randn(50)
+plt.plot(x, y, 'ro', ms = 5)
+plt.show()
+</pre>
+<p>Use the default value for the smoothing parameter.</p>
+<img src="/scipy/images/splines.jpg" alt="Splines" />
+<pre class="result notranslate">
+spl = UnivariateSpline(x, y)
+xs = np.linspace(-3, 3, 1000)
+plt.plot(xs, spl(xs), 'g', lw = 3)
+plt.show()
+</pre>
+<p>Manually change the amount of smoothing.</p>
+<img src="/scipy/images/splines_smoothing.jpg" alt="Splines Smoothing" />
+<pre class="result notranslate">
+spl.set_smoothing_factor(0.5)
+plt.plot(xs, spl(xs), 'b', lw = 3)
+plt.show()
+</pre>
+<img src="/scipy/images/splines_smoothing2.jpg" alt="Splines Smoothing" />
+<h1>SciPy - Input &amp; Output</h1>
+<p>The Scipy.io (Input and Output) package provides a wide range of functions to work around with different format of files. Some of these formats are &minus;</p>
+<ul class="list">
+<li>Matlab</li>
+<li>IDL</li>
+<li>Matrix Market</li>
+<li>Wave</li>
+<li>Arff</li>
+<li>Netcdf, etc.</li>
+</ul>
+<p>Let us discuss in detail about the most commonly used file formats &minus;</p>
+<h2>MATLAB</h2>
+<p>Following are the functions used to load and save a .mat file.</p>
+<table class="table table-bordered">
+<tr>
+<th width="12%">Sr. No.</th>
+<th style="text-align:center;">Function &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>loadmat</b></p>
+<p>Loads a MATLAB file</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>savemat</b></p>
+<p>Saves a MATLAB file</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>whosmat</b></p><p>Lists variables inside a MATLAB file</p></td>
+</tr>
+</table>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import scipy.io as sio
+import numpy as np
+
+#Save a mat file
+vect = np.arange(10)
+sio.savemat('array.mat', {'vect':vect})
+
+#Now Load the File
+mat_file_content = sio.loadmat(‘array.mat’)
+Print mat_file_content
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+{
+   'vect': array([[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]]), '__version__': '1.0', 
+   '__header__': 'MATLAB 5.0 MAT-file Platform: posix, Created on: Sat Sep 30 
+   09:49:32 2017', '__globals__': []
+}
+</pre>
+<p>We can see the array along with the Meta information. If we want to inspect the contents of a MATLAB file without reading the data into memory, use the <b>whosmat command</b> as shown below.</p>
+<pre class="prettyprint notranslate">
+import scipy.io as sio
+mat_file_content = sio.whosmat(‘array.mat’)
+print mat_file_content
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+[('vect', (1, 10), 'int64')]
+</pre>
+<h1>SciPy - Linalg</h1>
+<p>SciPy is built using the optimized <b>ATLAS LAPACK</b> and <b>BLAS</b> libraries. It has very fast linear algebra capabilities. All of these linear algebra routines expect an object that can be converted into a two-dimensional array. The output of these routines is also a two-dimensional array.</p>
+<h3>SciPy.linalg vs NumPy.linalg</h3>
+<p>A scipy.linalg contains all the functions that are in numpy.linalg. Additionally, scipy.linalg also has some other advanced functions that are not in numpy.linalg. Another advantage of using scipy.linalg over numpy.linalg is that it is always compiled with BLAS/LAPACK support, while for NumPy this is optional. Therefore, the SciPy version might be faster depending on how NumPy was installed.</p>
+<h2>Linear Equations</h2>
+<p>The <b>scipy.linalg.solve</b> feature solves the linear equation a * x + b * y = Z, for the unknown x, y values.</p>
+<p>As an example, assume that it is desired to solve the following simultaneous equations.</p>
+<p style="text-align:center;"><b>x + 3y + 5z = 10</b></p>
+<p style="text-align:center;"><b>2x + 5y + z = 8</b></p>
+<p style="text-align:center;"><b>2x + 3y + 8z = 3</b></p>
+<p>To solve the above equation for the x, y, z values, we can find the solution vector using a matrix inverse as shown below.</p>
+<p>$$\begin{bmatrix}
+x\\ 
+y\\ 
+z
+\end{bmatrix} = \begin{bmatrix}
+1 &amp; 3 &amp; 5\\ 
+2 &amp; 5 &amp; 1\\ 
+2 &amp; 3 &amp; 8
+\end{bmatrix}^{-1} \begin{bmatrix}
+10\\ 
+8\\ 
+3
+\end{bmatrix} = \frac{1}{25} \begin{bmatrix}
+-232\\ 
+129\\ 
+19
+\end{bmatrix} = \begin{bmatrix}
+-9.28\\ 
+5.16\\ 
+0.76
+\end{bmatrix}.$$</p>
+<p>However, it is better to use the <b>linalg.solve</b> command, which can be faster and more numerically stable.</p>
+<p>The solve function takes two inputs ‘a’ and ‘b’ in which ‘a’ represents the coefficients and ‘b’ represents the respective right hand side value and returns the solution array.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+#importing the scipy and numpy packages
+from scipy import linalg
+import numpy as np
+
+#Declaring the numpy arrays
+a = np.array([[3, 2, 0], [1, -1, 0], [0, 5, 1]])
+b = np.array([2, 4, -1])
+
+#Passing the values to the solve function
+x = linalg.solve(a, b)
+
+#printing the result array
+print x
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([ 2., -2., 9.])
+</pre>
+<h2>Finding a Determinant</h2>
+<p>The determinant of a square matrix A is often denoted as |A| and is a quantity often used in linear algebra. In SciPy, this is computed using the <b>det()</b> function. It takes a matrix as input and returns a scalar value.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+#importing the scipy and numpy packages
+from scipy import linalg
+import numpy as np
+
+#Declaring the numpy array
+A = np.array([[1,2],[3,4]])
+
+#Passing the values to the det function
+x = linalg.det(A)
+
+#printing the result
+print x
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+-2.0
+</pre>
+<h2>Eigenvalues and Eigenvectors</h2>
+<p>The eigenvalue-eigenvector problem is one of the most commonly employed linear algebra operations. We can find the Eigen values (λ) and the corresponding Eigen vectors (v) of a square matrix (A) by considering the following relation &minus;</p>
+<p style="text-align:center;"><b>Av = λv</b></p>
+<p><b>scipy.linalg.eig</b> computes the eigenvalues from an ordinary or generalized eigenvalue problem. This function returns the Eigen values and the Eigen vectors.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+#importing the scipy and numpy packages
+from scipy import linalg
+import numpy as np
+
+#Declaring the numpy array
+A = np.array([[1,2],[3,4]])
+
+#Passing the values to the eig function
+l, v = linalg.eig(A)
+
+#printing the result for eigen values
+print l
+
+#printing the result for eigen vectors
+print v
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([-0.37228132+0.j, 5.37228132+0.j]) #--Eigen Values
+array([[-0.82456484, -0.41597356], #--Eigen Vectors
+       [ 0.56576746, -0.90937671]])
+</pre>
+<h2>Singular Value Decomposition</h2>
+<p>A Singular Value Decomposition (SVD) can be thought of as an extension of the eigenvalue problem to matrices that are not square.</p>
+<p>The <b>scipy.linalg.svd</b> factorizes the matrix ‘a’ into two unitary matrices ‘U’ and ‘Vh’ and a 1-D array ‘s’ of singular values (real, non-negative) such that a == U*S*Vh, where ‘S’ is a suitably shaped matrix of zeros with the main diagonal ‘s’.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+#importing the scipy and numpy packages
+from scipy import linalg
+import numpy as np
+
+#Declaring the numpy array
+a = np.random.randn(3, 2) + 1.j*np.random.randn(3, 2)
+
+#Passing the values to the eig function
+U, s, Vh = linalg.svd(a)
+
+# printing the result
+print U, Vh, s
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+(
+   array([
+      [ 0.54828424-0.23329795j, -0.38465728+0.01566714j,
+      -0.18764355+0.67936712j],
+      [-0.27123194-0.5327436j , -0.57080163-0.00266155j,
+      -0.39868941-0.39729416j],
+      [ 0.34443818+0.4110186j , -0.47972716+0.54390586j,
+      0.25028608-0.35186815j]
+   ]),
+
+   array([ 3.25745379, 1.16150607]),
+
+   array([
+      [-0.35312444+0.j , 0.32400401+0.87768134j],
+      [-0.93557636+0.j , -0.12229224-0.33127251j]
+   ])
+)
+</pre>
+<h1>SciPy - Ndimage</h1>
+<p>The SciPy ndimage submodule is dedicated to image processing. Here, ndimage means an n-dimensional image.</p>
+<p>Some of the most common tasks in image processing are as follows &miuns;</p>
+<ul class="list">
+<li>Input/Output, displaying images</li>
+<li>Basic manipulations &minus; Cropping, flipping, rotating, etc.</li>
+<li>Image filtering &minus; De-noising, sharpening, etc.</li>
+<li>Image segmentation &minus; Labeling pixels corresponding to different objects</li>
+<li>Classification</li>
+<li>Feature extraction</li>
+<li>Registration</li>
+</ul>
+<p>Let us discuss how some of these can be achieved using SciPy.</p>
+<h2>Opening and Writing to Image Files</h2>
+<p>The <b>misc package</b> in SciPy comes with some images. We use those images to learn the image manipulations. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy import misc
+f = misc.face()
+misc.imsave('face.png', f) # uses the Image module (PIL)
+
+import matplotlib.pyplot as plt
+plt.imshow(f)
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/opening_and_writing_to_image_files.jpg" alt="Opening and Writing to Image Files" />
+<p>Any images in its raw format is the combination of colors represented by the numbers in the matrix format. A machine understands and manipulates the images based on those numbers only. RGB is a popular way of representation.</p>
+<p>Let us see the statistical information of the above image.</p>
+<pre class="prettyprint notranslate">
+from scipy import misc
+face = misc.face(gray = False)
+print face.mean(), face.max(), face.min()
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+110.16274388631184, 255, 0
+</pre>
+<p>Now, we know that the image is made out of numbers, so any change in the value of the number alters the original image. Let us perform some geometric transformations on the image. The basic geometric operation is cropping</p>
+<pre class="prettyprint notranslate">
+from scipy import misc
+face = misc.face(gray = True)
+lx, ly = face.shape
+# Cropping
+crop_face = face[lx / 4: - lx / 4, ly / 4: - ly / 4]
+import matplotlib.pyplot as plt
+plt.imshow(crop_face)
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/cropping_operation_image_files.jpg" alt="Cropping Operation Image Files" />
+<p>We can also perform some basic operations such as turning the image upside down as described below.</p>
+<pre class="result notranslate">
+# up &lt;-&gt; down flip
+from scipy import misc
+face = misc.face()
+flip_ud_face = np.flipud(face)
+
+import matplotlib.pyplot as plt
+plt.imshow(flip_ud_face)
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/image_turning_operation.jpg" alt="Image Turning Operation" />
+<p>Besides this, we have the <b>rotate() function</b>, which rotates the image with a specified angle.</p>
+<pre class="prettyprint notranslate">
+# rotation
+from scipy import misc,ndimage
+face = misc.face()
+rotate_face = ndimage.rotate(face, 45)
+
+import matplotlib.pyplot as plt
+plt.imshow(rotate_face)
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/image_rotation_operation.jpg" alt="Image Rotation Operation" />
+<h2>Filters</h2>
+<p>Let us discuss how filters help in image processing.</p>
+<h3>What is filtering in image processing?</h3>
+<p>Filtering is a technique for modifying or enhancing an image. For example, you can filter an image to emphasize certain features or remove other features. Image processing operations implemented with filtering include Smoothing, Sharpening, and Edge Enhancement.</p>
+<p>Filtering is a neighborhood operation, in which the value of any given pixel in the output image is determined by applying some algorithm to the values of the pixels in the neighborhood of the corresponding input pixel. Let us now perform a few operations using SciPy ndimage.</p>
+<h3>Blurring</h3>
+<p>Blurring is widely used to reduce the noise in the image. We can perform a filter operation and see the change in the image. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy import misc
+face = misc.face()
+blurred_face = ndimage.gaussian_filter(face, sigma=3)
+import matplotlib.pyplot as plt
+plt.imshow(blurred_face)
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/image_blurring_operation.jpg" alt="Image Blurring Operation" />
+<p>The sigma value indicates the level of blur on a scale of five. We can see the change on the image quality by tuning the sigma value. For more details of blurring, click on &rarr; DIP (Digital Image Processing) Tutorial.</p>
+<h2>Edge Detection</h2>
+<p>Let us discuss how edge detection helps in image processing.</p>
+<h3>What is Edge Detection?</h3>
+<p>Edge detection is an image processing technique for finding the boundaries of objects within images. It works by detecting discontinuities in brightness. Edge detection is used for image segmentation and data extraction in areas such as Image Processing, Computer Vision and Machine Vision.</p>
+<p>The most commonly used edge detection algorithms include</p>
+<ul class="list">
+<li>Sobel</li>
+<li>Canny</li>
+<li>Prewitt</li>
+<li>Roberts</li>
+<li>Fuzzy Logic methods</li>
+</ul>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import scipy.ndimage as nd
+import numpy as np
+
+im = np.zeros((256, 256))
+im[64:-64, 64:-64] = 1
+im[90:-90,90:-90] = 2
+im = ndimage.gaussian_filter(im, 8)
+
+import matplotlib.pyplot as plt
+plt.imshow(im)
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/edge_detection.jpg" alt="Edge Detection" />
+<p>The image looks like a square block of colors. Now, we will detect the edges of those colored blocks. Here, ndimage provides a function called <b>Sobel</b> to carry out this operation. Whereas, NumPy provides the <b>Hypot</b> function to combine the two resultant matrices to one.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import scipy.ndimage as nd
+import matplotlib.pyplot as plt
+
+im = np.zeros((256, 256))
+im[64:-64, 64:-64] = 1
+im[90:-90,90:-90] = 2
+im = ndimage.gaussian_filter(im, 8)
+
+sx = ndimage.sobel(im, axis = 0, mode = 'constant')
+sy = ndimage.sobel(im, axis = 1, mode = 'constant')
+sob = np.hypot(sx, sy)
+
+plt.imshow(sob)
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/edge_detection_2.jpg" alt="Edge Detection-2" />
+<h1>SciPy - Optimize</h1>
+<p>The <b>scipy.optimize package</b> provides several commonly used optimization algorithms. This module contains the following aspects &minus;</p>
+<ul class="list">
+<li><p>Unconstrained and constrained minimization of multivariate scalar functions (minimize()) using a variety of algorithms (e.g. BFGS, Nelder-Mead simplex, Newton Conjugate Gradient, COBYLA or SLSQP)</p></li>
+<li><p>Global (brute-force) optimization routines (e.g., anneal(), basinhopping())</p></li>
+<li><p>Least-squares minimization (leastsq()) and curve fitting (curve_fit()) algorithms</p></li>
+<li><p>Scalar univariate functions minimizers (minimize_scalar()) and root finders (newton())</p></li>
+<li><p>Multivariate equation system solvers (root()) using a variety of algorithms (e.g. hybrid Powell, Levenberg-Marquardt or large-scale methods such as Newton-Krylov)</p></li>
+</ul>
+<h3>Unconstrained &amp; Constrained minimization of multivariate scalar functions</h3>
+<p>The <b>minimize() function</b> provides a common interface to unconstrained and constrained minimization algorithms for multivariate scalar functions in <b>scipy.optimize</b>. To demonstrate the minimization function, consider the problem of minimizing the Rosenbrock function of the NN variables &minus;</p>
+<p>$$f(x) = \sum_{i = 1}^{N-1} \:100(x_i - x_{i-1}^{2})$$</p>
+<p>The minimum value of this function is 0, which is achieved when xi = 1.</p>
+<h2>Nelder–Mead Simplex Algorithm</h2>
+<p>In the following example, the minimize() routine is used with the <b>Nelder-Mead simplex algorithm (method = 'Nelder-Mead')</b> (selected through the method parameter). Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+from scipy.optimize import minimize
+
+def rosen(x):
+
+x0 = np.array([1.3, 0.7, 0.8, 1.9, 1.2])
+res = minimize(rosen, x0, method='nelder-mead')
+
+print(res.x)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+[7.93700741e+54  -5.41692163e+53  6.28769150e+53  1.38050484e+55  -4.14751333e+54]
+</pre>
+<p>The simplex algorithm is probably the simplest way to minimize a fairly well-behaved function. It requires only function evaluations and is a good choice for simple minimization problems. However, because it does not use any gradient evaluations, it may take longer to find the minimum.</p>
+<p>Another optimization algorithm that needs only function calls to find the minimum is the <b>Powell‘s method</b>, which is available by setting method = 'powell' in the minimize() function. </p>
+<h2>Least Squares</h2>
+<p>Solve a nonlinear least-squares problem with bounds on the variables. Given the residuals f(x) (an m-dimensional real function of n real variables) and the loss function rho(s) (a scalar function), least_squares find a local minimum of the cost function F(x). Let us consider the following example.</p>
+<p>In this example, we find a minimum of the Rosenbrock function without bounds on the independent variables.</p>
+<pre class="prettyprint notranslate">
+#Rosenbrock Function
+def fun_rosenbrock(x):
+   return np.array([10 * (x[1] - x[0]**2), (1 - x[0])])
+   
+from scipy.optimize import least_squares
+input = np.array([2, 2])
+res = least_squares(fun_rosenbrock, input)
+
+print res
+</pre>
+<p>Notice that, we only provide the vector of the residuals. The algorithm constructs the cost function as a sum of squares of the residuals, which gives the Rosenbrock function. The exact minimum is at x = [1.0,1.0].</p>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+active_mask: array([ 0., 0.])
+      cost: 9.8669242910846867e-30
+      fun: array([ 4.44089210e-15, 1.11022302e-16])
+      grad: array([ -8.89288649e-14, 4.44089210e-14])
+      jac: array([[-20.00000015,10.],[ -1.,0.]])
+   message: '`gtol` termination condition is satisfied.'
+      nfev: 3
+      njev: 3
+   optimality: 8.8928864934219529e-14
+      status: 1
+      success: True
+         x: array([ 1., 1.])
+</pre>
+<h2>Root finding</h2>
+<p>Let us understand how root finding helps in SciPy.</p>
+<h3>Scalar functions</h3>
+<p>If one has a single-variable equation, there are four different root-finding algorithms, which can be tried. Each of these algorithms require the endpoints of an interval in which a root is expected (because the function changes signs). In general, <b>brentq</b> is the best choice, but the other methods may be useful in certain circumstances or for academic purposes.</p>
+<h3>Fixed-point solving</h3>
+<p>A problem closely related to finding the zeros of a function is the problem of finding a fixed point of a function. A fixed point of a function is the point at which evaluation of the function returns the point: g(x) = x. Clearly the fixed point of <b>gg</b> is the root of f(x) = g(x)−x. Equivalently, the root of <b>ff</b> is the fixed_point of g(x) = f(x)+x. The routine fixed_point provides a simple iterative method using the <b>Aitkens sequence acceleration</b> to estimate the fixed point of <b>gg</b>, if a starting point is given.</p>
+<h3>Sets of equations</h3>
+<p>Finding a root of a set of non-linear equations can be achieved using the <b>root() function</b>. Several methods are available, amongst which <b>hybr</b> (the default) and lm, respectively use the <b>hybrid method of Powell</b> and the <b>Levenberg-Marquardt method</b> from the MINPACK.</p>
+<p>The following example considers the single-variable transcendental equation.</p>
+<p style="text-align:center;"><b>x<sup>2</sup> + 2cos(x) = 0</b></p>
+<p>A root of which can be found as follows &minus;</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+from scipy.optimize import root
+def func(x):
+   return x*2 + 2 * np.cos(x)
+sol = root(func, 0.3)
+print sol
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+fjac: array([[-1.]])
+fun: array([ 2.22044605e-16])
+message: 'The solution converged.'
+   nfev: 10
+   qtf: array([ -2.77644574e-12])
+      r: array([-3.34722409])
+   status: 1
+   success: True
+      x: array([-0.73908513])
+</pre>
+<h1>SciPy - Stats</h1>
+<p>All of the statistics functions are located in the sub-package <b>scipy.stats</b> and a fairly complete listing of these functions can be obtained using <b>info(stats)</b> function. A list of random variables available can also be obtained from the <b>docstring</b> for the stats sub-package. This module contains a large number of probability distributions as well as a growing library of statistical functions.</p>
+<p>Each univariate distribution has its own subclass as described in the following table &minus;</p>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;" width="12%">Sr. No.</th>
+<th style="text-align:center;">Class &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>rv_continuous</b></p>
+<p>A generic continuous random variable class meant for subclassing</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>rv_discrete</b></p>
+<p>A generic discrete random variable class meant for subclassing</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>rv_histogram</b></p>
+<p>Generates a distribution given by a histogram</p></td>
+</tr>
+</table>
+<h2>Normal Continuous Random Variable</h2>
+<p>A probability distribution in which the random variable X can take any value is continuous random variable. The location (loc) keyword specifies the mean. The scale (scale) keyword specifies the standard deviation.</p>
+<p>As an instance of the <b>rv_continuous</b> class, <b>norm</b> object inherits from it a collection of generic methods and completes them with details specific for this particular distribution.</p>
+<p>To compute the CDF at a number of points, we can pass a list or a NumPy array. Let us consider the following example.</p>
+<pre class="result notranslate">
+from scipy.stats import norm
+import numpy as np
+print norm.cdf(np.array([1,-1., 0, 1, 3, 4, -2, 6]))
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([ 0.84134475, 0.15865525, 0.5 , 0.84134475, 0.9986501 ,
+0.99996833, 0.02275013, 1. ])
+</pre>
+<p>To find the median of a distribution, we can use the Percent Point Function (PPF), which is the inverse of the CDF. Let us understand by using the following example.</p>
+<pre class="result notranslate">
+from scipy.stats import norm
+print norm.ppf(0.5)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+0.0
+</pre>
+<p>To generate a sequence of random variates, we should use the size keyword argument, which is shown in the following example.</p>
+<pre class="result notranslate">
+from scipy.stats import norm
+print norm.rvs(size = 5)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([ 0.20929928, -1.91049255, 0.41264672, -0.7135557 , -0.03833048])
+</pre>
+<p>The above output is not reproducible. To generate the same random numbers, use the seed function.</p>
+<h2>Uniform Distribution</h2>
+<p>A uniform distribution can be generated using the uniform function. Let us consider the following example.</p>
+<pre class="result notranslate">
+from scipy.stats import uniform
+print uniform.cdf([0, 1, 2, 3, 4, 5], loc = 1, scale = 4)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([ 0. , 0. , 0.25, 0.5 , 0.75, 1. ])
+</pre>
+<h3>Build Discrete Distribution</h3>
+<p>Let us generate a random sample and compare the observed frequencies with the probabilities.</p>
+<h3>Binomial Distribution</h3>
+<p>As an instance of the <b>rv_discrete class</b>, the <b>binom object</b> inherits from it a collection of generic methods and completes them with details specific for this particular distribution. Let us consider the following example.</p>
+<pre class="result notranslate">
+from scipy.stats import uniform
+print uniform.cdf([0, 1, 2, 3, 4, 5], loc = 1, scale = 4)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([ 0. , 0. , 0.25, 0.5 , 0.75, 1. ])
+</pre>
+<h2>Descriptive Statistics</h2>
+<p>The basic stats such as Min, Max, Mean and Variance takes the NumPy array as input and returns the respective results. A few basic statistical functions available in the <b>scipy.stats package</b> are described in the following table.</p>
+<table class="table table-bordered">
+<tr>
+<th width="12%">Sr. No.</th>
+<th style="text-align:center;">Function &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>describe()</b></p>
+<p>Computes several descriptive statistics of the passed array</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>gmean()</b></p>
+<p>Computes geometric mean along the specified axis</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>hmean()</b></p>
+<p>Calculates the harmonic mean along the specified axis</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>kurtosis()</b></p>
+<p>Computes the kurtosis</p></td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>mode()</b></p>
+<p>Returns the modal value</p></td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>skew()</b></p>
+<p>Tests the skewness of the data</p></td>
+</tr>
+<tr>
+<td class="ts">7</td>
+<td><p><b>f_oneway()</b></p>
+<p>Performs a 1-way ANOVA</p></td>
+</tr>
+<tr>
+<td class="ts">8</td>
+<td><p><b>iqr()</b></p>
+<p>Computes the interquartile range of the data along the specified axis</p></td>
+</tr>
+<tr>
+<td class="ts">9</td>
+<td><p><b>zscore()</b></p>
+<p>Calculates the z score of each value in the sample, relative to the sample mean and standard deviation</p></td>
+</tr>
+<tr>
+<td class="ts">10</td>
+<td><p><b>sem()</b></p>
+<p>Calculates the standard error of the mean (or standard error of measurement) of the values in the input array</p></td>
+</tr>
+</table>
+<p>Several of these functions have a similar version in the <b>scipy.stats.mstats</b>, which work for masked arrays. Let us understand this with the example given below.</p>
+<pre class="prettyprint notranslate">
+from scipy import stats
+import numpy as np
+x = np.array([1,2,3,4,5,6,7,8,9])
+print x.max(),x.min(),x.mean(),x.var()
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+(9, 1, 5.0, 6.666666666666667)
+</pre>
+<h2>T-test</h2>
+<p>Let us understand how T-test is useful in SciPy.</p>
+<h3>ttest_1samp</h3>
+<p>Calculates the T-test for the mean of ONE group of scores. This is a two-sided test for the null hypothesis that the expected value (mean) of a sample of independent observations ‘a’ is equal to the given population mean, <b>popmean</b>. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy import stats
+rvs = stats.norm.rvs(loc = 5, scale = 10, size = (50,2))
+print stats.ttest_1samp(rvs,5.0)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+Ttest_1sampResult(statistic = array([-1.40184894, 2.70158009]),
+pvalue = array([ 0.16726344, 0.00945234]))
+</pre>
+<h3>Comparing two samples</h3>
+<p>In the following examples, there are two samples, which can come either from the same or from different distribution, and we want to test whether these samples have the same statistical properties.</p>
+<p><b>ttest_ind</b> &minus; Calculates the T-test for the means of two independent samples of scores. This is a two-sided test for the null hypothesis that two independent samples have identical average (expected) values. This test assumes that the populations have identical variances by default.</p>
+<p>We can use this test, if we observe two independent samples from the same or different population. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy import stats
+rvs1 = stats.norm.rvs(loc = 5,scale = 10,size = 500)
+rvs2 = stats.norm.rvs(loc = 5,scale = 10,size = 500)
+print stats.ttest_ind(rvs1,rvs2)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+Ttest_indResult(statistic = -0.67406312233650278, pvalue = 0.50042727502272966)
+</pre>
+<p>You can test the same with a new array of the same length, but with a varied mean. Use a different value in <b>loc</b> and test the same.</p>
+<h1>SciPy - CSGraph</h1>
+<p>CSGraph stands for <b>Compressed Sparse Graph</b>, which focuses on Fast graph algorithms based on sparse matrix representations.</p>
+<h2>Graph Representations</h2>
+<p>To begin with, let us understand what a sparse graph is and how it helps in graph representations.</p>
+<h3>What exactly is a sparse graph?</h3>
+<p>A graph is just a collection of nodes, which have links between them. Graphs can represent nearly anything &minus; social network connections, where each node is a person and is connected to acquaintances; images, where each node is a pixel and is connected to neighboring pixels; points in a high-dimensional distribution, where each node is connected to its nearest neighbors; and practically anything else you can imagine.</p>
+<p>One very efficient way to represent graph data is in a sparse matrix: let us call it G. The matrix G is of size N x N, and G[i, j] gives the value of the connection between node ‘i' and node ‘j’. A sparse graph contains mostly zeros &minus; that is, most nodes have only a few connections. This property turns out to be true in most cases of interest.</p>
+<p>The creation of the sparse graph submodule was motivated by several algorithms used in scikit-learn that included the following &minus;</p>
+<ul class="list">
+<li><p><b>Isomap</b> &minus; A manifold learning algorithm, which requires finding the shortest paths in a graph.</p></li>
+<li><p><b>Hierarchical clustering</b> &minus; A clustering algorithm based on a minimum spanning tree.</p></li>
+<li><p><b>Spectral Decomposition</b> &minus; A projection algorithm based on sparse graph laplacians.</p></li>
+</ul>
+<p>As a concrete example, imagine that we would like to represent the following undirected graph &minus;</p>
+<img src="/scipy/images/undirected_graph.jpg" alt="Undirected Graph"/>
+<p>This graph has three nodes, where node 0 and 1 are connected by an edge of weight 2, and nodes 0 and 2 are connected by an edge of weight 1. We can construct the dense, masked and sparse representations as shown in the following example, keeping in mind that an undirected graph is represented by a symmetric matrix.</p>
+<pre class="prettyprint notranslate">
+G_dense = np.array([ [0, 2, 1],
+                     [2, 0, 0],
+                     [1, 0, 0] ])
+                     
+G_masked = np.ma.masked_values(G_dense, 0)
+from scipy.sparse import csr_matrix
+
+G_sparse = csr_matrix(G_dense)
+print G_sparse.data
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([2, 1, 2, 1])
+</pre>
+<p></p>
+<img src="/scipy/images/undirected_graph_using_symmetric_matrix.jpg" alt="Undirected Graph Using Symmetric Matrix"/>
+<p>This is identical to the previous graph, except nodes 0 and 2 are connected by an edge of zero weight. In this case, the dense representation above leads to ambiguities &minus; how can non-edges be represented, if zero is a meaningful value. In this case, either a masked or a sparse representation must be used to eliminate the ambiguity.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy.sparse.csgraph import csgraph_from_dense
+G2_data = np.array
+([
+   [np.inf, 2, 0 ],
+   [2, np.inf, np.inf],
+   [0, np.inf, np.inf]
+])
+G2_sparse = csgraph_from_dense(G2_data, null_value=np.inf)
+print G2_sparse.data
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([ 2., 0., 2., 0.])
+</pre>
+<h3>Word ladders using sparse graphs</h3>
+<p>Word ladders is a game invented by Lewis Carroll, in which words are linked by changing a single letter at each step. For example &minus;</p>
+<p style="text-align:center;"><b>APE &rarr; APT &rarr; AIT &rarr; BIT &rarr; BIG &rarr; BAG &rarr; MAG &rarr; MAN</b></p>
+<p>Here, we have gone from "APE" to "MAN" in seven steps, changing one letter each time. The question is - Can we find a shorter path between these words using the same rule? This problem is naturally expressed as a sparse graph problem. The nodes will correspond to individual words, and we will create connections between words that differ by at the most – one letter.</p>
+<h2>Obtaining a List of Words</h2>
+<p>First, of course, we must obtain a list of valid words. I am running Mac, and Mac has a word dictionary at the location given in the following code block. If you are on a different architecture, you may have to search a bit to find your system dictionary.</p>
+<pre class="prettyprint notranslate">
+wordlist = open('/usr/share/dict/words').read().split()
+print len(wordlist)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+235886
+</pre>
+<p>We now want to look at words of length 3, so let us select just those words of the correct length. We will also eliminate words, which start with upper case (proper nouns) or contain non-alpha-numeric characters such as apostrophes and hyphens. Finally, we will make sure everything is in lower case for a comparison later on.</p>
+<pre class="prettyprint notranslate">
+word_list = [word for word in word_list if len(word) == 3]
+word_list = [word for word in word_list if word[0].islower()]
+word_list = [word for word in word_list if word.isalpha()]
+word_list = map(str.lower, word_list)
+print len(word_list)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+1135
+</pre>
+<p>Now, we have a list of 1135 valid three-letter words (the exact number may change depending on the particular list used). Each of these words will become a node in our graph, and we will create edges connecting the nodes associated with each pair of words, which differs by only one letter.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+word_list = np.asarray(word_list)
+
+word_list.dtype
+word_list.sort()
+
+word_bytes = np.ndarray((word_list.size, word_list.itemsize),
+   dtype = 'int8',
+   buffer = word_list.data)
+print word_bytes.shape
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+(1135, 3)
+</pre>
+<p>We will use the Hamming distance between each point to determine, which pairs of words are connected. The Hamming distance measures the fraction of entries between two vectors, which differ: any two words with a hamming distance equal to 1/N1/N, where NN is the number of letters, which are connected in the word ladder.</p>
+<pre class="result notranslate">
+from scipy.spatial.distance import pdist, squareform
+from scipy.sparse import csr_matrix
+hamming_dist = pdist(word_bytes, metric = 'hamming')
+graph = csr_matrix(squareform(hamming_dist &lt; 1.5 / word_list.itemsize))
+</pre>
+<p>When comparing the distances, we do not use equality because this can be unstable for floating point values. The inequality produces the desired result as long as no two entries of the word list are identical. Now, that our graph is set up, we will use the shortest path search to find the path between any two words in the graph.</p>
+<pre class="prettyprint notranslate">
+i1 = word_list.searchsorted('ape')
+i2 = word_list.searchsorted('man')
+print word_list[i1],word_list[i2]
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+ape, man
+</pre>
+<p>We need to check that these match, because if the words are not in the list there will be an error in the output. Now, all we need is to find the shortest path between these two indices in the graph. We will use <b>dijkstra’s</b> algorithm, because it allows us to find the path for just one node.</p>
+<pre class="prettyprint notranslate">
+from scipy.sparse.csgraph import dijkstra
+distances, predecessors = dijkstra(graph, indices = i1, return_predecessors = True)
+print distances[i2]
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+5.0
+</pre>
+<p>Thus, we see that the shortest path between ‘ape’ and ‘man’ contains only five steps. We can use the predecessors returned by the algorithm to reconstruct this path.</p>
+<pre class="prettyprint notranslate">
+path = []
+i = i2
+
+while i != i1:
+   path.append(word_list[i])
+   i = predecessors[i]
+   
+path.append(word_list[i1])
+print path[::-1]i2]
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+['ape', 'ope', 'opt', 'oat', 'mat', 'man']
+</pre>
+<h1>SciPy - Spatial</h1>
+<p>The <b>scipy.spatial package</b> can compute Triangulations, Voronoi Diagrams and Convex Hulls of a set of points, by leveraging the <b>Qhull library</b>. Moreover, it contains <b>KDTree implementations</b> for nearest-neighbor point queries and utilities for distance computations in various metrics.</p>
+<h2>Delaunay Triangulations</h2>
+<p>Let us understand what Delaunay Triangulations are and how they are used in SciPy.</p>
+<h3>What are Delaunay Triangulations?</h3>
+<p>In mathematics and computational geometry, a Delaunay triangulation for a given set <b>P</b> of discrete points in a plane is a triangulation <b>DT(P)</b> such that no point in <b>P</b> is inside the circumcircle of any triangle in DT(P).</p>
+<p>We can the compute the same through SciPy. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy.spatial import Delaunay
+points = np.array([[0, 4], [2, 1.1], [1, 3], [1, 2]])
+tri = Delaunay(points)
+import matplotlib.pyplot as plt
+plt.triplot(points[:,0], points[:,1], tri.simplices.copy())
+plt.plot(points[:,0], points[:,1], 'o')
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/delaunay_triangulations.jpg" alt="Delaunay Triangulations"/>
+<h2>Coplanar Points</h2>
+<p>Let us understand what Coplanar Points are and how they are used in SciPy.</p>
+<h3>What are Coplanar Points?</h3>
+<p>Coplanar points are three or more points that lie in the same plane. Recall that a plane is a flat surface, which extends without end in all directions. It is usually shown in math textbooks as a four-sided figure.</p>
+<p>Let us see how we can find this using SciPy. Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy.spatial import Delaunay
+points = np.array([[0, 0], [0, 1], [1, 0], [1, 1], [1, 1]])
+tri = Delaunay(points)
+print tri.coplanar
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+array([[4, 0, 3]], dtype = int32)
+</pre>
+<p>This means that point 4 resides near triangle 0 and vertex 3, but is not included in the triangulation.</p>
+<h2>Convex hulls</h2>
+<p>Let us understand what convex hulls are and how they are used in SciPy.</p>
+<h3>What are Convex Hulls?</h3>
+<p>In mathematics, the <b>convex hull</b> or <b>convex envelope</b> of a set of points X in the Euclidean plane or in a Euclidean space (or, more generally, in an affine space over the reals) is the smallest <b>convex set</b> that contains X.</p>
+<p>Let us consider the following example to understand it in detail.</p>
+<pre class="prettyprint notranslate">
+from scipy.spatial import ConvexHull
+points = np.random.rand(10, 2) # 30 random points in 2-D
+hull = ConvexHull(points)
+import matplotlib.pyplot as plt
+plt.plot(points[:,0], points[:,1], 'o')
+for simplex in hull.simplices:
+plt.plot(points[simplex,0], points[simplex,1], 'k-')
+plt.show()
+</pre>
+<p>The above program will generate the following output.</p>
+<img src="/scipy/images/convex_hulls.jpg" alt="Convex Hulls"/>
+<h1>SciPy - ODR</h1>
+<p>ODR stands for <b>Orthogonal Distance Regression</b>, which is used in the regression studies. Basic linear regression is often used to estimate the relationship between the two variables <b>y</b> and <b>x</b> by drawing the line of best fit on the graph.</p>
+<p>The mathematical method that is used for this is known as <b>Least Squares</b>, and aims to minimize the sum of the squared error for each point. The key question here is how do you calculate the error (also known as the residual) for each point?</p>
+<p>In a standard linear regression, the aim is to predict the Y value from the X value – so the sensible thing to do is to calculate the error in the Y values (shown as the gray lines in the following image). However, sometimes it is more sensible to take into account the error in both X and Y (as shown by the dotted red lines in the following image).</p>
+<p>For example &minus; When you know your measurements of X are uncertain, or when you do not want to focus on the errors of one variable over another.</p>
+<img src="/scipy/images/orthogonal_distance_linear_regression.jpg" alt="Orthogonal Distance linear regression"/>
+<p>Orthogonal Distance Regression (ODR) is a method that can do this (orthogonal in this context means perpendicular – so it calculates errors perpendicular to the line, rather than just ‘vertically’).</p>
+<h3>scipy.odr Implementation for Univariate Regression</h3>
+<p>The following example demonstrates scipy.odr implementation for univariate regression.</p>
+<pre class="prettyprint notranslate">
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.odr import *
+import random
+
+# Initiate some data, giving some randomness using random.random().
+x = np.array([0, 1, 2, 3, 4, 5])
+y = np.array([i**2 + random.random() for i in x])
+
+# Define a function (quadratic in our case) to fit the data with.
+def linear_func(p, x):
+   m, c = p
+   return m*x + c
+
+# Create a model for fitting.
+linear_model = Model(linear_func)
+
+# Create a RealData object using our initiated data from above.
+data = RealData(x, y)
+
+# Set up ODR with the model and data.
+odr = ODR(data, linear_model, beta0=[0., 1.])
+
+# Run the regression.
+out = odr.run()
+
+# Use the in-built pprint method to give us results.
+out.pprint()
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+Beta: [ 5.51846098 -4.25744878]
+Beta Std Error: [ 0.7786442 2.33126407]
+
+Beta Covariance: [
+   [ 1.93150969 -4.82877433]
+   [ -4.82877433 17.31417201
+]]
+
+Residual Variance: 0.313892697582
+Inverse Condition #: 0.146618499389
+Reason(s) for Halting:
+   Sum of squares convergence
+</pre>
+<h1>SciPy - Special Package</h1>
+<p>The functions available in the special package are universal functions, which follow broadcasting and automatic array looping.</p>
+<p>Let us look at some of the most frequently used special functions &minus;</p>
+<ul class="list">
+<li>Cubic Root Function</li>
+<li>Exponential Function</li>
+<li>Relative Error Exponential Function</li>
+<li>Log Sum Exponential Function</li>
+<li>Lambert Function</li>
+<li>Permutations and Combinations Function</li>
+<li>Gamma Function</li>
+</ul>
+<p>Let us now understand each of these functions in brief.</p>
+<h3>Cubic Root Function</h3>
+<p>The syntax of this cubic root function is – scipy.special.cbrt(x). This will fetch the element-wise cube root of <b>x</b>.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy.special import cbrt
+res = cbrt([10, 9, 0.1254, 234])
+print res
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+[ 2.15443469 2.08008382 0.50053277 6.16224015]
+</pre>
+<h3>Exponential Function</h3>
+<p>The syntax of the exponential function is – scipy.special.exp10(x). This will compute 10**x element wise.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy.special import exp10
+res = exp10([2, 9])
+print res
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+[1.00000000e+02  1.00000000e+09]
+</pre>
+<h3>Relative Error Exponential Function</h3>
+<p>The syntax for this function is – scipy.special.exprel(x). It generates the relative error exponential, (exp(x) - 1)/x.</p>
+<p>When <b>x</b> is near zero, exp(x) is near 1, so the numerical calculation of exp(x) - 1 can suffer from catastrophic loss of precision. Then exprel(x) is implemented to avoid the loss of precision, which occurs when <b>x</b> is near zero.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy.special import exprel
+res = exprel([-0.25, -0.1, 0, 0.1, 0.25])
+print res
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+[0.88479687 0.95162582 1.   1.05170918 1.13610167]
+</pre>
+<h3>Log Sum Exponential Function</h3>
+<p>The syntax for this function is – scipy.special.logsumexp(x). It helps to compute the log of the sum of exponentials of input elements.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy.special import logsumexp
+import numpy as np
+a = np.arange(10)
+res = logsumexp(a)
+print res
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+9.45862974443
+</pre>
+<h3>Lambert Function</h3>
+<p>The syntax for this function is – scipy.special.lambertw(x). It is also called as the Lambert W function. The Lambert W function W(z) is defined as the inverse function of w * exp(w). In other words, the value of W(z) is such that z = W(z) * exp(W(z)) for any complex number z.</p>
+<p>The Lambert W function is a multivalued function with infinitely many branches. Each branch gives a separate solution of the equation z = w exp(w). Here, the branches are indexed by the integer k.</p>
+<p>Let us consider the following example. Here, the Lambert W function is the inverse of w exp(w).</p>
+<pre class="prettyprint notranslate">
+from scipy.special import lambertw
+w = lambertw(1)
+print w
+print w * np.exp(w)
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+(0.56714329041+0j)
+(1+0j)
+</pre>
+<h3>Permutations &amp; Combinations</h3>
+<p>Let us discuss permutations and combinations separately for understanding them clearly.</p>
+<p><b>Combinations</b> &minus; The syntax for combinations function is – scipy.special.comb(N,k). Let us consider the following example &minus;</p>
+<pre class="prettyprint notranslate">
+from scipy.special import comb
+res = comb(10, 3, exact = False,repetition=True)
+print res
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+220.0
+</pre>
+<p><b>Note</b> &minus; Array arguments are accepted only for exact = False case. If k &gt; N, N &lt; 0, or k &lt; 0, then a 0 is returned.</p>
+<p><b>Permutations</b> &minus; The syntax for combinations function is – scipy.special.perm(N,k). Permutations of N things taken k at a time, i.e., k-permutations of N. This is also known as “partial permutations”.</p>
+<p>Let us consider the following example.</p>
+<pre class="prettyprint notranslate">
+from scipy.special import perm
+res = perm(10, 3, exact = True)
+print res
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+720
+</pre>
+<h3>Gamma Function</h3>
+<p>The gamma function is often referred to as the generalized factorial since z*gamma(z) = gamma(z+1) and gamma(n+1) = n!, for a natural number ‘n’.</p>
+<p>The syntax for combinations function is – scipy.special.gamma(x). Permutations of N things taken k at a time, i.e., k-permutations of N. This is also known as “partial permutations”.</p>
+<p>The syntax for combinations function is – scipy.special.gamma(x). Permutations of N things taken k at a time, i.e., k-permutations of N. This is also known as “partial permutations”.</p>
+<pre class="prettyprint notranslate">
+from scipy.special import gamma
+res = gamma([0, 0.5, 1, 5])
+print res
+</pre>
+<p>The above program will generate the following output.</p>
+<pre class="result notranslate">
+[inf  1.77245385  1.  24.]
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/scipy/scipy_special_package.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/scipy/scipy_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

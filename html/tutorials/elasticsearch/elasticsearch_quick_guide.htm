@@ -1,0 +1,4148 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Elasticsearch - Quick Guide</title>
+<meta charset="utf-8">
+<meta name="description" content="Elasticsearch - Quick Guide - Elasticsearch is an Apache Lucene-based search server. It was developed by Shay Banon and published in 2010. It is now maintained by Elasticsearch BV. Its lates"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/elasticsearch/elasticsearch_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#73b73e;
+}
+a.demo {
+    background:#73b73e;
+}
+li.heading {
+    background:#73b73e;
+}
+.course-box{background:#73b73e}
+.home-intro-sub p{color:#73b73e}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/elasticsearch/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/elasticsearch/images/elastic-search-mini-logo.jpg" alt="Elasticsearch Tutorial" />
+</div>
+<ul class="toc chapters" >
+<li class="heading">Elasticsearch Tutorial</li>
+<li><a href="/elasticsearch/index.htm">Elasticsearch - Home</a></li>
+<li><a href="/elasticsearch/elasticsearch_basic_concepts.htm">Elasticsearch - Basic Concepts</a></li>
+<li><a href="/elasticsearch/elasticsearch_installation.htm">Elasticsearch - Installation</a></li>
+<li><a href="/elasticsearch/elasticsearch_populate.htm">Elasticsearch - Populate</a></li>
+<li><a href="/elasticsearch/elasticsearch_migrations_between_versions.htm">Migration between Versions</a></li>
+<li><a href="/elasticsearch/elasticsearch_api_conventions.htm">Elasticsearch - API Conventions</a></li>
+<li><a href="/elasticsearch/elasticsearch_document_apis.htm">Elasticsearch - Document APIs</a></li>
+<li><a href="/elasticsearch/elasticsearch_search_apis.htm">Elasticsearch - Search APIs</a></li>
+<li><a href="/elasticsearch/elasticsearch_aggregations.htm">Elasticsearch - Aggregations</a></li>
+<li><a href="/elasticsearch/elasticsearch_index_apis.htm">Elasticsearch - Index APIs</a></li>
+<li><a href="/elasticsearch/elasticsearch_cat_apis.htm">Elasticsearch - CAT APIs</a></li>
+<li><a href="/elasticsearch/elasticsearch_cluster_apis.htm">Elasticsearch - Cluster APIs</a></li>
+<li><a href="/elasticsearch/elasticsearch_query_dsl.htm">Elasticsearch - Query DSL</a></li>
+<li><a href="/elasticsearch/elasticsearch_mapping.htm">Elasticsearch - Mapping</a></li>
+<li><a href="/elasticsearch/elasticsearch_analysis.htm">Elasticsearch - Analysis</a></li>
+<li><a href="/elasticsearch/elasticsearch_modules.htm">Elasticsearch - Modules</a></li>
+<li><a href="/elasticsearch/elasticsearch_index_modules.htm">Elasticsearch - Index Modules</a></li>
+<li><a href="/elasticsearch/elasticsearch_ingest_node.htm">Elasticsearch - Ingest Node</a></li>
+<li><a href="/elasticsearch/elasticsearch_managing_index_lifecycle.htm">Elasticsearch - Managing Index Lifecycle</a></li>
+<li><a href="/elasticsearch/elasticsearch_sql_access.htm">Elasticsearch - SQL Access</a></li>
+<li><a href="/elasticsearch/elasticsearch_monitoring.htm">Elasticsearch - Monitoring</a></li>
+<li><a href="/elasticsearch/elasticsearch_rollup_data.htm">Elasticsearch - Rollup Data </a></li>
+<li><a href="/elasticsearch/elasticsearch_frozen_indices.htm">Elasticsearch - Frozen Indices</a></li>
+<li><a href="/elasticsearch/elasticsearch_testing.htm">Elasticsearch - Testing</a></li>
+<li><a href="/elasticsearch/elasticsearch_kibana_dashboard.htm">Elasticsearch - Kibana Dashboard </a></li>
+<li><a href="/elasticsearch/elasticsearch_filtering_by_field.htm">Elasticsearch - Filtering by Field</a></li>
+<li><a href="/elasticsearch/elasticsearch_data_tables.htm">Elasticsearch - Data Tables</a></li>
+<li><a href="/elasticsearch/elasticsearch_region_maps.htm">Elasticsearch - Region Maps</a></li>
+<li><a href="/elasticsearch/elasticsearch_pie_charts.htm">Elasticsearch - Pie Charts</a></li>
+<li><a href="/elasticsearch/elasticsearch_area_and_bar_charts.htm">Elasticsearch - Area and Bar Charts</a></li>
+<li><a href="/elasticsearch/elasticsearch_time_series.htm">Elasticsearch - Time Series</a></li>
+<li><a href="/elasticsearch/elasticsearch_tag_clouds.htm">Elasticsearch - Tag Clouds</a></li>
+<li><a href="/elasticsearch/elasticsearch_heat_maps.htm">Elasticsearch - Heat Maps</a></li>
+<li><a href="/elasticsearch/elasticsearch_canvas.htm">Elasticsearch - Canvas</a></li>
+<li><a href="/elasticsearch/elasticsearch_logs_ui.htm">Elasticsearch - Logs UI</a></li>
+<li class="heading">Elasticsearch Useful Resources</li>
+<li><a href="/elasticsearch/elasticsearch_quick_guide.htm">Elasticsearch - Quick Guide</a></li>
+<li><a href="/elasticsearch/elasticsearch_useful_resources.htm">Elasticsearch - Useful Resources</a></li>
+<li><a href="/elasticsearch/elasticsearch_discussion.htm">Elasticsearch - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Elasticsearch - Quick Guide</h1>
+<hr/>
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/elasticsearch/elasticsearch_logs_ui.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/elasticsearch/elasticsearch_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clear"></div>
+<h1>Elasticsearch - Basic Concepts</h1>
+<p>Elasticsearch is an Apache Lucene-based search server. It was developed by Shay Banon and published in 2010. It is now maintained by Elasticsearch BV. Its latest version is 7.0.0.</p>
+<p>Elasticsearch is a real-time distributed and open source full-text search and analytics engine. It is accessible from RESTful web service interface and uses schema less JSON (JavaScript Object Notation) documents to store data. It is built on Java programming language and hence Elasticsearch can run on different platforms. It enables users to explore very large amount of data at very high speed.</p>
+<h2>General Features</h2>
+<p>The general features of Elasticsearch are as follows &minus;</p>
+<ul class="list">
+<li><p>Elasticsearch is scalable up to petabytes of structured and unstructured data.</p></li>
+<li><p>Elasticsearch can be used as a replacement of document stores like MongoDB and RavenDB.</p></li>
+<li><p>Elasticsearch uses denormalization to improve the search performance.</p></li>
+<li><p>Elasticsearch is one of the popular enterprise search engines, and is currently being used by many big organizations like Wikipedia, The Guardian, StackOverflow, GitHub etc.</p></li>
+<li><p>Elasticsearch is an open source and available under the Apache license version 2.0.</p></li>
+</ul>
+<h2>Key Concepts</h2>
+<p>The key concepts of Elasticsearch are as follows &minus;</p>
+<h3>Node</h3>
+<p>It refers to a single running instance of Elasticsearch. Single physical and virtual server accommodates multiple nodes depending upon the capabilities of their physical resources like RAM, storage and processing power.</p>
+<h3>Cluster</h3>
+<p>It is a collection of one or more nodes. Cluster provides collective indexing and search capabilities across all the nodes for entire data.</p>
+<h3>Index</h3>
+<p>It is a collection of different type of documents and their properties. Index also uses the concept of shards to improve the performance. For example, a set of document contains data of a social networking application.</p>
+<h3>Document</h3>
+<p>It is a collection of fields in a specific manner defined in JSON format. Every document belongs to a type and resides inside an index. Every document is associated with a unique identifier called the UID.</p>
+<h3>Shard</h3>
+<p>Indexes are horizontally subdivided into shards. This means each shard contains all the properties of document but contains less number of JSON objects than index. The horizontal separation makes shard an independent node, which can be store in any node. Primary shard is the original horizontal part of an index and then these primary shards are replicated into replica shards.</p>
+<h3>Replicas</h3>
+<p>Elasticsearch allows a user to create replicas of their indexes and shards. Replication not only helps in increasing the availability of data in case of failure, but also improves the performance of searching by carrying out a parallel search operation in these replicas.</p>
+<h2>Advantages</h2>
+<ul class="list">
+<li><p>Elasticsearch is developed on Java, which makes it compatible on almost every platform.</p></li>
+<li><p>Elasticsearch is real time, in other words after one second the added document is searchable in this engine</p></li>
+<li><p>Elasticsearch is distributed, which makes it easy to scale and integrate in any big organization.</p></li>
+<li><p>Creating full backups are easy by using the concept of gateway, which is present in Elasticsearch.
+</p></li>
+<li><p>Handling multi-tenancy is very easy in Elasticsearch when compared to Apache Solr.</p></li>
+<li><p>Elasticsearch uses JSON objects as responses, which makes it possible to invoke the Elasticsearch server with a large number of different programming languages.</p></li>
+<li><p>Elasticsearch supports almost every document type except those that do not support text rendering.</p></li>
+</ul>
+<h2>Disadvantages</h2>
+<ul class="list">
+<li><p>Elasticsearch does not have multi-language support in terms of handling request and response data (only possible in JSON) unlike in Apache Solr, where it is possible in CSV, XML and JSON formats.</p></li>
+<li><p>Occasionally, Elasticsearch has a problem of Split brain situations.</p></li>
+</ul>
+<h2>Comparison between Elasticsearch and RDBMS</h2>
+<p>In Elasticsearch, index is similar to tables in RDBMS (Relation Database Management System). Every table is a collection of rows just as every index is a collection of documents in Elasticsearch. </p>
+<p>The following table gives a direct comparison between these terms&minus;</p>
+<table class="table table-bordered"style="text-align:center;" >
+<tr>
+<th>Elasticsearch</th>
+<th>RDBMS</th>
+</tr>
+<tr>
+<td>Cluster</td>
+<td>Database</td>
+</tr>
+<tr>
+<td>Shard</td>
+<td>Shard</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>Table</td>
+</tr>
+<tr>
+<td>Field</td>
+<td>Column</td>
+</tr>
+<tr>
+<td>Document</td>
+<td>Row</td>
+</tr>
+</table>
+<h1>Elasticsearch - Installation</h1>
+<p>In this chapter, we will understand the installation procedure of Elasticsearch in detail.</p>
+<p>To install Elasticsearch on your local computer, you will have to follow the steps given below &minus;</p>
+<p><b>Step 1</b> &minus; Check the version of java installed on your computer. It should be java 7 or higher. You can check by doing the following &minus;</p>
+<p>In Windows Operating System (OS) (using command prompt)&minus;</p>
+<pre class="result notranslate">
+&gt; java -version
+</pre>
+<p>In UNIX OS (Using Terminal) &minus;</p>
+<pre class="result notranslate">
+$ echo $JAVA_HOME
+</pre>
+<p><b>Step 2</b> &minus; Depending on your operating system, download Elasticsearch from www.elastic.co as mentioned below &minus;</p>
+<ul class="list">
+<li><p>For windows OS, download ZIP file.</p></li>
+<li><p>For UNIX OS, download TAR file.</p></li>
+<li><p>For Debian OS, download DEB file.</p></li>
+<li><p>For Red Hat and other Linux distributions, download RPN file.</p></li>
+<li><p>APT and Yum utilities can also be used to install Elasticsearch in many Linux distributions.</p></li>
+</ul>
+<p><b>Step 3</b> &minus; Installation process for Elasticsearch is simple and is described below for different OS &minus;</p>
+<ul class="list">
+<li><p><b>Windows OS</b>&minus; Unzip the zip package and the Elasticsearch is installed.</p></li>
+<li><p><b>UNIX OS</b>&minus; Extract tar file in any location and the Elasticsearch is installed.</p></li>
+</ul>
+<pre class="result notranslate">
+$wget
+https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch7.0.0-linux-x86_64.tar.gz
+
+$tar -xzf elasticsearch-7.0.0-linux-x86_64.tar.gz
+</pre>
+<ul class="list">
+<li><p><b>Using APT utility for Linux OS</b>&minus; Download and install the Public Signing Key </p></li>
+</ul>
+<pre class="result notranslate">
+$ wget -qo - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo
+apt-key add -
+</pre>
+<p>Save the repository definition as shown below &minus;</p>
+<pre class="result notranslate">
+$ echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" |
+sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+</pre>
+<p>Run update using the following command &minus;</p>
+<pre class="result notranslate">
+$ sudo apt-get update
+</pre>
+<p>Now you can install by using the following command &minus;</p>
+<pre class="result notranslate">
+$ sudo apt-get install elasticsearch
+</pre>
+<ul class="list">
+<li><p><b>Download and install the Debian package manually using the command given here &minus;</b></p></li>
+</ul>
+<pre class="result notranslate">
+$wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch7.0.0-amd64.deb
+$sudo dpkg -i elasticsearch-7.0.0-amd64.deb0
+</pre>
+<ul class="list">
+<li><p><b>Using YUM utility for Debian Linux OS</b></p></li>
+<p>Download and install the Public Signing Key &minus;</p>
+</ul>
+<pre class="result notranslate">
+$ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+</pre>
+<ul class="list">
+<li><p>ADD the following text in the file with .repo suffix in your “/etc/yum.repos.d/” directory. For example, elasticsearch.repo</p></li>
+</ul>
+<pre class="result notranslate">
+elasticsearch-7.x]
+name=Elasticsearch repository for 7.x packages
+baseurl=https://artifacts.elastic.co/packages/7.x/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+autorefresh=1
+type=rpm-md
+</pre>
+<ul class="list">
+<li><p>You can now install Elasticsearch by using the following command</p></li>
+</ul>
+<pre class="result notranslate">
+sudo yum install elasticsearch
+</pre>
+<p><b>Step 4</b> &minus; Go to the Elasticsearch home directory and inside the bin folder. Run the
+elasticsearch.bat file in case of Windows or you can do the same using command prompt and through terminal in case of UNIX rum Elasticsearch file.</p>
+<h3>In Windows</h3>
+<pre class="result notranslate">
+> cd elasticsearch-2.1.0/bin
+> elasticsearch
+</pre>
+<h3>In Linux</h3>
+<pre class="result notranslate">
+$ cd elasticsearch-2.1.0/bin
+$ ./elasticsearch
+</pre>
+<p><b>Note</b> &minus; In case of windows, you might get an error stating JAVA_HOME is not set, please
+set it in environment variables to “C:\Program Files\Java\jre1.8.0_31” or the location where you installed java.</p>
+<p><b>Step 5</b> &minus; The default port for Elasticsearch web interface is 9200 or you can change it by
+changing http.port inside the elasticsearch.yml file present in bin directory. You can check if the server is up and running by browsing <b>http://localhost:9200</b>. It will return a JSON object, which contains the information about the installed Elasticsearch in the following manner &minus;</p>
+<pre class="prettyprint notranslate">
+{
+   "name" : "Brain-Child",
+   "cluster_name" : "elasticsearch", "version" : {
+      "number" : "2.1.0",
+      "build_hash" : "72cd1f1a3eee09505e036106146dc1949dc5dc87",
+      "build_timestamp" : "2015-11-18T22:40:03Z",
+      "build_snapshot" : false,
+      "lucene_version" : "5.3.1"
+   },
+   "tagline" : "You Know, for Search"
+}
+</pre>
+<p><b>Step 6</b> &minus; In this step, let us install Kibana. Follow the respective code given below for
+installing on Linux and Windows &minus;</p>
+<p><b>For Installation on Linux &minus;</b></p>
+<pre class="result notranslate">
+wget https://artifacts.elastic.co/downloads/kibana/kibana-7.0.0-linuxx86_64.tar.gz
+
+tar -xzf kibana-7.0.0-linux-x86_64.tar.gz
+
+cd kibana-7.0.0-linux-x86_64/
+
+./bin/kibana
+</pre>
+<p><b>For Installation on Windows &minus;</b></p>
+<p>Download Kibana for Windows from <a href="https://www.elastic.co/products/kibana." target="_blank" rel="nofollow">https://www.elastic.co/products/kibana.</a> Once you click the link, you will find the home page as shown below &minus;</p>
+<img class="center" src="/elasticsearch/images/installation_on_windows.jpg" alt="Installation on Windows"/>
+<p>Unzip and go to the Kibana home directory and then run it.</p>
+<pre class="result notranslate">
+CD c:\kibana-7.0.0-windows-x86_64
+.\bin\kibana.bat
+</pre>
+<h1>Elasticsearch - Populate</h1>
+<p>In this chapter, let us learn how to add some index, mapping and data to Elasticsearch. Note that some of this data will be used in the examples explained in this tutorial.</p>
+<h2>Create Index</h2>
+<p>You can use the following command to create an index &minus;</p>
+<pre class="result notranslate">
+PUT school
+</pre>
+<h3>Response</h3>
+<p>If the index is created, you can see the following output &minus;</p>
+<pre class="result notranslate">
+{"acknowledged": true}
+</pre>
+<h2>Add data</h2>
+<p>Elasticsearch will store the documents we add to the index as shown in the following code. The documents are given some IDs which are used in identifying the document.</p>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+POST school/_doc/10
+{
+   "name":"Saint Paul School", "description":"ICSE Afiliation",
+   "street":"Dawarka", "city":"Delhi", "state":"Delhi", "zip":"110075",
+   "location":[28.5733056, 77.0122136], "fees":5000,
+   "tags":["Good Faculty", "Great Sports"], "rating":"4.5"
+}
+</pre>
+<h3>Response</h3>
+<pre class="result notranslate">
+{
+   "_index" : "school",
+   "_type" : "_doc",
+   "_id" : "10",
+   "_version" : 1,
+   "result" : "created",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 2,
+   "_primary_term" : 1
+}
+</pre>
+<p>Here, we are adding another similar document.</p>
+<pre class="result notranslate">
+POST school/_doc/16
+{
+   "name":"Crescent School", "description":"State Board Affiliation",
+   "street":"Tonk Road",
+   "city":"Jaipur", "state":"RJ", "zip":"176114","location":[26.8535922,75.7923988],
+   "fees":2500, "tags":["Well equipped labs"], "rating":"4.5"
+}
+</pre>
+<h3>Response</h3>
+<pre class="result notranslate">
+{
+   "_index" : "school",
+   "_type" : "_doc",
+   "_id" : "16",
+   "_version" : 1,
+   "result" : "created",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 9,
+   "_primary_term" : 7
+}
+</pre>
+<p>In this way, we will keep adding any example data that we need for our working in the upcoming chapters.</p>
+<h2>Adding Sample Data in Kibana</h2>
+<p>Kibana is a GUI driven tool for accessing the data and creating the visualization. In this section, let us understand how we can add sample data to it.</p>
+<p>In the Kibana home page, choose the following option to add sample ecommerce data &minus;</p>
+<img class="center" src="/elasticsearch/images/kibana_home_page.jpg" alt="Kibana Home Page"/>
+<p>The next screen will show some visualization and a button to Add data &minus;</p>
+<img class="center" src="/elasticsearch/images/add_data_to_kibana.jpg" alt="Add Data to Kibana"/>
+<p>Clicking on Add Data will show the following screen which confirms the data has been added to an index named eCommerce.</p>
+<img class="center" src="/elasticsearch/images/ecommerce_revenue_dashboard.jpg" alt="Ecommerce Revenue Dashboard"/>
+<h1>Elasticsearch - Migration between Versions</h1>
+<p>In any system or software, when we are upgrading to newer version, we need to follow a few steps to maintain the application settings, configurations, data and other things. These steps are required to make the application stable in new system or to maintain the integrity of data (prevent data from getting corrupt).</p>
+<p>You need to follow the following steps to upgrade Elasticsearch &minus;</p>
+<ul class="list">
+<li><p>Read Upgrade docs from <a href="https://www.elastic.co/" target="_blank" rel="nofollow">https://www.elastic.co/</a></p></li>
+<li><p>Test the upgraded version in your non production environments like in UAT, E2E, SIT or DEV environment.</p></li>
+<li><p>Note that rollback to previous Elasticsearch version is not possible without data backup. Hence, a data backup is recommended before upgrading to a higher version.</p></li>
+<li><p>We can upgrade using full cluster restart or rolling upgrade. Rolling upgrade is for new versions. Note that there is no service outage, when you are using rolling upgrade method for migration.</p></li>
+</ul>
+<h2>Steps for Upgrade</h2>
+<ul class="list">
+<li><p>Test the upgrade in a dev environment before upgrading your production cluster.</p></li>
+<li><p>Back up your data. You cannot roll back to an earlier version unless you have a snapshot of your data.</p></li>
+<li><p>Consider closing machine learning jobs before you start the upgrade process. While machine learning jobs can continue to run during a rolling upgrade, it increases the overhead on the cluster during the upgrade process.</p></li>
+<li><p>Upgrade the components of your Elastic Stack in the following order &minus;</p>
+<ul class="list">
+<li>Elasticsearch</li>
+<li>Kibana</li>
+<li>Logstash</li>
+<li>Beats</li>
+<li>APM Server</li>
+</ul>
+</li>
+</ul>
+<h2>Upgrading from 6.6 or Earlier</h2>
+<p>To upgrade directly to Elasticsearch 7.1.0 from versions 6.0-6.6, you must manually reindex any 5.x indices you need to carry forward, and perform a full cluster restart.</p>
+<h3>Full Cluster Restart</h3>
+<p>The process of full cluster restart involves shutting down each node in the cluster, upgrading each node to 7x and then restarting the cluster.</p>
+<p>Following are the high level steps that need to be carried out for full cluster restart &minus;</p>
+<ul class="list">
+<li>Disable shard allocation<li>
+<li>Stop indexing and perform a synced flush<li>
+<li>Shutdown all nodes<li>
+<li>Upgrade all nodes<li>
+<li>Upgrade any plugins<li>
+<li>Start each upgraded node<li>
+<li>Wait for all nodes to join the cluster and report a status of yellow<li>
+<li>Re-enable allocation<li>
+</ul>
+<p>Once allocation is re-enabled, the cluster starts allocating the replica shards to the data nodes. At this point, it is safe to resume indexing and searching, but your cluster will recover more quickly if you can wait until all primary and replica shards have been successfully allocated and the status of all nodes is green.</p>
+<h1>Elasticsearch - API Conventions</h1>
+<p>Application Programming Interface (API) in web is a group of function calls or other programming instructions to access the software component in that particular web application. For example, Facebook API helps a developer to create applications by accessing data or other functionalities from Facebook; it can be date of birth or status update.</p>
+<p>Elasticsearch provides a REST API, which is accessed by JSON over HTTP. Elasticsearch uses some conventions which we shall discuss now.</p>
+<h2>Multiple Indices</h2>
+<p>Most of the operations, mainly searching and other operations, in APIs are for one or more than one indices. This helps the user to search in multiple places or all the available data by just executing a query once. Many different notations are used to perform operations in multiple indices. We will discuss a few of them here in this chapter.</p>
+<h2>Comma Separated Notation</h2>
+<pre class="result notranslate">
+POST /index1,index2,index3/_search
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "query":{
+      "query_string":{
+         "query":"any_string"
+      }
+   }
+}
+</pre>
+<h3>Response</h3>
+<p>JSON objects from index1, index2, index3 having any_string in it.</p>
+<h2>_all Keyword for All Indices</h2>
+<pre class="result notranslate">
+POST /_all/_search
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "query":{
+      "query_string":{
+         "query":"any_string"
+      }
+   }
+}
+</pre>
+<h3>Response</h3>
+<p>JSON objects from all indices and having any_string in it.</p>
+<h2>Wildcards ( * , + , –)</h2>
+<pre class="result notranslate">
+POST /school*/_search
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "query":{
+      "query_string":{
+         "query":"CBSE"
+      }
+   }
+}
+</pre>
+<h3>Response</h3>
+<p>JSON objects from all indices which start with school having CBSE in it.</p>
+<p>Alternatively, you can use the following code as well &minus;</p>
+<pre class="result notranslate">
+POST /school*,-schools_gov /_search
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "query":{
+      "query_string":{
+         "query":"CBSE"
+      }
+   }
+}
+</pre>
+<h3>Response</h3>
+<p>JSON objects from all indices which start with “school” but not from schools_gov and having CBSE in it.</p>
+<p>There are also some URL query string parameters &minus;</p>
+<ul class="list">
+<li><b>ignore_unavailable</b> &minus; No error will occur or no operation will be stopped, if the one or more index(es) present in the URL does not exist. For example, schools index exists, but book_shops does not exist.</p></li>
+</ul>
+<pre class="result notranslate">
+POST /school*,book_shops/_search
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "query":{
+      "query_string":{
+         "query":"CBSE"
+      }
+   }
+}
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "error":{
+      "root_cause":[{
+         "type":"index_not_found_exception", "reason":"no such index",
+         "resource.type":"index_or_alias", "resource.id":"book_shops",
+         "index":"book_shops"
+      }],
+      "type":"index_not_found_exception", "reason":"no such index",
+      "resource.type":"index_or_alias", "resource.id":"book_shops",
+      "index":"book_shops"
+   },"status":404
+}
+</pre>
+<p>Consider the following code &minus;</p>
+<pre class="result notranslate">
+POST /school*,book_shops/_search?ignore_unavailable = true
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "query":{
+      "query_string":{
+         "query":"CBSE"
+      }
+   }
+}
+</pre>
+<h3>Response (no error)</h3>
+<p>JSON objects from all indices which start with school having CBSE in it.</p>
+<h2>allow_no_indices</h2>
+<p><b>true</b> value of this parameter will prevent error, if a URL with wildcard results in no indices. For example, there is no index that starts with schools_pri &minus;</p>
+<pre class="result notranslate">
+POST /schools_pri*/_search?allow_no_indices = true
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "query":{
+      "match_all":{}
+   }
+}
+</pre>
+<h3>Response (No errors)</h3>
+<pre class="result notranslate">
+{
+   "took":1,"timed_out": false, "_shards":{"total":0, "successful":0, "failed":0},
+   "hits":{"total":0, "max_score":0.0, "hits":[]}
+}
+</pre>
+<h2>expand_wildcards</h2>
+<p>This parameter decides whether the wildcards need to be expanded to open indices or closed indices or perform both. The value of this parameter can be open and closed or none and all.</p>
+<p>For example, close index schools &minus;</p>
+<pre class="result notranslate">
+POST /schools/_close
+</pre>
+<h3>Response</h3>
+<pre class="result notranslate">
+{"acknowledged":true}
+</pre>
+<p>Consider the following code &minus;</p>
+<pre class="result notranslate">
+POST /school*/_search?expand_wildcards = closed
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "query":{
+      "match_all":{}
+   }
+}
+</pre>
+<h3>Response</h3>
+<pre class="result notranslate">
+{
+   "error":{
+      "root_cause":[{
+         "type":"index_closed_exception", "reason":"closed", "index":"schools"
+      }],
+      "type":"index_closed_exception", "reason":"closed", "index":"schools"
+   }, "status":403
+}
+</pre>
+<h2>Date Math Support in Index Names</h2>
+<p>Elasticsearch offers a functionality to search indices according to date and time. We need to specify date and time in a specific format. For example, accountdetail-2015.12.30, index will store the bank account details of 30th December 2015. Mathematical operations can be performed to get details for a particular date or a range of date and time.</p>
+<p>Format for date math index name &minus;</p>
+<pre class="result notranslate">
+&lt;static_name{date_math_expr{date_format|time_zone}}&gt;
+/&lt;accountdetail-{now-2d{YYYY.MM.dd|utc}}&gt;/_search
+</pre>
+<p>static_name is a part of expression which remains the same in every date math index like account detail. date_math_expr contains the mathematical expression that determines the date and time dynamically like now-2d. date_format contains the format in which the date is written in index like YYYY.MM.dd. If today’s date is 30th December 2015, then &lt;accountdetail-{now-2d{YYYY.MM.dd}}&gt; will return accountdetail-2015.12.28.</p>
+<table class="table table-bordered"style="text-align:center;" >
+<tr>
+<th>Expression</th>
+<th>Resolves to</th>
+</tr>
+<tr>
+<td>&lt;accountdetail-{now-d}&gt;</td>
+<td>accountdetail-2015.12.29</td>
+</tr>
+<tr>
+<td>&lt;accountdetail-{now-M}&gt;</td>
+<td>accountdetail-2015.11.30</td>
+</tr>
+<tr>
+<td>&lt;accountdetail-{now{YYYY.MM}}&gt; </td>
+<td>accountdetail-2015.12</td>
+</tr>
+</table>
+<p>We will now see some of the common options available in Elasticsearch that can be used to get the response in a specified format.</p>
+<h2>Pretty Results</h2>
+<p>We can get response in a well-formatted JSON object by just appending a URL query parameter, i.e., pretty = true.</p>
+<pre class="result notranslate">
+POST /schools/_search?pretty = true
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "query":{
+      "match_all":{}
+   }
+}
+</pre>
+<h3>Response</h3>
+<pre class="result notranslate">
+……………………..
+{
+   "_index" : "schools", "_type" : "school", "_id" : "1", "_score" : 1.0,
+   "_source":{
+      "name":"Central School", "description":"CBSE Affiliation",
+      "street":"Nagan", "city":"paprola", "state":"HP", "zip":"176115",
+      "location": [31.8955385, 76.8380405], "fees":2000,
+      "tags":["Senior Secondary", "beautiful campus"], "rating":"3.5"
+   }
+}
+………………….
+</pre>
+<h2>Human Readable Output</h2>
+<p>This option can change the statistical responses either into human readable form (If human = true) or computer readable form (if human = false). For example, if human = true then distance_kilometer = 20KM and if human = false then distance_meter = 20000, when response needs to be used by another computer program.</p>
+<h2>Response Filtering</h2>
+<p>We can filter the response to less fields by adding them in the field_path parameter. For example,</p>
+<pre class="result notranslate">
+POST /schools/_search?filter_path = hits.total
+</pre>
+<h3>Request Body</h3>
+<pre class="result notranslate">
+{
+   "query":{
+      "match_all":{}
+   }
+}
+</pre>
+<h3>Response</h3>
+<pre class="result notranslate">
+{"hits":{"total":3}}
+</pre>
+<h1>Elasticsearch - Document APIs</h1>
+<p>Elasticsearch provides single document APIs and multi-document APIs, where the API call is targeting a single document and multiple documents respectively.</p>
+<h2>Index API</h2>
+<p>It helps to add or update the JSON document in an index when a request is made to that respective index with specific mapping. For example, the following request will add the JSON object to index schools and under school mapping &minus;</p>
+<pre class="prettyprint notranslate">
+PUT schools/_doc/5
+{
+   name":"City School", "description":"ICSE", "street":"West End",
+   "city":"Meerut",
+   "state":"UP", "zip":"250002", "location":[28.9926174, 77.692485],
+   "fees":3500,
+   "tags":["fully computerized"], "rating":"4.5"
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "schools",
+   "_type" : "_doc",
+   "_id" : "5",
+   "_version" : 1,
+   "result" : "created",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 2,
+   "_primary_term" : 1
+}
+</pre>
+<h2>Automatic Index Creation</h2>
+<p>When a request is made to add JSON object to a particular index and if that index does not exist, then this API automatically creates that index and also the underlying mapping for that particular JSON object. This functionality can be disabled by changing the values of following parameters to false, which are present in elasticsearch.yml file.</p>
+<pre class="result notranslate">
+action.auto_create_index:false
+index.mapper.dynamic:false
+</pre>
+<p>You can also restrict the auto creation of index, where only index name with specific patterns are allowed by changing the value of the following parameter &minus;</p>
+<pre class="result notranslate">
+action.auto_create_index:+acc*,-bank*
+</pre>
+<p><b>Note</b> &minus; Here + indicates allowed and – indicates not allowed.</p>
+<h2>Versioning</h2>
+<p>Elasticsearch also provides version control facility. We can use a version query parameter to specify the version of a particular document.</p>
+<pre class="prettyprint notranslate">
+PUT schools/_doc/5?version=7&amp;version_type=external
+{
+   "name":"Central School", "description":"CBSE Affiliation", "street":"Nagan",
+   "city":"paprola", "state":"HP", "zip":"176115", "location":[31.8955385, 76.8380405],
+   "fees":2200, "tags":["Senior Secondary", "beautiful campus"], "rating":"3.3"
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "schools",
+   "_type" : "_doc",
+   "_id" : "5",
+   "_version" : 7,
+   "result" : "updated",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 3,
+   "_primary_term" : 1
+}
+</pre>
+<p>Versioning is a real-time process and it is not affected by the real time search operations.</p>
+<p>There are two most important types of versioning &minus;</p>
+<h3>Internal Versioning</h3>
+<p>Internal versioning is the default version that starts with 1 and increments with each update, deletes included.</p>
+<h3>External Versioning</h3>
+<p>It is used when the versioning of the documents is stored in an external system like third party versioning systems. To enable this functionality, we need to set version_type to external. Here Elasticsearch will store version number as designated by the external system and will not increment them automatically.</p>
+<h2>Operation Type</h2>
+<p>The operation type is used to force a create operation. This helps to avoid the overwriting
+of existing document.</p>
+<pre class="prettyprint notranslate">
+PUT chapter/_doc/1?op_type=create
+{
+   "Text":"this is chapter one"
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "chapter",
+   "_type" : "_doc",
+   "_id" : "1",
+   "_version" : 1,
+   "result" : "created",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 0,
+   "_primary_term" : 1
+}
+</pre>
+<h2>Automatic ID generation</h2>
+<p>When ID is not specified in index operation, then Elasticsearch automatically generates id
+for that document.</p>
+<pre class="prettyprint notranslate">
+POST chapter/_doc/
+{
+   "user" : "tpoint",
+   "post_date" : "2018-12-25T14:12:12",
+   "message" : "Elasticsearch Tutorial"
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "chapter",
+   "_type" : "_doc",
+   "_id" : "PVghWGoB7LiDTeV6LSGu",
+   "_version" : 1,
+   "result" : "created",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 1,
+   "_primary_term" : 1
+}
+</pre>
+<h2>Get API</h2>
+<p>API helps to extract type JSON object by performing a get request for a particular document.</p>
+<pre class="prettyprint notranslate">
+pre class="prettyprint notranslate" > GET schools/_doc/5
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "schools",
+   "_type" : "_doc",
+   "_id" : "5",
+   "_version" : 7,
+   "_seq_no" : 3,
+   "_primary_term" : 1,
+   "found" : true,
+   "_source" : {
+      "name" : "Central School",
+      "description" : "CBSE Affiliation",
+      "street" : "Nagan",
+      "city" : "paprola",
+      "state" : "HP",
+      "zip" : "176115",
+      "location" : [
+         31.8955385,
+         76.8380405
+      ],
+      "fees" : 2200,
+      "tags" : [
+         "Senior Secondary",
+         "beautiful campus"
+      ],
+      "rating" : "3.3"
+   }
+}
+</pre>
+<ul class="list">
+<li><p>This operation is real time and does not get affected by the refresh rate of Index.</p></li>
+<li><p>You can also specify the version, then Elasticsearch will fetch that version of document only.</p></li>
+<li><p>You can also specify the _all in the request, so that the Elasticsearch can search
+for that document id in every type and it will return the first matched document.</p></li>
+<li><p>You can also specify the fields you want in your result from that particular document.</p></li>
+</ul>
+<pre class="prettyprint notranslate">
+GET schools/_doc/5?_source_includes=name,fees 
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "schools",
+   "_type" : "_doc",
+   "_id" : "5",
+   "_version" : 7,
+   "_seq_no" : 3,
+   "_primary_term" : 1,
+   "found" : true,
+   "_source" : {
+      "fees" : 2200,
+      "name" : "Central School"
+   }
+} 
+</pre>
+<p>You can also fetch the source part in your result by just adding _source part in your get request.</p>
+<pre class="prettyprint notranslate">
+GET schools/_doc/5?_source 
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "schools",
+   "_type" : "_doc",
+   "_id" : "5",
+   "_version" : 7,
+   "_seq_no" : 3,
+   "_primary_term" : 1,
+   "found" : true,
+   "_source" : {
+      "name" : "Central School",
+      "description" : "CBSE Affiliation",
+      "street" : "Nagan",
+      "city" : "paprola",
+      "state" : "HP",
+      "zip" : "176115",
+      "location" : [
+         31.8955385,
+         76.8380405
+      ],
+      "fees" : 2200,
+      "tags" : [
+         "Senior Secondary",
+         "beautiful campus"
+      ],
+      "rating" : "3.3"
+   }
+}
+</pre>
+<p>You can also refresh the shard before doing get operation by set refresh parameter to true.</p>
+<h2>Delete API</h2>
+<p>You can delete a particular index, mapping or a document by sending a HTTP DELETE request to Elasticsearch.</p>
+<pre class="prettyprint notranslate">
+DELETE schools/_doc/4  
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "found":true, "_index":"schools", "_type":"school", "_id":"4", "_version":2,
+   "_shards":{"total":2, "successful":1, "failed":0}
+}
+</pre>
+<p>Version of the document can be specified to delete that particular version. Routing parameter can be specified to delete the document from a particular user and the operation fails if the document does not belong to that particular user. In this operation, you can specify refresh and timeout option same like GET API.</p>
+<h2>Update API</h2>
+<p>Script is used for performing this operation and versioning is used to make sure that no
+updates have happened during the get and re-index. For example, you can update the fees of school using script &minus;</p>
+<pre class="prettyprint notranslate">
+POST schools/_update/4
+{
+   "script" : {
+      "source": "ctx._source.name = params.sname",
+      "lang": "painless",
+      "params" : {
+         "sname" : "City Wise School"
+      }
+   }
+ }
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "schools",
+   "_type" : "_doc",
+   "_id" : "4",
+   "_version" : 3,
+   "result" : "updated",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 4,
+   "_primary_term" : 2
+}
+</pre>
+<p>You can check the update by sending get request to the updated document.</p>
+<h1>Elasticsearch - Search APIs</h1>
+<p>This API is used to search content in Elasticsearch. A user can search by sending a get request with query string as a parameter or they can post a query in the message body of post request. Mainly all the search APIS are multi-index, multi-type.</p>
+<h2>Multi-Index</h2>
+<p>Elasticsearch allows us to search for the documents present in all the indices or in some
+specific indices. For example, if we need to search all the documents with a name that contains central, we can do as shown here &minus;</p>
+<pre class="result notranslate">
+GET /_all/_search?q=city:paprola 
+</pre>
+<p>On running the above code, we get the following response &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 33,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 7,
+      "successful" : 7,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 1,
+         "relation" : "eq"
+      },
+      "max_score" : 0.9808292,
+      "hits" : [
+         {
+            "_index" : "schools",
+            "_type" : "school",
+            "_id" : "5",
+            "_score" : 0.9808292,
+            "_source" : {
+               "name" : "Central School",
+               "description" : "CBSE Affiliation",
+               "street" : "Nagan",
+               "city" : "paprola",
+               "state" : "HP",
+               "zip" : "176115",
+               "location" : [
+                  31.8955385,
+                  76.8380405
+               ],
+               "fees" : 2200,
+               "tags" : [
+                  "Senior Secondary",
+                  "beautiful campus"
+               ],
+               "rating" : "3.3"
+            }
+         }
+      ]
+   }
+}
+</pre>
+<h2>URI Search</h2>
+<p>Many parameters can be passed in a search operation using Uniform Resource Identifier &minus;</p>
+<table class="table table-bordered" >
+<tr>
+<th>S.No</th>
+<th>Parameter & Description
+</th>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">1</td>
+<td><p><b>Q</b></p>
+<p>This parameter is used to specify query string.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">2</td>
+<td><p><b>lenient</b></p>
+<p>This parameter is used to specify query string.Format based errors can be ignored by just setting this parameter to true. It
+is false by default.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">3</td>
+<td><p><b>fields</b></p>
+<p>This parameter is used to specify query string.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">4</td>
+<td><p><b>sort</b></p>
+<p>We can get sorted result by using this parameter, the possible values for this parameter is fieldName, fieldName:asc/fieldname:desc</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">5</td>
+<td><p><b>timeout</b></p>
+<p>We can restrict the search time by using this parameter and response only contains the hits in that specified time. By default, there is no timeout.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">6</td>
+<td><p><b>terminate_after</b></p>
+<p>We can restrict the response to a specified number of documents for each shard, upon reaching which the query will terminate early. By default, there is no terminate_after.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">7</td>
+<td><p><b>from</b></p>
+<p>The starting from index of the hits to return. Defaults to 0.</p></td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">8</td>
+<td><p><b>size</b></p>
+<p>It denotes the number of hits to return. Defaults to 10.</p></td>
+</tr>
+</table>
+<h2>Request Body Search</h2>
+<p>We can also specify query using query DSL in request body and there are many examples already given in previous chapters. One such example is given here &minus;</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search
+{
+   "query":{
+      "query_string":{
+         "query":"up"
+      }
+   }
+}
+</pre>
+<p>On running the above code, we get the following response &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 11,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 1,
+         "relation" : "eq"
+      },
+      "max_score" : 0.47000363,
+      "hits" : [
+         {
+            "_index" : "schools",
+            "_type" : "school",
+            "_id" : "4",
+            "_score" : 0.47000363,
+            "_source" : {
+               "name" : "City Best School",
+               "description" : "ICSE",
+               "street" : "West End",
+               "city" : "Meerut",
+               "state" : "UP",
+               "zip" : "250002",
+               "location" : [
+                  28.9926174,
+                  77.692485
+               ],
+               "fees" : 3500,
+               "tags" : [
+                  "fully computerized"
+               ],
+               "rating" : "4.5"
+            }
+         }
+      ]
+   }
+}
+</pre>
+<h1>Elasticsearch - Aggregations</h1>
+<p>The aggregations framework collects all the data selected by the search query and consists of many building blocks, which help in building complex summaries of the data. The basic structure of an aggregation is shown here &minus;</p>
+<pre class="prettyprint notranslate">
+"aggregations" : {
+   "" : {
+      "" : {
+
+      }
+ 
+      [,"meta" : { [] } ]?
+      [,"aggregations" : { []+ } ]?
+   }
+   [,"" : { ... } ]*
+}
+</pre>
+<p>There are different types of aggregations, each with its own purpose. They are discussed in detail in this chapter.</p>
+<h2>Metrics Aggregations</h2>
+<p>These aggregations help in computing matrices from the field’s values of the aggregated documents and sometime some values can be generated from scripts.</p>
+<p>Numeric matrices are either single-valued like average aggregation or multi-valued like stats.</p>
+<h2>Avg Aggregation</h2>
+<p>This aggregation is used to get the average of any numeric field present in the aggregated
+documents. For example,</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search
+{
+   "aggs":{
+      "avg_fees":{"avg":{"field":"fees"}}
+   }
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 41,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 2,
+         "relation" : "eq"
+      },
+      "max_score" : 1.0,
+      "hits" : [
+         {
+            "_index" : "schools",
+            "_type" : "school",
+            "_id" : "5",
+            "_score" : 1.0,
+            "_source" : {
+               "name" : "Central School",
+               "description" : "CBSE Affiliation",
+               "street" : "Nagan",
+               "city" : "paprola",
+               "state" : "HP",
+               "zip" : "176115",
+               "location" : [
+                  31.8955385,
+                  76.8380405
+               ],
+            "fees" : 2200,
+            "tags" : [
+               "Senior Secondary",
+               "beautiful campus"
+            ],
+            "rating" : "3.3"
+         }
+      },
+      {
+         "_index" : "schools",
+         "_type" : "school",
+         "_id" : "4",
+         "_score" : 1.0,
+         "_source" : {
+            "name" : "City Best School",
+            "description" : "ICSE",
+            "street" : "West End",
+            "city" : "Meerut",
+            "state" : "UP",
+            "zip" : "250002",
+            "location" : [
+               28.9926174,
+               77.692485
+            ],
+            "fees" : 3500,
+            "tags" : [
+               "fully computerized"
+            ],
+            "rating" : "4.5"
+         }
+      }
+   ]
+ },
+   "aggregations" : {
+      "avg_fees" : {
+         "value" : 2850.0
+      }
+   }
+}
+</pre>
+<h2>Cardinality Aggregation</h2>
+<p>This aggregation gives the count of distinct values of a particular field.</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search?size=0
+{
+   "aggs":{
+      "distinct_name_count":{"cardinality":{"field":"fees"}}
+   }
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 2,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 2,
+         "relation" : "eq"
+      },
+      "max_score" : null,
+      "hits" : [ ]
+   },
+   "aggregations" : {
+      "distinct_name_count" : {
+         "value" : 2
+      }
+   }
+}
+</pre>
+<p><b>Note</b> &minus; The value of cardinality is 2 because there are two distinct values in fees.</p>
+<h2>Extended Stats Aggregation</h2>
+<p>This aggregation generates all the statistics about a specific numerical field in aggregated documents.</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search?size=0
+{
+   "aggs" : {
+      "fees_stats" : { "extended_stats" : { "field" : "fees" } }
+   }
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 8,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 2,
+         "relation" : "eq"
+      },
+      "max_score" : null,
+      "hits" : [ ]
+   },
+   "aggregations" : {
+      "fees_stats" : {
+         "count" : 2,
+         "min" : 2200.0,
+         "max" : 3500.0,
+         "avg" : 2850.0,
+         "sum" : 5700.0,
+         "sum_of_squares" : 1.709E7,
+         "variance" : 422500.0,
+         "std_deviation" : 650.0,
+         "std_deviation_bounds" : {
+            "upper" : 4150.0,
+            "lower" : 1550.0
+         }
+      }
+   }
+}
+</pre>
+<h2>Max Aggregation</h2>
+<p>This aggregation finds the max value of a specific numeric field in aggregated documents.</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search?size=0
+{
+   "aggs" : {
+   "max_fees" : { "max" : { "field" : "fees" } }
+   }
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 16,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+  "hits" : {
+      "total" : {
+         "value" : 2,
+         "relation" : "eq"
+      },
+      "max_score" : null,
+      "hits" : [ ]
+   },
+   "aggregations" : {
+      "max_fees" : {
+         "value" : 3500.0
+      }
+   }
+}
+</pre>
+<h2>Min Aggregation</h2>
+<p>This aggregation finds the min value of a specific numeric field in aggregated documents.</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search?size=0
+{
+   "aggs" : {
+      "min_fees" : { "min" : { "field" : "fees" } }
+   }
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 2,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 2,
+         "relation" : "eq"
+      },
+      "max_score" : null,
+      "hits" : [ ]
+   },
+  "aggregations" : {
+      "min_fees" : {
+         "value" : 2200.0
+      }
+   }
+}
+</pre>
+<h2>Sum Aggregation</h2>
+<p>This aggregation calculates the sum of a specific numeric field in aggregated documents.</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search?size=0
+{
+   "aggs" : {
+      "total_fees" : { "sum" : { "field" : "fees" } }
+   }
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 8,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 2,
+         "relation" : "eq"
+      },
+      "max_score" : null,
+      "hits" : [ ]
+   },
+   "aggregations" : {
+      "total_fees" : {
+         "value" : 5700.0
+      }
+   }
+}
+</pre>
+<p>There are some other metrics aggregations which are used in special cases like geo bounds aggregation and geo centroid aggregation for the purpose of geo location.</p>
+<h2>Stats Aggregations</h2>
+<p>A multi-value metrics aggregation that computes stats over numeric values extracted from the aggregated documents.</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search?size=0
+{
+   "aggs" : {
+      "grades_stats" : { "stats" : { "field" : "fees" } }
+   }
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 2,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 2,
+         "relation" : "eq"
+      },
+      "max_score" : null,
+      "hits" : [ ]
+   },
+   "aggregations" : {
+      "grades_stats" : {
+         "count" : 2,
+         "min" : 2200.0,
+         "max" : 3500.0,
+         "avg" : 2850.0,
+         "sum" : 5700.0
+      }
+   }
+}
+</pre>
+<h2>Aggregation Metadata</h2>
+<p>You can add some data about the aggregation at the time of request by using meta tag and can get that in response.</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search?size=0
+{
+   "aggs" : {
+      "min_fees" : { "avg" : { "field" : "fees" } ,
+         "meta" :{
+            "dsc" :"Lowest Fees This Year"
+         }
+      }
+   }
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 0,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 2,
+         "relation" : "eq"
+      },
+      "max_score" : null,
+      "hits" : [ ]
+   },
+   "aggregations" : {
+      "min_fees" : {
+         "meta" : {
+            "dsc" : "Lowest Fees This Year"
+         },
+         "value" : 2850.0
+      }
+   }
+}
+</pre>
+<h1>Elasticsearch - Index APIs</h1>
+<p>These APIs are responsible for managing all the aspects of the index like settings, aliases, mappings, index templates.</p>
+<h2>Create Index</h2>
+<p>This API helps you to create an index. An index can be created automatically when a user is passing JSON objects to any index or it can be created before that. To create an index, you just need to send a PUT request with settings, mappings and aliases or just a simple request without body.</p>
+<pre class="result notranslate">
+PUT colleges
+</pre>
+<p>On running the above code, we get the output as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "acknowledged" : true,
+   "shards_acknowledged" : true,
+   "index" : "colleges"
+}
+</pre>
+<p>We can also add some settings to the above command &minus;</p>
+<pre class="result notranslate">
+PUT colleges
+{
+  "settings" : {
+      "index" : {
+         "number_of_shards" : 3,
+         "number_of_replicas" : 2
+      }
+   }
+}
+</pre>
+<p>On running the above code, we get the output as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "acknowledged" : true,
+   "shards_acknowledged" : true,
+   "index" : "colleges"
+}
+</pre>
+<h2>Delete Index</h2>
+<p>This API helps you to delete any index. You just need to pass a delete request with the name of that particular Index.</p>
+<pre class="result notranslate">
+DELETE /colleges
+</pre>
+<p>You can delete all indices by just using _all or *.</p>
+<h2>Get Index</h2>
+<p>This API can be called by just sending get request to one or more than one indices. This returns the information about index.</p>
+<pre class="result notranslate">
+GET colleges
+</pre>
+<p>On running the above code, we get the output as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "colleges" : {
+      "aliases" : {
+         "alias_1" : { },
+         "alias_2" : {
+            "filter" : {
+               "term" : {
+                  "user" : "pkay"
+               }
+            },
+            "index_routing" : "pkay",
+            "search_routing" : "pkay"
+         }
+      },
+      "mappings" : { },
+      "settings" : {
+         "index" : {
+            "creation_date" : "1556245406616",
+            "number_of_shards" : "1",
+            "number_of_replicas" : "1",
+            "uuid" : "3ExJbdl2R1qDLssIkwDAug",
+            "version" : {
+               "created" : "7000099"
+            },
+            "provided_name" : "colleges"
+         }
+      }
+   }
+}
+</pre>
+<p>You can get the information of all the indices by using _all or *.</p>
+<h2>Index Exist</h2>
+<p>Existence of an index can be determined by just sending a get request to that index. If the HTTP response is 200, it exists; if it is 404, it does not exist.</p>
+<pre class="result notranslate">
+HEAD colleges
+</pre>
+<p>On running the above code, we get the output as shown below &minus;</p>
+<pre class="result notranslate">
+200-OK
+</pre>
+<h2>Index Settings</h2>
+<p>You can get the index settings by just appending _settings keyword at the end of URL.</p>
+<pre class="result notranslate">
+GET /colleges/_settings
+</pre>
+<p>On running the above code, we get the output as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "colleges" : {
+      "settings" : {
+         "index" : {
+            "creation_date" : "1556245406616",
+            "number_of_shards" : "1",
+            "number_of_replicas" : "1",
+            "uuid" : "3ExJbdl2R1qDLssIkwDAug",
+            "version" : {
+               "created" : "7000099"
+            },
+            "provided_name" : "colleges"
+         }
+      }
+   }
+}
+</pre>
+<h2>Index Stats</h2>
+<p>This API helps you to extract statistics about a particular index. You just need to send a get request with the index URL and _stats keyword at the end.</p>
+<pre class="result notranslate">
+GET /_stats
+</pre>
+<p>On running the above code, we get the output as shown below &minus;</p>
+<pre class="result notranslate">
+………………………………………………
+},
+   "request_cache" : {
+      "memory_size_in_bytes" : 849,
+      "evictions" : 0,
+      "hit_count" : 1171,
+      "miss_count" : 4
+   },
+   "recovery" : {
+      "current_as_source" : 0,
+      "current_as_target" : 0,
+      "throttle_time_in_millis" : 0
+   }
+} ………………………………………………
+</pre>
+<h2>Flush</h2>
+<p>The flush process of an index makes sure that any data that is currently only persisted in the transaction log is also permanently persisted in Lucene. This reduces recovery times as that data does not need to be reindexed from the transaction logs after the Lucene indexed is opened.</p>
+<pre class="result notranslate">
+POST colleges/_flush
+</pre>
+<p>On running the above code, we get the output as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   } 
+}
+</pre>
+<h1>Elasticsearch - Cat APIs</h1>
+<p>Usually the results from various Elasticsearch APIs are displayed in JSON format. But JSON is not easy to read always. So cat APIs feature is available in Elasticsearch helps in taking
+care of giving an easier to read and comprehend printing format of the results. There are various parameters used in cat API which server different purpose, for example - the term V makes the output verbose.</p>
+<p>Let us learn about cat APIs more in detail in this chapter.</p>
+<h2>Verbose</h2>
+<p>The verbose output gives a nice display of results of a cat command. In the example given
+below, we get the details of various indices present in the cluster.</p>
+<pre class="result notranslate">
+GET /_cat/indices?v
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+health status index uuid pri rep docs.count docs.deleted store.size pri.store.size
+yellow open schools RkMyEn2SQ4yUgzT6EQYuAA 1 1 2 1 21.6kb 21.6kb
+yellow open index_4_analysis zVmZdM1sTV61YJYrNXf1gg 1 1 0 0 283b 283b
+yellow open sensor-2018-01-01 KIrrHwABRB-ilGqTu3OaVQ 1 1 1 0 4.2kb 4.2kb
+yellow open colleges 3ExJbdl2R1qDLssIkwDAug 1 1 0 0 283b 283b
+</pre>
+<h2>Headers</h2>
+<p>The h parameter, also called header, is used to display only those columns mentioned in
+the command.</p>
+<pre class="result notranslate">
+GET /_cat/nodes?h=ip,port
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+127.0.0.1 9300
+</pre>
+<h2>Sort</h2>
+<p>The sort command accepts query string which can sort the table by specified column in the query. The default sort is ascending but this can be changed by adding :desc to a column.</p>
+<p>The below example, gives a result of templates arranged in descending order of the filed
+index patterns.</p>
+<pre class="result notranslate">
+GET _cat/templates?v&s=order:desc,index_patterns
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+name index_patterns order version
+.triggered_watches [.triggered_watches*] 2147483647
+.watch-history-9 [.watcher-history-9*] 2147483647
+.watches [.watches*] 2147483647
+.kibana_task_manager [.kibana_task_manager] 0 7000099
+</pre>
+<h2>Count</h2>
+<p>The count parameter provides the count of total number of documents in the entire cluster.</p>
+<pre class="result notranslate">
+GET /_cat/count?v
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+epoch timestamp count
+1557633536 03:58:56 17809
+</pre>
+<h1>Elasticsearch - Cluster APIs</h1>
+<p>The cluster API is used for getting information about cluster and its nodes and to make changes in them. To call this API, we need to specify the node name, address or _local.</p>
+<pre class="result notranslate">
+GET /_nodes/_local
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+………………………………………………
+cluster_name" : "elasticsearch",
+   "nodes" : {
+      "FKH-5blYTJmff2rJ_lQOCg" : {
+         "name" : "ubuntu",
+         "transport_address" : "127.0.0.1:9300",
+         "host" : "127.0.0.1",
+         "ip" : "127.0.0.1",
+         "version" : "7.0.0",
+         "build_flavor" : "default",
+         "build_type" : "tar",
+         "build_hash" : "b7e28a7",
+         "total_indexing_buffer" : 106502553,
+         "roles" : [
+            "master",
+            "data",
+            "ingest"
+         ],
+         "attributes" : {
+………………………………………………
+</pre>
+<h2>Cluster Health</h2>
+<p>This API is used to get the status on the health of the cluster by appending the ‘health’
+keyword.</p>
+<pre class="result notranslate">
+GET /_cluster/health
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "cluster_name" : "elasticsearch",
+   "status" : "yellow",
+   "timed_out" : false,
+   "number_of_nodes" : 1,
+   "number_of_data_nodes" : 1,
+   "active_primary_shards" : 7,
+   "active_shards" : 7,
+   "relocating_shards" : 0,
+   "initializing_shards" : 0,
+   "unassigned_shards" : 4,
+   "delayed_unassigned_shards" : 0,
+   "number_of_pending_tasks" : 0,
+   "number_of_in_flight_fetch" : 0,
+   "task_max_waiting_in_queue_millis" : 0,
+   "active_shards_percent_as_number" : 63.63636363636363
+}
+</pre>
+<h2>Cluster State</h2>
+<p>This API is used to get state information about a cluster by appending the ‘state’ keyword
+URL. The state information contains version, master node, other nodes, routing table, metadata and blocks.</p>
+<pre class="result notranslate">
+GET /_cluster/state
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+………………………………………………
+{
+   "cluster_name" : "elasticsearch",
+   "cluster_uuid" : "IzKu0OoVTQ6LxqONJnN2eQ",
+   "version" : 89,
+   "state_uuid" : "y3BlwvspR1eUQBTo0aBjig",
+   "master_node" : "FKH-5blYTJmff2rJ_lQOCg",
+   "blocks" : { },
+   "nodes" : {
+      "FKH-5blYTJmff2rJ_lQOCg" : {
+      "name" : "ubuntu",
+      "ephemeral_id" : "426kTGpITGixhEzaM-5Qyg",
+      "transport
+   }
+………………………………………………
+</pre>
+<h2>Cluster Stats</h2>
+<p>This API helps to retrieve statistics about cluster by using the ‘stats’ keyword. This API
+returns shard number, store size, memory usage, number of nodes, roles, OS, and file system.</p>
+<pre class="result notranslate">
+GET /_cluster/stats
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+………………………………………….
+"cluster_name" : "elasticsearch",
+"cluster_uuid" : "IzKu0OoVTQ6LxqONJnN2eQ",
+"timestamp" : 1556435464704,
+"status" : "yellow",
+"indices" : {
+   "count" : 7,
+   "shards" : {
+      "total" : 7,
+      "primaries" : 7,
+      "replication" : 0.0,
+      "index" : {
+         "shards" : {
+         "min" : 1,
+         "max" : 1,
+         "avg" : 1.0
+      },
+      "primaries" : {
+         "min" : 1,
+         "max" : 1,
+         "avg" : 1.0
+      },
+      "replication" : {
+         "min" : 0.0,
+         "max" : 0.0,
+         "avg" : 0.0
+      }
+………………………………………….
+</pre>
+<h2>Cluster Update Settings</h2>
+<p>This API allows you to update the settings of a cluster by using the ‘settings’ keyword.
+There are two types of settings &minus; persistent (applied across restarts) and transient (do not survive a full cluster restart).</p>
+<h2>Node Stats</h2>
+<p>This API is used to retrieve the statistics of one more nodes of the cluster. Node stats are
+almost the same as cluster.</p>
+<pre class="result notranslate">
+GET /_nodes/stats
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "_nodes" : {
+      "total" : 1,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "cluster_name" : "elasticsearch",
+   "nodes" : {
+      "FKH-5blYTJmff2rJ_lQOCg" : {
+         "timestamp" : 1556437348653,
+         "name" : "ubuntu",
+         "transport_address" : "127.0.0.1:9300",
+         "host" : "127.0.0.1",
+         "ip" : "127.0.0.1:9300",
+         "roles" : [
+            "master",
+            "data",
+            "ingest"
+         ],
+         "attributes" : {
+            "ml.machine_memory" : "4112797696",
+            "xpack.installed" : "true",
+            "ml.max_open_jobs" : "20"
+         },
+………………………………………………………….
+</pre>
+<h2>Nodes hot_threads</h2>
+<p>This API helps you to retrieve information about the current hot threads on each node in cluster.</p>
+<pre class="result notranslate">
+GET /_nodes/hot_threads
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+:::{ubuntu}{FKH-5blYTJmff2rJ_lQOCg}{426kTGpITGixhEzaM5Qyg}{127.0.0.1}{127.0.0.1:9300}{ml.machine_memory=4112797696,
+xpack.installed=true, ml.max_open_jobs=20}
+ Hot threads at 2019-04-28T07:43:58.265Z, interval=500ms, busiestThreads=3,
+ignoreIdleThreads=true:
+</pre>
+<h1>Elasticsearch - Query DSL</h1>
+<p>In Elasticsearch, searching is carried out by using query based on JSON. A query is made up of two clauses &minus;</p>
+<ul class="list">
+<li><p><b>Leaf Query Clauses</b> &minus; These clauses are match, term or range, which look for a specific value in specific field.</p></li>
+<li><p><b>Compound Query Clauses</b> &minus; These queries are a combination of leaf query clauses and other compound queries to extract the desired information.</p></li>
+</ul>
+<p>Elasticsearch supports a large number of queries. A query starts with a query key word and then has conditions and filters inside in the form of JSON object. The different types of queries have been described below.</p>
+<h2>Match All Query</h2>
+<p>This is the most basic query; it returns all the content and with the score of 1.0 for every object.</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search
+{
+   "query":{
+      "match_all":{}
+   }
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 7,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 2,
+         "relation" : "eq"
+      },
+      "max_score" : 1.0,
+      "hits" : [
+         {
+            "_index" : "schools",
+            "_type" : "school",
+            "_id" : "5",
+            "_score" : 1.0,
+            "_source" : {
+               "name" : "Central School",
+               "description" : "CBSE Affiliation",
+               "street" : "Nagan",
+               "city" : "paprola",
+               "state" : "HP",
+               "zip" : "176115",
+               "location" : [
+                  31.8955385,
+                  76.8380405
+               ],
+               "fees" : 2200,
+               "tags" : [
+                  "Senior Secondary",
+                  "beautiful campus"
+               ],
+               "rating" : "3.3"
+            }
+         },
+         {
+            "_index" : "schools",
+            "_type" : "school",
+            "_id" : "4",
+            "_score" : 1.0,
+            "_source" : {
+               "name" : "City Best School",
+               "description" : "ICSE",
+               "street" : "West End",
+               "city" : "Meerut",
+               "state" : "UP",
+               "zip" : "250002",
+               "location" : [
+                  28.9926174,
+                  77.692485
+               ],
+               "fees" : 3500,
+               "tags" : [
+                  "fully computerized"
+               ],
+               "rating" : "4.5"
+            }
+         }
+      ]
+   }
+}
+</pre>
+<h2>Full Text Queries</h2>
+<p>These queries are used to search a full body of text like a chapter or a news article. This query works according to the analyser associated with that particular index or document. In this section, we will discuss the different types of full text queries.</p>
+<h3>Match query</h3>
+<p>This query matches a text or phrase with the values of one or more fields.</p>
+<pre class="prettyprint notranslate">
+POST /schools*/_search
+{
+   "query":{
+      "match" : {
+         "rating":"4.5"
+      }
+   }
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 44,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 1,
+         "relation" : "eq"
+      },
+      "max_score" : 0.47000363,
+      "hits" : [
+         {
+            "_index" : "schools",
+            "_type" : "school",
+            "_id" : "4",
+            "_score" : 0.47000363,
+            "_source" : {
+               "name" : "City Best School",
+               "description" : "ICSE",
+               "street" : "West End",
+               "city" : "Meerut",
+               "state" : "UP",
+               "zip" : "250002",
+               "location" : [
+                  28.9926174,
+                  77.692485
+               ],
+               "fees" : 3500,
+               "tags" : [
+                  "fully computerized"
+               ],
+               "rating" : "4.5"
+            }
+         }
+      ]
+   }
+}
+</pre>
+<h2>Multi Match Query</h2>
+<p>This query matches a text or phrase with more than one field.</p>
+<pre class="prettyprint notranslate">
+POST /schools*/_search
+{
+   "query":{
+      "multi_match" : {
+         "query": "paprola",
+         "fields": [ "city", "state" ]
+      }
+   }
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 12,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 1,
+         "relation" : "eq"
+      },
+      "max_score" : 0.9808292,
+      "hits" : [
+         {
+            "_index" : "schools",
+            "_type" : "school",
+            "_id" : "5",
+            "_score" : 0.9808292,
+            "_source" : {
+               "name" : "Central School",
+               "description" : "CBSE Affiliation",
+               "street" : "Nagan",
+               "city" : "paprola",
+               "state" : "HP",
+               "zip" : "176115",
+               "location" : [
+                  31.8955385,
+                  76.8380405
+               ],
+               "fees" : 2200,
+               "tags" : [
+                  "Senior Secondary",
+                  "beautiful campus"
+               ],
+               "rating" : "3.3"
+            }
+         }
+      ]
+   }
+}
+</pre>
+<h2>Query String Query</h2>
+<p>This query uses query parser and query_string keyword.</p>
+<pre class="prettyprint notranslate">
+POST /schools*/_search
+{
+   "query":{
+      "query_string":{
+         "query":"beautiful"
+      }
+   }
+}  
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 60,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+      "value" : 1,
+      "relation" : "eq"
+   },
+………………………………….
+</pre>
+<h2>Term Level Queries</h2>
+<p>These queries mainly deal with structured data like numbers, dates and enums.</p>
+<pre class="prettyprint notranslate">
+POST /schools*/_search
+{
+   "query":{
+      "term":{"zip":"176115"}
+   }
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+……………………………..
+hits" : [
+   {
+      "_index" : "schools",
+      "_type" : "school",
+      "_id" : "5",
+      "_score" : 0.9808292,
+      "_source" : {
+         "name" : "Central School",
+         "description" : "CBSE Affiliation",
+         "street" : "Nagan",
+         "city" : "paprola",
+         "state" : "HP",
+         "zip" : "176115",
+         "location" : [
+            31.8955385,
+            76.8380405
+         ],
+      }
+   }
+]   
+…………………………………………..
+</pre>
+<h2>Range Query</h2>
+<p>This query is used to find the objects having values between the ranges of values given. For this, we need to use operators such as &minus;</p>
+<ul class="list">
+<li><b>gte</b> &minus; greater than equal to</li>
+<li><b>gt</b> &minus; greater-than</li>
+<li><b>lte</b> &minus; less-than equal to</li>
+<li><b>lt</b> &minus; less-than</li>
+</ul>
+<p>For example, observe the code given below &minus;</p>
+<pre class="prettyprint notranslate">
+POST /schools*/_search
+{
+   "query":{
+      "range":{
+         "rating":{
+            "gte":3.5
+         }
+      }
+   }
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 24,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 1,
+         "relation" : "eq"
+      },
+      "max_score" : 1.0,
+      "hits" : [
+         {
+            "_index" : "schools",
+            "_type" : "school",
+            "_id" : "4",
+            "_score" : 1.0,
+            "_source" : {
+               "name" : "City Best School",
+               "description" : "ICSE",
+               "street" : "West End",
+               "city" : "Meerut",
+               "state" : "UP",
+               "zip" : "250002",
+               "location" : [
+                  28.9926174,
+                  77.692485
+               ],
+               "fees" : 3500,
+               "tags" : [
+                  "fully computerized"
+               ],
+               "rating" : "4.5"
+            }
+         }
+      ]
+   }
+}
+</pre>
+<p>There exist other types of term level queries also such as &minus;</p>
+<ul class="list">
+<li><p><b>Exists query</b> &minus; If a certain field has non null value.</p></li>
+<li><p><b>Missing query</b> &minus; This is completely opposite to exists query, this query searches for objects without specific fields or fields having null value.</p></li>
+<li><p><b>Wildcard or regexp query</b> &minus; This query uses regular expressions to find patterns in the objects.</p></li>
+</ul>
+<h2>Compound Queries</h2>
+<p>These queries are a collection of different queries merged with each other by using Boolean
+operators like and, or, not or for different indices or having function calls etc.</p>
+<pre class="prettyprint notranslate">
+POST /schools/_search
+{
+   "query": {
+      "bool" : {
+         "must" : {
+            "term" : { "state" : "UP" }
+         },
+         "filter": {
+            "term" : { "fees" : "2200" }
+         },
+         "minimum_should_match" : 1,
+         "boost" : 1.0
+      }
+   }
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 6,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 0,
+         "relation" : "eq"
+      },
+      "max_score" : null,
+      "hits" : [ ]
+   }
+}
+</pre>
+<h2>Geo Queries</h2>
+<p>These queries deal with geo locations and geo points. These queries help to find out schools
+or any other geographical object near to any location. You need to use geo point data type.</p>
+<pre class="result notranslate">
+PUT /geo_example
+{
+   "mappings": {
+      "properties": {
+         "location": {
+            "type": "geo_shape"
+         }
+      }
+   }
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{  "acknowledged" : true,
+   "shards_acknowledged" : true,
+   "index" : "geo_example"
+}
+</pre>
+<p>Now we post the data in the index created above.</p>
+<pre class="result notranslate">
+POST /geo_example/_doc?refresh
+{
+   "name": "Chapter One, London, UK",
+   "location": {
+      "type": "point",
+      "coordinates": [11.660544, 57.800286]
+   }
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 1,
+   "timed_out" : false,
+   "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+   },
+   "hits" : {
+      "total" : {
+         "value" : 2,
+         "relation" : "eq"
+      },
+      "max_score" : 1.0,
+      "hits" : [
+         "_index" : "geo_example",
+         "_type" : "_doc",
+         "_id" : "hASWZ2oBbkdGzVfiXHKD",
+         "_score" : 1.0,
+         "_source" : {
+            "name" : "Chapter One, London, UK",
+            "location" : {
+               "type" : "point",
+               "coordinates" : [
+                  11.660544,
+                  57.800286
+               ]
+            }
+         }
+      }
+   }
+</pre>
+<h1>Elasticsearch - Mapping</h1>
+<p>Mapping is the outline of the documents stored in an index. It defines the data type like geo_point or string and format of the fields present in the documents and rules to control the mapping of dynamically added fields.</p>
+<pre class="prettyprint notranslate">
+PUT bankaccountdetails
+{
+   "mappings":{
+      "properties":{
+         "name": { "type":"text"}, "date":{ "type":"date"},
+         "balance":{ "type":"double"}, "liability":{ "type":"double"}
+      }
+   }
+ }
+</pre>
+<p>When we run the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "acknowledged" : true,
+   "shards_acknowledged" : true,
+   "index" : "bankaccountdetails"
+}
+</pre>
+<h2>Field Data Types</h2>
+<p>Elasticsearch supports a number of different datatypes for the fields in a document. The
+data types used to store fields in Elasticsearch are discussed in detail here.</p>
+<h3>Core Data Types</h3>
+<p>These are the basic data types such as text, keyword, date, long, double, boolean or ip,
+which are supported by almost all the systems.</p>
+<h3>Complex Data Types</h3>
+<p>These data types are a combination of core data types. These include array, JSON object
+and nested data type. An example of nested data type is shown below &minus</p>
+<pre class="prettyprint notranslate">
+POST /tabletennis/_doc/1
+{
+   "group" : "players",
+   "user" : [
+      {
+         "first" : "dave", "last" : "jones"
+      },
+      {
+         "first" : "kevin", "last" : "morris"
+      }
+   ]
+}
+</pre>
+<p>When we run the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "tabletennis",
+   "_type" : "_doc",
+   "_id" : "1",
+   _version" : 2,
+   "result" : "updated",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 1,
+   "_primary_term" : 1
+}
+</pre>
+<p>Another sample code is shown below &minus;</p>
+<pre class="prettyprint notranslate">
+POST /accountdetails/_doc/1
+{
+   "from_acc":"7056443341", "to_acc":"7032460534",
+   "date":"11/1/2016", "amount":10000
+}
+</pre>
+<p>When we run the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{  "_index" : "accountdetails",
+   "_type" : "_doc",
+   "_id" : "1",
+   "_version" : 1,
+   "result" : "created",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 1,
+   "_primary_term" : 1
+}
+</pre>
+<p>We can check the above document by using the following command &minus;</p>
+<pre class="result notranslate">
+GET /accountdetails/_mappings?include_type_name=false
+</pre>
+<h2>Removal of Mapping Types</h2>
+<p>Indices created in Elasticsearch 7.0.0 or later no longer accept a _default_ mapping. Indices created in 6.x will continue to function as before in Elasticsearch 6.x. Types are
+deprecated in APIs in 7.0.</p>
+<h1>Elasticsearch - Analysis</h1>
+<p>When a query is processed during a search operation, the content in any index is analyzed by the analysis module. This module consists of analyzer, tokenizer, tokenfilters and charfilters. If no analyzer is defined, then by default the built in analyzers, token, filters and tokenizers get registered with analysis module.</p>
+<p>In the following example, we use a standard analyzer which is used when no other analyzer is specified. It will analyze the sentence based on the grammar and produce words used in the sentence.</p>
+<pre class="prettyprint notranslate">
+POST _analyze
+{
+   "analyzer": "standard",
+   "text": "Today's weather is beautiful"
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "tokens" : [
+      {
+         "token" : "today's",
+         "start_offset" : 0,
+         "end_offset" : 7,
+         "type" : "",
+         "position" : 0
+      },
+      {
+         "token" : "weather",
+         "start_offset" : 8,
+         "end_offset" : 15,
+         "type" : "",
+         "position" : 1
+      },
+      {
+         "token" : "is",
+         "start_offset" : 16,
+         "end_offset" : 18,
+         "type" : "",
+         "position" : 2
+      },
+      {
+         "token" : "beautiful",
+         "start_offset" : 19,
+         "end_offset" : 28,
+         "type" : "",
+         "position" : 3
+      }
+   ]
+}
+</pre>
+<h2>Configuring the Standard analyzer</h2>
+<p>We can configure the standard analyser with various parameters to get our custom requirements.</p>
+<p>In the following example, we configure the standard analyzer to have a max_token_length of 5.</p>
+<p>For this, we first create an index with the analyser having max_length_token parameter.</p>
+<pre class="prettyprint notranslate">
+PUT index_4_analysis
+{
+   "settings": {
+      "analysis": {
+         "analyzer": {
+            "my_english_analyzer": {
+               "type": "standard",
+               "max_token_length": 5,
+               "stopwords": "_english_"
+            }
+         }
+      }
+   }
+}
+</pre>
+<p>Next we apply the analyser with a text as shown below. Please note how the token is does not appear as it has two spaces in the beginning and two spaces at the end. For the word “is”, there is a space at the beginning of it and a space at the end of it. Taking all of them, it becomes 4 letters with spaces and that does not make it a word. There should be a nonspace character at least at the beginning or at the end, to make it a word to be counted.</p>
+<pre class="prettyprint notranslate">
+POST index_4_analysis/_analyze
+{
+   "analyzer": "my_english_analyzer",
+   "text": "Today's weather is beautiful"
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "tokens" : [
+      {
+         "token" : "today",
+         "start_offset" : 0,
+         "end_offset" : 5,
+         "type" : "",
+         "position" : 0
+      },
+      {
+         "token" : "s",
+         "start_offset" : 6,
+         "end_offset" : 7,
+         "type" : "",
+         "position" : 1
+      },
+      {
+         "token" : "weath",
+         "start_offset" : 8,
+         "end_offset" : 13,
+         "type" : "",
+         "position" : 2
+      },
+      {
+         "token" : "er",
+         "start_offset" : 13,
+         "end_offset" : 15,
+         "type" : "",
+         "position" : 3
+      },
+      {
+         "token" : "beaut",
+         "start_offset" : 19,
+         "end_offset" : 24,
+         "type" : "",
+         "position" : 5
+      },
+      {
+         "token" : "iful",
+         "start_offset" : 24,
+         "end_offset" : 28,
+         "type" : "",
+         "position" : 6
+      }
+   ]
+}
+</pre>
+<p>The list of various analyzers and their description are given in the table shown below &minus;</p>
+<table class="table table-bordered" >
+<tr>
+<th>S.No</th>
+<th>Analyzer &amp; Description</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">1</td>
+<td>
+<p><b>Standard analyzer (standard)</b></p>
+<p>stopwords and max_token_length setting can be set for this analyzer. By default, stopwords list is empty and max_token_length is 255.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">2</td>
+<td>
+<p><b>Simple analyzer (simple)</b></p>
+<p>This analyzer is composed of lowercase tokenizer.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">3</td>
+<td>
+<p><b>Whitespace analyzer (whitespace)</b></p>
+<p>This analyzer is composed of whitespace tokenizer.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">4</td>
+<td>
+<p><b>Stop analyzer (stop)</b></p>
+<p>stopwords and stopwords_path can be configured. By default stopwords initialized to English stop words and stopwords_path contains path to a text file with stop words.</p>
+</td>
+</tr>
+</table>
+<h2>Tokenizers</h2>
+<p>Tokenizers are used for generating tokens from a text in Elasticsearch. Text can be broken down into tokens by taking whitespace or other punctuations into account. Elasticsearch has plenty of built-in tokenizers, which can be used in custom analyzer.</p>
+<p>An example of tokenizer that breaks text into terms whenever it encounters a character which is not a letter, but it also lowercases all terms, is shown below &minus;</p>
+<pre class="prettyprint notranslate">
+POST _analyze
+{
+   "tokenizer": "lowercase",
+   "text": "It Was a Beautiful Weather 5 Days ago."
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "tokens" : [
+      {
+         "token" : "it",
+         "start_offset" : 0,
+         "end_offset" : 2,
+         "type" : "word",
+         "position" : 0
+      },
+      {
+         "token" : "was",
+         "start_offset" : 3,
+         "end_offset" : 6,
+         "type" : "word",
+         "position" : 1
+      },
+      {
+         "token" : "a",
+         "start_offset" : 7,
+         "end_offset" : 8,
+         "type" : "word",
+         "position" : 2
+      },
+      {
+         "token" : "beautiful",
+         "start_offset" : 9,
+         "end_offset" : 18,
+         "type" : "word",
+         "position" : 3
+      },
+      {
+         "token" : "weather",
+         "start_offset" : 19,
+         "end_offset" : 26,
+         "type" : "word",
+         "position" : 4
+      },
+      {
+         "token" : "days",
+         "start_offset" : 29,
+         "end_offset" : 33,
+         "type" : "word",
+         "position" : 5
+      },
+      {
+         "token" : "ago",
+         "start_offset" : 34,
+         "end_offset" : 37,
+         "type" : "word",
+         "position" : 6
+      }
+   ]
+}
+</pre>
+<p>A list of Tokenizers and their descriptions are shown here in the table given below &minus;</p>
+<table class="table table-bordered" >
+<tr>
+<th>S.No</th>
+<th>Tokenizer &amp; Description</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">1</td>
+<td>
+<p><b>Standard tokenizer (standard)</b></p>
+<p>This is built on grammar based tokenizer and max_token_length can be
+configured for this tokenizer.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">2</td>
+<td>
+<p><b>Edge NGram tokenizer (edgeNGram)</b></p>
+<p>Settings like min_gram, max_gram, token_chars can be set for this tokenizer.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">3</td>
+<td>
+<p><b>Keyword tokenizer (keyword)</b></p>
+<p>This generates entire input as an output and buffer_size can be set for this.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">4</td>
+<td>
+<p><b>Letter tokenizer (letter)</b></p>
+<p>This captures the whole word until a non-letter is encountered.</p>
+</td>
+</tr>
+</table>
+<h1>Elasticsearch - Modules</h1>
+<p>Elasticsearch is composed of a number of modules, which are responsible for its functionality. These modules have two types of settings as follows &minus;</p>
+<ul class="list">
+<li><p><b>Static Settings</b> &minus; These settings need to be configured in config (elasticsearch.yml) file before starting Elasticsearch. You need to update all the concern nodes in the cluster to reflect the changes by these settings.</p></li>
+<li><p><b>Dynamic Settings</b> &minus; These settings can be set on live Elasticsearch.</p></li>
+</ul>
+<p>We will discuss the different modules of Elasticsearch in the following sections of this chapter.</p>
+<h2>Cluster-Level Routing and Shard Allocation</h2>
+<p>Cluster level settings decide the allocation of shards to different nodes and reallocation of shards to rebalance cluster. These are the following settings to control shard allocation.</p>
+<h3>Cluster-Level Shard Allocation</h3>
+<table class="table table-bordered">
+<tr>
+<th style="text-align:center;">Setting</th>
+<th style="text-align:center;">Possible value</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td rowspan="5" style="text-align:center; vertical-align:middle;">cluster.routing.allocation.enable</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">all</td>
+<td>This default value allows shard allocation for all kinds of shards.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">primaries</td>
+<td>This allows shard allocation only for primary shards.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">new_primaries</td>
+<td>This allows shard allocation only for primary shards for new indices.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">none</td>
+<td>This does not allow any shard allocations.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">cluster.routing.allocation .node_concurrent_recoveries</td>
+<td style="text-align:center; vertical-align:middle;">Numeric value (by default 2)</td>
+<td>This restricts the number of concurrent shard recovery.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">cluster.routing.allocation .node_initial_primaries_recoveries</td>
+<td style="text-align:center; vertical-align:middle;">Numeric value (by default 4)</td>
+<td>This restricts the number of parallel initial primary recoveries.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">cluster.routing.allocation .same_shard.host</td>
+<td style="vertical-align:middle;">Boolean value (by default false)</td>
+<td>This restricts the allocation of more than one replica of the same shard in the same physical node.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">indices.recovery.concurrent _streams</td>
+<td style="text-align:center; vertical-align:middle;">Numeric value (by default 3)</td>
+<td>This controls the number of open network streams per node at the time of shard recovery from peer shards.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">indices.recovery.concurrent _small_file_streams</td>
+<td style="text-align:center; vertical-align:middle;">Numeric value (by default 2)</td>
+<td>This controls the number of open streams per node for small files having size less than 5mb at the time of shard recovery.</td>
+</tr>
+<tr>
+<td rowspan="5" style="text-align:center; vertical-align:middle;">cluster.routing.rebalance.enable
+</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">all</td>
+<td>This default value allows balancing for all kinds of shards.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">primaries</td>
+<td>This allows shard balancing only for primary shards.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">replicas</td>
+<td>This allows shard balancing only for replica shards.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">none</td>
+<td>This does not allow any kind of shard balancing.</td>
+</tr>
+<tr>
+<td rowspan="4" style="text-align:center; vertical-align:middle;">cluster.routing.allocation .allow_rebalance
+</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">always</td>
+<td>This default value always allows rebalancing.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">indices_primaries _active</td>
+<td>This allows rebalancing when all primary shards in cluster are allocated.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Indices_all_active</td>
+<td>This allows rebalancing when all the primary and replica shards are allocated.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">cluster.routing.allocation.cluster _concurrent_rebalance</td>
+<td style="text-align:center; vertical-align:middle;">Numeric value (by default 2)</td>
+<td>This restricts the number of concurrent shard balancing in cluster.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">cluster.routing.allocation .balance.shard</td>
+<td style="text-align:center; vertical-align:middle;">Float value (by default 0.45f)</td>
+<td>This defines the weight factor for shards allocated on every node.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">cluster.routing.allocation .balance.index</td>
+<td style="text-align:center; vertical-align:middle;">Float value (by default 0.55f)</td>
+<td>This defines the ratio of the number of shards per index allocated on a specific node.</td>
+</tr>
+<tr>
+<td style="text-align:center; vertical-align:middle;">cluster.routing.allocation .balance.threshold</td>
+<td style="text-align:center; vertical-align:middle;">Non negative float value (by default 1.0f)</td>
+<td>This is the minimum optimization value of operations that should be performed.</td>
+</tr>
+</table>
+<h2>Disk-based Shard Allocation</h2>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center;">Setting</th>
+<th style="text-align:center;">Possible value</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;">cluster.routing.allocation.disk.threshold_enabled</td>
+<td>Boolean value (by default true)</td>
+<td style="vertical-align:middle;">This enables and disables disk allocation decider.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">cluster.routing.allocation.disk.watermark.low</td>
+<td>String value(by default 85%)</td>
+<td style="vertical-align:middle;">This denotes maximum usage of disk; after this point, no other shard can be allocated to that disk.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">cluster.routing.allocation.disk.watermark.high</td>
+<td>String value (by default 90%)</td>
+<td style="vertical-align:middle;">This denotes the maximum usage at the time of allocation; if this point is reached at the time of allocation, then Elasticsearch will allocate that shard to another disk. </td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">cluster.info.update.interval</td>
+<td>String value (by default 30s)</td>
+<td style="vertical-align:middle;">This is the interval between disk usages checkups.</td>
+</tr><tr>
+<td style="vertical-align:middle;">cluster.routing.allocation.disk.include_relocations</td>
+<td>Boolean value (by default true)</td>
+<td style="vertical-align:middle;">This decides whether to consider the shards currently being allocated, while calculating disk usage.</td>
+</tr>
+</table>
+<h2>Discovery</h2>
+<p>This module helps a cluster to discover and maintain the state of all the nodes in it. The
+state of cluster changes when a node is added or deleted from it. The cluster name setting is used to create logical difference between different clusters. There are some modules which help you to use the APIs provided by cloud vendors and those are as given below &minus;</p>
+<ul class="list">
+<li>Azure discovery</li>
+<li>EC2 discovery</li>
+<li>Google compute engine discovery</li>
+<li>Zen discovery</li>
+</ul>
+<h2>Gateway</h2>
+<p>This module maintains the cluster state and the shard data across full cluster restarts. The
+following are the static settings of this module &minus;</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th style="text-align:center;">Setting</th>
+<th style="text-align:center;">Possible value</th>
+<th style="text-align:center;">Description</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;">gateway.expected_nodes</td>
+<td>numeric value (by default 0)</td>
+<td style="vertical-align:middle;">The number of nodes that are expected to be in the cluster for
+the recovery of local shards.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">gateway.expected_master_nodes</td>
+<td>numeric value (by default 0)</td>
+<td style="vertical-align:middle;">The number of master nodes that are expected to be in the cluster before start recovery.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">gateway.expected_data_nodes</td>
+<td>numeric value (by default 0)</td>
+<td style="vertical-align:middle;">The number of data nodes expected in the cluster before start recovery.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">gateway.recover_after_time</td>
+<td>String value (by default 5m)</td>
+<td style="vertical-align:middle;">This is the interval between disk usages checkups.</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">cluster.routing.allocation.
+disk.include_relocations</td>
+<td>Boolean value (by default true)</td>
+<td style="vertical-align:middle;"><p>This specifies the time for which the recovery process will wait to start regardless of the number of nodes joined in the cluster.</p>
+<p>gateway.recover_ after_nodes<br/>
+gateway.recover_after_master_nodes<br/>
+gateway.recover_after_data_nodes</p>
+</td>
+</tr>
+</table>
+<h2>HTTP</h2>
+<p>This module manages the communication between HTTP client and Elasticsearch APIs. This module can be disabled by changing the value of http.enabled to false.</p>
+<p>The following are the settings (configured in elasticsearch.yml) to control this module &minus;</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th>S.No</th>
+<th>Setting &amp; Description</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;">1</td>
+<td><p><b>http.port</b></p>
+<p>This is a port to access Elasticsearch and it ranges from 9200-9300.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">2</td>
+<td><p><b>http.publish_port</b></p>
+<p>This port is for http clients and is also useful in case of firewall.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">3</td>
+<td><p><b>http.bind_host</b></p>
+<p>This is a host address for http service.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">4</td>
+<td><p><b>http.publish_host</b></p>
+<p>This is a host address for http client.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">5</td>
+<td><p><b>http.max_content_length</b></p>
+<p>This is the maximum size of content in an http request. Its default value is 100mb.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">6</td>
+<td><p><b>http.max_initial_line_length</b></p>
+<p>This is the maximum size of URL and its default value is 4kb.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">7</td>
+<td><p><b>http.max_header_size</b></p>
+<p>This is the maximum http header size and its default value is 8kb.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">8</td>
+<td><p><b>http.compression</b></p>
+<p>This enables or disables support for compression and its default value is false.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">9</td>
+<td><p><b>http.pipelinig</b></p>
+<p>This enables or disables HTTP pipelining.</p></td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">10</td>
+<td><p><b>http.pipelining.max_events</b></p>
+<p>This restricts the number of events to be queued before closing an HTTP request.</p></td>
+</tr>
+</table>
+<h2>Indices</h2>
+<p>This module maintains the settings, which are set globally for every index. The following
+settings are mainly related to memory usage &minus;</p>
+<h3>Circuit Breaker</h3>
+<p>This is used for preventing operation from causing an OutOfMemroyError. The setting mainly restricts the JVM heap size. For example, indices.breaker.total.limit setting, which defaults to 70% of JVM heap.</p>
+<h3>Fielddata Cache</h3>
+<p>This is used mainly when aggregating on a field. It is recommended to have enough memory to allocate it. The amount of memory used for the field data cache can be controlled using indices.fielddata.cache.size setting.</p>
+<h3>Node Query Cache</h3>
+<p>This memory is used for caching the query results. This cache uses Least Recently Used (LRU) eviction policy. Indices.queries.cahce.size setting controls the memory size of this cache.</p>
+<h3>Indexing Buffer</h3>
+<p>This buffer stores the newly created documents in the index and flushes them when the buffer is full. Setting like indices.memory.index_buffer_size control the amount of heap allocated for this buffer.</p>
+<h3>Shard Request Cache</h3>
+<p>This cache is used to store the local search data for every shard. Cache can be enabled
+during the creation of index or can be disabled by sending URL parameter.</p>
+<pre class="result notranslate">
+Disable cache - ?request_cache = true
+Enable cache "index.requests.cache.enable": true
+</pre>
+<h3>Indices Recovery</h3>
+<p>It controls the resources during recovery process. The following are the settings &minus;</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th>Setting</th>
+<th>Default value</th>
+</tr>
+<tr>
+<td>indices.recovery.concurrent_streams</td>
+<td style="vertical-align:middle;">3</td>
+</tr>
+<tr>
+<td>indices.recovery.concurrent_small_file_streams</td>
+<td style="vertical-align:middle;">2</td>
+</tr>
+<tr>
+<td>indices.recovery.file_chunk_size</td>
+<td style="vertical-align:middle;">512kb</td>
+</tr>
+<tr>
+<td>indices.recovery.translog_ops</td>
+<td style="vertical-align:middle;">1000</td>
+</tr>
+<tr>
+<td>indices.recovery.translog_size</td>
+<td style="vertical-align:middle;">512kb</td>
+</tr>
+<tr>
+<td>indices.recovery.compress</td>
+<td style="vertical-align:middle;">true</td>
+</tr>
+<tr>
+<td>indices.recovery.max_bytes_per_sec</td>
+<td style="vertical-align:middle;">40mb</td>
+</tr>
+</table>
+<h3>TTL Interval</h3>
+<p>Time to Live (TTL) interval defines the time of a document, after which the document gets
+deleted. The following are the dynamic settings for controlling this process &minus;</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th>Setting</th>
+<th>Default value</th>
+</tr>
+<tr>
+<td>indices.ttl.interval</td>
+<td style="vertical-align:middle;">60s</td>
+</tr>
+<tr>
+<td>indices.ttl.bulk_size</td>
+<td style="vertical-align:middle;">1000</td>
+</tr>
+</table>
+<h2>Node</h2>
+<p>Each node has an option to be data node or not. You can change this property by changing <b>node.data</b> setting. Setting the value as <b>false</b> defines that the node is not a data
+node.</p>
+<h1>Elasticsearch - Index Modules</h1>
+<p>These are the modules which are created for every index and control the settings and behaviour of the indices. For example, how many shards an index can use or the number of replicas a primary shard can have for that index etc. There are two types of index settings &minus;</p>
+<ul class="list">
+<li><b>Static</b> &minus; These can be set only at index creation time or on a closed index.</li>
+<li><b>Dynamic</b> &minus; These can be changed on a live index.</li>
+</ul>
+<h2>Static Index Settings</h2>
+<p>The following table shows the list of static index settings &minus;</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th>Setting</th>
+<th>Possible value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>index.number_of_shards</td>
+<td>Defaults to 5, Maximum 1024</td>
+<td>The number of primary shards that an index should have.</td>
+</tr>
+<tr>
+<td>index.shard.check_on_startup</td>
+<td>Defaults to false. Can be True</td>
+<td>Whether or not shards should be checked for corruption before opening.</td>
+</tr>
+<tr>
+<td>index.codec</td>
+<td>LZ4 compression.</td>
+<td>Type of compression used to store data.</td>
+</tr>
+<tr>
+<td>index.routing_partition_size</td>
+<td>1</td>
+<td>The number of shards a custom routing value can go to.</td>
+</tr>
+<tr>
+<td>index.load_fixed_bitset_filters_eagerly</td>
+<td>false</td>
+<td>Indicates whether cached filters are pre-loaded for nested queries</td>
+</tr>
+</table>
+<h2>Dynamic Index Settings</h2>
+<p>The following table shows the list of dynamic index settings &minus;</p>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th>Setting</th>
+<th>Possible value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>index.number_of_replicas</td>
+<td>Defaults to 1</td>
+<td>The number of replicas each primary shard has.</td>
+</tr>
+<tr>
+<td>index.auto_expand_replicas</td>
+<td>A dash delimited lower and upper bound (0-5)</td>
+<td>Auto-expand the number of replicas based on the number of data nodes in the cluster.</td>
+</tr>
+<tr>
+<td>index.search.idle.after</td>
+<td>30seconds</td>
+<td>How long a shard cannot receive a search or get request until it’s considered search idle.</td>
+</tr>
+<tr>
+<td>index.refresh_interval</td>
+<td>1 second</td>
+<td>How often to perform a refresh operation, which makes recent changes to the index visible to search.</td>
+</tr>
+</table>
+<h1>Elasticsearch - IngestNode</h1>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<td style="vertical-align:middle;">index.blocks.read_only</td>
+<td style="vertical-align:middle;">1 true/false</td>
+<td>Set to true to make the index and index metadata read only, false to allow writes and metadata changes.</td>
+</tr>
+</table>
+<p>Sometimes we need to transform a document before we index it. For instance, we want to remove a field from the document or rename a field and then index it. This is handled by Ingest node.</p>
+<p>Every node in the cluster has the ability to ingest but it can also be customized to be
+processed only by specific nodes.</p>
+<h2>Steps Involved</h2>
+<p>There are two steps involved in the working of the ingest node &minus;</p>
+<ul class="list">
+<li>Creating a pipeline</li>
+<li>Creating a doc</li>
+</ul>
+<h3>Create a Pipeline</h3>
+<p>First creating a pipeline which contains the processors and then executing the pipeline, as
+shown below &minus;</p>
+<pre class="prettyprint notranslate">
+PUT _ingest/pipeline/int-converter
+{
+   "description": "converts the content of the seq field to an integer",
+   "processors" : [
+      {
+         "convert" : {
+            "field" : "seq",
+            "type": "integer"
+         }
+      }
+   ]
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "acknowledged" : true
+}
+</pre>
+<h3>Create a Doc</h3>
+<p>Next we create a document using the pipeline converter.</p>
+<pre class="prettyprint notranslate">
+PUT /logs/_doc/1?pipeline=int-converter
+{
+   "seq":"21",
+   "name":"Tutorialspoint",
+   "Addrs":"Hyderabad"
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "logs",
+   "_type" : "_doc",
+   "_id" : "1",
+   "_version" : 1,
+   "result" : "created",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 0,
+   "_primary_term" : 1
+}
+</pre>
+<p>Next we search for the doc created above by using the GET command as shown below &minus;</p>
+<pre class="prettyprint notranslate">
+GET /logs/_doc/1
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "logs",
+   "_type" : "_doc",
+   "_id" : "1",
+   "_version" : 1,
+   "_seq_no" : 0,
+   "_primary_term" : 1,
+   "found" : true,
+   "_source" : {
+      "Addrs" : "Hyderabad",
+      "name" : "Tutorialspoint",
+      "seq" : 21
+   }
+}
+</pre>
+<p>You can see above that 21 has become an integer.</p>
+<h3>Without Pipeline</h3>
+<p>Now we create a document without using the pipeline.</p>
+<pre class="prettyprint notranslate">
+PUT /logs/_doc/2
+{
+   "seq":"11",
+   "name":"Tutorix",
+   "Addrs":"Secunderabad"
+}
+GET /logs/_doc/2
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "logs",
+   "_type" : "_doc",
+   "_id" : "2",
+   "_version" : 1,
+   "_seq_no" : 1,
+   "_primary_term" : 1,
+   "found" : true,
+   "_source" : {
+      "seq" : "11",
+      "name" : "Tutorix",
+      "Addrs" : "Secunderabad"
+   }
+}
+</pre>
+<p>You can see above that 11 is a string without the pipeline being used.</p>
+<h1>Elasticsearch - Managing Index Lifecycle</h1>
+<p>Managing the index lifecycle involves performing management actions based on factors like shard size and performance requirements. The index lifecycle management (ILM) APIs enable you to automate how you want to manage your indices over time.</p>
+<p>This chapter gives a list of ILM APIs and their usage.</p>
+<h2>Policy Management APIs</h2>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th>API Name</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Create lifecycle policy.</td>
+<td style="vertical-align:middle;">Creates a lifecycle policy. If the specified policy exists, the policy is replaced and the policy version is incremented.</td>
+<td style="vertical-align:middle;">PUT_ilm/policy/policy_id</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Get lifecycle policy.</td>
+<td style="vertical-align:middle;">Returns the specified policy definition. Includes the policy version and last modified date. If no policy is specified, returns all defined policies.</td>
+<td style="vertical-align:middle;">GET_ilm/policy/policy_id</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Delete lifecycle policy</td>
+<td style="vertical-align:middle;">Deletes the specified lifecycle policy definition. You cannot delete policies that are currently in use. If the policy is being used to manage any indices, the request fails and returns an error.</td>
+<td style="vertical-align:middle;">DELETE_ilm/policy/policy_id</td>
+</tr>
+</table>
+<h2>Index Management APIs</h2>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th>API Name</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Move to lifecycle step API.</td>
+<td style="vertical-align:middle;">Manually moves an index into the specified step and executes that step.</td>
+<td style="vertical-align:middle;">POST_ilm/move/index</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Retry policy.</td>
+<td style="vertical-align:middle;">Sets the policy back to the step where the error occurred and executes the step.</td>
+<td style="vertical-align:middle;">POST index/_ilm/retry</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Remove policy from index API edit.</td>
+<td style="vertical-align:middle;">Removes the assigned lifecycle policy and stops managing the specified index. If an index pattern is specified, removes the assigned policies from all matching indices.</td>
+<td style="vertical-align:middle;">POST index/_ilm/remove</td>
+</tr>
+</table>
+<h2>Operation Management APIs</h2>
+<table class="table table-bordered" style="text-align:center;">
+<tr>
+<th>API Name</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Get index lifecycle management status API.</td>
+<td style="vertical-align:middle;">Returns the status of the ILM plugin. The operation_mode field in the response shows one of three states: STARTED, STOPPING, or STOPPED.</td>
+<td style="vertical-align:middle;">GET /_ilm/status</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Start index lifecycle management API.</td>
+<td style="vertical-align:middle;">Starts the ILM plugin if it is currently stopped. ILM is started automatically when the cluster is formed.
+</td>
+<td style="vertical-align:middle;">POST /_ilm/start</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Stop index lifecycle management API.</td>
+<td style="vertical-align:middle;">Halts all lifecycle management operations and stops the ILM plugin. This is useful when you are performing maintenance on the cluster and need to prevent ILM from performing any actions on your indices.</td>
+<td style="vertical-align:middle;">POST /_ilm/stop</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;">Explain lifecycle API.</td>
+<td style="vertical-align:middle;">Retrieves information about the index’s current lifecycle state, such as the currently executing phase, action, and step. Shows when the index entered each one, the definition of the running phase, and information about any failures.</td>
+<td style="vertical-align:middle;">GET index/_ilm/explain</td>
+</tr>
+</table>
+<h1>Elasticsearch - SQL Access</h1>
+<p>It is a component that allows SQL-like queries to be executed in real-time against Elasticsearch. You can think of Elasticsearch SQL as a translator, one that understands both SQL and Elasticsearch and makes it easy to read and process data in real-time, at scale by leveraging Elasticsearch capabilities.</p>
+<h2>Advantages of Elasticsearch SQL</h2>
+<ul class="list">
+<li><p><b>It has native integration</b> &minus; Each and every query is efficiently executed against the relevant nodes according to the underlying storage.</p></li>
+<li><p><b>No external parts</b> &minus; No need for additional hardware, processes, runtimes or
+libraries to query Elasticsearch.</p></li>
+<li><p><b>Lightweight and efficient</b> &minus; it embraces and exposes SQL to allow proper full-text search, in real-time.</p></li>
+</ul>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+PUT /schoollist/_bulk?refresh
+   {"index":{"_id": "CBSE"}}
+   {"name": "GleanDale", "Address": "JR. Court Lane", "start_date": "2011-06-02",
+   "student_count": 561}
+   {"index":{"_id": "ICSE"}}
+   {"name": "Top-Notch", "Address": "Gachibowli Main Road", "start_date": "1989-
+   05-26", "student_count": 482}
+   {"index":{"_id": "State Board"}}
+   {"name": "Sunshine", "Address": "Main Street", "start_date": "1965-06-01",
+   "student_count": 604}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+{
+   "took" : 277,
+   "errors" : false,
+   "items" : [
+      {
+         "index" : {
+            "_index" : "schoollist",
+            "_type" : "_doc",
+            "_id" : "CBSE",
+            "_version" : 1,
+            "result" : "created",
+            "forced_refresh" : true,
+            "_shards" : {
+               "total" : 2,
+               "successful" : 1,
+               "failed" : 0
+            },
+            "_seq_no" : 0,
+            "_primary_term" : 1,
+            "status" : 201
+         }
+      },
+      {
+         "index" : {
+            "_index" : "schoollist",
+            "_type" : "_doc",
+            "_id" : "ICSE",
+            "_version" : 1,
+            "result" : "created",
+            "forced_refresh" : true,
+            "_shards" : {
+               "total" : 2,
+               "successful" : 1,
+               "failed" : 0
+            },
+            "_seq_no" : 1,
+            "_primary_term" : 1,
+            "status" : 201
+         }
+      },
+      {
+         "index" : {
+            "_index" : "schoollist",
+            "_type" : "_doc",
+            "_id" : "State Board",
+            "_version" : 1,
+            "result" : "created",
+            "forced_refresh" : true,
+            "_shards" : {
+               "total" : 2,
+               "successful" : 1,
+               "failed" : 0
+            },
+            "_seq_no" : 2,
+            "_primary_term" : 1,
+            "status" : 201
+         }
+      }
+   ]
+}
+</pre>
+<h2>SQL Query</h2>
+<p>The following example shows how we frame the SQL query &minus;</p>
+<pre class="result notranslate">
+POST /_sql?format=txt
+{
+   "query": "SELECT * FROM schoollist WHERE start_date < '2000-01-01'"
+}
+</pre>
+<p>On running the above code, we get the response as shown below &minus;</p>
+<pre class="result notranslate">
+Address             | name          | start_date             | student_count
+--------------------+---------------+------------------------+---------------
+Gachibowli Main Road|Top-Notch      |1989-05-26T00:00:00.000Z|482
+Main Street         |Sunshine       |1965-06-01T00:00:00.000Z|604
+</pre>
+<p><b>Note</b> &minus; By changing the SQL query above, you can get different result sets.</p>
+<h1>Elasticsearch - Monitoring</h1>
+<p>To monitor the health of the cluster, the monitoring feature collects metrics from each node and stores them in Elasticsearch Indices. All settings associated with monitoring in Elasticsearch must be set in either the elasticsearch.yml file for each node or, where possible, in the dynamic cluster settings.</p>
+<p>In order to start monitoring, we need to check the cluster settings, which can be done in the following way &minus;</p>
+<pre class="result notranslate">
+GET _cluster/settings
+{
+   "persistent" : { },
+   "transient" : { }
+}
+</pre>
+<p>Each component in the stack is responsible for monitoring itself and then forwarding those documents to the Elasticsearch production cluster for both routing and indexing (storage). The routing and indexing processes in Elasticsearch are handled by what are called collectors and exporters.</p>
+<h2>Collectors</h2>
+<p>Collector runs once per each collection interval to obtain data from the public APIs in Elasticsearch that it chooses to monitor. When the data collection is finished, the data is handed in bulk to the exporters to be sent to the monitoring cluster.</p>
+<p>There is only one collector per data type gathered. Each collector can create zero or more monitoring documents.</p>
+<h2>Exporters</h2>
+<p>Exporters take data collected from any Elastic Stack source and route it to the monitoring cluster. It is possible to configure more than one exporter, but the general and default setup is to use a single exporter. Exporters are configurable at both the node and cluster level.</p>
+<p>There are two types of exporters in Elasticsearch &minus;</p>
+<ul class="list">
+<li><p><b>local</b> &minus; This exporter routes data back into the same cluster</p></li>
+<li><p><b>http</b> &minus; The preferred exporter, which you can use to route data into any supported Elasticsearch cluster accessible via HTTP.</p></li>
+</ul>
+<p>Before exporters can route monitoring data, they must set up certain Elasticsearch resources. These resources include templates and ingest pipelines</p>
+<h1>Elasticsearch - Rollup Data</h1>
+<p>A rollup job is a periodic task that summarizes data from indices specified by an index pattern and rolls it into a new index. In the following example, we create an index named sensor with different date time stamps. Then we create a rollup job to rollup the data from these indices periodically using cron job.</p>
+<pre class="prettyprint notranslate">
+PUT /sensor/_doc/1
+{
+   "timestamp": 1516729294000,
+   "temperature": 200,
+   "voltage": 5.2,
+   "node": "a"
+}
+</pre>
+<p>On running the above code, we get the following result &minus;</p>
+<pre class="result notranslate">
+{
+   "_index" : "sensor",
+   "_type" : "_doc",
+   "_id" : "1",
+   "_version" : 1,
+   "result" : "created",
+   "_shards" : {
+      "total" : 2,
+      "successful" : 1,
+      "failed" : 0
+   },
+   "_seq_no" : 0,
+   "_primary_term" : 1
+}
+</pre>
+<p>Now, add a second document and so on for other documents as well.</p>
+<pre class="prettyprint notranslate">
+PUT /sensor-2018-01-01/_doc/2
+{
+   "timestamp": 1413729294000,
+   "temperature": 201,
+   "voltage": 5.9,
+   "node": "a"
+}
+</pre>
+<h2>Create a Rollup Job</h2>
+<pre class="result notranslate">
+PUT _rollup/job/sensor
+{
+   "index_pattern": "sensor-*",
+   "rollup_index": "sensor_rollup",
+   "cron": "*/30 * * * * ?",
+   "page_size" :1000,
+   "groups" : {
+      "date_histogram": {
+         "field": "timestamp",
+         "interval": "60m"
+      },
+      "terms": {
+         "fields": ["node"]
+      }
+   },
+   "metrics": [
+      {
+         "field": "temperature",
+         "metrics": ["min", "max", "sum"]
+      },
+      {
+         "field": "voltage",
+         "metrics": ["avg"]
+      }
+   ]
+}
+</pre>
+<p>The cron parameter controls when and how often the job activates. When a rollup job’s cron schedule triggers, it will begin rolling up from where it left off after the last activation</p>
+<p>After the job has run and processed some data, we can use the DSL Query to do some searching.</p>
+<pre class="result notranslate">
+GET /sensor_rollup/_rollup_search
+{
+   "size": 0,
+   "aggregations": {
+      "max_temperature": {
+         "max": {
+            "field": "temperature"
+         }
+      }
+   }
+}
+</pre>
+<h1>Elasticsearch - Frozen Indices</h1>
+<p>The indices that are searched frequently are held in memory because it takes time to rebuild them and help in an efficient search. On the other hand, there may be indices which we rarely access. Those indices need not occupy the memory and can be re-build when they are needed. Such indices are known as frozen indices.</p>
+<p>Elasticsearch builds the transient data structures of each shard of a frozen index each time
+that shard is searched and discards these data structures as soon as the search is complete. Because Elasticsearch does not maintain these transient data structures in memory, frozen indices consume much less heap than the normal indices. This allows for a much higher disk-to-heap ratio than would otherwise be possible.</p>
+<h2>Example for Freezing and Unfreezing</h2>
+<p>The following example freezes and unfreezes an index &minus;</p>
+<pre class="result notranslate">
+POST /index_name/_freeze
+POST /index_name/_unfreeze
+</pre>
+<p>Searches on frozen indices are expected to execute slowly. Frozen indices are not intended
+for high search load. It is possible that a search of a frozen index may take seconds or minutes to complete, even if the same searches completed in milliseconds when the indices were not frozen.</p>
+<h2>Searching a Frozen Index</h2>
+<p>The number of concurrently loaded frozen indices per node is limited by the number of threads in the search_throttled threadpool, which is 1 by default. To include frozen indices,
+a search request must be executed with the query parameter &minus; <i>ignore_throttled=false.</i></p>
+<pre class="result notranslate">
+GET /index_name/_search?q=user:tpoint&ignore_throttled=false
+</pre>
+<h2>Monitoring Frozen Indices</h2>
+<p>Frozen indices are ordinary indices that use search throttling and a memory efficient shard
+implementation.</p>
+<pre class="result notranslate">
+GET /_cat/indices/index_name?v&h=i,sth
+</pre>
+<h1>Elasticsearch - Testing</h1>
+<p>Elasticsearch provides a jar file, which can be added to any java IDE and can be used to test the code which is related to Elasticsearch. A range of tests can be performed by using the framework provided by Elasticsearch. In this chapter, we will discuss these tests in detail &minus;</p>
+<ul class="list">
+<li>Unit testing</li>
+<li>Integration testing</li>
+<li>Randomized testing</li>
+</ul>
+<h2>Prerequisites</h2>
+<p>To start with testing, you need to add the Elasticsearch testing dependency to your program. You can use maven for this purpose and can add the following in pom.xml.</p>
+<pre class="prettyprint notranslate">
+&lt;dependency&gt;
+   &lt;groupId&gt;org.elasticsearch&lt;/groupId&gt;
+   &lt;artifactId&gt;elasticsearch&lt;/artifactId&gt;
+   &lt;version&gt;2.1.0&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+<p>EsSetup has been initialized to start and stop Elasticsearch node and also to create indices.</p>
+<pre class="result notranslate">
+EsSetup esSetup = new EsSetup();
+</pre>
+<p>esSetup.execute() function with createIndex will create the indices, you need to specify the settings, type and data.</p>
+<h2>Unit Testing</h2>
+<p>Unit test is carried out by using JUnit and Elasticsearch test framework. Node and indices can be created using Elasticsearch classes and in test method can be used to perform the testing. ESTestCase and ESTokenStreamTestCase classes are used for this testing.</p>
+<h2>Integration Testing</h2>
+<p>Integration testing uses multiple nodes in a cluster. ESIntegTestCase class is used for this testing. There are various methods which make the job of preparing a test case easier.</p>
+<table class="table table-bordered" >
+<tbody>
+<tr>
+<th>S.No</th>
+<th>Method & Description</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">1</td>
+<td>
+<p><b>refresh()</b></p>
+<p>All the indices in a cluster are refreshed</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">2</td>
+<td>
+<p><b>ensureGreen()</b></p>
+<p>Ensures a green health cluster state</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">3</td>
+<td>
+<p><b>ensureYellow()</b></p>
+<p>Ensures a yellow health cluster state</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">4</td>
+<td>
+<p><b>createIndex(name)</b></p>
+<p>Create index with the name passed to this method</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">5</td>
+<td>
+<p><b>flush()</b></p>
+<p>All indices in cluster are flushed</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">6</td>
+<td>
+<p><b>flushAndRefresh()</b></p>
+<p>flush() and refresh()</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">7</td>
+<td>
+<p><b>indexExists(name)</b></p>
+<p>Verifies the existence of specified index</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">8</td>
+<td>
+<p><b>clusterService()</b></p>
+<p>Returns the cluster service java class</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">9</td>
+<td>
+<p><b>cluster()</b></p>
+<p>Returns the test cluster class</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Test Cluster Methods</h2>
+<table class="table table-bordered" >
+<tbody>
+<tr>
+<th>S.No</th>
+<th>Method & Description</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">1</td>
+<td>
+<p><b>ensureAtLeastNumNodes(n)</b></p>
+<p>Ensures minimum number of nodes up in a cluster is more than or equal to specified number.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">2</td>
+<td>
+<p><b>ensureAtMostNumNodes(n)</b></p>
+<p>Ensures maximum number of nodes up in a cluster is less than or equal to specified number.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">3</td>
+<td>
+<p><b>stopRandomNode()</b></p>
+<p>To stop a random node in a cluster</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">4</td>
+<td>
+<p><b>stopCurrentMasterNode()</b></p>
+<p>To stop the master node</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">5</td>
+<td>
+<p><b>stopRandomNonMaster()</b></p>
+<p>To stop a random node in a cluster, which is not a master node.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">6</td>
+<td>
+<p><b>buildNode()</b></p>
+<p>Create a new node</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">7</td>
+<td>
+<p><b>startNode(settings)</b></p>
+<p>Start a new node</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">8</td>
+<td>
+<p><b>nodeSettings()</b></p>
+<p>Override this method for changing node settings.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Accessing Clients</h2>
+<p>A client is used to access different nodes in a cluster and carry out some action. ESIntegTestCase.client() method is used for getting a random client. Elasticsearch offers other methods also to access client and those methods can be accessed using ESIntegTestCase.internalCluster() method.</p>
+<table class="table table-bordered" >
+<tbody>
+<tr>
+<th>S.No</th>
+<th>Method & Description</th>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">1</td>
+<td>
+<p><b>iterator()</b></p>
+<p>This helps you to access all the available clients.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">2</td>
+<td>
+<p><b>masterClient()</b></p>
+<p>This returns a client, which is communicating with master node.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">3</td>
+<td>
+<p><b>nonMasterClient()</b></p>
+<p>This returns a client, which is not communicating with master node.</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:middle;text-align:center;">4</td>
+<td>
+<p><b>clientNodeClient()</b></p>
+<p>This returns a client currently up on client node.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Randomized Testing</h2>
+<p>This testing is used to test the user’s code with every possible data, so that there will be no failure in future with any type of data. Random data is the best option to carry out this testing.</p>
+<h3>Generating Random Data</h3>
+<p>In this testing, the Random class is instantiated by the instance provided by RandomizedTest and offers many methods for getting different types of data.</p>
+<table class="table table-bordered" style="text-align:center;" >
+<tr>
+<th>Method</th>
+<th>Return value</th>
+</tr>
+<tr>
+<td>getRandom()</td>
+<td>Instance of random class</td>
+</tr>
+<tr>
+<td>randomBoolean()</td>
+<td>Random boolean</td>
+</tr>
+<tr>
+<td>randomByte()</td>
+<td>Random byte</td>
+</tr>
+<tr>
+<td>randomShort()</td>
+<td>Random short</td>
+</tr>
+<tr>
+<td>randomInt()</td>
+<td>Random integer</td>
+</tr>
+<tr>
+<td>randomLong()</td>
+<td>Random long</td>
+</tr>
+<tr>
+<td>randomFloat()</td>
+<td>Random float</td>
+</tr>
+<tr>
+<td>randomDouble()</td>
+<td>Random double</td>
+</tr>
+<tr>
+<td>randomLocale()</td>
+<td>Random locale</td>
+</tr><tr>
+<td>randomTimeZone()</td>
+<td>Random time zone</td>
+</tr><tr>
+<td>randomFrom()</td>
+<td>Random element from array</td>
+</tr>
+</table>
+<h2>Assertions</h2>
+<p>ElasticsearchAssertions and ElasticsearchGeoAssertions classes contain assertions, which are used for performing some common checks at the time of testing. For example, observe the code given here &minus;</p>
+<pre class="result notranslate">
+SearchResponse seearchResponse = client().prepareSearch();
+assertHitCount(searchResponse, 6);
+assertFirstHit(searchResponse, hasId("6"));
+assertSearchHits(searchResponse, "1", "2", "3", "4",”5”,”6”);
+</pre>
+<h1>Elasticsearch - Kibana Dashboard</h1>
+<p>A Kibana dashboard is a collection of visualizations and searches. You can arrange, resize,
+and edit the dashboard content and then save the dashboard so you can share it. In this chapter, we will see how to create and edit a dashboard.</p>
+<h2>Dashboard Creation</h2>
+<p>From the Kibana Homepage, select the dashboard option from the left control bars as shown below. This will prompt you to create a new dashboard.</p>
+<img class="center" src="/elasticsearch/images/dashboard_creation.jpg" alt="Dashboard Creation" />
+<p>To Add visualizations to the dashboard, we choose the menu Add and the select from the pre-built visualizations available. We chose the following visualization options from the list.</p>
+<img class="center" src="/elasticsearch/images/add_new_visualization.jpg" alt="Add New Visualization" />
+<p>On selecting the above visualizations, we get the dashboard as shown here. We can later add and edit the dashboard for changing the elements and adding the new elements.</p>
+<img class="center" src="/elasticsearch/images/edit_sales_dashboard.jpg" alt="Edit Sales Dashboard" />
+<h2>Inspecting Elements</h2>
+<p>We can inspect the Dashboard elements by choosing the visualizations panel menu and selecting <b>Inspect</b>. This will bring out the data behind the element which also can be downloaded.</p>
+<img class="center" src="/elasticsearch/images/inspecting_elements.jpg" alt="Inspecting Elements" />
+<h2>Sharing Dashboard</h2>
+<p>We can share the dashboard by choosing the share menu and selecting the option to get
+a hyperlink as shown below &minus;</p>
+<img class="center" src="/elasticsearch/images/sharing_dashboard.jpg" alt="Sharing Dashboard" />
+<h1>Elasticsearch - Filtering by Field</h1>
+<p>The discover functionality available in Kibana home page allows us to explore the data sets
+from various angles. You can search and filter data for the selected index patterns. The data is usually available in form of distribution of values over a period of time.</p>
+<p>To explore the ecommerce data sample, we click on the <b>Discover</b> icon as shown in the
+picture below. This will bring up the data along with the chart.</p>
+<img class="center" src="/elasticsearch/images/discover.jpg" alt="Discover" />
+<h2>Filtering by Time</h2>
+<p>To filter out data by specific time interval we use the time filter option as shown below. By
+default, the filter is set at 15 minutes.</p>
+<img class="center" src="/elasticsearch/images/filtering_by_time.jpg" alt="Filtering by Time" />
+<h2>Filtering by Fields</h2>
+<p>The data set can also be filtered by fields using the <b>Add Filter</b> option as shown below. Here we add one or more fields and get the corresponding result after the filters are applied. In our example we choose the field <b>day_of_week</b> and then the operator for that field as <b>is</b> and value as <b>Sunday</b>.</p>
+<img class="center" src="/elasticsearch/images/filtering_by_fields.jpg" alt="Filtering by Fields" />
+<p>Next, we click Save with above filter conditions. The result set containing the filter
+conditions applied is shown below.</p>
+<img class="center" src="/elasticsearch/images/edit_filter_conditions.jpg" alt="Edit Filter Conditions" />
+<h1>Elasticsearch - Data Tables</h1>
+<p>The data table is type of visualization that is used to display the raw data of a composed
+aggregation. There are various types of aggregations that are presented by using Data tables. In order to create a Data Table, we should go through the steps that are discussed here in detail.</p>
+<h2>Visualize</h2>
+<p>In Kibana Home screen we find the option name Visualize which allows us to create visualization and aggregations from the indices stored in Elasticsearch. The following image shows the option.</p>
+<img class="center" src="/elasticsearch/images/visualize_home_page.jpg" alt="Visualize Home Page" />
+<h2>Select Data Table</h2>
+<p>Next, we select the Data Table option from among the various visualization options available. The option is shown in the following image &miuns;</p>
+<img class="center" src="/elasticsearch/images/new_visualize.jpg" alt="New Visualize" />
+<h2>Select Metrics</h2>
+<p>We then select the metrics needed for creating the data table visualization. This choice
+decides the type of aggregation we are going to use. We select the specific fields shown below from the ecommerce data set for this.</p>
+<img class="center" src="/elasticsearch/images/kibana_sample_data_ecommerce.jpg" alt="Kibana Sample Data Ecommerce" />
+<p>On running the above configuration for Data Table, we get the result as shown in the
+image here &minus;</p>
+<img class="center" src="/elasticsearch/images/result_of_kibana_sample_data.jpg" alt="Result of Kibana Sample Data" />
+<h1>Elasticsearch - Region Maps</h1>
+<p>Region Maps show metrics on a geographic Map. It is useful in looking at the data anchored to different geographic regions with varying intensity. The darker shades usually indicate higher values and the lighter shades indicate lower values.</p>
+<p>The steps to create this visualization are as explained in detail as follows &minus;</p>
+<h2>Visualize</h2>
+<p>In this step we go to the visualize button available in the left bar of the Kibana Home
+screen and then choosing the option to add a new Visualization.</p>
+<p>The following screen shows how we choose the region Map option.</p>
+<img class="center" src="/elasticsearch/images/region_maps_visualize.jpg" alt="Region Maps Visualize" />
+<h2>Choose the Metrics</h2>
+<p>The next screen prompts us for choosing the metrics which will be used in creating the Region Map. Here we choose the Average price as the metric and country_iso_code as the field in the bucket which will be used in creating the visualization.</p>
+<img class="center" src="/elasticsearch/images/choose_the_metrics.jpg" alt="Choose the Metrics" />
+<p>The final result below shows the Region Map once we apply the selection. Please note the
+shades of the colour and their values mentioned in the label.</p>
+<img class="center" src="/elasticsearch/images/region_maps.jpg" alt="Region Maps" />
+<h1>Elasticsearch - Pie Charts</h1>
+<p>Pie charts are one of the simplest and famous visualization tools. It represents the data as slices of a circle each coloured differently. The labels along with the percentage data values can be presented along with the circle. The circle can also take the shape of a donut.</p>
+<h2>Visualize</h2>
+<p>In Kibana Home screen, we find the option name Visualize which allows us to create visualization and aggregations from the indices stored in Elasticsearch. We choose to add a new visualization and select pie chart as the option shown below.</p>
+<img class="center" src="/elasticsearch/images/pie_charts_visualize.jpg" alt="Pie Charts Visualize" />
+<h2>Choose the Metrics</h2>
+<p>The next screen prompts us for choosing the metrics which will be used in creating the Pie Chart. Here we choose the count of base unit price as the metric and Bucket Aggregation as histogram. Also, the minimum interval is chosen as 20. So, the prices will be displayed as blocks of values with 20 as a range.</p>
+<img class="center" src="/elasticsearch/images/pie_charts_metrics.jpg" alt="Pie Charts Metrics" />
+<p>The result below shows the pie chart after we apply the selection. Please note the shades of the colour and their values mentioned in the label.</p>
+<img class="center" src="/elasticsearch/images/pie_charts.jpg" alt="Pie Charts" />
+<h2>Pie Chart Options</h2>
+<p>On moving to the options tab under pie chart we can see various configuration options to change the look as well as the arrangement of data display in the pie chart. In the following example, the pie chart appears as donut and the labels appear at the top.</p>
+<img class="center" src="/elasticsearch/images/pie_charts_options.jpg" alt="Pie Charts Options" />
+<h1>Elasticsearch - Area and Bar Charts</h1>
+<p>An area chart is an extension of line chart where the area between the line chart and the axes is highlighted with some colours. A bar chart represents data organized into a range of values and then plotted against the axes. It can consist of either horizontal bars or vertical bars.</p>
+<p>In this chapter we will see all these three types of graphs that is created using Kibana. As
+discussed in earlier chapters we will continue to use the data in the ecommerce index.</p>
+<h2>Area Chart</h2>
+<p>In Kibana Home screen, we find the option name Visualize which allows us to create
+visualization and aggregations from the indices stored in Elasticsearch. We choose to add a new visualization and select Area Chart as the option shown in the image given below.</p>
+<img class="center" src="/elasticsearch/images/area_charts_visualize.jpg" alt="Area Chart Visualize" />
+<h2>Choose the Metrics</h2>
+<p>The next screen prompts us for choosing the metrics which will be used in creating the Area Chart. Here we choose the sum as the type of aggregation metric. Then we choose total_quantity field as the field to be used as metric. On the X-axis, we chose the order_date field and split the series with the given metric in a size of 5.</p>
+<img class="center" src="/elasticsearch/images/area_charts_metrics.jpg" alt="Area Chart Metrics" />
+<p>On running the above configuration, we get the following area chart as the output &minus;</p>
+<img class="center" src="/elasticsearch/images/area_charts_output.jpg" alt="Area Chart Output" />
+<h2>Horizontal Bar Chart</h2>
+<p>Similarly, for the Horizontal bar chart we choose new visualization from Kibana Home screen and choose the option for Horizontal Bar. Then we choose the metrics as shown in the image below. Here we choose Sum as the aggregation for the filed named product quantity. Then we choose buckets with date histogram for the field order date.</p>
+<img class="center" src="/elasticsearch/images/horizontal_bar_chart.jpg" alt="Horizontal Bar Chart" />
+<p>On running the above configuration, we can see a horizontal bar chart as shown below &minus;</p>
+<img class="center" src="/elasticsearch/images/configuration_horizontal_bar_chart.jpg" alt="Configuration of Horizontal Bar Chart" />
+<h2>Vertical Bar Chart</h2>
+<p>For the vertical bar chart, we choose new visualization from Kibana Home screen and choose the option for Vertical Bar. Then we choose the metrics as shown in the image below.</p>
+<p>Here we choose Sum as the aggregation for the field named product quantity. Then we choose buckets with date histogram for the field order date with a weekly interval.</p>
+<img class="center" src="/elasticsearch/images/vertical_bar_chart.jpg" alt="Vertical Bar Chart" />
+<p>On running the above configuration, a chart will be generated as shown below &minus;</p>
+<img class="center" src="/elasticsearch/images/configuration_of_vertical_bar.jpg" alt="Configuration of Vertical Bar Chart" />
+<h1>Elasticsearch - Time Series</h1>
+<p>Time series is a representation of sequence of data in a specific time sequence. For example, the data for each day starting from first day of the month to the last day. The interval between the data points remains constant. Any data set which has a time component in it can be represented as a time series.</p>
+<p>In this chapter, we will use the sample e-commerce data set and plot the count of the number of orders for each day to create a time series.</p>
+<img class="center" src="/elasticsearch/images/time_series_visualize.jpg" alt="Time Series Visualize" />
+<h2>Choose Metrics</h2>
+<p>First, we choose the index pattern, data field and interval which will be used for creating
+the time series. From the sample ecommerce data set we choose order_date as the field and 1d as the interval. We use the <b>Panel Options</b> tab to make these choices. Also we leave the other values in this tab as default to get a default colour and format for the time series.</p>
+<img class="center" src="/elasticsearch/images/panel_options.jpg" alt="Panel Options" />
+<p>In the <b>Data</b> tab, we choose count as the aggregation option, group by option as everything and put a label for the time series chart.</p>
+<img class="center" src="/elasticsearch/images/data_tab.jpg" alt="Data Tab" />
+<h2>Result</h2>
+<p>The final result of this configuration appears as follows. Please note that we are using a
+time period of <b>Month to Date</b> for this graph. Different time periods will give different results.</p>
+<img class="center" src="/elasticsearch/images/result_time_series.jpg" alt="Result Time Series" />
+<h1>Elasticsearch - Tag Clouds</h1>
+<p>A tag cloud represents text which are mostly keywords and metadata in a visually appealing form. They are aligned in different angles and represented in different colours and font sizes. It helps in finding out the most prominent terms in the data. The prominence can be decided by one or more factors like frequency of the term, uniquness of the tag or based on some weightage attached to specific terms etc. Below we see the steps to create a Tag Cloud.</p>
+<h2>Visualize</h2>
+<p>In Kibana Home screen, we find the option name Visualize which allows us to create
+visualization and aggregations from the indices stored in Elasticsearch. We choose to add a new visualization and select Tag Cloud as the option shown below &minus;</p>
+<img class="center" src="/elasticsearch/images/tag_cloud_visualize.jpg" alt="Tag Cloud Visualize" />
+<h2>Choose the Metrics</h2>
+<p>The next screen prompts us for choosing the metrics which will be used in creating the Tag Cloud. Here we choose the count as the type of aggregation metric. Then we choose productname field as the keyword to be used as tags.</p>
+<img class="center" src="/elasticsearch/images/tag_cloud_metrics.jpg" alt="Tag Cloud Metrics" />
+<p>The result shown here shows the pie chart after we apply the selection. Please note the
+shades of the colour and their values mentioned in the label.</p>
+<img class="center" src="/elasticsearch/images/tag_cloud_result.jpg" alt="Tag Cloud Result" />
+<h2>Tag Cloud Options</h2>
+<p>On moving to the <b>options</b> tab under Tag Cloud we can see various configuration options to change the look as well as the arrangement of data display in the Tag Cloud. In the below example the Tag Cloud appears with tags spread across both horizontal and vertical directions.</p>
+<img class="center" src="/elasticsearch/images/tag_cloud_options.jpg" alt="Tag Cloud Options" />
+<h1>Elasticsearch - Heat Maps</h1>
+<p>Heat map is a type of visualization in which different shades of colour represent different
+areas in the graph. The values may be continuously varying and hence the colour r shades of a colour vary along with the values. They are very useful to represent both the continuously varying data as well as discrete data.</p>
+<p>In this chapter we will use the data set named sample_data_flights to build a heatmap chart. In it we consider the variables named origin country and destination country of flights and take a count.</p>
+<p>In Kibana Home screen, we find the option name Visualize which allows us to create
+visualization and aggregations from the indices stored in Elasticsearch. We choose to add a new visualization and select Heat Map as the option shown below &mimus;</p>
+<img class="center" src="/elasticsearch/images/heat_map_visualize.jpg" alt="Heat Map Visualize" />
+<h2>Choose the Metrics</h2>
+<p>The next screen prompts us for choosing the metrics which will be used in creating the Heat Map Chart. Here we choose the count as the type of aggregation metric. Then for the buckets in Y-Axis, we choose Terms as the aggregation for the field OriginCountry. For the X-Axis, we choose the same aggregation but DestCountry as the field to be used. In both the cases, we choose the size of the bucket as 5.</p>
+<img class="center" src="/elasticsearch/images/heat_map_metrics.jpg" alt="Heat Map Metrics" />
+<p>On running the above shown configuration, we get the heat map chart generated as follows. </p>
+<img class="center" src="/elasticsearch/images/heat_map_configuration.jpg" alt="Heat Map Configuration" />
+<p><b>Note</b> &minus; You have to allow the date range as This Year so that the graph gathers data for a year to produce an effective heat map chart.</p>
+<h1>Elasticsearch - Canvas</h1>
+<p>Canvas application is a part of Kibana which allows us to create dynamic, multi-page and
+pixel perfect data displays. Its ability to create infographics and not just charts and metrices is what makes it unique and appealing. In this chapter we will see various features of canvas and how to use the canvas work pads.</p>
+<h2>Opening a Canvas</h2>
+<p>Go to the Kibana homepage and select the option as shown in the below diagram. It opens up the list of canvas work pads you have. We choose the ecommerce Revenue tracking for our study.</p>
+<img class="center" src="/elasticsearch/images/opening_a_Canvas.jpg" alt="Opening a Canvas" />
+<h2>Cloning A Workpad</h2>
+<p>We clone the <b>[eCommerce] Revenue Tracking</b> workpad to be used in our study. To clone it, we highlight the row with the name of this workpad and then use the clone button as shown in the diagram below &minus;</p>
+<img class="center" src="/elasticsearch/images/cloning_a_workpad.jpg" alt="Cloning A Workpad" />
+<p>As a result of the above clone, we will get a new work pad named as <b>[eCommerce]
+Revenue Tracking – Copy</b> which on opening will show the below infographics.</p>
+<p>It describes the total sales and Revenue by category along with nice pictures and charts.</p>
+<img class="center" src="/elasticsearch/images/total_sales_and_revenue.jpg" alt="Total Sales And Revenue" />
+<h2>Modifying the Workpad</h2>
+<p>We can change the style and figures in the workpad by using the options available in the
+right hand side tab. Here we aim to change the background colour of the workpad by choosing a different colour as shown in the diagram below. The colour selection comes into effect immediately and we get the result as shown below &minus;</p>
+<img class="center" src="/elasticsearch/images/modifying_the_workpad.jpg" alt="Modifying The Workpad" />
+<h1>Elasticsearch - Logs UI</h1>
+<p>Kibana can also help in visualizing log data from various sources. Logs are important sources of analysis for infrastructure health, performance needs and security breach analysis etc. Kibana can connect to various logs like web server logs, elasticsearch logs and cloudwatch logs etc.</p>
+<h2>Logstash Logs</h2>
+<p>In Kibana, we can connect to logstash logs for visualization. First we choose the Logs
+button from the Kibana home screen as shown below &minus;</p>
+<img class="center" src="/elasticsearch/images/logstash_logs.jpg" alt="Logstash Logs" />
+<p>Then we choose the option Change Source Configuration which brings us the option to choose Logstash as a source. The below screen also shows other types of options we have as a log source.</p>
+<img class="center" src="/elasticsearch/images/change_source_configuration.jpg" alt="Change Source Configuration" />
+<p>You can stream data for live log tailing or pause streaming to focus on historical log data.
+When you are streaming logs, the most recent log appears at the bottom on the console.</p>
+<p>For further reference, you can refer to our <a href="/logstash/index.htm">Logstash</a> tutorial.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/elasticsearch/elasticsearch_logs_ui.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/elasticsearch/elasticsearch_useful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>
