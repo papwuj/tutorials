@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Behavioural Modelling & Timing in Verilog - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Behavioural Modelling & Timing in Verilog - Behavioral models in Verilog contain procedural statements, which control the simulation and manipulate variables of the data types. These all statements are co"/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/vlsi_design/behavioural_modelling_timing_control_in_verilog.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#355c63;
+}
+a.demo {
+    background:#355c63;
+}
+li.heading {
+    background:#355c63;
+}
+.course-box{background:#355c63}
+.home-intro-sub p{color:#355c63}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/vlsi_design/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/vlsi_design/images/vlsi-design-mini-logo.jpg" alt="VLSI Design Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">VLSI Design Tutorial</li>
+<li><a href="/vlsi_design/index.htm">VLSI Design - Home</a></li>
+<li><a href="/vlsi_design/vlsi_design_digital_system.htm">VLSI Design - Digital System</a></li>
+<li><a href="/vlsi_design/vlsi_design_fpga_technology.htm">VLSI Design - FPGA Technology</a></li>
+<li><a href="/vlsi_design/vlsi_design_mos_transistor.htm">VLSI Design - MOS Transistor</a></li>
+<li><a href="/vlsi_design/vlsi_design_mos_inverter.htm">VLSI Design - MOS Inverter</a></li>
+<li><a href="/vlsi_design/vlsi_design_combinational_mos_logic_circuits.htm">Combinational MOS Logic Circuits</a></li>
+<li><a href="/vlsi_design/vlsi_design_sequential_mos_logic_circuits.htm">Sequential MOS Logic Circuits</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">VHDL Programming</li>
+<li><a href="/vlsi_design/vlsi_design_vhdl_introduction.htm">VHDL - Introduction</a></li>
+<li><a href="/vlsi_design/vhdl_programming_for_combinational_circuits.htm">VHDL - Combinational Circuits</a></li>
+<li><a href="/vlsi_design/vhdl_programming_for_sequential_circuits.htm">VHDL - Sequential Circuits</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Verilog</li>
+<li><a href="/vlsi_design/vlsi_design_verilog_introduction.htm">Verilog - Introduction</a></li>
+<li><a href="/vlsi_design/behavioural_modelling_timing_control_in_verilog.htm">Behavioural Modelling &amp; Timing</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">VLSI Design Useful Resources</li>
+<li><a href="/vlsi_design/vlsi_design_quick_guide.htm">VLSI Design - Quick Guide</a></li>
+<li><a href="/vlsi_design/vlsi_design_useful_resources.htm">VLSI Design - Useful Resources</a></li>
+<li><a href="/vlsi_design/vlsi_design_discussion.htm">VLSI Design - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Behavioural Modelling &amp; Timing in Verilog</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/vlsi_design/vlsi_design_verilog_introduction.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/vlsi_design/vlsi_design_quick_guide.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Behavioral models in Verilog contain procedural statements, which control the simulation and manipulate variables of the data types. These all statements are contained within the procedures. Each of the procedure has an activity flow associated with it.</p>
+<p>During simulation of behavioral model, all the flows defined by the ‘always’ and ‘initial’ statements start together at simulation time ‘zero’. The initial statements are executed once, and the always statements are executed repetitively. In this model, the register variables a and b are initialized to binary 1 and 0 respectively at simulation time ‘zero’. The initial statement is then completed and is not executed again during that simulation run. This initial statement is containing a begin-end block (also called a sequential block) of statements. In this begin-end type block, a is initialized first followed by b.</p>
+<h3>Example of Behavioral Modeling</h3>
+<pre class="prettyprint notranslate">
+module behave; 
+reg [1:0]a,b; 
+
+initial 
+begin 
+   a = ’b1; 
+   b = ’b0; 
+end 
+
+always 
+begin 
+   #50 a = ~a; 
+end 
+
+always 
+begin 
+   #100 b = ~b; 
+end 
+End module 
+</pre>
+<h2>Procedural Assignments</h2>
+<p>Procedural assignments are for updating reg, integer, time, and memory variables. There is a significant difference between procedural assignment and continuous assignment as described below &minus;</p>
+<p>Continuous assignments drive net variables and are evaluated and updated whenever an input operand changes value.</p>
+<p>Procedural assignments update the value of register variables under the control of the procedural flow constructs that surround them.</p>
+<p>The right-hand side of a procedural assignment can be any expression that evaluates to a value. However, part-selects on the right-hand side must have constant indices. The lefthand side indicates the variable that receives the assignment from the right-hand side. The left-hand side of a procedural assignment can take one of the following forms &minus;</p>
+<ul class="list">
+<li><p>register, integer, real, or time variable &minus; An assignment to the name reference of one of these data types.</p></li>
+<li><p>bit-select of a register, integer, real, or time variable &minus; An assignment to a single bit that leaves the other bits untouched.</p></li>
+<li><p>part-select of a register, integer, real, or time variable &minus; A part-select of two or more contiguous bits that leaves the rest of the bits untouched. For the part-select form, only constant expressions are legal.</p></li>
+<li><p>memory element &minus; A single word of a memory. Note that bit-selects and part-selects are illegal on memory element references.</p></li>
+<li><p>concatenation of any of the above &minus; A concatenation of any of the previous four forms can be specified, which effectively partitions the result of the right-hand side expression and assigns the partition parts, in order, to the various parts of the concatenation.</p></li>
+</ul>
+<h2>Delay in Assignment (not for synthesis)</h2>
+<p>In a delayed assignment Δt time units pass before the statement is executed and the lefthand assignment is made. With intra-assignment delay, the right side is evaluated immediately but there is a delay of Δt before the result is place in the left hand assignment. If another procedure changes a right-hand side signal during Δt, it does not effect the output. Delays are not supported by synthesis tools.</p>
+<h3>Syntax</h3>
+<ul class="list">
+<li><p><b>Procedural Assignment</b><span style="padding:10%">variable = expression</span></p></li>
+<li><p><b>Delayed assignment</b><span style="padding:14%">#Δt variable = expression; </span></p></li>
+<li><p><b>Intra-assignment delay</b><span style="padding:9%">variable = #Δt expression;</span></p></li>
+</ul>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+reg [6:0] sum; reg h, ziltch; 
+sum[7] = b[7] ^ c[7]; // execute now. 
+ziltch = #15 ckz&amp;h; /* ckz&amp;a evaluated now; ziltch changed 
+after 15 time units. */ 
+
+#10 hat = b&amp;c; /* 10 units after ziltch changes, b&amp;c is
+evaluated and hat changes. */ 
+</pre>
+<h2>Blocking Assignments</h2>
+<p>A blocking procedural assignment statement must be executed before the execution of the statements that follow it in a sequential block. A blocking procedural assignment statement does not prevent the execution of statements that follow it in a parallel block.</p>
+<h3>Syntax</h3>
+<p>The syntax for a blocking procedural assignment is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;lvalue&gt; = &lt;timing_control&gt; &lt;expression&gt;
+</pre>
+<p>Where, lvalue is a data type that is valid for a procedural assignment statement, = is the assignment operator, and timing control is the optional intra - assignment delay. The timing control delay can be either a delay control (for example, #6) or an event control (for example, &#64;(posedge clk)). The expression is the right-hand side value the simulator assigns to the left-hand side. The = assignment operator used by blocking procedural assignments is also used by procedural continuous assignments and continuous assignments.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+rega = 0; 
+rega[3] = 1;            // a bit-select 
+rega[3:5] = 7;          // a part-select 
+mema[address] = 8’hff;  // assignment to a memory element 
+{carry, acc} = rega &plus; regb;  // a concatenation 
+</pre>
+<h2>Nonblocking (RTL) Assignments</h2>
+<p>The non-blocking procedural assignment allows you to schedule assignments without blocking the procedural flow. You can use the non-blocking procedural statement whenever you want to make several register assignments within the same time step without regard to order or dependance upon each other.</p>
+<h3>Syntax</h3>
+<p>The syntax for a non-blocking procedural assignment is as follows &minus;</p>
+<pre class="result notranslate">
+&lt;lvalue&gt; &lt;= &lt;timing_control&gt; &lt;expression&gt;
+</pre>
+<p>Where lvalue is a data type that is valid for a procedural assignment statement, &lt;= is the non-blocking assignment operator, and timing control is the optional intra-assignment timing control. The timing control delay can be either a delay control or an event control (for example, &#64;(posedge clk)). The expression is the right-hand side value the simulator assigns to the left-hand side. The non-blocking assignment operator is the same operator the simulator uses for the less-than-orequal relational operator. The simulator interprets the &lt;= operator to be a relational operator when you use it in an expression, and interprets the &lt;= operator to be an assignment operator when you use it in a non-blocking procedural assignment construct.</p>
+<p>How the simulator evaluates non-blocking procedural assignments When the simulator encounters a non-blocking procedural assignment, the simulator evaluates and executes the non-blocking procedural assignment in two steps as follows &minus;</p>
+<ul class="list">
+<li><p>The simulator evaluates the right-hand side and schedules the assignment of the new value to take place at a time specified by a procedural timing control. The simulator evaluates the right-hand side and schedules the assignment of the new value to take place at a time specified by a procedural timing control.</p></li>
+<li><p>At the end of the time step, in which the given delay has expired or the appropriate event has taken place, the simulator executes the assignment by assigning the value to the left-hand side.</p></li>
+</ul>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+module evaluates2(out); 
+output out; 
+reg a, b, c; 
+initial 
+
+begin 
+   a = 0; 
+   b = 1; 
+   c = 0; 
+end 
+always c = #5 ~c; 
+always @(posedge c) 
+
+begin 
+   a &lt;= b; 
+   b &lt;= a; 
+end 
+endmodule 
+</pre>
+<h2>Conditions</h2>
+<p>The conditional statement (or if-else statement) is used to make a decision as to whether a statement is executed or not.</p>
+<p>Formally, the syntax is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;statement&gt; 
+::= if ( &lt;expression&gt; ) &lt;statement_or_null&gt; 
+||= if ( &lt;expression&gt; ) &lt;statement_or_null&gt; 
+   else &lt;statement_or_null&gt; 
+&lt;statement_or_null&gt; 
+
+::= &lt;statement&gt; 
+||= ; 
+</pre>
+<p>The &lt;expression&gt; is evaluated; if it is true (that is, has a non-zero known value), the first statement executes. If it is false (has a zero value or the value is x or z), the first statement does not execute. If there is an else statement and &lt;expression&gt; is false, the else statement executes. Since, the numeric value of the if expression is tested for being zero, certain shortcuts are possible.</p>
+<p>For example, the following two statements express the same logic &minus;</p>
+<pre class="prettyprint notranslate">
+if (expression) 
+if (expression != 0) 
+</pre>
+<p>Since, the else part of an if-else is optional, there can be confusion when an else is omitted from a nested if sequence. This is resolved by always associating the else with the closest previous if that lacks an else.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate">
+if (index &gt; 0) 
+if (rega &gt; regb) 
+   result = rega; 
+   else // else applies to preceding if 
+   result = regb; 
+
+If that association is not what you want, use a begin-end block statement 
+to force the proper association 
+
+if (index &gt; 0) 
+begin 
+
+if (rega &gt; regb) 
+result = rega; 
+end 
+   else 
+   result = regb; 
+</pre>
+<h3>Construction of: if- else- if</h3>
+<p>The following construction occurs so often that it is worth a brief separate discussion.</p>
+<p><b>Example</b></p>
+<pre class="prettyprint notranslate">
+if (&lt;expression&gt;) 
+   &lt;statement&gt; 
+   else if (&lt;expression&gt;) 
+   &lt;statement&gt; 
+   else if (&lt;expression&gt;) 
+   &lt;statement&gt; 
+   else  
+   &lt;statement&gt;
+</pre>
+<p>This sequence of if’s (known as an if-else-if construct) is the most general way of writing a multi-way decision. The expressions are evaluated in order; if any expression is true, the statement associated with it is executed, and this terminates the whole chain. Each statement is either a single statement or a block of statements.</p>
+<p>The last else part of the if-else-if construct handles the ‘none of the above’ or default case where none of the other conditions was satisfied. Sometimes there is no explicit action for the default; in that case, the trailing else can be omitted or it can be used for error checking to catch an impossible condition.</p>
+<h3>Case Statement</h3>
+<p>The case statement is a special multi-way decision statement that tests whether an expression matches one of a number of other expressions, and branches accordingly. The case statement is useful for describing, for example, the decoding of a microprocessor instruction. The case statement has the following syntax &minus;</p>
+<p><b>Example</b></p>
+<pre class="prettyprint notranslate">
+&lt;statement&gt; 
+::= case ( &lt;expression&gt; ) &lt;case_item&gt;&plus; endcase 
+||= casez ( &lt;expression&gt; ) &lt;case_item&gt;&plus; endcase 
+||= casex ( &lt;expression&gt; ) &lt;case_item&gt;&plus; endcase 
+&lt;case_item&gt; 
+::= &lt;expression&gt; &lt;,&lt;expression&gt;&gt;* : &lt;statement_or_null&gt; 
+||= default : &lt;statement_or_null&gt; 
+||= default &lt;statement_or_null&gt; 
+</pre>
+<p>The case expressions are evaluated and compared in the exact order in which they are given. During the linear search, if one of the case item expressions matches the expression in parentheses, then the statement associated with that case item is executed. If all comparisons fail, and the default item is given, then the default item statement is executed. If the default statement is not given, and all of the comparisons fail, then none of the case item statements is executed.</p>
+<p>Apart from syntax, the case statement differs from the multi-way if-else-if construct in two important ways &minus;</p>
+<ul class="list">
+<li><p>The conditional expressions in the if-else-if construct are more general than comparing one expression with several others, as in the case statement.</p></li>
+<li><p>The case statement provides a definitive result when there are x and z values in an expression.</p></li>
+</ul>
+<h3>Looping Statements</h3>
+<p>There are four types of looping statements. They provide a means of controlling the execution of a statement zero, one, or more times.</p>
+<ul class="list">
+<li><p>forever continuously executes a statement.</p></li>
+<li><p>repeat executes a statement a fixed number of times.</p></li>
+<li><p>while executes a statement until an expression becomes false. If the expression starts out false, the statement is not executed at all.</p></li>
+<li><p>for controls execution of its associated statement(s) by a three-step process, as follows &minus;</p>
+<ul class="list">
+<li><p>Executes an assignment normally used to initialize a variable that controls the number of loops executed</p></li>
+<li><p>Evaluates an expression—if the result is zero, the for loop exits, and if it is not zero, the for loop executes its associated statement(s) and then performs step 3</p></li>
+<li><p>Executes an assignment normally used to modify the value of the loopcontrol variable, then repeats step 2</p></li>
+</ul>
+</li>
+</ul>
+<p>The following are the syntax rules for the looping statements &minus;</p>
+<p><b>Example</b></p>
+<pre class="prettyprint notranslate">
+&lt;statement&gt; 
+::= forever &lt;statement&gt; 
+||=forever 
+begin 
+   &lt;statement&gt;&plus; 
+end  
+
+&lt;Statement&gt; 
+::= repeat ( &lt;expression&gt; ) &lt;statement&gt; 
+||=repeat ( &lt;expression&gt; ) 
+begin
+   &lt;statement&gt;&plus; 
+end  
+
+&lt;statement&gt; 
+::= while ( &lt;expression&gt; ) &lt;statement&gt; 
+||=while ( &lt;expression&gt; ) 
+begin 
+   &lt;statement&gt;&plus; 
+end  
+&lt;statement&gt; 
+::= for ( &lt;assignment&gt; ; &lt;expression&gt; ; &lt;assignment&gt; ) 
+&lt;statement&gt; 
+||=for ( &lt;assignment&gt; ; &lt;expression&gt; ; &lt;assignment&gt; ) 
+begin 
+   &lt;statement&gt;&plus; 
+end
+</pre>
+<h2>Delay Controls</h2>
+<h3>Delay Control</h3>
+<p>The execution of a procedural statement can be delay-controlled by using the following syntax &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;statement&gt; 
+::= &lt;delay_control&gt; &lt;statement_or_null&gt; 
+&lt;delay_control&gt; 
+::= # &lt;NUMBER&gt; 
+||= # &lt;identifier&gt; 
+||= # ( &lt;mintypmax_expression&gt; )
+</pre>
+<p>The following example delays the execution of the assignment by 10 time units &minus;</p>
+<p style="padding-left:8%">#10 rega = regb;</p>
+<p>The next three examples provide an expression following the number sign (#). Execution of the assignment delays by the amount of simulation time specified by the value of the expression.</p>
+<h3>Event Control</h3>
+<p>The execution of a procedural statement can be synchronized with a value change on a net or register, or the occurrence of a declared event, by using the following event control syntax &minus;</p>
+<p><b>Example</b></p>
+<pre class="prettyprint notranslate">
+&lt;statement&gt; 
+::= &lt;event_control&gt; &lt;statement_or_null&gt; 
+
+&lt;event_control&gt; 
+::= @ &lt;identifier&gt; 
+||= @ ( &lt;event_expression&gt; ) 
+
+&lt;event_expression&gt; 
+::= &lt;expression&gt; 
+||= posedge &lt;SCALAR_EVENT_EXPRESSION&gt; 
+||= negedge &lt;SCALAR_EVENT_EXPRESSION&gt; 
+||= &lt;event_expression&gt; &lt;or &lt;event_expression&gt;&gt; 
+</pre>
+<p>*&lt;SCALAR_EVENT_EXPRESSION&gt; is an expression that resolves to a one bit value.</p>
+<p>Value changes on nets and registers can be used as events to trigger the execution of a statement. This is known as detecting an implicit event. Verilog syntax also allows you to detect change based on the direction of the change—that is, toward the value 1 (posedge) or toward the value 0 (negedge). The behaviour of posedge and negedge for unknown expression values is as follows &minus;</p>
+<ul class="list">
+<li>a negedge is detected on the transition from 1 to unknown and from unknown to 0</li>
+<li>a posedge is detected on the transition from 0 to unknown and from  unknown to 1</li>
+</ul>
+<h2>Procedures: Always and Initial Blocks</h2>
+<p>All procedures in Verilog are specified within one of the following four Blocks. 1) Initial blocks 2) Always blocks 3) Task 4) Function</p>
+<p>The initial and always statements are enabled at the beginning of simulation. The initial blocks executes only once and its activity dies when the statement has finished. In contrast, the always blocks executes repeatedly. Its activity dies only when the simulation is terminated. There is no limit to the number of initial and always blocks that can be defined in a module. Tasks and functions are procedures that are enabled from one or more places in other procedures.</p>
+<h3>Initial Blocks</h3>
+<p>The syntax for the initial statement is as follows &minus;</p>
+<pre class="prettyprint notranslate">
+&lt;initial_statement&gt; 
+::= initial &lt;statement&gt;
+</pre>
+<p>The following example illustrates the use of the initial statement for initialization of variables at the start of simulation.</p>
+<pre class="prettyprint notranslate">
+Initial 
+Begin 
+   Areg = 0; // initialize a register 
+   For (index = 0; index &lt; size; index = index &plus; 1) 
+   Memory [index] = 0; //initialize a memory 
+   Word 
+End
+</pre>
+<p>Another typical usage of the initial Blocks is specification of waveform descriptions that execute once to provide stimulus to the main part of the circuit being simulated.</p>
+<pre class="prettyprint notranslate">
+Initial 
+Begin 
+   Inputs = ’b000000; 
+   // initialize at time zero 
+   #10 inputs = ’b011001; // first pattern 
+   #10 inputs = ’b011011; // second pattern 
+   #10 inputs = ’b011000; // third pattern 
+   #10 inputs = ’b001000; // last pattern 
+End 
+</pre>
+<h3>Always Blocks</h3>
+<p>The ‘always’ statement repeats continuously throughout the whole simulation run. The syntax for the always statement is given below</p>
+<pre class="prettyprint notranslate">
+&lt;always_statement&gt; 
+::= always &lt;statement&gt; 
+</pre>
+<p>The ‘always’ statement, because of its looping nature, is only useful when used in conjunction with some form of timing control. If an ‘always’ statement provides no means for time to advance, the ‘always’ statement creates a simulation deadlock condition. The following code, for example, creates an infinite zero-delay loop &minus;</p>
+<pre class="prettyprint notranslate">
+Always areg = ~areg; 
+</pre>
+<p>Providing a timing control to the above code creates a potentially useful description—as in the following example &minus;</p>
+<pre class="prettyprint notranslate">
+Always #half_period areg = ~areg; 
+</pre>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/vlsi_design/vlsi_design_verilog_introduction.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/vlsi_design/vlsi_design_quick_guide.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

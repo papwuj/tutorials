@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Spring Boot - OAuth2 with JWT - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="Spring Boot - OAuth2 with JWT - In this chapter, you will learn in detail about Spring Boot Security mechanisms and OAuth2 with JWT."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/spring_boot/spring_boot_oauth2_with_jwt.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#6eb33f;
+}
+a.demo {
+    background:#6eb33f;
+}
+li.heading {
+    background:#6eb33f;
+}
+.course-box{background:#6eb33f}
+.home-intro-sub p{color:#6eb33f}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/spring_boot/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/spring_boot/images/spring-boot-mini-logo.jpg" alt="Spring Boot Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Spring Boot Tutorial</li>
+<li><a href="/spring_boot/index.htm">Spring Boot - Home</a></li>
+<li><a href="/spring_boot/spring_boot_introduction.htm">Spring Boot - Introduction</a></li>
+<li><a href="/spring_boot/spring_boot_quick_start.htm">Spring Boot - Quick Start</a></li>
+<li><a href="/spring_boot/spring_boot_bootstrapping.htm">Spring Boot - Bootstrapping</a></li>
+<li><a href="/spring_boot/spring_boot_tomcat_deployment.htm">Spring Boot - Tomcat Deployment</a></li>
+<li><a href="/spring_boot/spring_boot_build_systems.htm">Spring Boot - Build Systems</a></li>
+<li><a href="/spring_boot/spring_boot_code_structure.htm">Spring Boot - Code Structure</a></li>
+<li><a href="/spring_boot/spring_boot_beans_and_dependency_injection.htm">Spring Beans &amp; Dependency Injection</a></li>
+<li><a href="/spring_boot/spring_boot_runners.htm">Spring Boot - Runners</a></li>
+<li><a href="/spring_boot/spring_boot_application_properties.htm">Spring Boot - Application Properties</a></li>
+<li><a href="/spring_boot/spring_boot_logging.htm">Spring Boot - Logging</a></li>
+<li><a href="/spring_boot/spring_boot_building_restful_web_services.htm">Building RESTful Web Services</a></li>
+<li><a href="/spring_boot/spring_boot_exception_handling.htm">Spring Boot - Exception Handling</a></li>
+<li><a href="/spring_boot/spring_boot_interceptor.htm">Spring Boot - Interceptor</a></li>
+<li><a href="/spring_boot/spring_boot_servlet_filter.htm">Spring Boot - Servlet Filter</a></li>
+<li><a href="/spring_boot/spring_boot_tomcat_port_number.htm">Spring Boot - Tomcat Port Number</a></li>
+<li><a href="/spring_boot/spring_boot_rest_template.htm">Spring Boot - Rest Template</a></li>
+<li><a href="/spring_boot/spring_boot_file_handling.htm">Spring Boot - File Handling</a></li>
+<li><a href="/spring_boot/spring_boot_service_components.htm">Spring Boot - Service Components</a></li>
+<li><a href="/spring_boot/spring_boot_thymeleaf.htm">Spring Boot - Thymeleaf</a></li>
+<li><a href="/spring_boot/spring_boot_consuming_restful_web_services.htm">Consuming RESTful Web Services</a></li>
+<li><a href="/spring_boot/spring_boot_cors_support.htm">Spring Boot - CORS Support</a></li>
+<li><a href="/spring_boot/spring_boot_internationalization.htm">Spring Boot - Internationalization</a></li>
+<li><a href="/spring_boot/spring_boot_scheduling.htm">Spring Boot - Scheduling</a></li>
+<li><a href="/spring_boot/spring_boot_enabling_https.htm">Spring Boot - Enabling HTTPS</a></li>
+<li><a href="/spring_boot/spring_boot_eureka_server.htm">Spring Boot - Eureka Server</a></li>
+<li><a href="/spring_boot/spring_boot_service_registration_with_eureka.htm">Service Registration with Eureka</a></li>
+<li><a href="/spring_boot/spring_boot_zuul_proxy_server_and_routing.htm">Zuul Proxy Server and Routing</a></li>
+<li><a href="/spring_boot/spring_boot_cloud_configuration_server.htm">Spring Cloud Configuration Server</a></li>
+<li><a href="/spring_boot/spring_boot_cloud_configuration_client.htm">Spring Cloud Configuration Client</a></li>
+<li><a href="/spring_boot/spring_boot_actuator.htm">Spring Boot - Actuator</a></li>
+<li><a href="/spring_boot/spring_boot_admin_server.htm">Spring Boot - Admin Server</a></li>
+<li><a href="/spring_boot/spring_boot_admin_client.htm">Spring Boot - Admin Client</a></li>
+<li><a href="/spring_boot/spring_boot_enabling_swagger2.htm">Spring Boot - Enabling Swagger2</a></li>
+<li><a href="/spring_boot/spring_boot_creating_docker_image.htm">Spring Boot - Creating Docker Image</a></li>
+<li><a href="/spring_boot/spring_boot_tracing_micro_service_logs.htm">Tracing Micro Service Logs</a></li>
+<li><a href="/spring_boot/spring_boot_flyway_database.htm">Spring Boot - Flyway Database</a></li>
+<li><a href="/spring_boot/spring_boot_sending_email.htm">Spring Boot - Sending Email</a></li>
+<li><a href="/spring_boot/spring_boot_hystrix.htm">Spring Boot - Hystrix</a></li>
+<li><a href="/spring_boot/spring_boot_web_socket.htm">Spring Boot - Web Socket</a></li>
+<li><a href="/spring_boot/spring_boot_batch_service.htm">Spring Boot - Batch Service</a></li>
+<li><a href="/spring_boot/spring_boot_apache_kafka.htm">Spring Boot - Apache Kafka</a></li>
+<li><a href="/spring_boot/spring_boot_twilio.htm">Spring Boot - Twilio</a></li>
+<li><a href="/spring_boot/spring_boot_unit_test_cases.htm">Spring Boot - Unit Test Cases</a></li>
+<li><a href="/spring_boot/spring_boot_rest_controller_unit_test.htm">Rest Controller Unit Test</a></li>
+<li><a href="/spring_boot/spring_boot_database_handling.htm">Spring Boot - Database Handling</a></li>
+<li><a href="/spring_boot/spring_boot_securing_web_applications.htm">Securing Web Applications</a></li>
+<li><a href="/spring_boot/spring_boot_oauth2_with_jwt.htm">Spring Boot - OAuth2 with JWT</a></li>
+<li><a href="/spring_boot/spring_boot_google_cloud_platform.htm">Spring Boot - Google Cloud Platform</a></li>
+<li><a href="/spring_boot/spring_boot_google_oauth2_sign_in.htm">Spring Boot - Google OAuth2 Sign-In</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Spring Boot Resources</li>
+<li><a href="/spring_boot/spring_boot_quick_guide.htm">Spring Boot - Quick Guide</a></li>
+<li><a href="/spring_boot/spring_boot_useful_resources.htm">Spring Boot - Useful Resources</a></li>
+<li><a href="/spring_boot/spring_boot_discussion.htm">Spring Boot - Discussion </a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>Spring Boot - OAuth2 with JWT</h1>
+<hr />
+<!-- /60931893/tutorial_top -->
+<div id='div-gpt-ad-1532153686945-4' class='topgooglead'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1532153686945-4'); });
+</script>
+</div>
+<div class="clearer"></div>
+<p>In this chapter, you will learn in detail about Spring Boot Security mechanisms and OAuth2 with JWT.</p>
+<h2>Authorization Server</h2>
+<p>Authorization Server is a supreme architectural component for Web API Security. The Authorization Server acts a centralization authorization point that allows your apps and HTTP endpoints to identify the features of your application.</p>
+<h2>Resource Server</h2>
+<p>Resource Server is an application that provides the access token to the clients to access the Resource Server HTTP Endpoints. It is collection of libraries which contains the HTTP Endpoints, static resources, and Dynamic web pages.</p>
+<h2>OAuth2</h2>
+<p>OAuth2 is an authorization framework that enables the application Web Security to access the resources from the client. To build an OAuth2 application, we need to focus on the Grant Type (Authorization code), Client ID and Client secret.</p>    
+<h2>JWT Token</h2>
+<p>JWT Token is a JSON Web Token, used to represent the claims secured between two parties. You can learn more about the JWT token at <a href="https://jwt.io/" target="_blank" rel="nofollow">www.jwt.io/</a>.</p>
+<p>Now, we are going to build an OAuth2 application that enables the use of Authorization Server, Resource Server with the help of a JWT Token.</p>
+<p>You can use the following steps to implement the Spring Boot Security with JWT token by accessing the database.</p>
+<p>First, we need to add the following dependencies in our build configuration file.</p>
+<p>Maven users can add the following dependencies in your pom.xml file.</p>
+<pre class="prettyprint notranslate">
+&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.security.oauth&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-security-oauth2&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-security-jwt&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+   &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+   &lt;artifactId&gt;h2&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+   &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-security-test&lt;/artifactId&gt;
+   &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+<p>Gradle users can add the following dependencies in  the build.gradle file.</p>
+<pre class="prettyprint notranslate">
+compile('org.springframework.boot:spring-boot-starter-security')
+compile('org.springframework.boot:spring-boot-starter-web')
+testCompile('org.springframework.boot:spring-boot-starter-test')
+testCompile('org.springframework.security:spring-security-test')
+
+compile("org.springframework.security.oauth:spring-security-oauth2")
+compile('org.springframework.security:spring-security-jwt')
+compile("org.springframework.boot:spring-boot-starter-jdbc")
+compile("com.h2database:h2:1.4.191")  
+</pre>
+<p>where,</p>
+<ul class="list">
+<li><p><b>Spring Boot Starter Security</b> &minus; Implements the Spring Security</p></li>
+<li><p><b>Spring Security OAuth2</b> &minus; Implements the OAUTH2 structure to enable the Authorization Server and Resource Server.</p></li>
+<li><p><b>Spring Security JWT</b> &minus; Generates the JWT Token for Web security</p></li>
+<li><p><b>Spring Boot Starter JDBC</b> &minus; Accesses the database to ensure the user is available or not.</p></li>
+<li><p><b>Spring Boot Starter Web</b> &minus; Writes HTTP endpoints.</p></li>
+<li><p><b>H2 Database</b> &minus; Stores the user information for authentication and authorization.</p></li>
+</ul>
+<p>The complete build configuration file is given below.</p>
+<pre class="prettyprint notranslate">
+&lt;?xml version = "1.0" encoding = "UTF-8"?&gt;
+&lt;project xmlns = "http://maven.apache.org/POM/4.0.0" 
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 
+   http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+   
+   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+   &lt;groupId&gt;com.tutorialspoint&lt;/groupId&gt;
+   &lt;artifactId&gt;websecurityapp&lt;/artifactId&gt;
+   &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+   &lt;packaging&gt;jar&lt;/packaging&gt;
+   &lt;name&gt;websecurityapp&lt;/name&gt;
+   &lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
+
+   &lt;parent&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+      &lt;version&gt;1.5.9.RELEASE&lt;/version&gt;
+      &lt;relativePath /&gt; &lt;!-- lookup parent from repository --&gt;
+   &lt;/parent&gt;
+
+   &lt;properties&gt;
+      &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+      &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+      &lt;java.version&gt;1.8&lt;/java.version&gt;
+   &lt;/properties&gt;
+
+   &lt;dependencies&gt;
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.security.oauth&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-security-oauth2&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-security-jwt&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+         &lt;artifactId&gt;h2&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+         &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-security-test&lt;/artifactId&gt;
+         &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+   &lt;/dependencies&gt;
+
+   &lt;build&gt;
+      &lt;plugins&gt;
+         &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+         &lt;/plugin&gt;
+      &lt;/plugins&gt;
+   &lt;/build&gt;
+   
+&lt;/project&gt;
+</pre>
+<p><b>Gradle – build.gradle</b></p>
+<pre class="prettyprint notranslate">
+buildscript {
+   ext {
+      springBootVersion = '1.5.9.RELEASE'
+   }
+   repositories {
+      mavenCentral()
+   }
+   dependencies {
+      classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+   }
+}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.tutorialspoint'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+   mavenCentral()
+}
+
+dependencies {
+   compile('org.springframework.boot:spring-boot-starter-security')
+   compile('org.springframework.boot:spring-boot-starter-web')
+   testCompile('org.springframework.boot:spring-boot-starter-test')
+   testCompile('org.springframework.security:spring-security-test')
+   compile("org.springframework.security.oauth:spring-security-oauth2")
+   compile('org.springframework.security:spring-security-jwt')
+   compile("org.springframework.boot:spring-boot-starter-jdbc")
+   compile("com.h2database:h2:1.4.191")  
+} 
+</pre>
+<p>Now, in the main Spring Boot application, add the @EnableAuthorizationServer and @EnableResourceServer annotation to act as an Auth server and Resource Server in the same application.</p>
+<p>Also, you can use the following code to write a simple HTTP endpoint to access the API with Spring Security by using JWT Token.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.websecurityapp;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@EnableAuthorizationServer
+@EnableResourceServer
+@RestController
+public class WebsecurityappApplication {
+   public static void main(String[] args) {
+      SpringApplication.run(WebsecurityappApplication.class, args);
+   }
+   @RequestMapping(value = "/products")
+   public String getProductName() {
+      return "Honey";   
+   }
+} 
+</pre>
+<p>Use the following code to define the POJO class to store the User information for authentication.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.websecurityapp;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import org.springframework.security.core.GrantedAuthority;
+
+public class UserEntity {
+   private String username;
+   private String password;
+   private Collection&lt;GrantedAuthority&gt; grantedAuthoritiesList = new ArrayList&lt;&gt;();
+   
+   public String getPassword() {
+      return password;
+   }
+   public void setPassword(String password) {
+      this.password = password;
+   }
+   public Collection&lt;GrantedAuthority&gt; getGrantedAuthoritiesList() {
+      return grantedAuthoritiesList;
+   }
+   public void setGrantedAuthoritiesList(Collection&lt;GrantedAuthority&gt; grantedAuthoritiesList) {
+      this.grantedAuthoritiesList = grantedAuthoritiesList;
+   }
+   public String getUsername() {
+      return username;
+   }
+   public void setUsername(String username) {
+      this.username = username;
+   }
+}
+</pre>
+<p>Now, use the following code and define the CustomUser class that extends the org.springframework.security.core.userdetails.User class for Spring Boot authentication.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.websecurityapp;
+
+import org.springframework.security.core.userdetails.User;
+
+public class CustomUser extends User {
+   private static final long serialVersionUID = 1L;
+   public CustomUser(UserEntity user) {
+      super(user.getUsername(), user.getPassword(), user.getGrantedAuthoritiesList());
+   }
+} 
+</pre>
+<p>You can create the @Repository class to read the User information from the database and send it to the Custom user service and also add the granted authority “ROLE_SYSTEMADMIN”.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.websecurityapp;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class OAuthDao {
+   @Autowired
+   private JdbcTemplate jdbcTemplate;
+
+   public UserEntity getUserDetails(String username) {
+      Collection&lt;GrantedAuthority&gt; grantedAuthoritiesList = new ArrayList&lt;&gt;();
+      String userSQLQuery = "SELECT * FROM USERS WHERE USERNAME=?";
+      List&lt;UserEntity&gt; list = jdbcTemplate.query(userSQLQuery, new String[] { username },
+         (ResultSet rs, int rowNum) -&gt; {
+         
+         UserEntity user = new UserEntity();
+         user.setUsername(username);
+         user.setPassword(rs.getString("PASSWORD"));
+         return user;
+      });
+      if (list.size() &gt; 0) {
+         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_SYSTEMADMIN");
+         grantedAuthoritiesList.add(grantedAuthority);
+         list.get(0).setGrantedAuthoritiesList(grantedAuthoritiesList);
+         return list.get(0);
+      }
+      return null;
+   }
+} 
+</pre>
+<p>You can create a Custom User detail service class that extends the org.springframework.security.core.userdetails.UserDetailsService to call the DAO repository class as shown.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.websecurityapp;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CustomDetailsService implements UserDetailsService {
+   @Autowired
+   OAuthDao oauthDao;
+
+   @Override
+   public CustomUser loadUserByUsername(final String username) throws UsernameNotFoundException {
+      UserEntity userEntity = null;
+      try {
+         userEntity = oauthDao.getUserDetails(username);
+         CustomUser customUser = new CustomUser(userEntity);
+         return customUser;
+      } catch (Exception e) {
+         e.printStackTrace();
+         throw new UsernameNotFoundException("User " + username + " was not found in the database");
+      }
+   }
+} 
+</pre>
+<p>Next, create a @configuration class to enable the Web Security, defining the Password encoder (BCryptPasswordEncoder), and defining the AuthenticationManager bean. The Security configuration class should extend WebSecurityConfigurerAdapter class.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.websecurityapp;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+   @Autowired
+   private CustomDetailsService customDetailsService;
+
+   @Bean
+   public PasswordEncoder encoder() {
+      return new BCryptPasswordEncoder();
+   }
+   @Override
+   @Autowired
+   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+      auth.userDetailsService(customDetailsService).passwordEncoder(encoder());
+   }
+   @Override
+   protected void configure(HttpSecurity http) throws Exception {
+      http.authorizeRequests().anyRequest().authenticated().and().sessionManagement()
+         .sessionCreationPolicy(SessionCreationPolicy.NEVER);
+   }
+   @Override
+   public void configure(WebSecurity web) throws Exception {
+      web.ignoring();
+   }
+   @Override
+   @Bean
+   public AuthenticationManager authenticationManagerBean() throws Exception {
+      return super.authenticationManagerBean();
+   }
+} 
+</pre>
+<p>Now, define the OAuth2 Configuration class to add the Client ID, Client Secret, Define the JwtAccessTokenConverter, Private key and Public key for token signer key and verifier key, and configure the ClientDetailsServiceConfigurer for the Token validity with scopes.</p>
+<pre class="prettyprint notranslate">
+package com.tutorialspoint.websecurityapp;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+
+@Configuration
+public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
+   private String clientid = "tutorialspoint";
+   private String clientSecret = "my-secret-key";
+   private String privateKey = "private key";
+   private String publicKey = "public key";
+
+   @Autowired
+   @Qualifier("authenticationManagerBean")
+   private AuthenticationManager authenticationManager;
+   
+   @Bean
+   public JwtAccessTokenConverter tokenEnhancer() {
+      JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+      converter.setSigningKey(privateKey);
+      converter.setVerifierKey(publicKey);
+      return converter;
+   }
+   @Bean
+   public JwtTokenStore tokenStore() {
+      return new JwtTokenStore(tokenEnhancer());
+   }
+   @Override
+   public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+      endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore())
+      .accessTokenConverter(tokenEnhancer());
+   }
+   @Override
+   public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+      security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+   }
+   @Override
+   public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+      clients.inMemory().withClient(clientid).secret(clientSecret).scopes("read", "write")
+         .authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(20000)
+         .refreshTokenValiditySeconds(20000);
+
+   }
+} 
+</pre>
+<p>Now, create a Private key and public key by using openssl.</p>
+<p>You can use the following commands for generating private key.</p>
+<pre class="result notranslate">
+openssl genrsa -out jwt.pem 2048
+openssl rsa -in jwt.pem 
+</pre>
+<p>You can use For public key generation use the below commands.</p>
+<pre class="result notranslate">
+openssl rsa -in jwt.pem -pubout 
+</pre>
+<p>For the version of Spring Boot latter than 1.5 release, add the below property in your application.properties file to define OAuth2 Resource filter order.</p>
+<pre class="result notranslate">
+security.oauth2.resource.filter-order=3 
+</pre>
+<p>YAML file users can add the below property in YAML file.</p>
+<pre class="result notranslate">
+security:
+   oauth2:
+      resource:
+         filter-order: 3 
+</pre>
+<p>Now, create schema.sql and data.sql file under the classpath resources <b>src/main/resources/directory</b> to connect the application to H2 database.</p>
+<p>The schema.sql file is as shown &minus;</p>
+<pre class="result notranslate">
+CREATE TABLE USERS (ID INT PRIMARY KEY, USERNAME VARCHAR(45), PASSWORD VARCHAR(60));
+</pre> 
+<p>The data.sql file is as shown &minus;</p>
+<pre class="result notranslate">
+INSERT INTO USERS (ID, USERNAME,PASSWORD) VALUES (
+   1, 'tutorialspoint@gmail.com','$2a$08$fL7u5xcvsZl78su29x1ti.dxI.9rYO8t0q5wk2ROJ.1cdR53bmaVG');
+
+INSERT INTO USERS (ID, USERNAME,PASSWORD) VALUES (
+   2, 'myemail@gmail.com','$2a$08$fL7u5xcvsZl78su29x1ti.dxI.9rYO8t0q5wk2ROJ.1cdR53bmaVG'); 
+</pre>
+<p><b>Note</b> &minus; Password should be stored in the format of Bcrypt Encoder in the database table.</p>
+<p>You can create an executable JAR file, and run the Spring Boot application by using the following Maven or Gradle commands.</p> 
+<p>For Maven, you can use the command given below &minus;</p>
+<pre class="result notranslate">
+mvn clean install
+</pre>
+<p>After “BUILD SUCCESS”, you can find the JAR file under the target directory.</p>
+<p>For Gradle, you can use the command as shown &minus;</p>
+<pre class="result notranslate">
+gradle clean build
+</pre>
+<p>After “BUILD SUCCESSFUL”, you can find the JAR file under the build/libs directory.</p>
+<p>Now, run the JAR file by using the command shown here &minus;</p>
+<pre class="result notranslate">
+java –jar &lt;JARFILE&gt; 
+</pre>
+<p>The application is started on the Tomcat port 8080.</p>
+<img src="/spring_boot/images/tomcat_port_8080_application_output.jpg" alt="Tomcat Port 8080 Application Output" />
+<p>Now hit the POST method URL via POSTMAN to get the OAUTH2 token.</p>
+<p><b>http://localhost:8080/oauth/token</b></p>
+<p>Now, add the Request Headers as follows &minus;</p>
+<ul class="">
+<li><p><b>Authorization</b> &minus; Basic Auth with your Client Id and Client secret.</p></li>
+<li><p><b>Content Type</b> &minus; application/x-www-form-urlencoded</p></li>
+</ul>
+<img src="/spring_boot/images/add_request_headers.jpg" alt="Add Request Headers" />
+<p>Now, add the Request Parameters as follows &minus;</p>
+<ul class="list">
+<li>grant_type = password</li>
+<li>username = your username</li>
+<li>password = your password</li>
+</ul>
+<img src="/spring_boot/images/add_request_parameters.jpg" alt="Add Request Parameters" />
+<p>Now, hit the API and get the access_token as shown &minus;</p>
+<img src="/spring_boot/images/get_the_access_token.jpg" alt="Get the Access-Token" />
+<p>Now, Hit the Resource Server API with Bearer access token in Request Header as shown.</p>
+<img src="/spring_boot/images/resource_server_api_with_bearer_access_token.jpg" alt="Resource Server API with Bearer Access Token" />
+<p>Then you can see the output as shown below &minus;</p>
+<img src="/spring_boot/images/oauth2_with_jwt_output.jpg" alt="OAuth2 with JWT Output" />
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/spring_boot/spring_boot_securing_web_applications.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/spring_boot/spring_boot_google_cloud_platform.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>

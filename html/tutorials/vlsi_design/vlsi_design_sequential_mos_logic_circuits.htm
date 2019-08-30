@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>VLSI Design - Sequential MOS Logic Circuits - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="VLSI Design - Sequential MOS Logic Circuits - Logic circuits are divided into two categories − (a) Combinational Circuits, and (b) Sequential Circuits."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/vlsi_design/vlsi_design_sequential_mos_logic_circuits.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#355c63;
+}
+a.demo {
+    background:#355c63;
+}
+li.heading {
+    background:#355c63;
+}
+.course-box{background:#355c63}
+.home-intro-sub p{color:#355c63}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/vlsi_design/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/vlsi_design/images/vlsi-design-mini-logo.jpg" alt="VLSI Design Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">VLSI Design Tutorial</li>
+<li><a href="/vlsi_design/index.htm">VLSI Design - Home</a></li>
+<li><a href="/vlsi_design/vlsi_design_digital_system.htm">VLSI Design - Digital System</a></li>
+<li><a href="/vlsi_design/vlsi_design_fpga_technology.htm">VLSI Design - FPGA Technology</a></li>
+<li><a href="/vlsi_design/vlsi_design_mos_transistor.htm">VLSI Design - MOS Transistor</a></li>
+<li><a href="/vlsi_design/vlsi_design_mos_inverter.htm">VLSI Design - MOS Inverter</a></li>
+<li><a href="/vlsi_design/vlsi_design_combinational_mos_logic_circuits.htm">Combinational MOS Logic Circuits</a></li>
+<li><a href="/vlsi_design/vlsi_design_sequential_mos_logic_circuits.htm">Sequential MOS Logic Circuits</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">VHDL Programming</li>
+<li><a href="/vlsi_design/vlsi_design_vhdl_introduction.htm">VHDL - Introduction</a></li>
+<li><a href="/vlsi_design/vhdl_programming_for_combinational_circuits.htm">VHDL - Combinational Circuits</a></li>
+<li><a href="/vlsi_design/vhdl_programming_for_sequential_circuits.htm">VHDL - Sequential Circuits</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Verilog</li>
+<li><a href="/vlsi_design/vlsi_design_verilog_introduction.htm">Verilog - Introduction</a></li>
+<li><a href="/vlsi_design/behavioural_modelling_timing_control_in_verilog.htm">Behavioural Modelling &amp; Timing</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">VLSI Design Useful Resources</li>
+<li><a href="/vlsi_design/vlsi_design_quick_guide.htm">VLSI Design - Quick Guide</a></li>
+<li><a href="/vlsi_design/vlsi_design_useful_resources.htm">VLSI Design - Useful Resources</a></li>
+<li><a href="/vlsi_design/vlsi_design_discussion.htm">VLSI Design - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>VLSI Design - Sequential MOS Logic Circuits</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/vlsi_design/vlsi_design_combinational_mos_logic_circuits.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/vlsi_design/vlsi_design_vhdl_introduction.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Logic circuits are divided into two categories &minus; (a) Combinational Circuits, and (b) Sequential Circuits.</p>
+<p>In Combinational circuits, the output depends only on the condition of the latest inputs.</p>
+<p>In Sequential circuits, the output depends not only on the latest inputs, but also on the condition of earlier inputs. Sequential circuits contain memory elements.</p>
+<img src="/vlsi_design/images/classification_of_logic_circuits.jpg" alt="Classification of Logic Circuits" />
+<p>Sequential circuits are of three types &minus;</p>
+<p><b>Bistable</b> &minus; Bistable circuits have two stable operating points and will be in either of the states. Example &minus; Memory cells, latches, flip-flops and registers.</p>
+<p><b>Monostable</b> &minus; Monostable circuits have only one stable operating point and even if they are temporarily perturbed to the opposite state, they will return in time to their stable operating point. Example: Timers, pulse generators.</p>
+<p><b>Astable</b> &minus; circuits have no stable operating point and oscillate between several states. Example &minus; Ring oscillator.</p>
+<h2>CMOS Logic Circuits</h2>
+<h3>SR Latch based on NOR Gate</h3>
+<img src="/vlsi_design/images/gate_level.jpg" alt="Gate Level" />
+<p>If the set input (S) is equal to logic <b>"1"</b> and the reset input is equal to logic <b>"0."</b> then the output Q will be forced to logic <b>"1"</b>. While $\overline{Q}$ is forced to logic <b>"0"</b>. This means the SR latch will be set, irrespective of its previous state.</p>
+<p>Similarly, if S is equal to "0" and R is equal to <b>"1"</b> then the output Q will be forced to <b>"0"</b> while $\overline{Q}$ is forced to <b>"1"</b>. This means the latch is reset, regardless of its previously held state. Finally, if both of the inputs S and R are equal to logic <b>"1"</b> then both output will be forced to logic <b>"0"</b> which conflicts with the complementarity of Q and $\overline{Q}$.</p>
+<p>Therefore, this input combination is not allowed during normal operation. Truth table of NOR based SR Latch is given in table.</p>
+<table class="table table-bordered">
+<tr>
+<th>S</th>
+<th>R</th>
+<th>Q</th>
+<th>$\overline{Q}$</th>
+<th>Operation</th>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>Q</td>
+<td>$\overline{Q}$</td>
+<td>Hold</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>Set</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>Not allowed</td>
+</tr>
+</table>
+<p>CMOS SR latch based on NOR gate is shown in the figure given below.</p>
+<img src="/vlsi_design/images/cmos_sr_latch.jpg" alt="CMOS SR latch" />
+<p>If the S is equal to V<sub><small>OH</small></sub> and the R is equal to V<sub><small>OL</small></sub>, both of the parallel-connected transistors M1 and M2 will be ON. The voltage on node $\overline{Q}$ will assume a logic-low level of V<sub><small>OL</small></sub> = 0.</p>
+<p>At the same time, both M3 and M4 are turned off, which results in a logic-high voltage V<sub><small>OH</small></sub> at node Q. If the R is equal to V<sub><small>OH</small></sub> and the S is equal to V<sub><small>OL</small></sub>, M1 and M2 turned off and M3 and M4 turned on.</p>
+<h3>SR Latch based on NAND Gate</h3>
+<img src="/vlsi_design/images/sr_latch.jpg" alt="SR Latch" />
+<p>Block diagram and gate level schematic of NAND based SR latch is shown in the figure. The small circles at the S and R input terminals represents that the circuit responds to active low input signals. The truth table of NAND based SR latch is given in table</p>
+<table class="table table-bordered">
+<tr>
+<td>S</td>
+<td>R</td>
+<td>Q</td>
+<td>Q&prime;</td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>NC</td>
+<td>NC</td>
+<td style="text-align:center;">No change. Latch remained in present state.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td style="text-align:center;">Latch SET.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td style="text-align:center;">Latch RESET.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td style="text-align:center;">Invalid condition.</td>
+</tr>
+</table>
+<p>If S goes to 0 (while R = 1), Q goes high, pulling $\overline{Q}$ low and the latch enters Set state</p>
+<p style="text-align:center";>S = <b>0</b>   then Q = <b>1</b> (if R = <b>1</b>)</p>
+<p>If R goes to 0 (while S = 1), Q goes high, pulling $\overline{Q}$ low and the latch is Reset</p>
+<p style="text-align:center";>R = <b>0</b> then Q = <b>1</b> (if S = <b>1</b>)</p>
+<p>Hold state requires both S and R to be high. If S = R = 0 then output is not allowed, as it would result in an indeterminate state. CMOS SR Latch based on NAND Gate is shown in figure.</p>
+<img src="/vlsi_design/images/cmos_on_nand_gate.jpg" alt="CMOS on NAND gate" />
+<p>Depletion-load nMOS SR Latch based on NAND Gate is shown in figure. The operation is similar to that of CMOS NAND SR latch. The CMOS circuit implementation has low static power dissipation and high noise margin.</p>
+<h2>CMOS Logic Circuits</h2>
+<h3>Clocked SR Latch</h3>
+<p>The figure shows a NOR-based SR latch with a clock added. The latch is responsive to inputs S and R only when CLK is high.</p>
+<img src="/vlsi_design/images/clocked_sr_latch.jpg" alt="Clocked SR Latch" />
+<p>When CLK is low, the latch retains its current state. Observe that Q changes state &minus;</p>
+<ul class="list">
+<li>When S goes high during positive CLK.</li>
+<li>On leading CLK edge after changes in S & R during CLK low time.</li>
+<li>A positive glitch in S while CLK is high</li>
+<li>When R goes high during positive CLK.</li>
+</ul>
+<img src="/vlsi_design/images/implementation_of_clocked_nor.jpg" alt="implementation of clocked NOR" />
+<p>CMOS AOI implementation of clocked NOR based SR latch is shown in the figure. Note that only 12 transistors required.</p>
+<ul class="list">
+<li><p>When CLK is low, two series terminals in N tree N are open and two parallel transistors in tree P are ON, thus retaining state in the memory cell.</p></li>
+<li><p>When clock is high, the circuit becomes simply a NOR based CMOS latch which will respond to input S and R.</p></li>
+</ul>
+<p><b>Clocked SR Latch based on NAND Gate</b></p>
+<img src="/vlsi_design/images/based_on_nand_gate.jpg" alt="based on NAND Gate" />
+<p>Circuit is implemented with four NAND gates. If this circuit is implemented with CMOS then it requires 16 transistors.</p>
+<ul class="list">
+<li>The latch is responsive to S or R only if CLK is high.</li>
+<li>If both input signals and the CLK signals are active high: i.e., the latch output Q will be set when CLK = "1" S = "1" and R = "0"</li>
+<li>Similarly, the latch will be reset when CLK = "1," S = "0," and</li>
+</ul>
+<p>When CLK is low, the latch retains its present state.</p>
+<h3>Clocked JK Latch</h3>
+<img src="/vlsi_design/images/clocked_jk.jpg" alt="Clocked JK" />
+<p>The figure above shows a clocked JK latch, based on NAND gates. The disadvantage of an SR latch is that when both S and R are high, its output state becomes indeterminant. The JK latch eliminates this problem by using feedback from output to input, such that all input states of the truth table are allowable. If J = K = 0, the latch will hold its present state.</p>
+<p>If J = 1 and K = 0, the latch will set on the next positive-going clock edge, i.e. Q = 1, $\overline{Q}$ = 0</p>
+<p>If J = 0 and K = 1, the latch will reset on the next positive-going clock edge, i.e. Q = 1 and $\overline{Q}$ = 0.</p>
+<p>If J = K = 1, the latch will toggle on the next positive-going clock edge</p>
+<p>The operation of the clocked JK latch is summarized in the truth table given in table.</p>
+<table class="table table-bordered">
+<tr>
+<td><p><b>J</b></p></td>
+<td><p><b>K</b></p></td>
+<td><p><b>Q</b></p></td>
+<td>$\overline{Q}$</td>
+<td><p><b>S</b></p></td>
+<td><p><b>R</b></p></td>
+<td><p><b>Q</b></p></td>
+<td>$\overline{Q}$</td>
+<td><p><b>Operation</b></p></td>
+</tr>
+<tr>
+<td rowspan="2" style="vertical-align: middle;">0</td>
+<td rowspan="2" style="vertical-align: middle;">0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td rowspan="2" style="vertical-align: middle;">Hold</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td rowspan="2" style="vertical-align: middle;">0</td>
+<td rowspan="2" style="vertical-align: middle;">1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td rowspan="2" style="vertical-align: middle;">Reset</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td rowspan="2" style="vertical-align: middle;">1</td>
+<td rowspan="2" style="vertical-align: middle;">0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td rowspan="2" style="vertical-align: middle;">Set</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td rowspan="2" style="vertical-align: middle;">1</td>
+<td rowspan="2" style="vertical-align: middle;">1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td rowspan="2" style="vertical-align: middle;">toggle</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</table>
+<h3>CMOS D Latch Implementation</h3>
+<img src="/vlsi_design/images/cmos_gate_level.jpg" alt="CMOS Gate level" />
+<img src="/vlsi_design/images/cmos_d_latch.jpg" alt="CMOS D Latch" />
+<p>The D latch is normally, implemented with transmission gate (TG) switches as shown in the figure. The input TG is activated with CLK while the latch feedback loop TG is activated with CLK. Input D is accepted when CLK is high. When CLK goes low, the input is opencircuited and the latch is set with the prior data D.</p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/vlsi_design/vlsi_design_combinational_mos_logic_circuits.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/vlsi_design/vlsi_design_vhdl_introduction.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>
