@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>GDB - Quick Guide - Tutorialspoint</title>
+<meta charset="utf-8">
+<meta name="description" content="GDB - Quick Guide - A debugger is a program that runs other programs, allowing the user to exercise control over these programs, and to examine variables when problems arise."/>
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/gnu_debugger/gdb_quick_guide.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<script src="/theme/js/script-min-v2.js?v=3"></script>
+<link rel="stylesheet" href="/theme/css/style-min-v2.css?v=6">
+<script src="//services.bilsyndication.com/adv1/?d=901" defer="" async=""></script>
+<script> var vitag = vitag || {};</script>
+<script> vitag.outStreamConfig = { enablePC: false, enableMobile: false };</script>  
+<style>
+.right-menu .mui-btn {
+    background-color:#349dcb;
+}
+a.demo {
+    background:#349dcb;
+}
+li.heading {
+    background:#349dcb;
+}
+.course-box{background:#349dcb}
+.home-intro-sub p{color:#349dcb}
+</style>
+</head>
+<body>
+<header id="header">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="/gnu_debugger/images/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language Tutorials</a></li>
+<li><a href="/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="/gnu_debugger/images/gdb-mini-logo.jpg" alt="GNU Debugger Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">GNU Debugger Tutorial</li>
+<li><a class="left" target="_top" href="/gnu_debugger/index.htm">GDB - Home</a></li>
+<li><a class="left" target="_top" href="/gnu_debugger/what_is_gdb.htm" >GDB - What is GDB?</a></li>
+<li><a class="left" target="_top" href="/gnu_debugger/installing_gdb.htm" >GDB - Installation</a></li>
+<li><a class="left" target="_top" href="/gnu_debugger/gdb_debugging_symbols.htm" >GDB - Debugging Symbols</a></li>
+<li><a class="left" target="_top" href="/gnu_debugger/gdb_commands.htm" >GDB - Commands</a></li>
+<li><a class="left" target="_top" href="/gnu_debugger/gdb_debugging_programs.htm" >GDB - Debugging Programs</a></li>
+<li><a class="left" target="_top" href="/gnu_debugger/gdb_debugging_examples.htm" >GDB - Debugging Examples</a></li>
+<li><a class="left" target="_top" href="/gnu_debugger/gdb_what_is_next.htm" >GDB - Summary</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">GNU Debugger Useful Resources</li>
+<li><a class="left" target="_top" href="/gnu_debugger/gdb_quick_guide.htm" >GDB - Quick Guide</a></li>
+<li><a class="left" target="_top" href="/gnu_debugger/gdb_resources.htm" >GDB - Resources</a></li>
+<li><a class="left" target="_top" href="/gnu_debugger/gdb_discussion.htm">GDB - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>GDB - Quick Guide</h1>
+<hr />
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align: center;">
+<script><!--
+google_ad_client = "pub-7133395778201029";
+var width = document.getElementsByClassName("tutorial-content")[0].clientWidth - 40;
+google_ad_width = width;
+google_ad_height = 150;
+google_ad_format = width + "x150_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="/gnu_debugger/gdb_what_is_next.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/gnu_debugger/gdb_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<h1>What is GNU Debugger?</h1>
+<p>A debugger is a program that runs other programs, allowing the user to exercise control over these programs, and to examine variables when problems arise.</p>
+<p>GNU Debugger, which is also called <b>gdb,</b> is the most popular debugger for UNIX systems to debug C and C++ programs.</p>
+<p>GNU Debugger helps you in getting information about the following:</p>
+<ul class="list">
+<li><p>If a core dump happened, then what statement or expression did the program crash on?</p></li>
+<li><p>If an error occurs while executing a function, what line of the program contains the call to that function, and what are the parameters?</p></li>
+<li><p>What are the values of program variables at a particular point during execution of the program?</p></li>
+<li><p>What is the result of a particular expression in a program?</p></li>
+</ul>
+<h2>How GDB Debugs?</h2>
+<p>GDB allows you to run the program up to a certain point, then stop and print out the values of certain variables at that point, or step through the program one line at a time and print out the values of each variable after executing each line.</p>
+<p>GDB uses a simple command line interface.</p>
+<h2>Points to Note</h2>
+<ul class="list">
+<li><p>Even though GDB can help you in finding out memory leakage related bugs, but it is not a tool to detect memory leakages.<p></li>
+<li><p>GDB cannot be used for programs that compile with errors and it does not help in fixing those errors.</p></li>
+</ul> 
+<h1>GDB - Installation</h1>
+<p>Before you go for installation, check if you already have gdb installed on your Unix system by issuing the following command:</p>
+<pre class="result notranslate">
+$gdb -help 
+</pre>
+<p>If GDB is installed, then it will display all the available options within your GDB. If GDB is not installed, then proceed for a fresh installation.</p>
+<p>You can install GDB on your system by following the simple steps discussed below.</p>
+<p><b>step 1:</b> Make sure you have the prerequisites for installing gdb:</p>
+<ul class="list">
+<li><p>An ANSI-compliant C compiler (gcc is recommended - note that gdb can debug codes generated by other compilers)</p></li>
+<li><p>115 MB of free disk space is required on the partition on which you're going to build gdb.</p></li>
+<li><p>20 MB of free disk space is required on the partition on which you're going to install gdb.</p></li>
+<li><p>GNU's decompression program, <b>gzip</b></p></li>
+<li><p>The <b>make</b> utility - the GNU version is known to work without a problem, others probably do as well.</p></li>
+</ul>
+<p><b>step 2:</b> Download the gdb source distribution from <b>ftp.gnu.org/gnu/gdb.</b> (We used <b>gdb-6.6.tar.gz</b> for these instructions.) Place the distribution files in your build directory.</p>
+<p><b>step 3:</b> In your build directory, decompress gdb-6.6.tar.gz and extract the source files from the archive. Once the files have finished extracting, change your working directory to the gdb-6.6 directory that was automatically created in your build directory.</p>
+<pre class="result notranslate">
+$ build&gt; gzip -d gdb-6.6.tar.gz 
+$ build&gt; tar xfv gdb-6.6.tar 
+$ build&gt; cd gdb-6.6 
+</pre>
+<p><b>step 4:</b> Run the configure script to configure the source tree for your platform.</p>
+<pre class="result notranslate">
+$ gdb-6.6&gt; .&frasl;configure 
+</pre>
+<p><b>step 5:</b> Build gdb using the <b>make</b> utility.</p>
+<pre class="result notranslate">
+$ gdb-6.6> make 
+</pre>
+<p><b>step 6:</b> Login as root and install gdb using the following command.</p>
+<pre class="result notranslate">
+$ gdb-6.6&gt; make install 
+</pre>
+<p><b>step 7:</b> If required, disk space can be reclaimed by deleting the gdb build directory and the archive file after the installation is complete.</p>
+<pre class="result notranslate">
+$ gdb-6.6&gt; cd .. 
+$ build&gt; rm -r gdb-6.6 
+$ build&gt; rm gdb-6.6.tar 
+</pre>
+<p>You now have gdb installed on your system and it is ready to use.</p>
+<h1>GDB - Debugging Symbols</h1>
+<p>A <b>Debugging Symbol Table</b> maps instructions in the compiled binary program to their corresponding variable, function, or line in the source code. This mapping could be something like:</p>
+<ul class="list">
+<li><p>Program instruction &rArr; item name, item type, original file, line number defined.</p></li>
+</ul>
+<p>Symbol tables may be embedded into the program or stored as a separate file. So if you plan to debug your program, then it is required to create a symbol table which will have the required information to debug the program.</p>
+<p>We can infer the following facts about symbol tables:</p>
+<ul class="list">
+<li><p>A symbol table works for a particular version of the program – if the program changes, a new table must be created.</p></li>
+<li><p>Debug builds are often larger and slower than retail (non-debug) builds; debug builds contain the symbol table and other ancillary information.</p></li>
+<li><p>If you wish to debug a binary program you did not compile yourself, you must get the symbol tables from the author.</p></li>
+</ul>
+<p>To let GDB be able to read all that information line by line from the symbol table, we need to compile it a bit differently. Normally we compile our programs as:</p>
+<pre class="result notranslate">
+gcc hello.cc -o hello 
+</pre>
+<p>Instead of doing this, we need to compile with the -g flag as shown below:</p>
+<pre class="result notranslate">
+gcc -g hello.cc -o hello 
+</pre>
+<h1>GDB - Commands</h1>
+<p>GDB offers a big list of commands, however the following commands are the ones used most frequently:</p>
+<ul class="list">
+<li><p><b>b main</b> - Puts a breakpoint at the beginning of the program</p></li>
+<li><p><b>b</b> - Puts a breakpoint at the current line</p></li>
+<li><p><b>b N</b> - Puts a breakpoint at line N</p></li>
+<li><p><b>b +N</b> - Puts a breakpoint N lines down from the current line</p></li>
+<li><p><b>b fn</b> - Puts a breakpoint at the beginning of function "fn"</p></li>
+<li><p><b>d N</b> - Deletes breakpoint number N</p></li>
+<li><p><b>info break</b> - list breakpoints</p></li>
+<li><p><b>r</b> - Runs the program until a breakpoint or error</p></li>
+<li><p><b>c</b> - Continues running the program until the next breakpoint or error</p></li>
+<li><p><b>f</b> - Runs until the current function is finished</p></li>
+<li><p><b>s</b> - Runs the next line of the program</p></li>
+<li><p><b>s N</b> - Runs the next N lines of the program</p></li>
+<li><p><b>n</b> - Like s, but it does not step into functions</p></li>
+<li><p><b>u N</b> - Runs until you get N lines in front of the current line</p></li>
+<li><p><b>p var</b> - Prints the current value of the variable "var"</p></li>
+<li><p><b>bt</b> - Prints a stack trace</p></li>
+<li><p><b>u</b> - Goes up a level in the stack</p></li>
+<li><p><b>d</b> - Goes down a level in the stack</p></li>
+<li><p><b>q</b> - Quits gdb</p></li>
+</ul>
+<h1>GDB - Debugging Programs</h1>
+<h2>Getting Started: Starting and Stopping</h2>
+<ul class="list">
+<li><p>gcc -g myprogram.c</p>
+<ul class="list">
+<li><p>Compiles myprogram.c with the debugging option (-g). You still get an a.out, but it contains debugging information that lets you use variables and function names inside GDB, rather than raw memory locations (not fun).</p></li>
+</ul>
+</li>
+<li><p>gdb a.out</p>
+<ul class="list">
+<li><p>Opens GDB with file a.out, but does not run the program. You’ll see a prompt (gdb) - all examples are from this prompt.</p></li>
+</ul>
+</li>
+<li><p>r</p></li>
+<li><p>r arg1 arg2</p></li>
+<li><p>r &lt; file1</p>
+<ul class="list">
+<li><p>Three ways to run “a.out”, loaded previously. You can run it directly (r), pass arguments (r arg1 arg2), or feed in a file. You will usually set breakpoints before running.</p></li>
+</ul>
+</li>
+<li><p>help</p></li>
+<li><p>h breakpoints</p>
+<ul class="list">
+<li><p>Lists help topics (help) or gets help on a specific topic (h breakpoints). GDB is well-documented.</p></li>
+</ul>
+</li>
+<li><p>q - Quit GDB</p></li>
+</ul>
+<h2>Stepping through Code</h2>
+<p>Stepping lets you trace the path of your program, and zero in on the code that is crashing or returning invalid input.</p>
+<ul class="list">
+<li><p>l</p></li>
+<li><p>l 50</p></li>
+<li><p>l myfunction</p>
+<ul class="list">
+<li><p>Lists 10 lines of source code for current line (l), a specific line (l 50), or for a function (l myfunction).</p></li>
+</ul>
+</li>
+<li><p>next</p>
+<ul class="list">
+<li><p>Runs the program until next line, then pauses. If the current line is a function, it executes the entire function, then pauses. <b>next</b> is good for walking through your code quickly.</p></li>
+</ul>
+</li>
+<li><p>step</p>
+<ul class="list">
+<li><p>Runs the next instruction, not line. If the current instruction is setting a variable, it is the same as <b>next</b>. If it’s a function, it will jump into the function, execute the first statement, then pause. <b>step</b> is good for diving into the details of your code.</p></li> 
+</ul>
+</li>
+<li><p>finish</p>
+<ul class="list">
+<li><p>Finishes executing the current function, then pause (also called step out). Useful if you accidentally stepped into a function.</p></li>
+</ul>
+</li>
+</ul>
+<h2>Breakpoints or Watchpoints</h2>
+<p>Breakpoints play an important role in debugging. They pause (break) a program when it reaches a certain point. You can examine and change variables and resume execution. This is helpful when some input failure occurs, or inputs are to be tested.</p>
+<ul class="list">
+<li><p>break 45</p></li>
+<li><p>break myfunction</p>
+<ul class="list">
+<li>Sets a breakpoint at line 45, or at myfunction. The program will pause when it reaches the breakpoint.</li>
+</ul>
+</li>
+<li><p>watch x == 3</p>
+<ul class="list">
+<li><p>Sets a watchpoint, which pauses the program when a condition changes (when x == 3 changes). Watchpoints are great for certain inputs (myPtr != NULL) without having to break on <i>every</i> function call.</p></li>
+</ul>
+</li>
+<li><p>continue</p>
+<ul class="list">
+<li><p>Resumes execution after being paused by a breakpoint/watchpoint. The program will continue until it hits the next breakpoint/watchpoint.</p></li>
+</ul>
+</li>
+<li><p>delete N</p>
+<ul class="list">
+<li>Deletes breakpoint N (breakpoints are numbered when created).</li>
+</ul>
+</li>
+</ul>
+<h2>Setting Variables</h2>
+<p>Viewing and changing variables at runtime is a critical part of debugging. Try providing invalid inputs to functions or running other test cases to find the root cause of problems. Typically, you will view/set variables when the program is paused.</p>
+<ul class="list">
+<li><p>print x</p>
+<ul class="list">
+<li><p>Prints current value of variable x. Being able to use the original variable names is why the (-g) flag is needed; programs compiled regularly have this information removed.</p></li>
+</ul>
+</li>
+<li><p>set x = 3</p></li>
+<li><p>set x = y</p>
+<ul class="list">
+<li>Sets x to a set value (3) or to another variable (y)</li>
+</ul>
+</li>
+<li><p>call myfunction()</p></li>
+<li><p>call myotherfunction(x)</p></li>
+<li><p>call strlen(mystring)</p>
+<ul class="list">
+<li><p>Calls user-defined or system functions. This is extremely useful, but beware of calling buggy functions.</p></li>
+</ul>
+</li>
+<li><p>display x</p>
+<ul class="list">
+<li><p>Constantly displays the value of variable x, which is shown after every step or pause. Useful if you are constantly checking for a certain value.</p></li>
+</ul>
+</li>
+<li><p>undisplay x</p>
+<ul class="list">
+<li>Removes the constant display of a variable displayed by display command.</li>
+</ul>
+</li>
+</ul>
+<h2>Backtrace and Changing Frames</h2>
+<p>A stack is a list of the current function calls - it shows you where you are in the program. A <i>frame</i> stores the details of a single function call, such as the arguments.</p>
+<ul class="list">
+<li><p>bt</p>
+<ul class="list">
+<li><p><b>Backtraces</b> or prints the current function stack to show where you are in the current program. If main calls function a(), which calls b(), which calls c(), the backtrace is</p></li>
+</ul>
+</li>
+<pre class="result notranslate">
+c &lt;= current location 
+b 
+a 
+main 
+</pre>
+<li><p>up</p></li>
+<li><p>down</p>
+<ul class="list">
+<li><p>Move to the next frame up or down in the function stack. If you are in <b>c,</b> you can move to <b>b</b> or <b>a</b> to examine local variables.</p></li>
+</ul>
+</li>
+<li><p>return</p>
+<ul class="list">
+<li>Returns from current function.</li>
+</ul>
+</li>
+</ul>
+<h2>Handling Signals</h2>
+<p>Signals are messages thrown after certain events, such as a timer or error. GDB may pause when it encounters a signal; you may wish to ignore them instead.</p>
+<ul class="list">
+<li><p>handle [signalname] [action]</p></li>
+<li><p>handle SIGUSR1 nostop</p></li>
+<li><p>handle SIGUSR1 noprint</p></li>
+<li><p>handle SIGUSR1 ignore</p>
+<ul class="list">
+<li><p>Instruct GDB to ignore a certain signal (SIGUSR1) when it occurs. There are varying levels of ignoring.</p></li>
+</ul>
+</li>
+</ul>
+<h1>GDB - Debugging Examples</h1>
+<p>Go through the following examples to understand the procedure of debugging a program and core dumped.</p>
+<ul class="list">
+<li><p><a href="/gnu_debugger/gdb_debugging_example1.htm">Debugging Example 1</a></p>
+<p>This example demonstrates how you would capture an error that is happening due to an exception raised while dividing by zero.</p></li>
+<li><p><a href="/gnu_debugger/gdb_debugging_example2.htm">Debugging Example 2</a></p>
+<p>This example demonstrates a program that can dump a core due to non-initialized memory.</p></li>
+</ul>
+<p>Both the programs are written in C++ and generate core dump due to different reasons. After going through these two examples, you should be in a position to debug your C or C++ programs generating core dumps.</p>
+<h1>GDB - Summary</h1>
+<p>After going through this tutorial, you must have gained a good understanding of debugging a C or C++ program using GNU Debugger. Now it should be very easy for you to learn the functionality of other debuggers because they are very similar to GDB. It is highly recommended that you go through other debuggers as well to become familiar with their features.</p>
+<p>There are quite a few good debuggers available in the market:</p>
+<ul class="list">
+<li><p><b>DBX Debugger</b> - This debugger ships along with Sun Solaris and you can get complete information about this debugger using the man page of dbx, i.e., <i>man dbx</i>.</p></li>
+<li><p><b>DDD Debugger</b> - This is a graphical version of dbx and freely available on Linux. To have a complete detail, use the man page of ddd, i.e., <i>man ddd</i>.</p></li>
+</ul>
+<p>You can get a comprehensive detail about GNU Debugger from the following link: <a target="_blank" href="http://web.mit.edu/gnu/doc/html/gdb_toc.html">Debugging with GDB</a></p>
+<div class="mui-container-fluid button-borders show">
+<div class="pre-btn">
+<a href="/gnu_debugger/gdb_what_is_next.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/gnu_debugger/gdb_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<script><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div class="space-bottom"></div>
+</div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"></div>
+<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;">
+<script><!--
+google_ad_client = "pub-2537027957187252";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9012177"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9012177")})</script>
+</div>
+<div class="space-bottom"></div>
+<div class="google-right-ad">
+<div class="adsbyvli" data-ad-slot="vi_9013289"></div>
+<script>(vitag.Init = window.vitag.Init || []).push(function(){viAPItag.display("vi_9013289")})</script>
+</div>
+<div class="space-bottom" style="margin-bottom:15px;"></div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+</div>
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="/index.htm" class="logo"><img class="img-responsive" src="/images/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="/about/about_privacy.htm#cookies"> <i class="fal fa-shield-check"></i> Cookies Policy</a></li>
+<li><a href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">&copy; Copyright 2019. All Rights Reserved.</div>
+</div>
+<div id="privacy-banner">
+  <div>
+    <p>
+      We use cookies to provide and improve our services. By using our site, you consent to our Cookies Policy.
+      <a id="banner-accept" href="#">Accept</a>
+      <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+    </p>
+  </div>
+</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-17"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+</body>
+</html>
